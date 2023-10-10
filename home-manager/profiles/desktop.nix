@@ -44,7 +44,6 @@ with lib; {
         nextcloud-client
         seafile-client
         # Messenger
-        signal-desktop
         telegram-desktop
         discord
         qtox
