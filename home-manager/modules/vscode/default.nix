@@ -10,12 +10,14 @@ in {
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = false;
       extensions = with pkgs.vscode-extensions; [
+        #vscodevim.vim
         arrterian.nix-env-selector
         b4dm4n.vscode-nixpkgs-fmt
         dracula-theme.theme-dracula
         eamodio.gitlens
         esbenp.prettier-vscode
         firefox-devtools.vscode-firefox-debug
+        GitHub.copilot
         gruntfuggly.todo-tree
         jnoortheen.nix-ide
         ms-python.python
@@ -25,52 +27,51 @@ in {
         tamasfe.even-better-toml
         usernamehw.errorlens
         vadimcn.vscode-lldb
-        #vscodevim.vim
         yzhang.markdown-all-in-one
       ];
       userSettings = {
-        "workbench.colorTheme" = "Dracula";
-        "nix.enableLanguageServer" = "true";
-        "nix.serverPath" = "${pkgs.nil}/bin/nil";
         "[nix]" = { "editor.defaultFormatter" = "B4dM4n.nixpkgs-fmt"; };
-        "editor.tabSize" = "2";
-        "editor.renderWhitespace" = "all";
-        "editor.wordWrap" = "bounded";
-        "editor.defaultColorDecorators" = "true";
-        "git.confirmSync" = "false";
-        "git.autofetch" = "true";
-        "git.enableSmartCommit" = "true";
-        "files.autoSave" = "afterDelay";
+        "diffEditor.codeLens" = "true";
+        "diffEditor.diffAlgorithm" = "advanced";
         "diffEditor.ignoreTrimWhitespace" = "false";
-        "window.zoomLevel" = "-2";
-        "editor.linkedEditing" = "true";
-        "editor.mouseWheelZoom" = "true";
-        "editor.smoothScrolling" = "true";
-        "editor.tabCompletion" = "on";
-        "editor.stickyTabStops" = "true";
         "editor.cursorBlinking" = "expand";
         "editor.cursorSmoothCaretAnimation" = "on";
         "editor.cursorSurroundingLinesStyle" = "all";
+        "editor.defaultColorDecorators" = "true";
         "editor.find.autoFindInSelection" = "multiline";
         "editor.formatOnPaste" = "true";
         "editor.formatOnSave" = "true";
         "editor.formatOnType" = "true";
-        "diffEditor.codeLens" = "true";
-        "diffEditor.diffAlgorithm" = "advanced";
+        "editor.linkedEditing" = "true";
+        "editor.mouseWheelZoom" = "true";
+        "editor.renderWhitespace" = "all";
+        "editor.smoothScrolling" = "true";
+        "editor.stickyTabStops" = "true";
         "editor.suggest.preview" = "true";
+        "editor.tabCompletion" = "on";
+        "editor.tabSize" = "2";
+        "editor.wordWrap" = "bounded";
+        "explorer.incrementalNaming" = "smart";
         "files.autoGuessEncoding" = "true";
+        "files.autoSave" = "afterDelay";
         "files.insertFinalNewline" = "true";
         "files.trimFinalNewlines" = "true";
         "files.trimTrailingWhitespace" = "true";
-        "workbench.list.smoothScrolling" = "true";
-        "workbench.editor.highlightModifiedTabs" = "true";
-        "workbench.editor.limit.enabled" = "true";
-        "explorer.incrementalNaming" = "smart";
-        "search.experimental.notebookSearch" = "true";
-        "search.smartCase" = "true";
+        "git.autofetch" = "true";
+        "git.confirmSync" = "false";
+        "git.enableSmartCommit" = "true";
+        "nix.enableLanguageServer" = "true";
+        "nix.serverPath" = "${pkgs.nil}/bin/nil";
+        "problems.showCurrentInStatus" = "true";
         "scm.alwaysShowActions" = "true";
         "scm.alwaysShowRepositories" = "true";
-        "problems.showCurrentInStatus" = "true";
+        "search.experimental.notebookSearch" = "true";
+        "search.smartCase" = "true";
+        "window.zoomLevel" = "-2";
+        "workbench.colorTheme" = "Dracula";
+        "workbench.editor.highlightModifiedTabs" = "true";
+        "workbench.editor.limit.enabled" = "true";
+        "workbench.list.smoothScrolling" = "true";
       };
       globalSnippets = {
         fixme = {
