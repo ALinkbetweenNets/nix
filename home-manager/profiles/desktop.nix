@@ -15,7 +15,7 @@ with lib; {
         kate
         obsidian
         signal-desktop
-        xclip
+        #xclip
         virt-manager
         spice
         spice-vdagent
