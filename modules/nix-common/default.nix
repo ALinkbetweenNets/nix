@@ -5,7 +5,7 @@
     allowReboot = true;
     rebootWindow = { lower = "05:00"; upper = "07:00"; };
     persistent = true;
-    flake = "github:alinkbetweennets/nixos";
+    flake = "github:alinkbetweennets/nix";
   };
   home-manager = {
     useUserPackages = true;
@@ -42,7 +42,7 @@
       # If set to true, Nix will fall back to building from source if a binary substitute fails.
       fallback = true
 
-      # the timeout (in seconds) for establishing connections in the binary cache substituter. 
+      # the timeout (in seconds) for establishing connections in the binary cache substituter.
       connect-timeout = 10
 
       # these log lines are only shown on a failed build
