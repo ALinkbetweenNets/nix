@@ -8,14 +8,10 @@ with lib; {
     home.packages = with pkgs;
       [
         alacritty
+        # theming
         beauty-line-icon-theme
-        discord
         dracula-theme
-        # fira-code-nerdfont
-        kate
-        obsidian
-        signal-desktop
-        #xclip
+
         virt-manager
         spice
         spice-vdagent
@@ -28,7 +24,7 @@ with lib; {
         ventoy-full
         pavucontrol
         helvum # Patchbay
-        gsettings-desktop-schemas # required for some apps like jami
+        #gsettings-desktop-schemas # required for some apps like jami
         texlive.combined.scheme-full
         # Editor
         obsidian
@@ -44,6 +40,7 @@ with lib; {
         nextcloud-client
         seafile-client
         # Messenger
+        signal-desktop
         telegram-desktop
         discord
         qtox
