@@ -105,12 +105,12 @@ with lib; {
       #rust.enable = true;
       #sway.enable = true;
     };
-    xdg = {
-      enable = true;
-      mimeApps.enable = true;
-      userDirs.enable = true;
-      userDirs.createDirectories = true;
-    };
+    # xdg = {
+    #   enable = true;
+    #   mimeApps.enable = true;
+    #   userDirs.enable = true;
+    #   userDirs.createDirectories = true;
+    # };
   };
 
 }
