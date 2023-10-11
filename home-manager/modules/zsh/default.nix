@@ -41,13 +41,7 @@ in {
 
       shellAliases = rec {
         # switching within a flake repository
-        frb =
-          "${pkgs.nixos-rebuild}/bin/nixos-rebuild --use-remote-sudo switch --flake";
-
-        # always execute nixos-rebuild with sudo for switching
-        nixos-rebuild =
-          "${pkgs.nixos-rebuild}/bin/nixos-rebuild --use-remote-sudo";
-
+        fb = "sudo nixos-rebuild switch --use-remote-sudo --flake github:alinkbetweennets/nix";
         discord = "nohup discord --use-gl=desktop &";
       };
     };
