@@ -14,6 +14,7 @@ in
       cargo
       clippy
       gcc
+      lldb
       rustc
       rustfmt
     ];

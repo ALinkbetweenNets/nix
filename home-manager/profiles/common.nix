@@ -13,13 +13,13 @@ with lib; {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs;
       [
-        bottom
+        btop
         fastfetch
         gdb
-        lldb
         tldr
         tree
         unzip
+        dnsutils
         (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ] ++ lib.optionals
       (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
@@ -29,11 +29,10 @@ with lib; {
         enable = true;
         enableZshIntegration = true;
       };
+      lf = { enable = true; };
+      lesspipe = { enable = true; };
     };
-
-    # Services to start on all systems
-    services = { };
-
+    services = { syncthing.enable = true; };
     # Home-manager nixpkgs config
     nixpkgs = {
       # Allow "unfree" licenced packages
@@ -44,7 +43,6 @@ with lib; {
         flake-self.inputs.nur.overlay
       ];
     };
-
     # Include man-pages
     manual.manpages.enable = true;
 
@@ -59,7 +57,6 @@ with lib; {
       # changes in each release.
       stateVersion = "23.11";
     };
-
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
 
