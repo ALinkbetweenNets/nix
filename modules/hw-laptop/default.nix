@@ -8,7 +8,11 @@ in {
     link.hardware.enable = true;
     #options.type = "laptop";
     #networking.wireless.enable = !config.networking.networkmanager.enable;
-    services.xserver.libinput.enable = link.xserver;
+    networking.networkmanager = {
+      enableStrongSwan = true;
+      wifi.macAddress = "stable";
+    };
+    services.xserver.libinput.enable = true;
     services.auto-cpufreq.enable = true; # TLP replacement
     services.auto-cpufreq.settings = {
       battery = {

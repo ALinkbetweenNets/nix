@@ -6,7 +6,6 @@ in {
   config = mkIf cfg.enable {
     fonts.packages = with pkgs;
       [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
-
     environment.systemPackages = with pkgs; [
       ## system
       font-awesome
@@ -23,6 +22,7 @@ in {
       cryptsetup
       gocryptfs
       age
+      restic
       ## Network tools
       wget
       curl
@@ -36,6 +36,7 @@ in {
       nftables
       wireguard-tools
       dnsutils
+
     ];
     environment.pathsToLink = [ "/share/zsh" ];
     link = {
@@ -49,8 +50,34 @@ in {
       #wayland.enable = true;
       xserver.enable = true;
     };
+
+    services.mullvad-vpn.enable = true;
     services.rpcbind.enable = true; # nfs
-    networking.firewall.enable = lib.mkDefault true;
+    networking = {
+      nftables.enable = true; # libvirt, docker and others use iptables
+      wireguard.enable = true;
+      networkmanager = {
+        enable = true;
+
+        appendNameservers = [
+          "1.1.1.1"
+          "192.168.178.1"
+          "9.9.9.9"
+          "216.146.35.35"
+          "2620:fe::fe"
+          "2606:4700:4700::1111"
+        ];
+      };
+      firewall = {
+        enable = lib.mkDefault true;
+        allowedTCPPorts = [ 8384 22000 ]; # syncthing
+        allowedUDPPorts = [
+          22000 # syncthing
+          21027 # syncthing
+          51820 # wireguard
+        ];
+      };
+    };
     # programs.gnupg.agent = {
     #   enable = true;
     #   enableSSHSupport = true;
