@@ -2,7 +2,7 @@
 with lib;
 let vars = import ../../vars.nix;
 in {
-
+  home.packages = with pkgs; [ btop fastfetch gdb tldr sysz fd bat eza ];
 
   programs = {
     starship.enable = true;
@@ -99,6 +99,7 @@ in {
         tree_view = false;
       };
     };
+    btop = { enable = true; };
 
     jq.enable = true;
 
