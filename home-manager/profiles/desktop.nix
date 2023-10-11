@@ -25,7 +25,6 @@ with lib; {
         pavucontrol
         helvum # Patchbay
         #gsettings-desktop-schemas # required for some apps like jami
-        texlive.combined.scheme-full
         # Editor
         obsidian
         logseq
