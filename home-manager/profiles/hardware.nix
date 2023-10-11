@@ -8,6 +8,11 @@ with lib; {
         # Desktop monitor settings change
         ddcui
         ddcutil
+        hddtemp
+        powertop
+        lshw
+        usbutils
+
       ] ++ lib.optionals
       (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
   };

@@ -4,6 +4,8 @@ let cfg = config.link.hardware;
 in {
   options.link.hardware.enable = mkEnableOption "activate hardware";
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [ nvtop powertop ];
+
     boot = {
       plymouth = {
         enable = true;
@@ -21,6 +23,18 @@ in {
       kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
     };
     time.hardwareClockInLocalTime = true; # for windows dualboot
-    hardware.enableRedistributableFirmware = true;
+    # hardware.enableRedistributableFirmware = true;
+    hardware.enableAllFirmware = true;
+    services.fwupd.enable = true;
+
+    hardware.sensor.hddtemp.enable = true;
+    hardware.sensor.hddtemp.drives = [ "/dev/disk/by-id/*" ];
+    services.thermald.enable = true;
+    services.smartd.enable = true;
+
+    powerManagement.enable = true;
+    powerManagement.powertop.enable = true;
+
+    services.ddccontrol.enable = true; # Control External Monitor Brightness
   };
 }
