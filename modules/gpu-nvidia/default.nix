@@ -5,13 +5,21 @@ in {
   options.link.nvidia = { enable = mkEnableOption "activate nvidia support"; };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      pciutils
+      libva-utils
+      vdpauinfo
+      nvtop-nvidia
+      nvidia-vaapi-driver
+    ];
     services.xserver.videoDrivers = [ "nvidia" ];
-    # Nvidia settings
     hardware = {
       opengl = {
         enable = true;
         driSupport = true;
         driSupport32Bit = true;
+        extraPackages = with pkgs; [ vaapiVdpau ];
+        extraPackages32 = with pkgs; [ vaapiVdpau ];
       };
       nvidia = {
         open =
