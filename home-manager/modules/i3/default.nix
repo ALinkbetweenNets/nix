@@ -34,6 +34,7 @@ in
       dunst.enable = true; # notification daemon
       network-manager-applet.enable = true;
       pasystray.enable = true;
+      flameshot.enable = true;
     };
 
     # i3 status rust
