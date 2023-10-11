@@ -6,6 +6,7 @@ with lib; {
     link.pentesting.enable = true;
     link.latex.enable = true;
     link.gaming.enable = true;
+    link.python.enable = true;
     services.kdeconnect = {
       enable = true;
       indicator = true;
