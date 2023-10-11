@@ -7,7 +7,36 @@ in {
     fonts.packages = with pkgs;
       [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
 
-    environment.systemPackages = with pkgs; [ font-awesome ];
+    environment.systemPackages = with pkgs; [
+      ## system
+      font-awesome
+      dbus
+      libsecret
+      ## basics
+      file
+      killall
+      trashy
+      tmux
+      ## encryption& filesystem
+      sshfs
+      nfs-utils
+      cryptsetup
+      gocryptfs
+      age
+      ## Network tools
+      wget
+      curl
+      tree
+      unzip
+      p7zip
+      rmlint
+      gitFull
+      # gitFull
+      iptables
+      nftables
+      wireguard-tools
+      dnsutils
+    ];
     environment.pathsToLink = [ "/share/zsh" ];
     link = {
       users = {
@@ -20,6 +49,7 @@ in {
       #wayland.enable = true;
       xserver.enable = true;
     };
+    services.rpcbind.enable = true; # nfs
     networking.firewall.enable = lib.mkDefault true;
     # programs.gnupg.agent = {
     #   enable = true;
