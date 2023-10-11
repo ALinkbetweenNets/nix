@@ -4,7 +4,7 @@ let cfg = config.link.cpu-intel;
 in {
   options.link.cpu-intel.enable = mkEnableOption "activate cpu-intel";
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ intel-gpu-tools nvtop powertop ];
+    environment.systemPackages = with pkgs; [ intel-gpu-tools ];
     boot.initrd.kernelModules = [ "i915" ];
     boot.kernelModules = [ "kvm-intel" ];
 
