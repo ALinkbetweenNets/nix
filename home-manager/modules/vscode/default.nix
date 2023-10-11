@@ -20,8 +20,6 @@ in {
         github.copilot
         gruntfuggly.todo-tree
         jnoortheen.nix-ide
-        ms-python.python
-        ms-toolsai.jupyter
         ms-vscode-remote.remote-ssh
         streetsidesoftware.code-spell-checker
         tamasfe.even-better-toml
