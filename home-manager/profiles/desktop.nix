@@ -7,74 +7,47 @@ with lib; {
     # Packages to install on all desktop systems
     home.packages = with pkgs;
       [
-        alacritty
-        # theming
-        beauty-line-icon-theme
-        dracula-theme
-
-        virt-manager
-        spice
-        spice-vdagent
-
+        # Basics
         wl-clipboard-x11
         wl-clipboard
         hunspell
-        kleopatra # gpg/ pgp
-        popsicle # USB Flasher
-        ventoy-full
-        pavucontrol
+        # Audio
         helvum # Patchbay
-        #gsettings-desktop-schemas # required for some apps like jami
+        pavucontrol
+        # Encryption
+        veracrypt
+        kleopatra # gpg/ pgp
+
+        # Misc
+        xdg-utils
         # Editor
-        obsidian
-        logseq
         libsForQt5.kate # kate
         kdiff3
-        semantik # mind mapping
+        obsidian
         # Hex Editor
         hexdino # terminal vimlike hex editor
         okteta # hex editor
         # File Sync
-        syncthing-tray
-        nextcloud-client
-        seafile-client
-        # Messenger
-        signal-desktop
-        telegram-desktop
-        discord
-        qtox
-        # Utils
-        pomodoro
+        #syncthing-tray
         # Multimedia
         vlc
         mpv
-        obs-studio
-        obs-studio-plugins.obs-backgroundremoval
         cobang # qr codes
-        brave # backup browser
         # Privacy
         # tor-browser-bundle-bin # compromised
         mullvad-vpn
         mullvad-browser
-        monero-gui
         # RDP
         remmina # VNC Client
         libsForQt5.krfb # kde connect virtual monitor
         libsForQt5.kpurpose # KDE share
-        libsForQt5.qt5.qtwebsockets
-        libsForQt5.calendarsupport
         scrcpy # ADB screenshare
 
-        xdg-utils
-        # Desktop monitor settings change
-        ddcui
-        ddcutil
-        veracrypt
+        libsForQt5.qt5.qtwebsockets
+        libsForQt5.calendarsupport
 
       ] ++ lib.optionals
       (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
-
-    # Programs to install on all desktop systems
     programs = {
       firefox.enable = true;
       terminator.enable = true;
@@ -82,25 +55,10 @@ with lib; {
         enable = true;
         extraConfig = "--update";
         settings = { embed-thumbnail = true; };
-
       };
-
     };
-
-    # Services to enable on all systems
-    services = {
-      flameshot.enable = true;
-      syncthing.enable = true;
-    };
-
-    link = {
-      code.enable = true;
-      #latex.enable=true;
-      #i3.enable = true;
-
-      #rust.enable = true;
-      #sway.enable = true;
-    };
+    manual.html.enable = true;
+    link = { code.enable = true; };
     # xdg = {
     #   enable = true;
     #   mimeApps.enable = true;
