@@ -17,7 +17,7 @@ in {
         eamodio.gitlens
         esbenp.prettier-vscode
         firefox-devtools.vscode-firefox-debug
-        GitHub.copilot
+        github.copilot
         gruntfuggly.todo-tree
         jnoortheen.nix-ide
         ms-python.python
