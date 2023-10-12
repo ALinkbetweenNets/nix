@@ -2,12 +2,12 @@
 with lib;
 let cfg = config.link.office;
 in {
-  
+
   options.link.office.enable = mkEnableOption "activate office";
-  
+
   config = mkIf cfg.enable {
 
-    programs = {  };
+    programs = { };
     home.packages = with pkgs;
       [ libreoffice-qt thunderbird ];
   };
