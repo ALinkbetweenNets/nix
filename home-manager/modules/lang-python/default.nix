@@ -5,7 +5,7 @@ in {
   options.link.python.enable = mkEnableOption "enable python using texlive";
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      python311
+      #python311
       (python311.withPackages (ps:
         with ps; [
           pandas
