@@ -4,7 +4,7 @@ let cfg = config.link.plasma;
 in {
   options.link.plasma.enable = mkEnableOption "activate plasma";
   config = mkIf cfg.enable {
-    xserver = {
+    services.xserver = {
       displayManager.sddm.enable = true;
       desktopManager.plasma5.enable = true;
     };
