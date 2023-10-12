@@ -11,7 +11,7 @@
       [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
     initrd.kernelModules = [ ];
     kernelModules = [ "kvm-intel" ];
-    extraModulePackages = [ ];
+      boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
   };
   fileSystems = {
 
