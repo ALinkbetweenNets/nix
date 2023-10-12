@@ -59,8 +59,6 @@ in {
       auditd.enable = true;
     };
     services = {
-      mullvad-vpn.enable = true;
-      rpcbind.enable = true; # nfs
       fail2ban = {
         enable = true;
         maxretry = 5;
