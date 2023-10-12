@@ -11,8 +11,6 @@ in {
       #   setSocketVariable = true;
       # };
     };
-    users.extraGroups.docker.members = [ "l" ];
-
     environment.systemPackages = with pkgs; [
       docker
       # docker-compose
