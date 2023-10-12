@@ -11,6 +11,11 @@ in {
       plasma.enable = lib.mkDefault true;
     };
     programs.dconf.enable = true; # GTK themes are not applied in Wayland applications
+    environment.systemPackages = with pkgs; [
+      # Multimedia
+      vlc
+      mpv
+    ];
     networking = {
       networkmanager.enable = true;
       firewall = {

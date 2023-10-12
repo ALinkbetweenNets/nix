@@ -13,10 +13,12 @@ with lib; {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs;
       [
+        wcalc
         ## Networking+
         socat
         netcat-openbsd
         tcpdump
+        ipfetch
         magic-wormhole # Secure data transfer
         (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ] ++ lib.optionals
