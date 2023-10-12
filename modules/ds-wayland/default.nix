@@ -16,10 +16,6 @@ in {
       NIXOS_OZONE_WL = "1";
       MOZ_ENABLE_WAYLAND = "1";
     };
-    security = {
-      polkit.enable = true;
-      rtkit.enable = true;
-    };
 
     hardware = {
       # fixes'ÈGL_EXT_platform_base not supported'
