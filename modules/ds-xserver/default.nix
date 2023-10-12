@@ -7,6 +7,8 @@ in {
     # Enable the X11 windowing system.
     services.xserver = {
       layout = "de";
+      xkbVariant = "nodeadkeys";
+      xkbOptions = "eurosign:e,caps:escape";
       enable = true;
       autorun = true;
       libinput = {
