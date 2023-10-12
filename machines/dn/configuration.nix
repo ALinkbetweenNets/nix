@@ -7,8 +7,13 @@
   home-manager.users.l = flake-self.homeConfigurations.tower;
   link = {
     tower.enable = true;
+    main.enable = true;
+    cpu-intel.enable = true;
   };
-  networking.hostId = "007f0200";
-  networking.interfaces."enp111s0".wakeOnLan.enable = true;
-  networking.hostName = "dn";
+  networking = {
+    hostName = "dn";
+    hostId = "007f0200";
+    interfaces."enp111s0".wakeOnLan.enable = true;
+  };
+  environment.systemPackages = with pkgs; [ davinci-resolve ];
 }
