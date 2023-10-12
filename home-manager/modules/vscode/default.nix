@@ -31,7 +31,7 @@ in {
         "[nix]" = { "editor.defaultFormatter" = "B4dM4n.nixpkgs-fmt"; };
         "diffEditor.codeLens" = true;
         "diffEditor.diffAlgorithm" = "advanced";
-        "diffEditor.ignoreTrimWhitespace" = "false";
+        "diffEditor.ignoreTrimWhitespace" = false;
         "editor.cursorBlinking" = "expand";
         "editor.cursorSmoothCaretAnimation" = "on";
         "editor.cursorSurroundingLinesStyle" = "all";
@@ -47,7 +47,7 @@ in {
         "editor.stickyTabStops" = true;
         "editor.suggest.preview" = true;
         "editor.tabCompletion" = "on";
-        "editor.tabSize" = "2";
+        "editor.tabSize" = 2;
         "editor.wordWrap" = "bounded";
         "explorer.incrementalNaming" = "smart";
         "files.autoGuessEncoding" = true;
@@ -56,7 +56,7 @@ in {
         "files.trimFinalNewlines" = true;
         "files.trimTrailingWhitespace" = true;
         "git.autofetch" = true;
-        "git.confirmSync" = "false";
+        "git.confirmSync" = false;
         "git.enableSmartCommit" = true;
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "${pkgs.nil}/bin/nil";
@@ -65,7 +65,7 @@ in {
         "scm.alwaysShowRepositories" = true;
         "search.experimental.notebookSearch" = true;
         "search.smartCase" = true;
-        "window.zoomLevel" = "-2";
+        #"window.zoomLevel" = -2;
         "workbench.colorTheme" = "Dracula";
         "workbench.editor.highlightModifiedTabs" = true;
         "workbench.editor.limit.enabled" = true;
