@@ -1,8 +1,8 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.nextcloud;
+let cfg = config.link.nginx;
 in {
-  options.link.nextcloud.enable = mkEnableOption "activate nextcloud";
+  options.link.nginx.enable = mkEnableOption "activate nginx";
   config = mkIf cfg.enable {
     services.
     nginx = {

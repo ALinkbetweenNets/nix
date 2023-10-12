@@ -1,8 +1,8 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.nextcloud;
+let cfg = config.link.seafile;
 in {
-  options.link.nextcloud.enable = mkEnableOption "activate nextcloud";
+  options.link.seafile.enable = mkEnableOption "activate seafile";
   config = mkIf cfg.enable {
     services = {
       seafile = {

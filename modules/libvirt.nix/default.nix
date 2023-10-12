@@ -11,7 +11,7 @@ in {
       qemu
       qemu-utils
       ebtables
-    
+
     ];
 
     virtualisation.libvirtd.enable = true;

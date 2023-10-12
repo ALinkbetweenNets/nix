@@ -1,8 +1,8 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.nextcloud;
+let cfg = config.link.jellyfin;
 in {
-  options.link.nextcloud.enable = mkEnableOption "activate nextcloud";
+  options.link.jellyfin.enable = mkEnableOption "activate jellyfin";
   config = mkIf cfg.enable {
     fileSystems."/export" = {
       device = "/rz";

@@ -1,8 +1,8 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.nextcloud;
+let cfg = config.link.photoprism;
 in {
-  options.link.nextcloud.enable = mkEnableOption "activate nextcloud";
+  options.link.photoprism.enable = mkEnableOption "activate photoprism";
   config = mkIf cfg.enable {
     services = {
       photoprism = {

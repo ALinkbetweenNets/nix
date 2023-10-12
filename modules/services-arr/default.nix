@@ -1,8 +1,8 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.nextcloud;
+let cfg = config.link.arr;
 in {
-  options.link.nextcloud.enable = mkEnableOption "activate nextcloud";
+  options.link.arr.enable = mkEnableOption "activate arr";
   config = mkIf cfg.enable {
     services = {
       deluge = {
