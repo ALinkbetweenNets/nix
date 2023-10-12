@@ -10,7 +10,7 @@ in {
     users.users.l = {
       isNormalUser = true;
       home = "/home/l";
-      extraGroups = [ "wheel" "adbusers" "audio" "plugdev" ]
+      extraGroups = [ "wheel" "adbusers" "audio" "plugdev" "docker" ]
         ++ lib.optionals config.networking.networkmanager.enable
         [ "networkmanager" ];
       shell = "${pkgs.zsh}/bin/zsh";
