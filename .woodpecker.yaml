@@ -1,0 +1,95 @@
+{
+  "labels": {
+    "backend": "local"
+  },
+  "platform": "linux/amd64",
+  "steps": [
+    {
+      "commands": [
+        "nix flake show"
+      ],
+      "image": "bash",
+      "name": "Nix flake show"
+    },
+    {
+      "commands": [
+        "nix flake check"
+      ],
+      "image": "bash",
+      "name": "Nix flake check"
+    },
+    {
+      "commands": [
+        "attic login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default"
+      ],
+      "image": "bash",
+      "name": "Setup Attic",
+      "secrets": [
+        "attic_key"
+      ]
+    },
+    {
+      "commands": [
+        "nix build '.#nixosConfigurations.dn.config.system.build.toplevel' -o 'result-dn'"
+      ],
+      "image": "bash",
+      "name": "Build dn"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-dn')"
+      ],
+      "image": "bash",
+      "name": "Show dn info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-dn'"
+      ],
+      "image": "bash",
+      "name": "Push dn to Attic"
+    },
+    {
+      "commands": [
+        "nix build '.#nixosConfigurations.sn.config.system.build.toplevel' -o 'result-sn'"
+      ],
+      "image": "bash",
+      "name": "Build sn"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-sn')"
+      ],
+      "image": "bash",
+      "name": "Show sn info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-sn'"
+      ],
+      "image": "bash",
+      "name": "Push sn to Attic"
+    },
+    {
+      "commands": [
+        "nix build '.#nixosConfigurations.xn.config.system.build.toplevel' -o 'result-xn'"
+      ],
+      "image": "bash",
+      "name": "Build xn"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-xn')"
+      ],
+      "image": "bash",
+      "name": "Show xn info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-xn'"
+      ],
+      "image": "bash",
+      "name": "Push xn to Attic"
+    }
+  ]
+}
