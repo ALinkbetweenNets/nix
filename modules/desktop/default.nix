@@ -10,6 +10,7 @@ in {
       xserver.enable = lib.mkDefault true;
       plasma.enable = lib.mkDefault true;
     };
+    programs.dconf.enable = true; # GTK themes are not applied in Wayland applications
     networking = {
       networkmanager.enable = true;
       firewall = {
