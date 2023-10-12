@@ -7,7 +7,7 @@ with lib; {
     # Packages to install on all desktop systems
     home.packages = with pkgs;
       [
-        # Basics
+        ## Basics
         wl-clipboard-x11
         wl-clipboard
         hunspell
@@ -31,8 +31,6 @@ with lib; {
         # File Sync
         #syncthing-tray
         # Multimedia
-        vlc
-        mpv
         cobang # qr codes
         # Privacy
         # tor-browser-bundle-bin # compromised
@@ -46,12 +44,14 @@ with lib; {
 
         libsForQt5.qt5.qtwebsockets
         libsForQt5.calendarsupport
+        libsForQt5.konsole
+        libsForQt5.yakuake
 
       ] ++ lib.optionals
         (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
     programs = {
       firefox.enable = true;
-      terminator.enable = true;
+      #terminator.enable = true;
       yt-dlp = {
         enable = true;
         extraConfig = "--update";

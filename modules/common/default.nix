@@ -31,6 +31,7 @@ in {
       p7zip
       rmlint
       gitFull
+      fdupes
       # gitFull
       iptables
       nftables
