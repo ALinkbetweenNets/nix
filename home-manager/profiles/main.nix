@@ -38,10 +38,21 @@ with lib; {
       qtox
       # Utils
       pomodoro
+      figlet # Fancytext
+      links2 # TUI Browser
+      screen-message
+      vhs # generating terminal GIFs with code
+      surfraw # TUI search engine interface
+      translate-shell
+      ffmpeg_6
+      genpass
       # Multimedia
       obs-studio
       obs-studio-plugins.obs-backgroundremoval
       brave # backup browser
+      ytfzf
+      youtube-tui
+      pipe-viewer
       # Privacy
       monero-gui
 
