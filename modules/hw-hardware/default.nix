@@ -22,6 +22,7 @@ in {
       };
       tmp.cleanOnBoot = true;
       kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+      kernelParams = [ "quiet" "loglevel=3" ];
       kernelModules = [ "ecryptfs" ];
     };
     time.hardwareClockInLocalTime = true; # for windows dualboot
