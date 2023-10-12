@@ -13,27 +13,30 @@ with lib; {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs;
       [
-        bottom
-        fastfetch
-        gdb
-        lldb
-        tldr
-        tree
-        unzip
+        wcalc
+        ## Networking+
+        socat
+        netcat-openbsd
+        tcpdump
+        ipfetch
+        magic-wormhole # Secure data transfer
         (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ] ++ lib.optionals
-      (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
+        (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
 
     programs = {
+      ssh = {
+        enable = true;
+        #compression=true;
+      };
       nix-index = {
         enable = true;
         enableZshIntegration = true;
       };
+      lf = { enable = true; };
+      lesspipe = { enable = true; };
     };
-
-    # Services to start on all systems
-    services = { };
-
+    services = { syncthing.enable = true; };
     # Home-manager nixpkgs config
     nixpkgs = {
       # Allow "unfree" licenced packages
@@ -44,10 +47,8 @@ with lib; {
         flake-self.inputs.nur.overlay
       ];
     };
-
     # Include man-pages
     manual.manpages.enable = true;
-
     home = {
       # This value determines the Home Manager release that your
       # configuration is compatible with. This helps avoid breakage
@@ -59,7 +60,6 @@ with lib; {
       # changes in each release.
       stateVersion = "23.11";
     };
-
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
 
