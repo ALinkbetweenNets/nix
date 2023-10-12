@@ -2,7 +2,7 @@
 with lib;
 let vars = import ../../vars.nix;
 in {
-
+  home.packages = with pkgs; [ btop fastfetch gdb tldr sysz fd bat eza ];
 
   programs = {
     starship.enable = true;
@@ -41,14 +41,73 @@ in {
 
       shellAliases = rec {
         # switching within a flake repository
-        frb =
-          "${pkgs.nixos-rebuild}/bin/nixos-rebuild --use-remote-sudo switch --flake";
-
-        # always execute nixos-rebuild with sudo for switching
-        nixos-rebuild =
-          "${pkgs.nixos-rebuild}/bin/nixos-rebuild --use-remote-sudo";
-
+        nrb = "sudo nixos-rebuild switch --use-remote-sudo --flake github:alinkbetweennets/nix";
         discord = "nohup discord --use-gl=desktop &";
+        q="exit";
+          killme = "exit";
+        pls = "sudo";
+        l =
+          "eza --icons --group-directories-first --git -F --color always --sort=modified"; # -F = --classify
+        lr =
+          "eza --icons --group-directories-first --git -F --color always --sort=modified --tree";
+        la =
+          "eza --icons --group-directories-first --git -F --color always --sort=modified --all";
+
+        lss =
+          "eza --icons --group-directories-first --git -F --color always --sort=size";
+        lsr =
+          "eza --icons --group-directories-first --git -F --color always --sort=size --tree";
+        lsa =
+          "eza --icons --group-directories-first --git -F --color always --sort=size --all";
+
+        lar =
+          "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all";
+
+        ll =
+          "eza --icons --group-directories-first --git -F --color always --sort=modified -l";
+        llr =
+          "eza --icons --group-directories-first --git -F --color always --sort=modified --tree -l";
+        lla =
+          "eza --icons --group-directories-first --git -F --color always --sort=modified --all -l";
+
+        lls =
+          "eza --icons --group-directories-first --git -F --color always --sort=size -l";
+        llsr =
+          "eza --icons --group-directories-first --git -F --color always --sort=size --tree -l";
+        llsa =
+          "eza --icons --group-directories-first --git -F --color always --sort=size --all -l";
+
+        llar =
+          "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all -l";
+
+        r = "trash put";
+        rmt = "trash put";
+        services = "systemctl list-units --type service";
+        n = "nvim";
+        u =
+          "sudo nixos-rebuild switch --upgrade && sudo nix-collect-garbage -d";
+        less = "less -r";
+        cls = "clear";
+        c = "cd";
+        v = "codium";
+        o = "open";
+        f = "fuck";
+        p = "python";
+        b = "bat";
+        datamatrix = "iec16022";
+        fancytext = "figlet -tkf slant ";
+        s = "links https://duckduckgo.com/";
+        nip = "firefox https://search.nixos.org/packages";
+        nio = "firefox https://search.nixos.org/options";
+        yt = "~/s/y.sh";
+        dupl = "fdupes -rdnAst .";
+        sm = "sm -i";
+        g = "git";
+        gs = "git status";
+        gac = "git commit -am '$(date -I)'";
+        gpp = "git pull&&git push";
+        # gpu = "cd ~/nixos/ && git pull && sudo nixos-rebuild switch --upgrade";
+        gc = "sudo nix-collect-garbage -d";
       };
     };
 
@@ -99,6 +158,7 @@ in {
         tree_view = false;
       };
     };
+    btop = { enable = true; };
 
     jq.enable = true;
 
