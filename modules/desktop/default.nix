@@ -15,6 +15,10 @@ in {
       # Multimedia
       vlc
       mpv
+      # Virt Manager
+        virt-manager
+      spice
+      spice-vdagent
     ];
     networking = {
       networkmanager.enable = true;
