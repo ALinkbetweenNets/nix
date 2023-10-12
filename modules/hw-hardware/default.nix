@@ -6,6 +6,7 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [ nvtop powertop ];
 
+    security.pam.enableEcryptfs = true;
     boot = {
       plymouth = {
         enable = true;
@@ -21,6 +22,7 @@ in {
       };
       tmp.cleanOnBoot = true;
       kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+      kernelModules = [ "ecryptfs" ];
     };
     time.hardwareClockInLocalTime = true; # for windows dualboot
     # hardware.enableRedistributableFirmware = true;
