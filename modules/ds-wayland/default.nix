@@ -6,7 +6,16 @@ in {
   options.link.wayland.enable = mkEnableOption "activate wayland";
 
   config = mkIf cfg.enable {
-
+    programs.xwayland.enable = true;
+    environment.systemPackages = with pkgs;
+      [
+        # wl-clipboard
+        shotman
+      ];
+    environment.sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      MOZ_ENABLE_WAYLAND = "1";
+    };
     security = {
       polkit.enable = true;
       rtkit.enable = true;
