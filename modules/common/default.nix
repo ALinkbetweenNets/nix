@@ -45,15 +45,26 @@ in {
         root.enable = true;
       };
       openssh.enable = lib.mkDefault true;
-      #nvidia.enable = true;
-      #openrgb.enable = true;
-      #wayland.enable = true;
-      xserver.enable = true;
     };
-    security.sudo.wheelNeedsPassword = false;
+    security = {
+      sudo.wheelNeedsPassword = false;
+      polkit = {
+        enable = true;
+        adminIdentities = [ "unix-user:l" "unix-user:root" ];
+      };
+      apparmor.enable = true;
+      # security.tpm2.enable = true;
+      # security.tpm2.abrmd.enable = true;
+      auditd.enable = true;
+    };
     services = {
       mullvad-vpn.enable = true;
       rpcbind.enable = true; # nfs
+      fail2ban = {
+        enable = true;
+        maxretry = 5;
+        bantime-increment.enable = true;
+      };
     };
     networking = {
       nftables.enable = true; # libvirt, docker and others use iptables
