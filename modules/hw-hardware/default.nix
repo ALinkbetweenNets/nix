@@ -24,17 +24,23 @@ in {
     };
     time.hardwareClockInLocalTime = true; # for windows dualboot
     # hardware.enableRedistributableFirmware = true;
-    hardware.enableAllFirmware = true;
-    services.fwupd.enable = true;
-
-    hardware.sensor.hddtemp.enable = true;
-    hardware.sensor.hddtemp.drives = [ "/dev/disk/by-id/*" ];
-    services.thermald.enable = true;
-    services.smartd.enable = true;
-
-    powerManagement.enable = true;
-    powerManagement.powertop.enable = true;
-
-    services.ddccontrol.enable = true; # Control External Monitor Brightness
+    services = {
+      fwupd.enable = true;
+      thermald.enable = true;
+      smartd.enable = true;
+      ddccontrol.enable = true;
+      udisks2.enable = true;
+    };
+    hardware = {
+      enableAllFirmware = true;
+      sensor.hddtemp = {
+        enable = true;
+        drives = [ "/dev/disk/by-id/*" ];
+      };
+    };
+    powerManagement = {
+      enable = true;
+      powertop.enable = true;
+    }; # Control External Monitor Brightness
   };
 }
