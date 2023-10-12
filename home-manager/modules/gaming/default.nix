@@ -8,6 +8,12 @@ in {
       [
         prismlauncher # minecraft launcher
         steam
+        # protonup-qt
+        # protontricks
+        # winetricks
+        # wine
+        # wine64
+        prismlauncher # minecraft launcher
       ] ++ lib.optionals
         (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
   };

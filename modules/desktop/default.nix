@@ -16,7 +16,7 @@ in {
       vlc
       mpv
       # Virt Manager
-        virt-manager
+      virt-manager
       spice
       spice-vdagent
     ];
