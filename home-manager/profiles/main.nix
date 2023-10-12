@@ -52,7 +52,6 @@ with lib; {
       brave # backup browser
       ytfzf
       youtube-tui
-      pipe-viewer
       # Privacy
       monero-gui
 
