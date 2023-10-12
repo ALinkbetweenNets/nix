@@ -2,15 +2,11 @@
 with lib;
 let
   cfg = config.link.i3status-rust;
-  
+
 in
 {
 
   options.link.i3status-rust.enable = mkEnableOption "activate i3status-rust";
 
-  config = mkIf cfg.enable {
-
-
-
-  };
+  config = mkIf cfg.enable { };
 }

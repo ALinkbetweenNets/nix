@@ -43,8 +43,8 @@ in {
         # switching within a flake repository
         nrb = "sudo nixos-rebuild switch --use-remote-sudo --flake github:alinkbetweennets/nix";
         discord = "nohup discord --use-gl=desktop &";
-        q="exit";
-          killme = "exit";
+        q = "exit";
+        killme = "exit";
         pls = "sudo";
         l =
           "eza --icons --group-directories-first --git -F --color always --sort=modified"; # -F = --classify
