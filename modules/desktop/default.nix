@@ -8,6 +8,7 @@ in {
       common.enable = true;
       wayland.enable = lib.mkDefault true;
       xserver.enable = lib.mkDefault true;
+      plasma.enable = lib.mkDefault true;
     };
     networking = {
       networkmanager.enable = true;
@@ -28,11 +29,6 @@ in {
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services = {
-      xserver = {
-        enable = true;
-        displayManager.sddm.enable = true;
-        desktopManager.plasma5.enable = true;
-      };
       pipewire = {
         enable = true;
         alsa.enable = true;
