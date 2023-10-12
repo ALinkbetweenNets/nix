@@ -9,15 +9,11 @@ let
     '';
 in
 {
-
   options.link.sway.enable = mkEnableOption "activate sway";
-
   config = mkIf cfg.enable {
-
     home.packages = [
       start-sway
     ];
-
     wayland.windowManager.sway = {
       enable = true;
       config = {

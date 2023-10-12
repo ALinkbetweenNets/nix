@@ -2,7 +2,7 @@
 with lib; {
 
 
-  imports = [ ./desktop.nix ./main.nix ];
+  imports = [ ./main.nix ];
 
   config = {
 

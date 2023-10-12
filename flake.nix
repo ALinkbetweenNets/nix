@@ -88,6 +88,11 @@
             ./home-manager/profiles/tower.nix
           ] ++ (builtins.attrValues self.homeManagerModules);
         };
+        gaming = { pkgs, lib, ... }: {
+          imports = [
+            ./home-manager/profiles/gaming.nix
+          ] ++ (builtins.attrValues self.homeManagerModules);
+        };
         server = { pkgs, lib, ... }: {
           imports = [
             ./home-manager/profiles/server.nix

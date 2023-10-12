@@ -6,8 +6,7 @@ with lib; {
   config = {
     home.packages = with pkgs;
       [
-        #_1password-gui
-
+        
       ] ++ lib.optionals
         (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
 
