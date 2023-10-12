@@ -57,7 +57,6 @@ with lib; {
         extraConfig = "--update";
         settings = { embed-thumbnail = true; };
       };
-      dconf.enable = true; # GTK themes are not applied in Wayland applications
     };
     manual.html.enable = true;
     link = { code.enable = true; };
