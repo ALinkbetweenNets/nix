@@ -1,8 +1,8 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.nextcloud;
+let cfg = config.link.jitsi;
 in {
-  options.link.nextcloud.enable = mkEnableOption "activate nextcloud";
+  options.link.jitsi.enable = mkEnableOption "activate jitsi";
   config = mkIf cfg.enable {
     services = {
       jitsi-meet = {

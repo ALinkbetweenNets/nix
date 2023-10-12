@@ -1,8 +1,8 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.nextcloud;
+let cfg = config.link.nfs;
 in {
-  options.link.nextcloud.enable = mkEnableOption "activate nextcloud";
+  options.link.nfs.enable = mkEnableOption "activate nfs";
   config = mkIf cfg.enable {
     services.  nfs.server = {
       enable = true;
