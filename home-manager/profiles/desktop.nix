@@ -47,15 +47,17 @@ with lib; {
         libsForQt5.calendarsupport
 
       ] ++ lib.optionals
-      (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
+        (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
     programs = {
       firefox.enable = true;
       terminator.enable = true;
+      partition-manager.enable = true;
       yt-dlp = {
         enable = true;
         extraConfig = "--update";
         settings = { embed-thumbnail = true; };
       };
+      dconf.enable = true; # GTK themes are not applied in Wayland applications
     };
     manual.html.enable = true;
     link = { code.enable = true; };
