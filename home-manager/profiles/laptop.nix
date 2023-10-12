@@ -7,7 +7,7 @@ with lib; {
   config = {
 
     home.packages = with pkgs; [
-      parsec-bin
+      #parsec-bin
     ] ++ lib.optionals (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
 
     programs = { };
