@@ -12,6 +12,7 @@ in {
       enableStrongSwan = true;
       wifi.macAddress = "stable";
     };
+    hardware.bluetooth.enable = true;
     services.xserver.libinput.enable = true;
     services.auto-cpufreq.enable = true; # TLP replacement
     services.auto-cpufreq.settings = {
