@@ -31,11 +31,11 @@
       overlays.default = final: prev: (import ./pkgs inputs) final prev;
 
       packages = forAllSystems (system: {
-        # woodpecker-pipeline =
-        #   nixpkgsFor.${system}.callPackage ./pkgs/woodpecker-pipeline {
-        #     flake-self = self;
-        #     inputs = inputs;
-        #   };
+        woodpecker-pipeline =
+          nixpkgsFor.${system}.callPackage ./pkgs/woodpecker-pipeline {
+            flake-self = self;
+            inputs = inputs;
+          };
         inherit (nixpkgsFor.${system}.link) candy-icon-theme;
       });
 
@@ -65,7 +65,6 @@
 
             modules = builtins.attrValues self.nixosModules ++ [
               (import "${./.}/machines/${x}/configuration.nix" { inherit self; })
-              self.nixosModules.options
             ];
 
           };
