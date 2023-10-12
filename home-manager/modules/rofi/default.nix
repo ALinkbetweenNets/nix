@@ -122,7 +122,8 @@ let
         padding: 1em;
     }
   ''; # based on dracula theme
-in {
+in
+{
 
   options.link.rofi.enable = mkEnableOption "enable rofi";
 
