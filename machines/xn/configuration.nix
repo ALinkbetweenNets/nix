@@ -11,6 +11,7 @@
   home-manager.users.l = flake-self.homeConfigurations.convertible;
   link = {
     convertible.enable = true;
+    cpu-intel.enable = true;
   };
   networking.hostName = "xn";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ]; # Is this needed?
@@ -26,7 +27,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # 
+  #
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
