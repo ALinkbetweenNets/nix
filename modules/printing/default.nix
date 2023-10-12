@@ -6,6 +6,6 @@ in {
   config = mkIf cfg.enable {
     # CUPS
     services.printing.enable = true;
-    hardware.sane.enable=true;
+    hardware.sane.enable = true;
   };
 }

@@ -9,6 +9,6 @@ in {
         prismlauncher # minecraft launcher
         steam
       ] ++ lib.optionals
-      (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
+        (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
   };
 }
