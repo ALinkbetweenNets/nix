@@ -13,7 +13,6 @@ with lib; {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs;
       [
-
         ## Networking+
         socat
         netcat-openbsd
@@ -21,9 +20,13 @@ with lib; {
         magic-wormhole # Secure data transfer
         (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ] ++ lib.optionals
-      (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
+        (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
 
     programs = {
+      ssh = {
+        enable = true;
+        #compression=true;
+      };
       nix-index = {
         enable = true;
         enableZshIntegration = true;
@@ -44,7 +47,6 @@ with lib; {
     };
     # Include man-pages
     manual.manpages.enable = true;
-
     home = {
       # This value determines the Home Manager release that your
       # configuration is compatible with. This helps avoid breakage

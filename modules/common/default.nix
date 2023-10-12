@@ -36,7 +36,6 @@ in {
       nftables
       wireguard-tools
       dnsutils
-
     ];
     environment.pathsToLink = [ "/share/zsh" ];
     link = {
@@ -50,9 +49,11 @@ in {
       #wayland.enable = true;
       xserver.enable = true;
     };
-
-    services.mullvad-vpn.enable = true;
-    services.rpcbind.enable = true; # nfs
+    security.sudo.wheelNeedsPassword = false;
+    services = {
+      mullvad-vpn.enable = true;
+      rpcbind.enable = true; # nfs
+    };
     networking = {
       nftables.enable = true; # libvirt, docker and others use iptables
       wireguard.enable = true;
