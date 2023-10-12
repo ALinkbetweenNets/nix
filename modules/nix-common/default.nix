@@ -1,11 +1,13 @@
 { lib, pkgs, config, nixpkgs, flake-self, home-manager, ... }: {
-  # imports = [ home-manager.nixosModules.home-manager ];
-  system.autoUpgrade = {
-    enable = true;
-    allowReboot = true;
-    rebootWindow = { lower = "05:00"; upper = "07:00"; };
-    persistent = true;
-    flake = "github:alinkbetweennets/nix";
+  system = {
+    autoUpgrade = {
+      enable = true;
+      allowReboot = true;
+      rebootWindow = { lower = "05:00"; upper = "07:00"; };
+      persistent = true;
+      flake = "github:alinkbetweennets/nix";
+    };
+    stateVersion = "23.11";
   };
   home-manager = {
     useUserPackages = true;
