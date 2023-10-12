@@ -17,6 +17,7 @@ with lib; {
         # Encryption
         veracrypt
         kleopatra # gpg/ pgp
+        partition-manager
 
         # Misc
         xdg-utils
@@ -51,7 +52,6 @@ with lib; {
     programs = {
       firefox.enable = true;
       terminator.enable = true;
-      partition-manager.enable = true;
       yt-dlp = {
         enable = true;
         extraConfig = "--update";
