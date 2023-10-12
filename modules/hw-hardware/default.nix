@@ -8,10 +8,10 @@ in {
 
     security.pam.enableEcryptfs = true;
     boot = {
-      plymouth = {
-        enable = true;
-        theme = "breeze";
-      };
+      # plymouth = {
+      #   enable = true;
+      #   theme = "breeze";
+      # };
       initrd.systemd.enable = true;
       loader = {
         systemd-boot = {
