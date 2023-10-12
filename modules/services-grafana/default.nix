@@ -1,8 +1,8 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.nextcloud;
+let cfg = config.link.grafana;
 in {
-  options.link.nextcloud.enable = mkEnableOption "activate nextcloud";
+  options.link.grafana.enable = mkEnableOption "activate grafana";
   config = mkIf cfg.enable {
     services = {
       grafana = {

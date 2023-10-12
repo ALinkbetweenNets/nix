@@ -1,8 +1,8 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.nextcloud;
+let cfg = config.link.paperless;
 in {
-  options.link.nextcloud.enable = mkEnableOption "activate nextcloud";
+  options.link.paperless.enable = mkEnableOption "activate paperless";
   config = mkIf cfg.enable {
     services = {
       paperless = {
