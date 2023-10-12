@@ -7,8 +7,8 @@ in {
     boot.loader.grub = {
       enable = true;
       efiSupport = true;
-      efiInstallAsRemovable=true;
-      useOSProber=true;
+      efiInstallAsRemovable = true;
+      useOSProber = true;
       configurationLimit = 50;
       memtest86.enable = true;
       theme = pkgs.nixos-grub2-theme;
