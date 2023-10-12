@@ -9,7 +9,19 @@ in {
 
     programs = { };
     home.packages = with pkgs;
-      [ libreoffice-qt thunderbird ];
+      [
+        libreoffice-qt
+        gimp
+        inkscape
+        thunderbird
+        calcure # tui calendar & task manager
+        #teams # insecure
+        evince
+        xournalpp
+        anki
+        darktable
+        pdfmixtool
+      ];
   };
 
 }
