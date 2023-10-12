@@ -3,7 +3,5 @@ with lib;
 let cfg = config.link.gitea;
 in {
   options.link.gitea.enable = mkEnableOption "activate gitea";
-  config = mkIf cfg.enable {
-
-  };
+  config = mkIf cfg.enable { };
 }

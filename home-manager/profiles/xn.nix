@@ -6,11 +6,11 @@ with lib; {
   config = {
     home.packages = with pkgs;
       [
-        
+
       ] ++ lib.optionals
         (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
 
-    programs = {  };
+    programs = { };
 
 
   };

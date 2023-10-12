@@ -3,7 +3,5 @@ with lib;
 let cfg = config.link.nextcloud;
 in {
   options.link.nextcloud.enable = mkEnableOption "activate nextcloud";
-  config = mkIf cfg.enable {
-
-   };
+  config = mkIf cfg.enable { };
 }
