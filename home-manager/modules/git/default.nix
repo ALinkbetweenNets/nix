@@ -4,13 +4,20 @@
       enable = true;
       extraConfig = { pull.rebase = false; };
       userEmail = "alinkbetweennets@protonmail.com";
-      userName = "l";
+      userName = "ALinkbetweenNets";
       aliases = {
         co = "checkout";
         p = "pull";
         ps = "push";
         s = "status";
       };
+      config={
+        init = { defaultBranch = "main"; };
+        # credential.helper = "${
+        #     pkgs.git.override { withLibsecret = true; }
+        #   }/bin/git-credential-libsecret";
+      };
+
       attributes = [ "*.pdf diff=pdf" ];
       #delta.enable = true;
       diff-so-fancy.enable = true;
