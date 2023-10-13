@@ -5,7 +5,8 @@ in {
   options.link.vm = { enable = mkEnableOption "activate vm"; };
   config = mkIf cfg.enable {
     link.common.enable = true;
+    environment.systemPackages = with pkgs; [
+      virtiofsd
+    ];
   };
-  environment.systemPackages = with pkgs; [
-    virtiofsd];
 }
