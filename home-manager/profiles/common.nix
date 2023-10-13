@@ -45,6 +45,19 @@ with lib; {
         # our packages
         flake-self.overlays.default
         flake-self.inputs.nur.overlay
+
+        (final: prev: {
+          stable = import flake-self.inputs.nixpkgs-stable {
+            system = "${pkgs.system}";
+            config.allowUnfree = true;
+          };
+        })
+        (final: prev: {
+          master = import flake-self.inputs.nixpkgs-master {
+            system = "${pkgs.system}";
+            config.allowUnfree = true;
+          };
+        })
       ];
     };
     # Include man-pages
