@@ -6,23 +6,7 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [ nvtop powertop ];
 
-    boot = {
-      # plymouth = {
-      #   enable = true;
-      #   theme = "breeze";
-      # };
-      initrd.systemd.enable = true;
-      loader = {
-        systemd-boot = {
-          enable = true;
-          memtest86.enable = true;
-        };
-        efi.canTouchEfiVariables = true;
-      };
-      tmp.cleanOnBoot = true;
-      kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
-      kernelParams = [ "quiet" "loglevel=3" ];
-    };
+
     time.hardwareClockInLocalTime = true; # for windows dualboot
     # hardware.enableRedistributableFirmware = true;
     services = {
