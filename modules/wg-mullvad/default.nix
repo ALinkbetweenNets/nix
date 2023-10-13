@@ -4,7 +4,7 @@ let cfg = config.link.wg-mullvad;
 in {
   options.link.wg-mullvad.enable = mkEnableOption "activate wg-mullvad";
   config = mkIf cfg.enable {
-    link.wireguard = lib.mkDefault true;
+    link.wireguard.enable = lib.mkDefault true;
     networking.wg-quick.interfaces.wg-mullvad = {
       wg-mullvad = {
         address = [ "10.64.253.12/32" "fc00:bbbb:bbbb:bb01::1:fd0b/128" ];
