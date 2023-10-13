@@ -17,6 +17,14 @@ in {
         '';
       };
       rpcbind.enable = true;
+      # For user-space mounting things like smb:// and ssh:// in thunar etc. Dbus
+      # is required.
+      gvfs = {
+        enable = true;
+        # Default package does not support all protocols. Use the full-featured
+        # gnome version
+        package = lib.mkForce pkgs.gnome3.gvfs;
+      };
     };
   };
 }
