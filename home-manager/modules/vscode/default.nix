@@ -28,8 +28,8 @@ in {
         yzhang.markdown-all-in-one
       ];
       userSettings = {
-        "[nix]" = {
-          "editor.defaultFormatter" = "jnoortheen.nix-ide";
+          "[nix]"={"editor.defaultFormatter" = "jnoortheen.nix-ide";};
+        "nix" = {
           "enableLanguageServer" = true;
           "serverPath" = "${pkgs.nil}/bin/nil";
           "serverSettings" = {
