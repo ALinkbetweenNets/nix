@@ -94,6 +94,6 @@ in {
     #   enable = true;
     #   enableSSHSupport = true;
     # };
-    console.font = "FiraCode Nerd Font";
+    # console.font = "FiraCode Nerd Font";
   };
 }
