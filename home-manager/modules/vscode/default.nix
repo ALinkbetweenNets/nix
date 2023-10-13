@@ -12,7 +12,7 @@ in {
       extensions = with pkgs.vscode-extensions; [
         #vscodevim.vim
         arrterian.nix-env-selector
-        b4dm4n.vscode-nixpkgs-fmt
+        #b4dm4n.vscode-nixpkgs-fmt
         dracula-theme.theme-dracula
         eamodio.gitlens
         esbenp.prettier-vscode
@@ -28,7 +28,18 @@ in {
         yzhang.markdown-all-in-one
       ];
       userSettings = {
-        "[nix]" = { "editor.defaultFormatter" = "B4dM4n.nixpkgs-fmt"; };
+        "[nix]" = {
+          "editor.defaultFormatter" = "jnoortheen.nix-ide";
+          "enableLanguageServer" = true;
+          "serverPath" = "${pkgs.nil}/bin/nil";
+          "serverSettings" = {
+            "nil" = {
+              "formatting" = {
+                "command" = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
+              };
+            };
+          };
+        };
         "diffEditor.codeLens" = true;
         "diffEditor.diffAlgorithm" = "advanced";
         "diffEditor.ignoreTrimWhitespace" = false;
