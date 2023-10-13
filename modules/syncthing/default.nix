@@ -39,7 +39,7 @@ in {
           id = "YU4MCML-QWAYIDE-FSHCDWA-C2FGKTG-ERS6I36-SMCFI2J-RKLVOPN-PS3IFQD";
         };
       };
-      folders = {
+      settings.folders = {
         "v" = {
           path = lib.mkDefault "/home/l/v";
           devices = [ "dn" "xn" "s22" "in" "sn" "hn" ];
