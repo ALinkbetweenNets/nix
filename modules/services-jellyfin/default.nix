@@ -4,6 +4,9 @@ let cfg = config.link.jellyfin;
 in {
   options.link.jellyfin.enable = mkEnableOption "activate jellyfin";
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      jellyfin-ffmpeg
+    ];
     fileSystems."/export" = {
       device = "/rz";
       options = [ "bind" ];
