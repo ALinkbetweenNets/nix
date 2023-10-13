@@ -28,6 +28,9 @@ in {
       curl
       tree
       unzip
+      gnutar
+      xz
+      bzip2
       p7zip
       rmlint
       gitFull
