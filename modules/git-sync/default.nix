@@ -1,8 +1,8 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.adb;
+let cfg = config.link.git-sync;
 in {
-  options.link.adb.enable = mkEnableOption "activate adb";
+  options.link.git-sync.enable = mkEnableOption "activate git-sync";
   config = mkIf cfg.enable {
     systemd.services.git-pull-repo-obsidian = {
       description = "Regularly pull changes from Git repository obsidian";
