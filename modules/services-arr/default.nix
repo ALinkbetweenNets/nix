@@ -64,10 +64,6 @@ in {
         enable = true;
         openFirewall = true;
       };
-      openssh = {
-        enable = true;
-        openFirewall = true;
-      };
     };
     fileSystems."arra" = {
       device = "arra"; # Replace with the correct device or path
