@@ -34,7 +34,7 @@ with lib; {
         cobang # qr codes
         # Privacy
         # tor-browser-bundle-bin # compromised
-        mullvad-vpn
+        #mullvad-vpn
         mullvad-browser
         # RDP
         remmina # VNC Client
