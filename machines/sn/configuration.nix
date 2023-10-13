@@ -19,7 +19,7 @@
   networking.interfaces."enp6s0".wakeOnLan.enable = true;
   networking.hostName = "sn";
   networking.hostId = "007f0200";
-  services.syncthing.folders = {
+  services.syncthing.settings.folders = {
     "v".path = "/rz/syncthing/v";
     "camera".path = "/rz/syncthing/camera";
     "uni".path = "/rz/syncthing/uni";
