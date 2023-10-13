@@ -4,7 +4,7 @@ let cfg = config.link.wg-fritz;
 in {
   options.link.wg-fritz.enable = mkEnableOption "activate wg-fritz";
   config = mkIf cfg.enable {
-    link.wireguard = lib.mkDefault true;
+    link.wireguard.enable = lib.mkDefault true;
     networking.wg-quick.interfaces.wg-fritz = {
       address = [ "192.168.178.205/24" ];
       dns = [ "192.168.178.1" "fritz.box" ];

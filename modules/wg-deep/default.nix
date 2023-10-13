@@ -4,7 +4,7 @@ let cfg = config.link.wg-deep;
 in {
   options.link.wg-deep.enable = mkEnableOption "activate wg-deep";
   config = mkIf cfg.enable {
-    link.wireguard = lib.mkDefault true;
+    link.wireguard.enable = lib.mkDefault true;
     networking.wg-quick.interfaces.wg-deep = {
       address = [ "10.0.1.4/32" ];
       mtu = 1392;
