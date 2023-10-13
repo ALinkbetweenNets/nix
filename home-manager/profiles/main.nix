@@ -9,7 +9,7 @@ with lib; {
     link.python.enable = true;
     services.kdeconnect = {
       enable = true;
-      indicator =false;
+      indicator = false;
     };
     home.packages = with pkgs; [
       alacritty
