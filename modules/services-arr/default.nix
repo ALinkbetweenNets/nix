@@ -7,6 +7,7 @@ in {
     services = {
       deluge = {
         enable = true;
+        authFile = "/home/l/.deluge-auth";
         web = {
           port = 8112;
           enable = true;
@@ -17,7 +18,6 @@ in {
         user = "l";
         openFirewall = true;
         declarative = true;
-        authFile = "/home/l/.deluge-auth";
         config = {
           download_location = "/arr/torrents/";
           max_upload_speed = "1000.0";
