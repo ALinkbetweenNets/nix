@@ -8,12 +8,12 @@ in {
       nfs.server = {
         enable = true;
         # hostName = "sn";
-        createMountPoints = true;
-        statdPort = 4000;
-        lockdPort = 4001;
-        mountdPort = 4002;
+        # createMountPoints = true;
+        # statdPort = 4000;
+        # lockdPort = 4001;
+        # mountdPort = 4002;
         exports = ''
-          /export *(rw,no_subtree_check,insecure)
+          /export *(rw,no_subtree_check,nohide)
         '';
       };
       rpcbind.enable = true;
