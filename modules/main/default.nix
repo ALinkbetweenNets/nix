@@ -6,6 +6,8 @@ in {
   config = mkIf cfg.enable {
     link.desktop.enable = true;
     link.adb.enable = true;
+    link.libvirt.enable = true;
+    link.printing.enable = lib.mkIf config.link.office.enable true;
     link.syncthing.enable = true;
     services.mullvad-vpn.enable = true;
     services.mullvad-vpn.package = pkgs.mullvad-vpn; # gui version
