@@ -93,6 +93,23 @@ in {
         ];
       };
     };
+    boot = {
+      # plymouth = {
+      #   enable = true;
+      #   theme = "breeze";
+      # };
+      initrd.systemd.enable = true;
+      loader = {
+        systemd-boot = {
+          enable = true;
+          memtest86.enable = true;
+        };
+        efi.canTouchEfiVariables = true;
+      };
+      tmp.cleanOnBoot = true;
+      kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+      kernelParams = [ "quiet" "loglevel=3" ];
+    };
     # programs.gnupg.agent = {
     #   enable = true;
     #   enableSSHSupport = true;
