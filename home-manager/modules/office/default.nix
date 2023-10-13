@@ -20,7 +20,7 @@ in {
         xournalpp
         anki
         darktable
-        pdfmixtool
+        # pdfmixtool # appears to be broken and unbuildable
       ];
   };
 
