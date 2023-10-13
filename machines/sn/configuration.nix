@@ -6,7 +6,21 @@
   ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
-    tower.enable = true;
+    common.enable = true;
+    hardware.enable = true;
+    cpu-amd.enable = true;
+    nvidia.enable = true;
+    gitea.enable = true;
+    nextcloud.enable = true;
+    grafana.enable = true;
+    jellyfin.enable = true;
+    jitsi.enable = true;
+    nfs.enable = true;
+    nginx.enable = true;
+    paperless.enable = true;
+    photoprism.enable = true;
+    seafile.enable = true;
+    syncthing.enable = true;
   };
   # virtualisation.sharedDirectories = {
   #   arr = {
