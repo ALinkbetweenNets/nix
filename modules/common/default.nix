@@ -48,7 +48,6 @@ in {
         root.enable = true;
       };
       openssh.enable = lib.mkDefault true;
-      libvirt.enable = lib.mkDefault true;
     };
     security = {
       sudo.wheelNeedsPassword = false;
