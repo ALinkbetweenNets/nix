@@ -11,7 +11,6 @@ in {
         storagePath = "/rz/srv/photoprism/storage";
         settings = {
           PHOTOPRISM_ADMIN_USER = "l";
-          PHOTOPRISM_ADMIN_PASSWORD = "S25!photoprism";
           PHOTOPRISM_DEFAULT_LOCALE = "de";
           PHOTOPRISM_SITE_URL = "https://photoprism.alinkbetweennets.de";
         };
