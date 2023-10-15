@@ -8,7 +8,7 @@ in {
       enable = true;
       configurationLimit = 50;
       memtest86.enable = true;
-      consoleMode = true;
+      #consoleMode = true;
     };
   };
 }

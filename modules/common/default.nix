@@ -47,6 +47,7 @@ in {
         l.enable = true;
         root.enable = true;
       };
+      systemd-boot.enable=lib.mkDefault true;
       openssh.enable = lib.mkDefault true;
     };
     security = {
@@ -99,10 +100,6 @@ in {
       # };
       initrd.systemd.enable = true;
       loader = {
-        systemd-boot = {
-          enable = true;
-          memtest86.enable = true;
-        };
         efi.canTouchEfiVariables = true;
       };
       tmp.cleanOnBoot = true;
