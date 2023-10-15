@@ -4,9 +4,8 @@ let cfg = config.link.hardware;
 in {
   options.link.hardware.enable = mkEnableOption "activate hardware";
   config = mkIf cfg.enable {
+    link.libvirt.enable = lib.mkDefault true;
     environment.systemPackages = with pkgs; [ nvtop powertop ];
-
-
     time.hardwareClockInLocalTime = true; # for windows dualboot
     # hardware.enableRedistributableFirmware = true;
     services = {
