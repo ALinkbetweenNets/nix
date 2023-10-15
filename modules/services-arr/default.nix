@@ -13,8 +13,7 @@ in {
           enable = true;
           openFirewall = true;
         };
-        extraPackages =
-          [ "Label" "Toggle" "Stats" "Blocklist" "Extractor" "Scheduler" ];
+        extraPackages = [ "Label" "Toggle" "Stats" "Blocklist" "Extractor" "Scheduler" ];
         user = "l";
         openFirewall = true;
         declarative = true;
