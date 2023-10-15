@@ -36,7 +36,6 @@ with lib; {
       lf = { enable = true; };
       lesspipe = { enable = true; };
     };
-    services = { syncthing.enable = true; };
     # Home-manager nixpkgs config
     nixpkgs = {
       # Allow "unfree" licenced packages
