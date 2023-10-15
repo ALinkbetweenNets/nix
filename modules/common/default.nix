@@ -47,7 +47,7 @@ in {
         l.enable = true;
         root.enable = true;
       };
-      systemd-boot.enable=lib.mkDefault true;
+      systemd-boot.enable = lib.mkDefault true;
       openssh.enable = lib.mkDefault true;
     };
     security = {
