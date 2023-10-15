@@ -7,6 +7,7 @@
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
     common.enable = true;
+    zfs.enable = true;
     hardware.enable = true;
     cpu-amd.enable = true;
     nvidia.enable = true;
