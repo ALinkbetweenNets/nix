@@ -19,7 +19,7 @@ in {
         privateKeyFile = "/home/l/.keys/wg-mullvad.private";
 
         peers = [{
-          publicKeyFile = "/home/l/.keys/wg-mullvad.public";
+          publicKey = "s1c/NsfnqnwQSxao70DY4Co69AFT9e0h88IFuMD5mjs=";
           allowedIPs = [ "0.0.0.0/0" "::0/0" ];
           endpoint =
             "185.254.75.5:3124";
