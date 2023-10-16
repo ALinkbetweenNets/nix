@@ -10,9 +10,9 @@ in {
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = false;
       extensions = with pkgs.vscode-extensions; [
+        #b4dm4n.vscode-nixpkgs-fmt
         #vscodevim.vim
         arrterian.nix-env-selector
-        #b4dm4n.vscode-nixpkgs-fmt
         dracula-theme.theme-dracula
         eamodio.gitlens
         esbenp.prettier-vscode
@@ -21,6 +21,7 @@ in {
         gruntfuggly.todo-tree
         jnoortheen.nix-ide
         ms-vscode-remote.remote-ssh
+        redhat.yaml
         streetsidesoftware.code-spell-checker
         tamasfe.even-better-toml
         usernamehw.errorlens
@@ -76,11 +77,11 @@ in {
         "scm.alwaysShowRepositories" = true;
         "search.experimental.notebookSearch" = true;
         "search.smartCase" = true;
-        #"window.zoomLevel" = -2;
         "workbench.colorTheme" = "Dracula";
         "workbench.editor.highlightModifiedTabs" = true;
         "workbench.editor.limit.enabled" = true;
         "workbench.list.smoothScrolling" = true;
+        #"window.zoomLevel" = -2;
       };
       globalSnippets = {
         fixme = {
