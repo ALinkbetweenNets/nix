@@ -51,6 +51,48 @@
     },
     {
       "commands": [
+        "nix build '.#nixosConfigurations.hn.config.system.build.toplevel' -o 'result-hn'"
+      ],
+      "image": "bash",
+      "name": "Build hn"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-hn')"
+      ],
+      "image": "bash",
+      "name": "Show hn info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-hn'"
+      ],
+      "image": "bash",
+      "name": "Push hn to Attic"
+    },
+    {
+      "commands": [
+        "nix build '.#nixosConfigurations.in.config.system.build.toplevel' -o 'result-in'"
+      ],
+      "image": "bash",
+      "name": "Build in"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-in')"
+      ],
+      "image": "bash",
+      "name": "Show in info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-in'"
+      ],
+      "image": "bash",
+      "name": "Push in to Attic"
+    },
+    {
+      "commands": [
         "nix build '.#nixosConfigurations.sn.config.system.build.toplevel' -o 'result-sn'"
       ],
       "image": "bash",
@@ -69,6 +111,27 @@
       ],
       "image": "bash",
       "name": "Push sn to Attic"
+    },
+    {
+      "commands": [
+        "nix build '.#nixosConfigurations.snvnarr.config.system.build.toplevel' -o 'result-snvnarr'"
+      ],
+      "image": "bash",
+      "name": "Build snvnarr"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-snvnarr')"
+      ],
+      "image": "bash",
+      "name": "Show snvnarr info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-snvnarr'"
+      ],
+      "image": "bash",
+      "name": "Push snvnarr to Attic"
     },
     {
       "commands": [
