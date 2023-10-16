@@ -53,6 +53,7 @@ with lib; {
       brave # backup browser
       ytfzf
       youtube-tui
+      catimg
       # Privacy
       monero-gui
 
