@@ -21,7 +21,7 @@ in {
         gruntfuggly.todo-tree
         jnoortheen.nix-ide
         ms-vscode-remote.remote-ssh
-        redhat.yaml
+        redhat.vscode-yaml
         streetsidesoftware.code-spell-checker
         tamasfe.even-better-toml
         usernamehw.errorlens
