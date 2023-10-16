@@ -7,6 +7,7 @@
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
     common.enable = true;
+    grub.enable=true;systemd-boot.enable=false;
     zfs.enable = true;
     hardware.enable = true;
     cpu-amd.enable = true;
@@ -29,6 +30,7 @@
   #     target = "/mnt/arr";
   #   };
   # };
+  boot.loader.grub.device = "/dev/sda";
 
   boot.zfs.extraPools = [ "wdp" ];
   networking.interfaces."enp6s0".wakeOnLan.enable = true;
