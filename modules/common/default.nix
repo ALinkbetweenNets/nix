@@ -69,8 +69,8 @@ in {
       };
     };
     networking = {
-      nftables.enable = true; # libvirt, docker and others use iptables
-      wireguard.enable = true;
+      # nftables.enable = true; # libvirt, docker and others use iptables
+      
       networkmanager = {
         enable = true;
 

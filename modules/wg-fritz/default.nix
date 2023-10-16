@@ -10,7 +10,7 @@ in {
       dns = [ "192.168.178.1" "fritz.box" ];
       privateKeyFile = "/home/l/.keys/wg-fritz.private";
       peers = [{
-        publicKeyFile = "/home/l/.keys/wg-fritz.public";
+        publicKey = "MNJPzp13bxiTzT8Z8TvrQEuxU/6ufi1oi8eswoshmC0=";
         allowedIPs = [ "192.168.178.0/24" "0.0.0.0/0" ];
         endpoint = "ur6qwb3amjjhe15h.myfritz.net:56355";
         persistentKeepalive = 25;

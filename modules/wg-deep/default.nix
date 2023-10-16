@@ -13,7 +13,7 @@ in {
 
       peers = [{
         presharedKeyFile = "/home/l/.keys/wg-deep.preshared";
-        publicKeyFile = "/home/l/.keys/wg-deep.public";
+        publicKey = "8nalsPno9P+SDoHQRcb7T27LXCM9191XgJyszKSWPkg=";
         allowedIPs = [ "10.0.1.0/24" "10.0.0.0/24" ];
         endpoint =
           "65.109.157.99:51820";
