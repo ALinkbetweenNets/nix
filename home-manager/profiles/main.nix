@@ -37,6 +37,7 @@ with lib; {
       discord
       qtox
       # Utils
+      mermaid-cli
       pomodoro
       figlet # Fancytext
       links2 # TUI Browser
