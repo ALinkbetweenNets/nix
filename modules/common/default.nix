@@ -69,8 +69,8 @@ in {
       };
     };
     networking = {
-      # nftables.enable = true; # libvirt, docker and others use iptables
-      
+      nftables.enable = true; # libvirt, docker and others use iptables
+
       networkmanager = {
         enable = true;
 
