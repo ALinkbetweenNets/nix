@@ -10,7 +10,17 @@ in {
         with ps; [
           pandas
           seaborn
+          matplotlib
+          plotly
+          cufflinks
+          black
+          rpy2 # python <-> R
+          scikit-learn-extra
+          scikit-learn
+          tensorflow
+          scipy
           numpy
+          plotnine
           jupyter
           jupyter-client
           jupyterlab
