@@ -18,6 +18,13 @@ in {
       autocd = true;
       dotDir = ".config/zsh";
       syntaxHighlighting.enable = true;
+      initExtra = ''
+        cdj() {
+          # Update with your document root folder
+          pushd ~/doc/*/*/${1}*
+        }
+        export cdj
+      '';
 
       history = {
         expireDuplicatesFirst = true;
