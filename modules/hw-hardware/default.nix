@@ -12,7 +12,7 @@ in {
       fwupd.enable = true;
       thermald.enable = true;
       smartd.enable = true;
-      ddccontrol.enable = true;
+      ddccontrol.enable = true; # Control External Monitor Brightness
       udisks2.enable = true;
     };
     hardware = {
@@ -22,9 +22,5 @@ in {
         drives = [ "/dev/disk/by-id/*" ];
       };
     };
-    powerManagement = {
-      enable = true;
-      powertop.enable = true;
-    }; # Control External Monitor Brightness
   };
 }
