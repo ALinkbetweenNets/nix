@@ -6,14 +6,14 @@ in {
   config = mkIf cfg.enable {
     boot.loader.grub = {
       enable = true;
-      efiSupport = true;
+      #efiSupport = true;
       # efiInstallAsRemovable = true;
-      useOSProber = true;
+      #useOSProber = true;
       configurationLimit = 50;
       memtest86.enable = true;
       theme = pkgs.nixos-grub2-theme;
       splashMode = "normal";
-      enableCryptodisk = true;
+      #enableCryptodisk = true;
     };
   };
 }
