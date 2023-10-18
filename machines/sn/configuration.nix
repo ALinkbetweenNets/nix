@@ -13,7 +13,7 @@
     cpu-amd.enable = true;
     nvidia.enable = true;
     gitea.enable = true;
-    #nextcloud.enable = true;
+    nextcloud.enable = true;
     grafana.enable = true;
     jellyfin.enable = true;
     jitsi.enable = true;
