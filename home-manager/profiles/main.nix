@@ -39,7 +39,6 @@ with lib; {
       # Utils
       mermaid-cli
       pomodoro
-      figlet # Fancytext
       links2 # TUI Browser
       screen-message
       vhs # generating terminal GIFs with code
@@ -53,6 +52,10 @@ with lib; {
       brave # backup browser
       ytfzf
       youtube-tui
+      catimg
+      # Silly BS
+      figlet # Fancytext
+      uwuify
       # Privacy
       monero-gui
 
