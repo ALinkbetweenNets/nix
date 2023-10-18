@@ -18,6 +18,7 @@ in {
         esbenp.prettier-vscode
         firefox-devtools.vscode-firefox-debug
         github.copilot
+        github.vscode-pull-request-github
         gruntfuggly.todo-tree
         jnoortheen.nix-ide
         ms-vscode-remote.remote-ssh
