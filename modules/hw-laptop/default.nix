@@ -7,9 +7,9 @@ in {
     link = {
       desktop.enable = true;
       hardware.enable = true;
-      wireguard.enable = true;
-      wg-fritz.enable = true;
-      wg-deep.enable = true;
+      #wireguard.enable = true;
+      #wg-fritz.enable = true;
+      #wg-deep.enable = true;
     };
     #options.type = "laptop";
     #networking.wireless.enable = !config.networking.networkmanager.enable;
