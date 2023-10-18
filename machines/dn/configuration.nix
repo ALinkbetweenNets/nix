@@ -9,6 +9,7 @@
     tower.enable = true;
     main.enable = true;
     cpu-intel.enable = true;
+    nvidia.enable = true;
   };
   networking = {
     hostName = "dn";
