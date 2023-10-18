@@ -18,7 +18,6 @@ in {
       autocd = true;
       dotDir = ".config/zsh";
       syntaxHighlighting.enable = true;
-
       history = {
         expireDuplicatesFirst = true;
         ignoreSpace = false;
@@ -41,11 +40,46 @@ in {
 
       shellAliases = rec {
         # switching within a flake repository
-        nrb = "sudo nixos-rebuild switch --use-remote-sudo --flake github:alinkbetweennets/nix";
+        nrg = "sudo nixos-rebuild switch --use-remote-sudo --flake github:alinkbetweennets/nix";
+        nr = "sudo nixos-rebuild switch --use-remote-sudo --flake /home/l/nix --upgrade";
+        ngc = "sudo nix-collect-garbage -d";
+
         discord = "nohup discord --use-gl=desktop &";
-        q = "exit";
+        less = "less -r";
+
+        services = "systemctl list-units --type service";
+
         killme = "exit";
         pls = "sudo";
+        cls = "clear";
+        datamatrix = "iec16022";
+        fancytext = "figlet -tkf slant ";
+
+        open = "xdg-open";
+        o = "xdg-open";
+        q = "exit";
+        r = "trash put";
+        rmt = "trash put";
+        n = "nvim";
+        c = "cd";
+        v = "codium";
+        copium = "codium";
+        cope = "codium";
+        f = "fuck";
+        p = "python";
+        b = "bat";
+        s = "links https://duckduckgo.com/";
+        nip = "firefox https://search.nixos.org/packages";
+        nio = "firefox https://search.nixos.org/options";
+        yt = "~/s/y.sh";
+        dupl = "fdupes -rdnAst .";
+        sm = "sm -i";
+
+        g = "git";
+        gs = "git status";
+        gac = "git commit -am '$(date -I)'";
+        gpp = "git pull&&git push";
+
         l =
           "eza --icons --group-directories-first --git -F --color always --sort=modified"; # -F = --classify
         lr =
@@ -79,35 +113,6 @@ in {
 
         llar =
           "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all -l";
-
-        r = "trash put";
-        rmt = "trash put";
-        services = "systemctl list-units --type service";
-        n = "nvim";
-        u =
-          "sudo nixos-rebuild switch --upgrade && sudo nix-collect-garbage -d";
-        less = "less -r";
-        cls = "clear";
-        c = "cd";
-        v = "codium";
-        o = "open";
-        f = "fuck";
-        p = "python";
-        b = "bat";
-        datamatrix = "iec16022";
-        fancytext = "figlet -tkf slant ";
-        s = "links https://duckduckgo.com/";
-        nip = "firefox https://search.nixos.org/packages";
-        nio = "firefox https://search.nixos.org/options";
-        yt = "~/s/y.sh";
-        dupl = "fdupes -rdnAst .";
-        sm = "sm -i";
-        g = "git";
-        gs = "git status";
-        gac = "git commit -am '$(date -I)'";
-        gpp = "git pull&&git push";
-        # gpu = "cd ~/nixos/ && git pull && sudo nixos-rebuild switch --upgrade";
-        gc = "sudo nix-collect-garbage -d";
       };
     };
 
