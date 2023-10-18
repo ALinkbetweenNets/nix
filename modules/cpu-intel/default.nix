@@ -23,13 +23,12 @@ in {
       intel-ocl
     ];
     extraPackages32 = with pkgs; [
-      vaapiV
       intel-media-driver
       libvdpau-va-gl
       vaapiIntel
       vaapiVdpau
       intel-compute-runtime
-      intel-ocldpau
+      intel-ocl
     ];
     hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux;
       [ intel-media-driver ];
