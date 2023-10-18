@@ -16,13 +16,20 @@ in {
     # };
     hardware.opengl.extraPackages = with pkgs; [
       intel-media-driver
-      intel-ocl
       libvdpau-va-gl
       vaapiIntel
       vaapiVdpau
+      intel-compute-runtime
+      intel-ocl
     ];
     hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux;
-      [ intel-media-driver ];
+      [ intel-media-driver
+      libvdpau-va-gl
+      vaapiIntel
+      vaapiVdpau
+      #intel-compute-runtime
+      #intel-ocl
+       ];
     hardware.cpu.intel.updateMicrocode = true;
   };
 }
