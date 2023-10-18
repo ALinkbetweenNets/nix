@@ -21,7 +21,7 @@
     nginx.enable = true;
     paperless.enable = true;
     photoprism.enable = true;
-    seafile.enable = true;
+    #seafile.enable = true;
     syncthing.enable = true;
   };
   # virtualisation.sharedDirectories = {
@@ -30,8 +30,7 @@
   #     target = "/mnt/arr";
   #   };
   # };
-  boot.loader.grub.device = "/dev/sda";
-
+  boot.loader.grub.device = "/dev/sdd";
   boot.zfs.extraPools = [ "wdp" ];
   networking.interfaces."enp6s0".wakeOnLan.enable = true;
   networking.hostName = "sn";
