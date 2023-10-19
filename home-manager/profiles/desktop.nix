@@ -52,11 +52,6 @@ with lib; {
     programs = {
       firefox.enable = true;
       #terminator.enable = true;
-      yt-dlp = {
-        enable = true;
-        extraConfig = "--update";
-        settings = { embed-thumbnail = true; };
-      };
     };
     manual.html.enable = true;
     link = { code.enable = true; };
