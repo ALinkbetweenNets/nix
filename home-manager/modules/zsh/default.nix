@@ -45,6 +45,7 @@ in {
         ngc = "sudo nix-collect-garbage -d";
 
         discord = "nohup discord --use-gl=desktop &";
+        netdiscover="sudo netdiscover";
         less = "less -r";
 
         services = "systemctl list-units --type service";
