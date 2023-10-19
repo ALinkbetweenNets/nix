@@ -10,6 +10,7 @@ in {
       printing.enable = lib.mkIf config.link.office.enable true;
       syncthing.enable = true;
       git-sync.enable = true;
+      ntfs.enable = true;
     };
     services.mullvad-vpn.enable = true;
     services.mullvad-vpn.package = pkgs.mullvad-vpn; # gui version
