@@ -6,7 +6,7 @@
   ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
-    # arr.enable = true;
+    arr.enable = true;
     systemd-boot.enable = false;
     grub.enable = true;
     vm.enable = true;
