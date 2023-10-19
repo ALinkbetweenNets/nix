@@ -69,11 +69,9 @@ in {
       };
     };
     networking = {
-      nftables.enable = true; # libvirt, docker and others use iptables
-
+      # nftables.enable = true; # libvirt, docker and others use iptables
       networkmanager = {
         enable = true;
-
         appendNameservers = [
           "1.1.1.1"
           "192.168.178.1"
