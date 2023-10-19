@@ -7,21 +7,24 @@
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
     common.enable = true;
-    grub.enable=true;systemd-boot.enable=false;
+    grub.enable = true;
+    systemd-boot.enable = false;
     zfs.enable = true;
     hardware.enable = true;
     cpu-amd.enable = true;
     nvidia.enable = true;
+
+    #seafile.enable = true;
     gitea.enable = true;
-    nextcloud.enable = true;
     grafana.enable = true;
     jellyfin.enable = true;
     jitsi.enable = true;
+    nextcloud.enable = true;
     nfs.enable = true;
     nginx.enable = true;
+    outline.enable = true;
     paperless.enable = true;
     photoprism.enable = true;
-    #seafile.enable = true;
     syncthing.enable = true;
   };
   # virtualisation.sharedDirectories = {
