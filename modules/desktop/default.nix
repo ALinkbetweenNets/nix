@@ -21,7 +21,6 @@ in {
       spice-vdagent
     ];
     networking = {
-      networkmanager.enable = true;
       firewall = {
         allowedTCPPortRanges = [{
           from = 1714;
