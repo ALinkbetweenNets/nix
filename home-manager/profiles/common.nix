@@ -35,6 +35,11 @@ with lib; {
       };
       lf = { enable = true; };
       lesspipe = { enable = true; };
+      yt-dlp = {
+        enable = true;
+        extraConfig = "--update";
+        settings = { embed-thumbnail = true; };
+      };
     };
     # Home-manager nixpkgs config
     nixpkgs = {
