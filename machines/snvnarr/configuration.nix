@@ -6,7 +6,9 @@
   ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
-    arr.enable = true;
+    # arr.enable = true;
     vm.enable = true;
   };
+  services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.package = pkgs.mullvad-vpn; # gui version
 }
