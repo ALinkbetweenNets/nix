@@ -5,15 +5,17 @@ in {
   options.link.arr.enable = mkEnableOption "activate arr";
   config = mkIf cfg.enable {
     services = {
-      transmission={
-        enable=true;
-        openFirewall=true;
-        openPeerPorts=true;
-        openRPCPort=true;
-        performanceNetParameters=true;
-        settings={
-          incomplete-dir="/arr/torrents/incomplete";
-          download-dir="/arr/torrents/";
+      transmission = {
+        enable = true;
+        openFirewall = true;
+        openPeerPorts = true;
+        openRPCPort = true;
+        performanceNetParameters = true;
+        downloadDirPermissions = "777";
+        settings = {
+          incomplete-dir = "/arr/torrents/incomplete";
+          download-dir = "/arr/torrents/";
+          umask = 2;
         };
       };
       radarr = {
