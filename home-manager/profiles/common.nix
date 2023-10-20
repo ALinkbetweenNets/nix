@@ -31,7 +31,6 @@ with lib; {
       };
       nix-index = {
         enable = true;
-        enableZshIntegration = true;
       };
       lf = { enable = true; };
       lesspipe = { enable = true; };

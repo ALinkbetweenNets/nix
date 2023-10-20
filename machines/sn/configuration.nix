@@ -33,6 +33,10 @@
   #     target = "/mnt/arr";
   #   };
   # };
+  fileSystems."/export" = {
+    device = "/rz";
+    options = [ "bind" ];
+  };
   boot.loader.grub.device = "/dev/sdd";
   boot.zfs.extraPools = [ "wdp" ];
   networking.interfaces."enp6s0".wakeOnLan.enable = true;
