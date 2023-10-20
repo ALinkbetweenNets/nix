@@ -53,6 +53,7 @@ in {
         "editor.formatOnPaste" = true;
         "editor.formatOnSave" = true;
         "editor.formatOnType" = true;
+        "editor.inlineSuggest.enabled" = true;
         "editor.linkedEditing" = true;
         "editor.mouseWheelZoom" = true;
         "editor.renderWhitespace" = "all";
