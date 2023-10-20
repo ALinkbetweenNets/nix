@@ -16,6 +16,7 @@ in {
           incomplete-dir = "/arr/torrents/incomplete";
           download-dir = "/arr/torrents/";
           umask = 2;
+          rpc-bind-address="0.0.0.0";
         };
       };
       radarr = {
