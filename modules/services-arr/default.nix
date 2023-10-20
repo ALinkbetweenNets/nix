@@ -5,35 +5,16 @@ in {
   options.link.arr.enable = mkEnableOption "activate arr";
   config = mkIf cfg.enable {
     services = {
-      deluge = {
-        enable = true;
-        authFile = "/home/l/.deluge-auth";
-        web = {
-          port = 8112;
-          enable = true;
-          openFirewall = true;
+      transmission={
+        enable=true;
+        openFirewall=true;
+        openPeerPorts=true;
+        openRPCPort=true;
+        performanceNetParameters=true;
+        settings={
+          incomplete-dir="/arr/torrents/incomplete";
+          download-dir="/arr/torrents/";
         };
-        # extraPackages = [ "Label" "Toggle" "Stats" "Blocklist" "Extractor" "Scheduler" ];
-        user = "l";
-        openFirewall = true;
-        declarative = true;
-        config = {
-          download_location = "/arr/torrents/";
-          max_upload_speed = "1000.0";
-          max_connections_global = 300;
-          max_upload_slots_global = 10;
-          max_connections_per_second = 40;
-          max_half_open_connections = 200;
-          max_active_downloading = 20;
-          max_active_seeding = 20;
-          max_active_limit = 40;
-          dont_count_slow_torrents = true;
-          share_ratio_limit = "3.0";
-          allow_remote = true;
-          daemon_port = 58846;
-          # listen_ports = [ 6881 6889 ];
-        };
-
       };
       radarr = {
         enable = true;
