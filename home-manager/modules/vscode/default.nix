@@ -83,7 +83,7 @@ in {
         "workbench.editor.highlightModifiedTabs" = true;
         "workbench.editor.limit.enabled" = true;
         "workbench.list.smoothScrolling" = true;
-        #"window.zoomLevel" = -2;
+        "window.zoomLevel" = -2;
       };
       globalSnippets = {
         fixme = {
