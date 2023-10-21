@@ -1,8 +1,8 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.nfs;
+let cfg = config.link.service.nfs;
 in {
-  options.link.nfs.enable = mkEnableOption "activate nfs";
+  options.link.service.nfs.enable = mkEnableOption "activate nfs service";
   config = mkIf cfg.enable {
     services = {
       nfs.server = {
