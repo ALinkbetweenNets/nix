@@ -35,8 +35,8 @@ in {
         locations."/" = {
           proxyPass = "http://127.0.0.1:80/";
           extraConfig = ''
-            add_header Front-End-Https on;
-            add_header Strict-Transport-Security "max-age=2592000; includeSubdomains";
+            proxy_set_header Front-End-Https on;
+            proxy_set_header Strict-Transport-Security "max-age=2592000; includeSubdomains";
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header Host $host;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
