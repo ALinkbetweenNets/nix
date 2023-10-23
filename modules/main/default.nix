@@ -14,5 +14,13 @@ in {
     };
     services.mullvad-vpn.enable = true;
     services.mullvad-vpn.package = pkgs.mullvad-vpn; # gui version
+    environment.systemPackages = with pkgs; [
+      #wine
+      (wine.override { wineBuild = "wine64"; })
+      wineWowPackages.staging
+      winetricks
+      #wineWowPackages.waylandFull
+    ];
+
   };
 }
