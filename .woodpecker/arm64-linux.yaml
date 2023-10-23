@@ -1,0 +1,46 @@
+{
+  "labels": {
+    "backend": "local"
+  },
+  "platform": "linux/arm64",
+  "steps": [
+    {
+      "commands": [
+        "nix flake show"
+      ],
+      "image": "bash",
+      "name": "Nix flake show"
+    },
+    {
+      "commands": [
+        "attic login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default"
+      ],
+      "image": "bash",
+      "name": "Setup Attic",
+      "secrets": [
+        "attic_key"
+      ]
+    },
+    {
+      "commands": [
+        "nix build '.#nixosConfigurations.pi4b.config.system.build.toplevel' -o 'result-pi4b'"
+      ],
+      "image": "bash",
+      "name": "Build pi4b"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-pi4b')"
+      ],
+      "image": "bash",
+      "name": "Show pi4b info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-pi4b'"
+      ],
+      "image": "bash",
+      "name": "Push pi4b to Attic"
+    }
+  ]
+}
