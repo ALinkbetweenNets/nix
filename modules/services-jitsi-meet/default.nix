@@ -22,25 +22,6 @@ in {
         openFirewall = true;
       };
       jicofo.enable = true;
-      home-assistant = {
-        enable = true;
-        openFirewall = true;
-        config = {
-          homeassistant = {
-            name = "Home";
-            latitude = "50.4";
-            longitude = " 7.6";
-            elevation = "100m";
-            unit_system = "metric";
-            temperature_unit = "C";
-          };
-          frontend = { themes = "!include_dir_merge_named themes"; };
-          http = { server_port = 8123; };
-          feedreader.urls = [ "https://nixos.org/blogs.xml" ];
-
-        };
-      };
     };
-
   };
 }
