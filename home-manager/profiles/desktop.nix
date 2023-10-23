@@ -46,6 +46,7 @@ with lib; {
         libsForQt5.calendarsupport
         libsForQt5.konsole
         libsForQt5.yakuake
+        vivaldi
 
       ] ++ lib.optionals
         (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];

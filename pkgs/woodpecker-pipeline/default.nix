@@ -1,5 +1,6 @@
-# nix build .#woodpecker-pipeline && cat result| jq '.configs[].data' -r | jq > .woodpecker.yaml
-{ pkgs, flake-self, inputs }:
+# nix build .#woodpecker-pipeline && cat result| jq '.configs[].data' -r | jq > .woodpecker/x86-linux.yaml
+# nix build .#woodpecker-pipeline && cat result| jq '.configs[].data' -r | jq > .woodpecker/arm64-linux.yaml
+{ pkgs, lib, flake-self, inputs }:
 with pkgs;
 writeText "pipeline" (builtins.toJSON {
   configs =
@@ -37,7 +38,7 @@ writeText "pipeline" (builtins.toJSON {
             # platform will be deprecated in the future!
             platform = woodpecker-platforms."${arch}";
             steps = pkgs.lib.lists.flatten
-              ([ nixFlakeShow nixFlakeCheck atticSetupStep ] ++ (map
+              ([ nixFlakeShow ] ++ lib.optionals ("${arch}" == "x86_64-linux") [ nixFlakeCheck ] ++ [ atticSetupStep ] ++ (map
                 (host:
                   if
                   # Skip hosts with this option set
@@ -67,6 +68,9 @@ writeText "pipeline" (builtins.toJSON {
                   ])
                 (builtins.attrNames flake-self.nixosConfigurations)));
           });
-        }) [ "x86_64-linux" ])
+        }) [
+        "x86_64-linux"
+        # "aarch64-linux"
+      ])
     ]);
 })
