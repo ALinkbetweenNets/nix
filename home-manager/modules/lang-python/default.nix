@@ -31,6 +31,7 @@ in {
       [
         ms-python.python
         ms-toolsai.jupyter
+        ms-pyright.pyright
       ];
   };
 
