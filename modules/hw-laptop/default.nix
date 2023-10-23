@@ -35,8 +35,8 @@ in {
       };
     };
     powerManagement = {
-     enable = true;
-     powertop.enable = true;
+      enable = true;
+      powertop.enable = true;
     };
   };
 }
