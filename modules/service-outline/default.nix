@@ -6,16 +6,16 @@ in {
   config = mkIf cfg.enable {
     services = {
       outline = {
-        # enable = true;
-        # port = 3123;
-        # publicUrl = "https://outline.alinkbetweennets.de";
-        # storage = {
-        #   accessKey = "...";
-        #   secretKeyFile = "/home/l/.keys/minio-outline";
-        #   uploadBucketUrl = "https://minio.s3.alinkbetweennets.de";
-        #   uploadBucketName = "outline";
-        #   region = "eu-central-1";
-        # };
+        enable = true;
+        port = 3123;
+        publicUrl = "https://outline.alinkbetweennets.de";
+        storage = {
+          accessKey = "outline";
+          secretKeyFile = "/home/l/.keys/minio-outline";
+          uploadBucketUrl = "https://minio.s3.alinkbetweennets.de";
+          uploadBucketName = "outline";
+          region = "eu-central-1";
+        };
       };
       nginx.virtualHosts."outline.alinkbetweennets.de" = {
         enableACME = true;
@@ -28,7 +28,7 @@ in {
         consoleAddress = "127.0.0.1:9001";
         region = "eu-central-1";
 
-        rootCredentialsFile = "/home/l/.keys/minio";
+        rootCredentialsFile = "/home/l/.keys/minio-outline";
 
         dataDir = [ "/rz/srv/minio/data" ];
         # configDir = "/mnt/data/minio/config";
