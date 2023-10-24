@@ -7,6 +7,9 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nur.url = "github:nix-community/NUR";
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+
 
     home-manager = {
       url = "github:nix-community/home-manager";
