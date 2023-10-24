@@ -11,6 +11,8 @@ in {
       font-awesome
       dbus
       libsecret
+      gnupg
+      gpg-tui
       ## basics
       file
       killall
