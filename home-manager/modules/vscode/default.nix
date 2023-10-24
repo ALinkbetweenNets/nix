@@ -21,6 +21,7 @@ in {
         github.vscode-pull-request-github
         gruntfuggly.todo-tree
         jnoortheen.nix-ide
+        mkhl.direnv
         ms-vscode-remote.remote-ssh
         redhat.vscode-yaml
         streetsidesoftware.code-spell-checker

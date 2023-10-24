@@ -4,7 +4,13 @@ let cfg = config.link.syncthing;
 in {
   options.link.syncthing.enable = mkEnableOption "activate syncthing";
   config = mkIf cfg.enable {
-
+    networking.firewall = {
+      allowedTCPPorts = [ 8384 22000 ];
+      allowedUDPPorts = [
+        22000 # syncthing
+        21027 # syncthing
+      ];
+    };
     environment.systemPackages = with pkgs; [ syncthing ];
     services.syncthing = {
       enable = true;
