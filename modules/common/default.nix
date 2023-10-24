@@ -53,7 +53,7 @@ in {
       openssh.enable = lib.mkDefault true;
     };
     security = {
-      sudo.wheelNeedsPassword = false;
+      sudo.wheelNeedsPassword = lib.mkDefault false;
       # polkit = {
       #   enable = true;
       #   adminIdentities = [ "unix-user:l" "unix-user:root" ];
@@ -61,7 +61,7 @@ in {
       apparmor.enable = true;
       # security.tpm2.enable = true;
       # security.tpm2.abrmd.enable = true;
-      auditd.enable = true;
+      # auditd.enable = true;
     };
     services = {
       fail2ban = {
@@ -74,23 +74,11 @@ in {
       # nftables.enable = true; # libvirt, docker and others use iptables
       networkmanager = {
         enable = true;
-        appendNameservers = [
-          "1.1.1.1"
-          "192.168.178.1"
-          "9.9.9.9"
-          "216.146.35.35"
-          "2620:fe::fe"
-          "2606:4700:4700::1111"
-        ];
+
       };
       firewall = {
         enable = lib.mkDefault true;
-        allowedTCPPorts = [ 8384 22000 ]; # syncthing
-        allowedUDPPorts = [
-          22000 # syncthing
-          21027 # syncthing
-          51820 # wireguard
-        ];
+        allowedUDPPorts = [ 51820 ]; # wireguard
       };
     };
     boot = {
