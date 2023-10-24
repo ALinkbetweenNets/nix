@@ -8,7 +8,7 @@ in {
       outline = {
         enable = true;
         port = 3123;
-        publicUrl = "https://outline.alinkbetweennets.de";
+        publicUrl = "http://127.0.0.1:3123";
         storage = {
           accessKey = "outline";
           secretKeyFile = "/home/l/.keys/minio-outline";
@@ -20,7 +20,7 @@ in {
       nginx.virtualHosts."outline.alinkbetweennets.de" = {
         enableACME = true;
         forceSSL = true;
-        locations."/" = { proxyPass = "http://127.0.0.1:3123/"; };
+        locations."/" = { proxyPass = "http://127.0.0.1:3123"; };
       };
       minio = {
         enable = true;
