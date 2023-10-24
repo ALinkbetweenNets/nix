@@ -16,6 +16,18 @@ in {
           uploadBucketName = "outline";
           region = "eu-central-1";
         };
+        oidcAuthentication = {
+          # Parts taken from
+          # http://dex.localhost/.well-known/openid-configuration
+          authUrl = "https://gitea.alinkbetweennets.de/login/oauth/authorize";
+          tokenUrl = "https://gitea.alinkbetweennets.de/login/oauth/access_token";
+          userinfoUrl = "https://gitea.alinkbetweennets.de/login/oauth/userinfo";
+          clientId = "outline";
+          clientSecretFile = ".keys/";
+          scopes = [ "openid" "email" "profile" ];
+          usernameClaim = "l";
+          displayName = "Gitea";
+        };
       };
       nginx.virtualHosts."outline.alinkbetweennets.de" = {
         enableACME = true;

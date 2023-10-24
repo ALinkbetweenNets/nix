@@ -39,6 +39,13 @@ with lib; {
         extraConfig = "--update";
         settings = { embed-thumbnail = true; };
       };
+      direnv = {
+        enable = true;
+        enableBashIntegration = true;
+        enableZshIntegration = true;
+        nix-direnv.enable = true;
+      };
+      git = { ignores = [ ".direnv/" ]; };
     };
     # Home-manager nixpkgs config
     nixpkgs = {
