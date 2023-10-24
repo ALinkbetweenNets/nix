@@ -21,6 +21,14 @@ in {
       winetricks
       #wineWowPackages.waylandFull
     ];
+    networking.networkmanager.appendNameservers = [
+          "1.1.1.1"
+          "192.168.178.1"
+          "9.9.9.9"
+          "216.146.35.35"
+          "2620:fe::fe"
+          "2606:4700:4700::1111"
+        ];
 
   };
 }
