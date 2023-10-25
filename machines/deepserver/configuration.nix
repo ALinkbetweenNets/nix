@@ -12,6 +12,7 @@
     hardware.enable = true;
     cpu-amd.enable = true;
   };
+  boot.loader.grub.devices = [ "/dev/sda" "/dev/sdb" ];
   security.sudo.wheelNeedsPassword = true;
   networking.hostName = "deepserver";
 }
