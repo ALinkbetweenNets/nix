@@ -88,7 +88,7 @@ in {
       # };
       initrd.systemd.enable = true;
       loader = {
-        efi.canTouchEfiVariables = true;
+        efi.canTouchEfiVariables = lib.mkDefault true;
       };
       tmp.cleanOnBoot = true;
       kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
