@@ -13,6 +13,5 @@
     cpu-amd.enable = true;
   };
   security.sudo.wheelNeedsPassword = true;
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  networking.hostName = "deepserver.org";
+  networking.hostName = "deepserver";
 }
