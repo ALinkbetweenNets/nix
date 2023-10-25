@@ -45,7 +45,7 @@ with lib; {
       surfraw # TUI search engine interface
       translate-shell
       ffmpeg_6
-      genpass
+      apg # generate passwords
       # Multimedia
       obs-studio
       obs-studio-plugins.obs-backgroundremoval
