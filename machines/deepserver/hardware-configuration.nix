@@ -11,6 +11,7 @@
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
+  boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.extraModulePackages = [ ];
