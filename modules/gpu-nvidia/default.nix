@@ -6,6 +6,8 @@ let
     inherit (pkgs.cudapkgs)
       hashcat
       jellyfin
+      ffmpeg
+      ffmpeg-jellyfin
       ;
   });
 in
