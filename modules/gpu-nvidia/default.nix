@@ -1,15 +1,27 @@
 { lib, pkgs, config, ... }:
 with lib;
-let cfg = config.link.nvidia;
-in {
+let
+  cfg = config.link.nvidia;
+  cudaoverlay = (self: super: {
+    hashcat = pkgs.cudapkgs.hashcat;
+  });
+in
+{
   options.link.nvidia = { enable = mkEnableOption "activate nvidia support"; };
 
   config = mkIf cfg.enable {
 
+    nixpkgs.overlays = [
+      cudaoverlay
+    ];
+
     home-manager.users."l" = {
-      nixpkgs.config.cudaSupport = true;
+      nixpkgs.overlays = [
+        cudaoverlay
+      ];
+      # nixpkgs.config.cudaSupport = true;
     };
-    nixpkgs.config.cudaSupport = true;
+    # nixpkgs.config.cudaSupport = true;
 
     environment.systemPackages = with pkgs; [
       pciutils
