@@ -12,6 +12,7 @@ in {
       git-sync.enable = true;
       ntfs.enable = true;
     };
+    programs.noisetorch.enable = true;
     services.mullvad-vpn.enable = true;
     services.mullvad-vpn.package = pkgs.mullvad-vpn; # gui version
     environment.systemPackages = with pkgs; [
