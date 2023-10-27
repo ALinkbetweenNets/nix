@@ -5,6 +5,12 @@ in {
   options.link.nvidia = { enable = mkEnableOption "activate nvidia support"; };
 
   config = mkIf cfg.enable {
+
+    home-manager.users."l" = {
+      nixpkgs.config.cudaSupport = true;
+    };
+    nixpkgs.config.cudaSupport = true;
+
     environment.systemPackages = with pkgs; [
       pciutils
       libva-utils
