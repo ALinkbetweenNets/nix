@@ -3,7 +3,10 @@ with lib;
 let
   cfg = config.link.nvidia;
   cudaoverlay = (self: super: {
-    hashcat = pkgs.cudapkgs.hashcat;
+    inherit (pkgs.cudapkgs)
+      hashcat
+      jellyfin
+      ;
   });
 in
 {
