@@ -7,12 +7,18 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nur.url = "github:nix-community/NUR";
-
+    lollypops = {
+      url = "github:pinpox/lollypops";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,7 +26,7 @@
     vscode-server.url = "github:msteen/nixos-vscode-server";
   };
 
-  outputs = { self, nixpkgs,nur, ... }@inputs:
+  outputs = { self, nixpkgs, nur, ... }@inputs:
     with inputs;
     let
       supportedSystems = [ "aarch64-linux" "x86_64-linux" ];
@@ -44,6 +50,10 @@
             inputs = inputs;
           };
         inherit (nixpkgsFor.${system}.link) candy-icon-theme;
+      });
+
+      apps = forAllSystems (system: {
+        lollypops = lollypops.apps.${system}.default { configFlake = self; };
       });
 
       # Output all modules in ./modules to flake. Modules should be in
@@ -72,7 +82,9 @@
 
             modules = builtins.attrValues self.nixosModules ++ [
               (import "${./.}/machines/${x}/configuration.nix" { inherit self; })
+              lollypops.nixosModules.lollypops
               disko.nixosModules.disko
+              sops-nix.nixosModules.sops
             ];
 
           };

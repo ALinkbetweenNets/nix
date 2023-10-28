@@ -21,6 +21,21 @@
       }
     },
     "flake-utils": {
+      "locked": {
+        "lastModified": 1667395993,
+        "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_2": {
       "inputs": {
         "systems": "systems"
       },
@@ -55,6 +70,27 @@
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "lollypops": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1695979882,
+        "narHash": "sha256-c2ikf6lpWbVeMqorTS6CpZzRlpqvv8LIMffvJVaaNzI=",
+        "owner": "pinpox",
+        "repo": "lollypops",
+        "rev": "40af69d6e5f0f67a8f00d428a5eae9627f85de23",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pinpox",
+        "repo": "lollypops",
         "type": "github"
       }
     },
@@ -122,6 +158,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-stable_2": {
+      "locked": {
+        "lastModified": 1697929210,
+        "narHash": "sha256-RkQZif6QhswEwv7484mrKfIU8XmIWm+ED6llbr4IyxM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "fb000224952bf7749a9e8b3779104ef7ea4465c8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "release-23.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1682134069,
@@ -155,12 +207,35 @@
       "inputs": {
         "disko": "disko",
         "home-manager": "home-manager",
+        "lollypops": "lollypops",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable",
         "nur": "nur",
+        "sops-nix": "sops-nix",
         "vscode-server": "vscode-server"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-stable": "nixpkgs-stable_2"
+      },
+      "locked": {
+        "lastModified": 1698273636,
+        "narHash": "sha256-swsqg/ckSVJnravx7ie9NFQSKIH27owtlk0wh4+xStk=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "014e44d334a39481223a5d163530d4c4ca2e75cb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "type": "github"
       }
     },
     "systems": {
@@ -180,7 +255,7 @@
     },
     "vscode-server": {
       "inputs": {
-        "flake-utils": "flake-utils",
+        "flake-utils": "flake-utils_2",
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
