@@ -74,7 +74,6 @@ in {
       # nftables.enable = true; # libvirt, docker and others use iptables
       networkmanager = {
         enable = true;
-
       };
       firewall = {
         enable = lib.mkDefault true;
@@ -86,7 +85,7 @@ in {
       #   enable = true;
       #   theme = "breeze";
       # };
-      initrd.systemd.enable = true;
+      # initrd.systemd.enable = true;
       loader = {
         efi.canTouchEfiVariables = lib.mkDefault true;
       };
@@ -94,6 +93,7 @@ in {
       kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
       kernelParams = [ "quiet" "loglevel=3" ];
     };
+    programs.ssh.startAgent = true;
     # programs.gnupg.agent = {
     #   enable = true;
     #   enableSSHSupport = true;
