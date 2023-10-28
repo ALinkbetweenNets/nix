@@ -26,15 +26,15 @@
       flake-self.overlays.default
       flake-self.inputs.nur.overlay
 
-        (final: prev: {
-          cudapkgs = import flake-self.inputs.nixpkgs {
-            system = "${pkgs.system}";
-            config = {
-              allowUnfree = true;
-              cudaSupport = true;
-            };
+      (final: prev: {
+        cudapkgs = import flake-self.inputs.nixpkgs {
+          system = "${pkgs.system}";
+          config = {
+            allowUnfree = true;
+            cudaSupport = true;
           };
-        })
+        };
+      })
 
       (final: prev: {
         stable = import flake-self.inputs.nixpkgs-stable {
