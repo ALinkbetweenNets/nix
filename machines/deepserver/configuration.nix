@@ -11,6 +11,7 @@
     systemd-boot.enable = false;
     hardware.enable = true;
     cpu-amd.enable = true;
+    users = { jucknath.enable = true; paul.enable = true; };
   };
   boot.loader.grub.devices = [ "/dev/sda" "/dev/sdb" ];
   security.sudo.wheelNeedsPassword = true;
