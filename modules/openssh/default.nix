@@ -13,7 +13,7 @@ in {
       openFirewall = true;
       startWhenNeeded = true;
       settings = {
-        PermitRootLogin = "no";
+        PermitRootLogin = "yes";
         #PasswordAuthentication = false;
         #KbdInteractiveAuthentication = false;
         X11Forwarding = true;
