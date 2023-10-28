@@ -26,7 +26,7 @@ with lib; {
       # Misc
       #gsettings-desktop-schemas # required for some apps like jami
       # Editor
-      logseq
+      # logseq
       semantik # mind mapping
       # File Sync
       nextcloud-client
