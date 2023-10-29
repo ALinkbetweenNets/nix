@@ -15,8 +15,6 @@
     wg-deep.enable = true;
   };
   services.openssh.settings = {
-    PasswordAuthentication = false;
-    KbdInteractiveAuthentication = false;
     PermitRootLogin = lib.mkForce "prohibit-password";
   };
   boot.loader.grub.devices = [ "/dev/sda" "/dev/sdb" ];
