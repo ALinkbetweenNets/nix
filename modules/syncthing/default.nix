@@ -48,11 +48,11 @@ in {
         };
         folders = {
           "v" = {
-            path = lib.mkDefault "/home/l/v";
+            path = lib.mkDefault "${config.link.syncthingDir}/v";
             devices = [ "dn" "xn" "s22" "in" "sn" "hn" ];
           };
           "camera" = {
-            path = lib.mkDefault "/home/l/camera";
+            path = lib.mkDefault "${config.link.syncthingDir}/camera";
             devices = [ "dn" "xn" "s22" "sn" "hn" ];
             versioning = {
               type = "trashcan";
@@ -60,7 +60,7 @@ in {
             };
           };
           "uni" = {
-            path = lib.mkDefault "/home/l/uni";
+            path = lib.mkDefault "${config.link.syncthingDir}/uni";
             devices = [ "dn" "xn" "s22" "in" "sn" "hn" ];
             versioning = {
               type = "simple";
@@ -69,7 +69,7 @@ in {
 
           };
           "doc" = {
-            path = lib.mkDefault "/home/l/doc";
+            path = lib.mkDefault "${config.link.syncthingDir}/doc";
             devices = [ "dn" "xn" "s22" "in" "sn" "hn" ];
             versioning = {
               type = "simple";
@@ -77,7 +77,7 @@ in {
             };
           };
           "music" = {
-            path = lib.mkDefault "/home/l/Music";
+            path = lib.mkDefault "${config.link.syncthingDir}/Music";
             devices = [ "dn" "xn" "s22" "in" "sn" "hn" ];
             versioning = {
               type = "trashcan";
@@ -85,11 +85,11 @@ in {
             };
           };
           "crypt" = {
-            path = lib.mkDefault "/home/l/crypt";
+            path = lib.mkDefault "${config.link.syncthingDir}/crypt";
             devices = [ "dn" "xn" "in" "sn" "hn" ];
           };
           "sec" = {
-            path = lib.mkDefault "/home/l/sec";
+            path = lib.mkDefault "${config.link.syncthingDir}/sec";
             devices = [ "dn" "xn" "in" "sn" "hn" ];
             versioning = {
               type = "simple";
@@ -97,7 +97,7 @@ in {
             };
           };
           "keys" = {
-            path = lib.mkDefault "/home/l/.keys";
+            path = lib.mkDefault "${config.link.syncthingDir}/.keys";
             devices = [ "dn" "xn" "in" "sn" "hn" ];
             versioning = {
               type = "simple";
