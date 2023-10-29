@@ -16,5 +16,10 @@
       default = "/pwd";
       description = "storage path for all secrets";
     };
+    syncthingDir = mkOption {
+      type = types.str;
+      default = "/home/l";
+      description = "storage path for syncthing";
+    };
   };
 }
