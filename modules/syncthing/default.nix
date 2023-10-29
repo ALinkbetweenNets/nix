@@ -27,33 +27,34 @@ in {
         # overrides any folders added or deleted through the WebUI
         overrideFolders = true;
         devices = {
-          "dn" = {
-            id = "2UZCLBR-LR5DMFA-HWXNELR-3GF6BVU-RZEBCWZ-P72JF4N-ZV7H6MF-SEQX4QK";
-          };
-          "xn" = {
-            id = "PMEZBNQ-KB2ZADR-VYV4CK4-F3OKSZR-2SFB6SY-2JL7RDG-5QPMDYN-RRTVEAC";
-          };
-          "s22" = {
-            id = "DOQGIQ6-WIAAZBV-EUQ6HWX-D6G2XYK-SAE6AGX-X3D4OLX-PGKELKL-RR6PSAE";
-          };
-          "in" = {
-            id = "IYOMGJ7-NZADKG2-L2PMGIH-VSTMTJ4-KLA7VF4-3CUONC2-BQMMWTW-I6KHDAY";
-          };
-          "sn" = {
-            id = "QAZMWCF-N4MACEK-IFISGXL-QPX7YDP-AHD7CXC-WYUCVZJ-D35X5J2-4C6IQAQ";
-          };
-          "hn" = {
-            id = "YU4MCML-QWAYIDE-FSHCDWA-C2FGKTG-ERS6I36-SMCFI2J-RKLVOPN-PS3IFQD";
-          };
+          "dn".id = "2UZCLBR-LR5DMFA-HWXNELR-3GF6BVU-RZEBCWZ-P72JF4N-ZV7H6MF-SEQX4QK";
+          "xn".id = "PMEZBNQ-KB2ZADR-VYV4CK4-F3OKSZR-2SFB6SY-2JL7RDG-5QPMDYN-RRTVEAC";
+          "s22".id = "DOQGIQ6-WIAAZBV-EUQ6HWX-D6G2XYK-SAE6AGX-X3D4OLX-PGKELKL-RR6PSAE";
+          "in".id = "IYOMGJ7-NZADKG2-L2PMGIH-VSTMTJ4-KLA7VF4-3CUONC2-BQMMWTW-I6KHDAY";
+          "sn".id = "QAZMWCF-N4MACEK-IFISGXL-QPX7YDP-AHD7CXC-WYUCVZJ-D35X5J2-4C6IQAQ";
+          "hn".id = "YU4MCML-QWAYIDE-FSHCDWA-C2FGKTG-ERS6I36-SMCFI2J-RKLVOPN-PS3IFQD";
         };
         folders = {
           "v" = {
             path = lib.mkDefault "${config.link.syncthingDir}/v";
-            devices = [ "dn" "xn" "s22" "in" "sn" "hn" ];
+            devices = [
+              "dn"
+              "hn"
+              "in"
+              "s22"
+              "sn"
+              "xn"
+            ];
           };
           "camera" = {
             path = lib.mkDefault "${config.link.syncthingDir}/camera";
-            devices = [ "dn" "xn" "s22" "sn" "hn" ];
+            devices = [
+              "dn"
+              "hn"
+              "s22"
+              "sn"
+              "xn"
+            ];
             versioning = {
               type = "trashcan";
               params.cleanoutDays = "1000";
@@ -61,7 +62,14 @@ in {
           };
           "uni" = {
             path = lib.mkDefault "${config.link.syncthingDir}/uni";
-            devices = [ "dn" "xn" "s22" "in" "sn" "hn" ];
+            devices = [
+              "dn"
+              "hn"
+              "in"
+              "s22"
+              "sn"
+              "xn"
+            ];
             versioning = {
               type = "simple";
               params.keep = "3";
@@ -70,7 +78,14 @@ in {
           };
           "doc" = {
             path = lib.mkDefault "${config.link.syncthingDir}/doc";
-            devices = [ "dn" "xn" "s22" "in" "sn" "hn" ];
+            devices = [
+              "dn"
+              "hn"
+              "in"
+              "s22"
+              "sn"
+              "xn"
+            ];
             versioning = {
               type = "simple";
               params.keep = "10";
@@ -78,7 +93,14 @@ in {
           };
           "music" = {
             path = lib.mkDefault "${config.link.syncthingDir}/Music";
-            devices = [ "dn" "xn" "s22" "in" "sn" "hn" ];
+            devices = [
+              "dn"
+              "hn"
+              "in"
+              "s22"
+              "sn"
+              "xn"
+            ];
             versioning = {
               type = "trashcan";
               params.cleanoutDays = "1000";
@@ -86,11 +108,23 @@ in {
           };
           "crypt" = {
             path = lib.mkDefault "${config.link.syncthingDir}/crypt";
-            devices = [ "dn" "xn" "in" "sn" "hn" ];
+            devices = [
+              "dn"
+              "hn"
+              "in"
+              "sn"
+              "xn"
+            ];
           };
           "sec" = {
             path = lib.mkDefault "${config.link.syncthingDir}/sec";
-            devices = [ "dn" "xn" "in" "sn" "hn" ];
+            devices = [
+              "dn"
+              "hn"
+              "in"
+              "sn"
+              "xn"
+            ];
             versioning = {
               type = "simple";
               params.keep = "10";
@@ -98,7 +132,13 @@ in {
           };
           "keys" = {
             path = lib.mkDefault "${config.link.syncthingDir}/.keys";
-            devices = [ "dn" "xn" "in" "sn" "hn" ];
+            devices = [
+              "dn"
+              "hn"
+              "in"
+              "sn"
+              "xn"
+            ];
             versioning = {
               type = "simple";
               params.keep = "10";
