@@ -6,14 +6,14 @@ in {
   config = mkIf cfg.enable {
     services = {
       grafana = {
-        enable = false;
+        enable = true;
         settings.server = {
-          domain = "grafana.alinkbetweennets.de";
+          domain = "grafana.${config.link.domain}";
           http_addr = "127.0.0.1";
           http_port = 7890;
         };
       };
-      nginx.virtualHosts."grafana.alinkbetweennets.de" = {
+      nginx.virtualHosts."grafana.${config.link.domain}" = {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
