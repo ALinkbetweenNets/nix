@@ -21,12 +21,12 @@ in {
         "jellyfin.${config.link.domain}" = {
           enableACME = true;
           forceSSL = true;
-          locations."/" = { proxyPass = "http://127.0.0.1:${toString config.services.jellyfin.port}//"; };
+          locations."/" = { proxyPass = "http://127.0.0.1:8096/"; };
         };
         "jellyseer.${config.link.domain}" = {
           enableACME = true;
           forceSSL = true;
-          locations."/" = { proxyPass = "http://127.0.0.1:${toString config.services.jellyseer.port}//"; };
+          locations."/" = { proxyPass = "http://127.0.0.1:${toString config.services.jellyseer.port}/"; };
         };
       };
     };
