@@ -11,7 +11,7 @@ in {
       #useOSProber = true;
       configurationLimit = 50;
       memtest86.enable = lib.mkDefault true;
-      theme = pkgs.nixos-grub2-theme;
+      # theme = pkgs.nixos-grub2-theme;
       splashMode = "normal";
       #enableCryptodisk = true;
     };
