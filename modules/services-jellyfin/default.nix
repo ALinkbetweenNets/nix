@@ -8,12 +8,12 @@ in {
       jellyfin-ffmpeg
     ];
     services = {
-      jellyseerr = {
+      jellyfin = {
+        # package = pkgs.cudapkgs.jellyfin;
         enable = true;
         openFirewall = true;
       };
-      jellyfin = {
-        # package = pkgs.cudapkgs.jellyfin;
+      jellyseerr = {
         enable = true;
         openFirewall = true;
       };
@@ -26,7 +26,7 @@ in {
         "jellyseer.${config.link.domain}" = {
           enableACME = true;
           forceSSL = true;
-          locations."/" = { proxyPass = "http://127.0.0.1:${toString config.services.jellyseer.port}/"; };
+          locations."/" = { proxyPass = "http://127.0.0.1:5055/"; };
         };
       };
     };
