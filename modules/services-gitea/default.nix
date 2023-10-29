@@ -2,24 +2,15 @@
 with lib;
 let cfg = config.link.gitea;
 in {
-  options.link.gitea.enable = mkEnableOption "activate gitea";
+  options.link.gitea = { enable = mkEnableOption "activate gitea"; };
   config = mkIf cfg.enable {
     services = {
       gitea = {
         enable = true;
-        stateDir = "/rz/srv/gitea";
+        stateDir = "${config.link.storage}gitea";
         settings.server = {
-          DOMAIN = "gitea.alinkbetweennets.de";
-          ROOT_URL = "https://gitea.alinkbetweennets.de";
-          #USE_PROXY_PROTOCOL=true;
-          #REDIRECT_OTHER_PORT=true;
-          #PORT_TO_REDIRECT=3080;
-          #HTTP_PORT = 3000;
-          #PROTOCOL="https";
-          #ENABLE_ACME=true;
-          #ACME_ACCEPTTOS=true;
-          #ACME_DIRECTORY="https";
-          #ACME_EMAIL="alinkbetweennets+acme@protonmail.com";
+          ROOT_URL = "https://gitea.${config.link.domain}";
+          COOKIE_SECURE = true;
         };
         settings.service = {
           DISABLE_REGISTRATION = false;
@@ -29,18 +20,13 @@ in {
         };
         settings.oauth2_client = { ENABLE_AUTO_REGISTRATION = false; };
         lfs.enable = true;
-        #user = "l";
         database = {
-          # enable = true;
           type = "postgres";
-          host = "localhost";
-          #name = "gitea";
-          #user = "l";
-          passwordFile = "/pwd/gitea";
+          passwordFile = "${config.link.secrets}gitea-db";
         };
       };
       postgresql = {
-        enable = true; # Ensure postgresql is enabled
+        enable = true;
         authentication = ''
           local gitea all ident map=gitea-users
         '';
@@ -48,12 +34,11 @@ in {
           ''
             gitea-users gitea gitea
           '';
-        package = pkgs.postgresql_11;
       };
-      nginx.virtualHosts."gitea.alinkbetweennets.de" = {
+      nginx.virtualHosts."https://gitea.${config.link.domain}" = {
         enableACME = true;
         forceSSL = true;
-        locations = { "/" = { proxyPass = "http://127.0.0.1:3000/"; }; };
+        locations = { "/" = { proxyPass = "http://127.0.0.1:${config.services.gitea.settings.server.HTTP_PORT}"; }; };
       };
     };
   };
