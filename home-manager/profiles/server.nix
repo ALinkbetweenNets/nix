@@ -2,4 +2,5 @@
 with lib; {
 
   imports = [ ./common.nix ];
+  config = { };
 }
