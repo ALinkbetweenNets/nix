@@ -1,8 +1,8 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.nextcloud;
+let cfg = config.link.keycloak;
 in {
-  options.link.nextcloud.enable = mkEnableOption "activate nextcloud";
+  options.link.keycloak.enable = mkEnableOption "activate keycloak";
   config = mkIf cfg.enable {
     services = {
       keycloak = {

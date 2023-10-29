@@ -20,6 +20,7 @@
     jellyfin.enable = true;
     jitsi.enable = true;
     nextcloud.enable = true;
+    keycloak.enable = true;
     nginx.enable = true;
     outline.enable = true;
     paperless.enable = true;
