@@ -10,7 +10,8 @@ in {
       printing.enable = lib.mkIf config.link.office.enable true;
       syncthing.enable = true;
       git-sync.enable = true;
-      ntfs.enable = true;
+      fs.ntfs.enable = true;
+      gaming.enable = true;
     };
     programs.noisetorch.enable = true;
     services.mullvad-vpn.enable = true;

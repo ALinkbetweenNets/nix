@@ -9,12 +9,12 @@
     common.enable = true;
     grub.enable = true;
     systemd-boot.enable = false;
-    zfs.enable = true;
+    fs.zfs.enable = true;
     hardware.enable = true;
     cpu-amd.enable = true;
     nvidia.enable = true;
     storage = "/rz/srv";
-    syncthingDir="/rz/syncthing";
+    syncthingDir = "/rz/syncthing";
     # Services
     #seafile.enable = true;
     gitea.enable = true;

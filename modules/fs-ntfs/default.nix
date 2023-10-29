@@ -1,7 +1,7 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.ntfs;
+let cfg = config.link.fs.ntfs;
 in {
-  options.link.ntfs.enable = mkEnableOption "activate ntfs";
+  options.link.fs.ntfs.enable = mkEnableOption "activate ntfs";
   config = mkIf cfg.enable { boot.supportedFilesystems = [ "ntfs" ]; };
 }
