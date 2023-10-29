@@ -5,9 +5,6 @@ with lib; {
   config = {
     home.packages = with pkgs;
       [
-        # Desktop monitor settings change
-        ddcui
-        ddcutil
         hddtemp
         powertop
         lshw

@@ -12,6 +12,11 @@ with lib; {
       indicator = false;
     };
     home.packages = with pkgs; [
+
+      # Desktop monitor settings change
+      ddcui
+      ddcutil
+
       alacritty
       # theming
       beauty-line-icon-theme
@@ -45,7 +50,7 @@ with lib; {
       surfraw # TUI search engine interface
       translate-shell
       ffmpeg_6
-      apg # generate passwords
+
       # Multimedia
       obs-studio
       obs-studio-plugins.obs-backgroundremoval
