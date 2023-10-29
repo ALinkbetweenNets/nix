@@ -13,6 +13,7 @@ with lib; {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs;
       [
+        apg # generate passwords
         wcalc
         ## Networking+
         socat
