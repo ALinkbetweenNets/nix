@@ -13,3 +13,5 @@ For available configuration options see https://search.nixos.org/options (unstab
 For list of packages see https://search.nixos.org/packages (by default the unstable channel is used)
 
 For available ![Home-Manager](https://nixos.wiki/wiki/Home_Manager) options see https://nix-community.github.io/home-manager/options.html
+
+Many thanks to ![@MayNiklas](https://github.com/MayNiklas) for teaching me the many ins and outs of NixOS as well as helping me to create the initial flake and the rough structure of this repository.
