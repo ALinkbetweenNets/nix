@@ -7,8 +7,8 @@ in {
     services = {
       paperless = {
         enable = true;
-        passwordFile = "/pwd/paperless";
-        dataDir = "/rz/srq/paperless";
+        passwordFile = "${config.link.secrets}/paperless";
+        dataDir = "${config.link.storage}/paperless";
         # address = "paperless.alinkbetweennets.de";
         extraConfig = {
           PAPERLESS_ADMIN_USER = "l";
@@ -21,7 +21,7 @@ in {
           };
         };
       };
-      nginx.virtualHosts."paperless.alinkbetweennets.de" = {
+      nginx.virtualHosts."paperless.${config.link.domain}" = {
         enableACME = true;
         forceSSL = true;
         locations."/" = { proxyPass = "http://127.0.0.1:28981/"; };

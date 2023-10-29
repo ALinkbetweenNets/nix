@@ -7,18 +7,18 @@ in {
     services = {
       photoprism = {
         enable = true;
-        originalsPath = "/rz/srv/photoprism/data";
-        storagePath = "/rz/srv/photoprism/storage";
+        originalsPath = "${config.link.storage}/photoprism/data";
+        storagePath = "${config.link.storage}/photoprism/storage";
         settings = {
           PHOTOPRISM_ADMIN_USER = "l";
           PHOTOPRISM_DEFAULT_LOCALE = "de";
-          PHOTOPRISM_SITE_URL = "https://photoprism.alinkbetweennets.de";
+          PHOTOPRISM_SITE_URL = "https://photoprism.${config.link.domain}";
         };
         port = 2342;
-        passwordFile = "/pwd/photoprism";
+        passwordFile = "${config.link.secrets}/photoprism";
         address = "0.0.0.0";
       };
-      nginx.virtualHosts."photoprism.alinkbetweennets.de" = {
+      nginx.virtualHosts."photoprism.${config.link.domain}" = {
         enableACME = true;
         forceSSL = true;
         locations."/" = { proxyPass = "http://127.0.0.1:2342/"; };
