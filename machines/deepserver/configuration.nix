@@ -12,6 +12,7 @@
     hardware.enable = true;
     cpu-amd.enable = true;
     users = { jucknath.enable = true; paul.enable = true; };
+    wg-deep.enable = true;
   };
   services.openssh.settings = {
     PermitRootLogin = lib.mkForce "prohibit-password";
