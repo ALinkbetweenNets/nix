@@ -10,7 +10,7 @@
     systemd-boot.enable = false;
     grub.enable = true;
     vm.enable = true;
-    link.storage = "/arr";
+    storage = "/arr";
   };
   networking.hostName = "snvnarr";
   boot.loader.grub.device = "/dev/vda";
