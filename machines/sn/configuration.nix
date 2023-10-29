@@ -14,6 +14,7 @@
     cpu-amd.enable = true;
     nvidia.enable = true;
     storage = "/rz/srv";
+    syncthingDir="/rz/syncthing";
     # Services
     #seafile.enable = true;
     gitea.enable = true;
@@ -48,15 +49,5 @@
     interfaces."enp6s0".wakeOnLan.enable = true;
     hostName = "sn";
     hostId = "007f0200";
-  };
-  services.syncthing.settings.folders = {
-    "v".path = "/rz/syncthing/v";
-    "camera".path = "/rz/syncthing/camera";
-    "uni".path = "/rz/syncthing/uni";
-    "doc".path = "/rz/syncthing/doc";
-    "music".path = "/rz/syncthing/music";
-    "crypt".path = "/rz/syncthing/crypt";
-    "sec".path = "/rz/syncthing/sec";
-    "keys".path = "/rz/syncthing/.keys";
   };
 }
