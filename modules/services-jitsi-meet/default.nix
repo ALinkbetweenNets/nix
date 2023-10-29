@@ -7,7 +7,8 @@ in {
     services = {
       jitsi-meet = {
         enable = true;
-        hostName = "jitsi.alinkbetweennets.de";
+        hostName = "jitsi.${config.link.domain}";
+        nginx.enable = true;
         interfaceConfig = {
           SHOW_JITSI_WATERMARK = false;
           SHOW_WATERMARK_FOR_GUESTS = false;
@@ -22,6 +23,12 @@ in {
         openFirewall = true;
       };
       jicofo.enable = true;
+      nginx.virtualHosts = {
+        "jitsi.${config.link.domain}" = {
+          enableACME = true;
+          forceSSL = true;
+        };
+      };
     };
   };
 }
