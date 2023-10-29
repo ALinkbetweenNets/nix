@@ -8,10 +8,10 @@ in {
       keycloak = {
         enable = true;
         database = {
-          passwordFile = "/pwd/keycloak";
+          passwordFile = "${config.link.secrets}/keycloak";
         };
         settings = {
-          hostname = "auth.alinkbetweennets.de";
+          hostname = "auth.${config.link.domain}";
           http-relative-path = "";
           hostname-strict-backchannel = true;
           http-port = 31123;
@@ -21,12 +21,12 @@ in {
       };
 
       nginx.virtualHosts = {
-        "auth.alinkbetweennets.de" = {
+        "auth.${config.link.domain}" = {
           enableACME = true;
           forceSSL = true;
           locations = {
             "/" = {
-              proxyPass = "http://127.0.0.1:31123";
+              proxyPass = "http://127.0.0.1:${toString config.services.keycloak.settings.http-port}/";
               extraConfig = ''
                 proxy_set_header X-Forwarded-Host $http_host;
                 proxy_set_header X-Real-IP $remote_addr;
