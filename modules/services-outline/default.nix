@@ -11,7 +11,7 @@ in {
         publicUrl = "http://127.0.0.1:3123";
         storage = {
           accessKey = "outline";
-          secretKeyFile = "${config.link.secrets}minio-outline";
+          secretKeyFile = "${config.link.secrets}/minio-outline";
           uploadBucketUrl = "https://minio.s3.${config.link.domain}";
           uploadBucketName = "outline";
           region = "eu-central-1";
@@ -22,7 +22,7 @@ in {
           authUrl = "https://gitea.alinkbetweennets.de/login/oauth/authorize";
           tokenUrl = "https://gitea.alinkbetweennets.de/login/oauth/access_token";
           userinfoUrl = "https://gitea.alinkbetweennets.de/login/oauth/userinfo";
-          clientId = "${config.link.secrets}outline";
+          clientId = "${config.link.secrets}/outline";
           clientSecretFile = ".keys/";
           scopes = [ "openid" "email" "profile" ];
           usernameClaim = "l";

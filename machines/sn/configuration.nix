@@ -13,7 +13,7 @@
     hardware.enable = true;
     cpu-amd.enable = true;
     nvidia.enable = true;
-    storage = "/rz/srv/";
+    storage = "/rz/srv";
     # Services
     #seafile.enable = true;
     gitea.enable = true;
