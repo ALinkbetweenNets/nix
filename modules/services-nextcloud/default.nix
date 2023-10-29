@@ -7,10 +7,10 @@ in {
     services = {
       nextcloud = {
         enable = true;
-        hostName = "nextcloud.alinkbetweennets.de";
+        hostName = "nextcloud.${config.link.domain}";
         config = {
           adminuser = "l";
-          adminpassFile = "/pwd/nextcloud";
+          adminpassFile = "${config.link.secrets}/nextcloud";
         };
         #secretFile = "/pwd/nextcloud-secrets.json";
         extraApps = with config.services.nextcloud.package.packages.apps; {
@@ -27,9 +27,9 @@ in {
         https = true;
         configureRedis = true;
         database.createLocally = true;
-        home = "/rz/srv/nextcloud";
+        home = "${config.link.storage}/nextcloud";
       };
-      nginx.virtualHosts."nextcloud.alinkbetweennets.de" = {
+      nginx.virtualHosts."nextcloud.${config.link.domain}" = {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
