@@ -65,13 +65,13 @@ in {
         ];
       };
     };
-    services = {
-      dnsmasq = {
-        enable = true;
-        extraConfig = ''
-          interface=wg-deep
-        '';
-      };
-    };
+    # services = {
+    #   dnsmasq = {
+    #     enable = true;
+    #     extraConfig = ''
+    #       interface=wg-deep
+    #     '';
+    #   };
+    # };
   };
 }
