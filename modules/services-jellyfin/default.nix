@@ -7,30 +7,26 @@ in {
     environment.systemPackages = with pkgs; [
       jellyfin-ffmpeg
     ];
-    fileSystems."/export" = {
-      device = "/rz";
-      options = [ "bind" ];
-    };
     services = {
       jellyseerr = {
         enable = true;
         openFirewall = true;
       };
       jellyfin = {
-        package = pkgs.cudapkgs.jellyfin;
+        package = jellyfin;
         enable = true;
         openFirewall = true;
       };
       nginx.virtualHosts = {
-        "jellyfin.alinkbetweennets.de" = {
+        "jellyfin.${config.link.domain}" = {
           enableACME = true;
           forceSSL = true;
-          locations."/" = { proxyPass = "http://127.0.0.1:8096/"; };
+          locations."/" = { proxyPass = "http://127.0.0.1:${toString config.services.jellyfin.port}//"; };
         };
-        "jellyseer.alinkbetweennets.de" = {
+        "jellyseer.${config.link.domain}" = {
           enableACME = true;
           forceSSL = true;
-          locations."/" = { proxyPass = "http://127.0.0.1:5055/"; };
+          locations."/" = { proxyPass = "http://127.0.0.1:${toString config.services.jellyseer.port}//"; };
         };
       };
     };
