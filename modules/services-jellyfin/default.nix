@@ -13,7 +13,7 @@ in {
         openFirewall = true;
       };
       jellyfin = {
-        package = jellyfin;
+        # package = pkgs.cudapkgs.jellyfin;
         enable = true;
         openFirewall = true;
       };
