@@ -13,6 +13,9 @@
     cpu-amd.enable = true;
     users = { jucknath.enable = true; paul.enable = true; };
   };
+  services.openssh.settings = {
+    PermitRootLogin = lib.mkForce "prohibit-password";
+  };
   boot.loader.grub.devices = [ "/dev/sda" "/dev/sdb" ];
   security.sudo.wheelNeedsPassword = true;
   networking.hostName = "deepserver";
