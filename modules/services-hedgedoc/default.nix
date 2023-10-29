@@ -7,7 +7,7 @@ in {
     services = {
       hedgedoc = {
         enable = true;
-        workDir = "${config.link.storage}hedgedoc";
+        workDir = "${config.link.storage}/hedgedoc";
         settings = {
           domain = "hedgedoc.${config.link.domain}";
           port = 3400;
@@ -15,7 +15,7 @@ in {
           useSSL = false;
           db = {
             dialect = "sqlite";
-            storage = "${config.link.storage}hedgedoc/db.hedgedoc.sqlite";
+            storage = "${config.link.storage}/hedgedoc/db.hedgedoc.sqlite";
           };
         };
       };
