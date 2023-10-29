@@ -4,10 +4,10 @@ let
   cfg = config.link.nvidia;
   cudaoverlay = (self: super: {
     inherit (pkgs.cudapkgs)
+      ffmpeg
       hashcat
       jellyfin
-      ffmpeg
-      ffmpeg-jellyfin
+      jellyfin-ffmpeg
       ;
   });
 in
@@ -29,11 +29,11 @@ in
     # nixpkgs.config.cudaSupport = true;
 
     environment.systemPackages = with pkgs; [
-      pciutils
       libva-utils
-      vdpauinfo
-      nvtop-nvidia
       nvidia-vaapi-driver
+      nvtop-nvidia
+      pciutils
+      vdpauinfo
     ];
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware = {
