@@ -19,7 +19,7 @@
     gitea.enable = true;
     grafana.enable = true;
     hedgedoc.enable = true;
-    home-manager.enable = true;
+    home-assistant.enable = true;
     jellyfin.enable = true;
     jitsi.enable = true;
     keycloak.enable = true;
