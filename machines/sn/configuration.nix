@@ -19,6 +19,7 @@
     gitea.enable = true;
     grafana.enable = true;
     hedgedoc.enable = true;
+    home-manager.enable = true;
     jellyfin.enable = true;
     jitsi.enable = true;
     keycloak.enable = true;
@@ -39,11 +40,15 @@
     device = "/rz";
     options = [ "bind" ];
   };
-  boot.loader.grub.device = "/dev/sdd";
-  boot.zfs.extraPools = [ "wdp" ];
-  networking.interfaces."enp6s0".wakeOnLan.enable = true;
-  networking.hostName = "sn";
-  networking.hostId = "007f0200";
+  boot = {
+    loader.grub.device = "/dev/sdd";
+    zfs.extraPools = [ "wdp" ];
+  };
+  networking = {
+    interfaces."enp6s0".wakeOnLan.enable = true;
+    hostName = "sn";
+    hostId = "007f0200";
+  };
   services.syncthing.settings.folders = {
     "v".path = "/rz/syncthing/v";
     "camera".path = "/rz/syncthing/camera";
