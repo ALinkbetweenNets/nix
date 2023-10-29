@@ -6,42 +6,6 @@ in {
   config = mkIf cfg.enable {
     fonts.packages = with pkgs;
       [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
-    environment.systemPackages = with pkgs; [
-      ## system
-      font-awesome
-      libsecret
-      gnupg
-      gpg-tui
-      ## basics
-      file
-      killall
-      trashy
-      tmux
-      ## encryption& filesystem
-      sshfs
-      nfs-utils
-      cryptsetup
-      gocryptfs
-      age
-      restic
-      ## Network tools
-      wget
-      curl
-      tree
-      unzip
-      gnutar
-      xz
-      bzip2
-      p7zip
-      rmlint
-      gitFull
-      fdupes
-      # gitFull
-      iptables
-      nftables
-      wireguard-tools
-      dnsutils
-    ];
     environment.pathsToLink = [ "/share/zsh" ];
     link = {
       users = {
@@ -88,6 +52,42 @@ in {
       kernelParams = [ "quiet" "loglevel=3" ];
     };
     programs.ssh.startAgent = true;
+    environment.systemPackages = with pkgs; [
+      ## system
+      font-awesome
+      libsecret
+      gnupg
+      gpg-tui
+      ## basics
+      file
+      killall
+      trashy
+      tmux
+      ## encryption& filesystem
+      sshfs
+      nfs-utils
+      cryptsetup
+      gocryptfs
+      age
+      restic
+      ## Network tools
+      wget
+      curl
+      tree
+      unzip
+      gnutar
+      xz
+      bzip2
+      p7zip
+      rmlint
+      gitFull
+      fdupes
+      # gitFull
+      iptables
+      nftables
+      wireguard-tools
+      dnsutils
+    ];
     # programs.gnupg.agent = {
     #   enable = true;
     #   enableSSHSupport = true;

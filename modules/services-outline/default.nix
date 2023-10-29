@@ -11,7 +11,7 @@ in {
         publicUrl = "http://127.0.0.1:3123";
         storage = {
           accessKey = "outline";
-          secretKeyFile = "/home/l/.keys/minio-outline";
+          secretKeyFile = "${config.link.secrets}minio-outline";
           uploadBucketUrl = "https://minio.s3.alinkbetweennets.de";
           uploadBucketName = "outline";
           region = "eu-central-1";
