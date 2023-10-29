@@ -13,8 +13,8 @@ in {
         performanceNetParameters = true;
         downloadDirPermissions = "777";
         settings = {
-          incomplete-dir = "/arr/torrents/incomplete";
-          download-dir = "/arr/torrents/";
+          incomplete-dir = "${config.link.storage}/torrents/incomplete";
+          download-dir = "${config.link.storage}/torrents/";
           umask = 2;
           rpc-bind-address = "0.0.0.0";
         };
@@ -47,12 +47,6 @@ in {
         enable = true;
         openFirewall = true;
       };
-    };
-    fileSystems."arra" = {
-      device = "arra"; # Replace with the correct device or path
-      fsType = "9p"; # Replace with the filesystem type
-      mountPoint = "/arr";
-      options = [ "trans=virtio" ];
     };
   };
 }

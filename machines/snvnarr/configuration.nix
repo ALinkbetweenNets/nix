@@ -10,9 +10,16 @@
     systemd-boot.enable = false;
     grub.enable = true;
     vm.enable = true;
+    link.storage = "/arr";
   };
   networking.hostName = "snvnarr";
   boot.loader.grub.device = "/dev/vda";
   services.mullvad-vpn.enable = true;
   services.mullvad-vpn.package = pkgs.mullvad-vpn; # gui version
+  fileSystems."arra" = {
+    device = "arra"; # Replace with the correct device or path
+    fsType = "9p"; # Replace with the filesystem type
+    mountPoint = "${config.link.storage}";
+    options = [ "trans=virtio" ];
+  };
 }
