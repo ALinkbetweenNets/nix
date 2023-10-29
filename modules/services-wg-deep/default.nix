@@ -4,20 +4,8 @@ let cfg = config.link.wg-deep;
 in {
   options.link.wg-deep.enable = mkEnableOption "activate wg-deep";
   config = mkIf cfg.enable {
-    # Enable NAT
-    networking.nat = {
-      enable = true;
-      enableIPv6 = true;
-      externalInterface = "enp41s0";
-      internalInterfaces = [ "wg-deep" ];
-    };
-    # Open ports in the firewall
-    networking.firewall = {
-      allowedTCPPorts = [ 53 ];
-      allowedUDPPorts = [ 53 51820 ];
-    };
+    networking.nat.internalInterfaces = [ "wg-deep" ];
     networking.wg-quick.interfaces = {
-      # "wg0" is the network interface name. You can name the interface arbitrarily.
       wg-deep = {
         # Determines the IP/IPv6 address and subnet of the client's end of the tunnel interface
         address = [ "10.0.0.1/24" "fdc9:281f:04d7:9ee9::1/64" ];
@@ -65,13 +53,5 @@ in {
         ];
       };
     };
-    # services = {
-    #   dnsmasq = {
-    #     enable = true;
-    #     extraConfig = ''
-    #       interface=wg-deep
-    #     '';
-    #   };
-    # };
   };
 }
