@@ -9,7 +9,6 @@ in {
     environment.systemPackages = with pkgs; [
       ## system
       font-awesome
-      dbus
       libsecret
       gnupg
       gpg-tui
@@ -51,6 +50,7 @@ in {
       };
       systemd-boot.enable = lib.mkDefault true;
       openssh.enable = lib.mkDefault true;
+      fail2ban.enable = lib.mkDefault true;
     };
     security = {
       sudo.wheelNeedsPassword = lib.mkDefault false;
@@ -63,13 +63,7 @@ in {
       # security.tpm2.abrmd.enable = true;
       # auditd.enable = true;
     };
-    services = {
-      fail2ban = {
-        enable = true;
-        maxretry = 5;
-        bantime-increment.enable = true;
-      };
-    };
+
     networking = {
       # nftables.enable = true; # libvirt, docker and others use iptables
       networkmanager = {

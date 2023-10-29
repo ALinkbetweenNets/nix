@@ -38,6 +38,7 @@ in {
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services = {
+      dbus.enable = true;
       pipewire = {
         enable = true;
         alsa.enable = true;
@@ -45,6 +46,19 @@ in {
         pulse.enable = true;
         #jack.enable = true;
         #media-session.enable = true;
+      };
+    };
+    programs.light.enable = true; # backlight control command and udev rules granting access to members of the “video” group.
+    xdg = {
+      mime.enable = true;
+      icons.enable = true;
+      portal = {
+        enable = true;
+        wlr.enable = true;
+        extraPortals = with pkgs; [
+          xdg-desktop-portal-wlr
+          xdg-desktop-portal-gtk
+        ];
       };
     };
   };
