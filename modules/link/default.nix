@@ -8,12 +8,12 @@
     };
     storage = mkOption {
       type = types.str;
-      default = "/var/lib/";
+      default = "/var/lib";
       description = "storage path for all services";
     };
     secrets = mkOption {
       type = types.str;
-      default = "/pwd/";
+      default = "/pwd";
       description = "storage path for all secrets";
     };
   };

@@ -7,7 +7,7 @@ in {
     services = {
       gitea = {
         enable = true;
-        stateDir = "${config.link.storage}gitea";
+        stateDir = "${config.link.storage}/gitea";
         settings.server = {
           ROOT_URL = "https://gitea.${config.link.domain}";
           COOKIE_SECURE = true;
@@ -22,7 +22,7 @@ in {
         lfs.enable = true;
         database = {
           type = "postgres";
-          passwordFile = "${config.link.secrets}gitea-db";
+          passwordFile = "${config.link.secrets}/gitea-db";
         };
       };
       postgresql = {
