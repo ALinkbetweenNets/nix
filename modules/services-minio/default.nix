@@ -11,7 +11,7 @@ in {
         consoleAddress = "127.0.0.1:9001";
         region = "eu-central-1";
         rootCredentialsFile = "${config.link.secrets}/minio-outline";
-        dataDir = [ "/rz/srv/minio/data" ];
+        dataDir = [ "${config.link.storage}/minio/data" ];
       };
       nginx.virtualHosts."minio.s3.${config.link.domain}" = {
         enableACME = true;
