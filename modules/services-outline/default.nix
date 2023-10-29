@@ -19,38 +19,16 @@ in {
         oidcAuthentication = {
           # Parts taken from
           # http://dex.localhost/.well-known/openid-configuration
-          authUrl = "http://dex.localhost/auth";
-          tokenUrl = "http://dex.localhost/token";
-          userinfoUrl = "http://dex.localhost/userinfo";
-          clientId = "outline";
-          clientSecretFile = (builtins.elemAt config.services.dex.settings.staticClients 0).secretFile;
+          authUrl = "https://gitea.alinkbetweennets.de/login/oauth/authorize";
+          tokenUrl = "https://gitea.alinkbetweennets.de/login/oauth/access_token";
+          userinfoUrl = "https://gitea.alinkbetweennets.de/login/oauth/userinfo";
+          clientId = "${config.link.secrets}outline";
+          clientSecretFile = ".keys/";
           scopes = [ "openid" "email" "profile" ];
-          usernameClaim = "preferred_username";
-          displayName = "Dex";
+          usernameClaim = "l";
+          displayName = "Gitea";
         };
       };
-
-      dex = {
-        enable = true;
-        settings = {
-          issuer = "https://dex.${config.link.domain}";
-          storage = {
-            type = "sqlite3";
-            config.file = "${config.link.storage}dex/db.sqlite3";
-          };
-          web.http = "127.0.0.1:5556";
-          enablePasswordDB = true;
-          staticClients = [
-            {
-              id = "outline";
-              name = "Outline Client";
-              redirectURIs = [ "http://localhost:3000/auth/oidc.callback" ];
-              secretFile = "${config.link.secrets}outline-client-secret";
-            }
-          ];
-        };
-      };
-
       nginx.virtualHosts."outline.${config.link.domain}" = {
         enableACME = true;
         forceSSL = true;
@@ -58,14 +36,6 @@ in {
           proxyPass = "${config.services.outline.publicUrl}";
         };
       };
-      nginx.virtualHosts."dex.${config.link.domain}" = {
-        locations."/" = {
-          proxyPass = "http://${config.services.dex.settings.web.http}";
-        };
-      };
-    };
-    systemd.services.dex = {
-      serviceConfig.StateDirectory = "dex";
     };
   };
 }
