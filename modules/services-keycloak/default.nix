@@ -26,7 +26,7 @@ in {
           forceSSL = true;
           locations = {
             "/" = {
-              proxyPass = "http://127.0.0.1:${toString services.keycloak.settings.http-port}";
+              proxyPass = "http://127.0.0.1:31123";
               extraConfig = ''
                 proxy_set_header X-Forwarded-Host $http_host;
                 proxy_set_header X-Real-IP $remote_addr;
