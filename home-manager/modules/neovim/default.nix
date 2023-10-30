@@ -1,7 +1,6 @@
-{ lib, pkgs, config, flake-self, system-config, ... }:
+{ lib, pkgs, ... }:
 with lib;
-let cfg = config.link.neovim;
-in {
+{
   programs.neovim = {
     enable = true;
     coc.enable = true;

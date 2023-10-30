@@ -1,15 +1,13 @@
-{ lib, pkgs, config, flake-self, system-config, ... }:
+{ lib, pkgs, ... }:
 with lib;
 let vars = import ../../vars.nix;
 in {
   home.packages = with pkgs; [ btop fastfetch gdb tldr sysz fd bat eza ];
-
   programs = {
     starship.enable = true;
     zoxide.enable = true;
     thefuck.enable = true;
     watson.enable = true;
-
     zsh = {
       enable = true;
       enableAutosuggestions = true;
@@ -24,7 +22,6 @@ in {
         save = 15000;
         share = true;
       };
-
       plugins = [
         {
           name = "fast-syntax-highlighting";
@@ -37,25 +34,20 @@ in {
           src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
         }
       ];
-
       shellAliases = rec {
         # switching within a flake repository
         nrg = "sudo nixos-rebuild switch --use-remote-sudo --flake github:alinkbetweennets/nix";
         nr = "sudo nixos-rebuild switch --use-remote-sudo --flake /home/l/nix --upgrade";
         ngc = "sudo nix-collect-garbage -d";
-
         discord = "nohup discord --use-gl=desktop &";
         netdiscover = "sudo netdiscover";
         less = "less -r";
-
         services = "systemctl list-units --type service";
-
         killme = "exit";
         pls = "sudo";
         cls = "clear";
         datamatrix = "iec16022";
         fancytext = "figlet -tkf slant ";
-
         open = "xdg-open";
         o = "xdg-open";
         q = "exit";
@@ -75,53 +67,44 @@ in {
         yt = "~/s/y.sh";
         dupl = "fdupes -rdnAst .";
         sm = "sm -i";
-
         g = "git";
         gs = "git status";
         gac = "git commit -am '$(date -I)'";
         gpp = "git pull&&git push";
-
         l =
           "eza --icons --group-directories-first --git -F --color always --sort=modified"; # -F = --classify
         lr =
           "eza --icons --group-directories-first --git -F --color always --sort=modified --tree";
         la =
           "eza --icons --group-directories-first --git -F --color always --sort=modified --all";
-
         lss =
           "eza --icons --group-directories-first --git -F --color always --sort=size";
         lsr =
           "eza --icons --group-directories-first --git -F --color always --sort=size --tree";
         lsa =
           "eza --icons --group-directories-first --git -F --color always --sort=size --all";
-
         lar =
           "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all";
-
         ll =
-          "eza --icons --group-directories-first --git -F --color always --sort=modified -l";
+          "eza --icons --group-directories-first --git -F --color always --sort=modified -l --group";
         llr =
-          "eza --icons --group-directories-first --git -F --color always --sort=modified --tree -l";
+          "eza --icons --group-directories-first --git -F --color always --sort=modified --tree -l --group";
         lla =
-          "eza --icons --group-directories-first --git -F --color always --sort=modified --all -l";
-
+          "eza --icons --group-directories-first --git -F --color always --sort=modified --all -l --group";
         lls =
           "eza --icons --group-directories-first --git -F --color always --sort=size -l";
         llsr =
-          "eza --icons --group-directories-first --git -F --color always --sort=size --tree -l";
+          "eza --icons --group-directories-first --git -F --color always --sort=size --tree -l --group";
         llsa =
-          "eza --icons --group-directories-first --git -F --color always --sort=size --all -l";
-
+          "eza --icons --group-directories-first --git -F --color always --sort=size --all -l --group";
         llar =
-          "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all -l";
+          "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all -l --group";
       };
     };
-
     zsh.oh-my-zsh = {
       enable = true;
       theme = "agnoster";
     };
-
     fzf = {
       enable = true;
       enableZshIntegration = true;
@@ -148,12 +131,10 @@ in {
         "--color 'header:#${vars.colors.base05}'" # Header
       ];
     };
-
     dircolors = {
       enable = true;
       enableZshIntegration = true;
     };
-
     htop = {
       enable = true;
       settings = {
@@ -165,9 +146,7 @@ in {
       };
     };
     btop = { enable = true; };
-
     jq.enable = true;
-
     bat = {
       enable = true;
       # This should pick up the correct colors for the generated theme. Otherwise

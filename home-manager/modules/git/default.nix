@@ -1,4 +1,4 @@
-{ lib, pkgs, config, flake-self, system-config, ... }: {
+{  ... }: {
   programs = {
     git = {
       enable = true;
@@ -11,6 +11,7 @@
         ps = "push";
         s = "status";
       };
+      ignores = [ ".direnv/" ];
       attributes = [ "*.pdf diff=pdf" ];
       #delta.enable = true;
       diff-so-fancy.enable = true;

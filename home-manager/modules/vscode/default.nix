@@ -1,4 +1,4 @@
-{ lib, pkgs, config, flake-self, system-config, ... }:
+{ lib, pkgs, config, ... }:
 with lib;
 let cfg = config.link.code;
 in {
@@ -31,7 +31,9 @@ in {
         yzhang.markdown-all-in-one
       ];
       userSettings = {
-        "[nix]" = { "editor.defaultFormatter" = "jnoortheen.nix-ide"; };
+        "[nix]" = {
+          "editor.defaultFormatter" = "jnoortheen.nix-ide";
+        };
         "nix" = {
           "enableLanguageServer" = true;
           "serverPath" = "${pkgs.nil}/bin/nil";
@@ -43,6 +45,12 @@ in {
             };
           };
         };
+        "[jsonc]" = {
+          "editor.defaultFormatter" = "vscode.json-language-features";
+        };
+        "cSpell.userWords" = [
+          "Linkbetween"
+        ];
         "diffEditor.codeLens" = true;
         "diffEditor.diffAlgorithm" = "advanced";
         "diffEditor.ignoreTrimWhitespace" = false;
@@ -76,15 +84,16 @@ in {
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "${pkgs.nil}/bin/nil";
         "problems.showCurrentInStatus" = true;
+        "redhat.telemetry.enabled" = false;
         "scm.alwaysShowActions" = true;
         "scm.alwaysShowRepositories" = true;
         "search.experimental.notebookSearch" = true;
         "search.smartCase" = true;
         "window.zoomLevel" = -1;
-        # "workbench.colorTheme" = "Dracula";
         "workbench.editor.highlightModifiedTabs" = true;
         "workbench.editor.limit.enabled" = true;
         "workbench.list.smoothScrolling" = true;
+        # "workbench.colorTheme" = "Dracula";
       };
       globalSnippets = {
         fixme = {
@@ -100,5 +109,4 @@ in {
       }];
     };
   };
-
 }

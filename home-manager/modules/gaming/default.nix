@@ -1,4 +1,4 @@
-{ lib, pkgs, config, flake-self, system-config, ... }:
+{ lib, pkgs, config, system-config, ... }:
 with lib;
 let cfg = config.link.gaming;
 in {

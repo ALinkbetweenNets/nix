@@ -1,4 +1,4 @@
-{ lib, pkgs, config, flake-self, system-config, ... }:
+{ lib, pkgs, config, ... }:
 with lib;
 let
   cfg = config.link.sway;
@@ -21,6 +21,5 @@ in
         terminal = "konsole";
       };
     };
-
   };
 }
