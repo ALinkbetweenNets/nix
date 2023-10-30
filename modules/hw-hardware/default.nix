@@ -6,9 +6,10 @@ in {
   config = mkIf cfg.enable {
     link.libvirt.enable = lib.mkDefault true;
     environment.systemPackages = with pkgs; [ nvtop powertop ];
-    time.hardwareClockInLocalTime = true; # for windows dualboot
-    # hardware.enableRedistributableFirmware = true;
+    time.hardwareClockInLocalTime = true;
     services = {
+      # for windows dualboot
+      # hardware.enableRedistributableFirmware = true;
       fwupd.enable = true;
       thermald.enable = true;
       smartd.enable = true;
@@ -22,5 +23,6 @@ in {
         drives = [ "/dev/disk/by-id/*" ];
       };
     };
+
   };
 }
