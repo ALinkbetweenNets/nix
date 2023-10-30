@@ -13,7 +13,7 @@ in {
         #b4dm4n.vscode-nixpkgs-fmt
         #vscodevim.vim
         arrterian.nix-env-selector
-        dracula-theme.theme-dracula
+        # dracula-theme.theme-dracula
         eamodio.gitlens
         esbenp.prettier-vscode
         firefox-devtools.vscode-firefox-debug
@@ -81,7 +81,7 @@ in {
         "search.experimental.notebookSearch" = true;
         "search.smartCase" = true;
         "window.zoomLevel" = -1;
-        "workbench.colorTheme" = "Dracula";
+        # "workbench.colorTheme" = "Dracula";
         "workbench.editor.highlightModifiedTabs" = true;
         "workbench.editor.limit.enabled" = true;
         "workbench.list.smoothScrolling" = true;
