@@ -10,6 +10,7 @@ in {
       syncthing.enable = true;
       git-sync.enable = true;
       fs.ntfs.enable = true;
+      oneko.enable = true;
     };
     services = {
       mullvad-vpn = {
