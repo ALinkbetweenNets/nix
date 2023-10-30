@@ -6,16 +6,22 @@ in {
   config = mkIf cfg.enable {
     link = {
       desktop.enable = true;
-      adb.enable = true;
       printing.enable = lib.mkIf config.link.office.enable true;
       syncthing.enable = true;
       git-sync.enable = true;
       fs.ntfs.enable = true;
       gaming.enable = true;
     };
-    programs.noisetorch.enable = true;
-    services.mullvad-vpn.enable = true;
-    services.mullvad-vpn.package = pkgs.mullvad-vpn; # gui version
+    services = {
+      mullvad-vpn = {
+        enable = true;
+        package = pkgs.mullvad-vpn;
+      };
+      udev = {
+        packages = [ pkgs.android-udev-rules ];
+        enable = true;
+      };
+    }; # gui version
     environment.systemPackages = with pkgs; [
       #wine
       (wine.override { wineBuild = "wine64"; })
@@ -23,6 +29,10 @@ in {
       winetricks
       #wineWowPackages.waylandFull
     ];
+    programs = {
+      noisetorch.enable = true;
+      adb.enable = true;
+    };
     networking.networkmanager.appendNameservers = [
       "1.1.1.1"
       "192.168.178.1"
