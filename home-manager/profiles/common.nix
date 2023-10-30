@@ -17,6 +17,7 @@ with lib; {
       [
         apg # generate passwords
         wcalc
+        toybox # fast implementation of many many gnu utils
         ## Networking+
         ipfetch
         magic-wormhole # Secure data transfer
