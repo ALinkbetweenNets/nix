@@ -1,9 +1,7 @@
 { lib, pkgs, flake-self, config, system-config, ... }:
 with lib; {
-
   imports = [ ./common.nix ];
   config = {
-
     # Packages to install on all desktop systems
     home.packages = with pkgs;
       [
@@ -18,7 +16,6 @@ with lib; {
         veracrypt
         kleopatra # gpg/ pgp
         partition-manager
-
         # Misc
         xdg-utils
         # Editor
@@ -41,13 +38,11 @@ with lib; {
         libsForQt5.krfb # kde connect virtual monitor
         libsForQt5.kpurpose # KDE share
         scrcpy # ADB screenshare
-
         libsForQt5.qt5.qtwebsockets
         libsForQt5.calendarsupport
         libsForQt5.konsole
         libsForQt5.yakuake
         vivaldi
-
       ] ++ lib.optionals
         (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
     programs = {
@@ -63,5 +58,4 @@ with lib; {
       userDirs.createDirectories = true;
     };
   };
-
 }

@@ -1,6 +1,5 @@
-{ lib, pkgs, flake-self, config, system-config, ... }:
+{ lib, pkgs, flake-self, system-config, ... }:
 with lib; {
-
   options.link.options = {
     type = mkOption {
       type = types.enum [ "desktop" "laptop" "server" ];
@@ -8,7 +7,10 @@ with lib; {
       example = "server";
     };
   };
-  imports = with flake-self.homeManagerModules; [ git zsh neovim ];
+  imports = with flake-self.homeManagerModules; [
+    neovim
+    zsh
+  ];
   config = {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs;
@@ -16,20 +18,19 @@ with lib; {
         apg # generate passwords
         wcalc
         ## Networking+
-        socat
-        netcat-openbsd
-        tcpdump
         ipfetch
         magic-wormhole # Secure data transfer
+        netcat-openbsd
+        socat
+        tcpdump
         (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ] ++ lib.optionals
         (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
-
     programs = {
-      ssh = {
-        enable = true;
-        #compression=true;
-      };
+      # ssh = {
+      #   enable = true;
+      #   #compression=true;
+      # };
       nix-index = {
         enable = true;
       };
@@ -46,7 +47,6 @@ with lib; {
         enableZshIntegration = true;
         nix-direnv.enable = true;
       };
-      git = { ignores = [ ".direnv/" ]; };
     };
     # Home-manager nixpkgs config
     nixpkgs = {
@@ -56,7 +56,6 @@ with lib; {
         # our packages
         flake-self.overlays.default
         flake-self.inputs.nur.overlay
-
         (final: prev: {
           cudapkgs = import flake-self.inputs.nixpkgs {
             system = "${pkgs.system}";
@@ -66,7 +65,6 @@ with lib; {
             };
           };
         })
-
         (final: prev: {
           stable = import flake-self.inputs.nixpkgs-stable {
             system = "${pkgs.system}";
@@ -96,7 +94,5 @@ with lib; {
     };
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
-
   };
-
 }

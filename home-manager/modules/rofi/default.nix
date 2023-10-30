@@ -1,4 +1,4 @@
-{ lib, pkgs, config, flake-self, system-config, ... }:
+{ lib, pkgs, config, ... }:
 with lib;
 let
   cfg = config.link.rofi;
@@ -7,7 +7,6 @@ let
      * ROFI Color theme
      * Copyright: Dave Davenport
      */
-
     * {
         text-color: #f8f8f2;
         background-color: #282a3630;
@@ -124,13 +123,9 @@ let
   ''; # based on dracula theme
 in
 {
-
   options.link.rofi.enable = mkEnableOption "enable rofi";
-
   config = mkIf cfg.enable {
-
     home.packages = with pkgs; [ iosevka ];
-
     programs.rofi = {
       enable = true;
       font = "Iosevka 12";
@@ -145,5 +140,4 @@ in
     # TODO Get rofi-emoji mode to work (https://github.com/Mange/rofi-emoji/issues/25)
     # It seems like the plugins have to be set inside the main configuration file (= not in home manager module)
   };
-
 }
