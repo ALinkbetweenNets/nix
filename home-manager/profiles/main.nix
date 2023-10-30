@@ -20,7 +20,7 @@ with lib; {
       alacritty
       # theming
       beauty-line-icon-theme
-      dracula-theme
+      # dracula-theme
       # VMs
       virt-manager
       spice
