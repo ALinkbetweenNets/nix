@@ -1,4 +1,4 @@
-{ lib, pkgs, config, flake-self, system-config, ... }:
+{ lib, pkgs, config, ... }:
 with lib;
 let cfg = config.link.python;
 in {
@@ -25,7 +25,6 @@ in {
           jupyter-client
           jupyterlab
         ]))
-
     ];
     programs.vscode.extensions = with pkgs.vscode-extensions;
       [
@@ -34,5 +33,4 @@ in {
         ms-pyright.pyright
       ];
   };
-
 }

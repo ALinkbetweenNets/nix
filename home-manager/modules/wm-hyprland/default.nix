@@ -1,10 +1,8 @@
-{ lib, pkgs, config, flake-self, system-config, ... }:
+{ lib, config, ... }:
 with lib;
 let cfg = config.link.hyprland;
 in {
-
   options.link.hyprland.enable = mkEnableOption "activate sway";
-
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland = {
       enable = true;
@@ -14,9 +12,7 @@ in {
           shadow_offset = "0 5";
           "col.shadow" = "rgba(00000099)";
         };
-
         "$mod" = "SUPER";
-
         bindm = [
           # mouse movements
           "$mod, mouse:272, movewindow"
@@ -25,7 +21,6 @@ in {
         ];
       };
       systemd.enable = true;
-
     };
   };
 }

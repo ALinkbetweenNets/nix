@@ -1,4 +1,4 @@
-{ lib, pkgs, flake-self, config, system-config, ... }:
+{ lib, pkgs, ... }:
 with lib; {
   imports = [ ./desktop.nix ];
   config = {
@@ -12,11 +12,9 @@ with lib; {
       indicator = false;
     };
     home.packages = with pkgs; [
-
       # Desktop monitor settings change
       ddcui
       ddcutil
-
       alacritty
       # theming
       beauty-line-icon-theme
@@ -50,7 +48,6 @@ with lib; {
       surfraw # TUI search engine interface
       translate-shell
       ffmpeg_6
-
       # Multimedia
       obs-studio
       obs-studio-plugins.obs-backgroundremoval
@@ -63,7 +60,6 @@ with lib; {
       uwuify
       # Privacy
       monero-gui
-
     ];
   };
 }
