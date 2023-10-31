@@ -9,6 +9,7 @@ in {
         enable = true;
         database = {
           passwordFile = "${config.link.secrets}/keycloak";
+          createLocally = true;
         };
         settings = {
           hostname = "auth.${config.link.domain}";
