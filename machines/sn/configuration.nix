@@ -37,6 +37,7 @@
   #     target = "/mnt/arr";
   #   };
   # };
+  services.onedrive.enable = true;
   fileSystems."/export" = {
     device = "/rz";
     options = [ "bind" ];
