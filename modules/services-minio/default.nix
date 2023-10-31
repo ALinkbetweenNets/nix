@@ -10,7 +10,7 @@ in {
         listenAddress = "127.0.0.1:9000";
         consoleAddress = "127.0.0.1:9001";
         region = "eu-central-1";
-        rootCredentialsFile = "${config.link.secrets}/minio-outline";
+        rootCredentialsFile = "${config.link.secrets}/minio";
         dataDir = [ "${config.link.storage}/minio/data" ];
       };
       nginx.virtualHosts."minio.s3.${config.link.domain}" = {
