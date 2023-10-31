@@ -7,7 +7,7 @@ in {
     services = {
       hedgedoc = {
         enable = true;
-        workDir = "${config.link.storage}/hedgedoc";
+        # workDir = "${config.link.storage}/hedgedoc";
         settings = {
           domain = "hedgedoc.${config.link.domain}";
           port = 3400;
