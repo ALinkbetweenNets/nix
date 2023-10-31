@@ -15,6 +15,7 @@
     nvidia.enable = true;
     storage = "/rz/srv";
     syncthingDir = "/rz/syncthing";
+    secrets = "/pwd";
     # Services
     #seafile.enable = true;
     gitea.enable = true;
