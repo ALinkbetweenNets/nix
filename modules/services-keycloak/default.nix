@@ -8,26 +8,27 @@ in {
       keycloak = {
         enable = true;
         database = {
+          username = "keycloak";
           passwordFile = "${config.link.secrets}/keycloak";
           createLocally = true;
         };
         settings = {
-          hostname = "auth.${config.link.domain}";
-          http-relative-path = "";
-          hostname-strict-backchannel = true;
-          http-port = 31123;
+          hostname = "${config.link.domain}";
+          # hostname-strict-backchannel = true;
+          http-enabled = true;
           http-host = "127.0.0.1";
-          proxy = "edge";
+          http-port = 31123;
+          http-relative-path = "/cloak";
+          proxy = "passthrough";
         };
       };
-
       nginx.virtualHosts = {
-        "auth.${config.link.domain}" = {
+        "${config.link.domain}" = {
           enableACME = true;
           forceSSL = true;
           locations = {
-            "/" = {
-              proxyPass = "http://127.0.0.1:${toString config.services.keycloak.settings.http-port}/";
+            "/cloak/" = {
+              proxyPass = "http://localhost:${toString config.services.keycloak.settings.http-port}/cloak/";
               extraConfig = ''
                 proxy_set_header X-Forwarded-Host $http_host;
                 proxy_set_header X-Real-IP $remote_addr;
