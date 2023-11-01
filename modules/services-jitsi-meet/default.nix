@@ -7,8 +7,8 @@ in {
     services = {
       jitsi-meet = {
         enable = true;
-        hostName = "jitsi.${config.link.domain}";
-        nginx.enable = true;
+        hostName = if config.link.nginx.enable then "jitsi.${config.link.domain}" else config.link.service-ip;
+        nginx.enable = config.link.nginx.enable;
         interfaceConfig = {
           SHOW_JITSI_WATERMARK = false;
           SHOW_WATERMARK_FOR_GUESTS = false;
@@ -23,7 +23,7 @@ in {
         openFirewall = true;
       };
       jicofo.enable = true;
-      nginx.virtualHosts = {
+      nginx.virtualHosts = mkIf config.link.nginx.enable {
         "jitsi.${config.link.domain}" = {
           enableACME = true;
           forceSSL = true;
