@@ -18,6 +18,9 @@
     service-ip = "10.0.0.1";
     jitsi.enable = true;
   };
+  firewall = {
+    allowedTCPPorts = [ 80 443 ];
+  };
   services.openssh.settings.PermitRootLogin = lib.mkForce "prohibit-password";
   boot.loader.grub.devices = [ "/dev/sda" "/dev/sdb" ];
   security.sudo.wheelNeedsPassword = true;
