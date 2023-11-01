@@ -13,6 +13,13 @@ in {
           SHOW_JITSI_WATERMARK = false;
           SHOW_WATERMARK_FOR_GUESTS = false;
         };
+        config = {
+          authdomain = "jitsi.${config.link.domain}";
+          enableInsecureRoomNameWarning = true;
+          fileRecordingsEnabled = false;
+          liveStreamingEnabled = false;
+          prejoinPageEnabled = true;
+        };
         videobridge.enable = true;
         prosody.enable = true;
         jicofo.enable = true;
@@ -22,7 +29,10 @@ in {
         enable = true;
         openFirewall = true;
       };
-      jicofo.enable = true;
+      jicofo = {
+        enable = true;
+        config = { "org.jitsi.jicofo.auth.URL" = "XMPP:jitsi.${config.link.domain}"; };
+      };
       nginx.virtualHosts = mkIf config.link.nginx.enable {
         "jitsi.${config.link.domain}" = {
           enableACME = true;
