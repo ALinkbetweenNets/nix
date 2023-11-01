@@ -1,8 +1,8 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.wg-deep;
+let cfg = config.link.services.wg-deep;
 in {
-  options.link.wg-deep.enable = mkEnableOption "activate wg-deep";
+  options.link.services.wg-deep.enable = mkEnableOption "activate wg-deep";
   config = mkIf cfg.enable {
     networking.nat.internalInterfaces = [ "wg-deep" ];
     networking.wg-quick.interfaces = {
