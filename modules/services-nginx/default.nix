@@ -28,7 +28,7 @@ in {
       package = pkgs.nginxStable.override { openssl = pkgs.libressl; };
       clientMaxBodySize = "1000m";
 
-      sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
+      # sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
       appendHttpConfig = ''
         # Add HSTS header with preloading to HTTPS requests.
         # Adding this header to HTTP requests is discouraged
