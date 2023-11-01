@@ -10,6 +10,9 @@
     main.enable = true;
     cpu-intel.enable = true;
     nvidia.enable = true;
+    secrets = "/home/l/.keys";
+    wireguard.enable = true;
+    wg-deep.enable = true;
   };
   networking = {
     hostName = "dn";

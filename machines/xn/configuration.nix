@@ -9,10 +9,11 @@
     convertible.enable = true;
     main.enable = true;
     cpu-intel.enable = true;
+    secrets = "/home/l/.keys";
+    wireguard.enable = true;
+    wg-deep.enable = true;
   };
   networking.hostName = "xn";
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ]; # Is this needed?
-  environment.systemPackages = with pkgs;    [ ];
-  #system.stateVersion = "23.05";
-
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  #environment.systemPackages = with pkgs;    [ ];
 }
