@@ -22,7 +22,7 @@
 
     gitea.enable = true;
     grafana.enable = true;
-    hedgedoc.enable = true;
+    # hedgedoc.enable = true;
     home-assistant.enable = true;
     jellyfin.enable = true;
     jitsi.enable = true;
@@ -30,7 +30,7 @@
     nextcloud.enable = true;
     outline.enable = true;
     paperless.enable = true;
-    photoprism.enable = true;
+    # photoprism.enable = true;
     syncthing.enable = true;
     matrix.enable = true;
 
