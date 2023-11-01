@@ -13,24 +13,27 @@
     hardware.enable = true;
     cpu-amd.enable = true;
     nvidia.enable = true;
+
     storage = "/rz/srv";
     syncthingDir = "/rz/syncthing";
     secrets = "/pwd";
-    # Services
     #seafile.enable = true;
+    nginx.enable = true;
+
     gitea.enable = true;
     grafana.enable = true;
     hedgedoc.enable = true;
     home-assistant.enable = true;
     jellyfin.enable = true;
     jitsi.enable = true;
-    keycloak.enable = true;
+    # keycloak.enable = true;
     nextcloud.enable = true;
-    nginx.enable = true;
     outline.enable = true;
     paperless.enable = true;
     photoprism.enable = true;
     syncthing.enable = true;
+    matrix.enable = true;
+
   };
   # virtualisation.sharedDirectories = {
   #   arr = {
