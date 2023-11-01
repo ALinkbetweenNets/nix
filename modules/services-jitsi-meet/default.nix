@@ -7,7 +7,7 @@ in {
     services = {
       jitsi-meet = {
         enable = true;
-        hostName = if config.link.nginx.enable then "jitsi.${config.link.domain}" else config.link.service-ip;
+        hostName = "jitsi.${config.link.domain}";
         nginx.enable = config.link.nginx.enable;
         interfaceConfig = {
           SHOW_JITSI_WATERMARK = false;
