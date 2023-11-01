@@ -10,7 +10,7 @@ in {
         10.0.0.1 jitsi.deepserver.org
       '';
     networking.wg-quick.interfaces = {
-      wg0 = {
+      wg-deep = {
         address = [ "10.0.0.2/24" "fdc9:281f:04d7:9ee9::2/64" ];
         dns = [ "10.0.0.1" "fdc9:281f:04d7:9ee9::1" ];
         privateKeyFile = "${config.link.secrets}/wg-deep-l.private";
