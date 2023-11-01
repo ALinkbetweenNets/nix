@@ -77,10 +77,6 @@ in {
     networking = {
       firewall.checkReversePath = "loose";
       # nameservers = [ "100.100.100.100" "1.1.1.1" ];
-      firewall = {
-        # minio load ballancer should have ports 80 & 443 open
-        allowedTCPPorts = [ 80 443 ];
-      };
     };
   };
 }
