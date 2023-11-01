@@ -13,7 +13,7 @@
     cpu-amd.enable = true;
     users = { jucknath.enable = true; paul.enable = true; };
     wireguard.enable = true;
-    wg-deep.enable = true;
+    services.wg-deep.enable = true;
   };
   services.openssh.settings.PermitRootLogin = lib.mkForce "prohibit-password";
   boot.loader.grub.devices = [ "/dev/sda" "/dev/sdb" ];
