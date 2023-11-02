@@ -11,6 +11,11 @@
       default = "0.0.0.0";
       description = "Bind Services to this IP";
     };
+    eth = mkOption {
+      type = types.str;
+      default = "eth0";
+      description = "Main ethernet interface";
+    };
     storage = mkOption {
       type = types.str;
       default = "/var/lib";

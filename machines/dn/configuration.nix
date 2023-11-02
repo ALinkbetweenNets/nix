@@ -13,11 +13,12 @@
     secrets = "/home/l/.keys";
     wireguard.enable = true;
     wg-deep.enable = true;
+    eth = "enp111s0";
   };
   networking = {
     hostName = "dn";
     hostId = "007f0200";
-    interfaces."enp111s0".wakeOnLan.enable = true;
+    interfaces."${config.link.eth}".wakeOnLan.enable = true;
   };
   environment.systemPackages = with pkgs; [ davinci-resolve ];
 }
