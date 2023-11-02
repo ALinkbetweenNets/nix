@@ -31,5 +31,10 @@
       default = "/home/l";
       description = "storage path for syncthing";
     };
+    containerDir = mkOption {
+      type = types.str;
+      default = "/home/l/.container";
+      description = "storage path for containers";
+    };
   };
 }
