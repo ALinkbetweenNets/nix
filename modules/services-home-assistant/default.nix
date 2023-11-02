@@ -8,6 +8,12 @@ in {
       home-assistant = {
         enable = true;
         openFirewall = true;
+        extraComponents = [
+          "esphome"
+          "met"
+          "radio_browser"
+          "wled"
+        ];
         config = {
           homeassistant = {
             name = "Home";
