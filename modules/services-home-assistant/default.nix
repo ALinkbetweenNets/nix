@@ -18,8 +18,13 @@ in {
             temperature_unit = "C";
           };
           frontend = { themes = "!include_dir_merge_named themes"; };
-          http = { server_port = 8123; };
-          feedreader.urls = [ "https://nixos.org/blogs.xml" ];
+          http = {
+            server_port = 8123;
+            server_host = "127.0.0.1";
+            trusted_proxies = [ "127.0.0.1" ];
+            use_x_forwarded_for = true;
+          };
+          feedreader.urls = [ "https://nixos.org/blogs.xml" "https://blog.badsectorlabs.com/feeds/all.atom.xml" ];
         };
       };
       nginx.virtualHosts = {
