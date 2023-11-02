@@ -12,9 +12,24 @@ in {
       qemu-utils
       ebtables
     ];
-    virtualisation.libvirtd.enable = true;
-    virtualisation.libvirtd.qemu.swtpm.enable = true;
-    virtualisation.spiceUSBRedirection.enable = true;
+    virtualisation = {
+      libvirtd = {
+        enable = true;
+        qemu = {
+          swtpm.enable = true;
+          ovmf.enable = true;
+          runAsRoot = true;
+        };
+        onShutdown = "shutdown";
+      };
+      spiceUSBRedirection.enable = true;
+    };
+    programs.dconf.enable = lib.mkForce true;
+    networking.bridges.br0.interfaces = [ config.link.eth ];
+    networking.interfaces.br0 = { useDHCP = true; };
+    networking.firewall.allowedTCPPorts = [
+      5900 # spice
+    ];
     users.users.l.extraGroups = [ "libvirtd" "kvm" ];
   };
 }
