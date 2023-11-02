@@ -23,6 +23,7 @@ in {
             server_host = "127.0.0.1";
             trusted_proxies = [ "127.0.0.1" ];
             use_x_forwarded_for = true;
+            openFirewall = true;
           };
           feedreader.urls = [ "https://nixos.org/blogs.xml" "https://blog.badsectorlabs.com/feeds/all.atom.xml" ];
         };
