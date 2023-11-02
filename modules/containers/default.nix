@@ -5,6 +5,7 @@ in {
   options.link.containers.enable = mkEnableOption "activate podman containers";
   config = mkIf cfg.enable {
     virtualisation = {
+      oci-containers.backend = "podman";
       podman = {
         enable = true;
 
