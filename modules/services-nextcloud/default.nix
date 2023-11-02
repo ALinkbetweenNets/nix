@@ -7,7 +7,7 @@ in {
     services = {
       nextcloud = {
         enable = true;
-        hostName = "nextcloud.${config.link.domain}";
+        hostName = if config.link.nginx.enable then "nextcloud.${config.link.domain}" else config.networking.hostName;
         config = {
           adminuser = "l";
           adminpassFile = "${config.link.secrets}/nextcloud";
@@ -24,12 +24,12 @@ in {
         extraAppsEnable = true;
         autoUpdateApps.enable = true;
         appstoreEnable = true;
-        https = true;
+        https = false;
         configureRedis = true;
         database.createLocally = true;
         home = "${config.link.storage}/nextcloud";
       };
-      nginx.virtualHosts."nextcloud.${config.link.domain}" = {
+      nginx.virtualHosts."nextcloud.${config.link.domain}" = mkIf config.link.nginx.enable {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
