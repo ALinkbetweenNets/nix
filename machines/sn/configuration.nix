@@ -33,7 +33,7 @@
     # photoprism.enable = true;
     syncthing.enable = true;
     matrix.enable = true;
-
+    eth = "enp6s0";
   };
   # virtualisation.sharedDirectories = {
   #   arr = {
@@ -51,7 +51,7 @@
     zfs.extraPools = [ "wdp" ];
   };
   networking = {
-    interfaces."enp6s0".wakeOnLan.enable = true;
+    interfaces."${config.link.eth}".wakeOnLan.enable = true;
     hostName = "sn";
     hostId = "007f0200";
   };
