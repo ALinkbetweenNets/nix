@@ -31,9 +31,13 @@ in {
         "home.${config.link.domain}" = {
           enableACME = true;
           forceSSL = true;
+          extraConfig = ''
+            proxy_buffering off;
+          '';
           locations = {
             "/" = {
               proxyPass = "http://127.0.0.1:${toString config.services.home-assistant.config.http.server_port}/";
+              proxyWebsockets = true;
               extraConfig = ''
                 proxy_set_header X-Forwarded-Host $http_host;
                 proxy_set_header X-Real-IP $remote_addr;
