@@ -7,7 +7,7 @@ in {
     home.packages = with pkgs;
       [
         prismlauncher # minecraft launcher
-        steam
+        # steam
         # protonup-qt
         # protontricks
         # winetricks

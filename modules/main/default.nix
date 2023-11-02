@@ -32,6 +32,8 @@ in {
     programs = {
       noisetorch.enable = true;
       adb.enable = true;
+      steam.enable = true;
+      steam.gamescopeSession.enable = true;
     };
     networking.networkmanager.appendNameservers = [
       "1.1.1.1"
