@@ -8,8 +8,8 @@ in {
       services = {
         matrix-synapse = {
           enable = true;
-          settings.server_name = config.link.domain;
-          settings.public_baseurl = config.link.domain;
+          settings.server_name = "matrix.${config.link.domain}";
+          settings.public_baseurl = "https://matrix.${config.link.domain}";
           settings.listeners = [
             {
               port = 8008;
