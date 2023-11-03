@@ -3,8 +3,13 @@
   options.link = {
     domain = mkOption {
       type = types.str;
-      default = "alinkbetweennets.de";
+      default = "";
       description = "Main Domain name for all services";
+    };
+    expose = mkOption {
+      type = types.bool;
+      default = config.link.domain != "";
+      description = "if domain is empty services will be made available locally with self-signed certificates";
     };
     service-ip = mkOption {
       type = types.str;

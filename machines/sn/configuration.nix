@@ -13,7 +13,7 @@
     hardware.enable = true;
     cpu-amd.enable = true;
     nvidia.enable = true;
-
+    domain = "alinkbetweennets.de";
     storage = "/rz/srv";
     syncthingDir = "/rz/syncthing";
     secrets = "/pwd";
@@ -23,7 +23,7 @@
     gitea.enable = true;
     grafana.enable = true;
     # hedgedoc.enable = true;
-    containers.enable=true;
+    containers.enable = true;
     home-assistant.enable = true;
     jellyfin.enable = true;
     jitsi.enable = true;
@@ -54,6 +54,7 @@
   networking = {
     interfaces."${config.link.eth}".wakeOnLan.enable = true;
     hostName = "sn";
+    domain = "fritz.box";
     hostId = "007f0200";
   };
 }
