@@ -26,6 +26,7 @@
     containers.enable = true;
     home-assistant.enable = true;
     jellyfin.enable = true;
+    services.wg-link.enable = true;
     jitsi.enable = true;
     # keycloak.enable = true;
     nextcloud.enable = true;
