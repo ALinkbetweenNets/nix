@@ -13,6 +13,7 @@
     secrets = "/home/l/.keys";
     wireguard.enable = true;
     wg-deep.enable = true;
+    wg-link.enable = true;
     eth = "enp111s0";
   };
   networking = {

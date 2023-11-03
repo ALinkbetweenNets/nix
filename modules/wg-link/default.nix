@@ -10,11 +10,11 @@ in {
     #     10.0.0.1 jitsi.linkserver.org
     #   '';
     networking.firewall.allowedUDPPorts = [ 51820 ];
-    networking.firewall.checkReversePath =mkForce false;
+    networking.firewall.checkReversePath = mkForce false;
     networking.wireguard.interfaces = {
       wg-link = {
         ips = [ "10.0.1.2/24" "fdc9:281f:04d7:9eea::2/64" ];
-        listenPort = 51820;
+        # listenPort = 51821;
         # dns = [ "10.0.0.1" "fdc9:281f:04d7:9ee9::1" ];
         privateKeyFile = "${config.link.secrets}/wg-link-l.private";
         peers = [
