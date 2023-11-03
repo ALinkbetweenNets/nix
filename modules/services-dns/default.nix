@@ -8,7 +8,7 @@ in {
     services = {
       dnsmasq = {
         enable = true;
-        settings.server = [ "9.9.9.9" "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" "8.8.8.8" ];
+        settings.server = [ "9.9.9.9" "1.1.1.1" "1.0.0.1" "8.8.8.8" ];
         # extraConfig = ''
         #   DNSOverTLS=yes
         # '';
