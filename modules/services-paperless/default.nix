@@ -26,6 +26,8 @@ in {
         # enableACME = true;
         forceSSL = true;
         locations."/" = { proxyPass = "http://127.0.0.1:28981/"; };
+        sslCertificate = "${config.link.secrets}/cert.pem";
+        sslCertificateKey = "${config.link.secrets}/key.pem";
       };
     };
   };
