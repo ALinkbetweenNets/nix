@@ -11,7 +11,6 @@
     cpu-amd.enable = true;
     nvidia.enable = true;
     plasma.enable = lib.mkForce false;
-    users.l.enable=lib.mkForce false;
   };
     # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
