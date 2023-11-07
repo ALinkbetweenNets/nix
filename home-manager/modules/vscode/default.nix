@@ -89,7 +89,7 @@ in {
         "scm.alwaysShowRepositories" = true;
         "search.experimental.notebookSearch" = true;
         "search.smartCase" = true;
-        "window.zoomLevel" = -2;
+        "window.zoomLevel" = -1;
         "workbench.editor.highlightModifiedTabs" = true;
         "workbench.editor.limit.enabled" = true;
         "workbench.list.smoothScrolling" = true;
