@@ -12,22 +12,21 @@
     nvidia.enable = true;
     plasma.enable = lib.mkForce false;
   };
-    # Enable the GNOME Desktop Environment.
+  # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
-    users.users.pierre = {
-      isNormalUser = true;
-      home = "/home/pierre";
-      extraGroups = [ "wheel" "adbusers" "audio" "plugdev" "docker" "wireshark" "video" ]
-        ++ lib.optionals config.networking.networkmanager.enable
-        [ "networkmanager" ];
-      shell = "${pkgs.zsh}/bin/fish";
-    };
-    nix.settings.allowed-users = [ "pierre" ];
+  users.users.pierre = {
+    isNormalUser = true;
+    home = "/home/pierre";
+    extraGroups = [ "wheel" "adbusers" "audio" "plugdev" "docker" "wireshark" "video" ]
+      ++ lib.optionals config.networking.networkmanager.enable
+      [ "networkmanager" ];
+    shell = "${pkgs.zsh}/bin/fish";
+  };
+  nix.settings.allowed-users = [ "pierre" ];
   networking.hostName = "pierreisnix";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ]; # Is this needed?
-  environment.systemPackages = with pkgs;    [fish ];
+  environment.systemPackages = with pkgs;    [ fish ];
   #system.stateVersion = "23.05";
-
 }

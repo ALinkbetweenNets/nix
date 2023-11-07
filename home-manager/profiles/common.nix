@@ -12,6 +12,11 @@ with lib; {
     zsh
   ];
   config = {
+    services.gpg-agent = {
+      enable = true;
+      enableExtraSocket = true;
+      enableSshSupport = true;
+    };
     fonts.fontconfig.enable = true;
     home.packages = with pkgs;
       [
