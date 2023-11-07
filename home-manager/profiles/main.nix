@@ -55,6 +55,7 @@ with lib; {
       ytfzf
       youtube-tui
       catimg
+      jellyfin-mpv-shim
       # Silly BS
       figlet # Fancytext
       uwuify
