@@ -30,6 +30,5 @@ in {
     networking.firewall.allowedTCPPorts = [
       5900 # spice
     ];
-    users.users.l.extraGroups = [ "libvirtd" "kvm" ];
   };
 }
