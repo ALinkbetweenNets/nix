@@ -12,6 +12,7 @@
     secrets = "/home/l/.keys";
     wireguard.enable = true;
     wg-deep.enable = true;
+    wg-link.enable = true;
   };
   networking.hostName = "xn";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];

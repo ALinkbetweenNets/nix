@@ -5,10 +5,10 @@ in {
   options.link.onlyoffice.enable = mkEnableOption "activate onlyoffice";
   config = mkIf cfg.enable {
     services = {
-      onlyoffice={
-        enable=true;
-        hostname="office.${config.link.domain}";
-        port=8000;
+      onlyoffice = {
+        enable = true;
+        hostname = "office.${config.link.domain}";
+        port = 8000;
 
       };
     };
