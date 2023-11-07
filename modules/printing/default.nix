@@ -24,7 +24,6 @@ in {
       openFirewall = true;
       extraBackends = with pkgs; [ epkowa sane-airscan ];
     };
-    users.users.l.extraGroups = [ "scanner" "lp" ];
     environment.systemPackages = with pkgs; [ skanpage ]; # Scanner Frontend
   };
 }
