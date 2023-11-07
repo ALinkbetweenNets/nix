@@ -4,7 +4,6 @@
     ./hardware-configuration.nix
     home-manager.nixosModules.home-manager
   ];
-  home-manager.users.l = flake-self.homeConfigurations.convertible;
   link = {
     laptop.enable = true;
     main.enable = true;
