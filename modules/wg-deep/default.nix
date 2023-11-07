@@ -10,7 +10,7 @@ in {
     #     10.0.0.1 jitsi.deepserver.org
     #   '';
     networking.firewall.allowedUDPPorts = [ 51820 ];
-    networking.firewall.checkReversePath =mkForce false;
+    networking.firewall.checkReversePath = mkForce false;
     networking.wireguard.interfaces = {
       wg-deep = {
         ips = [ "10.0.0.2/24" "fdc9:281f:04d7:9ee9::2/64" ];
