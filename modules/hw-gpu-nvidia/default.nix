@@ -20,7 +20,7 @@ in
       cudaoverlay
     ];
 
-    home-manager.users."l" = {
+    home-manager.users."l" = mkIf config.link.users.l.enable {
       nixpkgs.overlays = [
         cudaoverlay
       ];
