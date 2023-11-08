@@ -18,7 +18,7 @@ in {
         package = pkgs.mullvad-vpn;
       };
       udev = {
-        packages = [ pkgs.android-udev-rules ];
+        # packages = [ pkgs.android-udev-rules ];
         enable = true;
       };
     }; # gui version
