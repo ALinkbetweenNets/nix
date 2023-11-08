@@ -20,7 +20,7 @@ in {
           # tensorflow # broken
           scipy
           numpy
-          plotnine
+          # plotnine
           jupyter
           jupyter-client
           jupyterlab
