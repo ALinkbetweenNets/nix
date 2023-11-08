@@ -3,6 +3,7 @@ with lib;
 {
   xdg = {
     enable = true;
+    configFile."mimeapps.list".force = true;
     userDirs.enable = true;
     userDirs.createDirectories = true;
     mimeApps.enable = true;
