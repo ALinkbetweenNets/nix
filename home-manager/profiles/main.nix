@@ -51,6 +51,7 @@ with lib; {
       # Multimedia
       obs-studio
       obs-studio-plugins.obs-backgroundremoval
+      imagemagick
       brave # backup browser
       ytfzf
       youtube-tui
