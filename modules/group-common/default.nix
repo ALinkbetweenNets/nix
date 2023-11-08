@@ -14,7 +14,7 @@ in {
       };
       systemd-boot.enable = lib.mkDefault true;
       openssh.enable = lib.mkDefault true;
-      fail2ban.enable = lib.mkDefault true;
+      # fail2ban.enable = lib.mkDefault true;
     };
     security = {
       sudo.wheelNeedsPassword = lib.mkDefault false;
