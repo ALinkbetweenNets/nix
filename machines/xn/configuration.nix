@@ -13,7 +13,13 @@
     wireguard.enable = true;
     wg-deep.enable = true;
     wg-link.enable = true;
+    domain = "xn.local";
+    matrix.enable = true;
   };
+  networking.extraHosts =
+    ''
+      127.0.0.1 xn.local
+    '';
   networking.hostName = "xn";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   #environment.systemPackages = with pkgs;    [ ];

@@ -16,7 +16,7 @@ in {
               bind_addresses = [ "127.0.0.1" ];
               type = "http";
               tls = false;
-              x_forwarded = true;
+              x_forwarded = config.link.nginx.enable;
               resources = [
                 {
                   compress = true;
@@ -35,8 +35,18 @@ in {
             }
           ];
         };
-        nginx.virtualHosts."matrix.${config.link.domain}" = {
-          enableACME = true;
+        postgresql = {
+          enable = true;
+          initialScript = pkgs.writeText "synapse-init.sql" ''
+            CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD 'synapse';
+            CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
+              TEMPLATE template0
+              LC_COLLATE = "C"
+              LC_CTYPE = "C";
+          '';
+        };
+        nginx.virtualHosts."matrix.${config.link.domain}" = mkIf config.link.nginx.enable {
+          # enableACME = true;
           forceSSL = true;
           locations."/" = { proxyPass = "http://127.0.0.1:8008"; };
         };
