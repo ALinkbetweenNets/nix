@@ -9,6 +9,7 @@ with lib; {
         wl-clipboard-x11
         wl-clipboard
         hunspell
+        hunspellDicts.de_DE
         # Audio
         helvum # Patchbay
         pavucontrol
