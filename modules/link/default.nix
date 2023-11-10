@@ -11,15 +11,20 @@
       default = config.link.domain != "";
       description = "if domain is empty services will be made available locally with self-signed certificates";
     };
+    eth = mkOption {
+      type = types.str;
+      default = "eth0";
+      description = "Main ethernet interface";
+    };
     service-ip = mkOption {
       type = types.str;
       default = "0.0.0.0";
       description = "Bind Services to this IP";
     };
-    eth = mkOption {
+    service-interface = mkOption {
       type = types.str;
-      default = "eth0";
-      description = "Main ethernet interface";
+      default = config.link.eth;
+      description = "Main service interface";
     };
     storage = mkOption {
       type = types.str;
