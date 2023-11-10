@@ -25,6 +25,7 @@
     extraHosts =
       ''
         127.0.0.1 dn.local
+        10.0.0.1 deepserver.org
       '';
   };
   #environment.systemPackages = with pkgs; [ davinci-resolve ];

@@ -26,10 +26,10 @@
     # home-assistant.enable = true;
     jellyfin.enable = true;
     services.wg-link.enable = true;
-    services.jitsi = {
-      enable = true;
-      expose = false;
-    };
+    # services.jitsi = {
+    #   enable = true;
+    #   expose = false;
+    # };
     # keycloak.enable = true;
     nextcloud.enable = true;
     outline.enable = true;

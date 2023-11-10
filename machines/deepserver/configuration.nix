@@ -15,7 +15,7 @@
     wireguard.enable = true;
     services.wg-deep.enable = true;
     services.matrix = { enable = true; nginx = false; };
-    services.jitsi.enable = true;
+    # services.jitsi.enable = true;
     expose = false;
     domain = "deepserver.org";
     service-ip = "10.0.0.1";
