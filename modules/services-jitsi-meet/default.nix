@@ -1,14 +1,22 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.jitsi;
+let cfg = config.link.services.jitsi;
 in {
-  options.link.jitsi.enable = mkEnableOption "activate jitsi";
+  options.link.services.jitsi = {
+    enable = mkEnableOption "activate jitsi";
+    expose = mkOption {
+      type = types.bool;
+      default = config.link.nginx.enable;
+      description = "expose jitsi to the internet with NGINX and ACME";
+    };
+  };
+  # it appears jitsi-meet cannot run without nginx
   config = mkIf cfg.enable {
     services = {
       jitsi-meet = {
         enable = true;
-        hostName = if config.link.nginx.enable then "jitsi.${config.link.domain}" else config.link.service-ip;
-        nginx.enable = config.link.nginx.enable;
+        hostName = "jitsi.${config.link.domain}";
+        nginx.enable = true;
         interfaceConfig = {
           SHOW_JITSI_WATERMARK = false;
           SHOW_WATERMARK_FOR_GUESTS = false;
@@ -31,15 +39,15 @@ in {
       };
       jicofo = {
         enable = true;
-        config = mkIf config.link.nginx.enable { "org.jitsi.jicofo.auth.URL" = "XMPP:jitsi.${config.link.domain}"; };
+        config = { "org.jitsi.jicofo.auth.URL" = "XMPP:jitsi.${config.link.domain}"; };
       };
-      nginx.virtualHosts = mkIf config.link.nginx.enable {
+      nginx.virtualHosts =  {
         "jitsi.${config.link.domain}" = {
-          enableACME = true;
-          forceSSL = true;
+          enableACME = cfg.expose;
+          forceSSL = cfg.expose;
         };
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = [ 80 ];
+
   };
 }
