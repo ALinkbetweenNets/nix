@@ -16,7 +16,7 @@ in {
       services = {
         matrix-synapse = with config.services.coturn;{
           enable = true;
-          settings.public_baseurl = if config.link.nginx.enable then "matrix.${config.link.domain}" else "https://${config.link.service-ip}:8008";
+          settings.public_baseurl = if config.link.nginx.enable then "matrix.${config.link.domain}" else "http://${config.link.service-ip}:8008";
           settings.server_name = "matrix.${config.link.domain}";
           settings.listeners = [
             {
