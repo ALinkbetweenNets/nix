@@ -23,8 +23,7 @@
     gitea.enable = true;
     grafana.enable = true;
     # hedgedoc.enable = true;
-    containers.enable = true;
-    home-assistant.enable = true;
+    # home-assistant.enable = true;
     jellyfin.enable = true;
     services.wg-link.enable = true;
     jitsi.enable = true;
@@ -34,7 +33,7 @@
     paperless.enable = true;
     # photoprism.enable = true;
     syncthing.enable = true;
-    matrix.enable = true;
+    services.matrix.enable = true;
     eth = "enp6s0";
   };
   # virtualisation.sharedDirectories = {

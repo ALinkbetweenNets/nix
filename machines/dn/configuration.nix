@@ -15,11 +15,17 @@
     wg-deep.enable = true;
     wg-link.enable = true;
     eth = "enp111s0";
+    domain = "dn.local"; # testing domain
+    services.matrix.enable = true;
   };
   networking = {
     hostName = "dn";
     hostId = "007f0200";
     interfaces."${config.link.eth}".wakeOnLan.enable = true;
+    extraHosts =
+      ''
+        127.0.0.1 dn.local
+      '';
   };
-  environment.systemPackages = with pkgs; [ davinci-resolve ];
+  #environment.systemPackages = with pkgs; [ davinci-resolve ];
 }
