@@ -40,5 +40,6 @@ in {
         };
       };
     };
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = [ 80 ];
   };
 }
