@@ -5,7 +5,6 @@ with lib; {
     home.packages = with pkgs;
       [
         hddtemp
-        powertop
         lshw
         usbutils
       ] ++ lib.optionals
