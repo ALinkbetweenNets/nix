@@ -22,7 +22,11 @@ with lib; {
       [
         apg # generate passwords
         wcalc
-        busybox
+        gnugrep
+        ripgrep-all
+        vgrep
+        fzf
+        unixtools.watch
         ## Networking+
         ipfetch
         magic-wormhole # Secure data transfer
