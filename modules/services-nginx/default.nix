@@ -16,7 +16,7 @@ in {
       # 4001
       # 4002
     ];
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf (config.link.expose == false) [ 80 443];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf (config.link.expose == false) [ 80 443 ];
     # networking.firewall.allowedUDPPorts = [ 111 2049 4000 4001 4002 20048 ]; # nfs
     services.
     nginx = {

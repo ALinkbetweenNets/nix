@@ -14,9 +14,9 @@
     users = { jucknath.enable = true; paul.enable = true; };
     wireguard.enable = true;
     services.wg-deep.enable = true;
-    services.matrix = { enable = true; expose = false; nginx = false; };
-    services.jitsi = { enable = true; expose = false;};
-
+    services.matrix = { enable = true; nginx = false; };
+    services.jitsi.enable = true;
+    expose = false;
     domain = "deepserver.org";
     service-ip = "10.0.0.1";
     eth = "eth0";
