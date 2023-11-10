@@ -16,8 +16,8 @@ in {
         ++ lib.optionals config.link.printing.enable
         [ "scanner" "lp" ]
         ++ lib.optionals config.link.libvirt.enable
-        [ "libvirtd" "kvm"  ]
-        ;
+        [ "libvirtd" "kvm" ]
+      ;
       shell = "${pkgs.zsh}/bin/zsh";
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID/1eePE6/pYo4aahzcDRqbmnVdx9ikKH+93yw7M1pXH l@xn"
@@ -27,7 +27,7 @@ in {
       hashedPassword = "$6$rounds=1000000$yacdewvoirbidab$4nws4XniUU045W/KXkOpKd390HfXFfYU0wkBWy3zAMNTrg22R4eyyGq8QYzIWor3w4Uf.DT61AdBfl77DHZDu0"; # Initial password
     };
     nix.settings.allowed-users = [ "l" ];
-    
+
   };
 
 }
