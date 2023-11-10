@@ -39,6 +39,7 @@ with lib; {
       telegram-desktop
       discord
       qtox
+      element-desktop
       # Utils
       mermaid-cli
       pomodoro
@@ -54,6 +55,7 @@ with lib; {
       imagemagick
       brave # backup browser
       ytfzf
+      ani-cli
       youtube-tui
       catimg
       jellyfin-mpv-shim
