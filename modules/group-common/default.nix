@@ -16,7 +16,7 @@ in {
       openssh.enable = lib.mkDefault true;
       # fail2ban.enable = lib.mkDefault true;
     };
-    services.postgresql.package = pkgs.postgresql_15;
+    services.postgresql.package = pkgs.postgresql_14;
     security = {
       sudo.wheelNeedsPassword = lib.mkDefault false;
       polkit = {
