@@ -6,8 +6,13 @@ in {
     enable = mkEnableOption "activate matrix";
     expose = mkOption {
       type = types.bool;
-      default = true;
+      default = config.link.expose;
       description = "expose matrix to the internet with NGINX and ACME";
+    };
+    nginx = mkOption {
+      type = types.bool;
+      default = config.link.nginx.enable;
+      description = "Use service with NGINX";
     };
   };
   config = mkIf cfg.enable
@@ -16,7 +21,7 @@ in {
       services = {
         matrix-synapse = with config.services.coturn;{
           enable = true;
-          settings.public_baseurl = if config.link.nginx.enable then "matrix.${config.link.domain}" else "http://${config.link.service-ip}:8008";
+          settings.public_baseurl = if cfg.nginx then "matrix.${config.link.domain}" else "http://${config.link.service-ip}:8008";
           settings.server_name = "matrix.${config.link.domain}";
           settings.listeners = [
             {
@@ -24,7 +29,7 @@ in {
               bind_addresses = [ config.link.service-ip ];
               type = "http";
               tls = false;
-              x_forwarded = config.link.nginx.enable;
+              x_forwarded = cfg.nginx;
               resources = [
                 {
                   compress = true;
@@ -93,7 +98,7 @@ in {
           #   denied-peer-ip=fe80::-febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff
           # '';
         };
-        nginx.virtualHosts."matrix.${config.link.domain}" = mkIf config.link.nginx.enable {
+        nginx.virtualHosts."matrix.${config.link.domain}" = mkIf cfg.nginx {
           enableACME = cfg.expose;
           forceSSL = true;
           locations."/" = { proxyPass = "http://127.0.0.1:8008"; };

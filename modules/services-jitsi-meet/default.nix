@@ -6,7 +6,7 @@ in {
     enable = mkEnableOption "activate jitsi";
     expose = mkOption {
       type = types.bool;
-      default = config.link.nginx.enable;
+      default = config.link.expose;
       description = "expose jitsi to the internet with NGINX and ACME";
     };
   };
@@ -41,7 +41,7 @@ in {
         enable = true;
         config = { "org.jitsi.jicofo.auth.URL" = "XMPP:jitsi.${config.link.domain}"; };
       };
-      nginx.virtualHosts =  {
+      nginx.virtualHosts = {
         "jitsi.${config.link.domain}" = {
           enableACME = cfg.expose;
           forceSSL = cfg.expose;
