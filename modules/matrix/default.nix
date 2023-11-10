@@ -111,7 +111,7 @@ in {
             allowedUDPPortRanges = range;
             allowedUDPPorts = [ 3478 5349 ];
             allowedTCPPortRanges = [ ];
-            allowedTCPPorts = [ 3478 5349 ];
+            allowedTCPPorts = [ 3478 5349 8008 ];
           };
       };
     };
