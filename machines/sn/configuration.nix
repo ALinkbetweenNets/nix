@@ -26,14 +26,17 @@
     # home-assistant.enable = true;
     jellyfin.enable = true;
     services.wg-link.enable = true;
-    jitsi.enable = true;
+    services.jitsi = {
+      enable = true;
+      expose = false;
+    };
     # keycloak.enable = true;
     nextcloud.enable = true;
     outline.enable = true;
     paperless.enable = true;
     # photoprism.enable = true;
     syncthing.enable = true;
-    services.matrix.enable = true;
+    # services.matrix.enable = true;
     eth = "enp6s0";
   };
   # virtualisation.sharedDirectories = {
