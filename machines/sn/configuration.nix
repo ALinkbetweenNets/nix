@@ -42,6 +42,9 @@
     # services.matrix.enable = true;
     eth = "enp6s0";
   };
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "startplasma-x11";
+  services.xrdp.openFirewall = true;
   # virtualisation.sharedDirectories = {
   #   arr = {
   #     source = "/rz/arr";
