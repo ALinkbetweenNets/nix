@@ -23,23 +23,22 @@ in {
           proxyWebsockets = true;
         };
       };
-    };
-    prometheus={
-      enable=true;
-      port=9001;
-      exporters={
-        zfs={
-          enable=true;
-          listenAddress="127.0.0.1";
+      prometheus = {
+        enable = true;
+        port = 9001;
+        exporters = {
+          zfs = {
+            enable = true;
+            listenAddress = "127.0.0.1";
+          };
+          # nextcloud={
+          #   enable=true;
+          #   username="l";
+          #   user="l";
+          #   port="443";
+          # };
         };
-        # nextcloud={
-        #   enable=true;
-        #   username="l";
-        #   user="l";
-        #   port="443";
-        # };
       };
     };
-
   };
 }
