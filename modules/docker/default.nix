@@ -6,11 +6,16 @@ in {
   config = mkIf cfg.enable {
     virtualisation.docker = {
       enable = true;
-      # rootless = {
-      #   enable = true;
-      #   setSocketVariable = true;
-      # };
+      autoPrune = {
+        enable = true;
+        dates = "weekly";
+      };
     };
+    virtualisation.oci-containers = {
+      backend = "docker";
+    };
+    users.extraUsers.l.extraGroups =
+      [ "docker" ];
     environment.systemPackages = with pkgs; [
       docker
       # docker-compose
