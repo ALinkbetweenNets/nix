@@ -14,7 +14,8 @@
     users = { jucknath.enable = true; paul.enable = true; };
     wireguard.enable = true;
     services.wg-deep.enable = true;
-    services.matrix = { enable = true; nginx = false; };
+    # services.matrix = { enable = true; nginx = false; };
+    services.nextcloud = { enable = true; expose = false; nginx = false; };
     # services.jitsi.enable = true;
     expose = false;
     domain = "deepserver.org";

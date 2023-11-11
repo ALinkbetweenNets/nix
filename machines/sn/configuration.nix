@@ -33,7 +33,7 @@
     #   expose = false;
     # };
     # keycloak.enable = true;
-    nextcloud.enable = true;
+    services.nextcloud = { enable = true; expose = true; };
     outline.enable = true;
     paperless.enable = true;
     # photoprism.enable = true;
