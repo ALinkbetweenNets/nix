@@ -19,13 +19,15 @@
     secrets = "/pwd";
     #seafile.enable = true;
     nginx.enable = true;
-    services.dns.enable = true;
     gitea.enable = true;
     grafana.enable = true;
     # hedgedoc.enable = true;
     # home-assistant.enable = true;
     jellyfin.enable = true;
-    services.wg-link.enable = true;
+    services = {
+      dns.enable = true;
+      wg-link.enable = true;
+    };
     # services.jitsi = {
     #   enable = true;
     #   expose = false;
