@@ -19,11 +19,11 @@ in {
     services.postgresql.package = pkgs.postgresql_14;
     security = {
       sudo.wheelNeedsPassword = lib.mkDefault false;
-      polkit = {
-        enable = true;
-        adminIdentities = [ "unix-user:l" "unix-user:root" ];
-      };
-      apparmor.enable = true;
+      # polkit = {
+      #   enable = true;
+      #   adminIdentities = [ "unix-user:l" "unix-user:root" ];
+      # };
+      # apparmor.enable = true;
       # security.tpm2.enable = true;
       # security.tpm2.abrmd.enable = true;
       # auditd.enable = true;
