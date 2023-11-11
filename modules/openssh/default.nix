@@ -39,35 +39,29 @@ in {
       }];
 
       banner = ''
-        KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-        KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-        KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-        KKKKKKKKKKKKKKKKKK0xoc;,'........,;cdOKKKKKKKKKKKKKKKKKKKKK
-        KKKKKKKKKKKKKKOo,.                    .:kKKKKKKKKKKKKKKKKKK
-        KKKKKKKKKKKKo.       ....'''''''''....      ,OKKKKKKKKKKKKKKKK
-        KKKKKKKKKKo.     ..'''''''''''''''''''''''''''..    dKKKKKKKKKKKKKKK
-        KKKKKKKK0,     ...........'''''''''''''''''''.    xKKKKKKKKKKKKKK
-        KKKK0d:'......................'''''''''''''..   .0KKKKKKKKKKKKK
-        KKKo.....';:cloolccccc::;,.......''''''''''.    :KKKKKKKKKKKKK
-        KK:...,kNWMMMMMMM0OOOOOOOOOd,.....'''''''''..    0KKKKKKKKKKKK
-        Kd...'ONMMWWNNXXKOOOOOOOOOOkc:....'''''''''..    ,codk0KKKKKKK
-        K;...:OO00OOOOOOOOOOOOOOOOkocc'....'''''''...         .,l0KKK
-        K,...;dOOOOOOOOOOOOOOOOkdocccc'...'''''''''...    ....    .KKK
-        Kl...,cclooddddddddoolccccccc:....'''''''''...    '''''''''   oKK
-        K0,....;cccccccccccccccccccc;.....'''''''''...    .....'.  'KK
-        KKKl......',;;::ccccc:::;,'......''''''''''...    .......   OK
-        KKKKl  .........................''''''''''''...    .......   dK
-        KKKK:   ....................''''''''''''''''''...    .......   :K
-        KKKK;   ''''''''''''''''''''''''''''''''''''''''''''''''...    .......   'K
-        KKKK,   ''''''''''''''''''''''''''''''''''''''''''''''....    .......   .K
-        KKKK,   .'''''''''''''''''''''''''''''''''''''''''''''....    .......    0
-        KKKK,   ..''''''''''''''''''''''''''''''''''''''''''.....    .......    0
-        KKKK;   ...'''''''''''''''''''''''''''''''''''''''......    .......   .K
-        KKKKc   ....''''''''''''''''''''''''''''''''''........    .......   .K
-        KKKKo    .....'''''''''''''''''''''''''''...........    .......   ;K
-        KKKKO    ..................................    ......    dK
-        KKKKK.   ..................................    ......   .KK
-        KKKKK:   ..................................    .....    dKK
+                     :cc:        xkkkko      okkd
+                    .cccc;        lkkkkl    lkkkk:
+                     .cccc:        ,kkkkd  okkkk,
+                       cccc:.       .kkkkxxkkkk.
+                .......:ccccc'........kkkkkkkk
+               ,cccccccccccccc:::::::,.dkkkkk        ,,
+              ;ccccccccccccccc::::::::;.;kkkko      ;cc;
+                       ccccc.            .kkkkd    :cccc
+                     .xxxxx.               xxxxx .ccccc
+                    ,xkkkx                  dxx.,cccc;
+         :lllllllllokkkkl                    ,.;ccccc:;;;;;;,
+        .kkkkkkkkkkkkkk;.                     :cccccccccccccc.
+                ckkkkk.';.                  .:::cc
+               'kkkkk.':::'                .::::;
+              :kkkkd  .::::,              ,::::'
+             .kkkk:    .:::::            ',,,,,.
+              .kk'       :ccc:'.xxxxkkkkkkkkkkkkkkkkkkk.
+                        .cccccc,.xxxkkkkkkkkkkkkkkkkkk
+                       'cccccccc;        lkkkkx
+                      ,cccc,.cccc:        ;kkkko
+                     :cccc.   ccccc.       .kkkkx.
+                     cccc      ccccc.        kkkk
+                     .cc'      .ccccc.       ,kk;     
       '';
     };
   };
