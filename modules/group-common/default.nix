@@ -36,7 +36,24 @@ in {
       };
       firewall = {
         enable = lib.mkDefault true;
-        allowedUDPPorts = [ 51820 ]; # wireguard
+        allowedUDPPorts = [
+          51820 # wireguard
+          53 # vpn
+          1194 # vpn
+          1195 # vpn
+          1196 # vpn
+          1197 # vpn
+          1300 # vpn
+          1301 # vpn
+          1302 # vpn
+          1303 # vpn
+          1400 # vpn
+        ];
+        allowedTCPPorts = [
+          80 # vpn
+          443 # vpn
+          1401 # vpn
+        ];
       };
     };
     boot = {
