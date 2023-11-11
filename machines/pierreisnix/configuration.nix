@@ -10,14 +10,12 @@
     cpu-amd.enable = true;
     nvidia.enable = true;
     plasma.enable = lib.mkForce false;
+    gnome.enable = true;
     users.l.enable = lib.mkForce false;
     users.pierre.enable = true;
   };
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
   networking.hostName = "pierreisnix";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ]; # Is this needed?
-  environment.systemPackages = with pkgs;    [ fish ];
+  environment.systemPackages = with pkgs; [ fish ];
   #system.stateVersion = "23.05";
 }
