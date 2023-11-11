@@ -24,6 +24,7 @@
     # hedgedoc.enable = true;
     # home-assistant.enable = true;
     jellyfin.enable = true;
+    plasma.enable = true;
     services = {
       dns.enable = true;
       wg-link.enable = true;
