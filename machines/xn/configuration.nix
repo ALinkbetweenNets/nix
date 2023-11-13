@@ -14,8 +14,8 @@
     wg-deep.enable = true;
     wg-link.enable = true;
     domain = "xn.local";
-    service-ip="127.0.0.1";
-    services.hedgedoc = { enable = true; expose = false; nginx = false; };
+    service-ip = "127.0.0.1";
+    
   };
   networking = {
     extraHosts =
