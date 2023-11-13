@@ -33,7 +33,7 @@ in {
         locations."/" = {
           proxyPass = "http://127.0.0.1:${toString config.services.hedgedoc.settings.port}";
         };
-          extraConfig = mkIf (!cfg.expose) ''
+        extraConfig = mkIf (!cfg.expose) ''
           allow ${config.link.service-ip}/24;
           deny all; # deny all remaining ips
         '';
