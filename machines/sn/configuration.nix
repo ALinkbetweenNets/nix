@@ -35,6 +35,7 @@
     # };
     # keycloak.enable = true;
     services.nextcloud = { enable = true; expose = true; };
+    services.hedgedoc={enable=true;};
     outline.enable = true;
     paperless.enable = true;
     # photoprism.enable = true;
