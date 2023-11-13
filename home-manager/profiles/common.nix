@@ -26,6 +26,7 @@ with lib; {
         ripgrep-all
         vgrep
         fzf
+        glances
         unixtools.watch
         ## Networking+
         ipfetch
