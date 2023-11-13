@@ -69,7 +69,6 @@ in {
       kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
       kernelParams = [ "quiet" "loglevel=3" ];
     };
-    programs.ssh.startAgent = true;
     environment.systemPackages = with pkgs; [
       ## system
       font-awesome
@@ -106,10 +105,6 @@ in {
       wireguard-tools
       dnsutils
     ];
-    # programs.gnupg.agent = {
-    #   enable = true;
-    #   enableSSHSupport = true;
-    # };
     # console.font = "FiraCode Nerd Font";
   };
 }
