@@ -15,15 +15,19 @@
     wg-link.enable = true;
     domain = "xn.local";
     service-ip = "127.0.0.1";
-    
+
   };
   networking = {
-    extraHosts =
-      ''
-        127.0.0.1 xn.local
-        127.0.0.1 hedgedoc.xn.local
-      '';
+    # extraHosts =
+    #   ''
+    #     127.0.0.1 xn.local
+    #     127.0.0.1 hedgedoc.xn.local
+    #   '';
     hostName = "xn";
+  };
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client";
   };
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   lollypops.deployment = {
