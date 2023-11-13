@@ -13,7 +13,7 @@ in {
         extraConfig = {
           PAPERLESS_ADMIN_USER = "l";
           PAPERLESS_OCR_LANGUAGE = "deu+eng";
-          PAPERLESS_URL = "https://paperless.${config.networking.fqdn}";
+          PAPERLESS_URL = "https://paperless.${conconfig.link.domain}";
           # PAPERLESS_DBHOST = "/run/postgresql";
           # PAPERLESS_CONSUMER_IGNORE_PATTERN = builtins.toJSON [ ".DS_STORE/*" "desktop.ini" ];
           PAPERLESS_OCR_USER_ARGS = builtins.toJSON {
@@ -22,8 +22,8 @@ in {
           };
         };
       };
-      nginx.virtualHosts."paperless.${config.networking.fqdn}" = {
-        # enableACME = true;
+      nginx.virtualHosts."paperless.${config.link.domain}" = {
+        enableACME = true;
         forceSSL = true;
         locations."/" = { proxyPass = "http://127.0.0.1:28981/"; };
         sslCertificate = "${config.link.secrets}/cert.crt";
