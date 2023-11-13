@@ -4,7 +4,7 @@ let cfg = config.link.nginx;
 in {
   options.link.nginx.enable = mkEnableOption "activate nginx";
   config = mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = mkIf config.link.expose [
+    networking.firewall.allowedTCPPorts = [
       # 25
       80
       # 143
@@ -16,7 +16,6 @@ in {
       # 4001
       # 4002
     ];
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf (config.link.expose == false) [ 80 443 ];
     # networking.firewall.allowedUDPPorts = [ 111 2049 4000 4001 4002 20048 ]; # nfs
     services.
     nginx = {
