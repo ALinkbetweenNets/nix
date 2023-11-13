@@ -14,11 +14,14 @@
     wg-deep.enable = true;
     wg-link.enable = true;
     domain = "xn.local";
+    service-ip="127.0.0.1";
+    services.hedgedoc = { enable = true; expose = false; nginx = false; };
   };
   networking = {
     extraHosts =
       ''
         127.0.0.1 xn.local
+        127.0.0.1 hedgedoc.xn.local
       '';
     hostName = "xn";
   };
