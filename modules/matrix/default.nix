@@ -59,9 +59,13 @@ in {
           '';
         };
         nginx.virtualHosts."matrix.${config.link.domain}" = mkIf cfg.nginx {
-          enableACME = cfg.expose;
-          forceSSL = cfg.expose;
+          enableACME = true;
+          forceSSL = true;
           locations."/" = { proxyPass = "http://127.0.0.1:8008"; };
+          extraConfig = mkIf (!cfg.expose) ''
+            allow ${config.link.service-ip}/24;
+            deny all; # deny all remaining ips
+          '';
         };
       };
       networking.firewall = {

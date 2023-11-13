@@ -16,7 +16,7 @@ in {
         enable = true;
         # workDir = "${config.link.storage}/hedgedoc";
         settings = {
-          domain = "${config.link.domain}";
+          domain = "hedgedoc.${config.link.domain}";
           host = "127.0.0.1";
           port = 3400;
           protocolUseSSL = true;
@@ -27,7 +27,7 @@ in {
           };
         };
       };
-      nginx.virtualHosts."${config.link.domain}" = {
+      nginx.virtualHosts."hedgedoc.${config.link.domain}" = {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
