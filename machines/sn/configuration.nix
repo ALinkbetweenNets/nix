@@ -68,11 +68,11 @@
     domain = "fritz.box";
     hostId = "007f0200";
   };
-  services.tailscale = {
-    enable = true;
-    useRoutingFeatures = "server";
-    extraUpFlags = [ "--advertise-routes 192.168.178.0/24" "--advertise-exit-node" ];
-  };
+  # services.tailscale = {
+  #   enable = true;
+  #   useRoutingFeatures = "server";
+  #   extraUpFlags = [ "--advertise-routes 192.168.178.0/24" "--advertise-exit-node" ];
+  # };
   # nix run .\#lollypops -- meet:rebuild
   lollypops.deployment = {
     local-evaluation = true;
