@@ -68,4 +68,10 @@
     domain = "fritz.box";
     hostId = "007f0200";
   };
+  # nix run .\#lollypops -- meet:rebuild
+  lollypops.deployment = {
+    local-evaluation = true;
+    ssh = { user = "l"; host = "10.0.1.1"; };
+    sudo.enable = true;
+  };
 }
