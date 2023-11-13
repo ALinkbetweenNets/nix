@@ -13,16 +13,18 @@
     cpu-amd.enable = true;
     users = { jucknath.enable = true; paul.enable = true; };
     wireguard.enable = true;
-    services.wg-deep.enable = true;
-    # services.matrix = { enable = true; nginx = false; };
-    # services.nextcloud = { enable = true; expose = false; nginx = false; };
     # services.jitsi.enable = true;
     expose = false;
     domain = "deepserver.org";
     service-ip = "10.0.0.1";
     eth = "eth0";
     service-interface = "wg-deep";
-    services.hedgedoc = { enable = true; expose = false; };
+    services = {
+      wg-deep.enable = true;
+      matrix = { enable = true; expose = false; };
+      nextcloud = { enable = true; expose = false; };
+      hedgedoc = { enable = true; expose = false; };
+    };
     nginx.enable = true;
   };
   services.tailscale = {

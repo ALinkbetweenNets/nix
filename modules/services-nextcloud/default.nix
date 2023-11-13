@@ -44,6 +44,10 @@ in {
       nginx.virtualHosts."nextcloud.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
+        extraConfig = mkIf (!cfg.expose) ''
+          allow ${config.link.service-ip}/24;
+          deny all; # deny all remaining ips
+        '';
         #locations."/" = {
         #  proxyPass = "http://127.0.0.1:80/";
         # extraConfig = ''
