@@ -31,7 +31,7 @@ in {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "127.0.0.1:${toString config.services.hedgedoc.settings.port}/";
+          proxyPass = "127.0.0.1:${toString config.services.hedgedoc.settings.port}";
         };
           extraConfig = mkIf (!cfg.expose) ''
           allow ${config.link.service-ip}/24;
