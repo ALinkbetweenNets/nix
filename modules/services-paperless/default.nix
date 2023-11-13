@@ -13,7 +13,7 @@ in {
         extraConfig = {
           PAPERLESS_ADMIN_USER = "l";
           PAPERLESS_OCR_LANGUAGE = "deu+eng";
-          PAPERLESS_URL = "https://paperless.${conconfig.link.domain}";
+          PAPERLESS_URL = "https://paperless.${config.link.domain}";
           # PAPERLESS_DBHOST = "/run/postgresql";
           # PAPERLESS_CONSUMER_IGNORE_PATTERN = builtins.toJSON [ ".DS_STORE/*" "desktop.ini" ];
           PAPERLESS_OCR_USER_ARGS = builtins.toJSON {
