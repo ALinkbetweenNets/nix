@@ -5,6 +5,7 @@
     home-manager.nixosModules.home-manager
   ];
   home-manager.users.l = flake-self.homeConfigurations.tower;
+  home-manager.users.root = flake-self.homeConfigurations.tower;
   link = {
     tower.enable = true;
     main.enable = true;
@@ -24,4 +25,10 @@
     interfaces."${config.link.eth}".wakeOnLan.enable = true;
   };
   #environment.systemPackages = with pkgs; [ davinci-resolve ];
+  # nix run .\#lollypops -- meet:rebuild
+  lollypops.deployment = {
+    local-evaluation = true;
+    # ssh = { host = "10.0.1.1"; };
+    sudo.enable = true;
+  };
 }
