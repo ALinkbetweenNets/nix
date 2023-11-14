@@ -73,9 +73,6 @@ in {
         nginx.virtualHosts."element.${config.link.domain}" = {
           enableACME = true;
           forceSSL = true;
-          serverAliases = [
-            "element.${config.networking.domain}"
-          ];
           root = pkgs.element-web.override {
             conf = {
               default_server_config = "https://element.${config.link.domain}";
