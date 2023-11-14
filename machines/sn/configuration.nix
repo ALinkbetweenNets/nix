@@ -22,7 +22,6 @@
     nginx.enable = true;
     gitea.enable = true;
     grafana.enable = true;
-    # hedgedoc.enable = true;
     # home-assistant.enable = true;
     jellyfin.enable = true;
     desktop.enable = true;
