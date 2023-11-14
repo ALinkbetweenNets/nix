@@ -5,7 +5,7 @@ with lib; {
     home.packages = with pkgs; [
       #parsec-bin
     ] ++ lib.optionals (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
-    programs = { };
+    programs = { vscode.userSettings."window.zoomLevel" = -1;};
     services = { };
   };
 }

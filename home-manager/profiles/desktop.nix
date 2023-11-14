@@ -49,6 +49,7 @@ with lib; {
     programs = {
       firefox.enable = true;
       #terminator.enable = true;
+      vscode.userSettings."window.zoomLevel" = -3;
     };
     manual.html.enable = true;
     link = { code.enable = true; };
