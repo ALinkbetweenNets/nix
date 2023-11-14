@@ -25,6 +25,7 @@
       nextcloud = { enable = true; expose = false; };
       hedgedoc = { enable = true; expose = false; };
     };
+    coturn.enable = true;
     nginx.enable = true;
   };
   services.tailscale = {
