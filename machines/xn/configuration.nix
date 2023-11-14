@@ -22,7 +22,6 @@
       ''
         127.0.0.1 xn.local
         127.0.0.1 hedgedoc.xn.local
-        10.0.0.1 deepserver.org
         10.0.0.1 nextcloud.deepserver.org
         10.0.0.1 matrix.deepserver.org
         10.0.0.1 hedgedoc.deepserver.org
