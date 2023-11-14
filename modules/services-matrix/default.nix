@@ -70,6 +70,23 @@ in {
             deny all; # deny all remaining ips
           '';
         };
+        nginx.virtualHosts."element.${config.link.domain}" = {
+          enableACME = true;
+          forceSSL = true;
+          serverAliases = [
+            "element.${config.networking.domain}"
+          ];
+          root = pkgs.element-web.override {
+            conf = {
+              default_server_config = "https://element.${config.link.domain}";
+            };
+          };
+          extraConfig = mkIf (!cfg.expose) ''
+            allow ${config.link.service-ip}/24;
+            allow 127.0.0.1;
+            deny all; # deny all remaining ips
+          '';
+        };
       };
       networking.firewall = {
         interfaces."${config.link.service-interface}" =
