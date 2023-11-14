@@ -27,7 +27,7 @@ in {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString config.services.onlyoffice.port}";
+          # proxyPass = "http://127.0.0.1:${toString config.services.onlyoffice.port}";
         };
         extraConfig = mkIf (!cfg.expose) ''
           allow ${config.link.service-ip}/24;
