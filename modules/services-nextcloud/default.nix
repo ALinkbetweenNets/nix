@@ -26,8 +26,7 @@ in {
         };
         #secretFile = "${config.link.secrets}/nextcloud-secrets.json";
         extraApps = with config.services.nextcloud.package.packages.apps; {
-          inherit bookmarks calendar contacts deck keeweb mail news notes
-            onlyoffice polls tasks twofactor_webauthn;
+          inherit bookmarks calendar contacts deck keeweb mail news notes onlyoffice polls tasks twofactor_webauthn;
         };
         #extraOptions = {
         #  mail_smtpmode = "sendmail";
