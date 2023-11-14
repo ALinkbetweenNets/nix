@@ -21,31 +21,33 @@ in {
       services = {
         matrix-synapse = with config.services.coturn;{
           enable = true;
-          settings.public_baseurl = if cfg.nginx then "https://matrix.${config.link.domain}" else "http://${config.link.service-ip}:8008";
-          settings.server_name = "matrix.${config.link.domain}";
-          settings.listeners = [
-            {
-              port = 8008;
-              bind_addresses = [ config.link.service-ip ];
-              type = "http";
-              tls = false;
-              x_forwarded = cfg.nginx;
-              resources = [
-                {
-                  compress = true;
-                  names = [
-                    "client"
-                  ];
-                }
-                {
-                  compress = false;
-                  names = [
-                    "federation"
-                  ];
-                }
-              ];
-            }
-          ];
+          settings = {
+            public_baseurl = if cfg.nginx then "https://matrix.${config.link.domain}" else "http://${config.link.service-ip}:8008";
+            server_name = "matrix.${config.link.domain}";
+            listeners = [
+              {
+                port = 8008;
+                bind_addresses = [ "127.0.0.1" ];
+                type = "http";
+                tls = false;
+                x_forwarded = cfg.nginx;
+                resources = [
+                  {
+                    compress = true;
+                    names = [
+                      "client"
+                    ];
+                  }
+                  {
+                    compress = false;
+                    names = [
+                      "federation"
+                    ];
+                  }
+                ];
+              }
+            ];
+          };
           extraConfigFiles = [ "/pwd/matrix-synapse-registration" ];
         };
         postgresql = {
@@ -64,6 +66,7 @@ in {
           locations."/" = { proxyPass = "http://127.0.0.1:8008"; };
           extraConfig = mkIf (!cfg.expose) ''
             allow ${config.link.service-ip}/24;
+            allow 127.0.0.1;
             deny all; # deny all remaining ips
           '';
         };
