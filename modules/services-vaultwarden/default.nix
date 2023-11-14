@@ -36,6 +36,7 @@ in {
         };
         extraConfig = mkIf (!cfg.expose) ''
           allow ${config.link.service-ip}/24;
+          allow 127.0.0.1;
           deny all; # deny all remaining ips
         '';
       };
