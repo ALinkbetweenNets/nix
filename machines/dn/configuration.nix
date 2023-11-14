@@ -22,11 +22,6 @@
     hostName = "dn";
     hostId = "007f0200";
     interfaces."${config.link.eth}".wakeOnLan.enable = true;
-    extraHosts =
-      ''
-        127.0.0.1 dn.local
-        10.0.0.1 deepserver.org
-      '';
   };
   #environment.systemPackages = with pkgs; [ davinci-resolve ];
 }
