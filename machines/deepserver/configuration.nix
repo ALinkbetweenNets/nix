@@ -26,7 +26,7 @@
       hedgedoc = { enable = true; expose = false; };
     };
     nginx.enable = true;
-  # };
+  };
   # services.tailscale = {
   #   enable = true;
   #   useRoutingFeatures = "server";
