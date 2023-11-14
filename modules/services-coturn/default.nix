@@ -7,13 +7,13 @@ in {
     services = {
       coturn = rec {
         enable = true;
+        realm = config.link.domain;
         no-cli = true;
-        no-tcp-relay = true;
+        # no-tcp-relay = true;
         min-port = 49000;
         max-port = 50000;
         use-auth-secret = true;
         static-auth-secret-file = "/pwd/coturn";
-        realm = config.link.service-ip;
         cert = "/pwd/coturn-cert.pem";
         pkey = "/pwd/coturn-key.pem";
         # extraConfig = ''
