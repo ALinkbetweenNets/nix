@@ -21,10 +21,10 @@ in {
           port = 3400;
           protocolUseSSL = true;
           useSSL = false;
-          # db = {
-          #   dialect = "sqlite";
-          #   storage = "${config.link.storage}/hedgedoc/db.sqlite";
-          # };
+          db = {
+            dialect = "sqlite";
+            storage = "/var/lib/hedgedoc/db.sqlite";
+          };
         };
       };
       nginx.virtualHosts."hedgedoc.${config.link.domain}" = {
