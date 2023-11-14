@@ -27,6 +27,7 @@
         10.0.0.1 hedgedoc.deepserver.org
         10.0.0.1 onlyoffice.deepserver.org
         10.0.0.1 vaultwarden.deepserver.org
+        10.0.0.1 element.deepserver.org
       '';
     hostName = "xn";
   };

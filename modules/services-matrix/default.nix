@@ -17,7 +17,7 @@ in {
   };
   config = mkIf cfg.enable
     {
-      environment.systemPackages = with pkgs; [ lottieconverter ];
+      environment.systemPackages = with pkgs; [ lottieconverter element-web ];
       services = {
         matrix-synapse = with config.services.coturn;{
           enable = true;
