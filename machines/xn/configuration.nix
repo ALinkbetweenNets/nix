@@ -28,10 +28,10 @@
       '';
     hostName = "xn";
   };
-  # services.tailscale = {
-  #   enable = true;
-  #   useRoutingFeatures = "client";
-  # };
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client";
+  };
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   lollypops.deployment = {
     local-evaluation = true;
