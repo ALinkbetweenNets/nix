@@ -25,9 +25,7 @@
       hedgedoc.enable = true;
       nextcloud.enable = true;
       onlyoffice.enable = true;
-      matrix = { enable = true; expose = false; };
-      nextcloud = { enable = true; expose = false; };
-      hedgedoc = { enable = true; expose = false; };
+      vaultwarden.enable = true;
     };
     coturn.enable = true;
     nginx.enable = true;
