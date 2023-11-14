@@ -23,7 +23,7 @@ in {
           useSSL = false;
           db = {
             dialect = "sqlite";
-            storage = "${config.link.storage}/hedgedoc/db.hedgedoc.sqlite";
+            storage = "${config.link.storage}/hedgedoc/db.sqlite";
           };
         };
       };
