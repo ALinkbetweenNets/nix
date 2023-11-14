@@ -39,6 +39,15 @@
   boot.loader.grub.devices = [ "/dev/sda" "/dev/sdb" ];
   security.sudo.wheelNeedsPassword = true;
   networking = {
+    extraHosts =
+      ''
+        10.0.0.1 nextcloud.deepserver.org
+        10.0.0.1 matrix.deepserver.org
+        10.0.0.1 hedgedoc.deepserver.org
+        10.0.0.1 onlyoffice.deepserver.org
+        10.0.0.1 vaultwarden.deepserver.org
+        10.0.0.1 element.deepserver.org
+      '';
     hostName = "deepserver";
     domain = "org";
     nat.externalInterface = config.link.eth; # used by wireguard
