@@ -21,6 +21,10 @@
     service-interface = "wg-deep";
     services = {
       wg-deep.enable = true;
+      matrix.enable = true;
+      hedgedoc.enable = true;
+      nextcloud.enable = true;
+      onlyoffice.enable = true;
       matrix = { enable = true; expose = false; };
       nextcloud = { enable = true; expose = false; };
       hedgedoc = { enable = true; expose = false; };
