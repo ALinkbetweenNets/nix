@@ -28,7 +28,7 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   lollypops.deployment = {
     local-evaluation = true;
-    ssh = { user = "l"; };
+    # ssh = { user = "l"; };
     sudo.enable = true;
   };
   #environment.systemPackages = with pkgs;    [ ];
