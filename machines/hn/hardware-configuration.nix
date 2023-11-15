@@ -7,6 +7,7 @@
   imports =
     [
       (modulesPath + "/installer/scan/not-detected.nix")
+      ./disk-config.nix
     ];
   boot = {
 
@@ -16,37 +17,37 @@
     initrd = {
       availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
       kernelModules = [ ];
-      secrets = {
-        "/crypto_keyfile.bin" = null;
-      };
+      # secrets = {
+      #   "/crypto_keyfile.bin" = null;
+      # };
 
-      luks.devices = {
-        "luks-ef639c4f-a6c5-4363-8c79-3951876a4ea2" = {
-          device = "/dev/disk/by-uuid/ef639c4f-a6c5-4363-8c79-3951876a4ea2";
-          #keyFile="/crypto_keyfile.bin";
-          #preLVM = true;
-          #allowDiscards = true;
-        };
-        "luks-1882ba61-7152-4785-921f-73e4477810f8" = {
-          device = "/dev/disk/by-uuid/1882ba61-7152-4785-921f-73e4477810f8";
-          #keyFile="/crypto_keyfile.bin";
-        };
-      };
+      # luks.devices = {
+      #   "luks-ef639c4f-a6c5-4363-8c79-3951876a4ea2" = {
+      #     device = "/dev/disk/by-uuid/ef639c4f-a6c5-4363-8c79-3951876a4ea2";
+      #     #keyFile="/crypto_keyfile.bin";
+      #     #preLVM = true;
+      #     #allowDiscards = true;
+      #   };
+      #   "luks-1882ba61-7152-4785-921f-73e4477810f8" = {
+      #     device = "/dev/disk/by-uuid/1882ba61-7152-4785-921f-73e4477810f8";
+      #     #keyFile="/crypto_keyfile.bin";
+      #   };
+      # };
     };
   };
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/af69fe5b-c824-44ab-9c8f-ebc6d61c498a";
-      fsType = "ext4";
-    };
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/9FFA-D776";
-      fsType = "vfat";
-    };
+  # fileSystems."/" =
+  #   {
+  #     device = "/dev/disk/by-uuid/af69fe5b-c824-44ab-9c8f-ebc6d61c498a";
+  #     fsType = "ext4";
+  #   };
+  # fileSystems."/boot" =
+  #   {
+  #     device = "/dev/disk/by-uuid/9FFA-D776";
+  #     fsType = "vfat";
+  #   };
 
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/7f82680b-17ac-4a44-aaf2-23b1093f55db"; }];
+  # swapDevices =
+  #   [{ device = "/dev/disk/by-uuid/7f82680b-17ac-4a44-aaf2-23b1093f55db"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
