@@ -26,6 +26,7 @@ with lib; {
       # ISO stuff
       popsicle # USB Flasher
       ventoy-full
+      nixos-anywhere
       # Misc
       #gsettings-desktop-schemas # required for some apps like jami
       # Editor
