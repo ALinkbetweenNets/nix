@@ -21,6 +21,7 @@ with lib; {
     home.packages = with pkgs;
       [
         apg # generate passwords
+        bitwarden-cli
         wcalc
         gnugrep
         ripgrep-all
