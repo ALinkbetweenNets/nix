@@ -1,85 +1,59 @@
 {
   disko.devices = {
     disk = {
-      one = {
+      nvme0n1 = {
         type = "disk";
-        device = "/dev/vda";
+        device = "/dev/disk/by-diskseq/10";
         content = {
           type = "gpt";
           partitions = {
-            BOOT = {
-              size = "1M";
-              type = "EF02"; # for grub MBR
-            };
             ESP = {
-              size = "500M";
+              size = "512M";
               type = "EF00";
               content = {
-                type = "mdraid";
-                name = "boot";
+                type = "filesystem";
+                format = "vfat";
+                mountpoint = "/boot";
+                mountOptions = [
+                  "defaults"
+                ];
               };
             };
-            mdadm = {
+            luks = {
               size = "100%";
               content = {
-                type = "mdraid";
-                name = "raid1";
+                type = "luks";
+                name = "crypted";
+                # disable settings.keyFile if you want to use interactive password entry
+                passwordFile = "/tmp/luks.key"; # Interactive
+                settings = {
+                  allowDiscards = true;
+                  #keyFile = "/tmp/secret.key";
+                };
+                # additionalKeyFiles = [ "/tmp/additionalSecret.key" ];
+                content = {
+                  type = "btrfs";
+                  extraArgs = [ "-f" ];
+                  subvolumes = {
+                    "/root" = {
+                      mountpoint = "/";
+                      mountOptions = [ "compress=zstd" "noatime" ];
+                    };
+                    "/home" = {
+                      mountpoint = "/home";
+                      mountOptions = [ "compress=zstd" "noatime" ];
+                    };
+                    "/nix" = {
+                      mountpoint = "/nix";
+                      mountOptions = [ "compress=zstd" "noatime" ];
+                    };
+                    "/swap" = {
+                      mountpoint = "/.swapvol";
+                      swap.swapfile.size = "16G";
+                    };
+                  };
+                };
               };
-            };
-          };
-        };
-      };
-      two = {
-        type = "disk";
-        device = "/dev/vdb";
-        content = {
-          type = "gpt";
-          partitions = {
-            boot = {
-              size = "1M";
-              type = "EF02"; # for grub MBR
-            };
-            ESP = {
-              size = "500M";
-              type = "EF00";
-              content = {
-                type = "mdraid";
-                name = "boot";
-              };
-            };
-            mdadm = {
-              size = "100%";
-              content = {
-                type = "mdraid";
-                name = "raid1";
-              };
-            };
-          };
-        };
-      };
-    };
-    mdadm = {
-      boot = {
-        type = "mdadm";
-        level = 1;
-        metadata = "1.0";
-        content = {
-          type = "filesystem";
-          format = "vfat";
-          mountpoint = "/boot";
-        };
-      };
-      raid1 = {
-        type = "mdadm";
-        level = 1;
-        content = {
-          type = "gpt";
-          partitions.primary = {
-            size = "100%";
-            content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/";
             };
           };
         };
