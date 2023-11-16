@@ -34,6 +34,7 @@ with lib; {
         # tor-browser-bundle-bin # compromised
         #mullvad-vpn
         mullvad-browser
+        ktailctl
         # RDP
         remmina # VNC Client
         libsForQt5.krfb # kde connect virtual monitor
