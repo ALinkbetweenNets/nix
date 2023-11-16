@@ -34,6 +34,7 @@
   ###
 
   home-manager.users.l = flake-self.homeConfigurations.server;
+  home-manager.users.root = flake-self.homeConfigurations.server;
 
   link = {
     # make sure this module is compatible with ARM!
