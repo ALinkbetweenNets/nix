@@ -8,7 +8,7 @@ in {
       outline = {
         enable = true;
         port = 3123;
-        publicUrl = "http://127.0.0.1:3123";
+        publicUrl = "https://outline.${config.link.domain}";
         storage = {
           accessKey = "outline";
           secretKeyFile = "${config.link.secrets}/minio-outline";
@@ -33,7 +33,7 @@ in {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "${config.services.outline.publicUrl}";
+          proxyPass = "127.0.0.1:${config.services.outline.port}";
         };
       };
     };
