@@ -27,7 +27,7 @@
       nextcloud.enable = true;
       onlyoffice.enable = true;
       vaultwarden.enable = true;
-      gitea.enable=true;
+      gitea.enable = true;
       outline = {
         enable = true;
         oidClientId = "1e030d3b-e260-4f22-a373-41d2b8fea1fa";
