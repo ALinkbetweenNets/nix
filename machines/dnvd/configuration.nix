@@ -17,4 +17,9 @@
   boot.loader.grub.devices = [ "/dev/vda" ];
   security.sudo.wheelNeedsPassword = true;
   networking.hostName = "dnvnd";
+  lollypops.deployment = {
+    local-evaluation = true;
+    # ssh = { user = "l"; };
+    sudo.enable = true;
+  };
 }
