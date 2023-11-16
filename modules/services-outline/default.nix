@@ -24,8 +24,7 @@ in {
           userinfoUrl = "https://gitea.alinkbetweennets.de/login/oauth/userinfo";
           clientId = "2085b101-ee5c-42c1-acac-2f9265767d1f";
           clientSecretFile = "${config.link.secrets}/outline";
-          scopes = [ "openid" "email" "profile" ];
-          usernameClaim = "l";
+          scopes = [ "openid" "profile" "email" "groups"];
           displayName = "Gitea";
         };
       };
