@@ -4,7 +4,60 @@ let vars = import ../../vars.nix;
 in {
   home.packages = with pkgs; [ btop fastfetch gdb tldr sysz fd bat eza ];
   programs = {
-    starship.enable = true;
+    starship = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      settings = {
+        # format = ''[░▒▓](bg:#a3aed2 fg:#090c0c)[](bg:#769ff0 fg:#a3aed2)$directory[](fg:#769ff0 bg:#394260)$git_branch$git_status[](fg:#394260 bg:#212736)$package[](fg:#212736 bg:#1d2230)$time[ ](fg:#1d2230)$line_break$character'';
+
+        time = {
+          disabled = false;
+          time_format = "%R"; # Hour:Minute Format
+          # style = "bg:#1d2230";
+          # format = ''[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'';
+        };
+        character = {
+          # success_symbol = "[»](bold green)";
+          # error_symbol = "[×](bold red) ";
+        };
+        directory = {
+          # style = "fg:#e3e5e5 bg:#769ff0";
+          # format = "[ $path ]($style)";
+          truncation_length = 40;
+          truncation_symbol = "…/";
+          # substitutions = {
+            # "Documents" = "󰈙 ";
+            # "Downloads" = " ";
+            # "Music" = " ";
+            # "Pictures" = " ";
+          # };
+        };
+        aws = { disabled = true; };
+        nix_shell = {
+          disabled = false;
+          # symbol = "❄  ";
+        };
+        #os.disabled = false;
+        username.disabled = false;
+
+        git_branch = {
+          # symbol = "";
+          # style = "bg:#394260";
+          # format = ''[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'';
+        };
+        # git_status = {
+        #   # style = "bg:#394260";
+        #   # format = ''[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'';
+        #   ahead = "↑";
+        #   behind = "↓";
+        #   diverged = "↕";
+        #   modified = "!";
+        #   staged = "±";
+        #   renamed = "→";
+        # };
+      };
+    };
     zoxide.enable = true;
     thefuck.enable = true;
     watson.enable = true;
@@ -110,7 +163,7 @@ in {
       enable = true;
       enableZshIntegration = true;
       defaultOptions = [
-        "--height 40%"
+        "--height 80%"
         "--layout=reverse"
         "--border"
         "--inline-info"
@@ -133,6 +186,10 @@ in {
       ];
     };
     dircolors = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    pazi = {
       enable = true;
       enableZshIntegration = true;
     };
