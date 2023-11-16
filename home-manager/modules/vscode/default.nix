@@ -29,6 +29,8 @@ in {
         usernamehw.errorlens
         vadimcn.vscode-lldb
         yzhang.markdown-all-in-one
+        # pokey.talon
+        # pokey.cursorless
       ];
       userSettings = {
         "[nix]" = {
