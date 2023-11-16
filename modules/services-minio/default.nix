@@ -1,8 +1,8 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.minio;
+let cfg = config.link.services.minio;
 in {
-  options.link.minio.enable = mkEnableOption "activate minio";
+  options.link.services.minio.enable = mkEnableOption "activate minio";
   config = mkIf cfg.enable {
     services = {
       minio = {
