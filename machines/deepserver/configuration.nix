@@ -47,4 +47,9 @@
       allowedTCPPorts = [ 80 443 ];
     };
   };
+  lollypops.deployment = {
+    local-evaluation = true;
+    # ssh = { user = "l"; };
+    sudo.enable = true;
+  };
 }
