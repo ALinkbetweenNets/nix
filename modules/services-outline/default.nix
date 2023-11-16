@@ -22,7 +22,7 @@ in {
           authUrl = "https://gitea.alinkbetweennets.de/login/oauth/authorize";
           tokenUrl = "https://gitea.alinkbetweennets.de/login/oauth/access_token";
           userinfoUrl = "https://gitea.alinkbetweennets.de/login/oauth/userinfo";
-          clientId = "outline";
+          clientId = "2085b101-ee5c-42c1-acac-2f9265767d1f";
           clientSecretFile = "${config.link.secrets}/outline";
           scopes = [ "openid" "email" "profile" ];
           usernameClaim = "l";
