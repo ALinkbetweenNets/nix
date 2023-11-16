@@ -36,8 +36,9 @@
     # keycloak.enable = true;
     services.nextcloud = { enable = true; expose = true; };
     services.hedgedoc = { enable = true; expose = true; };
+    services.vaultwarden = { enable = true; expose = false; };
     outline.enable = true;
-    minio.enable=true;
+    minio.enable = true;
     paperless.enable = true;
     # photoprism.enable = true;
     syncthing.enable = true;
