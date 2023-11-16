@@ -27,6 +27,12 @@
       nextcloud.enable = true;
       onlyoffice.enable = true;
       vaultwarden.enable = true;
+      gitea.enable=true;
+      outline = {
+        enable = true;
+        oidClientId = "";
+      };
+      minio.enable = true;
     };
     coturn.enable = true;
     nginx.enable = true;
