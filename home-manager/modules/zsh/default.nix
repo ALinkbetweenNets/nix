@@ -27,10 +27,10 @@ in {
           truncation_length = 40;
           truncation_symbol = "…/";
           # substitutions = {
-            # "Documents" = "󰈙 ";
-            # "Downloads" = " ";
-            # "Music" = " ";
-            # "Pictures" = " ";
+          # "Documents" = "󰈙 ";
+          # "Downloads" = " ";
+          # "Music" = " ";
+          # "Pictures" = " ";
           # };
         };
         aws = { disabled = true; };

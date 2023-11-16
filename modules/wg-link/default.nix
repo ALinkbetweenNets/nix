@@ -13,9 +13,16 @@ in {
         10.0.1.1 gitea.alinkbetweennets.de
         10.0.1.1 paperless.alinkbetweennets.de
         10.0.1.1 hedgedoc.alinkbetweennets.de
+        10.0.1.1 alinkbetweennets
+        10.0.1.1 nextcloud.alinkbetweennets.de
+        10.0.1.1 matrix.alinkbetweennets.de
+        10.0.1.1 onlyoffice.alinkbetweennets.de
+        10.0.1.1 vaultwarden.alinkbetweennets.de
+        10.0.1.1 element.alinkbetweennets.de
+        10.0.1.1 outline.alinkbetweennets.de
       '';
     services.dnsmasq.extraConfig = ''
-      interface=wg-deep
+      interface = wg-deep
     '';
     networking = {
       firewall = {
