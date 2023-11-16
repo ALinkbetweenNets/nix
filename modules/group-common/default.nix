@@ -4,8 +4,11 @@ let cfg = config.link.common;
 in {
   options.link.common.enable = mkEnableOption "activate common";
   config = mkIf cfg.enable {
-    fonts.packages = with pkgs;
-      [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
+    fonts = {
+      packages = with pkgs;
+        [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
+      fontDir.enable = true;
+    };
     environment.pathsToLink = [ "/share/zsh" ];
     link = {
       users = {
@@ -72,6 +75,9 @@ in {
     environment.systemPackages = with pkgs; [
       ## system
       font-awesome
+      fira
+      fira-code
+      fira-code-symbols
       libsecret
       gnupg
       gpg-tui
