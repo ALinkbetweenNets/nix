@@ -28,6 +28,7 @@ in
         darktable
         pdfmixtool # appears to be broken and unbuildable
         onlyoffice-bin
+        speedcrunch
       ];
   };
 }
