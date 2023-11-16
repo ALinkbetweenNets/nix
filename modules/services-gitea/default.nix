@@ -2,7 +2,14 @@
 with lib;
 let cfg = config.link.services.gitea;
 in {
-  options.link.services.gitea = { enable = mkEnableOption "activate gitea"; };
+  options.link.services.gitea = {
+    enable = mkEnableOption "activate gitea";
+    expose = mkOption {
+      type = types.bool;
+      default = config.link.expose;
+      description = "expose gitea to the internet with NGINX and ACME";
+    };
+  };
   config = mkIf cfg.enable {
     services = {
       gitea = {
