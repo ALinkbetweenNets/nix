@@ -1,6 +1,6 @@
 { lib, pkgs, flake-self, config, system-config, ... }:
 with lib; {
-  imports = [ ./main.nix ];
+  imports = [ ./main.nix ./hardware.nix ];
   config = {
     home.packages = with pkgs; [
       #parsec-bin
