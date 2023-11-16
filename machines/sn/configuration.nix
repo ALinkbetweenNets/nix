@@ -20,23 +20,29 @@
     secrets = "/pwd";
     #seafile.enable = true;
     nginx.enable = true;
-    gitea.enable = true;
+    services = {
+      gitea.enable = true;
+      dns.enable = true;
+      wg-link.enable = true;
+      # services.jitsi = {
+      #   enable = true;
+      #   expose = false;
+      # };
+      # keycloak.enable = true;
+      nextcloud = { enable = true; expose = true; };
+      hedgedoc = { enable = true; expose = true; };
+      vaultwarden = { enable = true; expose = false; };
+      outline = {
+        enable = true;
+        oidClientId = "2085b101-ee5c-42c1-acac-2f9265767d1f";
+        expose = true;
+      };
+      minio.enable = true;
+    };
     grafana.enable = true;
     # home-assistant.enable = true;
     jellyfin.enable = true;
     desktop.enable = true;
-    services = {
-      dns.enable = true;
-      wg-link.enable = true;
-    };
-    # services.jitsi = {
-    #   enable = true;
-    #   expose = false;
-    # };
-    # keycloak.enable = true;
-    services.nextcloud = { enable = true; expose = true; };
-    services.hedgedoc = { enable = true; expose = true; };
-    outline.enable = true;
     paperless.enable = true;
     # photoprism.enable = true;
     syncthing.enable = true;

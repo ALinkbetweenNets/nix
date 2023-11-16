@@ -1,8 +1,15 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.gitea;
+let cfg = config.link.services.gitea;
 in {
-  options.link.gitea = { enable = mkEnableOption "activate gitea"; };
+  options.link.services.gitea = {
+    enable = mkEnableOption "activate gitea";
+    expose = mkOption {
+      type = types.bool;
+      default = config.link.expose;
+      description = "expose gitea to the internet with NGINX and ACME";
+    };
+  };
   config = mkIf cfg.enable {
     services = {
       gitea = {
@@ -39,6 +46,11 @@ in {
         enableACME = true;
         forceSSL = true;
         locations = { "/" = { proxyPass = "http://127.0.0.1:${toString config.services.gitea.settings.server.HTTP_PORT}"; }; };
+        extraConfig = mkIf (!cfg.expose) ''
+          allow ${config.link.service-ip}/24;
+          allow 127.0.0.1;
+          deny all; # deny all remaining ips
+        '';
       };
     };
   };

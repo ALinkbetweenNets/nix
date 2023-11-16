@@ -11,6 +11,9 @@
     main.enable = true;
     cpu-intel.enable = true;
     nvidia.enable = true;
+    plasma.enable = false;
+    gnome.enable = true;
+
   };
   networking.hostName = "hn";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ]; # Is this needed?
