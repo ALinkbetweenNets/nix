@@ -5,6 +5,23 @@ in {
   options.link.services.wg-link.enable = mkEnableOption "activate wg-link";
   config = mkIf cfg.enable {
     networking.nat.internalInterfaces = [ "wg-link" ];
+    networking.extraHosts =
+      ''
+        10.0.1.1 linkserver.org
+        10.0.1.1 jitsi.linkserver.org
+        10.0.1.1 jellyfin.alinkbetweennets.de
+        10.0.1.1 jellyseer.alinkbetweennets.de
+        10.0.1.1 gitea.alinkbetweennets.de
+        10.0.1.1 paperless.alinkbetweennets.de
+        10.0.1.1 hedgedoc.alinkbetweennets.de
+        10.0.1.1 alinkbetweennets
+        10.0.1.1 nextcloud.alinkbetweennets.de
+        10.0.1.1 matrix.alinkbetweennets.de
+        10.0.1.1 onlyoffice.alinkbetweennets.de
+        10.0.1.1 vaultwarden.alinkbetweennets.de
+        10.0.1.1 element.alinkbetweennets.de
+        10.0.1.1 outline.alinkbetweennets.de
+      '';
     networking.wireguard.interfaces = {
       wg-link = {
         # Determines the IP/IPv6 address and subnet of the client's end of the tunnel interface

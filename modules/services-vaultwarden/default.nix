@@ -1,4 +1,4 @@
-{ config, system-config, pkgs, lib, ... }:
+{ config, lib, ... }:
 with lib;
 let cfg = config.link.services.vaultwarden;
 in {
