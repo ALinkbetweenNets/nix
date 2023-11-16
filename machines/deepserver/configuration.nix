@@ -30,7 +30,7 @@
       gitea.enable=true;
       outline = {
         enable = true;
-        oidClientId = "";
+        oidClientId = "1e030d3b-e260-4f22-a373-41d2b8fea1fa";
       };
       minio.enable = true;
     };
