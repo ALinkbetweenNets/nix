@@ -19,9 +19,9 @@ in {
         oidcAuthentication = {
           # Parts taken from
           # http://dex.localhost/.well-known/openid-configuration
-          authUrl = "https://gitea.alinkbetweennets.de/login/oauth/authorize";
-          tokenUrl = "https://gitea.alinkbetweennets.de/login/oauth/access_token";
-          userinfoUrl = "https://gitea.alinkbetweennets.de/login/oauth/userinfo";
+          authUrl = "https://gitea.${config.link.domain}/login/oauth/authorize";
+          tokenUrl = "https://gitea.${config.link.domain}/login/oauth/access_token";
+          userinfoUrl = "https://gitea.${config.link.domain}/login/oauth/userinfo";
           clientId = "2085b101-ee5c-42c1-acac-2f9265767d1f";
           clientSecretFile = "${config.link.secrets}/outline";
           scopes = [ "openid" "profile" "email" "groups"];
