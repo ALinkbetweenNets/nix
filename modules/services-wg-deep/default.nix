@@ -8,12 +8,15 @@ in {
       nat.internalInterfaces = [ "wg-deep" ];
       extraHosts =
         ''
+          10.0.0.1 deeps
           10.0.0.1 nextcloud.deepserver.org
           10.0.0.1 matrix.deepserver.org
           10.0.0.1 hedgedoc.deepserver.org
           10.0.0.1 onlyoffice.deepserver.org
           10.0.0.1 vaultwarden.deepserver.org
           10.0.0.1 element.deepserver.org
+          10.0.0.1 outline.deepserver.org
+          10.0.0.1 gitea.deepserver.org
         '';
       wireguard.interfaces = {
         wg-deep = {
