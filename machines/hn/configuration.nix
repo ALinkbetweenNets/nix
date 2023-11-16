@@ -11,8 +11,8 @@
     main.enable = true;
     cpu-intel.enable = true;
     nvidia.enable = true;
-    plasma.enable=false;
-    gnome.enable=true;
+    plasma.enable = false;
+    gnome.enable = true;
 
   };
   networking.hostName = "hn";
