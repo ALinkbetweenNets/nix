@@ -15,6 +15,7 @@ in {
     networking = {
       extraHosts =
         ''
+          10.0.0.1 deeps
           10.0.0.1 nextcloud.deepserver.org
           10.0.0.1 matrix.deepserver.org
           10.0.0.1 hedgedoc.deepserver.org
