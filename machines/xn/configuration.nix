@@ -16,6 +16,7 @@
     wg-link.enable = true;
     domain = "xn.local";
     service-ip = "127.0.0.1";
+    xrdp.enable = true;
 
   };
   networking = {
