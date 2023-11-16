@@ -20,6 +20,7 @@
     secrets = "/pwd";
     #seafile.enable = true;
     nginx.enable = true;
+    xrdp.enable = true;
     services = {
       gitea.enable = true;
       dns.enable = true;
@@ -50,9 +51,6 @@
     expose = true;
     eth = "enp6s0";
   };
-  services.xrdp.enable = true;
-  services.xrdp.defaultWindowManager = "startplasma-x11";
-  services.xrdp.openFirewall = true;
   # virtualisation.sharedDirectories = {
   #   arr = {
   #     source = "/rz/arr";
