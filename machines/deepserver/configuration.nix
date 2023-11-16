@@ -27,6 +27,12 @@
       nextcloud.enable = true;
       onlyoffice.enable = true;
       vaultwarden.enable = true;
+      gitea.enable = true;
+      outline = {
+        enable = true;
+        oidClientId = "1e030d3b-e260-4f22-a373-41d2b8fea1fa";
+      };
+      minio.enable = true;
     };
     coturn.enable = true;
     nginx.enable = true;
@@ -46,5 +52,10 @@
     firewall = {
       allowedTCPPorts = [ 80 443 ];
     };
+  };
+  lollypops.deployment = {
+    local-evaluation = true;
+    # ssh = { user = "l"; };
+    sudo.enable = true;
   };
 }

@@ -3,7 +3,7 @@
     disk = {
       nvme0n1 = {
         type = "disk";
-        device = "/dev/disk/by-diskseq/10";
+        device = "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {
@@ -30,7 +30,7 @@
                   allowDiscards = true;
                   #keyFile = "/tmp/secret.key";
                 };
-                # additionalKeyFiles = [ "/tmp/additionalSecret.key" ];
+                additionalKeyFiles = [ "/tmp/additionalSecret.key" ];
                 content = {
                   type = "btrfs";
                   extraArgs = [ "-f" ];
