@@ -37,6 +37,7 @@
     services.nextcloud = { enable = true; expose = true; };
     services.hedgedoc = { enable = true; expose = true; };
     outline.enable = true;
+    minio.enable=true;
     paperless.enable = true;
     # photoprism.enable = true;
     syncthing.enable = true;
