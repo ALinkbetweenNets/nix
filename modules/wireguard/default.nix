@@ -26,13 +26,5 @@ in {
       #   ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
       # '';
     };
-    # services = {
-    #   dnsmasq = {
-    #     enable = true;
-    #     extraConfig = ''
-    #       interface=wg-deep
-    #     '';
-    #   };
-    # };
   };
 }
