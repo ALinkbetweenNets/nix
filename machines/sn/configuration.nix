@@ -20,7 +20,7 @@
     secrets = "/pwd";
     #seafile.enable = true;
     nginx.enable = true;
-    xrdp.enable = true;
+    fail2ban.enable = true;
     services = {
       gitea.enable = true;
       dns.enable = true;
