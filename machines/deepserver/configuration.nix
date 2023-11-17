@@ -57,6 +57,7 @@
   lollypops.deployment = {
     local-evaluation = true;
     # ssh = { user = "l"; };
+    ssh = { host = "10.0.0.1"; };
     sudo.enable = true;
   };
 }
