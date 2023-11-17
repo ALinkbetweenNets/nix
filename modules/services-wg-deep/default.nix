@@ -49,12 +49,12 @@ in {
               presharedKeyFile = "/home/l/.keys/wg-deep-paul.preshared";
               allowedIPs = [ "10.0.0.3/32" "fdc9:281f:04d7:9ee9::3/128" ];
             }
-            # {
-            #   # peer2
-            #   publicKey = "";
-            #   presharedKeyFile = "/home/l/.keys/wg-deep-jucknath.preshared";
-            #   allowedIPs = [ "10.0.0.4/32" "fdc9:281f:04d7:9ee9::4/128" ];
-            # }
+            {
+              # Jucknath
+              publicKey = "YGYkjZpkYGiKYxgNeT/fhP9PePij45f1wlNWLz+ugzo=";
+              presharedKeyFile = "/home/l/.keys/wg-deep-jucknath.preshared";
+              allowedIPs = [ "10.0.0.4/32" "fdc9:281f:04d7:9ee9::4/128" ];
+            }
             # More peers can be added here.
           ];
         };
