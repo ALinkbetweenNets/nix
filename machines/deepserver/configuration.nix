@@ -20,6 +20,7 @@
     service-ip = "10.0.0.1";
     eth = "eth0";
     service-interface = "wg-deep";
+    fail2ban.enable = true;
     services = {
       wg-deep.enable = true;
       matrix.enable = true;
