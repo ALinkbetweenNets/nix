@@ -51,7 +51,7 @@ in {
             }
             {
               # Jucknath
-              publicKey = "YGYkjZpkYGiKYxgNeT/fhP9PePij45f1wlNWLz+ugzo=";
+              publicKey = "YCUspkxTbe2uVG/vLX/5VaPOUKBJBT9qNGNu8+xGkmw=";
               presharedKeyFile = "/home/l/.keys/wg-deep-jucknath.preshared";
               allowedIPs = [ "10.0.0.4/32" "fdc9:281f:04d7:9ee9::4/128" ];
             }
