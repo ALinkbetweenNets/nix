@@ -45,6 +45,7 @@ in {
         locations."/" = {
           proxyPass = "http://127.0.0.1:${toString config.services.outline.port}";
         };
+        proxyWebsockets = true;
         extraConfig = mkIf (!cfg.expose) ''
           allow ${config.link.service-ip}/24;
             allow 127.0.0.1;
