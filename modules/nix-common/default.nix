@@ -29,6 +29,8 @@
     overlays = [
       flake-self.overlays.default
       flake-self.inputs.nur.overlay
+      flake-self.inputs.crab_share.overlays.default
+
 
       (final: prev: {
         cudapkgs = import flake-self.inputs.nixpkgs {
