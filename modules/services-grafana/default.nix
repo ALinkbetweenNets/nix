@@ -25,7 +25,7 @@ in {
       };
       prometheus = {
         enable = true;
-        port = 9001;
+        port = 9005;
         exporters = {
           zfs = {
             enable = true;
