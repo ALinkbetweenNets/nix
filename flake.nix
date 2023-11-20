@@ -24,6 +24,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     vscode-server.url = "github:msteen/nixos-vscode-server";
+    crab_share = {
+      url = "github:lounge-rocks/crab_share";
+    };
   };
 
   outputs = { self, nixpkgs, nur, ... }@inputs:
