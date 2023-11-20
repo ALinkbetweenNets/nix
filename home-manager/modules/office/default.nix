@@ -29,6 +29,7 @@ in
         pdfmixtool # appears to be broken and unbuildable
         onlyoffice-bin
         speedcrunch
+        # testdisk # data recovery
       ];
   };
 }
