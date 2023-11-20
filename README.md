@@ -1,4 +1,4 @@
-## ALinkbetweenNets's personal NixOS Infratructure Configuration
+## ALinkbetweenNets's NixOS Infratructure Configuration
 
 [![Build and test](https://build.lounge.rocks/api/badges/23/status.svg)](https://build.lounge.rocks/repos/23)
 
@@ -14,4 +14,4 @@ For list of packages see https://search.nixos.org/packages (by default the unsta
 
 For available ![Home-Manager](https://nixos.wiki/wiki/Home_Manager) options see https://nix-community.github.io/home-manager/options.html
 
-Many thanks to ![@MayNiklas](https://github.com/MayNiklas) for teaching me the many ins and outs of NixOS as well as helping me to create the initial flake and the rough structure of this repository.
+Many thanks to ![@MayNiklas](https://github.com/MayNiklas) for teaching me the many ins and outs of NixOS as well as helping me to create the initial flake and rough structure of this repository.
