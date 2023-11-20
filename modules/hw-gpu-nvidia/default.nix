@@ -34,6 +34,7 @@ in
       nvtop-nvidia
       pciutils
       vdpauinfo
+      cudaPackages.cudatoolkit
     ];
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware = {
