@@ -41,6 +41,7 @@
       };
       minio.enable = true;
     };
+    zola.enable = true;
     grafana.enable = true;
     # home-assistant.enable = true;
     jellyfin.enable = true;
