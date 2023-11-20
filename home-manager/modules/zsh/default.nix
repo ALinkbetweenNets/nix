@@ -90,8 +90,8 @@ in {
       shellAliases = rec {
         # switching within a flake repository
         nrg = "sudo nixos-rebuild switch --use-remote-sudo --flake github:alinkbetweennets/nix";
-        nr = "cd /home/l/nix;git pull;sudo nixos-rebuild switch --use-remote-sudo --flake /home/l/nix --upgrade";
-        nrb = "sudo nixos-rebuild switch --use-remote-sudo --flake /home/l/nix --upgrade";
+        nr = "cd /home/l/nix;git pull;sudo nixos-rebuild switch --use-remote-sudo --flake /home/l/nix";
+        nrb = "sudo nixos-rebuild switch --use-remote-sudo --flake /home/l/nix";
         ngc = "sudo nix-collect-garbage -d";
         discord = "nohup discord --use-gl=desktop &";
         netdiscover = "sudo netdiscover";
