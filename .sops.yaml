@@ -1,4 +1,9 @@
 keys:
-  - &user_l age16mpplt8l6vm5ny8mk42e7n8gjflr5yxtkztxadxlzjegg4a4y3hsuwrt5h
+  - &xn_l age1j6jjvtpyurh3ph3f5wpqrruyz5ccwzhy9fk8hsyn2kg8vagw7plq9lg4fa
+  - &sn_l age1csf7ug0q0svwnnukg0dgcfw79ssgynwj452y230mg6nzzlhw63as2qugxt
 creation_rules:
-  - path_regex: secrets/users.yaml$
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *xn_l
+      - *sn_l
