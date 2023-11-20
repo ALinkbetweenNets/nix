@@ -29,6 +29,7 @@ in
         pdfmixtool # appears to be broken and unbuildable
         onlyoffice-bin
         speedcrunch
+        picard # music tagger
         # testdisk # data recovery
       ];
   };
