@@ -35,6 +35,7 @@ with lib; {
         netcat-openbsd
         socat
         tcpdump
+        crab_share
         (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ] ++ lib.optionals
         (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
@@ -68,6 +69,7 @@ with lib; {
         # our packages
         flake-self.overlays.default
         flake-self.inputs.nur.overlay
+        flake-self.inputs.crab_share.overlays.default
         (final: prev: {
           cudapkgs = import flake-self.inputs.nixpkgs {
             system = "${pkgs.system}";
