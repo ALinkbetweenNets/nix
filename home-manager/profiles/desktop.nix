@@ -45,6 +45,7 @@ with lib; {
         libsForQt5.konsole
         libsForQt5.yakuake
         vivaldi
+        bitwarden
       ] ++ lib.optionals
         (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
     programs = {
