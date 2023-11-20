@@ -1,4 +1,4 @@
-## ALinkbetweenNets's NixOS Infratructure Configuration
+## ALinkbetweenNets's NixOS Infrastructure Configuration
 
 [![Build and test](https://build.lounge.rocks/api/badges/23/status.svg)](https://build.lounge.rocks/repos/23)
 
