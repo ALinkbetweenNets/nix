@@ -18,6 +18,10 @@
       system-config = config;
     };
   };
+  sops = {
+    defaultSopsFile = "./secrets/secrets.yaml";
+    age.sshKeyPaths = [ "/home/l/.ssh/id_ed25519" ];
+  };
   # Home Manager configuration
   # Allow unfree licenced packages
   nixpkgs = {
