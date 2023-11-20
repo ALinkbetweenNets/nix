@@ -21,6 +21,7 @@
     #seafile.enable = true;
     nginx.enable = true;
     fail2ban.enable = true;
+    service-ip = "10.0.1.1";
     services = {
       gitea.enable = true;
       dns.enable = true;
