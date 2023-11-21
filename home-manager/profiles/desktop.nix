@@ -44,6 +44,7 @@ with lib; {
         libsForQt5.calendarsupport
         libsForQt5.konsole
         libsForQt5.yakuake
+        libsForQt5.plasma-vault
         vivaldi
         bitwarden
       ] ++ lib.optionals
