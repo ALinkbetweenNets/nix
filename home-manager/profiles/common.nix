@@ -69,7 +69,7 @@ with lib; {
         # our packages
         flake-self.overlays.default
         flake-self.inputs.nur.overlay
-        flake-self.inputs.crab_share.overlays.default
+        flake-self.inputs.crab_share.overlay
         (final: prev: {
           cudapkgs = import flake-self.inputs.nixpkgs {
             system = "${pkgs.system}";
