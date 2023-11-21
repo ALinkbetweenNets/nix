@@ -13,7 +13,7 @@
     secrets = "/home/l/.keys";
     wireguard.enable = true;
     wg-deep.enable = true;
-    wg-link.enable = true;
+    # wg-link.enable = true;
     domain = "xn.local";
     service-ip = "127.0.0.1";
     xrdp.enable = true;
