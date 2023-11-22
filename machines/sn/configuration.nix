@@ -41,7 +41,7 @@
       };
       minio.enable = true;
     };
-    zola.enable = true;
+    # zola.enable = true;
     grafana.enable = true;
     # home-assistant.enable = true;
     jellyfin.enable = true;
@@ -81,7 +81,7 @@
   };
   # nix run .\#lollypops -- meet:rebuild
   lollypops.deployment = {
-    # local-evaluation = true;
+    local-evaluation = true;
     # ssh = { host = "10.0.1.1"; };
     # sudo.enable = true;
   };

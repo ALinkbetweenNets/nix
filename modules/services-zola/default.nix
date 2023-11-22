@@ -14,6 +14,7 @@ in
       '';
       serviceConfig.WorkingDirectory = "/home/l/Blog\ of\ A\ Link\ Between\ Nets";
       path = with pkgs; [ zola ];
+      confinement.packages = with pkgs; [ zola ];
       wantedBy = [ "multi-user.target" ]; # starts after login, reboot after first time rebuild
     };
     services.nginx.virtualHosts."blog.${config.link.domain}" = {
