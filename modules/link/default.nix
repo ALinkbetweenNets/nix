@@ -26,6 +26,11 @@
       default = config.link.eth;
       description = "Main service interface";
     };
+    allowed = mkOption {
+      type = types.listOf types.str;
+      default = [ "0.0.0.0" ];
+      description = "IPs allowed to access services";
+    };
     storage = mkOption {
       type = types.str;
       default = "/var/lib";
