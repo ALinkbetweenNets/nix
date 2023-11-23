@@ -21,9 +21,9 @@ in {
         port = 3123;
         publicUrl = "https://outline.${config.link.domain}";
         storage = {
-          accessKey = "outline";
+          accessKey = "T6Yv7hzGdIiULmydtCAV";
           secretKeyFile = "${config.link.secrets}/minio-outline";
-          uploadBucketUrl = "https://minio.s3.${config.link.domain}";
+          uploadBucketUrl = "https://s3.${config.link.domain}";
           uploadBucketName = "outline";
           region = "eu-central-1";
         };
