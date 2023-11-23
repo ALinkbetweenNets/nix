@@ -4,23 +4,23 @@ let cfg = config.link.wg-link;
 in {
   options.link.wg-link.enable = mkEnableOption "activate wg-link";
   config = mkIf cfg.enable {
-    networking.extraHosts =
-      ''
-        10.0.1.1 linkserver.org
-        10.0.1.1 jitsi.linkserver.org
-        10.0.1.1 jellyfin.alinkbetweennets.de
-        10.0.1.1 jellyseer.alinkbetweennets.de
-        10.0.1.1 gitea.alinkbetweennets.de
-        10.0.1.1 paperless.alinkbetweennets.de
-        10.0.1.1 hedgedoc.alinkbetweennets.de
-        10.0.1.1 alinkbetweennets
-        10.0.1.1 nextcloud.alinkbetweennets.de
-        10.0.1.1 matrix.alinkbetweennets.de
-        10.0.1.1 onlyoffice.alinkbetweennets.de
-        10.0.1.1 vaultwarden.alinkbetweennets.de
-        10.0.1.1 element.alinkbetweennets.de
-        10.0.1.1 outline.alinkbetweennets.de
-      '';
+    # networking.extraHosts =
+    #   ''
+    #     10.0.1.1 linkserver.org
+    #     10.0.1.1 jitsi.linkserver.org
+    #     10.0.1.1 jellyfin.alinkbetweennets.de
+    #     10.0.1.1 jellyseer.alinkbetweennets.de
+    #     10.0.1.1 gitea.alinkbetweennets.de
+    #     10.0.1.1 paperless.alinkbetweennets.de
+    #     10.0.1.1 hedgedoc.alinkbetweennets.de
+    #     10.0.1.1 alinkbetweennets
+    #     10.0.1.1 nextcloud.alinkbetweennets.de
+    #     10.0.1.1 matrix.alinkbetweennets.de
+    #     10.0.1.1 onlyoffice.alinkbetweennets.de
+    #     10.0.1.1 vaultwarden.alinkbetweennets.de
+    #     10.0.1.1 element.alinkbetweennets.de
+    #     10.0.1.1 outline.alinkbetweennets.de
+    #   '';
     services.dnsmasq.extraConfig = ''
       interface = wg-deep
     '';
