@@ -20,6 +20,6 @@
   lollypops.deployment = {
     local-evaluation = true;
     # ssh = { user = "l"; };
-    sudo.enable = true;
+    # sudo.enable = true;
   };
 }

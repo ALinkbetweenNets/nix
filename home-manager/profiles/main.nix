@@ -60,6 +60,7 @@ with lib; {
       youtube-tui
       catimg
       jellyfin-mpv-shim
+      digikam # photo library
       # Silly BS
       figlet # Fancytext
       uwuify
