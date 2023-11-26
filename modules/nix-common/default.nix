@@ -19,9 +19,10 @@
     };
   };
   sops = {
-    defaultSopsFile = "./secrets/secrets.yaml";
+    defaultSopsFile = ../../secrets/secrets.yaml;
     age.sshKeyPaths = [ "/home/l/.ssh/id_ed25519" ];
-    # secrets.my-password.neededForUsers = true;
+    secrets."users/l/password"={neededForUsers = true;};
+
 
   };
   # Home Manager configuration
