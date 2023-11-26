@@ -1,9 +1,11 @@
 keys:
   - &xn_l age1sv5kkesastynr2pxacn7eagurczswavzfxtx25hurve5mkver3kqqj8n44
   - &sn_l age1csf7ug0q0svwnnukg0dgcfw79ssgynwj452y230mg6nzzlhw63as2qugxt
+  - &dn_l age1j78zvzp0l2mglau4uvsewy0f563qnc0pnpllq0gz54lu6ffrx5wq7qmjfp
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
     - age:
       - *xn_l
       - *sn_l
+      - *dn_l
