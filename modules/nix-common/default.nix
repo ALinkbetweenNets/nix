@@ -21,6 +21,8 @@
   sops = {
     defaultSopsFile = "./secrets/secrets.yaml";
     age.sshKeyPaths = [ "/home/l/.ssh/id_ed25519" ];
+    # secrets.my-password.neededForUsers = true;
+
   };
   # Home Manager configuration
   # Allow unfree licenced packages
