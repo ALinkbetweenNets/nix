@@ -29,29 +29,30 @@ in {
       clientMaxBodySize = "1000m";
 
       # sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
-      # appendHttpConfig = ''
-      #   # Add HSTS header with preloading to HTTPS requests.
-      #   # Adding this header to HTTP requests is discouraged
-      #   map $scheme $hsts_header {
-      #       https   "max-age=31536000; includeSubdomains; preload";
-      #   }
-      #   add_header Strict-Transport-Security $hsts_header;
+      appendHttpConfig = ''
 
-      #   # Enable CSP for your services.
-      #   #add_header Content-Security-Policy "script-src 'self'; object-src 'none'; base-uri 'none';" always;
+        # Add HSTS header with preloading to HTTPS requests.
+        # Adding this header to HTTP requests is discouraged
+        map $scheme $hsts_header {
+            https   "max-age=31536000; includeSubdomains; preload";
+        }
+        add_header Strict-Transport-Security $hsts_header;
 
-      #   # Minimize information leaked to other domains
-      #   add_header 'Referrer-Policy' 'origin-when-cross-origin';
+        # Enable CSP for your services.
+        #add_header Content-Security-Policy "script-src 'self'; object-src 'none'; base-uri 'none';" always;
 
-      #   # Disable embedding as a frame
-      #   add_header X-Frame-Options DENY;
+        # Minimize information leaked to other domains
+        add_header 'Referrer-Policy' 'origin-when-cross-origin';
 
-      #   # Prevent injection of code in other mime types (XSS Attacks)
-      #   add_header X-Content-Type-Options nosniff;
+        # Disable embedding as a frame
+        add_header X-Frame-Options DENY;
 
-      #   # This might create errors
-      #   proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
-      # '';
+        # Prevent injection of code in other mime types (XSS Attacks)
+        add_header X-Content-Type-Options nosniff;
+
+        # This might create errors
+        #proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
+      '';
     };
     security.acme = {
       acceptTerms = true;
