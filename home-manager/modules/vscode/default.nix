@@ -113,7 +113,11 @@ in {
         key = "ctrl+c";
         command = "editor.action.clipboardCopyAction";
         when = "textInputFocus";
-      }];
+      }
+        {
+          key = "ctrl+[Backquote]";
+          command = "terminal.focus";
+        }];
     };
   };
 }
