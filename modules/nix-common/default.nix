@@ -21,7 +21,7 @@
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;
     age.sshKeyPaths = [ "/home/l/.ssh/id_ed25519" ];
-    secrets."users/l/password"={neededForUsers = true;};
+    secrets."users/l/password" = { neededForUsers = true; };
 
 
   };
