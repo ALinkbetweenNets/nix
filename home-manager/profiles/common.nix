@@ -12,8 +12,8 @@ with lib; {
     zsh
   ];
   config = {
-    home.sessionVariables={
-      EDITOR="nvim";
+    home.sessionVariables = {
+      EDITOR = "nvim";
     };
     services.gpg-agent = {
       enable = true;

@@ -2,11 +2,8 @@
 with lib;
 let cfg = config.link.users.l;
 in {
-
   options.link.users.l = { enable = mkEnableOption "activate user l"; };
-
   config = mkIf cfg.enable {
-
     users.users.l = {
       isNormalUser = true;
       home = "/home/l";
@@ -24,10 +21,8 @@ in {
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDF+rCKg9anv0pU96BL0cUcbKU8w1q75kt+JGroJcE19 l@sn"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINI74luZ3xJcgaZYHzn5DtSpYufml+SbhZQV12gWGShS l@dn"
       ];
-      hashedPassword=config.sops.secrets.users.l.password; # Initial password
+      hashedPasswordFile = config.sops.secrets."users/l/password".path; # Initial password
     };
     nix.settings.allowed-users = [ "l" ];
-
   };
-
 }
