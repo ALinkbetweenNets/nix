@@ -9,18 +9,18 @@ in {
       ''
         10.0.1.1 linkserver.org
         10.0.1.1 jitsi.linkserver.org
-        10.0.1.1 jellyfin.alinkbetweennets.de
-        10.0.1.1 jellyseer.alinkbetweennets.de
-        10.0.1.1 gitea.alinkbetweennets.de
-        10.0.1.1 paperless.alinkbetweennets.de
-        10.0.1.1 hedgedoc.alinkbetweennets.de
+        10.0.1.1 jellyfin.linkserver.org
+        10.0.1.1 jellyseer.linkserver.org
+        10.0.1.1 gitea.linkserver.org
+        10.0.1.1 paperless.linkserver.org
+        10.0.1.1 hedgedoc.linkserver.org
         10.0.1.1 alinkbetweennets
-        10.0.1.1 nextcloud.alinkbetweennets.de
-        10.0.1.1 matrix.alinkbetweennets.de
-        10.0.1.1 onlyoffice.alinkbetweennets.de
-        10.0.1.1 vaultwarden.alinkbetweennets.de
-        10.0.1.1 element.alinkbetweennets.de
-        10.0.1.1 outline.alinkbetweennets.de
+        10.0.1.1 nextcloud.linkserver.org
+        10.0.1.1 matrix.linkserver.org
+        10.0.1.1 onlyoffice.linkserver.org
+        10.0.1.1 vaultwarden.linkserver.org
+        10.0.1.1 element.linkserver.org
+        10.0.1.1 outline.linkserver.org
       '';
     networking.wireguard.interfaces = {
       wg-link = {
