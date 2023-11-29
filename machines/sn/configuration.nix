@@ -60,10 +60,6 @@
   #   };
   # };
   services.onedrive.enable = true;
-  fileSystems."/export" = {
-    device = "/rz";
-    options = [ "bind" ];
-  };
   boot = {
     loader.grub.device = "/dev/sdd";
     zfs.extraPools = [ "wdp" ];
