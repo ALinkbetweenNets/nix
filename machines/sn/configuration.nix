@@ -11,7 +11,7 @@
     grub.enable = true;
     systemd-boot.enable = false;
     fs.zfs.enable = true;
-    hardware.enable = true;
+    tower.enable = true;
     cpu-amd.enable = true;
     nvidia.enable = true;
     domain = "alinkbetweennets.de";
@@ -46,7 +46,6 @@
     grafana.enable = true;
     # home-assistant.enable = true;
     jellyfin.enable = true;
-    desktop.enable = true;
     paperless.enable = true;
     # photoprism.enable = true;
     syncthing.enable = true;
