@@ -29,7 +29,10 @@ in {
       clientMaxBodySize = "1000m";
 
       # sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
-      appendHttpConfig = ''
+      commonHttpConfig = ''
+        server_names_hash_bucket_size 128;
+        proxy_headers_hash_max_size 1024;
+        proxy_headers_hash_bucket_size 256;
 
         # Add HSTS header with preloading to HTTPS requests.
         # Adding this header to HTTP requests is discouraged
