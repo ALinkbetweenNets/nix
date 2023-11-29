@@ -17,6 +17,7 @@
     domain = "xn.local";
     service-ip = "127.0.0.1";
     xrdp.enable = true;
+    eth = "wlp0s20f3";
   };
   networking = {
     hostName = "xn";
