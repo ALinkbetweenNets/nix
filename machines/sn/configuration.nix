@@ -22,6 +22,7 @@
     nginx.enable = true;
     fail2ban.enable = true;
     service-ip = "10.0.1.1";
+    fs.ntfs.enable = true;
     services = {
       gitea.enable = true;
       dns.enable = true;
