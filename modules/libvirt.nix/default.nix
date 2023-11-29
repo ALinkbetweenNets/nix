@@ -25,7 +25,7 @@ in {
       spiceUSBRedirection.enable = true;
     };
     programs.dconf.enable = lib.mkForce true;
-    networking.bridges.br0.interfaces = mkIf config.link.tower [ config.link.eth ];
+    networking.bridges.br0.interfaces = [ config.link.eth ];
     networking.interfaces.br0 = { useDHCP = true; };
     networking.firewall.allowedTCPPorts = [
       5900 # spice
