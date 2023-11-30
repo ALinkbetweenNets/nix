@@ -23,12 +23,18 @@ in
         config.sops.secrets."oid/grist/clientId".path
         config.sops.secrets."oid/grist/secret".path
       ];
-      config.sops.secrets."oid/grist/clientId".group = "docker";
-      config.sops.secrets."oid/grist/clientId".mode = "0440";
-      config.sops.secrets."oid/grist/secret".group = "docker";
-      config.sops.secrets."oid/grist/secret".mode = "0440";
       volumes = [ "${config.link.storage}/grist:/persist" ];
       ports = [ "8484:8484" ];
+    };
+    sops.secrets = {
+      "oid/grist/clientId" = {
+        group = "docker";
+        mode = "0440";
+      };
+      "oid/grist/secret" = {
+        group = "docker";
+        mode = "0440";
+      };
     };
     services.nginx.virtualHosts."grist.${config.link.domain}" = {
       enableACME = true;
