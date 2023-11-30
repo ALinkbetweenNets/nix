@@ -14,8 +14,6 @@ in {
     virtualisation.oci-containers = {
       backend = "docker";
     };
-    users.extraUsers.l.extraGroups =
-      [ "docker" ];
     environment.systemPackages = with pkgs; [
       docker
       # docker-compose
