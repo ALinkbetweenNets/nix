@@ -46,11 +46,6 @@ in {
         # '';
       };
     };
-    security.acme.certs.${config.services.coturn.realm} = {
-      /* insert here the right configuration to obtain a certificate */
-      postRun = "systemctl restart coturn.service";
-      group = "turnserver";
-    };
     networking.firewall = {
       interfaces."${config.link.service-interface}" =
         let
