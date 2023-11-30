@@ -7,7 +7,7 @@ in {
     users.users.l = {
       isNormalUser = true;
       home = "/home/l";
-      extraGroups = [ "wheel" "adbusers" "audio" "plugdev" "docker" "wireshark" "video" ]
+      extraGroups = [ "wheel" "adbusers" "audio" "plugdev" "wireshark" "video" ]
         ++ lib.optionals config.networking.networkmanager.enable
         [ "networkmanager" ]
         ++ lib.optionals config.link.printing.enable
@@ -23,7 +23,7 @@ in {
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDF+rCKg9anv0pU96BL0cUcbKU8w1q75kt+JGroJcE19 l@sn"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINI74luZ3xJcgaZYHzn5DtSpYufml+SbhZQV12gWGShS l@dn"
       ];
-      hashedPasswordFile = config.sops.secrets."users/l/password".path; # Initial password
+      hashedPasswordFile = config.sops.secrets."users/l/hashedPassword".path; # Initial password
     };
     nix.settings.allowed-users = [ "l" ];
   };
