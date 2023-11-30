@@ -23,4 +23,9 @@
     mountPoint = "${config.link.storage}";
     options = [ "trans=virtio" ];
   };
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "server";
+    extraUpFlags = [ "--advertise-exit-node" ];
+  };
 }
