@@ -21,9 +21,6 @@ in {
       services = {
         matrix-synapse = with config.services.coturn;{
           enable = true;
-          turn_uris = [ "turn:${realm}:3478?transport=udp" "turn:${realm}:3478?transport=tcp" ];
-          turn_shared_secret = static-auth-secret;
-          turn_user_lifetime = "1h";
           settings = {
             public_baseurl = if cfg.nginx then "https://matrix.${config.link.domain}" else "http://${config.link.service-ip}:8008";
             server_name = "matrix.${config.link.domain}";
