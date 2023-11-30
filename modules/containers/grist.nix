@@ -12,6 +12,7 @@ in
       # init = true;
       autoStart = true;
       # container_name = "grist-aio-mastercontainer";
+      environment.APP_HOME_URL="https://grist.${config.link.domain}";
       volumes = [ "${config.link.storage}/grist:/persist" ];
       ports = [ "8484:8484" ];
     };
