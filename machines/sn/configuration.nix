@@ -28,25 +28,6 @@
       grist.enable = true;
       diagrams.enable = true;
     };
-    services = {
-      gitea.enable = true;
-      dns.enable = true;
-      wg-link.enable = true;
-      # services.jitsi = {
-      #   enable = true;
-      #   expose = false;
-      # };
-      # keycloak.enable = true;
-      nextcloud = { enable = true; expose = true; };
-      hedgedoc = { enable = true; expose = true; };
-      vaultwarden = { enable = true; expose = false; };
-      outline = {
-        enable = true;
-        oidClientId = "2085b101-ee5c-42c1-acac-2f9265767d1f";
-        expose = true;
-      };
-      minio.enable = true;
-    };
     # zola.enable = true;
     grafana.enable = true;
     # home-assistant.enable = true;
@@ -54,7 +35,26 @@
     paperless.enable = true;
     # photoprism.enable = true;
     syncthing.enable = true;
-    # services.matrix.enable = true;
+    services = {
+      dns.enable = true;
+      gitea.enable = true;
+      hedgedoc = { enable = true; expose = true; };
+      matrix.enable = true;
+      minio.enable = true;
+      nextcloud = { enable = true; expose = true; };
+      vaultwarden = { enable = true; expose = false; };
+      wg-link.enable = true;
+      outline = {
+        enable = true;
+        oidClientId = "2085b101-ee5c-42c1-acac-2f9265767d1f";
+        expose = true;
+      };
+      # services.jitsi = {
+      #   enable = true;
+      #   expose = false;
+      # };
+      # keycloak.enable = true;
+    };
     expose = true;
     eth = "enp6s0";
   };
