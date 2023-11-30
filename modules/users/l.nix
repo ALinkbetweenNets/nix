@@ -14,6 +14,8 @@ in {
         [ "scanner" "lp" ]
         ++ lib.optionals config.link.libvirt.enable
         [ "libvirtd" "kvm" ]
+        ++ lib.optionals config.link.docker.enable
+        [ "docker" ]
       ;
       shell = "${pkgs.zsh}/bin/zsh";
       openssh.authorizedKeys.keys = [
