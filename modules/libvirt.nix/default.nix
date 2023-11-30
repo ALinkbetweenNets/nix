@@ -20,13 +20,14 @@ in {
           ovmf.enable = true;
           runAsRoot = true;
         };
+        onBoot = "ignore";
         onShutdown = "shutdown";
       };
       spiceUSBRedirection.enable = true;
     };
     programs.dconf.enable = lib.mkForce true;
-    networking.bridges.br0.interfaces = [ config.link.eth ];
-    networking.interfaces.br0 = { useDHCP = true; };
+    # networking.bridges.br0.interfaces = [ config.link.eth ];
+    # networking.interfaces.br0 = { useDHCP = true; };
     networking.firewall.allowedTCPPorts = [
       5900 # spice
     ];
