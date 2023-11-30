@@ -24,7 +24,10 @@
     fail2ban.enable = true;
     service-ip = "10.0.1.1";
     fs.ntfs.enable = true;
-    containers.grist.enable = true;
+    containers = {
+      grist.enable = true;
+      diagrams.enable = true;
+    };
     services = {
       gitea.enable = true;
       dns.enable = true;
@@ -80,7 +83,7 @@
   # nix run .\#lollypops -- meet:rebuild
   lollypops.deployment = {
     local-evaluation = true;
-    # ssh = { host = "10.0.1.1"; };
+    ssh = { host = "10.0.1.1"; };
     # sudo.enable = true;
   };
 }
