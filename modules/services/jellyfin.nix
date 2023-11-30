@@ -1,4 +1,4 @@
-{ config, system-config, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 with lib;
 let cfg = config.link.jellyfin;
 in {
@@ -11,11 +11,9 @@ in {
       jellyfin = {
         # package = pkgs.cudapkgs.jellyfin;
         enable = true;
-        openFirewall = true;
       };
       jellyseerr = {
         enable = true;
-        openFirewall = true;
       };
       nginx.virtualHosts = {
         "jellyfin.${config.link.domain}" = {
