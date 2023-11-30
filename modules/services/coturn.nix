@@ -46,5 +46,25 @@ in {
         # '';
       };
     };
+    security.acme.certs.${config.services.coturn.realm} = {
+      /* insert here the right configuration to obtain a certificate */
+      postRun = "systemctl restart coturn.service";
+      group = "turnserver";
+    };
+    networking.firewall = {
+      interfaces."${config.link.service-interface}" =
+        let
+          range = with config.services.coturn; [{
+            from = min-port;
+            to = max-port;
+          }];
+        in
+        {
+          allowedUDPPortRanges = range;
+          allowedUDPPorts = [ 3478 5349 ];
+          allowedTCPPortRanges = [ ];
+          allowedTCPPorts = [ 3478 5349 8008 ];
+        };
+    };
   };
 }
