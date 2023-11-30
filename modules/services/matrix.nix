@@ -21,6 +21,9 @@ in {
       services = {
         matrix-synapse = with config.services.coturn;{
           enable = true;
+          turn_uris = [ "turn:${realm}:3478?transport=udp" "turn:${realm}:3478?transport=tcp" ];
+          turn_shared_secret = static-auth-secret;
+          turn_user_lifetime = "1h";
           settings = {
             public_baseurl = if cfg.nginx then "https://matrix.${config.link.domain}" else "http://${config.link.service-ip}:8008";
             server_name = "matrix.${config.link.domain}";
@@ -70,35 +73,20 @@ in {
             deny all; # deny all remaining ips
           '';
         };
-        nginx.virtualHosts."element.${config.link.domain}" = {
-          enableACME = true;
-          forceSSL = true;
-          root = pkgs.element-web.override {
-            conf = {
-              default_server_config = "https://element.${config.link.domain}";
-            };
-          };
-          extraConfig = mkIf (!cfg.expose) ''
-            allow ${config.link.service-ip}/24;
-            allow 127.0.0.1;
-            deny all; # deny all remaining ips
-          '';
-        };
-      };
-      networking.firewall = {
-        interfaces."${config.link.service-interface}" =
-          let
-            range = with config.services.coturn; [{
-              from = min-port;
-              to = max-port;
-            }];
-          in
-          {
-            allowedUDPPortRanges = range;
-            allowedUDPPorts = [ 3478 5349 ];
-            allowedTCPPortRanges = [ ];
-            allowedTCPPorts = [ 3478 5349 8008 ];
-          };
+        # nginx.virtualHosts."element.${config.link.domain}" = {
+        #   enableACME = true;
+        #   forceSSL = true;
+        #   root = pkgs.element-web.override {
+        #     conf = {
+        #       default_server_config = "https://element.${config.link.domain}";
+        #     };
+        #   };
+        #   extraConfig = mkIf (!cfg.expose) ''
+        #     allow ${config.link.service-ip}/24;
+        #     allow 127.0.0.1;
+        #     deny all; # deny all remaining ips
+        #   '';
+        # };
       };
     };
 }
