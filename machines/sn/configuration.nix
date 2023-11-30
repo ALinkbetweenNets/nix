@@ -14,6 +14,7 @@
     tower.enable = true;
     cpu-amd.enable = true;
     nvidia.enable = true;
+    docker.enable = true;
     domain = "alinkbetweennets.de";
     storage = "/rz/srv";
     syncthingDir = "/rz/syncthing";
@@ -23,6 +24,7 @@
     fail2ban.enable = true;
     service-ip = "10.0.1.1";
     fs.ntfs.enable = true;
+    containers.grist.enable = true;
     services = {
       gitea.enable = true;
       dns.enable = true;

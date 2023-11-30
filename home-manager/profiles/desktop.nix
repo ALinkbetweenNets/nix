@@ -45,7 +45,7 @@ with lib; {
         libsForQt5.konsole
         libsForQt5.yakuake
         libsForQt5.plasma-vault
-        ktailctl  # Tailscale GUI
+        ktailctl # Tailscale GUI
         vivaldi
         bitwarden
       ] ++ lib.optionals
