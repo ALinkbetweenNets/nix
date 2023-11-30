@@ -17,7 +17,7 @@ in
         GRIST_OIDC_SP_HOST = "https://grist.${config.link.domain}";
         GRIST_OIDC_IDP_ISSUER = "https://gitea.${config.link.domain}/.well-known/openid-configuration";
         GRIST_OIDC_IDP_SCOPES = "openid profile email";
-        # GRIST_OIDC_IDP_SKIP_END_SESSION_ENDPOINT
+        GRIST_OIDC_IDP_SKIP_END_SESSION_ENDPOINT = "true";
       };
       environmentFiles = [
         config.sops.secrets."oid/grist/clientId".path
@@ -41,6 +41,7 @@ in
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://127.0.0.1:8484";
+        proxyWebsockets = true;
       };
       # extraConfig = mkIf (!cfg.expose) ''
       #   allow ${config.link.service-ip}/24;
