@@ -35,6 +35,10 @@ in {
       steam.enable = true;
       steam.gamescopeSession.enable = true;
     };
+    services.tailscale = {
+      enable = true;
+      useRoutingFeatures = "client";
+    };
     networking.networkmanager.appendNameservers = [
       "1.1.1.1"
       "192.168.178.1"
