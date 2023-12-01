@@ -77,15 +77,92 @@ in {
       };
       plugins = [
         {
-          name = "fast-syntax-highlighting";
-          file = "fast-syntax-highlighting.plugin.zsh";
-          src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
-        }
-        {
           name = "zsh-nix-shell";
           file = "nix-shell.plugin.zsh";
           src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
         }
+        # {
+        #   name = "fast-syntax-highlighting";
+        #   file = "fast-syntax-highlighting.plugin.zsh";
+        #   src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+        # }
+        # {
+        #   name = "agkozak-zsh-prompt";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "agkozak";
+        #     repo = "agkozak-zsh-prompt";
+        #     rev = "v3.7.0";
+        #     sha256 = "1iz4l8777i52gfynzpf6yybrmics8g4i3f1xs3rqsr40bb89igrs";
+        #   };
+        #   file = "agkozak-zsh-prompt.plugin.zsh";
+        # }
+        # {
+        #   name = "formarks";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "wfxr";
+        #     repo = "formarks";
+        #     rev = "8abce138218a8e6acd3c8ad2dd52550198625944";
+        #     sha256 = "1wr4ypv2b6a2w9qsia29mb36xf98zjzhp3bq4ix6r3cmra3xij90";
+        #   };
+        #   file = "formarks.plugin.zsh";
+        # }
+        # {
+        #   name = "zsh-abbrev-alias";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "momo-lab";
+        #     repo = "zsh-abbrev-alias";
+        #     rev = "637f0b2dda6d392bf710190ee472a48a20766c07";
+        #     sha256 = "16saanmwpp634yc8jfdxig0ivm1gvcgpif937gbdxf0csc6vh47k";
+        #   };
+        #   file = "abbrev-alias.plugin.zsh";
+        # }
+        # {
+        #   name = "zsh-autopair";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "hlissner";
+        #     repo = "zsh-autopair";
+        #     rev = "34a8bca0c18fcf3ab1561caef9790abffc1d3d49";
+        #     sha256 = "1h0vm2dgrmb8i2pvsgis3lshc5b0ad846836m62y8h3rdb3zmpy1";
+        #   };
+        #   file = "autopair.zsh";
+        # }
+        # {
+        #   name = "enhancd";
+        #   file = "init.sh";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "b4b4r07";
+        #     repo = "enhancd";
+        #     rev = "fd805158ea19d640f8e7713230532bc95d379ddc";
+        #     sha256 = "0pc19dkp5qah2iv92pzrgfygq83vjq1i26ny97p8dw6hfgpyg04l";
+        #   };
+        # }
+        # {
+        #   name = "gitit";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "peterhurford";
+        #     repo = "git-it-on.zsh";
+        #     rev = "4827030e1ead6124e3e7c575c0dd375a9c6081a2";
+        #     sha256 = "01xsqhygbxmv38vwfzvs7b16iq130d2r917a5dnx8l4aijx282j2";
+        #   };
+        # }
+        # {
+        #   name = "zsh-completions";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "zsh-users";
+        #     repo = "zsh-completions";
+        #     rev = "0.27.0";
+        #     sha256 = "1c2xx9bkkvyy0c6aq9vv3fjw7snlm0m5bjygfk5391qgjpvchd29";
+        #   };
+        # }
+        # {
+        #   name = "zsh-history-substring-search";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "zsh-users";
+        #     repo = "zsh-history-substring-search";
+        #     rev = "47a7d416c652a109f6e8856081abc042b50125f4";
+        #     sha256 = "1mvilqivq0qlsvx2rqn6xkxyf9yf4wj8r85qrxizkf0biyzyy4hl";
+        #   };
+        # }
       ];
       shellAliases = rec {
         # switching within a flake repository
@@ -158,6 +235,7 @@ in {
     zsh.oh-my-zsh = {
       enable = true;
       theme = "agnoster";
+      plugins=["git" "sudo" "per-directory-history" "zsh-autosuggestions" "zsh-syntax-highlighting" "zsh-nix-shell" "zsh-completions" "zsh-history-substring-search" "zsh-abbrev-alias" "zsh-autopair" "formarks" "gitit" "enhancd"];
     };
     fzf = {
       enable = true;
