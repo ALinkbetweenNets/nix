@@ -76,11 +76,21 @@ in {
         share = true;
       };
       plugins = [
-        {
-          name = "zsh-nix-shell";
-          file = "nix-shell.plugin.zsh";
-          src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
-        }
+        # {
+        #   # will source zsh-autosuggestions.plugin.zsh
+        #   name = "zsh-autosuggestions";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "zsh-users";
+        #     repo = "zsh-autosuggestions";
+        #     rev = "v0.4.0";
+        #     sha256 = "0z6i9wjjklb4lvr7zjhbphibsyx51psv50gm07mbb0kj9058j6kc";
+        #   };
+        # }
+        # {
+        #   name = "zsh-nix-shell";
+        #   file = "nix-shell.plugin.zsh";
+        #   src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
+        # }
         # {
         #   name = "fast-syntax-highlighting";
         #   file = "fast-syntax-highlighting.plugin.zsh";
@@ -235,7 +245,7 @@ in {
     zsh.oh-my-zsh = {
       enable = true;
       theme = "agnoster";
-      plugins=["git" "sudo" "per-directory-history" "zsh-autosuggestions" "zsh-syntax-highlighting" "zsh-nix-shell" "zsh-completions" "zsh-history-substring-search" "zsh-abbrev-alias" "zsh-autopair" "formarks" "gitit" "enhancd"];
+      # plugins=["git" "sudo" "per-directory-history" "zsh-autosuggestions" "zsh-syntax-highlighting" "zsh-nix-shell" "zsh-completions" "zsh-history-substring-search" "zsh-abbrev-alias" "zsh-autopair" "formarks" "gitit" "enhancd"];
     };
     fzf = {
       enable = true;
