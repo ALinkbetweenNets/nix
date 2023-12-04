@@ -38,7 +38,7 @@ writeText "pipeline" (builtins.toJSON {
             # platform will be deprecated in the future!
             platform = woodpecker-platforms."${arch}";
             steps = pkgs.lib.lists.flatten
-              ([ nixFlakeShow ] ++ lib.optionals ("${arch}" == "x86_64-linux") [ nixFlakeCheck ] ++ [ atticSetupStep ] ++ (map
+              ([ nixFlakeShow ] ++ [ atticSetupStep ] ++ (map
                 (host:
                   if
                   # Skip hosts with this option set
