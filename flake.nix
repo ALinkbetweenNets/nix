@@ -27,6 +27,11 @@
     crab_share = {
       url = "github:lounge-rocks/crab_share";
     };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = { self, nixpkgs, nur, ... }@inputs:
