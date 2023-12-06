@@ -6,8 +6,6 @@ with lib; {
     home.packages = with pkgs;
       [
         ## Basics
-        wl-clipboard-x11
-        wl-clipboard
         hunspell
         hunspellDicts.de_DE
         # Audio

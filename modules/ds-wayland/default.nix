@@ -9,8 +9,9 @@ in {
     programs.xwayland.enable = true;
     environment.systemPackages = with pkgs;
       [
-        # wl-clipboard
         shotman
+        wl-clipboard-x11
+        wl-clipboard
       ];
     environment.sessionVariables = {
       NIXOS_OZONE_WL = "1";
