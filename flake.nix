@@ -92,7 +92,8 @@
 
           };
         })
-        (builtins.attrNames (builtins.readDir ./machines)));
+        (builtins.attrNames (builtins.readDir ./machines)
+        )); # all except template folder
 
       homeConfigurations = {
         convertible = { pkgs, lib, ... }: {
@@ -123,12 +124,24 @@
 
       };
 
-      homeManagerModules = builtins.listToAttrs (map
-        (name: {
-          inherit name;
-          value = import (./home-manager/modules + "/${name}");
-        })
-        (builtins.attrNames (builtins.readDir ./home-manager/modules)));
+      homeManagerModules = builtins.listToAttrs
+        (map
+          (name: {
+            inherit name;
+            value = import (./home-manager/modules + "/${name}");
+          })
+          (builtins.attrNames (builtins.readDir ./home-manager/modules)))
+      // {
+        nix = { pkgs, ... }: {
+          # this module is appended to the list of home-manager modules
+          # by defining it here, it's easier for us to access the flake inputs
+          nixpkgs.overlays = [
+            self.overlays.default
+            
+          ];
+        };
+
+      };
 
     };
 }
