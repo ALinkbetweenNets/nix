@@ -17,7 +17,7 @@ in {
         dataDir = "${config.link.storage}/restic";
         prometheus = true;
         privateRepos = true;
-        listenAddress = "127.0.0.1:2500";
+        listenAddress = "0.0.0.0:2500";
         appendOnly = true;
       };
       nginx.virtualHosts."restic.${config.link.domain}" = {
