@@ -29,6 +29,8 @@
       onlyoffice.enable = true;
       vaultwarden.enable = true;
       gitea.enable = true;
+      restic-client.enable = true;
+      restic-client.backup-paths-storagebox = [ "/var/lib/vaultwarden" ];
       outline = {
         enable = true;
         oidClientId = "1e030d3b-e260-4f22-a373-41d2b8fea1fa";
