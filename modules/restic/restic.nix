@@ -69,13 +69,25 @@ in
           passwordFile = config.sops.secrets."restic/storagebox/password".path;
           # environmentFile = "${config.sops.secrets."restic/backblaze-credentials".path}";
           # backupCleanupCommand = script-post config.networking.hostName "storagebox";
-
+          pruneOpts = [
+            "--keep-daily 7"
+            "--keep-weekly 5"
+            "--keep-monthly 12"
+            "--keep-yearly 75"
+          ];
+          timerConfig = {
+            OnCalendar = "03:00";
+            Persistent = true;
+            RandomizedDelaySec = "5h";
+          };
           extraBackupArgs = [
             "--exclude-file=${restic-ignore-file}"
             "--one-file-system"
+            "--compression=max"
             # "--dry-run"
-            "-vv"
+            "-v"
           ];
+          initialize = true;
         };
 
         # s3-onsite = {
