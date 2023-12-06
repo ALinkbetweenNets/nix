@@ -1,30 +1,23 @@
-{ config, system-config, pkgs, lib, ... }:
+{ lib, ... }:
 with lib;
-let cfg = config.link.wireguard;
-in {
-  options.link.wireguard.enable = mkEnableOption "activate wireguard";
-  config = mkIf cfg.enable {
-    networking = {
-      wireguard.enable = true;
-      nat = {
-        enable = true;
-        enableIPv6 = true;
-      };
-      firewall = {
-        allowedTCPPorts = [ 53 ];
-        allowedUDPPorts = [ 53 51820 ];
-        logReversePathDrops = true;
-      };
-      # if packets are still dropped, they will show up in dmesg
-      # wireguard trips rpfilter up
-      # extraCommands = ''
-      #   ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN
-      #   ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN
-      # '';
-      # extraStopCommands = ''
-      #   ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN || true
-      #   ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
-      # '';
-    };
-  };
+let
+  # Recursively constructs an attrset of a given folder, recursing on directories, value of attrs is the filetype
+  getDir = dir:
+    mapAttrs
+      (file: type: if type == "directory" then getDir "${dir}/${file}" else type)
+      (builtins.readDir dir);
+  # Collects all files of a directory as a list of strings of paths
+  files = dir:
+    collect isString
+      (mapAttrsRecursive (path: type: concatStringsSep "/" path) (getDir dir));
+  # Filters out directories that don't end with .nix or are this file, also makes the strings absolute
+  validFiles = dir:
+    map (file: ./. + "/${file}") (filter
+      (file:
+        hasSuffix ".nix" file && file != "default.nix"
+        && !lib.hasPrefix "x/taffybar/" file)
+      (files dir));
+in
+{
+  imports = validFiles ./.;
 }
