@@ -6,9 +6,33 @@ in {
   config = mkIf cfg.enable {
     fonts = {
       packages = with pkgs;
-        [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
+        [
+          league-of-moveable-type
+          inter
+          source-sans-pro
+          source-serif-pro
+          noto-fonts-emoji
+          corefonts
+          recursive
+          iosevka-bin
+          font-awesome
+          line-awesome
+          (nerdfonts.override { fonts = [ "FiraCode" ]; })
+        ];
       fontDir.enable = true;
+      fontconfig = {
+        defaultFonts = {
+          serif =
+            [ "Berkeley Mono" "Inconsolata Nerd Font Mono" ];
+          sansSerif =
+            [ "Berkeley Mono" "Inconsolata Nerd Font Mono" ];
+          monospace =
+            [ "Berkeley Mono" "Inconsolata Nerd Font Mono" ];
+          emoji = [ "Noto Color Emoji" ];
+        };
+      };
     };
+
     environment.pathsToLink = [ "/share/zsh" ];
     link = {
       users = {
