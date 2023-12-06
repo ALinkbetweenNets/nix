@@ -39,9 +39,10 @@
       dns.enable = true;
       gitea.enable = true;
       hedgedoc = { enable = true; expose = true; };
-      matrix.enable = true;
+      # matrix.enable = true;
       minio.enable = true;
       nextcloud = { enable = true; expose = true; };
+      restic-server = { enable = true; expose = false; };
       vaultwarden = { enable = true; expose = false; };
       wg-link.enable = true;
       outline = {
@@ -80,7 +81,7 @@
     useRoutingFeatures = "server";
     extraUpFlags = [ "--advertise-routes 192.168.178.0/24" "--advertise-exit-node" ];
   };
-  # nix run .\#lollypops -- meet:rebuild
+  # nix run .\#lollypops -- sn:rebuild
   lollypops.deployment = {
     local-evaluation = true;
     ssh = { host = "10.0.1.1"; };
