@@ -1,9 +1,14 @@
 { lib, pkgs, ... }:
 with lib;
 {
-  programs.neovim = {
+  programs.nixvim = {
     enable = true;
-    coc.enable = true;
-    plugins = with pkgs.vimPlugins; [ yankring vim-nix ];
+    plugins.lightline.enable = true;
+    colorschemes.gruvbox.enable = true;
+    options = {
+      number = true; # Show line numbers
+      relativenumber = true; # Show relative line numbers
+      shiftwidth = 2; # Tab width should be 2
+    };
   };
 }
