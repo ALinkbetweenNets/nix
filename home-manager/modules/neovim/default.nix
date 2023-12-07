@@ -12,7 +12,12 @@ with lib;
     viAlias = true;
     vimAlias = true;
     plugins.lightline.enable = true;
-    # colorschemes.gruvbox.enable = true;
+    # let bindings
+    globals = {
+      mapleader = " "; # Sets the leader key to space
+      maplocalleader = " "; # Sets the leader key to space
+      # g:netrw_browsex_viewer= "xdg-open";
+    };
     options = {
       autoindent = true;
       autoread = true;
@@ -34,6 +39,14 @@ with lib;
       undofile = true; # Automatically save and restore undo history
       updatetime = 100; # Faster completion
     };
+    keymaps = [
+      {
+        mode = "t";
+        key = "<Esc>";
+        options.silent = true;
+        action = "<C-\><C-n>";
+      }
+    ];
     plugins = {
       comment-nvim = {
         enable = true;
