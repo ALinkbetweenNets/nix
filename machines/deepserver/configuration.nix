@@ -29,6 +29,21 @@
       onlyoffice.enable = true;
       vaultwarden.enable = true;
       gitea.enable = true;
+      restic-client = {
+        enable = true;
+        backup-paths-storagebox = [
+          "/var/lib/bitwarden_rs"
+          "/var/lib/gitea"
+          "/var/lib/hedgedoc"
+          "/var/lib/matrix-synapse"
+          "/var/lib/minio"
+          "/var/lib/nextcloud"
+          "/var/lib/onlyoffice"
+          "/var/lib/outline"
+          "/var/lib/vaultwarden"
+          "/pwd"
+        ];
+      };
       outline = {
         enable = true;
         oidClientId = "1e030d3b-e260-4f22-a373-41d2b8fea1fa";
