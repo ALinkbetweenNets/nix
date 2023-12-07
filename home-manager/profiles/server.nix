@@ -3,6 +3,6 @@ with lib; {
   imports = [ ./common.nix ];
   config = {
     home.packages = with pkgs;
-      [ zola ];
+      [ zola hugo ghosttohugo ];
   };
 }

@@ -6,8 +6,6 @@ with lib; {
     home.packages = with pkgs;
       [
         ## Basics
-        wl-clipboard-x11
-        wl-clipboard
         hunspell
         hunspellDicts.de_DE
         # Audio
@@ -45,6 +43,7 @@ with lib; {
         libsForQt5.konsole
         libsForQt5.yakuake
         libsForQt5.plasma-vault
+        libsForQt5.plasma-disks
         ktailctl # Tailscale GUI
         vivaldi
         bitwarden
