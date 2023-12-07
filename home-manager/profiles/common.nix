@@ -10,6 +10,8 @@ with lib; {
   imports = with flake-self.homeManagerModules; [
     neovim
     zsh
+  ] ++ [
+    flake-self.inputs.nixvim.homeManagerModules.nixvim
   ];
   config = {
     home.sessionVariables = {
