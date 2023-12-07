@@ -32,7 +32,7 @@ in {
         };
       };
     };
-
+    environment.noXlibs = false;
     environment.pathsToLink = [ "/share/zsh" ];
     link = {
       users = {
