@@ -77,7 +77,6 @@ with lib; {
         flake-self.overlays.default
         flake-self.inputs.nur.overlay
         flake-self.inputs.crab_share.overlay
-        flake-self.inputs.nixvim
         (final: prev: {
           cudapkgs = import flake-self.inputs.nixpkgs {
             system = "${pkgs.system}";
