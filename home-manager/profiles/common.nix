@@ -24,6 +24,7 @@ with lib; {
     home.packages = with pkgs;
       [
         apg # generate passwords
+        xkcdpass
         sops
         ssh-to-age
         bitwarden-cli
