@@ -8,8 +8,8 @@ with lib; {
     };
   };
   imports = with flake-self.homeManagerModules; [
-    neovim
-    zsh
+    # neovim
+    # zsh
   ] ++ [
     flake-self.inputs.nixvim.homeManagerModules.nixvim
   ];

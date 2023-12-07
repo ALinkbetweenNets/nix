@@ -76,21 +76,21 @@ in {
         share = true;
       };
       plugins = [
-        # {
-        #   # will source zsh-autosuggestions.plugin.zsh
-        #   name = "zsh-autosuggestions";
-        #   src = pkgs.fetchFromGitHub {
-        #     owner = "zsh-users";
-        #     repo = "zsh-autosuggestions";
-        #     rev = "v0.4.0";
-        #     sha256 = "0z6i9wjjklb4lvr7zjhbphibsyx51psv50gm07mbb0kj9058j6kc";
-        #   };
-        # }
-        # {
-        #   name = "zsh-nix-shell";
-        #   file = "nix-shell.plugin.zsh";
-        #   src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
-        # }
+        {
+          # will source zsh-autosuggestions.plugin.zsh
+          name = "zsh-autosuggestions";
+          src = pkgs.fetchFromGitHub {
+            owner = "zsh-users";
+            repo = "zsh-autosuggestions";
+            rev = "v0.4.0";
+            sha256 = "0z6i9wjjklb4lvr7zjhbphibsyx51psv50gm07mbb0kj9058j6kc";
+          };
+        }
+        {
+          name = "zsh-nix-shell";
+          file = "nix-shell.plugin.zsh";
+          src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
+        }
         # {
         #   name = "fast-syntax-highlighting";
         #   file = "fast-syntax-highlighting.plugin.zsh";
