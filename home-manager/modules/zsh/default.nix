@@ -242,11 +242,11 @@ in {
           "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all -l --group";
       };
     };
-    zsh.oh-my-zsh = {
-      enable = true;
-      theme = "agnoster";
-      # plugins=["git" "sudo" "per-directory-history" "zsh-autosuggestions" "zsh-syntax-highlighting" "zsh-nix-shell" "zsh-completions" "zsh-history-substring-search" "zsh-abbrev-alias" "zsh-autopair" "formarks" "gitit" "enhancd"];
-    };
+    # zsh.oh-my-zsh = {
+    #   enable = true;
+    #   theme = "agnoster";
+    #   # plugins=["git" "sudo" "per-directory-history" "zsh-autosuggestions" "zsh-syntax-highlighting" "zsh-nix-shell" "zsh-completions" "zsh-history-substring-search" "zsh-abbrev-alias" "zsh-autopair" "formarks" "gitit" "enhancd"];
+    # };
     fzf = {
       enable = true;
       enableZshIntegration = true;
@@ -277,10 +277,7 @@ in {
       enable = true;
       enableZshIntegration = true;
     };
-    pazi = {
-      enable = true;
-      enableZshIntegration = true;
-    };
+    pazi.enable = true;
     htop = {
       enable = true;
       settings = {
@@ -289,7 +286,38 @@ in {
         show_cpu_usage = true;
         show_program_path = true;
         tree_view = false;
+        color_scheme = 6;
+        cpu_count_from_one = 0;
+        delay = 15;
+        # fields = with htop.fields; [
+        #   PID
+        #   USER
+        #   PRIORITY
+        #   NICE
+        #   M_SIZE
+        #   M_RESIDENT
+        #   M_SHARE
+        #   STATE
+        #   PERCENT_CPU
+        #   PERCENT_MEM
+        #   TIME
+        #   COMM
+        # ];
+        highlight_base_name = 1;
+        highlight_megabytes = 1;
+        highlight_threads = 1;
       };
+      # // (with htop; leftMeters [
+      #   (bar "AllCPUs2")
+      #   (bar "Memory")
+      #   (bar "Swap")
+      #   (text "Zram")
+      # ]) // (with htop; rightMeters [
+      #   (text "Tasks")
+      #   (text "LoadAverage")
+      #   (text "Uptime")
+      #   (text "Systemd")
+      # ]);
     };
     btop = { enable = true; };
     jq.enable = true;
