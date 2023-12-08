@@ -277,6 +277,11 @@ in {
       enable = true;
       enableZshIntegration = true;
     };
+    zellij = {
+      enable = true;
+      enableZshIntegration = true;
+      enableBashIntegration = true;
+    };
     pazi.enable = true;
     htop = {
       enable = true;
