@@ -32,9 +32,6 @@ in {
           };
         };
       };
-      # tlp.settings = {
-      #   USB_AUTOSUSPEND = 0;
-      # };
     };
     powerManagement = {
       enable = true;
