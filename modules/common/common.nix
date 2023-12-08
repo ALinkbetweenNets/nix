@@ -42,6 +42,9 @@ in {
         };
       };
     };
+    tlp.settings = {
+      USB_AUTOSUSPEND = 0;
+    };
     environment.noXlibs = false;
     environment.pathsToLink = [ "/share/zsh" ];
     link = {
