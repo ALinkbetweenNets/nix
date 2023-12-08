@@ -142,7 +142,7 @@
           # by defining it here, it's easier for us to access the flake inputs
           nixpkgs.overlays = [
             self.overlays.default
-            
+
           ];
         };
 
