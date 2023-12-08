@@ -31,4 +31,9 @@
     # ssh = { host = "10.0.1.1"; };
     # sudo.enable = true;
   };
+  services.xserver.wacom.enable = true;
+  environment.systemPackages = with pkgs; [
+    wacomtablet
+    xf86_input_wacom
+  ];
 }
