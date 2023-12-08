@@ -9,6 +9,17 @@ in
   config = mkIf cfg.enable {
     link.hardware.enable = true;
     link.desktop.enable = true;
-
+    services.auto-cpufreq = {
+      enable = true; # TLP replacement
+      settings = {
+        charger = {
+          governor = "performance";
+          turbo = "auto";
+        };
+      };
+    };
+    powerManagement = {
+      enable = true;
+    };
   };
 }

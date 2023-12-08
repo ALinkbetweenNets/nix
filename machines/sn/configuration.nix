@@ -59,6 +59,7 @@
     expose = true;
     eth = "enp6s0";
   };
+  powerManagement.powertop.enable = true;
   # virtualisation.sharedDirectories = {
   #   arr = {
   #     source = "/rz/arr";
