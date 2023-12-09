@@ -4,6 +4,9 @@ let cfg = config.link.authelia;
 in {
   options.link.authelia.enable = mkEnableOption "activate authelia";
   config = mkIf cfg.enable {
+    sops.secrets."authelia/main/jwtSecret" = { };
+    sops.secrets."authelia/main/storageEncryptionKey" = { };
+    sops.secrets."authelia/main/sessionSecret" = { };
     services = {
       authelia.instances.main = {
         enable = true;
