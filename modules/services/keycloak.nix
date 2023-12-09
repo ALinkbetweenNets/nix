@@ -14,12 +14,10 @@ in {
         };
         settings = {
           hostname = "${config.link.domain}";
-          # hostname-strict-backchannel = true;
-          http-enabled = true;
           http-host = "127.0.0.1";
           http-port = 31123;
-          http-relative-path = "/cloak";
-          proxy = "passthrough";
+          http-relative-path = "/";
+          proxy = "edge";
         };
       };
       nginx.virtualHosts = {
@@ -27,8 +25,8 @@ in {
           enableACME = true;
           forceSSL = true;
           locations = {
-            "/cloak/" = {
-              proxyPass = "http://localhost:${toString config.services.keycloak.settings.http-port}/cloak/";
+            "/" = {
+              proxyPass = "http://localhost:${toString config.services.keycloak.settings.http-port}/";
               extraConfig = ''
                 proxy_set_header X-Forwarded-Host $http_host;
                 proxy_set_header X-Real-IP $remote_addr;
