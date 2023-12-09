@@ -136,13 +136,41 @@
             value = import (./home-manager/modules + "/${name}");
           })
           (builtins.attrNames (builtins.readDir ./home-manager/modules)))
-      // {
+      //
+      {
+
+        # This module is appended to the list of home-manager modules.
+        # It's always enabled for all profiles. 
+        # It's used to easily add overlays and imports to home-manager.
+        # Since this module is within this flake.nix, it will access our flake inputs.
         nix = { pkgs, ... }: {
-          # this module is appended to the list of home-manager modules
-          # by defining it here, it's easier for us to access the flake inputs
+          # import home manager modules from this flake
+          imports = [
+            inputs.nixvim.homeManagerModules.nixvim
+          ];
+          # add overlays from this flake
           nixpkgs.overlays = [
             self.overlays.default
-
+            inputs.crab_share.overlay
+            inputs.nur.overlay
+            (final: prev: {
+              cudapkgs = import inputs.nixpkgs {
+                system = "${pkgs.system}";
+                config = { allowUnfree = true; cudaSupport = true; };
+              };
+            })
+            (final: prev: {
+              stable = import inputs.nixpkgs-stable {
+                system = "${pkgs.system}";
+                config.allowUnfree = true;
+              };
+            })
+            (final: prev: {
+              master = import inputs.nixpkgs-master {
+                system = "${pkgs.system}";
+                config.allowUnfree = true;
+              };
+            })
           ];
         };
 
