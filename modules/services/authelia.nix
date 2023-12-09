@@ -4,9 +4,11 @@ let cfg = config.link.authelia;
 in {
   options.link.authelia.enable = mkEnableOption "activate authelia";
   config = mkIf cfg.enable {
-    sops.secrets."authelia/main/jwtSecret" = { };
-    sops.secrets."authelia/main/storageEncryptionKey" = { };
-    sops.secrets."authelia/main/sessionSecret" = { };
+    sops.secrets = {
+      "authelia/main/jwtSecret" = { owner = "authelia-main"; group = "authelia-main"; };
+      "authelia/main/storageEncryptionKey" = { owner = "authelia-main"; group = "authelia-main"; };
+      "authelia/main/sessionSecret" = { owner = "authelia-main"; group = "authelia-main"; };
+    };
     services = {
       authelia.instances.main = {
         enable = true;
