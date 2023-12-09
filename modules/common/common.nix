@@ -123,6 +123,7 @@ in {
       killall
       trashy
       tmux
+      zellij
       ## encryption& filesystem
       sshfs
       nfs-utils
