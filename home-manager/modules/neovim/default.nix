@@ -188,9 +188,9 @@ with lib;
         highlightDefinitions.enable = true;
       };
       # code folding
-      nvim-ufo = {
-        enable = true;
-      };
+      # nvim-ufo = {
+      #   enable = true;
+      # };
       gitsigns = {
         enable = true;
       };
