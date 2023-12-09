@@ -27,7 +27,14 @@ in {
       logError = "stderr debug";
       package = pkgs.nginxStable.override { openssl = pkgs.libressl; };
       clientMaxBodySize = "1000m";
-
+      commonHttpConfig = ''
+        # Add HSTS header with preloading to HTTPS requests.
+        # Adding this header to HTTP requests is discouraged
+        map $scheme $hsts_header {
+            https   "max-age=31536000; includeSubdomains; preload";
+        }
+        add_header Strict-Transport-Security $hsts_header;
+      '';
       # sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
       #   commonHttpConfig = ''
       #     server_names_hash_bucket_size 128;
@@ -60,15 +67,6 @@ in {
     security.acme = {
       acceptTerms = true;
       defaults.email = "link2502+acme@proton.me";
-      # certs."ur6qwb3amjjhe15h.myfritz.net" = {
-      #   dnsProvider = "inwx";
-      #   # Suplying password files like this will make your credentials world-readable
-      #   # in the Nix store. This is for demonstration purpose only, do not use this in production.
-      #   credentialsFile = "${pkgs.writeText "inwx-creds" ''
-      #     INWX_USERNAME=xxxxxxxxxx
-      #     INWX_PASSWORD=yyyyyyyyyy
-      #   ''}";
-      # };
     };
   };
 }
