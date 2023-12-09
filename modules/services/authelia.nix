@@ -8,9 +8,9 @@ in {
       authelia.instances.main = {
         enable = true;
         secrets = {
-          jwtSecretFile = config.sops.secrets."authelia.main.jwtSecret".path;
-          storageEncryptionKeyFile = config.sops.secrets."authelia.main.storageEncryptionKey".path;
-          sessionSecretFile = config.sops.secrets."authelia.main.sessionSecret".path;
+          jwtSecretFile = config.sops.secrets."authelia/main/jwtSecret".path;
+          storageEncryptionKeyFile = config.sops.secrets."authelia/main/storageEncryptionKey".path;
+          sessionSecretFile = config.sops.secrets."authelia/main/sessionSecret".path;
         };
         settings = {
           theme = "dark";
