@@ -36,6 +36,31 @@ in {
           maxretry = 5
           findtime = 600
         '';
+        nginx-http-auth = ''
+          enabled  = true
+          port     = http,https
+          logpath  = /var/log/nginx/*.log
+          backend  = polling
+          journalmatch =
+        '';
+        nginx-botsearch = ''
+          enabled  = true
+          port     = http,https
+          logpath  = /var/log/nginx/*.log
+          backend  = polling
+          journalmatch =
+        '';
+        nginx-bad-request = ''
+          enabled  = true
+          port     = http,https
+          logpath  = /var/log/nginx/*.log
+          backend  = polling
+          journalmatch =
+        '';
+        authelia = ''
+          enabled  = true
+          port     = http,https
+        '';
       };
     };
     environment.etc = {
@@ -50,6 +75,27 @@ in {
         [Definition]
         failregex = ^<HOST>.*(GET /(wp-|admin|boaform|phpmyadmin|\.env|\.git)|\.(dll|so|cfm|asp)|(\?|&)(=PHPB8B5F2A0-3C92-11d3-A3A9-4C7B08C10000|=PHPE9568F36-D428-11d2-A769-00AA001ACF42|=PHPE9568F35-D428-11d2-A769-00AA001ACF42|=PHPE9568F34-D428-11d2-A769-00AA001ACF42)|\\x[0-9a-zA-Z]{2})
       '');
+      "fail2ban/filter.d/authelia.conf".text = ''
+         # Fail2Ban filter for Authelia
+
+         # Make sure that the HTTP header "X-Forwarded-For" received by Authelia's backend
+         # only contains a single IP address (the one from the end-user), and not the proxy chain
+         # (it is misleading: usually, this is the purpose of this header).
+
+         # the failregex rule counts every failed 1FA attempt (first line, wrong username or password) and failed 2FA attempt
+         # second line) as a failure.
+         # the ignoreregex rule ignores debug, info and warning messages as all authentication failures are flagged as errors
+
+         [Definition]
+         failregex = ^.*Unsuccessful 1FA authentication attempt by user .*remote_ip="?<HOST>"? stack.*
+                     ^.*Unsuccessful (TOTP|Duo|U2F) authentication attempt by user .*remote_ip="?<HOST>"? stack.*
+
+         ignoreregex = ^.*level=debug.*
+                       ^.*level=info.*
+                       ^.*level=warning.*
+
+        journalmatch = _SYSTEMD_UNIT=authelia-main.service + _COMM=authelia
+      '';
     };
   };
 }

@@ -7,13 +7,14 @@ in {
     services = {
       keycloak = {
         enable = true;
+        initialAdminPassword = "enreehoWrerashsubNocjacPhilar8";
         database = {
           username = "keycloak";
           passwordFile = "${config.link.secrets}/keycloak";
           createLocally = true;
         };
         settings = {
-          hostname = "${config.link.domain}";
+          hostname = "keycloak.${config.link.domain}";
           http-host = "127.0.0.1";
           http-port = 31123;
           http-relative-path = "/";
@@ -21,7 +22,7 @@ in {
         };
       };
       nginx.virtualHosts = {
-        "${config.link.domain}" = {
+        "keycloak.${config.link.domain}" = {
           enableACME = true;
           forceSSL = true;
           locations = {
