@@ -10,8 +10,6 @@ with lib; {
   imports = with flake-self.homeManagerModules; [
     # neovim
     # zsh
-  ] ++ [
-    flake-self.inputs.nixvim.homeManagerModules.nixvim
   ];
   config = {
     home.sessionVariables = {
@@ -73,33 +71,7 @@ with lib; {
     nixpkgs = {
       # Allow "unfree" licenced packages
       config = { allowUnfree = true; };
-      overlays = [
-        # our packages
-        flake-self.overlays.default
-        flake-self.inputs.nur.overlay
-        flake-self.inputs.crab_share.overlay
-        (final: prev: {
-          cudapkgs = import flake-self.inputs.nixpkgs {
-            system = "${pkgs.system}";
-            config = {
-              allowUnfree = true;
-              cudaSupport = true;
-            };
-          };
-        })
-        (final: prev: {
-          stable = import flake-self.inputs.nixpkgs-stable {
-            system = "${pkgs.system}";
-            config.allowUnfree = true;
-          };
-        })
-        (final: prev: {
-          master = import flake-self.inputs.nixpkgs-master {
-            system = "${pkgs.system}";
-            config.allowUnfree = true;
-          };
-        })
-      ];
+      overlays = [ ];
     };
     # Include man-pages
     manual.manpages.enable = true;
