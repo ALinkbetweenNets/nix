@@ -30,6 +30,9 @@ in {
       commonHttpConfig = ''
         # Add HSTS header with preloading to HTTPS requests.
         # Adding this header to HTTP requests is discouraged
+          server_names_hash_bucket_size 128;
+          proxy_headers_hash_max_size 1024;
+          proxy_headers_hash_bucket_size 256;
         map $scheme $hsts_header {
             https   "max-age=31536000; includeSubdomains; preload";
         }
@@ -37,9 +40,6 @@ in {
       '';
       # sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
       #   commonHttpConfig = ''
-      #     server_names_hash_bucket_size 128;
-      #     proxy_headers_hash_max_size 1024;
-      #     proxy_headers_hash_bucket_size 256;
 
       #     # Add HSTS header with preloading to HTTPS requests.
       #     # Adding this header to HTTP requests is discouraged
