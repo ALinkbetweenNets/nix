@@ -52,6 +52,10 @@
       overlays.default = final: prev: (import ./pkgs inputs) final prev;
 
       packages = forAllSystems (system: {
+        build_outputs =
+          nixpkgsFor.${system}.callPackage ./pkgs/build_outputs {
+            inherit self;
+          };
         woodpecker-pipeline =
           nixpkgsFor.${system}.callPackage ./pkgs/woodpecker-pipeline {
             flake-self = self;
