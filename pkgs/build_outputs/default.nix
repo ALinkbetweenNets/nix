@@ -33,5 +33,5 @@ let
 in
 pkgs.writeShellScriptBin "build_outputs" ''
   # makes sure we don't garbage collect the build outputs
-  ${pkgs.nix}/bin/nix build --print-out-paths ${all_outputs} --out-link ~/.keep-nix-outputs             
+  ln -sfn ${all_outputs} ~/.keep-nix-outputs
 ''
