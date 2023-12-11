@@ -4,24 +4,18 @@ let cfg = config.link.authelia;
 in {
   options.link.authelia.enable = mkEnableOption "activate authelia";
   config = mkIf cfg.enable {
-    systemd.services.authelia-main.preStart = ''
-      [ -f /var/lib/authelia-main/jwt-secret ] || {
-        "${pkgs.openssl}/bin/openssl" rand -base64 32 > /var/lib/authelia-main/jwt-secret
-      }
-      [ -f /var/lib/authelia-main/storage-encryption-file ] || {
-        "${pkgs.openssl}/bin/openssl" rand -base64 32 > /var/lib/authelia-main/storage-encryption-file
-      }
-      [ -f /var/lib/authelia-main/session-secret-file ] || {
-        "${pkgs.openssl}/bin/openssl" rand -base64 32 > /var/lib/authelia-main/session-secret-file
-      }
-    '';
+    sops.secrets = {
+      "authelia/main/jwtSecret" = { owner = "authelia-main"; group = "authelia-main"; };
+      "authelia/main/storageEncryptionKey" = { owner = "authelia-main"; group = "authelia-main"; };
+      "authelia/main/sessionSecret" = { owner = "authelia-main"; group = "authelia-main"; };
+    };
     services = {
       authelia.instances.main = {
         enable = true;
         secrets = {
-          jwtSecretFile = "/var/lib/authelia-main/jwt-secret";
-          storageEncryptionKeyFile = "/var/lib/authelia-main/storage-encryption-file";
-          sessionSecretFile = "/var/lib/authelia-main/session-secret-file";
+          jwtSecretFile = config.sops.secrets."authelia/main/jwtSecret".path;
+          storageEncryptionKeyFile = config.sops.secrets."authelia/main/storageEncryptionKey".path;
+          sessionSecretFile = config.sops.secrets."authelia/main/sessionSecret".path;
         };
         settings = {
           theme = "dark";
