@@ -24,6 +24,7 @@
     fail2ban.enable = true;
     service-ip = "10.0.1.1";
     fs.ntfs.enable = true;
+    coturn.enable = true;
     containers = {
       grist.enable = true;
       diagrams.enable = true;
