@@ -36,7 +36,7 @@
     paperless.enable = true;
     # photoprism.enable = true;
     syncthing.enable = true;
-    authelia.enable = true;
+    keycloak.enable = true;
     services = {
       dns.enable = true;
       gitea.enable = true;
