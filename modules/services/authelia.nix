@@ -38,7 +38,7 @@ in {
         };
         settings = {
           theme = "dark";
-          default_redirection_url = "https://${config.link.domain}";
+          default_redirection_url = "https://auth.${config.link.domain}";
           server = {
             host = "127.0.0.1";
             port = 9091;
