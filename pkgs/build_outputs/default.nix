@@ -33,5 +33,13 @@ let
 in
 pkgs.writeShellScriptBin "build_outputs" ''
   # makes sure we don't garbage collect the build outputs
-  ln -sfn ${all_outputs} ~/.keep-nix-outputs
+  ln -sfn ${all_outputs} ~/.keep-nix-outputs-ALinkbetweenNets
+
+  # push outputs to attic when attic is available
+  if command -v attic &> /dev/null
+  then
+    attic push lounge-rocks:nix-cache ${all_outputs}
+  else
+    echo "attic not available"
+  fi
 ''
