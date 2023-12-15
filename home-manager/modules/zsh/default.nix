@@ -58,9 +58,6 @@ in {
         # };
       };
     };
-    zoxide.enable = true;
-    thefuck.enable = true;
-    watson.enable = true;
     zsh = {
       enable = true;
       enableAutosuggestions = true;
@@ -247,6 +244,9 @@ in {
     #   theme = "agnoster";
     #   # plugins=["git" "sudo" "per-directory-history" "zsh-autosuggestions" "zsh-syntax-highlighting" "zsh-nix-shell" "zsh-completions" "zsh-history-substring-search" "zsh-abbrev-alias" "zsh-autopair" "formarks" "gitit" "enhancd"];
     # };
+    zoxide.enable = true;
+    thefuck.enable = true;
+    watson.enable = true;
     fzf = {
       enable = true;
       enableZshIntegration = true;
@@ -282,7 +282,6 @@ in {
     #   enableZshIntegration = true;
     #   enableBashIntegration = true;
     # };
-    pazi.enable = true;
     htop = {
       enable = true;
       settings = {
