@@ -5,35 +5,40 @@ in
 {
   options.link.services.restic-client = {
     enable = mkEnableOption "restic backups";
-    # backup-paths-onsite = mkOption {
-    #   type = types.listOf types.str;
-    #   default = [ ];
-    #   example = [ "/home/link/Notes" ];
-    #   description = "Paths to backup to onsite storage";
-    # };
     backup-paths-storagebox = mkOption {
       type = types.listOf types.str;
       default = [ ];
-      example = [ "/home/link/Notes" ];
-      description = "Paths to backup to offsite storage";
+      example = [ "/var/lib/gitea" ];
+      description = "Paths to backup to storagebox";
+    };
+    backup-paths-sn = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      example = [ "/var/lib/gitea" ];
+      description = "Paths to backup to sn";
+    };
+    backup-paths-rsn = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      example = [ "/var/lib/gitea" ];
+      description = "Paths to backup to rsn";
     };
     backup-paths-exclude = mkOption {
       type = types.listOf types.str;
       default = [ ];
-      example = [ "/home/link/cache" ];
+      example = [ "/home/link/.cache" ];
       description = "Paths to exclude from backup";
     };
   };
   config = mkIf cfg.enable {
     sops.secrets = {
-      "restic/storagebox/deepserver" = { };
+      "restic/storagebox/repository" = { };
       "restic/storagebox/password" = { };
-      # "restic/credentials" = { };
-      # "restic/repo-pw" = { };
+      "restic/sn/repository" = { };
+      "restic/sn/password" = { };
+      "restic/sn/environment" = { };
     };
-    users.users.restic = {
-      isNormalUser = true;
-    };
+    users.users.restic.isNormalUser = true;
     security.wrappers.restic = {
       source = "${pkgs.restic.out}/bin/restic";
       owner = "restic";
@@ -65,7 +70,7 @@ in
       {
         storagebox = {
           paths = cfg.backup-paths-storagebox;
-          repositoryFile = config.sops.secrets."restic/storagebox/deepserver".path;
+          repositoryFile = config.sops.secrets."restic/storagebox/repository".path;
           passwordFile = config.sops.secrets."restic/storagebox/password".path;
           # environmentFile = "${config.sops.secrets."restic/backblaze-credentials".path}";
           # backupCleanupCommand = script-post config.networking.hostName "storagebox";
@@ -89,7 +94,31 @@ in
           ];
           initialize = true;
         };
-
+        sn = {
+          paths = cfg.backup-paths-sn;
+          repositoryFile = config.sops.secrets."restic/sn/repository".path;
+          passwordFile = config.sops.secrets."restic/sn/password".path;
+          environmentFile = config.sops.secrets."restic/sn/environment".path;
+          pruneOpts = [
+            "--keep-daily 7"
+            "--keep-weekly 5"
+            "--keep-monthly 12"
+            "--keep-yearly 75"
+          ];
+          timerConfig = {
+            OnCalendar = "03:00";
+            Persistent = true;
+            RandomizedDelaySec = "5h";
+          };
+          extraBackupArgs = [
+            "--exclude-file=${restic-ignore-file}"
+            "--one-file-system"
+            "--compression=max"
+            # "--dry-run"
+            "-v"
+          ];
+          initialize = true;
+        };
         # s3-onsite = {
         #   paths = cfg.backup-paths-onsite;
         #   repository = "s3:https://vpn.s3.pablo.tools/restic";
