@@ -31,6 +31,13 @@ in {
         yzhang.markdown-all-in-one
         # pokey.talon
         # pokey.cursorless
+      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        {
+          name = "vscode-pets";
+          publisher = "tonybaloney";
+          version = "1.25.1";
+          sha256 = "6acdded8bcca052b221acfd4188674e97a9b2e1dfb8ab0d4682cec96a2131094";
+        }
       ];
       userSettings = {
         "[nix]" = {
@@ -100,6 +107,11 @@ in {
         "workbench.editor.highlightModifiedTabs" = true;
         "workbench.editor.limit.enabled" = true;
         "workbench.list.smoothScrolling" = true;
+
+        "vscode-pets.petColor" = "white";
+        "vscode-pets.position" = "panel";
+        # "vscode-pets.theme" = "castle";
+        "vscode-pets.throwBallWithMouse" = true;
         # "workbench.colorTheme" = "Dracula";
       };
       globalSnippets = {
