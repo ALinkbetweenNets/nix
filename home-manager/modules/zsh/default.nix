@@ -209,6 +209,11 @@ in {
         gs = "git status";
         gac = "git commit -am '$(date -I)'";
         gpp = "git pull&&git push";
+        gitforkupdate = ''
+          ${pkgs.git}/bin/git fetch upstream
+          ${pkgs.git}/bin/git checkout main
+          ${pkgs.git}/bin/git merge upstream/main
+        '';
         l =
           "eza --icons --group-directories-first --git -F --color always --sort=modified"; # -F = --classify
         lr =
