@@ -3,8 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-master.url = "github:nixos/nixpkgs/master";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nur.url = "github:nix-community/NUR";
     lollypops = {
@@ -163,6 +161,7 @@
           # import home manager modules from this flake
           imports = [
             inputs.nixvim.homeManagerModules.nixvim
+            inputs.vscode-server.nixosModules.home
           ];
           # add overlays from this flake
           nixpkgs.overlays = [
@@ -175,19 +174,12 @@
                 config = { allowUnfree = true; cudaSupport = true; };
               };
             })
-            (final: prev: {
-              stable = import inputs.nixpkgs-stable {
-                system = "${pkgs.system}";
-                config.allowUnfree = true;
-              };
-            })
-            (final: prev: {
-              master = import inputs.nixpkgs-master {
-                system = "${pkgs.system}";
-                config.allowUnfree = true;
-              };
-            })
           ];
+          # Visual Studio Code Server support
+          services.vscode-server = {
+            enable = true;
+            installPath = "~/.vscode-server";
+          };
         };
 
       };
