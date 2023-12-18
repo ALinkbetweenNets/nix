@@ -5,7 +5,6 @@
     home-manager.nixosModules.home-manager
   ];
   home-manager.users.l = flake-self.homeConfigurations.tower;
-  home-manager.users.root = flake-self.homeConfigurations.tower;
   link = {
     tower.enable = true;
     main.enable = true;
