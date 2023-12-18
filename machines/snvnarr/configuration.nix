@@ -5,7 +5,6 @@
     home-manager.nixosModules.home-manager
   ];
   home-manager.users.l = flake-self.homeConfigurations.server;
-  home-manager.users.root = flake-self.homeConfigurations.server;
   link = {
     arr.enable = true;
     systemd-boot.enable = false;
