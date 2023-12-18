@@ -5,7 +5,6 @@
     home-manager.nixosModules.home-manager
   ];
   home-manager.users.l = flake-self.homeConfigurations.server;
-  home-manager.users.root = flake-self.homeConfigurations.server;
   link = {
     common.enable = true;
     grub.enable = true;
@@ -61,6 +60,14 @@
     expose = true;
     eth = "enp6s0";
   };
+  services.nginx.virtualHosts."${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    default = true;
+    locations."/" = {
+      return = "301 https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+    };
+  };
   powerManagement.powertop.enable = true;
   # virtualisation.sharedDirectories = {
   #   arr = {
@@ -86,8 +93,8 @@
   };
   # nix run .\#lollypops -- sn:rebuild
   lollypops.deployment = {
-    local-evaluation = true;
-    ssh = { host = "10.0.1.1"; };
+    # local-evaluation = true;
+    ssh = { host = "10.0.1.1"; user = "root"; };
     # sudo.enable = true;
   };
 }

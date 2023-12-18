@@ -16,6 +16,11 @@ in {
         # wine
         # wine64
         prismlauncher # minecraft launcher
+        (lutris.override {
+          extraLibraries = pkgs: [
+            # List library dependencies here
+          ];
+        })
       ] ++ lib.optionals
         (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
   };

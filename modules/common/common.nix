@@ -68,11 +68,15 @@ in {
       # security.tpm2.abrmd.enable = true;
       # auditd.enable = true;
     };
-
+    services.resolved = {
+      enable = true;
+      fallbackDns = [ "9.9.9.9" ];
+    };
     networking = {
       # nftables.enable = true; # libvirt, docker and others use iptables
       networkmanager = {
         enable = true;
+        dns = "systemd-resolved";
       };
       firewall = {
         enable = lib.mkDefault true;

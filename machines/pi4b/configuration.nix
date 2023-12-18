@@ -43,4 +43,24 @@
         super.makeModulesClosure (x // { allowMissing = true; });
     })
   ];
+  ###
+
+  home-manager.users.l = flake-self.homeConfigurations.server;
+
+  link = {
+    # make sure this module is compatible with ARM!
+    # a common module should not take care about the bootloader
+    # -> very specific to the hardware
+    # use config.nixpkgs.hostPlatform.isAarch64 for conditional statements
+    common.enable = false;
+
+    users.l.enable = true;
+    users.root.enable = true;
+    openssh.enable = true;
+  };
+
+  networking.hostName = "pi4b";
+
+  nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
+
 }
