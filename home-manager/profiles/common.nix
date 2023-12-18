@@ -70,7 +70,10 @@ with lib; {
     # Home-manager nixpkgs config
     nixpkgs = {
       # Allow "unfree" licenced packages
-      config = { allowUnfree = true; };
+      config = {
+        allowUnfree = true;
+        permittedInsecurePackages = [ "electron-25.9.0" ];
+      };
       overlays = [ ];
     };
     # Include man-pages
