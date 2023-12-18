@@ -161,6 +161,7 @@
           # import home manager modules from this flake
           imports = [
             inputs.nixvim.homeManagerModules.nixvim
+            inputs.vscode-server.nixosModules.home
           ];
           # add overlays from this flake
           nixpkgs.overlays = [
@@ -174,6 +175,11 @@
               };
             })
           ];
+          # Visual Studio Code Server support
+          services.vscode-server = {
+            enable = true;
+            installPath = "~/.vscode-server";
+          };
         };
 
       };
