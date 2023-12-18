@@ -34,6 +34,9 @@ in {
         ];
       };
     };
+    nixpkgs.config.permittedInsecurePackages = [
+      "electron-25.9.0" # Temporary fix for Obsidian
+    ];
     sound.enable = true;
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
