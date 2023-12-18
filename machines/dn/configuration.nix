@@ -50,4 +50,5 @@
     wacomtablet
     xf86_input_wacom
   ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 }
