@@ -40,23 +40,7 @@
       (final: prev: {
         cudapkgs = import flake-self.inputs.nixpkgs {
           system = "${pkgs.system}";
-          config = {
-            allowUnfree = true;
-            cudaSupport = true;
-          };
-        };
-      })
-
-      (final: prev: {
-        stable = import flake-self.inputs.nixpkgs-stable {
-          system = "${pkgs.system}";
-          config.allowUnfree = true;
-        };
-      })
-      (final: prev: {
-        master = import flake-self.inputs.nixpkgs-master {
-          system = "${pkgs.system}";
-          config.allowUnfree = true;
+          config = { allowUnfree = true; cudaSupport = true; };
         };
       })
     ];
