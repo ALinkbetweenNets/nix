@@ -31,6 +31,16 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mayniklas = {
+      url = "github:MayNiklas/nixos";
+      inputs = {
+        disko.follows = "disko";
+        home-manager.follows = "home-manager";
+        lollypops.follows = "lollypops";
+        nixos-hardware.follows = "nixos-hardware";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
 
   };
 
@@ -51,18 +61,20 @@
 
       overlays.default = final: prev: (import ./pkgs inputs) final prev;
 
-      packages = forAllSystems (system: {
-        build_outputs =
-          nixpkgsFor.${system}.callPackage ./pkgs/build_outputs {
-            inherit self;
-          };
-        woodpecker-pipeline =
-          nixpkgsFor.${system}.callPackage ./pkgs/woodpecker-pipeline {
-            flake-self = self;
-            inputs = inputs;
-          };
-        inherit (nixpkgsFor.${system}.link) candy-icon-theme;
-      });
+      packages = forAllSystems (system:
+        let pkgs = nixpkgsFor.${system}; in {
+          woodpecker-pipeline =
+            pkgs.callPackage ./pkgs/woodpecker-pipeline {
+              flake-self = self;
+              inputs = inputs;
+            };
+          build_outputs =
+            pkgs.callPackage mayniklas.packages.${system}.build_outputs.override {
+              inherit self;
+              output_path = "~/.keep-nix-outputs-ALinkbetweenNets";
+            };
+          inherit (pkgs.link) candy-icon-theme;
+        });
 
       apps = forAllSystems (system: {
         lollypops = lollypops.apps.${system}.default { configFlake = self; };
