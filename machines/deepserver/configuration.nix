@@ -58,6 +58,7 @@
     useRoutingFeatures = "server";
     extraUpFlags = [ "--advertise-exit-node" ];
   };
+  services.openssh.ports = [ 2522 ];
   services.openssh.settings.PermitRootLogin = lib.mkForce "prohibit-password";
   boot.loader.grub.devices = [ "/dev/sda" "/dev/sdb" ];
   security.sudo.wheelNeedsPassword = true;
