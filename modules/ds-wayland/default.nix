@@ -12,7 +12,13 @@ in {
         shotman
         wl-clipboard-x11
         wl-clipboard
-      ];
+        xwayland
+        xwaylandvideobridge
+        wayland-utils
+        wtype # xdotool
+        wev # key codes
+      ] ++ lib.optionals
+        (config.link.plasma.enable) [ libsForQt5.plasma-wayland-protocols ];
     environment.sessionVariables = {
       NIXOS_OZONE_WL = "1";
       MOZ_ENABLE_WAYLAND = "1";
