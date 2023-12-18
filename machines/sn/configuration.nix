@@ -61,6 +61,14 @@
     expose = true;
     eth = "enp6s0";
   };
+  services.nginx.virtualHosts."${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    default = true;
+    locations."/" = {
+      return = "301 https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+    };
+  };
   powerManagement.powertop.enable = true;
   # virtualisation.sharedDirectories = {
   #   arr = {
