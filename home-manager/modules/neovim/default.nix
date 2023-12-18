@@ -93,9 +93,9 @@ with lib;
         ];
       };
       # NOTE: This plugin handles everything for rust.
-      rust-tools = {
-        enable = true;
-      };
+      # rust-tools = {
+      #   enable = true;
+      # };
       nvim-cmp = {
         enable = true;
 
@@ -228,7 +228,7 @@ with lib;
         formattersByFt = {
           javascript = [ "prettier" ];
           nix = [ "alejandra" ];
-          rust = [ "rustfmt" ];
+          # rust = [ "rustfmt" ];
         };
       };
       # Tim Pope's surround plugin
@@ -365,6 +365,5 @@ with lib;
     vscode-langservers-extracted
     nil
     zls
-    rust-analyzer
   ];
 }
