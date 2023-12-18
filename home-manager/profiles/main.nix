@@ -47,6 +47,9 @@ with lib; {
       qtox
       element-desktop
       # Utils
+      vial
+      via
+      qmk
       mermaid-cli
       pomodoro
       links2 # TUI Browser
