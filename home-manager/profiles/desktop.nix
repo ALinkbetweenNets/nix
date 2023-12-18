@@ -45,7 +45,7 @@ with lib; {
         libsForQt5.plasma-vault
         libsForQt5.plasma-disks
         ktailctl # Tailscale GUI
-        vivaldi
+        # vivaldi
         bitwarden
       ] ++ lib.optionals
         (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
