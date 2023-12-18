@@ -3,8 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-master.url = "github:nixos/nixpkgs/master";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nur.url = "github:nix-community/NUR";
     lollypops = {
@@ -173,18 +171,6 @@
               cudapkgs = import inputs.nixpkgs {
                 system = "${pkgs.system}";
                 config = { allowUnfree = true; cudaSupport = true; };
-              };
-            })
-            (final: prev: {
-              stable = import inputs.nixpkgs-stable {
-                system = "${pkgs.system}";
-                config.allowUnfree = true;
-              };
-            })
-            (final: prev: {
-              master = import inputs.nixpkgs-master {
-                system = "${pkgs.system}";
-                config.allowUnfree = true;
               };
             })
           ];
