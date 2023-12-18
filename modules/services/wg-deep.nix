@@ -21,7 +21,10 @@ in {
       wireguard.interfaces = {
         wg-deep = {
           # Determines the IP/IPv6 address and subnet of the client's end of the tunnel interface
-          ips = [ "10.0.0.1/24" "fdc9:281f:04d7:9ee9::1/64" ];
+          ips = [
+            "10.0.0.0/29"
+            # "fdc9:281f:04d7:9ee9::1/64"
+          ];
           # The port that WireGuard listens to - recommended that this be changed from default
           listenPort = 51820;
           # Path to the server's private key
@@ -41,19 +44,28 @@ in {
               # l
               publicKey = "kkdbV6j4kNA2xofP5XSKIlSl/1uwLkvijJ2I6YFiWiA=";
               presharedKeyFile = "/home/l/.keys/wg-deep-l.preshared";
-              allowedIPs = [ "10.0.0.9/29" "fdc9:281f:04d7:9ee9:800::/69" ];
+              allowedIPs = [
+                "10.0.0.8/29"
+                # "fdc9:281f:04d7:9ee9:800::/69"
+              ];
             }
             {
               # Paul
               publicKey = "8D54qfl2TQQhzLq0e0rjQvsoU7BhJSdgpmOhumH1ghA=";
               presharedKeyFile = "/home/l/.keys/wg-deep-paul.preshared";
-              allowedIPs = [ "10.0.0.17/29" "fdc9:281f:04d7:9ee9:1000::/69" ];
+              allowedIPs = [
+                "10.0.0.16/29"
+                # "fdc9:281f:04d7:9ee9:1000::/69"
+              ];
             }
             {
               # Jucknath
               publicKey = "YGYkjZpkYGiKYxgNeT/fhP9PePij45f1wlNWLz+ugzo=";
               presharedKeyFile = "/home/l/.keys/wg-deep-jucknath.preshared";
-              allowedIPs = [ "10.0.0.25/29" "fdc9:281f:04d7:9ee9:1800::/69" ];
+              allowedIPs = [
+                "10.0.0.24/29"
+                # "fdc9:281f:04d7:9ee9:1800::/69"
+              ];
             }
             # More peers can be added here.
           ];
