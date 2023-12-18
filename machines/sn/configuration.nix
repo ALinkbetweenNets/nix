@@ -5,7 +5,6 @@
     home-manager.nixosModules.home-manager
   ];
   home-manager.users.l = flake-self.homeConfigurations.server;
-  home-manager.users.root = flake-self.homeConfigurations.server;
   link = {
     common.enable = true;
     grub.enable = true;
@@ -94,8 +93,8 @@
   };
   # nix run .\#lollypops -- sn:rebuild
   lollypops.deployment = {
-    local-evaluation = true;
-    ssh = { host = "10.0.1.1"; };
+    # local-evaluation = true;
+    ssh = { host = "10.0.1.1"; user = "root"; };
     # sudo.enable = true;
   };
 }
