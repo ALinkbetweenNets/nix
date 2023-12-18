@@ -3,9 +3,10 @@
   imports = [
     ./hardware-configuration.nix
     home-manager.nixosModules.home-manager
+    flake-self.inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13-yoga
   ];
+  hardware.enableRedistributableFirmware = true;
   home-manager.users.l = flake-self.homeConfigurations.convertible;
-  home-manager.users.root = flake-self.homeConfigurations.convertible;
   link = {
     convertible.enable = true;
     main.enable = true;
