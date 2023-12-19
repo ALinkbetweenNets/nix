@@ -22,11 +22,11 @@ with lib;
       autoindent = true;
       autoread = true;
       # completeopt = [ "menu" "menuone" "noselect" ];
-      # cursorline = true;
-      expandtab = true;
+      cursorline = false;
+      expandtab = false;
       ignorecase = true;
       incsearch = true;
-      list = true;
+      list = false;
       modeline = true; # Tags such as 'vim:ft=sh'
       modelines = 100; # Sets the type of modelines
       number = true; # Show line numbers
@@ -47,278 +47,278 @@ with lib;
         action = "<C-\><C-n>";
       }
     ];
-    plugins = {
-      comment-nvim = {
-        enable = true;
-      };
-      trouble = {
-        enable = true;
-      };
-      bufferline = {
-        enable = false;
-        alwaysShowBufferline = false;
-      };
-      lsp = {
-        enable = true;
+    #plugins = {
+    #  comment-nvim = {
+    #    enable = true;
+    #  };
+    #  trouble = {
+    #    enable = true;
+    #  };
+    #  bufferline = {
+    #    enable = false;
+    #    alwaysShowBufferline = false;
+    #  };
+    #  lsp = {
+    #    enable = true;
 
-        keymaps = {
-          silent = true;
-          diagnostic = {
-            # Navigate in diagnostics
-            "[d" = "goto_prev";
-            "]d" = "goto_next";
-            "<leader>d" = "open_float";
-          };
+    #    keymaps = {
+    #      silent = true;
+    #      diagnostic = {
+    #        # Navigate in diagnostics
+    #        "[d" = "goto_prev";
+    #        "]d" = "goto_next";
+    #        "<leader>d" = "open_float";
+    #      };
 
-          lspBuf = {
-            gd = "definition";
-            gD = "references";
-            gt = "type_definition";
-            gi = "implementation";
-            K = "hover";
-            "<leader>r" = "rename";
-          };
-        };
+    #      lspBuf = {
+    #        gd = "definition";
+    #        gD = "references";
+    #        gt = "type_definition";
+    #        gi = "implementation";
+    #        K = "hover";
+    #        "<leader>r" = "rename";
+    #      };
+    #    };
 
-        enabledServers = [
-          "bashls"
-          "clangd"
-          "nil_ls"
-          "lua_ls"
-          "eslint"
-          "html"
-          "jsonls"
-          "cssls"
-          "zls"
-        ];
-      };
-      # NOTE: This plugin handles everything for rust.
-      # rust-tools = {
-      #   enable = true;
-      # };
-      nvim-cmp = {
-        enable = true;
+    #    enabledServers = [
+    #      "bashls"
+    #      "clangd"
+    #      "nil_ls"
+    #      "lua_ls"
+    #      "eslint"
+    #      "html"
+    #      "jsonls"
+    #      "cssls"
+    #      "zls"
+    #    ];
+    #  };
+    #  # NOTE: This plugin handles everything for rust.
+    #  # rust-tools = {
+    #  #   enable = true;
+    #  # };
+    #  nvim-cmp = {
+    #    enable = true;
 
-        snippet.expand = "luasnip";
+    #    snippet.expand = "luasnip";
 
-        mapping = {
-          "<C-u>" = "cmp.mapping.scroll_docs(-3)";
-          "<C-d>" = "cmp.mapping.scroll_docs(3)";
-          "<C-Space>" = "cmp.mapping.complete()";
-          "<tab>" = "cmp.mapping.close()";
-          "<c-n>" = {
-            modes = [ "i" "s" ];
-            action = "cmp.mapping.select_next_item()";
-          };
-          "<c-p>" = {
-            modes = [ "i" "s" ];
-            action = "cmp.mapping.select_prev_item()";
-          };
-          "<CR>" = "cmp.mapping.confirm({ select = true })";
-        };
+    #    mapping = {
+    #      "<C-u>" = "cmp.mapping.scroll_docs(-3)";
+    #      "<C-d>" = "cmp.mapping.scroll_docs(3)";
+    #      "<C-Space>" = "cmp.mapping.complete()";
+    #      "<tab>" = "cmp.mapping.close()";
+    #      "<c-n>" = {
+    #        modes = [ "i" "s" ];
+    #        action = "cmp.mapping.select_next_item()";
+    #      };
+    #      "<c-p>" = {
+    #        modes = [ "i" "s" ];
+    #        action = "cmp.mapping.select_prev_item()";
+    #      };
+    #      "<CR>" = "cmp.mapping.confirm({ select = true })";
+    #    };
 
-        sources = [
-          { name = "path"; }
-          { name = "nvim_lsp"; }
-          # { name = "cmp_tabnine"; }
-          { name = "luasnip"; }
-          {
-            name = "buffer";
-            # Words from other open buffers can also be suggested.
-            option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
-          }
-          { name = "neorg"; }
-        ];
-      };
-      luasnip = {
-        enable = true;
-      };
-      lspkind = {
-        enable = true;
+    #    sources = [
+    #      { name = "path"; }
+    #      { name = "nvim_lsp"; }
+    #      # { name = "cmp_tabnine"; }
+    #      { name = "luasnip"; }
+    #      {
+    #        name = "buffer";
+    #        # Words from other open buffers can also be suggested.
+    #        option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
+    #      }
+    #      { name = "neorg"; }
+    #    ];
+    #  };
+    #  luasnip = {
+    #    enable = true;
+    #  };
+    #  lspkind = {
+    #    enable = true;
 
-        cmp = {
-          enable = true;
-          menu = {
-            nvim_lsp = "[LSP]";
-            nvim_lua = "[api]";
-            path = "[path]";
-            luasnip = "[snip]";
-            buffer = "[buf]";
-            neorg = "[norg]";
-            # cmp_tabnine = "[t9]";
-          };
-        };
-      };
-      # files & dir navigation
-      oil = {
-        enable = true;
-        deleteToTrash = false; # TODO: Configure trash
-        keymaps = {
-          "<C-s>" = "false";
-          "<C-h>" = "false";
-          "xv" = "actions.select_vsplit";
-          "xs" = "actions.select_split";
-        };
-        columns = {
-          icon.enable = true;
-          permissions.enable = true;
-          type.enable = true;
-        };
-      };
-      # buffer navigation
-      flash = {
-        enable = true; # mapping
-      };
-      # syntax
-      treesitter = {
-        enable = true;
+    #    cmp = {
+    #      enable = true;
+    #      menu = {
+    #        nvim_lsp = "[LSP]";
+    #        nvim_lua = "[api]";
+    #        path = "[path]";
+    #        luasnip = "[snip]";
+    #        buffer = "[buf]";
+    #        neorg = "[norg]";
+    #        # cmp_tabnine = "[t9]";
+    #      };
+    #    };
+    #  };
+    #  # files & dir navigation
+    #  oil = {
+    #    enable = true;
+    #    deleteToTrash = false; # TODO: Configure trash
+    #    keymaps = {
+    #      "<C-s>" = "false";
+    #      "<C-h>" = "false";
+    #      "xv" = "actions.select_vsplit";
+    #      "xs" = "actions.select_split";
+    #    };
+    #    columns = {
+    #      icon.enable = true;
+    #      permissions.enable = true;
+    #      type.enable = true;
+    #    };
+    #  };
+    #  # buffer navigation
+    #  flash = {
+    #    enable = true; # mapping
+    #  };
+    #  # syntax
+    #  treesitter = {
+    #    enable = true;
 
-        nixvimInjections = true;
+    #    nixvimInjections = true;
 
-        folding = true;
-        indent = true;
-      };
-      markdown-preview = {
-        enable = true;
+    #    folding = true;
+    #    indent = true;
+    #  };
+    #  markdown-preview = {
+    #    enable = true;
 
-        # theme = "dark";
-      };
-      treesitter-refactor = {
-        enable = true;
-        highlightDefinitions.enable = true;
-      };
-      # code folding
-      # nvim-ufo = {
-      #   enable = true;
-      # };
-      gitsigns = {
-        enable = true;
-      };
-      nvim-autopairs.enable = true;
-      nvim-colorizer = {
-        enable = true;
-        userDefaultOptions.names = false;
-      };
-      # highlight all occurences of of WUTC(word under the cursor)
-      illuminate = {
-        enable = true;
-      };
-      # keymap previewer helper
-      which-key = {
-        enable = true;
-      };
-      /*
-         Easy to spot marker comments
-      hack: wEiRd CoDe
-      warn: A warning
-      perf: Fully optimized(Performant)
-      note: A note
-      test: A test
-      fix: Needs fixing
-      */
-      todo-comments = {
-        enable = true;
-      };
-      conform-nvim = {
-        enable = true;
-        formatOnSave = {
-          timeoutMs = 500;
-          lspFallback = true;
-        };
-        formattersByFt = {
-          javascript = [ "prettier" ];
-          nix = [ "alejandra" ];
-          # rust = [ "rustfmt" ];
-        };
-      };
-      # Tim Pope's surround plugin
-      surround = {
-        enable = true;
-      };
-      # Fuzzy navigation menu for files, buffers & more
-      telescope = {
-        enable = true;
-        keymaps = {
-          # Find files using Telescope command-line sugar.
-          "<c-s>f" = "find_files";
-          "<c-s>g" = "live_grep";
-          "<c-s>b" = "current_buffer_fuzzy_find";
-          "<c-s>m" = "marks";
-          "<c-s>h" = "help_tags";
-          "<c-s>d" = "diagnostics";
-          "<c-s>D" = "lsp_definitions";
-          "<c-s>o" = "oldfiles";
-          "<c-s>c" = "commands";
-          "<c-s>C" = "command_history";
-          "<c-s>q" = "quickfix";
-          "<c-s>r" = "registers";
-          "<c-s>v" = "vim_options";
-          "<c-s>x" = "spell_suggest";
-          "<c-s>lr" = "lsp_references";
-          "<c-s>ls" = "lsp_document_symbols";
-          "<c-s>ld" = "diagnostics";
-          "<c-s>lD" = "lsp_definitions";
-          "<c-s>lt" = "lsp_type_definitions";
-          "<leader><space>" = "buffers";
-          # TODO: FZF like bindings
-          # "<C-p>" = "git_files";
-          # "<leader>p" = "oldfiles";
-          # "<C-f>" = "live_grep";
-        };
-        extraOptions.pickers.buffers = {
-          show_all_buffers = "true";
-          theme = "dropdown";
-          mappings = {
-            i = {
-              "<c-s>" = "delete_buffer";
-            };
-            n = {
-              "dd" = "delete_buffer";
-              "x" = "delete_buffer";
-            };
-          };
-        };
-        keymapsSilent = true;
-        defaults = {
-          file_ignore_patterns = [
-            "^.git/"
-            "^.mypy_cache/"
-            "^__pycache__/"
-            "^output/"
-            "^data/"
-            "%.ipynb"
-          ];
-          set_env.COLORTERM = "truecolor";
-        };
-      }; # Faster file navigation
-      harpoon = {
-        enable = false; # TODO: Configure later
-        enableTelescope = true;
-      };
-      # Navigate your vim undo history
-      undotree = {
-        enable = false;
-      };
-      # Indentation guides
-      indent-blankline = {
-        # TODO: Autostart
-        enable = true;
-      };
-      nix = {
-        enable = true;
-      };
-      nix-develop = {
-        enable = true;
-      };
-      # Discord rich presence
-      # presence-nvim = {
-      #   # TODO: Configure later
-      #   enable = false;
-      #   neovimImageText = "I'm still breathing! Are you?";
-      #   clientId = "1125469005931630675";
-      #   logLevel = "debug";
-      # };
-    };
+    #    # theme = "dark";
+    #  };
+    #  treesitter-refactor = {
+    #    enable = true;
+    #    highlightDefinitions.enable = true;
+    #  };
+    #  # code folding
+    #  # nvim-ufo = {
+    #  #   enable = true;
+    #  # };
+    #  gitsigns = {
+    #    enable = true;
+    #  };
+    #  nvim-autopairs.enable = true;
+    #  nvim-colorizer = {
+    #    enable = true;
+    #    userDefaultOptions.names = false;
+    #  };
+    #  # highlight all occurences of of WUTC(word under the cursor)
+    #  illuminate = {
+    #    enable = true;
+    #  };
+    #  # keymap previewer helper
+    #  which-key = {
+    #    enable = true;
+    #  };
+    #  /*
+    #     Easy to spot marker comments
+    #  hack: wEiRd CoDe
+    #  warn: A warning
+    #  perf: Fully optimized(Performant)
+    #  note: A note
+    #  test: A test
+    #  fix: Needs fixing
+    #  */
+    #  todo-comments = {
+    #    enable = true;
+    #  };
+    #  conform-nvim = {
+    #    enable = true;
+    #    formatOnSave = {
+    #      timeoutMs = 500;
+    #      lspFallback = true;
+    #    };
+    #    formattersByFt = {
+    #      javascript = [ "prettier" ];
+    #      nix = [ "alejandra" ];
+    #      # rust = [ "rustfmt" ];
+    #    };
+    #  };
+    #  # Tim Pope's surround plugin
+    #  surround = {
+    #    enable = true;
+    #  };
+    #  # Fuzzy navigation menu for files, buffers & more
+    #  telescope = {
+    #    enable = true;
+    #    keymaps = {
+    #      # Find files using Telescope command-line sugar.
+    #      "<c-s>f" = "find_files";
+    #      "<c-s>g" = "live_grep";
+    #      "<c-s>b" = "current_buffer_fuzzy_find";
+    #      "<c-s>m" = "marks";
+    #      "<c-s>h" = "help_tags";
+    #      "<c-s>d" = "diagnostics";
+    #      "<c-s>D" = "lsp_definitions";
+    #      "<c-s>o" = "oldfiles";
+    #      "<c-s>c" = "commands";
+    #      "<c-s>C" = "command_history";
+    #      "<c-s>q" = "quickfix";
+    #      "<c-s>r" = "registers";
+    #      "<c-s>v" = "vim_options";
+    #      "<c-s>x" = "spell_suggest";
+    #      "<c-s>lr" = "lsp_references";
+    #      "<c-s>ls" = "lsp_document_symbols";
+    #      "<c-s>ld" = "diagnostics";
+    #      "<c-s>lD" = "lsp_definitions";
+    #      "<c-s>lt" = "lsp_type_definitions";
+    #      "<leader><space>" = "buffers";
+    #      # TODO: FZF like bindings
+    #      # "<C-p>" = "git_files";
+    #      # "<leader>p" = "oldfiles";
+    #      # "<C-f>" = "live_grep";
+    #    };
+    #    extraOptions.pickers.buffers = {
+    #      show_all_buffers = "true";
+    #      theme = "dropdown";
+    #      mappings = {
+    #        i = {
+    #          "<c-s>" = "delete_buffer";
+    #        };
+    #        n = {
+    #          "dd" = "delete_buffer";
+    #          "x" = "delete_buffer";
+    #        };
+    #      };
+    #    };
+    #    keymapsSilent = true;
+    #    defaults = {
+    #      file_ignore_patterns = [
+    #        "^.git/"
+    #        "^.mypy_cache/"
+    #        "^__pycache__/"
+    #        "^output/"
+    #        "^data/"
+    #        "%.ipynb"
+    #      ];
+    #      set_env.COLORTERM = "truecolor";
+    #    };
+    #  }; # Faster file navigation
+    #  harpoon = {
+    #    enable = false; # TODO: Configure later
+    #    enableTelescope = true;
+    #  };
+    #  # Navigate your vim undo history
+    #  undotree = {
+    #    enable = false;
+    #  };
+    #  # Indentation guides
+    #  indent-blankline = {
+    #    # TODO: Autostart
+    #    enable = true;
+    #  };
+    #  nix = {
+    #    enable = true;
+    #  };
+    #  nix-develop = {
+    #    enable = true;
+    #  };
+    #  # Discord rich presence
+    #  # presence-nvim = {
+    #  #   # TODO: Configure later
+    #  #   enable = false;
+    #  #   neovimImageText = "I'm still breathing! Are you?";
+    #  #   clientId = "1125469005931630675";
+    #  #   logLevel = "debug";
+    #  # };
+    #};
     autoCmd = [
       # Vertically center document when entering insert mode
       # {
