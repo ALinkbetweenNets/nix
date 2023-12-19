@@ -32,7 +32,8 @@ in {
       wireguard.interfaces = {
         wg-deep = {
           ips = [
-            "10.0.0.8/29"
+            # "10.0.0.8/29"
+            "10.0.0.2/23"
             # "fdc9:281f:04d7:9ee9:800::/69"
           ];
           listenPort = 51820;
