@@ -1,0 +1,37 @@
+{
+  "labels": { "backend": "local" },
+  "platform": "linux/arm64",
+  "when": { "event": "manual" },
+  "steps":
+    [
+      {
+        "commands":
+          [
+            "nix build --print-out-paths '.#nixosConfigurations.pi4b.config.system.build.sdImage'",
+          ],
+        "image": "bash",
+        "name": "build pi4b image",
+      },
+      {
+        "commands": ["nix path-info --closure-size -h $(readlink -f 'result')"],
+        "image": "bash",
+        "name": "show pi4b image info",
+      },
+      {
+        "commands":
+          [
+            "crab_share --expires 7d --purge --zip-single-file -c bzip2 result/sd-image/pi4b-image-*-aarch64-linux.img",
+          ],
+        "image": "bash",
+        "name": "upload pi4b image",
+        "environment":
+          [
+            "S3_URL=https://s3.eu-central-003.backblazeb2.com",
+            "S3_BUCKET=crab-share",
+            "S3_REGION=eu-central-003",
+            "S3_ACCESS_KEY=003d560892a1b3a0000000002",
+          ],
+        "secrets": ["S3_SECRET_KEY"],
+      },
+    ],
+}
