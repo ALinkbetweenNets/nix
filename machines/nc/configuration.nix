@@ -34,7 +34,7 @@
     domain = "ultrasrv.de";
     interfaces."ens3" = {
       ipv6.addresses = [{
-        address = "2a03:4000:54:8a::";
+        address = "2a03:4000:54:8a:585a:48ff:fee3:9d06";
         prefixLength = 64;
       }];
     };
