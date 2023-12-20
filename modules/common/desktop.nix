@@ -10,6 +10,39 @@ in {
       xserver.enable = lib.mkDefault true;
       plasma.enable = lib.mkDefault true;
     };
+    fonts = {
+      packages = with pkgs;
+        [
+          font-awesome
+          fira
+          fira-code
+          fira-code-symbols
+
+          league-of-moveable-type
+          inter
+          source-sans-pro
+          source-serif-pro
+          noto-fonts-emoji
+          corefonts
+          recursive
+          iosevka-bin
+          font-awesome
+          line-awesome
+          (nerdfonts.override { fonts = [ "FiraCode" ]; })
+        ];
+      fontDir.enable = true;
+      fontconfig = {
+        defaultFonts = {
+          serif =
+            [ "Berkeley Mono" "Inconsolata Nerd Font Mono" ];
+          sansSerif =
+            [ "Berkeley Mono" "Inconsolata Nerd Font Mono" ];
+          monospace =
+            [ "Berkeley Mono" "Inconsolata Nerd Font Mono" ];
+          emoji = [ "Noto Color Emoji" ];
+        };
+      };
+    };
     programs.dconf.enable = true; # GTK themes are not applied in Wayland applications
     environment.systemPackages = with pkgs; [
       # Multimedia
@@ -21,6 +54,10 @@ in {
       spice-vdagent
     ];
     networking = {
+      networkmanager = {
+        enable = true;
+        dns = "systemd-resolved";
+      };
       firewall = {
         allowedTCPPortRanges = [{
           from = 1714;
