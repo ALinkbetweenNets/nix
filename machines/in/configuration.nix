@@ -6,6 +6,7 @@
   ];
   home-manager.users.l = flake-self.homeConfigurations.convertible;
   link = {
+    systemd-boot.enable = true;
     convertible.enable = true;
     main.enable = true;
     cpu-intel.enable = true;

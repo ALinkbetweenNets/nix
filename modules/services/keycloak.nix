@@ -4,6 +4,7 @@ let cfg = config.link.keycloak;
 in {
   options.link.keycloak.enable = mkEnableOption "activate keycloak";
   config = mkIf cfg.enable {
+    environment.noXlibs = false;
     services = {
       keycloak = {
         enable = true;
