@@ -23,6 +23,7 @@ with lib; {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs;
       [
+        s-tui
         apg # generate passwords
         xkcdpass
         sops
