@@ -34,7 +34,7 @@ in {
       };
     };
     powerManagement = {
-      enable = true;
+      # enable = true;
       #powertop.enable = true; # no option to disable usb powersaving yet
     };
   };

@@ -22,7 +22,8 @@ in {
         wg-deep = {
           # Determines the IP/IPv6 address and subnet of the client's end of the tunnel interface
           ips = [
-            "10.0.0.0/29"
+            # "10.0.0.0/29"
+            "10.0.0.1/23"
             # "fdc9:281f:04d7:9ee9::1/64"
           ];
           # The port that WireGuard listens to - recommended that this be changed from default
@@ -45,7 +46,8 @@ in {
               publicKey = "kkdbV6j4kNA2xofP5XSKIlSl/1uwLkvijJ2I6YFiWiA=";
               presharedKeyFile = "/home/l/.keys/wg-deep-l.preshared";
               allowedIPs = [
-                "10.0.0.8/29"
+                # "10.0.0.8/29"
+                "10.0.0.2/23"
                 # "fdc9:281f:04d7:9ee9:800::/69"
               ];
             }
@@ -54,7 +56,8 @@ in {
               publicKey = "8D54qfl2TQQhzLq0e0rjQvsoU7BhJSdgpmOhumH1ghA=";
               presharedKeyFile = "/home/l/.keys/wg-deep-paul.preshared";
               allowedIPs = [
-                "10.0.0.16/29"
+                # "10.0.0.16/29"
+                "10.0.0.3/23"
                 # "fdc9:281f:04d7:9ee9:1000::/69"
               ];
             }
@@ -63,7 +66,8 @@ in {
               publicKey = "YGYkjZpkYGiKYxgNeT/fhP9PePij45f1wlNWLz+ugzo=";
               presharedKeyFile = "/home/l/.keys/wg-deep-jucknath.preshared";
               allowedIPs = [
-                "10.0.0.24/29"
+                # "10.0.0.24/29"
+                "10.0.0.4/23"
                 # "fdc9:281f:04d7:9ee9:1800::/69"
               ];
             }

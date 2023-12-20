@@ -23,6 +23,7 @@
   networking = {
     hostName = "xn";
   };
+  services.throttled.enable = true;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   lollypops.deployment = {
     local-evaluation = true;

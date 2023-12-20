@@ -6,7 +6,7 @@ in {
   config = mkIf cfg.enable {
     programs.vscode = {
       enable = true;
-      package = pkgs.vscodium;
+      # package = pkgs.vscodium;
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = false;
       extensions = with pkgs.vscode-extensions; [
@@ -25,7 +25,7 @@ in {
         ms-vscode-remote.remote-ssh
         redhat.vscode-yaml
         streetsidesoftware.code-spell-checker
-        tamasfe.even-better-toml
+        #tamasfe.even-better-toml
         usernamehw.errorlens
         vadimcn.vscode-lldb
         yzhang.markdown-all-in-one

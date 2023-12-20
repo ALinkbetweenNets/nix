@@ -71,9 +71,16 @@
 
     settings = {
       # binary cache -> build by DroneCI
-      substituters = [ "https://cache.lounge.rocks/nix-cache" ];
-      trusted-public-keys =
-        [ "nix-cache:4FILs79Adxn/798F8qk2PC1U8HaTlaPqptwNJrXNA1g=" ];
+      substituters = [
+        "https://cache.lounge.rocks/nix-cache"
+        "https://cuda-maintainers.cachix.org"
+        "https://numtide.cachix.org"
+      ];
+      trusted-public-keys = [
+        "nix-cache:4FILs79Adxn/798F8qk2PC1U8HaTlaPqptwNJrXNA1g="
+        "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+        "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
+      ];
       # Enable flakes
       experimental-features = [ "nix-command" "flakes" ];
       # Save space by hardlinking store files

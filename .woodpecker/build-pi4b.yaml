@@ -20,7 +20,7 @@
       {
         "commands":
           [
-            "crab_share --expires 7d --purge --zip-single-file -c bzip2 result/sd-image/pi4b-image-*-aarch64-linux.img",
+            "crab_share --expires 7d --purge --zip-single-file -c bzip2 result/sd-image/*-aarch64-linux.img",
           ],
         "image": "bash",
         "name": "upload pi4b image",
