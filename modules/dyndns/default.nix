@@ -12,6 +12,7 @@ in
     };
   };
   config = mkIf cfg.enable {
+    sops.secrets."cloudflare-api" = { };
     services.cloudflare-dyndns = {
       enable = true;
       apiTokenFile = config.sops.secrets."cloudflare-api".path;
