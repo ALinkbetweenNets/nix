@@ -15,6 +15,7 @@ in {
       smartd.enable = true;
       ddccontrol.enable = true; # Control External Monitor Brightness
       udisks2.enable = true;
+      throttled.enable = true;
     };
     hardware = {
       enableAllFirmware = true;
