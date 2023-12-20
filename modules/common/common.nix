@@ -14,45 +14,16 @@ in {
       gpg-connect-agent /bye
       export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
     '';
-    fonts = {
-      packages = with pkgs;
-        [
-          league-of-moveable-type
-          inter
-          source-sans-pro
-          source-serif-pro
-          noto-fonts-emoji
-          corefonts
-          recursive
-          iosevka-bin
-          font-awesome
-          line-awesome
-          (nerdfonts.override { fonts = [ "FiraCode" ]; })
-        ];
-      fontDir.enable = true;
-      fontconfig = {
-        defaultFonts = {
-          serif =
-            [ "Berkeley Mono" "Inconsolata Nerd Font Mono" ];
-          sansSerif =
-            [ "Berkeley Mono" "Inconsolata Nerd Font Mono" ];
-          monospace =
-            [ "Berkeley Mono" "Inconsolata Nerd Font Mono" ];
-          emoji = [ "Noto Color Emoji" ];
-        };
-      };
-    };
     services.tlp.settings = {
       USB_AUTOSUSPEND = 0;
     };
-    environment.noXlibs = false;
     environment.pathsToLink = [ "/share/zsh" ];
     link = {
       users = {
         l.enable = true;
         root.enable = true;
       };
-      systemd-boot.enable = lib.mkDefault true;
+      # systemd-boot.enable = lib.mkDefault true;
       openssh.enable = lib.mkDefault true;
       # fail2ban.enable = lib.mkDefault true;
     };
@@ -73,11 +44,6 @@ in {
       fallbackDns = [ "9.9.9.9" ];
     };
     networking = {
-      # nftables.enable = true; # libvirt, docker and others use iptables
-      networkmanager = {
-        enable = true;
-        dns = "systemd-resolved";
-      };
       firewall = {
         enable = lib.mkDefault true;
         allowedUDPPorts = [
@@ -100,25 +66,8 @@ in {
         ];
       };
     };
-    boot = {
-      # plymouth = {
-      #   enable = true;
-      #   theme = "breeze";
-      # };
-      # initrd.systemd.enable = true;
-      loader = {
-        efi.canTouchEfiVariables = lib.mkDefault true;
-      };
-      tmp.cleanOnBoot = true;
-      kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
-      kernelParams = [ "quiet" "loglevel=3" ];
-    };
     environment.systemPackages = with pkgs; [
       ## system
-      font-awesome
-      fira
-      fira-code
-      fira-code-symbols
       libsecret
       gnupg
       gpg-tui

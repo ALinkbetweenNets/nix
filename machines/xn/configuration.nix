@@ -11,6 +11,7 @@
     convertible.enable = true;
     main.enable = true;
     cpu-intel.enable = true;
+    systemd-boot.enable = true;
     secrets = "/home/l/.keys";
     wireguard.enable = true;
     wg-deep.enable = true;
