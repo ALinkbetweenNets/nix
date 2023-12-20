@@ -6,6 +6,7 @@
   ];
   home-manager.users.l = flake-self.homeConfigurations.tower;
   link = {
+    systemd-boot.enable = true;
     tower.enable = true;
     main.enable = true;
     cpu-intel.enable = true;
