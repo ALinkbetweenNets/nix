@@ -29,6 +29,10 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    bonn-mensa = {
+      url = "github:alexanderwallau/bonn-mensa";
+      inputs = { nixpkgs.follows = "nixpkgs"; };
+    };
     mayniklas = {
       url = "github:MayNiklas/nixos";
       inputs = {
@@ -154,7 +158,7 @@
       {
 
         # This module is appended to the list of home-manager modules.
-        # It's always enabled for all profiles. 
+        # It's always enabled for all profiles.
         # It's used to easily add overlays and imports to home-manager.
         # Since this module is within this flake.nix, it will access our flake inputs.
         nix = { pkgs, ... }: {
