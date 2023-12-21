@@ -67,6 +67,26 @@
         "type": "github"
       }
     },
+    "bonn-mensa": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1703111014,
+        "narHash": "sha256-7Ci4bOGXUGAcYnzs8JRMpnN1CJur1JKjRJXArZ7Sqas=",
+        "owner": "alexanderwallau",
+        "repo": "bonn-mensa",
+        "rev": "ee16bafd1a497bb36d178f483bb12d1e01afeb58",
+        "type": "github"
+      },
+      "original": {
+        "owner": "alexanderwallau",
+        "repo": "bonn-mensa",
+        "type": "github"
+      }
+    },
     "crab_share": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -647,6 +667,7 @@
     },
     "root": {
       "inputs": {
+        "bonn-mensa": "bonn-mensa",
         "crab_share": "crab_share",
         "disko": "disko",
         "home-manager": "home-manager",

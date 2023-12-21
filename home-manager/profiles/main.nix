@@ -74,6 +74,7 @@ with lib; {
       uwuify
       # Privacy
       monero-gui
+      bonn-mensa
     ];
   };
 }
