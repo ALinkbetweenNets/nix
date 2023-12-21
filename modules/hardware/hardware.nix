@@ -10,7 +10,7 @@ in {
     services = {
       # for windows dualboot
       # hardware.enableRedistributableFirmware = true;
-      fwupd.enable = true;
+      fwupd.enable = config.link.systemd-boot.enable; # fwupd does not work in BIOS mode
       thermald.enable = true;
       smartd.enable = true;
       ddccontrol.enable = true; # Control External Monitor Brightness
