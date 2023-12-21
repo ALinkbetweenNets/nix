@@ -1,35 +1,30 @@
 { config, lib, pkgs, ... }:
 with lib;
-let cfg = config.paul.nginx; in
+let cfg = config.link.nginx; in
 {
   # NGINX Snippet
   #  extraConfig = toString (
-  #       optional config.paul.nginx.geoIP ''
+  #       optional config.link.nginx.geoIP ''
   #         if ($allowed_country = no) {
   #             return 444;
   #         }
   #       ''
   #     );
-
-  options.paul.nginx = {
+  options.link.nginx = {
     geoIP = mkEnableOption "enable GeoIP";
   };
-
   config = mkIf cfg.geoIP {
-
     # when Nginx is enabled, enable the GeoIP updater service
     services.geoipupdate = mkIf cfg.enable {
       enable = true;
       interval = "weekly";
       settings = {
         EditionIDs = [ "GeoLite2-Country" ];
-        # TODO: set AccountID and create a license key file
-        AccountID = 12345;
-        LicenseKey = "/var/maxmind_license_key";
-        DatabaseDirectory = "/var/lib/GeoIP";
+        AccountID = 952739;
+        LicenseKey = config.sops.secrests."maxmind-geoip-license".path;
+        DatabaseDirectory = "${config.link.storage}/GeoIP";
       };
     };
-
     # build nginx with geoip2 module
     services.nginx = {
       package = pkgs.nginxStable.override (oldAttrs: {
@@ -61,6 +56,5 @@ let cfg = config.paul.nginx; in
         ]
       );
     };
-
   };
 }
