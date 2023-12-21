@@ -75,7 +75,10 @@ with lib; {
         allowUnfree = true;
         permittedInsecurePackages = [ "electron-25.9.0" ];
       };
-      overlays = [ ];
+      overlays = [
+        flake-self.overlays.default
+        flake-self.inputs.bonn-mensa.overlays.default
+      ];
     };
     # Include man-pages
     manual.manpages.enable = true;
