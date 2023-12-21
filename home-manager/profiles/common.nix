@@ -8,8 +8,9 @@ with lib; {
     };
   };
   imports = with flake-self.homeManagerModules; [
-    # neovim
-    # zsh
+    neovim
+    zsh
+    git
   ];
   config = {
     home.sessionVariables = {
@@ -43,7 +44,6 @@ with lib; {
         socat
         tcpdump
         crab_share
-        (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ] ++ lib.optionals
         (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
     programs = {
