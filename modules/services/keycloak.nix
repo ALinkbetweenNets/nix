@@ -37,6 +37,13 @@ in {
               '';
             };
           };
+          extraConfig = toString (
+            optional config.link.nginx.geoIP ''
+              if ($allowed_country = no) {
+                  return 444;
+              }
+            ''
+          );
         };
       };
     };
