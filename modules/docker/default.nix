@@ -10,6 +10,7 @@ in {
         enable = true;
         dates = "weekly";
       };
+      storageDriver = "overlay2";
     };
     virtualisation.oci-containers = {
       backend = "docker";
