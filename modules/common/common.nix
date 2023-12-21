@@ -41,7 +41,8 @@ in {
     };
     services.resolved = {
       enable = true;
-      fallbackDns = [ "9.9.9.9" ];
+      fallbackDns = [ "9.9.9.9" "192.168.178.1" ];
+      domains = [ "fritz.box" ];
     };
     networking = {
       firewall = {

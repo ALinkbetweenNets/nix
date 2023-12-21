@@ -36,7 +36,7 @@
     # photoprism.enable = true;
     syncthing.enable = true;
     keycloak.enable = true;
-    dyndns.enable=true;
+    dyndns.enable = true;
     services = {
       dns.enable = true;
       gitea.enable = true;
