@@ -12,6 +12,7 @@ in {
       enable = true;
       openFirewall = true;
       startWhenNeeded = true;
+      logLevel = "VERBOSE"; # for fail2ban to work properly
       settings = {
         PermitRootLogin = "yes";
         #PasswordAuthentication = false;
