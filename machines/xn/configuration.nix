@@ -20,6 +20,7 @@
     service-ip = "127.0.0.1";
     xrdp.enable = true;
     eth = "wlp0s20f3";
+    docker.enable = true;
   };
   networking = {
     hostName = "xn";
