@@ -38,31 +38,31 @@ in {
         rounds = 200;
       }];
 
-      banner = ''
-                     :cc:        xkkkko      okkd
-                    .cccc;        lkkkkl    lkkkk:
-                     .cccc:        ,kkkkd  okkkk,
-                       cccc:.       .kkkkxxkkkk.
-                .......:ccccc'........kkkkkkkk
-               ,cccccccccccccc:::::::,.dkkkkk        ,,
-              ;ccccccccccccccc::::::::;.;kkkko      ;cc;
-                       ccccc.            .kkkkd    :cccc
-                     .xxxxx.               xxxxx .ccccc
-                    ,xkkkx                  dxx.,cccc;
-         :lllllllllokkkkl                    ,.;ccccc:;;;;;;,
-        .kkkkkkkkkkkkkk;.                     :cccccccccccccc.
-                ckkkkk.';.                  .:::cc
-               'kkkkk.':::'                .::::;
-              :kkkkd  .::::,              ,::::'
-             .kkkk:    .:::::            ',,,,,.
-              .kk'       :ccc:'.xxxxkkkkkkkkkkkkkkkkkkk.
-                        .cccccc,.xxxkkkkkkkkkkkkkkkkkk
-                       'cccccccc;        lkkkkx
-                      ,cccc,.cccc:        ;kkkko
-                     :cccc.   ccccc.       .kkkkx.
-                     cccc      ccccc.        kkkk
-                     .cc'      .ccccc.       ,kk;     
-      '';
+      # banner = ''
+      #                :cc:        xkkkko      okkd
+      #               .cccc;        lkkkkl    lkkkk:
+      #                .cccc:        ,kkkkd  okkkk,
+      #                  cccc:.       .kkkkxxkkkk.
+      #           .......:ccccc'........kkkkkkkk
+      #          ,cccccccccccccc:::::::,.dkkkkk        ,,
+      #         ;ccccccccccccccc::::::::;.;kkkko      ;cc;
+      #                  ccccc.            .kkkkd    :cccc
+      #                .xxxxx.               xxxxx .ccccc
+      #               ,xkkkx                  dxx.,cccc;
+      #    :lllllllllokkkkl                    ,.;ccccc:;;;;;;,
+      #   .kkkkkkkkkkkkkk;.                     :cccccccccccccc.
+      #           ckkkkk.';.                  .:::cc
+      #          'kkkkk.':::'                .::::;
+      #         :kkkkd  .::::,              ,::::'
+      #        .kkkk:    .:::::            ',,,,,.
+      #         .kk'       :ccc:'.xxxxkkkkkkkkkkkkkkkkkkk.
+      #                   .cccccc,.xxxkkkkkkkkkkkkkkkkkk
+      #                  'cccccccc;        lkkkkx
+      #                 ,cccc,.cccc:        ;kkkko
+      #                :cccc.   ccccc.       .kkkkx.
+      #                cccc      ccccc.        kkkk
+      #                .cc'      .ccccc.       ,kk;
+      # '';
     };
   };
 }
