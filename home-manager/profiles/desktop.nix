@@ -47,6 +47,7 @@ with lib; {
         ktailctl # Tailscale GUI
         # vivaldi
         bitwarden
+        (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ] ++ lib.optionals
         (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
     programs = {
