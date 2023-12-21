@@ -12,8 +12,8 @@ in {
       enable = true;
       openFirewall = true;
       startWhenNeeded = true;
-      logLevel = "VERBOSE"; # for fail2ban to work properly
       settings = {
+        LogLevel = "VERBOSE"; # for fail2ban to work properly
         PermitRootLogin = "yes";
         #PasswordAuthentication = false;
         #KbdInteractiveAuthentication = false;
