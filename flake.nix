@@ -33,6 +33,22 @@
       url = "github:alexanderwallau/bonn-mensa";
       inputs = { nixpkgs.follows = "nixpkgs"; };
     };
+    # Adblocking lists for Unbound DNS servers running on NixOS
+    # https://github.com/MayNiklas/nixos-adblock-unbound
+    adblock-unbound = {
+      url = "github:MayNiklas/nixos-adblock-unbound";
+      inputs = {
+        adblockStevenBlack.follows = "adblockStevenBlack";
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+    # Adblocking lists for DNS servers
+    # input here, so it will get updated by nix flake update
+    adblockStevenBlack = {
+      url = "github:StevenBlack/hosts";
+      flake = false;
+    };
     mayniklas = {
       url = "github:MayNiklas/nixos";
       inputs = {
