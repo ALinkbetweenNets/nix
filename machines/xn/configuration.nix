@@ -21,6 +21,7 @@
     xrdp.enable = true;
     eth = "wlp0s20f3";
     docker.enable = true;
+    unbound.enable = true;
   };
   networking = {
     hostName = "xn";
