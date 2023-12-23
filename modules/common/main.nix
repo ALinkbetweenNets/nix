@@ -13,6 +13,10 @@ in {
       oneko.enable = true;
     };
     services = {
+      tailscale = {
+        enable = true;
+        useRoutingFeatures = "client";
+      };
       mullvad-vpn = {
         enable = true;
         package = pkgs.mullvad-vpn;
@@ -34,10 +38,6 @@ in {
       adb.enable = true;
       steam.enable = true;
       steam.gamescopeSession.enable = true;
-    };
-    services.tailscale = {
-      enable = true;
-      useRoutingFeatures = "client";
     };
     networking.networkmanager.appendNameservers = [
       "1.1.1.1"
