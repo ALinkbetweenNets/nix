@@ -165,9 +165,7 @@
             ./home-manager/profiles/server.nix
           ] ++ (builtins.attrValues self.homeManagerModules);
         };
-
       };
-
       homeManagerModules = builtins.listToAttrs
         (map
           (name: {
