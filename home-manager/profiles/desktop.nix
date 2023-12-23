@@ -5,12 +5,17 @@ with lib; {
     # Packages to install on all desktop systems
     home.packages = with pkgs;
       [
+        sshfs
+        nfs-utils
         ## Basics
         hunspell
         hunspellDicts.de_DE
         # Audio
         helvum # Patchbay
         pavucontrol
+        # Multimedia
+        vlc
+        mpv
         # Encryption
         veracrypt
         kleopatra # gpg/ pgp
@@ -52,6 +57,11 @@ with lib; {
         (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
     programs = {
       firefox.enable = true;
+      yt-dlp = {
+        enable = true;
+        extraConfig = "--update";
+        settings = { embed-thumbnail = true; };
+      };
       #terminator.enable = true;
     };
     manual.html.enable = true;
