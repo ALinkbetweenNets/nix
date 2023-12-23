@@ -1,4 +1,4 @@
-{ config, system-config, pkgs, lib, ... }:
+{ config, system-config, pkgs, lib, adblock-unbound, ... }:
 with lib;
 let
   cfg = config.link.unbound;
