@@ -24,11 +24,11 @@
     # coturn.enable = true;
     # nginx.enable = true;
   };
-  # services.tailscale = {
-  #   enable = true;
-  #   useRoutingFeatures = "server";
-  #   extraUpFlags = [ "--advertise-exit-node" ];
-  # };
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "server";
+    extraUpFlags = [ "--advertise-exit-node" ];
+  };
   # services.openssh.settings.PermitRootLogin = lib.mkForce "prohibit-password";
   security.sudo.wheelNeedsPassword = true;
 
