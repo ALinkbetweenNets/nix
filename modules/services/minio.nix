@@ -77,7 +77,7 @@ in {
       };
     };
     networking = {
-      firewall.checkReversePath = "loose";
+      firewall.checkReversePath = lib.mkDefault "loose";
       # nameservers = [ "100.100.100.100" "1.1.1.1" ];
     };
   };
