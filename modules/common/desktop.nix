@@ -53,10 +53,10 @@ in {
       spice-vdagent
     ];
     networking = {
-      # networkmanager = {
-      #   enable = true;
-      #   dns = lib.mkDefault "systemd-resolved";
-      # };
+      networkmanager = {
+        enable = true;
+        # dns = lib.mkDefault "systemd-resolved";
+      };
       firewall = {
         allowedTCPPortRanges = [{
           from = 1714;
