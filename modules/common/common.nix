@@ -4,7 +4,7 @@ let cfg = config.link.common;
 in {
   options.link.common.enable = mkEnableOption "activate common";
   config = mkIf cfg.enable {
-    programs.ssh.startAgent = false;
+    programs.ssh.startAgent = lib.mkDefault false;
     programs.gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -28,7 +28,7 @@ in {
       openssh.enable = lib.mkDefault true;
       # fail2ban.enable = lib.mkDefault true;
     };
-    services.postgresql.package = pkgs.postgresql_14;
+    services.postgresql.package = pkgs.postgresql_14; # prevent major upgrades
     security = {
       sudo.wheelNeedsPassword = lib.mkDefault false;
       # polkit = {
