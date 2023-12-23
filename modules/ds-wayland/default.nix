@@ -2,9 +2,7 @@
 with lib;
 let cfg = config.link.wayland;
 in {
-
   options.link.wayland.enable = mkEnableOption "activate wayland";
-
   config = mkIf cfg.enable {
     programs.xwayland.enable = true;
     environment.systemPackages = with pkgs;
@@ -23,7 +21,6 @@ in {
       NIXOS_OZONE_WL = "1";
       MOZ_ENABLE_WAYLAND = "1";
     };
-
     hardware = {
       # fixes'ÈGL_EXT_platform_base not supported'
       opengl.enable = true;

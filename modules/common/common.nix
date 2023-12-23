@@ -81,12 +81,9 @@ in {
       tmux
       zellij
       ## encryption& filesystem
-      sshfs
-      nfs-utils
       cryptsetup
       gocryptfs
       age
-      restic
       ## Network tools
       wget
       curl
@@ -99,11 +96,7 @@ in {
       rmlint
       gitFull
       fdupes
-      # gitFull
-      iptables
-      nftables
-      wireguard-tools
-      dnsutils
+
     ];
     # console.font = "FiraCode Nerd Font";
   };

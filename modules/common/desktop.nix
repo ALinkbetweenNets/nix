@@ -17,7 +17,6 @@ in {
           fira
           fira-code
           fira-code-symbols
-
           league-of-moveable-type
           inter
           source-sans-pro
@@ -43,11 +42,11 @@ in {
         };
       };
     };
-    programs.dconf.enable = true; # GTK themes are not applied in Wayland applications
+    programs = {
+      dconf.enable = true; # GTK themes are not applied in Wayland applications
+      light.enable = true; # backlight control command and udev rules granting access to members of the “video” group.
+    };
     environment.systemPackages = with pkgs; [
-      # Multimedia
-      vlc
-      mpv
       # Virt Manager
       virt-manager
       spice
@@ -88,7 +87,6 @@ in {
         #media-session.enable = true;
       };
     };
-    programs.light.enable = true; # backlight control command and udev rules granting access to members of the “video” group.
     xdg = {
       mime.enable = true;
       icons.enable = true;

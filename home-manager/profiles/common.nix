@@ -37,12 +37,15 @@ with lib; {
         fzf
         glances
         unixtools.watch
+        # gitFull
+        iptables
+        nftables
+        wireguard-tools
+        dnsutils
         ## Networking+
         ipfetch
         magic-wormhole # Secure data transfer
         netcat-openbsd
-        socat
-        tcpdump
         crab_share
       ] ++ lib.optionals
         (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
@@ -56,11 +59,6 @@ with lib; {
       };
       lf = { enable = true; };
       lesspipe = { enable = true; };
-      yt-dlp = {
-        enable = true;
-        extraConfig = "--update";
-        settings = { embed-thumbnail = true; };
-      };
       direnv = {
         enable = true;
         enableBashIntegration = true;
