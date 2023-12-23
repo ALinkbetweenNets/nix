@@ -6,16 +6,15 @@ in {
   config = mkIf cfg.enable {
     # Enable the X11 windowing system.
     services.xserver = {
+      enable = true;
+      autorun = true;
       layout = "de";
       xkbVariant = "nodeadkeys";
       xkbOptions = "eurosign:e,caps:escape";
-      enable = true;
-      autorun = true;
       libinput = {
         enable = true;
         touchpad.accelProfile = "flat";
       };
-
       desktopManager = {
         xterm.enable = false;
         session = [{
@@ -27,12 +26,12 @@ in {
           '';
         }];
       };
-
     };
-
     # Enable pulseaudio compatible api for audio volume control in i3
-    services.pipewire.pulse.enable = true;
-
-    environment.systemPackages = with pkgs; [ xclip xdotool ];
+    # services.pipewire.pulse.enable = true;
+    environment.systemPackages = with pkgs; [
+      xclip
+      xdotool
+    ];
   };
 }
