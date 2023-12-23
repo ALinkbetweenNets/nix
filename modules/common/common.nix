@@ -14,9 +14,10 @@ in {
       gpg-connect-agent /bye
       export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
     '';
-    services.tlp.settings = {
-      USB_AUTOSUSPEND = 0;
-    };
+    # Does not seem to work
+    # services.tlp.settings = {
+    #   USB_AUTOSUSPEND = 0;
+    # };
     environment.pathsToLink = [ "/share/zsh" ];
     link = {
       users = {
