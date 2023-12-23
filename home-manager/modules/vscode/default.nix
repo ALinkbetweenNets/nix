@@ -70,7 +70,7 @@ in {
         "editor.find.autoFindInSelection" = "multiline";
         "editor.fontFamily" = "'Fira Code', 'Hack NF', 'Droid Sans Mono', 'monospace', monospace";
         "editor.fontLigatures" = true;
-        "editor.fontSize" = 11;
+        "editor.fontSize" = 12;
         "editor.formatOnPaste" = true;
         "editor.formatOnSave" = true;
         "editor.formatOnType" = true;
