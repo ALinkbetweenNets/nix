@@ -32,12 +32,15 @@
     grafana.enable = true;
     # home-assistant.enable = true;
     jellyfin.enable = true;
-    paperless.enable = true;
     # photoprism.enable = true;
     syncthing.enable = true;
     keycloak.enable = true;
     dyndns.enable = true;
     services = {
+      paperless = {
+        enable = true;
+        expose = false;
+      };
       dns.enable = true;
       gitea.enable = true;
       hedgedoc = { enable = true; expose = true; };
