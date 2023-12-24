@@ -30,7 +30,7 @@
     extraUpFlags = [ "--advertise-exit-node" ];
   };
   # services.openssh.settings.PermitRootLogin = lib.mkForce "prohibit-password";
-  security.sudo.wheelNeedsPassword = true;
+  # security.sudo.wheelNeedsPassword = true;
 
   lollypops.deployment = {
     local-evaluation = true;
