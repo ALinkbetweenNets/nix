@@ -46,7 +46,6 @@ in
             "10.0.1.0/24 allow"
           ];
         };
-
         # forward local DNS requests via Wireguard
         # domain-insecure = [ "haus" ];
         # stub-zone = [
@@ -55,7 +54,6 @@ in
         #     stub-addr = "10.88.88.4";
         #   }
         # ];
-
         forward-zone = [
           # {
           #   name = "too-many-tb.de.";
@@ -64,6 +62,13 @@ in
           #   ];
           #   forward-tls-upstream = "no";
           # }
+          {
+            name = "*.tailc4dfb.ts.net";
+            forward-addr = [
+              "100.100.100.100@853"
+            ];
+            forward-tls-upstream = "yes";
+          }
           {
             name = "google.*.";
             forward-addr = [
