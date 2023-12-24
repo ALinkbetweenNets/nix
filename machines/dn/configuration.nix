@@ -9,6 +9,7 @@
     systemd-boot.enable = true;
     tower.enable = true;
     main.enable = true;
+    printing.enable = lib.mkDefault true;
     cpu-intel.enable = true;
     nvidia.enable = true;
     secrets = "/home/l/.keys";

@@ -18,7 +18,7 @@
     wg-link.enable = true;
     domain = "xn.local";
     service-ip = "127.0.0.1";
-    xrdp.enable = true;
+    # xrdp.enable = true;
     eth = "wlp0s20f3";
     docker.enable = true;
     unbound.enable = true;
