@@ -13,7 +13,7 @@ in {
       xkbOptions = "eurosign:e,caps:escape";
       libinput = {
         enable = true;
-        touchpad.accelProfile = "flat";
+        touchpad.accelProfile = "adaptive";
       };
       desktopManager = {
         xterm.enable = false;
