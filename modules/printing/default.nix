@@ -16,7 +16,7 @@ in {
         # for a WiFi printer
         openFirewall = true;
       };
-      saned.enable = true;
+      saned.enable = true; # port 6566
       ipp-usb.enable = true;
     };
     hardware.sane = {
