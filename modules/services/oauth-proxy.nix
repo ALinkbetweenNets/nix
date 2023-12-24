@@ -22,6 +22,11 @@ in {
         provider = "keycloak";
         keyFile = config.sops.secrets."oauth-proxy/key".path;
         validateURL = "https://keycloak.alinkbetweennets.de/";
+        redeemURL = "https://keycloak.alinkbetweennets.de/oauth/token";
+        loginURL = "https://keycloak.alinkbetweennets.de/oauth/authorize";
+        reverseProxy = true;
+        setXauthrequest = true;
+        passAccessToken = true;
       };
       nginx.virtualHosts."oauth-proxy.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
