@@ -1,8 +1,15 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.paperless;
+let cfg = config.link.services.paperless;
 in {
-  options.link.paperless.enable = mkEnableOption "activate paperless";
+  options.link.services.paperless = {
+    enable = mkEnableOption "activate paperless";
+    expose = mkOption {
+      type = types.bool;
+      default = config.link.expose;
+      description = "expose paperless to the internet with NGINX and ACME";
+    };
+  };
   config = mkIf cfg.enable {
     services = {
       paperless = {
@@ -22,6 +29,7 @@ in {
           };
         };
       };
+      oauth2_proxy.nginx.virtualHosts = [ "paperless.${config.link.domain}" ];
       nginx.virtualHosts."paperless.${config.link.domain}" = {
         enableACME = true;
         forceSSL = true;
@@ -30,6 +38,11 @@ in {
         locations."/" = {
           proxyPass = "http://127.0.0.1:${toString config.services.paperless.port}/";
         };
+        extraConfig = mkIf (!cfg.expose) ''
+          allow ${config.link.service-ip}/24;
+          allow 127.0.0.1;
+          deny all; # deny all remaining ips
+        '';
       };
     };
   };
