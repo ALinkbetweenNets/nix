@@ -6,7 +6,6 @@ in {
   config = mkIf cfg.enable {
     link = {
       desktop.enable = true;
-      printing.enable = lib.mkDefault true;
       syncthing.enable = true;
       git-sync.enable = true;
       fs.ntfs.enable = true;
