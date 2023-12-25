@@ -49,6 +49,7 @@ with lib; {
         libsForQt5.yakuake
         libsForQt5.plasma-vault
         libsForQt5.plasma-disks
+        libsForQt5.kfind
         ktailctl # Tailscale GUI
         # vivaldi
         bitwarden
