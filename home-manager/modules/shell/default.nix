@@ -171,7 +171,10 @@ in {
         #   };
         # }
       ];
-      shellAliases = rec {
+    };
+    fish = {
+      enable = true;
+      shellAbbrs = {
         # switching within a flake repository
         nrg = "sudo nixos-rebuild switch --use-remote-sudo --flake github:alinkbetweennets/nix";
         nr = "cd /home/l/nix;git pull;sudo nixos-rebuild switch --use-remote-sudo --flake /home/l/nix";
@@ -256,9 +259,31 @@ in {
     #   theme = "agnoster";
     #   # plugins=["git" "sudo" "per-directory-history" "zsh-autosuggestions" "zsh-syntax-highlighting" "zsh-nix-shell" "zsh-completions" "zsh-history-substring-search" "zsh-abbrev-alias" "zsh-autopair" "formarks" "gitit" "enhancd"];
     # };
+    autojump.enable = true;
     zoxide.enable = true;
     thefuck.enable = true;
     watson.enable = true;
+    carapace.enable = true; # command argument completer
+    dircolors.enable = true;
+    btop = { enable = true; };
+    jq.enable = true;
+    nix-index = {
+      enable = true;
+    };
+    lf = { enable = true; };
+    lesspipe = { enable = true; };
+    direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
+    bat = {
+      enable = true;
+      # This should pick up the correct colors for the generated theme. Otherwise
+      # it is possible to generate a custom bat theme to ~/.config/bat/config
+      config = { theme = "base16"; };
+    };
     fzf = {
       enable = true;
       enableZshIntegration = true;
@@ -284,10 +309,6 @@ in {
         "--color 'spinner:#${vars.colors.base0E}'" # Streaming input indicator
         "--color 'header:#${vars.colors.base05}'" # Header
       ];
-    };
-    dircolors = {
-      enable = true;
-      enableZshIntegration = true;
     };
     # zellij = {
     #   enable = false;
@@ -335,13 +356,7 @@ in {
       #   (text "Systemd")
       # ]);
     };
-    btop = { enable = true; };
-    jq.enable = true;
-    bat = {
-      enable = true;
-      # This should pick up the correct colors for the generated theme. Otherwise
-      # it is possible to generate a custom bat theme to ~/.config/bat/config
-      config = { theme = "base16"; };
-    };
   };
+  # Include man-pages
+  manual.manpages.enable = true;
 }
