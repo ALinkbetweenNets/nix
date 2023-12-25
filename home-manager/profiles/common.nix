@@ -9,7 +9,7 @@ with lib; {
   };
   imports = with flake-self.homeManagerModules; [
     neovim
-    zsh
+    shell
     git
   ];
   config = {
@@ -24,6 +24,7 @@ with lib; {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs;
       [
+        #home-manager
         s-tui
         apg # generate passwords
         xkcdpass
@@ -49,23 +50,6 @@ with lib; {
         crab_share
       ] ++ lib.optionals
         (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
-    programs = {
-      # ssh = {
-      #   enable = true;
-      #   #compression=true;
-      # };
-      nix-index = {
-        enable = true;
-      };
-      lf = { enable = true; };
-      lesspipe = { enable = true; };
-      direnv = {
-        enable = true;
-        enableBashIntegration = true;
-        enableZshIntegration = true;
-        nix-direnv.enable = true;
-      };
-    };
     # Home-manager nixpkgs config
     nixpkgs = {
       # Allow "unfree" licenced packages
@@ -78,8 +62,6 @@ with lib; {
         flake-self.inputs.bonn-mensa.overlays.default
       ];
     };
-    # Include man-pages
-    manual.manpages.enable = true;
     home = {
       # This value determines the Home Manager release that your
       # configuration is compatible with. This helps avoid breakage
