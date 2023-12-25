@@ -18,7 +18,7 @@ in {
     # services.tlp.settings = {
     #   USB_AUTOSUSPEND = 0;
     # };
-    environment.pathsToLink = [ "/share/zsh" ];
+    environment.pathsToLink = [ "/share/zsh" "/share/fish" ];
     link = {
       users = {
         l.enable = true;
