@@ -5,7 +5,7 @@ in {
   options.link.hardware.enable = mkEnableOption "activate hardware";
   config = mkIf cfg.enable {
     link.libvirt.enable = lib.mkDefault true;
-    environment.systemPackages = with pkgs; [ nvtop powertop ];
+    environment.systemPackages = with pkgs; [ powertop ];
     time.hardwareClockInLocalTime = true;
     services = {
       # for windows dualboot
