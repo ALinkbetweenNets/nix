@@ -66,11 +66,11 @@ with lib; {
       obs-studio-plugins.obs-backgroundremoval
       imagemagick
       brave # backup browser
-      ytfzf
+      # ytfzf # does not work as of 231230
       ani-cli
-      # youtube-tui
+      youtube-tui
       ytui-music
-      yewtube
+      # yewtube # too complicated for a tui
       catimg
       jellyfin-mpv-shim
       digikam # photo library
