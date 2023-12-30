@@ -22,6 +22,19 @@
     eth = "wlp0s20f3";
     docker.enable = true;
     unbound.enable = true;
+    services.restic-client = {
+      enable = true;
+      backup-paths-sn = [
+        "/home/l/.config"
+        "/home/l/.ssh"
+        "/home/l/archive"
+        "/home/l/doc"
+        "/home/l/Documents"
+        "/home/l/obsidian"
+        "/home/l/sec"
+        "/home/l/w"
+      ];
+    };
   };
   networking = {
     hostName = "xn";
