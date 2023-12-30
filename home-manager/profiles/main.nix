@@ -2,11 +2,14 @@
 with lib; {
   imports = [ ./desktop.nix ];
   config = {
-    link.office.enable = true;
-    link.pentesting.enable = true;
-    link.latex.enable = true;
-    link.gaming.enable = true;
-    link.python.enable = true;
+    link = {
+      office.enable = true;
+      pentesting.enable = true;
+      latex.enable = true;
+      gaming.enable = true;
+      python.enable = true;
+      # beancount.enable = true;
+    };
     services.kdeconnect = {
       enable = true;
       indicator = false;
@@ -65,7 +68,9 @@ with lib; {
       brave # backup browser
       ytfzf
       ani-cli
-      youtube-tui
+      # youtube-tui
+      ytui-music
+      yewtube
       catimg
       jellyfin-mpv-shim
       digikam # photo library
@@ -75,6 +80,8 @@ with lib; {
       # Privacy
       monero-gui
       bonn-mensa
+      mediainfo # audio and video information
+      tradingview
     ];
   };
 }
