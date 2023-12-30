@@ -38,7 +38,7 @@
     dyndns.enable = true;
     services = {
       paperless = {
-        enable = true;
+        # enable = true;
         expose = false;
       };
       dns.enable = true;
