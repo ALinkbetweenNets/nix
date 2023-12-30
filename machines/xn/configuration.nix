@@ -3,7 +3,8 @@
   imports = [
     ./hardware-configuration.nix
     home-manager.nixosModules.home-manager
-    flake-self.inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13-yoga
+    # https://github.com/NixOS/nixos-hardware/blob/master/lenovo/thinkpad/x13/yoga/3th-gen/default.nix
+    flake-self.inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13-yoga-3th-gen
   ];
   hardware.enableRedistributableFirmware = true;
   home-manager.users.l = flake-self.homeConfigurations.convertible;
@@ -26,7 +27,7 @@
   networking = {
     hostName = "xn";
   };
-  services.throttled.enable = true;
+  # services.throttled.enable = false;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   lollypops.deployment = {
     local-evaluation = true;
