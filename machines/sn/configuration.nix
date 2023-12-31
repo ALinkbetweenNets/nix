@@ -72,6 +72,68 @@
       return = "301 https://www.youtube.com/watch?v=dQw4w9WgXcQ";
     };
   };
+
+  ## CTF
+
+  services.nginx.virtualHosts."slides.netintro.${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    # default = true;
+    locations."/" = {
+      proxyPass = "http://192.168.122.30:31337/";
+    };
+  };
+  services.nginx.virtualHosts."vpnconfig.netintro.${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    # default = true;
+    locations."/" = {
+      proxyPass = "http://192.168.122.30:31338/";
+    };
+  };
+  # services.nginx.virtualHosts."chal0.internal.netintro.${config.link.domain}" = {
+  #   enableACME = true;
+  #   forceSSL = true;
+  #   # default = true;
+  #   locations."/" = {
+  #     proxyPass = "http://192.168.122.30:33159/";
+  #   };
+  # };
+  # services.nginx.virtualHosts."chal1.internal.netintro.${config.link.domain}" = {
+  #   enableACME = true;
+  #   forceSSL = true;
+  #   # default = true;
+  #   locations."/" = {
+  #     proxyPass = "http://192.168.122.30:33160/";
+  #   };
+  # };
+  # services.nginx.virtualHosts."chal2b.internal.netintro.${config.link.domain}" = {
+  #   enableACME = true;
+  #   forceSSL = true;
+  #   # default = true;
+  #   locations."/" = {
+  #     proxyPass = "http://192.168.122.30:33161/";
+  #   };
+  # };
+  # services.nginx.virtualHosts."chal2c.internal.netintro.${config.link.domain}" = {
+  #   enableACME = true;
+  #   forceSSL = true;
+  #   # default = true;
+  #   locations."/" = {
+  #     proxyPass = "http://192.168.122.30:33162/";
+  #   };
+  # };
+  # services.nginx.virtualHosts."chal2.internal.netintro.${config.link.domain}" = {
+  #   enableACME = true;
+  #   forceSSL = true;
+  #   # default = true;
+  #   locations."/" = {
+  #     proxyPass = "http://192.168.122.30:33163/";
+  #   };
+  # };
+
+  ## /CTF
+
   powerManagement.powertop.enable = true;
   # virtualisation.sharedDirectories = {
   #   arr = {
@@ -98,7 +160,7 @@
   # nix run .\#lollypops -- sn:rebuild
   lollypops.deployment = {
     # local-evaluation = true;
-    ssh = { host = "10.0.1.1"; user = "root"; };
+    ssh = { host = "192.168.178.110"; user = "root"; };
     # sudo.enable = true;
   };
 }
