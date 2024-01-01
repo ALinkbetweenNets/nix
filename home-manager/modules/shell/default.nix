@@ -180,6 +180,7 @@ in {
         nr = "cd /home/l/nix;git pull;sudo nixos-rebuild switch --use-remote-sudo --flake /home/l/nix";
         nrb = "sudo nixos-rebuild switch --use-remote-sudo --flake /home/l/nix";
         ngc = "sudo nix-collect-garbage -d";
+        lolly="cd /home/l/nix;nix run .\#lollypops -- ";
         discord = "nohup discord --use-gl=desktop &";
         netdiscover = "sudo netdiscover";
         less = "less -r";
