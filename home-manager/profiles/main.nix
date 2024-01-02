@@ -49,6 +49,7 @@ with lib; {
       discord
       qtox
       element-desktop
+      authenticator
       # Utils
       vial
       via
