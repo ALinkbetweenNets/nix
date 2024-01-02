@@ -15,7 +15,7 @@ in {
           createLocally = true;
         };
         settings = {
-          hostname = "auth.${config.link.domain}";
+          hostname = "keycloak.${config.link.domain}";
           hostname-strict-backchannel = true;
           http-host = "127.0.0.1";
           http-port = 31123;
@@ -37,13 +37,13 @@ in {
               '';
             };
           };
-          extraConfig = toString (
-            optional config.link.nginx.geoIP ''
-              if ($allowed_country = no) {
-                  return 444;
-              }
-            ''
-          );
+          # extraConfig = toString (
+          #   optional config.link.nginx.geoIP ''
+          #     if ($allowed_country = no) {
+          #         return 444;
+          #     }
+          #   ''
+          # );
         };
       };
     };
