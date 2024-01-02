@@ -24,21 +24,26 @@ with lib; {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs;
       [
-        #home-manager
+        ## top
         s-tui
+        glances
+        #home-manager
+        ## security
         apg # generate passwords
         xkcdpass
         sops
         ssh-to-age
         bitwarden-cli
-        wcalc
+        ## piping
         gnugrep
         ripgrep-all
         vgrep
         fzf
-        glances
+        ## basics
         unixtools.watch
+        wcalc
         # gitFull
+        ## networking
         iptables
         nftables
         wireguard-tools
