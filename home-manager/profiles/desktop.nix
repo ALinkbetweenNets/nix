@@ -9,7 +9,7 @@ with lib; {
         extraConfig = "--update";
         settings = { embed-thumbnail = true; };
       };
-      #terminator.enable = true;
+      #terminator.enable = true; # I prefer konsole
     };
     manual.html.enable = true;
     link = { code.enable = true; };
@@ -49,9 +49,9 @@ with lib; {
         #syncthing-tray
         ## Browser
         # tor-browser-bundle-bin # compromised
-        # vivaldi
-        floorp
-        #mullvad-vpn
+        # vivaldi # nice but proprietary
+        floorp # firefox fork, seems promising, needs more research
+        #mullvad-vpn # is defined as program
         mullvad-browser
         ## RDP
         remmina # VNC Client

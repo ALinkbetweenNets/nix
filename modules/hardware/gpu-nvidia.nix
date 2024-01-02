@@ -13,13 +13,10 @@ let
 in
 {
   options.link.nvidia = { enable = mkEnableOption "activate nvidia support"; };
-
   config = mkIf cfg.enable {
-
     nixpkgs.overlays = [
       cudaoverlay
     ];
-
     home-manager.users."l" = mkIf config.link.users.l.enable {
       nixpkgs.overlays = [
         cudaoverlay
@@ -27,7 +24,6 @@ in
       # nixpkgs.config.cudaSupport = true;
     };
     # nixpkgs.config.cudaSupport = true;
-
     environment.systemPackages = with pkgs; [
       libva-utils
       nvidia-vaapi-driver
@@ -57,12 +53,10 @@ in
         nvidiaSettings = true;
       };
     };
-
     # when docker is enabled, enable nvidia-docker
     virtualisation.docker.enableNvidia =
       lib.mkIf config.virtualisation.docker.enable true;
     # fix electron problems with nvidia
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
   };
 }

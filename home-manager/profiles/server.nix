@@ -5,8 +5,7 @@ with lib; {
     home.packages = with pkgs;
       [
         # zola
-        # hugo
-        # ghosttohugo
+        hugo
       ];
   };
 }
