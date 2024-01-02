@@ -1,6 +1,5 @@
 {
   description = "My NixOS infrastructure";
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -64,9 +63,7 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-
   };
-
   outputs = { self, nixpkgs, nur, ... }@inputs:
     with inputs;
     let
@@ -79,11 +76,8 @@
         });
     in
     {
-
       formatter = forAllSystems (system: nixpkgsFor.${system}.nixpkgs-fmt);
-
       overlays.default = final: prev: (import ./pkgs inputs) final prev;
-
       packages = forAllSystems (system:
         let pkgs = nixpkgsFor.${system}; in {
           woodpecker-pipeline =
@@ -98,11 +92,9 @@
             };
           inherit (pkgs.link) candy-icon-theme;
         });
-
       apps = forAllSystems (system: {
         lollypops = lollypops.apps.${system}.default { configFlake = self; };
       });
-
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
       nixosModules = builtins.listToAttrs (map
@@ -112,7 +104,6 @@
           value = import (./modules + "/${x}");
         })
         (builtins.attrNames (builtins.readDir ./modules)));
-
       # Each subdirectory in ./machines is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
       # configuration.nix that will be read first
@@ -120,25 +111,21 @@
         (x: {
           name = x;
           value = nixpkgs.lib.nixosSystem {
-
             # Make inputs and the flake itself accessible as module parameters.
             # Technically, adding the inputs is redundant as they can be also
             # accessed with flake-self.inputs.X, but adding them individually
             # allows to only pass what is needed to each module.
             specialArgs = { flake-self = self; } // inputs;
-
             modules = builtins.attrValues self.nixosModules ++ [
               (import "${./.}/machines/${x}/configuration.nix" { inherit self; })
               lollypops.nixosModules.lollypops
               disko.nixosModules.disko
               sops-nix.nixosModules.sops
             ];
-
           };
         })
         (builtins.attrNames (builtins.readDir ./machines)
         )); # all except template folder
-
       homeConfigurations = {
         convertible = { pkgs, lib, ... }: {
           imports = [
@@ -175,7 +162,6 @@
           (builtins.attrNames (builtins.readDir ./home-manager/modules)))
       //
       {
-
         # This module is appended to the list of home-manager modules.
         # It's always enabled for all profiles.
         # It's used to easily add overlays and imports to home-manager.
@@ -204,8 +190,6 @@
             installPath = "~/.vscode-server";
           };
         };
-
       };
-
     };
 }

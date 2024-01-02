@@ -4,7 +4,6 @@ let
 in
 {
   config = {
-
     # Running fstrim weekly is a good idea for VMs.
     # Empty blocks are returned to the host, which can then be used for other VMs.
     # It also reduces the size of the qcow2 image, which is good for backups.
@@ -12,7 +11,6 @@ in
       enable = true;
       interval = "weekly";
     };
-
     # We want to standardize our partitions and bootloaders across all providers.
     # -> BIOS boot partition
     # -> EFI System Partition
@@ -54,12 +52,10 @@ in
         ];
       };
     };
-
     # During boot, resize the root partition to the size of the disk.
     # This makes upgrading the size of the vDisk easier.
     fileSystems."/".autoResize = true;
     boot.growPartition = true;
-
     boot = {
       loader = {
         timeout = 10;
@@ -75,10 +71,7 @@ in
       };
       kernelParams = [ "console=ttyS0" ];
     };
-
-
     # Currently all our providers use KVM / QEMU
     services.qemuGuest.enable = true;
-
   };
 }
