@@ -20,7 +20,7 @@ in {
     services = {
       xserver.libinput.enable = true;
       auto-cpufreq = {
-        enable = true; # TLP replacement
+        enable = false; # TLP replacement # caps xn cpu clock to 1.3 Ghz
         settings = {
           battery = {
             governor = "powersave";

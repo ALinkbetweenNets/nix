@@ -18,8 +18,8 @@ in
         };
       };
     };
-    powerManagement = {
-      enable = true;
-    };
+    # powerManagement = {
+    #   enable = true;
+    # };
   };
 }
