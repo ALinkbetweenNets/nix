@@ -75,6 +75,7 @@ in {
       gnupg
       gpg-tui
       ## basics
+      gitFull
       file
       killall
       trashy
@@ -88,13 +89,14 @@ in {
       wget
       curl
       tree
+      ## FS Tools
       unzip
       gnutar
       xz
       bzip2
       p7zip
+      ## duplicate Finder
       rmlint
-      gitFull
       fdupes
 
     ];

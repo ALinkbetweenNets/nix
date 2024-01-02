@@ -17,13 +17,13 @@ in {
       };
       mullvad-vpn = {
         enable = true;
-        package = pkgs.mullvad-vpn;
+        package = pkgs.mullvad-vpn; # gui version
       };
       udev = {
         # packages = [ pkgs.android-udev-rules ];
         enable = true;
       };
-    }; # gui version
+    };
     environment.systemPackages = with pkgs; [
       #wine
       (wine.override { wineBuild = "wine64"; })

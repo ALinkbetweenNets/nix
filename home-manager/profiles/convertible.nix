@@ -2,6 +2,5 @@
 with lib; {
   imports = [ ./laptop.nix ];
   # screen rotation, wacom support
-  home.packages = with pkgs;
-    [ xournalpp ];
+  # home.packages = with pkgs; [ xournalpp ];
 }

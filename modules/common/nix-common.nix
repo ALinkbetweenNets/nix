@@ -35,8 +35,6 @@
       flake-self.inputs.nur.overlay
       flake-self.inputs.crab_share.overlay
       flake-self.inputs.nixvim.overlays.default
-
-
       (final: prev: {
         cudapkgs = import flake-self.inputs.nixpkgs {
           system = "${pkgs.system}";
@@ -45,7 +43,6 @@
       })
     ];
   };
-
   nix = {
     # Set the $NIX_PATH entry for nixpkgs. This is necessary in
     # this setup with flakes, otherwise commands like `nix-shell
@@ -55,20 +52,15 @@
     # and root e.g. `nix-channel --remove nixos`. `nix-channel
     # --list` should be empty for all users afterwards
     nixPath = [ "nixpkgs=${nixpkgs}" ];
-
     package = pkgs.nixVersions.stable;
-
     extraOptions = ''
       # If set to true, Nix will fall back to building from source if a binary substitute fails.
       fallback = true
-
       # the timeout (in seconds) for establishing connections in the binary cache substituter.
       connect-timeout = 10
-
       # these log lines are only shown on a failed build
       log-lines = 25
     '';
-
     settings = {
       # binary cache -> build by DroneCI
       substituters = [
@@ -92,5 +84,4 @@
       automatic = true;
     };
   };
-
 }

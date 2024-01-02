@@ -1,14 +1,12 @@
 # 202.61.251.70
 #	2a03:4000:54:8a::/64
 # nix run github:numtide/nixos-anywhere -- --flake .#nc root@202.61.251.70
-
 # TODO: remove hardware stuff from config module!
 # -> bootloader
 # -> energy stuff
 # -> etc.
 # Then everything should work.
 # Those things always should be opt in!
-
 { self, ... }:
 { pkgs, lib, config, flake-self, home-manager, ... }: {
   imports = [
@@ -31,12 +29,10 @@
   };
   # services.openssh.settings.PermitRootLogin = lib.mkForce "prohibit-password";
   # security.sudo.wheelNeedsPassword = true;
-
   lollypops.deployment = {
     local-evaluation = true;
     ssh = { host = "202.61.251.70"; user = "root"; };
   };
-
   networking = {
     hostName = "v2202312204123249185";
     domain = "ultrasrv.de";
@@ -49,6 +45,5 @@
     nat.externalInterface = "ens3";
     # firewall = { allowedTCPPorts = [ 80 443 ]; };
   };
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

@@ -15,6 +15,8 @@ with lib; {
       indicator = false;
     };
     home.packages = with pkgs; [
+      hugo # static site generator
+      ghosttohugo
       # Desktop monitor settings change
       ddcui
       ddcutil
@@ -33,56 +35,59 @@ with lib; {
           sha256 = "sha256:1l2hq1n1jl2l64fdcpq3jrfphaz10sd1cpsax3xdya0xgsncgcsi";
         })
         { system = "${pkgs.system}"; }).popsicle # USB Flasher
-      ventoy-full
-      nixos-anywhere
-      # Misc
-      #gsettings-desktop-schemas # required for some apps like jami
-      # Editor
-      # logseq
-      semantik # mind mapping
-      # File Sync
+      ## FS
+      # nixos-anywhere # use nix-shell
+      # ventoy-full # use nix-shell
+      # gsettings-desktop-schemas # required for some apps like jami
+      ## File Sync
       nextcloud-client
       seafile-client
-      # Messenger
+      ## Editor
+      mermaid-cli
+      # logseq
+      # semantik # mind mapping
+      ## Messenger
       signal-desktop
       telegram-desktop
       discord
       qtox
       element-desktop
-      authenticator
-      # Utils
+      ## keyboard
       vial
       via
       qmk
-      mermaid-cli
+      ## Utils
+      bonn-mensa
       pomodoro
       links2 # TUI Browser
       screen-message
-      vhs # generating terminal GIFs with code
-      surfraw # TUI search engine interface
+      # vhs # generating terminal GIFs with code (what about asciinema)
+      # surfraw # TUI search engine interface # broken in nixos (240102)
       translate-shell
       ffmpeg_6
-      # Multimedia
+      ## Multimedia
       obs-studio
-      obs-studio-plugins.obs-backgroundremoval
+      # obs-studio-plugins.obs-backgroundremoval
       imagemagick
-      brave # backup browser
-      # ytfzf # does not work as of 231230
+      # brave # backup browser # multiple problems with privacy during end of 2023
+      # ytfzf # does not work 231230
       ani-cli
       youtube-tui
       ytui-music
       # yewtube # too complicated for a tui
       catimg
+      mediainfo # audio and video information
       jellyfin-mpv-shim
       digikam # photo library
-      # Silly BS
+      ## Silly BS
       figlet # Fancytext
       uwuify
-      # Privacy
+      ## Privacy
       monero-gui
-      bonn-mensa
-      mediainfo # audio and video information
-      tradingview
+      ## security
+      authenticator
+      ## finances
+      # tradingview
     ];
   };
 }
