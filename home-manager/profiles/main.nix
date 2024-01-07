@@ -8,6 +8,7 @@ with lib; {
       latex.enable = true;
       gaming.enable = true;
       python.enable = true;
+      ansible.enable = true;
       # beancount.enable = true;
     };
     services.kdeconnect = {
