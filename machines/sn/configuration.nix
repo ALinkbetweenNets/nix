@@ -54,6 +54,12 @@
         oidClientId = "2085b101-ee5c-42c1-acac-2f9265767d1f";
         expose = true;
       };
+      services.restic-client = {
+        enable = true;
+        backup-paths-onedrive = [
+          "/home/l/.ssh"
+        ];
+      };
       # services.jitsi = {
       #   enable = true;
       #   expose = false;
