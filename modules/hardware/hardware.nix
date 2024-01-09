@@ -23,6 +23,5 @@ in {
         drives = [ "/dev/disk/by-id/*" ];
       };
     };
-
   };
 }
