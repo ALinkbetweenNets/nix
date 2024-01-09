@@ -4,10 +4,25 @@ let cfg = config.link.services.outline;
 in {
   options.link.services.outline = {
     enable = mkEnableOption "activate outline, a wiki with markdown support, requires nginx, gitea and minio";
-    expose = mkOption {
+    expose-port = mkOption {
+      type = types.bool;
+      default = false;
+      description = "directly expose the port of the application";
+    };
+    nginx = mkOption {
+      type = types.bool;
+      default = config.link.nginx.enable;
+      description = "expose the application to the internet with NGINX and ACME";
+    };
+    nginx-expose = mkOption {
       type = types.bool;
       default = config.link.expose;
-      description = "expose outline to the internet with NGINX and ACME";
+      description = "expose the application to the internet";
+    };
+    port = mkOption {
+      type = types.int;
+      default = 3123;
+      description = "port to run the application on";
     };
     oidClientId = mkOption {
       type = types.str;
@@ -18,7 +33,7 @@ in {
     services = {
       outline = {
         enable = true;
-        port = 3123;
+        port = cfg.port;
         publicUrl = "https://outline.${config.link.domain}";
         storage = {
           accessKey = "T6Yv7hzGdIiULmydtCAV";
@@ -39,19 +54,20 @@ in {
           displayName = "Gitea";
         };
       };
-      nginx.virtualHosts."outline.${config.link.domain}" = {
+      nginx.virtualHosts."outline.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString config.services.outline.port}";
+          proxyPass = "http://127.0.0.1:${toString cfg.port}";
           proxyWebsockets = true;
         };
-        extraConfig = mkIf (!cfg.expose) ''
+        extraConfig = mkIf (!cfg.nginx-expose) ''
           allow ${config.link.service-ip}/24;
             allow 127.0.0.1;
             deny all; # deny all remaining ips
         '';
       };
     };
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
   };
 }

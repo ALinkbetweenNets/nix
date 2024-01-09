@@ -21,13 +21,14 @@
     service-interface = "wg-deep";
     fail2ban.enable = true;
     services = {
-      wg-deep.enable = true;
-      matrix.enable = true;
+      coturn.enable = true;
+      gitea.enable = true;
       hedgedoc.enable = true;
+      matrix.enable = true;
       nextcloud.enable = true;
       onlyoffice.enable = true;
       vaultwarden.enable = true;
-      gitea.enable = true;
+      wg-deep.enable = true;
       restic-client = {
         enable = true;
         backup-paths-storagebox = [
@@ -49,7 +50,6 @@
       };
       minio.enable = true;
     };
-    coturn.enable = true;
     nginx.enable = true;
   };
   services.tailscale = {

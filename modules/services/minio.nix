@@ -2,7 +2,24 @@
 with lib;
 let cfg = config.link.services.minio;
 in {
-  options.link.services.minio.enable = mkEnableOption "activate minio";
+  options.link.services.minio = {
+    enable = mkEnableOption "activate minio";
+    expose-port = mkOption {
+      type = types.bool;
+      default = false;
+      description = "directly expose the port of the application";
+    };
+    nginx = mkOption {
+      type = types.bool;
+      default = config.link.nginx.enable;
+      description = "expose the application to the internet with NGINX and ACME";
+    };
+    nginx-expose = mkOption {
+      type = types.bool;
+      default = config.link.expose;
+      description = "expose the application to the internet";
+    };
+  };
   config = mkIf cfg.enable {
     services = {
       minio = {
@@ -13,7 +30,7 @@ in {
         rootCredentialsFile = "${config.link.secrets}/minio";
         dataDir = [ "${config.link.storage}/minio/data" ];
       };
-      nginx.virtualHosts."minio.s3.${config.link.domain}" = {
+      nginx.virtualHosts."minio.s3.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
@@ -41,7 +58,7 @@ in {
           proxy_buffering off;
         '';
       };
-      nginx.virtualHosts."s3.${config.link.domain}" = {
+      nginx.virtualHosts."s3.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
@@ -76,9 +93,10 @@ in {
         MINIO_BROWSER_REDIRECT_URL = "https://minio.s3.${config.link.domain}";
       };
     };
-    networking = {
-      firewall.checkReversePath = lib.mkDefault "loose";
+    networking.firewall = {
+      checkReversePath = lib.mkDefault "loose";
       # nameservers = [ "100.100.100.100" "1.1.1.1" ];
     };
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ 9000 9001 ];
   };
 }
