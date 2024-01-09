@@ -35,7 +35,6 @@
     # photoprism.enable = true;
     syncthing.enable = true;
     keycloak.enable = true;
-    dyndns.enable = true;
     services = {
       paperless = {
         # enable = true;
@@ -160,7 +159,7 @@
   # nix run .\#lollypops -- sn:rebuild
   lollypops.deployment = {
     # local-evaluation = true;
-    ssh = { host = "192.168.178.110"; user = "root"; };
+    ssh = { host = "100.89.178.137"; user = "root"; };
     # sudo.enable = true;
   };
 }
