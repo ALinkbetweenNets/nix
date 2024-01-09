@@ -25,99 +25,142 @@
     nginx.enable = true;
     serviceHost = "100.89.178.137";
   };
-  services.nginx.virtualHosts = {
-    "${config.link.domain}" = {
-      enableACME = true;
-      forceSSL = true;
-      default = true;
-      locations."/" = {
-        return = "301 https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-      };
-    };
 
-    ## CTF
-
-    "slides.netintro.${config.link.domain}" = {
-      enableACME = true;
-      forceSSL = true;
-      # default = true;
-      locations."/" = {
-        proxyPass = "http://192.168.122.30:31337/";
-      };
-    };
-    "vpnconfig.netintro.${config.link.domain}" = {
-      enableACME = true;
-      forceSSL = true;
-      # default = true;
-      locations."/" = {
-        proxyPass = "http://192.168.122.30:31338/";
-      };
-    };
-    "chal0.internal.netintro.${config.link.domain}" = {
-      enableACME = true;
-      forceSSL = true;
-      # default = true;
-      locations."/" = {
-        proxyPass = "http://192.168.122.30:33159/";
-      };
-    };
-    "chal1.internal.netintro.${config.link.domain}" = {
-      enableACME = true;
-      forceSSL = true;
-      # default = true;
-      locations."/" = {
-        proxyPass = "http://192.168.122.30:33160/";
-      };
-    };
-    "chal2b.internal.netintro.${config.link.domain}" = {
-      enableACME = true;
-      forceSSL = true;
-      # default = true;
-      locations."/" = {
-        proxyPass = "http://192.168.122.30:33161/";
-      };
-    };
-    "chal2c.internal.netintro.${config.link.domain}" = {
-      enableACME = true;
-      forceSSL = true;
-      # default = true;
-      locations."/" = {
-        proxyPass = "http://192.168.122.30:33162/";
-      };
-    };
-    "chal2.internal.netintro.${config.link.domain}" = {
-      enableACME = true;
-      forceSSL = true;
-      # default = true;
-      locations."/" = {
-        proxyPass = "http://192.168.122.30:33163/";
-      };
-    };
-
-    ## /CTF
-
-    "gitea.${config.link.domain}" = {
-      enableACME = true;
-      forceSSL = true;
-      locations = { "/" = { proxyPass = "http://${config.link.serviceHost}:${toString config.services.gitea.settings.server.HTTP_PORT}"; }; };
-    };
-    "speedtest.${config.link.domain}" = {
-      enableACME = true;
-      forceSSL = true;
-      locations = { "/" = { proxyPass = "http://${config.link.serviceHost}:8766"; }; };
-      #locations."/" = {
-      #  proxyPass = "http://127.0.0.1:80/";
-      # extraConfig = ''
-      #   proxy_set_header Front-End-Https on;
-      #   proxy_set_header Strict-Transport-Security "max-age=2592000; includeSubdomains";
-      #   proxy_set_header X-Real-IP $remote_addr;
-      #   proxy_set_header Host $host;
-      #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      #   proxy_set_header X-Forwarded-Proto $scheme;
-      # '';
-      #};
+  services.nginx.virtualHosts."grafana.${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://${
+              toString config.services.grafana.settings.server.http_addr
+            }:${toString config.services.grafana.settings.server.http_port}/";
+      proxyWebsockets = true;
     };
   };
+  services.nginx.virtualHosts."grist.${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:8484";
+      proxyWebsockets = true;
+    };
+    # extraConfig = mkIf (!cfg.expose) ''
+    #   allow ${config.link.service-ip}/24;
+    #     allow 127.0.0.1;
+    #     deny all; # deny all remaining ips
+    # '';
+  };
+  services.nginx.virtualHosts."${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    default = true;
+    locations."/" = {
+      return = "301 https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+    };
+  };
+  services.nginx.virtualHosts."jellyfin.${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = { proxyPass = "http://127.0.0.1:8096/"; };
+  };
+  services.nginx.virtualHosts."jellyseer.${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = { proxyPass = "http://127.0.0.1:5055/"; };
+  };
+  services.nginx.virtualHosts."gitea.${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://${config.link.serviceHost}:${toString config.services.gitea.settings.server.HTTP_PORT}";
+    };
+  };
+  services.nginx.virtualHosts."diagrams.${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:8765";
+    };
+    # extraConfig = mkIf (!cfg.expose) ''
+    #   allow ${config.link.service-ip}/24;
+    #     allow 127.0.0.1;
+    #     deny all; # deny all remaining ips
+    # '';
+  };
+  ## CTF
+  services.nginx.virtualHosts."slides.netintro.${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    # default = true;
+    locations."/" = {
+      proxyPass = "http://192.168.122.30:31337/";
+    };
+  };
+  services.nginx.virtualHosts."vpnconfig.netintro.${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    # default = true;
+    locations."/" = {
+      proxyPass = "http://192.168.122.30:31338/";
+    };
+  };
+  services.nginx.virtualHosts."chal0.internal.netintro.${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    # default = true;
+    locations."/" = {
+      proxyPass = "http://192.168.122.30:33159/";
+    };
+  };
+  services.nginx.virtualHosts."chal1.internal.netintro.${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    # default = true;
+    locations."/" = {
+      proxyPass = "http://192.168.122.30:33160/";
+    };
+  };
+  services.nginx.virtualHosts."chal2b.internal.netintro.${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    # default = true;
+    locations."/" = {
+      proxyPass = "http://192.168.122.30:33161/";
+    };
+  };
+  services.nginx.virtualHosts."chal2c.internal.netintro.${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    # default = true;
+    locations."/" = {
+      proxyPass = "http://192.168.122.30:33162/";
+    };
+  };
+  services.nginx.virtualHosts."chal2.internal.netintro.${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    # default = true;
+    locations."/" = {
+      proxyPass = "http://192.168.122.30:33163/";
+    };
+  };
+  ## /CTF
+  # "speedtest.${config.link.domain}" = {
+  #   enableACME = true;
+  #   forceSSL = true;
+  #   locations."/" = {
+  #     proxyPass = "http://${config.link.serviceHost}:8766";
+  #   };
+  #locations."/" = {
+  #  proxyPass = "http://127.0.0.1:80/";
+  # extraConfig = ''
+  #   proxy_set_header Front-End-Https on;
+  #   proxy_set_header Strict-Transport-Security "max-age=2592000; includeSubdomains";
+  #   proxy_set_header X-Real-IP $remote_addr;
+  #   proxy_set_header Host $host;
+  #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  #   proxy_set_header X-Forwarded-Proto $scheme;
+  # '';
+  #};
 
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
   services.tailscale = {

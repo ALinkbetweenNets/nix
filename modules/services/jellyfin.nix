@@ -15,18 +15,7 @@ in {
       jellyseerr = {
         enable = true;
       };
-      nginx.virtualHosts = {
-        "jellyfin.${config.link.domain}" = {
-          enableACME = true;
-          forceSSL = true;
-          locations."/" = { proxyPass = "http://127.0.0.1:8096/"; };
-        };
-        "jellyseer.${config.link.domain}" = {
-          enableACME = true;
-          forceSSL = true;
-          locations."/" = { proxyPass = "http://127.0.0.1:5055/"; };
-        };
-      };
     };
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = [ 5055 8096 ];
   };
 }

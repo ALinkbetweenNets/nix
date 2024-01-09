@@ -13,16 +13,7 @@ in {
           http_port = 7890;
         };
       };
-      nginx.virtualHosts."grafana.${config.link.domain}" = {
-        enableACME = true;
-        forceSSL = true;
-        locations."/" = {
-          proxyPass = "http://${
-              toString config.services.grafana.settings.server.http_addr
-            }:${toString config.services.grafana.settings.server.http_port}/";
-          proxyWebsockets = true;
-        };
-      };
+      networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = [ 7890 9005 ];
       prometheus = {
         enable = true;
         port = 9005;
