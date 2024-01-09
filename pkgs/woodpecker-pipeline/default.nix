@@ -85,10 +85,8 @@ in
 pkgs.writeShellScriptBin "woodpecker-pipeline" ''
   # make sure .woodpecker folder exists
   mkdir -p .woodpecker
-
   # empty content of .woodpecker folder
   #rm -rf .woodpecker/*
-
   # copy pipelines to .woodpecker folder
   cat ${pipelineFor.aarch64-linux} | ${pkgs.jq}/bin/jq '.configs[].data' -r | ${pkgs.jq}/bin/jq > .woodpecker/arm64-linux.yaml
   cat ${pipelineFor.x86_64-linux} | ${pkgs.jq}/bin/jq '.configs[].data' -r | ${pkgs.jq}/bin/jq > .woodpecker/x86-linux.yaml

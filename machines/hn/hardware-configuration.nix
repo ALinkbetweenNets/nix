@@ -2,7 +2,6 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
-
 {
   imports =
     [
@@ -10,17 +9,14 @@
       ./disk-config.nix
     ];
   boot = {
-
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
-
     initrd = {
       availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
       kernelModules = [ ];
       # secrets = {
       #   "/crypto_keyfile.bin" = null;
       # };
-
       # luks.devices = {
       #   "luks-ef639c4f-a6c5-4363-8c79-3951876a4ea2" = {
       #     device = "/dev/disk/by-uuid/ef639c4f-a6c5-4363-8c79-3951876a4ea2";
@@ -45,10 +41,8 @@
   #     device = "/dev/disk/by-uuid/9FFA-D776";
   #     fsType = "vfat";
   #   };
-
   # swapDevices =
   #   [{ device = "/dev/disk/by-uuid/7f82680b-17ac-4a44-aaf2-23b1093f55db"; }];
-
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
@@ -56,7 +50,6 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp0s13f0u1u4c2.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

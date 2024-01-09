@@ -15,7 +15,6 @@ in {
         "*-*-* *:0/05:00";
       timerConfig.Unit = "git-pull-repo-obsidian.service";
     };
-
     systemd.services.git-pull-repo-s = {
       description = "Regularly pull changes from Git repository s";
       serviceConfig.Type = "oneshot";
@@ -27,7 +26,6 @@ in {
         "*-*-* *:0/30:00";
       timerConfig.Unit = "git-pull-repo-s.service";
     };
-
     systemd.services.git-pull-repo-nix = {
       description = "Regularly pull changes from Git repository nix";
       serviceConfig.Type = "oneshot";

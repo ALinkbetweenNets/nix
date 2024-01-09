@@ -125,7 +125,6 @@ in
         #   environmentFile = "${config.sops.secrets."restic/credentials".path}";
         #   passwordFile = "${config.sops.secrets."restic/repo-pw".path}";
         #   backupCleanupCommand = script-post config.networking.hostName "NAS";
-
         #   extraBackupArgs = [
         #     "--exclude-file=${restic-ignore-file}"
         #     "--one-file-system"
