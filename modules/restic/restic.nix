@@ -40,6 +40,8 @@ in
     sops.secrets = {
       "restic/storagebox/repository" = { };
       "restic/storagebox/password" = { };
+      "restic/onedrive/repository" = { };
+      "restic/onedrive/password" = { };
       "restic/sn/repository" = { };
       "restic/sn/password" = { };
       "restic/sn/environment" = { };

@@ -12,7 +12,7 @@ in
     };
     nginx = mkOption {
       type = types.bool;
-      default = false;
+      default = config.link.nginx.enable;
       description = "expose the application to the internet with NGINX and ACME";
     };
   };
