@@ -37,9 +37,9 @@
       ];
     };
   };
-  networking = {
-    hostName = "xn";
-  };
+  # networking .  firewall.allowedTCPPorts = [ 5201 ];
+  # networking .  firewall.allowedUDPPorts = [ 5201 ];
+  networking.hostName = "xn";
   # services.throttled.enable = false;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   lollypops.deployment = {
