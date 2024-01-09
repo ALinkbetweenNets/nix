@@ -10,7 +10,6 @@ in {
       enableZshIntegration = true;
       settings = {
         # format = ''[░▒▓](bg:#a3aed2 fg:#090c0c)[](bg:#769ff0 fg:#a3aed2)$directory[](fg:#769ff0 bg:#394260)$git_branch$git_status[](fg:#394260 bg:#212736)$package[](fg:#212736 bg:#1d2230)$time[ ](fg:#1d2230)$line_break$character'';
-
         time = {
           disabled = false;
           time_format = "%R"; # Hour:Minute Format
@@ -40,7 +39,6 @@ in {
         };
         #os.disabled = false;
         username.disabled = false;
-
         git_branch = {
           # symbol = "";
           # style = "bg:#394260";

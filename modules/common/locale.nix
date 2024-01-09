@@ -1,11 +1,8 @@
 { lib, pkgs, config, ... }: {
-
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
-
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LANGUAGE = "en_US.UTF-8";
     LANG = "en_US.UTF-8";
@@ -21,8 +18,6 @@
     LC_TIME = "de_DE.UTF-8";
     LC_ALL = "en_US.UTF-8";
   };
-
   # Configure console keymap
   console.keyMap = "de";
-
 }

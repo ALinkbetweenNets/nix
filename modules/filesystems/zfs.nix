@@ -13,5 +13,4 @@ in {
     boot.zfs.forceImportRoot = true;
     boot.zfs.forceImportAll = true;
   };
-
 }

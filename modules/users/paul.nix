@@ -13,5 +13,4 @@ in {
       shell = "${pkgs.zsh}/bin/zsh";
     };
   };
-
 }

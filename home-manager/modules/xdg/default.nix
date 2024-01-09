@@ -16,16 +16,13 @@ with lib;
       "application/x-sh" = [ "codium.desktop" ];
       "application/x-tar" = [ "org.kde.ark.desktop" ];
       "application/zip" = [ "org.kde.ark.desktop" ];
-
       "application/pdf" = [ "org.gnome.Evince.desktop" ];
       "application/xml" = [ "org.kde.kate.desktop" ];
-
       "audio/flac" = [ "vlc.desktop" ];
       "audio/mpeg" = [ "vlc.desktop" ];
       "audio/ogg" = [ "vlc.desktop" ];
       "audio/opus" = [ "vlc.desktop" ];
       "audio/webm" = [ "vlc.desktop" ];
-
       "image/bmp" = [ "org.kde.gwenview.desktop" ];
       "image/gif" = [ "org.kde.gwenview.desktop" ];
       "image/jpeg" = [ "org.kde.gwenview.desktop" ];
@@ -33,19 +30,15 @@ with lib;
       "image/png" = [ "org.kde.gwenview.desktop" ];
       "image/svg+xml" = [ "org.kde.gwenview.desktop" ];
       "image/webp" = [ "org.kde.gwenview.desktop" ];
-
       "text/calendar" = [ "thunderbird.desktop" ];
       "text/javascript" = [ "codium.desktop" ];
       "text/plain" = [ "org.kde.kate.desktop" ];
       "text/xml" = [ "org.kde.kate.desktop" ];
-
       "video/mp4" = [ "mpv.desktop" ];
       "video/mpeg" = [ "mpv.desktop" ];
       "video/webm" = [ "mpv.desktop" ];
-
       "x-scheme-handler/sgnl" = [ "signal-desktop.desktop" ];
       "x-scheme-handler/signalcaptcha" = [ "signal-desktop.desktop" ];
-
       "x-scheme-handler/http" = [ "firefox.desktop" ];
       "x-scheme-handler/https" = [ "firefox.desktop" ];
       "text/html" = [ "firefox.desktop" ];
@@ -56,7 +49,6 @@ with lib;
       "application/x-extension-xhtml" = [ "firefox.desktop" ];
       "application/x-extension-xht" = [ "firefox.desktop" ];
       "application/xhtml+xml" = [ "firefox.desktop" ];
-
     };
   };
 }

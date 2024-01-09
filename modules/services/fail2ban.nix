@@ -77,23 +77,18 @@ in {
       '');
       "fail2ban/filter.d/authelia.conf".text = ''
          # Fail2Ban filter for Authelia
-
          # Make sure that the HTTP header "X-Forwarded-For" received by Authelia's backend
          # only contains a single IP address (the one from the end-user), and not the proxy chain
          # (it is misleading: usually, this is the purpose of this header).
-
          # the failregex rule counts every failed 1FA attempt (first line, wrong username or password) and failed 2FA attempt
          # second line) as a failure.
          # the ignoreregex rule ignores debug, info and warning messages as all authentication failures are flagged as errors
-
          [Definition]
          failregex = ^.*Unsuccessful 1FA authentication attempt by user .*remote_ip="?<HOST>"? stack.*
                      ^.*Unsuccessful (TOTP|Duo|U2F) authentication attempt by user .*remote_ip="?<HOST>"? stack.*
-
          ignoreregex = ^.*level=debug.*
                        ^.*level=info.*
                        ^.*level=warning.*
-
         journalmatch = _SYSTEMD_UNIT=authelia-main.service + _COMM=authelia
       '';
     };

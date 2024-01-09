@@ -2,11 +2,8 @@
 with lib;
 let cfg = config.link.openssh;
 in {
-
   options.link.openssh.enable = mkEnableOption "activate openssh";
-
   config = mkIf cfg.enable {
-
     # Enable the OpenSSH daemon.
     services.openssh = {
       enable = true;
@@ -38,7 +35,6 @@ in {
         type = "ed25519";
         rounds = 200;
       }];
-
       # banner = ''
       #                :cc:        xkkkko      okkd
       #               .cccc;        lkkkkl    lkkkk:

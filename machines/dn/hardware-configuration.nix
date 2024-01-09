@@ -2,7 +2,6 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
-
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
   boot = {
@@ -12,23 +11,18 @@
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
   };
-
   fileSystems = {
-
     "/" = {
       device = "/dev/disk/by-uuid/cc6cf275-6800-452d-b6a5-aa83a0c46951";
       fsType = "btrfs";
     };
-
     "/boot" = {
       device = "/dev/disk/by-uuid/6952-C7C2";
       fsType = "vfat";
     };
   };
-
   swapDevices =
     [{ device = "/dev/disk/by-uuid/0d8e0a75-cc40-4745-9c55-249c8d19c627"; }];
-
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
@@ -36,7 +30,6 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp4s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp5s0.useDHCP = lib.mkDefault true;
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode =

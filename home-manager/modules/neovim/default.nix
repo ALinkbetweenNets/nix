@@ -60,7 +60,6 @@ with lib;
     #  };
     #  lsp = {
     #    enable = true;
-
     #    keymaps = {
     #      silent = true;
     #      diagnostic = {
@@ -69,7 +68,6 @@ with lib;
     #        "]d" = "goto_next";
     #        "<leader>d" = "open_float";
     #      };
-
     #      lspBuf = {
     #        gd = "definition";
     #        gD = "references";
@@ -79,7 +77,6 @@ with lib;
     #        "<leader>r" = "rename";
     #      };
     #    };
-
     #    enabledServers = [
     #      "bashls"
     #      "clangd"
@@ -98,9 +95,7 @@ with lib;
     #  # };
     #  nvim-cmp = {
     #    enable = true;
-
     #    snippet.expand = "luasnip";
-
     #    mapping = {
     #      "<C-u>" = "cmp.mapping.scroll_docs(-3)";
     #      "<C-d>" = "cmp.mapping.scroll_docs(3)";
@@ -116,7 +111,6 @@ with lib;
     #      };
     #      "<CR>" = "cmp.mapping.confirm({ select = true })";
     #    };
-
     #    sources = [
     #      { name = "path"; }
     #      { name = "nvim_lsp"; }
@@ -135,7 +129,6 @@ with lib;
     #  };
     #  lspkind = {
     #    enable = true;
-
     #    cmp = {
     #      enable = true;
     #      menu = {
@@ -172,15 +165,12 @@ with lib;
     #  # syntax
     #  treesitter = {
     #    enable = true;
-
     #    nixvimInjections = true;
-
     #    folding = true;
     #    indent = true;
     #  };
     #  markdown-preview = {
     #    enable = true;
-
     #    # theme = "dark";
     #  };
     #  treesitter-refactor = {

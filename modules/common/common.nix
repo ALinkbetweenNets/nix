@@ -98,7 +98,6 @@ in {
       ## duplicate Finder
       rmlint
       fdupes
-
     ];
     # console.font = "FiraCode Nerd Font";
   };
