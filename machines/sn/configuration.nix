@@ -34,6 +34,10 @@
         enable = true;
         expose-port = true;
       };
+      diagrams = {
+        enable = true;
+        expose-port = true;
+      };
     };
     # zola.enable = true;
     grafana.enable = true;
