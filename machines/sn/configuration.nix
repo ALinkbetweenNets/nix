@@ -27,8 +27,7 @@
     service-ip = "10.0.1.1";
     service-interface = "tailscale0";
 
-    nginx.enable = true;
-    coturn.enable = true;
+    nginx.enable = false;
     containers = {
       grist = {
         enable = true;
@@ -40,37 +39,61 @@
       };
     };
     # zola.enable = true;
-    grafana.enable = true;
     # home-assistant.enable = true;
-    jellyfin.enable = true;
     # photoprism.enable = true;
     syncthing.enable = true;
     keycloak.enable = true;
     services = {
-      paperless = {
-        # enable = true;
-        expose = false;
+      gitea = {
+        enable = true;
+        expose-port = true;
       };
-      dns.enable = true;
-      gitea.enable = true;
-      hedgedoc = { enable = true; expose = true; };
-      # matrix.enable = true;
-      minio.enable = true;
-      nextcloud = { enable = true; expose = true; };
-      restic-server = { enable = true; expose = false; };
-      vaultwarden = { enable = true; expose = false; };
-      wg-link.enable = true;
+      grafana = {
+        enable = true;
+        expose-port = true;
+      };
+      hedgedoc = {
+        enable = true;
+        expose-port = true;
+      };
+      jellyfin = {
+        enable = true;
+        expose-port = true;
+      };
+      jellyseer = {
+        enable = true;
+        expose-port = true;
+      };
+      minio = {
+        enable = true;
+        expose-port = true;
+      };
+      nextcloud = {
+        enable = true;
+        nginx-expose = true;
+      };
       outline = {
         enable = true;
+        nginx-expose = true;
         oidClientId = "2085b101-ee5c-42c1-acac-2f9265767d1f";
-        expose = true;
       };
-      services.restic-client = {
+      paperless = {
         enable = true;
-        backup-paths-onedrive = [
-          "/home/l/.ssh"
-        ];
+        expose-port = true;
       };
+      restic-client.enable = true;
+      restic-client.backup-paths-onedrive = [
+        "/home/l/.ssh"
+      ];
+      vaultwarden = {
+        enable = true;
+        nginx-expose = false;
+      };
+      # matrix.enable = true;
+      # restic-server = { enable = true; expose = false; };
+      coturn.enable = true;
+      dns.enable = true;
+      wg-link.enable = true;
       # services.jitsi = {
       #   enable = true;
       #   expose = false;
