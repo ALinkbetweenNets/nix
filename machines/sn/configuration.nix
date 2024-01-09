@@ -10,19 +10,24 @@
     grub.enable = true;
     systemd-boot.enable = false;
     fs.zfs.enable = true;
+    fs.ntfs.enable = true;
+    ##
     tower.enable = true;
     cpu-amd.enable = true;
     nvidia.enable = true;
+    ##
     docker.enable = true;
+    fail2ban.enable = true;
+    ##
     domain = "alinkbetweennets.de";
     storage = "/rz/srv";
     syncthingDir = "/rz/syncthing";
     secrets = "/pwd";
     #seafile.enable = true;
-    nginx.enable = true;
-    fail2ban.enable = true;
     service-ip = "10.0.1.1";
-    fs.ntfs.enable = true;
+    service-interface = "tailscale0";
+
+    nginx.enable = true;
     coturn.enable = true;
     containers = {
       grist.enable = true;
