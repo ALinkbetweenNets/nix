@@ -34,7 +34,7 @@ in {
       "jellyseer.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
-        locations."/" = { proxyPass = "http://127.0.0.1:${cfg.port}/"; };
+        locations."/" = { proxyPass = "http://127.0.0.1:${toString cfg.port}/"; };
       };
     };
     networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port  ];
