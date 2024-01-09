@@ -14,3 +14,4 @@ creation_rules:
       - *dn_l
       - *deepserver_l
       - *nc_l
+      - *snvnarr_l
