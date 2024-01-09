@@ -65,8 +65,7 @@
     enableACME = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://${
-              toString config.link.serviceHost
+      proxyPass = "http://${config.link.serviceHost
             }:${toString config.link.services.grafana.port}/";
       proxyWebsockets = true;
     };

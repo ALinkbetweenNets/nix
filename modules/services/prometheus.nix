@@ -36,7 +36,7 @@ in {
           {
             job_name = "zfs";
             static_configs = [{
-              targets = [ "127.0.0.1:${cfg.port}" ];
+              targets = [ "127.0.0.1:${toString cfg.port}" ];
             }];
           }
         ];
