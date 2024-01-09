@@ -30,8 +30,10 @@
     nginx.enable = true;
     coturn.enable = true;
     containers = {
-      grist.enable = true;
-      diagrams.enable = true;
+      grist = {
+        enable = true;
+        expose-port = true;
+      };
     };
     # zola.enable = true;
     grafana.enable = true;
