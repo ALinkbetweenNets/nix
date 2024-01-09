@@ -4,15 +4,25 @@ let cfg = config.link.services.nextcloud;
 in {
   options.link.services.nextcloud = {
     enable = mkEnableOption "activate matrix";
-    expose = mkOption {
+    expose-port = mkOption {
       type = types.bool;
-      default = config.link.expose;
-      description = "expose matrix to the internet with NGINX and ACME";
+      default = false;
+      description = "directly expose the port of the application";
     };
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description = "Use service with NGINX";
+      description = "expose the application to the internet with NGINX and ACME";
+    };
+    nginx-expose = mkOption {
+      type = types.bool;
+      default = config.link.expose;
+      description = "expose the application to the internet";
+    };
+    port = mkOption {
+      type = types.int;
+      default = 80;
+      description = "port to run the application on";
     };
   };
   config = mkIf cfg.enable {
@@ -44,7 +54,7 @@ in {
       nginx.virtualHosts."nextcloud.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
-        extraConfig = mkIf (!cfg.expose) ''
+        extraConfig = mkIf (!cfg.nginx-expose) ''
           allow ${config.link.service-ip}/24;
           allow 127.0.0.1;
           deny all; # deny all remaining ips
@@ -62,5 +72,7 @@ in {
         #};
       };
     };
+
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
   };
 }

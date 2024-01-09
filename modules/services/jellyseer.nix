@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.services.jellyfin;
+let cfg = config.link.services.jellyseer;
 in {
-  options.link.services.jellyfin = {
-    enable = mkEnableOption "activate jellyfin";
+  options.link.services.jellyseer = {
+    enable = mkEnableOption "activate jellyseer";
     expose-port = mkOption {
       type = types.bool;
       default = false;
@@ -21,25 +21,22 @@ in {
     };
     port = mkOption {
       type = types.int;
-      default = 8096;
+      default = 5055;
       description = "port to run the application on";
     };
   };
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      jellyfin-ffmpeg
-    ];
     services = {
-      jellyfin = {
-        # package = pkgs.cudapkgs.jellyfin;
+      jellyseerr = {
         enable = true;
       };
-      nginx.virtualHosts."jellyfin.${config.link.domain}" = mkIf {
+      nginx.virtualHosts.
+      "jellyseer.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
         locations."/" = { proxyPass = "http://127.0.0.1:${cfg.port}/"; };
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port  ];
   };
 }

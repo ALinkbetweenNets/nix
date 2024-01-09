@@ -1,8 +1,11 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.coturn;
+let cfg = config.link.services.coturn;
 in {
-  options.link.coturn.enable = mkEnableOption "activate coturn";
+  options.link.services.coturn = {
+    enable = mkEnableOption "activate coturn";
+  };
+
   config = mkIf cfg.enable {
     services = {
       coturn = rec {
