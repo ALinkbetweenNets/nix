@@ -1,43 +1,49 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.grafana;
+let cfg = config.link.services.grafana;
 in {
-  options.link.grafana.enable = mkEnableOption "activate grafana";
+  options.link.services.grafana = {
+    enable = mkEnableOption "activate grafana";
+    expose-port = mkOption {
+      type = types.bool;
+      default = false;
+      description = "directly expose the port of the application";
+    };
+    nginx = mkOption {
+      type = types.bool;
+      default = config.link.nginx.enable;
+      description = "expose the application to the internet with NGINX and ACME";
+    };
+    port = mkOption {
+      type = types.int;
+      default = 7890;
+      description = "port to run the application on";
+    };
+  };
   config = mkIf cfg.enable {
     services = {
       grafana = {
         enable = true;
-        settings.server = {
-          domain = "grafana.${config.link.domain}";
-          http_addr = "127.0.0.1";
-          http_port = 7890;
+        settings = {
+          server = {
+            domain = "grafana.${config.link.domain}";
+            http_addr = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
+            http_port = cfg.port;
+
+          };
         };
       };
-      networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = [ 7890 9005 ];
-      prometheus = {
-        enable = true;
-        port = 9005;
-        exporters = {
-          zfs = {
-            enable = true;
-            listenAddress = "127.0.0.1";
-          };
-          # nextcloud={
-          #   enable=true;
-          #   username="l";
-          #   user="l";
-          #   port="443";
-          # };
+      nginx.virtualHosts."grafana.${config.link.domain}" = mkIf cfg.nginx {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = {
+          proxyPass = "http://${
+              toString config.services.grafana.settings.server.http_addr
+            }:${toString config.services.grafana.settings.server.http_port}/";
+          proxyWebsockets = true;
         };
-        scrapeConfigs = [
-          {
-            job_name = "zfs";
-            static_configs = [{
-              targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.zfs.port}" ];
-            }];
-          }
-        ];
       };
     };
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
   };
 }

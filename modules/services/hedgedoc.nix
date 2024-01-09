@@ -4,10 +4,25 @@ let cfg = config.link.services.hedgedoc;
 in {
   options.link.services.hedgedoc = {
     enable = mkEnableOption "activate hedgedoc";
-    expose = mkOption {
+    expose-port = mkOption {
+      type = types.bool;
+      default = false;
+      description = "directly expose the port of the application";
+    };
+    nginx = mkOption {
+      type = types.bool;
+      default = config.link.nginx.enable;
+      description = "expose the application to the internet with NGINX and ACME";
+    };
+    nginx-expose = mkOption {
       type = types.bool;
       default = config.link.expose;
-      description = "expose hedgedoc to the internet with NGINX and ACME";
+      description = "expose the application to the internet";
+    };
+    port = mkOption {
+      type = types.int;
+      default = 3400;
+      description = "port to run the application on";
     };
   };
   config = mkIf cfg.enable {
@@ -18,7 +33,7 @@ in {
         settings = {
           domain = "hedgedoc.${config.link.domain}";
           host = "127.0.0.1";
-          port = 3400;
+          port = cfg.port;
           protocolUseSSL = true;
           useSSL = false;
           # db = {
@@ -27,18 +42,20 @@ in {
           # };
         };
       };
-      nginx.virtualHosts."hedgedoc.${config.link.domain}" = {
+      nginx.virtualHosts."hedgedoc.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString config.services.hedgedoc.settings.port}";
+          proxyPass = "http://127.0.0.1:${toString cfg.port}";
         };
-        extraConfig = mkIf (!cfg.expose) ''
+        extraConfig = mkIf (!cfg.nginx-expose) ''
           allow ${config.link.service-ip}/24;
           allow 127.0.0.1;
           deny all; # deny all remaining ips
         '';
       };
     };
+
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
   };
 }
