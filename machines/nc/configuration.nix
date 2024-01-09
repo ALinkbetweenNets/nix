@@ -18,32 +18,36 @@
   link = {
     common.enable = true;
     eth = "ens3";
-    # fail2ban.enable = true;
-    # coturn.enable = true;
-    # nginx.enable = true;
-  };
-  services.tailscale = {
-    enable = true;
-    useRoutingFeatures = "server";
-    extraUpFlags = [ "--advertise-exit-node" ];
-  };
-  # services.openssh.settings.PermitRootLogin = lib.mkForce "prohibit-password";
-  # security.sudo.wheelNeedsPassword = true;
-  lollypops.deployment = {
-    local-evaluation = true;
-    ssh = { host = "202.61.251.70"; user = "root"; };
-  };
-  networking = {
-    hostName = "v2202312204123249185";
-    domain = "ultrasrv.de";
-    interfaces."ens3" = {
-      ipv6.addresses = [{
-        address = "2a03:4000:54:8a:585a:48ff:fee3:9d06";
-        prefixLength = 64;
-      }];
+    dyndns.enable = true;
+    domain = "alinkbetweennets.de";
+      # fail2ban.enable = true;
+      # coturn.enable = true;
+      # nginx.enable = true;
+
+      };
+    services.tailscale = {
+      enable = true;
+      useRoutingFeatures = "server";
+      extraUpFlags = [ "--advertise-exit-node" ];
     };
-    nat.externalInterface = "ens3";
-    # firewall = { allowedTCPPorts = [ 80 443 ]; };
-  };
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-}
+    # services.openssh.settings.PermitRootLogin = lib.mkForce "prohibit-password";
+    # security.sudo.wheelNeedsPassword = true;
+    lollypops.deployment = {
+      local-evaluation = true;
+      ssh = { host = "100.86.79.82"; user = "root"; };
+    };
+    networking = {
+      firewall.allowedTCPPorts = [ 443 ];
+      hostName = "v2202312204123249185";
+      domain = "ultrasrv.de";
+      interfaces."ens3" = {
+        ipv6.addresses = [{
+          address = "2a03:4000:54:8a:585a:48ff:fee3:9d06";
+          prefixLength = 64;
+        }];
+      };
+      nat.externalInterface = "ens3";
+      # firewall = { allowedTCPPorts = [ 80 443 ]; };
+    };
+    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  }
