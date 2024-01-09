@@ -86,7 +86,6 @@ in
             forward-tls-upstream = "yes";
           }
         ];
-
       };
     };
   };

@@ -27,6 +27,5 @@ in {
       # nvidia-drm.modeset=1 is required for some wayland compositors, e.g. sway
       nvidia.modesetting.enable = mkIf config.link.nvidia.enable true;
     };
-
   };
 }

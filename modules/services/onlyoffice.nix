@@ -21,7 +21,6 @@ in {
         enable = true;
         hostname = "onlyoffice.${config.link.domain}";
         port = 8000;
-
       };
       nginx.virtualHosts."onlyoffice.${config.link.domain}" = {
         enableACME = true;

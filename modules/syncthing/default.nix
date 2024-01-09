@@ -74,7 +74,6 @@ in {
               type = "simple";
               params.keep = "3";
             };
-
           };
           "doc" = {
             path = lib.mkDefault "${config.link.syncthingDir}/doc";
@@ -145,7 +144,6 @@ in {
             };
           };
         };
-
       };
     };
   };

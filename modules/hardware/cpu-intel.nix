@@ -7,7 +7,6 @@ in {
     environment.systemPackages = with pkgs; [ intel-gpu-tools nvtop-intel ];
     boot.initrd.kernelModules = [ "i915" ];
     boot.kernelModules = [ "kvm-intel" ];
-
     boot.extraModprobeConfig = "options kvm_intel nested=1";
     boot.kernelParams = [ "intel_iommu=on" "iommu=pt" ];
     # environment.variables = {
