@@ -14,7 +14,7 @@
     users = { jucknath.enable = true; paul.enable = true; };
     wireguard.enable = true;
     # services.jitsi.enable = true;
-    expose = false;
+    nginx-expose = false;
     domain = "deepserver.org";
     service-ip = "10.0.0.1";
     eth = "eth0";

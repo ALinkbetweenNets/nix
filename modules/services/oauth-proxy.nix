@@ -6,7 +6,7 @@ in {
     enable = mkEnableOption "activate matrix";
     expose = mkOption {
       type = types.bool;
-      default = config.link.expose;
+      default = config.link.nginx-expose;
       description = "expose matrix to the internet with NGINX and ACME";
     };
     nginx = mkOption {
