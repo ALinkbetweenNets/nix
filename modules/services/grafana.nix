@@ -6,7 +6,7 @@ in {
     enable = mkEnableOption "activate grafana";
     expose-port = mkOption {
       type = types.bool;
-      default = false;
+      default = config.link.service-ports-expose;
       description = "directly expose the port of the application";
     };
     nginx = mkOption {
@@ -29,7 +29,6 @@ in {
             domain = "grafana.${config.link.domain}";
             http_addr = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
             http_port = cfg.port;
-
           };
         };
       };

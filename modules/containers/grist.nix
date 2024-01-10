@@ -7,7 +7,7 @@ in
     enable = mkEnableOption "activate grist container";
     expose-port = mkOption {
       type = types.bool;
-      default = false;
+      default = config.link.service-ports-expose;
       description = "directly expose the port of the application";
     };
     nginx = mkOption {

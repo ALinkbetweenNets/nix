@@ -6,7 +6,7 @@
       default = "";
       description = "Main Domain name for all services";
     };
-    expose = mkOption {
+    nginx-expose = mkOption {
       type = types.bool;
       default = config.link.domain != "";
       description = "if domain is empty services will be made available locally with self-signed certificates";
@@ -30,6 +30,11 @@
       type = types.str;
       default = config.link.eth;
       description = "Main service interface";
+    };
+    service-ports-expose = mkOption {
+      type = types.bool;
+      default = config.link.domain != "";
+      description = "if domain is empty services will be made available locally with self-signed certificates";
     };
     allowed = mkOption {
       type = types.listOf types.str;

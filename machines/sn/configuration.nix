@@ -52,6 +52,10 @@
         enable = true;
         expose-port = true;
       };
+      # seafile = {
+      #   enable = true;
+      #   expose-port = true;
+      # };
       hedgedoc = {
         enable = true;
         expose-port = true;
@@ -68,10 +72,10 @@
         enable = true;
         expose-port = true;
       };
-      nextcloud = {
-        enable = true;
-        nginx-expose = true;
-      };
+      # nextcloud = {
+      #   enable = true;
+      #   nginx-expose = true;
+      # };
       outline = {
         enable = true;
         nginx-expose = true;
@@ -84,6 +88,7 @@
       restic-client.enable = true;
       restic-client.backup-paths-onedrive = [
         "/home/l/.ssh"
+        "/rz/syncthing"
       ];
       vaultwarden = {
         enable = true;
@@ -100,7 +105,8 @@
       # };
       # keycloak.enable = true;
     };
-    expose = true;
+    nginx-expose = false;
+    service-ports-expose = true;
     eth = "enp6s0";
   };
 
@@ -141,7 +147,7 @@
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "server";
-    extraUpFlags = [ "--advertise-routes 192.168.178.0/24" "--advertise-exit-node" ];
+    extraUpFlags = [ "--advertise-exit-node" ];
   };
   # nix run .\#lollypops -- sn:rebuild
   lollypops.deployment = {

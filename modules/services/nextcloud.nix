@@ -3,10 +3,10 @@ with lib;
 let cfg = config.link.services.nextcloud;
 in {
   options.link.services.nextcloud = {
-    enable = mkEnableOption "activate matrix";
+    enable = mkEnableOption "activate nextcloud";
     expose-port = mkOption {
       type = types.bool;
-      default = false;
+      default = config.link.service-ports-expose;
       description = "directly expose the port of the application";
     };
     nginx = mkOption {
@@ -16,7 +16,7 @@ in {
     };
     nginx-expose = mkOption {
       type = types.bool;
-      default = config.link.expose;
+      default = config.link.nginx-expose;
       description = "expose the application to the internet";
     };
     port = mkOption {
@@ -29,16 +29,16 @@ in {
     services = {
       nextcloud = {
         enable = true;
-        hostName = if cfg.nginx then "nextcloud.${config.link.domain}" else config.link.service-ip;
+        hostName ="nextcloud.${config.link.domain}";
         config = {
           adminuser = "l";
           adminpassFile = "${config.link.secrets}/nextcloud";
         };
         #secretFile = "${config.link.secrets}/nextcloud-secrets.json";
         package = pkgs.nextcloud27;
-        extraApps = with config.services.nextcloud.package.packages.apps; {
-          inherit bookmarks calendar contacts deck keeweb mail news notes onlyoffice polls tasks twofactor_webauthn;
-        };
+        # extraApps = with config.services.nextcloud.package.packages.apps; {
+        #   inherit bookmarks calendar contacts deck keeweb mail news notes onlyoffice polls tasks twofactor_webauthn;
+        # };
         #extraOptions = {
         #  mail_smtpmode = "sendmail";
         #  mail_sendmailmode = "pipe";
@@ -72,7 +72,6 @@ in {
         #};
       };
     };
-
     networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
   };
 }

@@ -6,7 +6,7 @@ in {
     enable = mkEnableOption "activate prometheus";
     expose-port = mkOption {
       type = types.bool;
-      default = false;
+      default = config.link.service-ports-expose;
       description = "directly expose the port of the application";
     };
     port = mkOption {

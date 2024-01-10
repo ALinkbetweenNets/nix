@@ -6,7 +6,7 @@ in {
     enable = mkEnableOption "activate jitsi";
     expose = mkOption {
       type = types.bool;
-      default = config.link.expose;
+      default = config.link.nginx-expose;
       description = "expose jitsi to the internet with NGINX and ACME";
     };
   };

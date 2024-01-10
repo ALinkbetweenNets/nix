@@ -6,7 +6,7 @@ in {
     enable = mkEnableOption "activate outline, a wiki with markdown support, requires nginx, gitea and minio";
     expose-port = mkOption {
       type = types.bool;
-      default = false;
+      default = config.link.service-ports-expose;
       description = "directly expose the port of the application";
     };
     nginx = mkOption {
@@ -16,7 +16,7 @@ in {
     };
     nginx-expose = mkOption {
       type = types.bool;
-      default = config.link.expose;
+      default = config.link.nginx-expose;
       description = "expose the application to the internet";
     };
     port = mkOption {
