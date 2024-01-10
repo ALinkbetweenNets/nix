@@ -24,8 +24,8 @@ in {
     services = {
       minio = {
         enable = true;
-        listenAddress = "127.0.0.1:9000";
-        consoleAddress = "127.0.0.1:9001";
+        listenAddress = if cfg.expose-port then "0.0.0.0:9000" else "127.0.0.1:9000";
+        consoleAddress = if cfg.expose-port then "0.0.0.0:9001" else "127.0.0.1:9001";
         region = "eu-central-1";
         rootCredentialsFile = "${config.link.secrets}/minio";
         dataDir = [ "${config.link.storage}/minio/data" ];
