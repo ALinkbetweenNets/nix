@@ -22,7 +22,6 @@
     # xrdp.enable = true;
     eth = "wlp0s20f3";
     docker.enable = true;
-    unbound.enable = true;
     services.restic-client = {
       enable = true;
       backup-paths-sn = [
