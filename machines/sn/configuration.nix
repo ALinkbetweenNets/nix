@@ -112,6 +112,11 @@
     eth = "enp6s0";
   };
 
+  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+
+  networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = [ 31337 ];
+  networking.firewall.allowedUDPPorts = [ 51821 ];
+
   # virtualisation.oci-containers.containers.librespeedtest = {
   #   autoStart = true;
   #   image = "adolfintel/speedtest";
