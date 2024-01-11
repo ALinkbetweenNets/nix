@@ -2,7 +2,7 @@
 with lib;
 let cfg = config.link.services.keycloak;
 in {
-    options.link.services.keycloak = {
+  options.link.services.keycloak = {
     enable = mkEnableOption "activate keycloak";
     expose-port = mkOption {
       type = types.bool;
@@ -19,7 +19,7 @@ in {
       default = config.link.nginx-expose;
       description = "expose the application to the internet";
     };
-      port = mkOption {
+    port = mkOption {
       type = types.int;
       default = 31123;
       description = "port to run the application on";

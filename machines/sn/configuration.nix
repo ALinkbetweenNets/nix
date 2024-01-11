@@ -44,8 +44,8 @@
     # home-assistant.enable = true;
     # photoprism.enable = true;
     syncthing.enable = true;
-    keycloak.enable = true;
     services = {
+      # keycloak.enable = true;
       gitea = {
         enable = true;
         expose-port = true;
