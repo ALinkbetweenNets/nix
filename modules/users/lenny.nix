@@ -6,7 +6,7 @@ in {
   config = mkIf cfg.enable {
     users.users.lenny = {
       isNormalUser = true;
-      home = "/home/lenny";
+      home = "/rz/sftp/lenny";
       # extraGroups = [ "wheel" "adbusers" "audio" "plugdev" "docker" ]
       #   ++ lib.optionals config.networking.networkmanager.enable
       #   [ "networkmanager" ];
@@ -17,7 +17,7 @@ in {
     };
     services.openssh.extraConfig = ''
       Match User lenny
-          ChrootDirectory /home/lenny
+          ChrootDirectory /rz/sftp/lenny
           ForceCommand internal-sftp
           AllowTcpForwarding no
     '';
