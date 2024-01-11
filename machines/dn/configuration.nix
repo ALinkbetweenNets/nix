@@ -18,20 +18,22 @@
     wg-link.enable = true;
     eth = "enp111s0";
     domain = "dn.local"; # testing domain
-    services.matrix.enable = true;
-    services.restic-client = {
-      enable = true;
-      backup-paths-sn = [
-        "/home/l/.config"
-        "/home/l/.ssh"
-        "/home/l/archive"
-        "/home/l/doc"
-        "/home/l/Documents"
-        "/home/l/obsidian"
-        "/home/l/plasma-vault"
-        "/home/l/sec"
-        "/home/l/w"
-      ];
+    services = {
+      matrix.enable = true;
+      restic-client = {
+        enable = true;
+        backup-paths-sn = [
+          "/home/l/.config"
+          "/home/l/.ssh"
+          "/home/l/archive"
+          "/home/l/doc"
+          "/home/l/Documents"
+          "/home/l/obsidian"
+          "/home/l/plasma-vault"
+          "/home/l/sec"
+          "/home/l/w"
+        ];
+      };
     };
   };
   networking = {
