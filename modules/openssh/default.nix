@@ -11,22 +11,29 @@ in {
       startWhenNeeded = true;
       settings = {
         LogLevel = "VERBOSE"; # for fail2ban to work properly
-        PermitRootLogin = "yes";
-        #PasswordAuthentication = false;
-        #KbdInteractiveAuthentication = false;
+        PermitRootLogin = "prohibit-password";
+        PasswordAuthentication = true;
+        KbdInteractiveAuthentication = true;
         X11Forwarding = true;
         UseDns = true;
+        GatewayPorts = "yes";
+        maxAuthTries = 5;
         Ciphers = [
           "chacha20-poly1305@openssh.com"
           "aes256-gcm@openssh.com"
           "aes256-ctr"
+          # "aes256-cbc" # insecure
         ];
-        Macs = [ "hmac-sha2-512-etm@openssh.com" "umac-128-etm@openssh.com" ];
+        Macs = [
+          "hmac-sha2-512-etm@openssh.com"
+          # "umac-128-etm@openssh.com"
+        ];
         KexAlgorithms = [
-          "sntrup761x25519-sha512@openssh.com"
-          "curve25519-sha256"
+          # "sntrup761x25519-sha512@openssh.com"
+          # "curve25519-sha256"
           "curve25519-sha256@libssh.org"
           "diffie-hellman-group-exchange-sha256"
+          "ecdh-sha2-nistp521"
         ];
       };
       sftpServerExecutable = "internal-sftp";
