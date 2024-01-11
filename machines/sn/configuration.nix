@@ -113,6 +113,11 @@
     eth = "enp6s0";
   };
 
+  fileSystems."/rz/sftp/lenny/arr" = {
+    device = "/rz/arr/lenny";
+    options = [ "bind" ];
+  };
+
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
 
   networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = [ 31337 ];
