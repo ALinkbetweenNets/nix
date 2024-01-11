@@ -186,13 +186,15 @@
   #     proxyWebsockets = true;
   #   };
   # };
+
   ## CTF
+
   services.nginx.virtualHosts."slides.netintro.${config.link.domain}" = {
     enableACME = true;
     forceSSL = true;
     # default = true;
     locations."/" = {
-      proxyPass = "http://192.168.122.30:31337/";
+      proxyPass = "http://${config.link.serviceHost}:31337/";
     };
   };
   services.nginx.virtualHosts."vpnconfig.netintro.${config.link.domain}" = {
@@ -200,49 +202,49 @@
     forceSSL = true;
     # default = true;
     locations."/" = {
-      proxyPass = "http://192.168.122.30:31338/";
+      proxyPass = "http://${config.link.serviceHost}:80/";
     };
   };
-  services.nginx.virtualHosts."chal0.internal.netintro.${config.link.domain}" = {
-    enableACME = true;
-    forceSSL = true;
-    # default = true;
-    locations."/" = {
-      proxyPass = "http://192.168.122.30:33159/";
-    };
-  };
-  services.nginx.virtualHosts."chal1.internal.netintro.${config.link.domain}" = {
-    enableACME = true;
-    forceSSL = true;
-    # default = true;
-    locations."/" = {
-      proxyPass = "http://192.168.122.30:33160/";
-    };
-  };
-  services.nginx.virtualHosts."chal2b.internal.netintro.${config.link.domain}" = {
-    enableACME = true;
-    forceSSL = true;
-    # default = true;
-    locations."/" = {
-      proxyPass = "http://192.168.122.30:33161/";
-    };
-  };
-  services.nginx.virtualHosts."chal2c.internal.netintro.${config.link.domain}" = {
-    enableACME = true;
-    forceSSL = true;
-    # default = true;
-    locations."/" = {
-      proxyPass = "http://192.168.122.30:33162/";
-    };
-  };
-  services.nginx.virtualHosts."chal2.internal.netintro.${config.link.domain}" = {
-    enableACME = true;
-    forceSSL = true;
-    # default = true;
-    locations."/" = {
-      proxyPass = "http://192.168.122.30:33163/";
-    };
-  };
+  # services.nginx.virtualHosts."chal0.internal.netintro.${config.link.domain}" = {
+  #   enableACME = true;
+  #   # forceSSL = true;
+  #   # default = true;
+  #   locations."/" = {
+  #     proxyPass = "http://192.168.122.30:33159/";
+  #   };
+  # };
+  # services.nginx.virtualHosts."chal1.internal.netintro.${config.link.domain}" = {
+  #   enableACME = true;
+  #   # forceSSL = true;
+  #   # default = true;
+  #   locations."/" = {
+  #     proxyPass = "http://192.168.122.30:33160/";
+  #   };
+  # };
+  # services.nginx.virtualHosts."chal2b.internal.netintro.${config.link.domain}" = {
+  #   enableACME = true;
+  #   # forceSSL = true;
+  #   # default = true;
+  #   locations."/" = {
+  #     proxyPass = "http://192.168.122.30:33161/";
+  #   };
+  # };
+  # services.nginx.virtualHosts."chal2c.internal.netintro.${config.link.domain}" = {
+  #   enableACME = true;
+  #   # forceSSL = true;
+  #   # default = true;
+  #   locations."/" = {
+  #     proxyPass = "http://192.168.122.30:33162/";
+  #   };
+  # };
+  # services.nginx.virtualHosts."chal2.internal.netintro.${config.link.domain}" = {
+  #   enableACME = true;
+  #   # forceSSL = true;
+  #   # default = true;
+  #   locations."/" = {
+  #     proxyPass = "http://192.168.122.30:33163/";
+  #   };
+  # };
   ## /CTF
   # "speedtest.${config.link.domain}" = {
   #   enableACME = true;
@@ -276,6 +278,7 @@
   };
   networking = {
     firewall.allowedTCPPorts = [ 443 ];
+    firewall.allowedUDPPorts = [ 51821 ];
     hostName = "v2202312204123249185";
     domain = "ultrasrv.de";
     interfaces."ens3" = {
