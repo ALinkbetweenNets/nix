@@ -91,6 +91,7 @@
       restic-client.backup-paths-onedrive = [
         "/home/l/.ssh"
         "/rz/syncthing"
+        "/rz/bkp/RTec"
       ];
       vaultwarden = {
         enable = true;
