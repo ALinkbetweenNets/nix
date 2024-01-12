@@ -93,6 +93,11 @@
         "/rz/syncthing"
         "/rz/bkp/RTec"
       ];
+      restic-client.backup-paths-lenny-synology = [
+        "/home/l/.ssh"
+        "/rz/syncthing"
+        "/rz/bkp/RTec"
+      ];
       vaultwarden = {
         enable = true;
         nginx-expose = false;
