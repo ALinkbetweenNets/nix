@@ -52,16 +52,16 @@ in
       "restic/sn/password" = { };
       "restic/sn/environment" = { };
       "restic/lenny-synology/password" = { };
-      "restic/lenny-synology/environment" = { };
+      "restic/lenny-synology/repository" = { };
     };
-    users.users.restic.isNormalUser = true;
-    security.wrappers.restic = {
-      source = "${pkgs.restic.out}/bin/restic";
-      owner = "restic";
-      group = "users";
-      permissions = "u=rwx,g=,o=";
-      capabilities = "cap_dac_read_search=+ep";
-    };
+    # users.users.restic.isNormalUser = true;
+    # security.wrappers.restic = {
+    #   source = "${pkgs.restic.out}/bin/restic";
+    #   owner = "restic";
+    #   group = "users";
+    #   permissions = "u=rwx,g=,o=";
+    #   capabilities = "cap_dac_read_search=+ep";
+    # };
     services.restic.backups =
       let
         # host = config.networking.hostName;
