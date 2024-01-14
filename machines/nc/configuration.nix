@@ -25,6 +25,55 @@
     nginx.enable = true;
     serviceHost = "100.89.178.137";
   };
+  # iptables --list --table nat
+  networking.nat = {
+    enable = true;
+    externalInterface = "ens3";
+    externalIP = "202.61.251.70";
+    internalInterfaces = [ "tailscale0" ];
+    internalIPs = [ "100.0.0.0/8" ];
+    extraCommands = ''
+      ${pkgs.iptables}/bin/iptables -w -t nat -A nixos-nat-post -o tailscale0 -p udp -d 202.61.251.70 --dport 51820 -j SNAT --to 100.89.40.41
+    '';
+    forwardPorts = [
+      { sourcePort = 51820; proto = "udp"; destination = "100.89.40.41:51820"; }
+    ];
+  };
+
+  networking = {
+    firewall.allowedTCPPorts = [ 443 ];
+    firewall.allowedUDPPorts = [ 51820 ];
+    hostName = "v2202312204123249185";
+    domain = "ultrasrv.de";
+    interfaces."ens3" = {
+      ipv6.addresses = [{
+        address = "2a03:4000:54:8a:585a:48ff:fee3:9d06";
+        prefixLength = 64;
+      }];
+    };
+    # firewall = { allowedTCPPorts = [ 80 443 ]; };
+  };
+
+  # networking.nat = {
+  #   enable = true;
+  #   externalInterface = config.link.eth;
+  #   # externalIP = "37.120.177.174";
+  #   internalInterfaces = [ "tailscale0" ];
+  #   # internalIPs = [ "10.88.88.0/24" ];
+  #   # extraCommands = ''
+  #   #   ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING  --protocol udp -o tailscale0 -d 100.86.79.82 --dport 51821 -j SNAT --to 100.89.178.137
+  #   # '';
+  #   # extraStopCommands = ''
+  #   #   ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING  --protocol udp -o tailscale0 -d 100.86.79.82 --dport 51821 -j SNAT --to 100.89.178.137
+  #   # '';
+  #   forwardPorts = [
+  #     { sourcePort = 51821; proto = "tcp"; destination = "100.89.178.137:3000"; }
+  #   ];
+  # };
+  # boot.kernel.sysctl = {
+  #   "net.ipv4.ip_forward" = 1;
+  # };
+
 
   services.nginx.virtualHosts."${config.link.domain}" = {
     enableACME = true;
@@ -194,7 +243,7 @@
     forceSSL = true;
     # default = true;
     locations."/" = {
-      proxyPass = "http://${config.link.serviceHost}:31337/";
+      proxyPass = "http://100.89.40.41:31337/";
     };
   };
   services.nginx.virtualHosts."vpnconfig.netintro.${config.link.domain}" = {
@@ -202,49 +251,74 @@
     forceSSL = true;
     # default = true;
     locations."/" = {
-      proxyPass = "http://${config.link.serviceHost}:80/";
+      proxyPass = "http://100.89.40.41:31338/";
     };
   };
-  # services.nginx.virtualHosts."chal0.internal.netintro.${config.link.domain}" = {
-  #   enableACME = true;
-  #   # forceSSL = true;
-  #   # default = true;
-  #   locations."/" = {
-  #     proxyPass = "http://192.168.122.30:33159/";
-  #   };
-  # };
-  # services.nginx.virtualHosts."chal1.internal.netintro.${config.link.domain}" = {
-  #   enableACME = true;
-  #   # forceSSL = true;
-  #   # default = true;
-  #   locations."/" = {
-  #     proxyPass = "http://192.168.122.30:33160/";
-  #   };
-  # };
-  # services.nginx.virtualHosts."chal2b.internal.netintro.${config.link.domain}" = {
-  #   enableACME = true;
-  #   # forceSSL = true;
-  #   # default = true;
-  #   locations."/" = {
-  #     proxyPass = "http://192.168.122.30:33161/";
-  #   };
-  # };
-  # services.nginx.virtualHosts."chal2c.internal.netintro.${config.link.domain}" = {
-  #   enableACME = true;
-  #   # forceSSL = true;
-  #   # default = true;
-  #   locations."/" = {
-  #     proxyPass = "http://192.168.122.30:33162/";
-  #   };
-  # };
-  # services.nginx.virtualHosts."chal2.internal.netintro.${config.link.domain}" = {
-  #   enableACME = true;
-  #   # forceSSL = true;
-  #   # default = true;
-  #   locations."/" = {
-  #     proxyPass = "http://192.168.122.30:33163/";
-  #   };
-  # };
+  services.nginx.virtualHosts."chal0.internal.netintro.${config.link.domain}" = {
+    enableACME = true;
+    # forceSSL = true;
+    # default = true;
+    locations."/" = {
+      proxyPass = "http://192.168.122.30:32780/";
+    };
+    extraConfig = ''
+      allow 127.0.0.1;
+      allow 172.28.2.0/24;
+      deny all; # deny all remaining ips
+    '';
+  };
+  services.nginx.virtualHosts."chal1.internal.netintro.${config.link.domain}" = {
+    enableACME = true;
+    # forceSSL = true;
+    # default = true;
+    locations."/" = {
+      proxyPass = "http://192.168.122.30:32783/";
+    };
+    extraConfig = ''
+      allow 127.0.0.1;
+      allow 172.28.2.0/24;
+      deny all; # deny all remaining ips
+    '';
+  };
+  services.nginx.virtualHosts."chal2.internal.netintro.${config.link.domain}" = {
+    enableACME = true;
+    # forceSSL = true;
+    # default = true;
+    locations."/" = {
+      proxyPass = "http://192.168.122.30:32782/";
+    };
+    extraConfig = ''
+      allow 127.0.0.1;
+      allow 172.28.2.0/24;
+      deny all; # deny all remaining ips
+    '';
+  };
+  services.nginx.virtualHosts."chal2b.internal.netintro.${config.link.domain}" = {
+    enableACME = true;
+    # forceSSL = true;
+    # default = true;
+    locations."/" = {
+      proxyPass = "http://192.168.122.30:32784/";
+    };
+    extraConfig = ''
+      allow 127.0.0.1;
+      allow 172.28.2.0/24;
+      deny all; # deny all remaining ips
+    '';
+  };
+  services.nginx.virtualHosts."chal2c.internal.netintro.${config.link.domain}" = {
+    enableACME = true;
+    # forceSSL = true;
+    # default = true;
+    locations."/" = {
+      proxyPass = "http://192.168.122.30:32781/";
+    };
+    extraConfig = ''
+      allow 127.0.0.1;
+      allow 172.28.2.0/24;
+      deny all; # deny all remaining ips
+    '';
+  };
   ## /CTF
   # "speedtest.${config.link.domain}" = {
   #   enableACME = true;
@@ -263,8 +337,6 @@
   #   proxy_set_header X-Forwarded-Proto $scheme;
   # '';
   #};
-
-  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "server";
@@ -275,20 +347,6 @@
   lollypops.deployment = {
     local-evaluation = true;
     ssh = { host = "100.86.79.82"; user = "root"; };
-  };
-  networking = {
-    firewall.allowedTCPPorts = [ 443 ];
-    firewall.allowedUDPPorts = [ 51821 ];
-    hostName = "v2202312204123249185";
-    domain = "ultrasrv.de";
-    interfaces."ens3" = {
-      ipv6.addresses = [{
-        address = "2a03:4000:54:8a:585a:48ff:fee3:9d06";
-        prefixLength = 64;
-      }];
-    };
-    nat.externalInterface = "ens3";
-    # firewall = { allowedTCPPorts = [ 80 443 ]; };
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

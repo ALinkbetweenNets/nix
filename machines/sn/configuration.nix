@@ -117,15 +117,31 @@
     eth = "enp6s0";
   };
 
-  fileSystems."/rz/sftp/lenny/arr" = {
-    device = "/rz/arr/lenny";
-    options = [ "bind" ];
+    # iptables --list --table nat
+  networking.nat = {
+    enable = true;
+    externalInterface = "tailscale0";
+    externalIP = "100.89.178.137";
+    internalInterfaces = [ "virbr0" ];
+    internalIPs = [ "192.168.122.0/24" ];
+    extraCommands = ''
+      ${pkgs.iptables}/bin/iptables -w -t nat -A nixos-nat-post -o virbr0 -p tcp -d 100.89.178.137 --dport 51821 -j SNAT --to 192.168.122.30
+    '';
+    forwardPorts = [
+      { sourcePort = 51821; proto = "tcp"; destination = "192.168.122.30:32770"; }
+    ];
   };
 
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
 
   networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = [ 31337 ];
   networking.firewall.allowedUDPPorts = [ 51821 ];
+  networking.firewall.allowedTCPPorts = [ 51821 ];
+
+  fileSystems."/rz/sftp/lenny/arr" = {
+    device = "/rz/arr/lenny";
+    options = [ "bind" ];
+  };
 
   # virtualisation.oci-containers.containers.librespeedtest = {
   #   autoStart = true;
@@ -150,7 +166,7 @@
   #     target = "/mnt/arr";
   #   };
   # };
-  services.onedrive.enable = true;
+  # services.onedrive.enable = true;
   boot = {
     loader.grub.device = "/dev/sdd";
     zfs.extraPools = [ "wdp" ];
