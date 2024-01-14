@@ -17,6 +17,12 @@ in
       example = [ "/var/lib/gitea" ];
       description = "Paths to backup to sn";
     };
+    backup-paths-lenny-synology = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      example = [ "/var/lib/gitea" ];
+      description = "Paths to backup to sn";
+    };
     backup-paths-onedrive = mkOption {
       type = types.listOf types.str;
       default = [ ];
@@ -45,15 +51,17 @@ in
       "restic/sn/repository" = { };
       "restic/sn/password" = { };
       "restic/sn/environment" = { };
+      "restic/lenny-synology/password" = { };
+      "restic/lenny-synology/repository" = { };
     };
-    users.users.restic.isNormalUser = true;
-    security.wrappers.restic = {
-      source = "${pkgs.restic.out}/bin/restic";
-      owner = "restic";
-      group = "users";
-      permissions = "u=rwx,g=,o=";
-      capabilities = "cap_dac_read_search=+ep";
-    };
+    # users.users.restic.isNormalUser = true;
+    # security.wrappers.restic = {
+    #   source = "${pkgs.restic.out}/bin/restic";
+    #   owner = "restic";
+    #   group = "users";
+    #   permissions = "u=rwx,g=,o=";
+    #   capabilities = "cap_dac_read_search=+ep";
+    # };
     services.restic.backups =
       let
         # host = config.networking.hostName;
@@ -80,6 +88,32 @@ in
           paths = cfg.backup-paths-storagebox;
           repositoryFile = config.sops.secrets."restic/storagebox/repository".path;
           passwordFile = config.sops.secrets."restic/storagebox/password".path;
+          # environmentFile = "${config.sops.secrets."restic/backblaze-credentials".path}";
+          # backupCleanupCommand = script-post config.networking.hostName "storagebox";
+          pruneOpts = [
+            "--keep-daily 7"
+            "--keep-weekly 5"
+            "--keep-monthly 12"
+            "--keep-yearly 75"
+          ];
+          timerConfig = {
+            OnCalendar = "03:00";
+            Persistent = true;
+            RandomizedDelaySec = "5h";
+          };
+          extraBackupArgs = [
+            "--exclude-file=${restic-ignore-file}"
+            "--one-file-system"
+            "--compression=max"
+            # "--dry-run"
+            "-v"
+          ];
+          initialize = true;
+        };
+        lenny-synology = {
+          paths = cfg.backup-paths-storagebox;
+          repositoryFile = config.sops.secrets."restic/lenny-synology/repository".path;
+          passwordFile = config.sops.secrets."restic/lenny-synology/password".path;
           # environmentFile = "${config.sops.secrets."restic/backblaze-credentials".path}";
           # backupCleanupCommand = script-post config.networking.hostName "storagebox";
           pruneOpts = [
