@@ -117,7 +117,7 @@
     eth = "enp6s0";
   };
 
-    # iptables --list --table nat
+  # iptables --list --table nat
   networking.nat = {
     enable = true;
     externalInterface = "tailscale0";
@@ -139,7 +139,7 @@
   networking.firewall.allowedTCPPorts = [ 51821 ];
 
   fileSystems."/rz/sftp/lenny/arr" = {
-    device = "/rz/arr/lenny";
+    device = "/rz/arr/lenny/";
     options = [ "bind" ];
   };
 
