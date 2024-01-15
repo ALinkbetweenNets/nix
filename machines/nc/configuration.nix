@@ -254,71 +254,71 @@
       proxyPass = "http://100.89.40.41:31338/";
     };
   };
-  services.nginx.virtualHosts."chal0.internal.netintro.${config.link.domain}" = {
-    enableACME = true;
-    # forceSSL = true;
-    # default = true;
-    locations."/" = {
-      proxyPass = "http://192.168.122.30:32780/";
-    };
-    extraConfig = ''
-      allow 127.0.0.1;
-      allow 172.28.2.0/24;
-      deny all; # deny all remaining ips
-    '';
-  };
-  services.nginx.virtualHosts."chal1.internal.netintro.${config.link.domain}" = {
-    enableACME = true;
-    # forceSSL = true;
-    # default = true;
-    locations."/" = {
-      proxyPass = "http://192.168.122.30:32783/";
-    };
-    extraConfig = ''
-      allow 127.0.0.1;
-      allow 172.28.2.0/24;
-      deny all; # deny all remaining ips
-    '';
-  };
-  services.nginx.virtualHosts."chal2.internal.netintro.${config.link.domain}" = {
-    enableACME = true;
-    # forceSSL = true;
-    # default = true;
-    locations."/" = {
-      proxyPass = "http://192.168.122.30:32782/";
-    };
-    extraConfig = ''
-      allow 127.0.0.1;
-      allow 172.28.2.0/24;
-      deny all; # deny all remaining ips
-    '';
-  };
-  services.nginx.virtualHosts."chal2b.internal.netintro.${config.link.domain}" = {
-    enableACME = true;
-    # forceSSL = true;
-    # default = true;
-    locations."/" = {
-      proxyPass = "http://192.168.122.30:32784/";
-    };
-    extraConfig = ''
-      allow 127.0.0.1;
-      allow 172.28.2.0/24;
-      deny all; # deny all remaining ips
-    '';
-  };
-  services.nginx.virtualHosts."chal2c.internal.netintro.${config.link.domain}" = {
-    enableACME = true;
-    # forceSSL = true;
-    # default = true;
-    locations."/" = {
-      proxyPass = "http://192.168.122.30:32781/";
-    };
-    extraConfig = ''
-      allow 127.0.0.1;
-      allow 172.28.2.0/24;
-      deny all; # deny all remaining ips
-    '';
-  };
+  # services.nginx.virtualHosts."chal0.internal.netintro.${config.link.domain}" = {
+  #   enableACME = true;
+  #   # forceSSL = true;
+  #   # default = true;
+  #   locations."/" = {
+  #     proxyPass = "http://100.89.40.41:32772/";
+  #   };
+  #   extraConfig = ''
+  #     allow 127.0.0.1;
+  #     allow 172.28.2.0/24;
+  #     deny all; # deny all remaining ips
+  #   '';
+  # };
+  # services.nginx.virtualHosts."chal1.internal.netintro.${config.link.domain}" = {
+  #   enableACME = true;
+  #   # forceSSL = true;
+  #   # default = true;
+  #   locations."/" = {
+  #     proxyPass = "http://100.89.40.41:32770/";
+  #   };
+  #   extraConfig = ''
+  #     allow 127.0.0.1;
+  #     allow 172.28.2.0/24;
+  #     deny all; # deny all remaining ips
+  #   '';
+  # };
+  # services.nginx.virtualHosts."chal2.internal.netintro.${config.link.domain}" = {
+  #   enableACME = true;
+  #   # forceSSL = true;
+  #   # default = true;
+  #   locations."/" = {
+  #     proxyPass = "http://100.89.40.41:32768/";
+  #   };
+  #   extraConfig = ''
+  #     allow 127.0.0.1;
+  #     allow 172.28.2.0/24;
+  #     deny all; # deny all remaining ips
+  #   '';
+  # };
+  # services.nginx.virtualHosts."chal2b.internal.netintro.${config.link.domain}" = {
+  #   enableACME = true;
+  #   # forceSSL = true;
+  #   # default = true;
+  #   locations."/" = {
+  #     proxyPass = "http://100.89.40.41:32773/";
+  #   };
+  #   extraConfig = ''
+  #     allow 127.0.0.1;
+  #     allow 172.28.2.0/24;
+  #     deny all; # deny all remaining ips
+  #   '';
+  # };
+  # services.nginx.virtualHosts."chal2c.internal.netintro.${config.link.domain}" = {
+  #   enableACME = true;
+  #   # forceSSL = true;
+  #   # default = true;
+  #   locations."/" = {
+  #     proxyPass = "http://100.89.40.41:32771/";
+  #   };
+  #   extraConfig = ''
+  #     allow 127.0.0.1;
+  #     allow 172.28.2.0/24;
+  #     deny all; # deny all remaining ips
+  #   '';
+  # };
   ## /CTF
   # "speedtest.${config.link.domain}" = {
   #   enableACME = true;
