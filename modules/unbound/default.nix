@@ -80,6 +80,7 @@ in
           {
             name = ".";
             forward-addr = [
+              "100.100.100.100@853"
               "1.0.0.1@853#cloudflare-dns.com"
               "1.1.1.1@853#cloudflare-dns.com"
             ];
