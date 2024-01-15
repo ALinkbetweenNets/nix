@@ -84,6 +84,7 @@ in {
       ## encryption& filesystem
       cryptsetup
       gocryptfs
+      cryfs
       age
       ## Network tools
       wget
