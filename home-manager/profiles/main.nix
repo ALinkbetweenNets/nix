@@ -16,6 +16,7 @@ with lib; {
       indicator = false;
     };
     home.packages = with pkgs; [
+      vagrant # quick tmp vm creation
       hugo # static site generator
       ghosttohugo
       # Desktop monitor settings change
