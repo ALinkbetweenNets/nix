@@ -15,7 +15,7 @@
     secrets = "/home/l/.keys";
     wireguard.enable = true;
     wg-deep.enable = true;
-    wg-link.enable = true;
+    # wg-link.enable = true;
     eth = "enp111s0";
     domain = "dn.local"; # testing domain
     services = {
