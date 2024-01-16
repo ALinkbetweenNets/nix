@@ -24,6 +24,7 @@
     # coturn.enable = true;
     nginx.enable = true;
     serviceHost = "100.89.178.137";
+    server.enable = true;
   };
 
   # ctf vpn forwarding
