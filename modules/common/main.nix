@@ -10,12 +10,9 @@ in {
       git-sync.enable = true;
       fs.ntfs.enable = true;
       unbound.enable = true;
+      tailscale.enable = true;
     };
     services = {
-      tailscale = {
-        enable = true;
-        useRoutingFeatures = "client";
-      };
       mullvad-vpn = {
         enable = true;
         package = pkgs.mullvad-vpn; # gui version
