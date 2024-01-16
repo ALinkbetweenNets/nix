@@ -20,6 +20,7 @@
     eth = "eth0";
     service-interface = "wg-deep";
     fail2ban.enable = true;
+    server.enable = true;
     services = {
       coturn.enable = true;
       gitea.enable = true;
@@ -51,11 +52,6 @@
       minio.enable = true;
     };
     nginx.enable = true;
-  };
-  services.tailscale = {
-    enable = true;
-    useRoutingFeatures = "server";
-    extraUpFlags = [ "--advertise-exit-node" ];
   };
   services.openssh.ports = [ 2522 ];
   services.openssh.settings.PermitRootLogin = lib.mkForce "prohibit-password";

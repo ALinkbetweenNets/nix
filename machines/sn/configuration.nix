@@ -7,6 +7,7 @@
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
     common.enable = true;
+    server.enable = true;
     grub.enable = true;
     systemd-boot.enable = false;
     fs.zfs.enable = true;
@@ -24,9 +25,8 @@
     syncthingDir = "/rz/syncthing";
     secrets = "/pwd";
     #seafile.enable = true;
-    service-ip = "10.0.1.1";
+    # service-ip = "10.0.1.1";
     service-interface = "tailscale0";
-
     users.lenny.enable = true;
 
     nginx.enable = false;
@@ -176,11 +176,6 @@
     hostName = "sn";
     domain = "fritz.box";
     hostId = "007f0200";
-  };
-  services.tailscale = {
-    enable = true;
-    useRoutingFeatures = "server";
-    extraUpFlags = [ "--advertise-exit-node" ];
   };
   # nix run .\#lollypops -- sn:rebuild
   lollypops.deployment = {
