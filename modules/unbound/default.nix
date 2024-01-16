@@ -52,13 +52,13 @@ in
         #   }
         # ];
         forward-zone = [
-          # {
-          #   name = "too-many-tb.de.";
-          #   forward-addr = [
-          #     "10.88.88.2"
-          #   ];
-          #   forward-tls-upstream = "no";
-          # }
+          {
+            name = "monitor-banfish.ts.net.";
+            forward-addr = [
+              "100.100.100.100"
+            ];
+            forward-tls-upstream = "no";
+          }
           {
             name = "*.tailc4dfb.ts.net";
             forward-addr = [
@@ -77,8 +77,7 @@ in
           {
             name = ".";
             forward-addr = [
-              "100.100.100.100@853"
-              "194.242.2.2@853"
+              "194.242.2.2"
               "1.0.0.1@853#cloudflare-dns.com"
               "1.1.1.1@853#cloudflare-dns.com"
             ];
