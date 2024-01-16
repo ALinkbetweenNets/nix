@@ -166,7 +166,7 @@
   #     target = "/mnt/arr";
   #   };
   # };
-  # services.onedrive.enable = true;
+  services.onedrive.enable = true;
   boot = {
     loader.grub.device = "/dev/sdd";
     zfs.extraPools = [ "wdp" ];
