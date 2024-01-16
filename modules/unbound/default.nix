@@ -18,7 +18,7 @@ in
         "nas.mh0.eu" = "192.168.42.10";
         "pass.telekom.de" = "109.237.176.33";
         "smokeping.lounge.rocks" = "192.168.5.21";
-        "sn.link" = "10.0.1.1";
+        # "sn.link" = "10.0.1.1";
       };
       description = ''
         Custom DNS A records
@@ -28,6 +28,7 @@ in
   config = mkIf cfg.enable {
     services.unbound = {
       enable = true;
+      enableRootTrustAnchor = true;
       settings = {
         server = {
           include = [
@@ -36,14 +37,10 @@ in
           ];
           interface = [
             "127.0.0.1"
-            "10.0.0.2"
-            "10.0.1.2"
           ];
           access-control = [
             "127.0.0.0/8 allow"
             "192.168.0.0/16 allow"
-            "10.0.0.0/24 allow"
-            "10.0.1.0/24 allow"
           ];
         };
         # forward local DNS requests via Wireguard
