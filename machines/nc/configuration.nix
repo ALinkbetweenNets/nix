@@ -25,18 +25,16 @@
     nginx.enable = true;
     serviceHost = "100.89.178.137";
   };
-  # iptables --list --table nat
+
+  # ctf vpn forwarding
   networking.nat = {
     enable = true;
     externalInterface = "ens3";
     externalIP = "202.61.251.70";
     internalInterfaces = [ "tailscale0" ];
-    internalIPs = [ "100.0.0.0/8" ];
-    extraCommands = ''
-      ${pkgs.iptables}/bin/iptables -w -t nat -A nixos-nat-post -o tailscale0 -p udp -d 202.61.251.70 --dport 51820 -j SNAT --to 100.89.40.41
-    '';
+    internalIPs = [ "100.89.40.41/32" ];
     forwardPorts = [
-      { sourcePort = 51820; proto = "udp"; destination = "100.89.40.41:51820"; }
+      { sourcePort = 51820; proto = "udp"; destination = "100.89.40.41:51820"; loopbackIPs = [ "100.86.79.82" ]; }
     ];
   };
 
@@ -51,28 +49,7 @@
         prefixLength = 64;
       }];
     };
-    # firewall = { allowedTCPPorts = [ 80 443 ]; };
   };
-
-  # networking.nat = {
-  #   enable = true;
-  #   externalInterface = config.link.eth;
-  #   # externalIP = "37.120.177.174";
-  #   internalInterfaces = [ "tailscale0" ];
-  #   # internalIPs = [ "10.88.88.0/24" ];
-  #   # extraCommands = ''
-  #   #   ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING  --protocol udp -o tailscale0 -d 100.86.79.82 --dport 51821 -j SNAT --to 100.89.178.137
-  #   # '';
-  #   # extraStopCommands = ''
-  #   #   ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING  --protocol udp -o tailscale0 -d 100.86.79.82 --dport 51821 -j SNAT --to 100.89.178.137
-  #   # '';
-  #   forwardPorts = [
-  #     { sourcePort = 51821; proto = "tcp"; destination = "100.89.178.137:3000"; }
-  #   ];
-  # };
-  # boot.kernel.sysctl = {
-  #   "net.ipv4.ip_forward" = 1;
-  # };
 
 
   services.nginx.virtualHosts."${config.link.domain}" = {
