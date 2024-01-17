@@ -7,6 +7,7 @@ in {
     programs.vscode = {
       enable = true;
       # package = pkgs.vscodium;
+      # package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config  ]);
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = false;
       extensions = with pkgs.vscode-extensions; [
