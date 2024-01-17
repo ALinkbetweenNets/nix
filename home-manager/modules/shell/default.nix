@@ -4,58 +4,58 @@ let vars = import ../../vars.nix;
 in {
   home.packages = with pkgs; [ btop fastfetch gdb tldr sysz fd bat eza ];
   programs = {
-    starship = {
-      enable = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
-      settings = {
-        # format = ''[░▒▓](bg:#a3aed2 fg:#090c0c)[](bg:#769ff0 fg:#a3aed2)$directory[](fg:#769ff0 bg:#394260)$git_branch$git_status[](fg:#394260 bg:#212736)$package[](fg:#212736 bg:#1d2230)$time[ ](fg:#1d2230)$line_break$character'';
-        time = {
-          disabled = false;
-          time_format = "%R"; # Hour:Minute Format
-          # style = "bg:#1d2230";
-          # format = ''[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'';
-        };
-        character = {
-          # success_symbol = "[»](bold green)";
-          # error_symbol = "[×](bold red) ";
-        };
-        directory = {
-          # style = "fg:#e3e5e5 bg:#769ff0";
-          # format = "[ $path ]($style)";
-          truncation_length = 40;
-          truncation_symbol = "…/";
-          # substitutions = {
-          # "Documents" = "󰈙 ";
-          # "Downloads" = " ";
-          # "Music" = " ";
-          # "Pictures" = " ";
-          # };
-        };
-        aws = { disabled = true; };
-        nix_shell = {
-          disabled = false;
-          # symbol = "❄  ";
-        };
-        #os.disabled = false;
-        username.disabled = false;
-        git_branch = {
-          # symbol = "";
-          # style = "bg:#394260";
-          # format = ''[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'';
-        };
-        # git_status = {
-        #   # style = "bg:#394260";
-        #   # format = ''[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'';
-        #   ahead = "↑";
-        #   behind = "↓";
-        #   diverged = "↕";
-        #   modified = "!";
-        #   staged = "±";
-        #   renamed = "→";
-        # };
-      };
-    };
+    # starship = {
+    #   enable = true;
+    #   enableBashIntegration = true;
+    #   enableZshIntegration = true;
+    #   settings = {
+    #     # format = ''[░▒▓](bg:#a3aed2 fg:#090c0c)[](bg:#769ff0 fg:#a3aed2)$directory[](fg:#769ff0 bg:#394260)$git_branch$git_status[](fg:#394260 bg:#212736)$package[](fg:#212736 bg:#1d2230)$time[ ](fg:#1d2230)$line_break$character'';
+    #     time = {
+    #       disabled = false;
+    #       time_format = "%R"; # Hour:Minute Format
+    #       # style = "bg:#1d2230";
+    #       # format = ''[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'';
+    #     };
+    #     character = {
+    #       # success_symbol = "[»](bold green)";
+    #       # error_symbol = "[×](bold red) ";
+    #     };
+    #     directory = {
+    #       # style = "fg:#e3e5e5 bg:#769ff0";
+    #       # format = "[ $path ]($style)";
+    #       truncation_length = 40;
+    #       truncation_symbol = "…/";
+    #       # substitutions = {
+    #       # "Documents" = "󰈙 ";
+    #       # "Downloads" = " ";
+    #       # "Music" = " ";
+    #       # "Pictures" = " ";
+    #       # };
+    #     };
+    #     aws = { disabled = true; };
+    #     nix_shell = {
+    #       disabled = false;
+    #       # symbol = "❄  ";
+    #     };
+    #     #os.disabled = false;
+    #     username.disabled = false;
+    #     git_branch = {
+    #       # symbol = "";
+    #       # style = "bg:#394260";
+    #       # format = ''[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'';
+    #     };
+    #     # git_status = {
+    #     #   # style = "bg:#394260";
+    #     #   # format = ''[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'';
+    #     #   ahead = "↑";
+    #     #   behind = "↓";
+    #     #   diverged = "↕";
+    #     #   modified = "!";
+    #     #   staged = "±";
+    #     #   renamed = "→";
+    #     # };
+    #   };
+    # };
     zsh = {
       enable = true;
       enableAutosuggestions = true;
@@ -70,202 +70,124 @@ in {
         save = 15000;
         share = true;
       };
+      # initExtra = ''
+      #   bindkey "^[[1;5C" forward-word
+      #   bindkey "^[[1;5D" backward-word
+      # '';
       plugins = [
         {
-          # will source zsh-autosuggestions.plugin.zsh
-          name = "zsh-autosuggestions";
-          src = pkgs.fetchFromGitHub {
-            owner = "zsh-users";
-            repo = "zsh-autosuggestions";
-            rev = "v0.4.0";
-            sha256 = "0z6i9wjjklb4lvr7zjhbphibsyx51psv50gm07mbb0kj9058j6kc";
-          };
+          name = "fast-syntax-highlighting";
+          file = "fast-syntax-highlighting.plugin.zsh";
+          src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
         }
         {
           name = "zsh-nix-shell";
           file = "nix-shell.plugin.zsh";
           src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
         }
-        # {
-        #   name = "fast-syntax-highlighting";
-        #   file = "fast-syntax-highlighting.plugin.zsh";
-        #   src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
-        # }
-        # {
-        #   name = "agkozak-zsh-prompt";
-        #   src = pkgs.fetchFromGitHub {
-        #     owner = "agkozak";
-        #     repo = "agkozak-zsh-prompt";
-        #     rev = "v3.7.0";
-        #     sha256 = "1iz4l8777i52gfynzpf6yybrmics8g4i3f1xs3rqsr40bb89igrs";
-        #   };
-        #   file = "agkozak-zsh-prompt.plugin.zsh";
-        # }
-        # {
-        #   name = "formarks";
-        #   src = pkgs.fetchFromGitHub {
-        #     owner = "wfxr";
-        #     repo = "formarks";
-        #     rev = "8abce138218a8e6acd3c8ad2dd52550198625944";
-        #     sha256 = "1wr4ypv2b6a2w9qsia29mb36xf98zjzhp3bq4ix6r3cmra3xij90";
-        #   };
-        #   file = "formarks.plugin.zsh";
-        # }
-        # {
-        #   name = "zsh-abbrev-alias";
-        #   src = pkgs.fetchFromGitHub {
-        #     owner = "momo-lab";
-        #     repo = "zsh-abbrev-alias";
-        #     rev = "637f0b2dda6d392bf710190ee472a48a20766c07";
-        #     sha256 = "16saanmwpp634yc8jfdxig0ivm1gvcgpif937gbdxf0csc6vh47k";
-        #   };
-        #   file = "abbrev-alias.plugin.zsh";
-        # }
-        # {
-        #   name = "zsh-autopair";
-        #   src = pkgs.fetchFromGitHub {
-        #     owner = "hlissner";
-        #     repo = "zsh-autopair";
-        #     rev = "34a8bca0c18fcf3ab1561caef9790abffc1d3d49";
-        #     sha256 = "1h0vm2dgrmb8i2pvsgis3lshc5b0ad846836m62y8h3rdb3zmpy1";
-        #   };
-        #   file = "autopair.zsh";
-        # }
-        # {
-        #   name = "enhancd";
-        #   file = "init.sh";
-        #   src = pkgs.fetchFromGitHub {
-        #     owner = "b4b4r07";
-        #     repo = "enhancd";
-        #     rev = "fd805158ea19d640f8e7713230532bc95d379ddc";
-        #     sha256 = "0pc19dkp5qah2iv92pzrgfygq83vjq1i26ny97p8dw6hfgpyg04l";
-        #   };
-        # }
-        # {
-        #   name = "gitit";
-        #   src = pkgs.fetchFromGitHub {
-        #     owner = "peterhurford";
-        #     repo = "git-it-on.zsh";
-        #     rev = "4827030e1ead6124e3e7c575c0dd375a9c6081a2";
-        #     sha256 = "01xsqhygbxmv38vwfzvs7b16iq130d2r917a5dnx8l4aijx282j2";
-        #   };
-        # }
-        # {
-        #   name = "zsh-completions";
-        #   src = pkgs.fetchFromGitHub {
-        #     owner = "zsh-users";
-        #     repo = "zsh-completions";
-        #     rev = "0.27.0";
-        #     sha256 = "1c2xx9bkkvyy0c6aq9vv3fjw7snlm0m5bjygfk5391qgjpvchd29";
-        #   };
-        # }
-        # {
-        #   name = "zsh-history-substring-search";
-        #   src = pkgs.fetchFromGitHub {
-        #     owner = "zsh-users";
-        #     repo = "zsh-history-substring-search";
-        #     rev = "47a7d416c652a109f6e8856081abc042b50125f4";
-        #     sha256 = "1mvilqivq0qlsvx2rqn6xkxyf9yf4wj8r85qrxizkf0biyzyy4hl";
-        #   };
-        # }
       ];
+      shellAliases =
+        let
+          fhs-vscode = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
+        in
+        {
+          myvs = "${fhs-vscode}/bin/code";
+          # switching within a flake repository
+          nrg = "nixos-rebuild switch --use-remote-sudo --flake github:alinkbetweennets/nix";
+          ns = "nix-shell -p ";
+          nr = "cd /home/l/nix;git pull;nixos-rebuild switch --use-remote-sudo --flake /home/l/nix";
+          nrb = "nixos-rebuild switch --use-remote-sudo --flake /home/l/nix";
+          ngc = "sudo nix-collect-garbage -d";
+          lolly = "cd /home/l/nix;nix run .\#lollypops -- ";
+          # discord = "nohup discord --use-gl=desktop &";
+          netdiscover = "sudo netdiscover";
+          less = "less -r";
+          services = "systemctl list-units --type service";
+          killme = "exit";
+          pls = "sudo";
+          cls = "clear";
+          datamatrix = "iec16022";
+          fancytext = "figlet -tkf slant ";
+          open = "xdg-open";
+          o = "xdg-open";
+          q = "exit";
+          r = "trash put";
+          rmt = "trash put";
+          n = "nvim";
+          c = "cd";
+          ci = ''
+            # echo link to woodpecker
+            url=$(${pkgs.git}/bin/git config --get remote.origin.url | sed -e 's/\(.*\)git@\(.*\):[0-9\/]*/https:\/\/\2\//g')
+            owner=$(echo $url | sed -e 's/.*github.com\/\(.*\)\/.*/\1/g')
+            repo=$(echo $url | sed -e 's/.*github.com\/.*\/\(.*\).git/\1/g')
+            echo "https://build.lounge.rocks/$owner/$repo"
+          '';
+          v = "codium";
+          copium = "codium";
+          cope = "codium";
+          f = "fuck";
+          p = "python";
+          b = "bat";
+          s = "links https://duckduckgo.com/";
+          nip = "firefox https://search.nixos.org/packages";
+          nio = "firefox https://search.nixos.org/options";
+          yt = "~/s/y.sh";
+          dupl = "fdupes -rdnAst .";
+          sm = "sm -i";
+          g = "git";
+          gs = "git status";
+          gac = "git commit -am '$(date -I)'";
+          gpp = "git pull&&git push";
+          gitforkupdate = ''
+            ${pkgs.git}/bin/git fetch upstream
+            ${pkgs.git}/bin/git checkout main
+            ${pkgs.git}/bin/git merge upstream/main
+          '';
+          l =
+            "eza --icons --group-directories-first --git -F --color always --sort=modified"; # -F = --classify
+          lr =
+            "eza --icons --group-directories-first --git -F --color always --sort=modified --tree";
+          la =
+            "eza --icons --group-directories-first --git -F --color always --sort=modified --all";
+          lss =
+            "eza --icons --group-directories-first --git -F --color always --sort=size";
+          lsr =
+            "eza --icons --group-directories-first --git -F --color always --sort=size --tree";
+          lsa =
+            "eza --icons --group-directories-first --git -F --color always --sort=size --all";
+          lar =
+            "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all";
+          ll =
+            "eza --icons --group-directories-first --git -F --color always --sort=modified -l --group";
+          llr =
+            "eza --icons --group-directories-first --git -F --color always --sort=modified --tree -l --group";
+          lla =
+            "eza --icons --group-directories-first --git -F --color always --sort=modified --all -l --group";
+          lls =
+            "eza --icons --group-directories-first --git -F --color always --sort=size -l";
+          llsr =
+            "eza --icons --group-directories-first --git -F --color always --sort=size --tree -l --group";
+          llsa =
+            "eza --icons --group-directories-first --git -F --color always --sort=size --all -l --group";
+          llar =
+            "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all -l --group";
+        };
     };
     fish = {
       enable = true;
-      shellAbbrs = {
-        # switching within a flake repository
-        nrg = "sudo nixos-rebuild switch --use-remote-sudo --flake github:alinkbetweennets/nix";
-        nr = "cd /home/l/nix;git pull;sudo nixos-rebuild switch --use-remote-sudo --flake /home/l/nix";
-        nrb = "sudo nixos-rebuild switch --use-remote-sudo --flake /home/l/nix";
-        ngc = "sudo nix-collect-garbage -d";
-        lolly = "cd /home/l/nix;nix run .\#lollypops -- ";
-        discord = "nohup discord --use-gl=desktop &";
-        netdiscover = "sudo netdiscover";
-        less = "less -r";
-        services = "systemctl list-units --type service";
-        killme = "exit";
-        pls = "sudo";
-        cls = "clear";
-        datamatrix = "iec16022";
-        fancytext = "figlet -tkf slant ";
-        open = "xdg-open";
-        o = "xdg-open";
-        q = "exit";
-        r = "trash put";
-        rmt = "trash put";
-        n = "nvim";
-        c = "cd";
-        ci = ''
-          # echo link to woodpecker
-          url=$(${pkgs.git}/bin/git config --get remote.origin.url | sed -e 's/\(.*\)git@\(.*\):[0-9\/]*/https:\/\/\2\//g')
-          owner=$(echo $url | sed -e 's/.*github.com\/\(.*\)\/.*/\1/g')
-          repo=$(echo $url | sed -e 's/.*github.com\/.*\/\(.*\).git/\1/g')
-          echo "https://build.lounge.rocks/$owner/$repo"
-        '';
-        v = "codium";
-        copium = "codium";
-        cope = "codium";
-        f = "fuck";
-        p = "python";
-        b = "bat";
-        s = "links https://duckduckgo.com/";
-        nip = "firefox https://search.nixos.org/packages";
-        nio = "firefox https://search.nixos.org/options";
-        yt = "~/s/y.sh";
-        dupl = "fdupes -rdnAst .";
-        sm = "sm -i";
-        g = "git";
-        gs = "git status";
-        gac = "git commit -am '$(date -I)'";
-        gpp = "git pull&&git push";
-        gitforkupdate = ''
-          ${pkgs.git}/bin/git fetch upstream
-          ${pkgs.git}/bin/git checkout main
-          ${pkgs.git}/bin/git merge upstream/main
-        '';
-        l =
-          "eza --icons --group-directories-first --git -F --color always --sort=modified"; # -F = --classify
-        lr =
-          "eza --icons --group-directories-first --git -F --color always --sort=modified --tree";
-        la =
-          "eza --icons --group-directories-first --git -F --color always --sort=modified --all";
-        lss =
-          "eza --icons --group-directories-first --git -F --color always --sort=size";
-        lsr =
-          "eza --icons --group-directories-first --git -F --color always --sort=size --tree";
-        lsa =
-          "eza --icons --group-directories-first --git -F --color always --sort=size --all";
-        lar =
-          "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all";
-        ll =
-          "eza --icons --group-directories-first --git -F --color always --sort=modified -l --group";
-        llr =
-          "eza --icons --group-directories-first --git -F --color always --sort=modified --tree -l --group";
-        lla =
-          "eza --icons --group-directories-first --git -F --color always --sort=modified --all -l --group";
-        lls =
-          "eza --icons --group-directories-first --git -F --color always --sort=size -l";
-        llsr =
-          "eza --icons --group-directories-first --git -F --color always --sort=size --tree -l --group";
-        llsa =
-          "eza --icons --group-directories-first --git -F --color always --sort=size --all -l --group";
-        llar =
-          "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all -l --group";
-      };
     };
-    # zsh.oh-my-zsh = {
-    #   enable = true;
-    #   theme = "agnoster";
-    #   # plugins=["git" "sudo" "per-directory-history" "zsh-autosuggestions" "zsh-syntax-highlighting" "zsh-nix-shell" "zsh-completions" "zsh-history-substring-search" "zsh-abbrev-alias" "zsh-autopair" "formarks" "gitit" "enhancd"];
-    # };
-    autojump.enable = true;
+    zsh.oh-my-zsh = {
+      enable = true;
+      theme = "agnoster";
+    };
+    #   autojump.enable = true;
     zoxide.enable = true;
     thefuck.enable = true;
-    watson.enable = true;
-    carapace.enable = true; # command argument completer
-    dircolors.enable = true;
+    #   watson.enable = true;
+    #   carapace.enable = true; # command argument completer
+    #   dircolors.enable = true;
     btop = { enable = true; };
-    jq.enable = true;
+    #   jq.enable = true;
     nix-index = {
       enable = true;
     };
@@ -343,19 +265,19 @@ in {
         highlight_megabytes = 1;
         highlight_threads = 1;
       };
-      # // (with htop; leftMeters [
-      #   (bar "AllCPUs2")
-      #   (bar "Memory")
-      #   (bar "Swap")
-      #   (text "Zram")
-      # ]) // (with htop; rightMeters [
-      #   (text "Tasks")
-      #   (text "LoadAverage")
-      #   (text "Uptime")
-      #   (text "Systemd")
-      # ]);
+      #     # // (with htop; leftMeters [
+      #     #   (bar "AllCPUs2")
+      #     #   (bar "Memory")
+      #     #   (bar "Swap")
+      #     #   (text "Zram")
+      #     # ]) // (with htop; rightMeters [
+      #     #   (text "Tasks")
+      #     #   (text "LoadAverage")
+      #     #   (text "Uptime")
+      #     #   (text "Systemd")
+      #     # ]);
     };
   };
-  # Include man-pages
+  # # Include man-pages
   manual.manpages.enable = true;
 }
