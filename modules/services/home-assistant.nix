@@ -16,7 +16,7 @@ in {
         ];
       };
     };
-    networking.firewall.allowedTCPPorts = [ 8123 1900];
-    networking.firewall.allowedUDPPorts = [  1900];
+    networking.firewall.allowedTCPPorts = [ 8123 1900 ];
+    networking.firewall.allowedUDPPorts = [ 1900 ];
   };
 }
