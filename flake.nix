@@ -25,7 +25,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    vscode-server.url = "github:msteen/nixos-vscode-server";
+    nixos-generators = { url = "github:nix-community/nixos-generators"; inputs.nixpkgs.follows = "nixpkgs"; };
+    vscode-server = {
+      url = "github:msteen/nixos-vscode-server";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     crab_share = {
       url = "github:lounge-rocks/crab_share";
     };
@@ -43,7 +47,6 @@
       url = "github:MayNiklas/nixos-adblock-unbound";
       inputs = {
         adblockStevenBlack.follows = "adblockStevenBlack";
-        flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
       };
     };
