@@ -72,6 +72,7 @@ in {
     };
     environment.systemPackages = with pkgs; [
       ## system
+      git-crypt
       libsecret
       gnupg
       gpg-tui

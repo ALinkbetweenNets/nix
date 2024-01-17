@@ -5,23 +5,6 @@ in {
   options.link.services.wg-link.enable = mkEnableOption "activate wg-link";
   config = mkIf cfg.enable {
     networking.nat.internalInterfaces = [ "wg-link" ];
-    networking.extraHosts =
-      ''
-        10.0.1.1 linkserver.org
-        10.0.1.1 jitsi.linkserver.org
-        10.0.1.1 jellyfin.linkserver.org
-        10.0.1.1 jellyseer.linkserver.org
-        10.0.1.1 gitea.linkserver.org
-        10.0.1.1 paperless.linkserver.org
-        10.0.1.1 hedgedoc.linkserver.org
-        10.0.1.1 alinkbetweennets
-        10.0.1.1 nextcloud.linkserver.org
-        10.0.1.1 matrix.linkserver.org
-        10.0.1.1 onlyoffice.linkserver.org
-        10.0.1.1 vaultwarden.linkserver.org
-        10.0.1.1 element.linkserver.org
-        10.0.1.1 outline.linkserver.org
-      '';
     networking.wireguard.interfaces = {
       wg-link = {
         # Determines the IP/IPv6 address and subnet of the client's end of the tunnel interface
@@ -32,13 +15,13 @@ in {
         privateKeyFile = "/home/l/.keys/wg-link.private";
         # This allows the wireguard server to route your traffic to the internet and hence be like a VPN
         # For this to work you have to set the dnsserver IP of your router (or dnsserver of choice) in your clients
-        postSetup = ''
-          ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.100.0.0/24 -o eth0 -j MASQUERADE
-        '';
-        # This undoes the above command
-        postShutdown = ''
-          ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.100.0.0/24 -o eth0 -j MASQUERADE
-        '';
+        # postSetup = ''
+        #   ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.100.0.0/24 -o eth0 -j MASQUERADE
+        # '';
+        # # This undoes the above command
+        # postShutdown = ''
+        #   ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.100.0.0/24 -o eth0 -j MASQUERADE
+        # '';
         peers = [
           {
             # l

@@ -4,23 +4,23 @@ let cfg = config.link.wg-link;
 in {
   options.link.wg-link.enable = mkEnableOption "activate wg-link";
   config = mkIf cfg.enable {
-    networking.extraHosts =
-      ''
-        10.0.1.1 linkserver.org
-        10.0.1.1 jitsi.linkserver.org
-        10.0.1.1 jellyfin.linkserver.org
-        10.0.1.1 jellyseer.linkserver.org
-        10.0.1.1 gitea.linkserver.org
-        10.0.1.1 paperless.linkserver.org
-        10.0.1.1 hedgedoc.linkserver.org
-        10.0.1.1 alinkbetweennets
-        10.0.1.1 nextcloud.linkserver.org
-        10.0.1.1 matrix.linkserver.org
-        10.0.1.1 onlyoffice.linkserver.org
-        10.0.1.1 vaultwarden.linkserver.org
-        10.0.1.1 element.linkserver.org
-        10.0.1.1 outline.linkserver.org
-      '';
+    # networking.extraHosts =
+    #   ''
+    #     10.0.1.1 linkserver.org
+    #     10.0.1.1 jitsi.linkserver.org
+    #     10.0.1.1 jellyfin.linkserver.org
+    #     10.0.1.1 jellyseer.linkserver.org
+    #     10.0.1.1 gitea.linkserver.org
+    #     10.0.1.1 paperless.linkserver.org
+    #     10.0.1.1 hedgedoc.linkserver.org
+    #     10.0.1.1 alinkbetweennets
+    #     10.0.1.1 nextcloud.linkserver.org
+    #     10.0.1.1 matrix.linkserver.org
+    #     10.0.1.1 onlyoffice.linkserver.org
+    #     10.0.1.1 vaultwarden.linkserver.org
+    #     10.0.1.1 element.linkserver.org
+    #     10.0.1.1 outline.linkserver.org
+    #   '';
     services.dnsmasq.extraConfig = ''
       interface = wg-deep
     '';

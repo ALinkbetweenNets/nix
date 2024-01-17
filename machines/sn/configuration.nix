@@ -7,6 +7,7 @@
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
     common.enable = true;
+    server.enable = true;
     grub.enable = true;
     systemd-boot.enable = false;
     fs.zfs.enable = true;
@@ -24,9 +25,8 @@
     syncthingDir = "/rz/syncthing";
     secrets = "/pwd";
     #seafile.enable = true;
-    service-ip = "10.0.1.1";
+    # service-ip = "10.0.1.1";
     service-interface = "tailscale0";
-
     users.lenny.enable = true;
 
     nginx.enable = false;
@@ -115,21 +115,6 @@
     eth = "enp6s0";
   };
 
-  # iptables --list --table nat
-  networking.nat = {
-    enable = true;
-    externalInterface = "tailscale0";
-    externalIP = "100.89.178.137";
-    internalInterfaces = [ "virbr0" ];
-    internalIPs = [ "192.168.122.0/24" ];
-    extraCommands = ''
-      ${pkgs.iptables}/bin/iptables -w -t nat -A nixos-nat-post -o virbr0 -p tcp -d 100.89.178.137 --dport 51821 -j SNAT --to 192.168.122.30
-    '';
-    forwardPorts = [
-      { sourcePort = 51821; proto = "tcp"; destination = "192.168.122.30:32770"; }
-    ];
-  };
-
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
 
   networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = [ 31337 ];
@@ -174,11 +159,6 @@
     hostName = "sn";
     domain = "fritz.box";
     hostId = "007f0200";
-  };
-  services.tailscale = {
-    enable = true;
-    useRoutingFeatures = "server";
-    extraUpFlags = [ "--advertise-exit-node" ];
   };
   # nix run .\#lollypops -- sn:rebuild
   lollypops.deployment = {
