@@ -43,8 +43,7 @@ let
               name = "Hosts with arch: ${arch}";
               data = (builtins.toJSON {
                 labels.backend = "local";
-                # platform will be deprecated in the future!
-                platform = woodpecker-platforms."${arch}";
+                labels.platform = woodpecker-platforms."${arch}";
                 steps = pkgs.lib.lists.flatten
                   ([ nixFlakeShow ] ++ [ nixFlakeMetadata ] ++ [ atticSetupStep ] ++ (map
                     (host:
