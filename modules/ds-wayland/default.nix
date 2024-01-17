@@ -21,6 +21,31 @@ in {
       NIXOS_OZONE_WL = "1";
       MOZ_ENABLE_WAYLAND = "1";
     };
+    services.dbus.enable = true;
+    xdg = {
+      mime.enable = true;
+      icons.enable = true;
+      portal = {
+        enable = true;
+        wlr.enable = true;
+        extraPortals = with pkgs; [
+          xdg-desktop-portal-wlr
+          xdg-desktop-portal-gtk
+        ];
+      };
+    };
+
+    programs.light.enable = true;
+
+    security = {
+      # Allow swaylock to unlock the computer for us
+      pam.services.swaylock.text = "auth include login";
+      polkit.enable = true;
+      rtkit.enable = true;
+    };
+
+    users.users."l".extraGroups = [ "video" "audio" ];
+
     hardware = {
       # fixes'ÈGL_EXT_platform_base not supported'
       opengl.enable = true;
