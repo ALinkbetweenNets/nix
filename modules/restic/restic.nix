@@ -84,7 +84,7 @@ in
         };
       in
       {
-        storagebox = {
+        storagebox = mkIf (config.networking.hostName == "deepserver") {
           paths = cfg.backup-paths-storagebox;
           repositoryFile = config.sops.secrets."restic/storagebox/repository".path;
           passwordFile = config.sops.secrets."restic/storagebox/password".path;
