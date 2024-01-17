@@ -13,7 +13,7 @@
     tailscale.routing = "server";
   };
   networking.hostName = "vn";
-  # boot.loader.grub.device = "/dev/vda";
+  boot.loader.grub.device = "/dev/vda";
   # services.mullvad-vpn.enable = true;
   # services.mullvad-vpn.package = pkgs.mullvad-vpn; # gui version
   # fileSystems."arra" = {
