@@ -21,7 +21,6 @@ with lib; {
     home.packages = with pkgs;
       [
         ## Basics
-        sshfs
         nfs-utils
         ## Spelling
         hunspell
