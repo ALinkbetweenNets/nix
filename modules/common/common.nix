@@ -76,6 +76,7 @@ in {
       libsecret
       gnupg
       gpg-tui
+      sshfs
       ## basics
       gitFull
       file
