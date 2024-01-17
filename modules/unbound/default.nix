@@ -28,7 +28,7 @@ in
   config = mkIf cfg.enable {
     services.unbound = {
       enable = true;
-      enableRootTrustAnchor = true;
+      # enableRootTrustAnchor = true;
       settings = {
         server = {
           include = [
@@ -77,11 +77,12 @@ in
           {
             name = ".";
             forward-addr = [
+              "100.100.100.100"
               "194.242.2.2"
               "1.0.0.1@853#cloudflare-dns.com"
               "1.1.1.1@853#cloudflare-dns.com"
             ];
-            forward-tls-upstream = "yes";
+            forward-tls-upstream = "no";
           }
         ];
       };
