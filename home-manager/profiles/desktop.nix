@@ -1,6 +1,10 @@
 { lib, pkgs, flake-self, config, system-config, ... }:
 with lib; {
-  imports = [ ./common.nix flake-self.homeManagerModules.xdg ];
+  imports = [
+    ../colorscheme.nix
+    ./common.nix
+    flake-self.homeManagerModules.xdg
+  ];
   config = {
     programs = {
       firefox.enable = true;
