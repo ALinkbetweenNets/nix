@@ -8,6 +8,7 @@
   ];
   hardware.enableRedistributableFirmware = true;
   home-manager.users.l = flake-self.homeConfigurations.convertible;
+  #mayniklas.sway.enable = true;
   link = {
     convertible.enable = true;
     main.enable = true;
@@ -39,7 +40,7 @@
   # networking .  firewall.allowedTCPPorts = [ 5201 ];
   # networking .  firewall.allowedUDPPorts = [ 5201 ];
   networking.hostName = "xn";
-  # services.throttled.enable = false;
+  services.throttled.enable = lib.mkForce true;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   lollypops.deployment = {
     local-evaluation = true;
