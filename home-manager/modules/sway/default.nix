@@ -34,7 +34,7 @@ in
       wlay
       wl-clipboard
       wlr-randr
-			wl-mirror
+      wl-mirror
       xdg-utils # for opening default programs when clicking links
     ];
 
