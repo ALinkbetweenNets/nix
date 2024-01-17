@@ -33,7 +33,7 @@ in {
         dataDir = "${config.link.storage}/paperless";
         # address = "paperless.alinkbetweennets.de";
         port = cfg.port;
-        extraConfig = {
+        settings = {
           PAPERLESS_ADMIN_USER = "l";
           PAPERLESS_OCR_LANGUAGE = "deu+eng";
           PAPERLESS_URL = "https://paperless.${config.link.domain}";
