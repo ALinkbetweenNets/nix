@@ -11,6 +11,8 @@
     grub.enable = true;
     vm.enable = true;
     storage = "/arr";
+    tailscale.enable = true;
+    tailscale.routing = "server";
   };
   networking.hostName = "snvnarr";
   boot.loader.grub.device = "/dev/vda";
