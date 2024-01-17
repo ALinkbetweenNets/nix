@@ -41,7 +41,6 @@
       };
     };
     # zola.enable = true;
-    # home-assistant.enable = true;
     # photoprism.enable = true;
     syncthing.enable = true;
     services = {
@@ -91,7 +90,6 @@
       restic-client.backup-paths-onedrive = [
         "/home/l/.ssh"
         "/rz/syncthing"
-        "/rz/bkp/RTec"
       ];
       restic-client.backup-paths-lenny-synology = [
         "/home/l/.ssh"
