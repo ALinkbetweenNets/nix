@@ -111,7 +111,7 @@ in
           initialize = true;
         };
         lenny-storagebox = {
-          paths = cfg.backup-paths-storagebox;
+          paths = cfg.backup-paths-lenny-storagebox;
           repositoryFile = config.sops.secrets."restic/lenny-storagebox/repository".path;
           passwordFile = config.sops.secrets."restic/lenny-storagebox/password".path;
           # environmentFile = "${config.sops.secrets."restic/backblaze-credentials".path}";
