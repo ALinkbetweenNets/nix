@@ -17,7 +17,7 @@ in
       example = [ "/var/lib/gitea" ];
       description = "Paths to backup to sn";
     };
-    backup-paths-lenny-synology = mkOption {
+    backup-paths-lenny-storagebox = mkOption {
       type = types.listOf types.str;
       default = [ ];
       example = [ "/var/lib/gitea" ];
@@ -51,8 +51,8 @@ in
       "restic/sn/repository" = { };
       "restic/sn/password" = { };
       "restic/sn/environment" = { };
-      "restic/lenny-synology/password" = { };
-      "restic/lenny-synology/repository" = { };
+      "restic/lenny-storagebox/password" = { };
+      "restic/lenny-storagebox/repository" = { };
     };
     # users.users.restic.isNormalUser = true;
     # security.wrappers.restic = {
@@ -110,10 +110,10 @@ in
           ];
           initialize = true;
         };
-        lenny-synology = {
+        lenny-storagebox = {
           paths = cfg.backup-paths-storagebox;
-          repositoryFile = config.sops.secrets."restic/lenny-synology/repository".path;
-          passwordFile = config.sops.secrets."restic/lenny-synology/password".path;
+          repositoryFile = config.sops.secrets."restic/lenny-storagebox/repository".path;
+          passwordFile = config.sops.secrets."restic/lenny-storagebox/password".path;
           # environmentFile = "${config.sops.secrets."restic/backblaze-credentials".path}";
           # backupCleanupCommand = script-post config.networking.hostName "storagebox";
           pruneOpts = [
