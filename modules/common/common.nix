@@ -47,11 +47,6 @@ in {
       # security.tpm2.abrmd.enable = true;
       # auditd.enable = true;
     };
-    # services.resolved = {
-    #   enable = true;
-    #   fallbackDns = [ "9.9.9.9" "192.168.178.1" ];
-    #   domains = [ "fritz.box" ];
-    # };
     networking = {
       firewall = {
         enable = lib.mkDefault true;
