@@ -96,7 +96,10 @@
       ];
       restic-client.backup-paths-lenny-synology = [
         "/home/l/.ssh"
-        "/rz/syncthing"
+        "/rz/syncthing/uni"
+        "/rz/syncthing/sec"
+        "/rz/syncthing/music"
+        "/rz/syncthing/doc"
       ];
       vaultwarden = {
         enable = true;
