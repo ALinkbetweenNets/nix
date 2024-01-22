@@ -32,7 +32,7 @@ in {
       };
       # systemd-boot.enable = lib.mkDefault true;
       openssh.enable = lib.mkDefault true;
-      nftables.enable = lib.mkDefault true;
+      # nftables.enable = lib.mkDefault true;
       # fail2ban.enable = lib.mkDefault true;
     };
     services.postgresql.package = pkgs.postgresql_14; # prevent major upgrades
