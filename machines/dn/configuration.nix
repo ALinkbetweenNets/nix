@@ -18,7 +18,7 @@
     # wg-link.enable = true;
     eth = "enp111s0";
     domain = "dn.local"; # testing domain
-    home-assistant.enable = true;
+    # home-assistant.enable = true;
     docker.enable = true;
     services = {
       matrix.enable = true;
