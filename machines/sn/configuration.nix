@@ -94,7 +94,7 @@
         "/home/l/.ssh"
         "/rz/syncthing"
       ];
-      restic-client.backup-paths-lenny-synology = [
+      restic-client.backup-paths-lenny-storagebox = [
         "/home/l/.ssh"
         "/rz/syncthing/uni"
         "/rz/syncthing/sec"
