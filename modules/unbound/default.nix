@@ -60,9 +60,9 @@ in
             forward-tls-upstream = "no";
           }
           {
-            name = "*.tailc4dfb.ts.net";
+            name = "mullvad.net.";
             forward-addr = [
-              "100.100.100.100@853"
+              "194.242.2.2@853#dns.mullvad.net"
             ];
             forward-tls-upstream = "yes";
           }
