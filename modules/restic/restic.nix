@@ -110,7 +110,7 @@ in
           ];
           initialize = true;
         };
-        lenny-storagebox = {
+        lenny-storagebox = mkIf (config.networking.hostName == "sn") {
           paths = cfg.backup-paths-lenny-storagebox;
           repositoryFile = config.sops.secrets."restic/lenny-storagebox/repository".path;
           passwordFile = config.sops.secrets."restic/lenny-storagebox/password".path;
