@@ -41,9 +41,12 @@
       };
     };
     # zola.enable = true;
-    # photoprism.enable = true;
     syncthing.enable = true;
     services = {
+      # photoprism = {
+      #   enable = true;
+      #   expose-port = true;
+      # };
       # keycloak.enable = true;
       gitea = {
         enable = true;
