@@ -35,7 +35,6 @@ with lib; {
         ## Encryption
         veracrypt
         kleopatra # gpg/ pgp
-        partition-manager
         ## Misc
         bitwarden
         xdg-utils
