@@ -16,7 +16,10 @@ with lib; {
       indicator = false;
     };
     home.packages = with pkgs; [
+      gnome.gnome-disk-utility
+      gparted
       vagrant # quick tmp vm creation
+      restic
       hugo # static site generator
       ghosttohugo
       # Desktop monitor settings change
