@@ -5,6 +5,12 @@ in {
   options.link.common.enable = mkEnableOption "activate common";
   config = mkIf cfg.enable {
     programs.ssh.startAgent = lib.mkDefault false;
+    programs.ssh.extraConfig = ''
+      Host deepserver
+        Port 2522
+      Host 5zoll.bitsetter.de
+        Port 222
+    '';
     programs.gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
