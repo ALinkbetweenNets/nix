@@ -21,6 +21,18 @@ with lib; {
       enableExtraSocket = true;
       enableSshSupport = true;
     };
+    programs.ssh = {
+      enable = true;
+      forwardAgent = true;
+      matchBlocks = {
+        "deepserver" = {
+          port = 2522;
+        };
+
+      };
+      compression = true;
+
+    };
     fonts.fontconfig.enable = true;
     home.packages = with pkgs;
       [
