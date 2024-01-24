@@ -41,9 +41,12 @@
       };
     };
     # zola.enable = true;
-    # photoprism.enable = true;
     syncthing.enable = true;
     services = {
+      # photoprism = {
+      #   enable = true;
+      #   expose-port = true;
+      # };
       # keycloak.enable = true;
       gitea = {
         enable = true;
@@ -93,7 +96,10 @@
       ];
       restic-client.backup-paths-lenny-storagebox = [
         "/home/l/.ssh"
-        "/rz/syncthing"
+        "/rz/syncthing/uni"
+        "/rz/syncthing/sec"
+        "/rz/syncthing/music"
+        "/rz/syncthing/doc"
       ];
       vaultwarden = {
         enable = true;
@@ -115,7 +121,7 @@
     eth = "enp6s0";
   };
 
-  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+  # boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
 
   networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = [ 31337 ];
   networking.firewall.allowedUDPPorts = [ 51821 ];
@@ -163,7 +169,7 @@
   # nix run .\#lollypops -- sn:rebuild
   lollypops.deployment = {
     # local-evaluation = true;
-    ssh = { host = "100.89.178.137"; user = "root"; };
+    # ssh = { host = "100.89.178.137"; user = "root"; };
     # sudo.enable = true;
   };
 }

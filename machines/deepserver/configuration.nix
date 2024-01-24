@@ -66,9 +66,10 @@
     };
   };
   lollypops.deployment = {
-    local-evaluation = true;
+    # local-evaluation = true;
+    # ssh.host = "deepserver:2522";
     # ssh = { user = "l"; };
-    ssh = { host = "10.0.0.1"; };
+    # ssh = { host = "10.0.0.1:2522"; };
     # sudo.enable = true;
   };
 }

@@ -79,6 +79,13 @@ in
             forward-tls-upstream = "no";
           }
           {
+            name = "mullvad.net.";
+            forward-addr = [
+              "194.242.2.2@853#dns.mullvad.net"
+            ];
+            forward-tls-upstream = "yes";
+          }
+          {
             name = "google.*.";
             forward-addr = [
               "8.8.8.8@853#dns.google"

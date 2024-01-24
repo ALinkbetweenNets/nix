@@ -11,11 +11,14 @@ in {
       maxretry = 5;
       ignoreIP = [
         "192.168.0.0/16"
-        "10.0.0.0/24"
-        "10.0.1.0/24"
         "1.1.1.1"
         "8.8.8.8"
         "9.9.9.9"
+        "100.100.100.100"
+        "100.119.237.77"
+        "100.77.249.162"
+      ] ++ lib.optionals (config.networking.hostName == "deepserver") [
+        "10.0.1.0/24"
       ];
       bantime = "24h"; # Set bantime to one day
       bantime-increment = {
