@@ -8,5 +8,6 @@ in {
       tailscale.enable = true;
       tailscale.routing = "server";
     };
+    # programs.msmtp = { enable = true; };
   };
 }
