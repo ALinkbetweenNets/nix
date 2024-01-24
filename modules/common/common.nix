@@ -9,6 +9,15 @@ in {
       enable = true;
       enableSSHSupport = true;
     };
+    boot.initrd.network = {
+      enable = lib.mkDefault true;
+      ssh = {
+        enable = lib.mkDefault true;
+        port = 25222 true;
+      };
+    };
+    boot.initrd.availableKernelModules = [ "r8169" ];
+
     environment.shellInit = ''
       export GPG_TTY="$(tty)"
       gpg-connect-agent /bye
