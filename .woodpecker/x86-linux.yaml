@@ -44,6 +44,27 @@
     },
     {
       "commands": [
+        "nix build '.#nixosConfigurations.vn.config.system.build.toplevel' -o 'result-vn'"
+      ],
+      "image": "bash",
+      "name": "Build vn"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-vn')"
+      ],
+      "image": "bash",
+      "name": "Show vn info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-vn'"
+      ],
+      "image": "bash",
+      "name": "Push vn to Attic"
+    },
+    {
+      "commands": [
         "nix build '.#nixosConfigurations.dn.config.system.build.toplevel' -o 'result-dn'"
       ],
       "image": "bash",
