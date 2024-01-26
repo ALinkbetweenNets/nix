@@ -8,21 +8,11 @@ in {
     programs.ssh.extraConfig = ''
       Host deepserver
         Port 2522
-      Host 5zoll.bitsetter.de
-        Port 222
     '';
     programs.gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
     };
-    boot.initrd.network = {
-      enable = lib.mkDefault true;
-      ssh = {
-        enable = lib.mkDefault true;
-        port = 25222 true;
-      };
-    };
-    boot.initrd.availableKernelModules = [ "r8169" ];
 
     environment.shellInit = ''
       export GPG_TTY="$(tty)"

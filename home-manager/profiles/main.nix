@@ -22,24 +22,25 @@ with lib; {
       restic
       hugo # static site generator
       ghosttohugo
-      # Desktop monitor settings change
+      ## Desktop monitor settings change
       ddcui
       ddcutil
       alacritty
-      # theming
+      ## theming
       beauty-line-icon-theme
       # dracula-theme
-      # VMs
+      ## VMs
       virt-manager
       spice
       spice-vdagent
-      # ISO stuff
+      ## ISO stuff
       (import
         (builtins.fetchTarball {
           url = "https://github.com/nixos/nixpkgs/archive/9957cd48326fe8dbd52fdc50dd2502307f188b0d.tar.gz";
           sha256 = "sha256:1l2hq1n1jl2l64fdcpq3jrfphaz10sd1cpsax3xdya0xgsncgcsi";
         })
         { system = "${pkgs.system}"; }).popsicle # USB Flasher
+      # popsicle
       ## FS
       # nixos-anywhere # use nix-shell
       # ventoy-full # use nix-shell
