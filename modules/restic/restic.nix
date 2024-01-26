@@ -17,6 +17,12 @@ in
       example = [ "/var/lib/gitea" ];
       description = "Paths to backup to sn";
     };
+    backup-paths-sciebo = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      example = [ "/var/lib/gitea" ];
+      description = "Paths to backup to sciebo";
+    };
     backup-paths-lenny-storagebox = mkOption {
       type = types.listOf types.str;
       default = [ ];
@@ -51,6 +57,10 @@ in
       "restic/sn/repository" = { };
       "restic/sn/password" = { };
       "restic/sn/environment" = { };
+      # "restic/sciebo/repository" = { };
+      "restic/sciebo/password" = { };
+      # "restic/sciebo/environment" = { };
+      "restic/sciebo/rclone" = { };
       "restic/lenny-storagebox/password" = { };
       "restic/lenny-storagebox/repository" = { };
     };
@@ -136,7 +146,7 @@ in
           ];
           initialize = true;
         };
-        sn = {
+        sn = mkIf (config.networking.hostName != "sn") {
           paths = cfg.backup-paths-sn;
           repositoryFile = config.sops.secrets."restic/sn/repository".path;
           passwordFile = config.sops.secrets."restic/sn/password".path;
@@ -161,6 +171,37 @@ in
           ];
           initialize = true;
         };
+        # sciebo = {
+        #   # Limit 30G
+        #   paths = cfg.backup-paths-sciebo;
+        #   # repositoryFile = config.sops.secrets."restic/sciebo/repository".path;
+        #   repository = "rclone:sciebo:restic";
+        #   passwordFile = config.sops.secrets."restic/sciebo/password".path;
+        #   # environmentFile = config.sops.secrets."restic/sciebo/environment".path;
+        #   rcloneConfigFile = config.sops.secrets."restic/sciebo/rclone".path;
+        #   # rcloneConfig = {
+        #   #   type = "webdav";
+        #   # };
+        #   pruneOpts = [
+        #     "--keep-daily 7"
+        #     "--keep-weekly 5"
+        #     "--keep-monthly 12"
+        #     "--keep-yearly 75"
+        #   ];
+        #   timerConfig = {
+        #     OnCalendar = "03:00";
+        #     Persistent = true;
+        #     RandomizedDelaySec = "5h";
+        #   };
+        #   extraBackupArgs = [
+        #     "--exclude-file = ${restic-ignore-file}"
+        #     " - -one-file-system "
+        #     " - -compression=max"
+        #     # "--dry-run"
+        #     "-v"
+        #   ];
+        #   initialize = true;
+        # };
         onedrive = {
           paths = cfg.backup-paths-onedrive;
           repositoryFile = config.sops.secrets."restic/onedrive/repository".path;
