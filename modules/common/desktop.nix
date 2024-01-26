@@ -13,6 +13,10 @@ in {
     fonts = {
       packages = with pkgs;
         [
+          glib
+          gsettings-desktop-schemas
+          gsettings-qt
+          kde-gtk-config
           font-awesome
           fira
           fira-code

@@ -206,20 +206,20 @@
     };
   };
   services.nginx.virtualHosts."photoprism.${config.link.domain}" = {
-        enableACME = true;
-        forceSSL = true;
-        http2 = true;
-        locations."/" = {
-          proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.photoprism.port}/";
-          proxyWebsockets = true;
-          # extraConfig = ''
-          #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          #   proxy_set_header Host $host;
-          #   proxy_buffering off;
-          #   proxy_http_version 1.1;
-          # '';
-        };
-      };
+    enableACME = true;
+    forceSSL = true;
+    http2 = true;
+    locations."/" = {
+      proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.photoprism.port}/";
+      proxyWebsockets = true;
+      # extraConfig = ''
+      #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      #   proxy_set_header Host $host;
+      #   proxy_buffering off;
+      #   proxy_http_version 1.1;
+      # '';
+    };
+  };
   # services.nginx.virtualHosts."paperless.${config.link.domain}" = {
   #   enableACME = true;
   #   forceSSL = true;
