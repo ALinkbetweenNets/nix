@@ -6,11 +6,12 @@
   ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
-    systemd-boot.enable = false;
-    grub.enable = true;
+    # systemd-boot.enable = false;
+    # grub.enable = true;
     vm.enable = true;
     tailscale.enable = true;
     tailscale.routing = "server";
+
   };
   networking.hostName = "vn";
   boot.loader.grub.device = "/dev/vda";
@@ -27,4 +28,5 @@
   #   useRoutingFeatures = "server";
   #   extraUpFlags = [ "--advertise-exit-node" ];
   # };
+
 }
