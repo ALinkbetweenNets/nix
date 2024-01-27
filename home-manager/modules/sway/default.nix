@@ -1,7 +1,7 @@
 { lib, pkgs, config, ... }:
 with lib;
 let
-  cfg = config.mayniklas.programs.sway;
+  cfg = config.link.programs.sway;
   start-sway = pkgs.writeShellScriptBin "start-sway" /* sh */
     ''
       export WLR_DRM_NO_MODIFIERS=1
@@ -10,7 +10,7 @@ let
 in
 {
 
-  options.mayniklas.programs.sway = {
+  options.link.programs.sway = {
     enable = mkEnableOption "enable sway";
     type = mkOption {
       type = types.enum [ "desktop" "laptop" ];
@@ -21,7 +21,7 @@ in
 
   config = mkIf cfg.enable {
 
-    mayniklas = {
+    link = {
       programs = {
         waybar.enable = true;
       };

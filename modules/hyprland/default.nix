@@ -1,10 +1,10 @@
 { pkgs, lib, config, ... }:
 with lib;
-let cfg = config.mayniklas.hyprland;
+let cfg = config.link.hyprland;
 in
 {
 
-  options.mayniklas.hyprland = {
+  options.link.hyprland = {
     enable = mkEnableOption "activate hyprland";
   };
 

@@ -1,10 +1,10 @@
 { lib, pkgs, config, ... }:
 with lib;
 let
-  cfg = config.mayniklas.programs.wofi;
+  cfg = config.link.programs.wofi;
 in
 {
-  options.mayniklas.programs.wofi.enable = mkEnableOption "enable wofi";
+  options.link.programs.wofi.enable = mkEnableOption "enable wofi";
 
   config = mkIf cfg.enable {
 
