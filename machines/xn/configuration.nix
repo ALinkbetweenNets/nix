@@ -8,8 +8,8 @@
   ];
   hardware.enableRedistributableFirmware = true;
   home-manager.users.l = flake-self.homeConfigurations.convertible;
-  #mayniklas.sway.enable = true;
   link = {
+    # sway.enable = true;
     convertible.enable = true;
     main.enable = true;
     cpu-intel.enable = true;
