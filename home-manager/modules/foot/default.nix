@@ -1,10 +1,10 @@
 { lib, pkgs, config, ... }:
 with lib;
 let
-  cfg = config.mayniklas.programs.foot;
+  cfg = config.link.programs.foot;
 in
 {
-  options.mayniklas.programs.foot.enable =
+  options.link.programs.foot.enable =
     mkEnableOption "enable foot";
 
   config = mkIf cfg.enable {

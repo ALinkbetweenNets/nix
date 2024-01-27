@@ -1,10 +1,10 @@
 { pkgs, lib, config, ... }:
 with lib;
-let cfg = config.mayniklas.sway;
+let cfg = config.link.sway;
 in
 {
 
-  options.mayniklas.sway = {
+  options.link.sway = {
     enable = mkEnableOption "activate sway";
   };
 
@@ -31,7 +31,7 @@ in
       };
     };
     home-manager.users."l" = {
-      mayniklas.programs = {
+      link.programs = {
         sway.enable = true;
         swaylock.enable = true;
       };
