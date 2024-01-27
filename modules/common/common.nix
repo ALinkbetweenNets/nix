@@ -25,6 +25,7 @@ in {
     # };
     environment.pathsToLink = [ "/share/zsh" "/share/fish" ];
     link = {
+      # fs.luks.enable = true;
       users = {
         l.enable = true;
         root.enable = true;
