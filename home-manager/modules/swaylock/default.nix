@@ -1,10 +1,10 @@
 { lib, pkgs, config, ... }:
 with lib;
 let
-  cfg = config.mayniklas.programs.swaylock;
+  cfg = config.link.programs.swaylock;
 in
 {
-  options.mayniklas.programs.swaylock.enable = mkEnableOption "enable swaylock";
+  options.link.programs.swaylock.enable = mkEnableOption "enable swaylock";
   config = mkIf cfg.enable {
 
     # TODO:
