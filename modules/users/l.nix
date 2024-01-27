@@ -24,6 +24,11 @@ in {
       ];
       hashedPasswordFile = config.sops.secrets."users/l/hashedPassword".path; # Initial password
     };
+    services.openssh.hostKeys = [{
+      path = "${config.users.users.l.home}/.ssh/ed25519.key";
+      rounds = 500;
+      type = "ed25519";
+    }];
     sops.secrets."users/l/hashedPassword" = { neededForUsers = true; };
     nix.settings.allowed-users = [ "l" ];
   };
