@@ -1,7 +1,8 @@
 { lib, pkgs, system-config, ... }:
 with lib;
 {
-  xdg = {
+
+  xdg = mkIf system-config.link.desktop.enable {
     portal = {
       enable = true;
       xdgOpenUsePortal = true;
