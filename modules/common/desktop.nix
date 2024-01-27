@@ -91,14 +91,11 @@ in {
         #media-session.enable = true;
       };
     };
-    xdg = {
-      mime.enable = true;
-      icons.enable = true;
-      portal = {
-        enable = true;
-        wlr.enable = true;
-        xdgOpenUsePortal = true;
-      };
-    };
+    # xdg = {
+    #   icons.enable = true;
+    #   portal = {
+    #     wlr.enable = config.link.wayland.enable;
+    #   };
+    # };
   };
 }

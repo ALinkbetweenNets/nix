@@ -22,10 +22,10 @@ in
       xwayland.enable = true;
     };
 
-    xdg.portal = {
-      enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
-    };
+    # xdg.portal = {
+    #   enable = true;
+    #   extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+    # };
 
     security = {
       polkit.enable = true;
