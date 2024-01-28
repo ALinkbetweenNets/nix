@@ -108,7 +108,7 @@
       # matrix.enable = true;
       # restic-server = { enable = true; expose = false; };
       coturn.enable = true;
-      dns.enable = true;
+      # dns.enable = true;
       # wg-link.enable = true;
       # services.jitsi = {
       #   enable = true;
@@ -165,6 +165,9 @@
     hostName = "sn";
     domain = "fritz.box";
     hostId = "007f0200";
+    extraHosts = ''
+      192.168.122.200 snvnarr
+    '';
   };
   # nix run .\#lollypops -- sn:rebuild
   lollypops.deployment = {
