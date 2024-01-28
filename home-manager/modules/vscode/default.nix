@@ -121,15 +121,24 @@ in {
           prefix = [ "fixme" ];
         };
       };
-      keybindings = [{
-        key = "ctrl+c";
-        command = "editor.action.clipboardCopyAction";
-        when = "textInputFocus";
-      }
+      keybindings = [
+        {
+          key = "ctrl+c";
+          command = "editor.action.clipboardCopyAction";
+          when = "textInputFocus";
+        }
         {
           key = "ctrl+[Backquote]";
           command = "terminal.focus";
-        }];
+        }
+        {
+          key = "ctrl+shift+d";
+          command = "workbench.action.terminal.sendSequence";
+          args = {
+            text = "cd /home/l/nix;nix run .\\#lollypops -- vn\n";
+          };
+        }
+      ];
     };
   };
 }
