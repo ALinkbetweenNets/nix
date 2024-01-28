@@ -8,10 +8,10 @@
   link = {
     # systemd-boot.enable = false;
     # grub.enable = true;
+    fs.btrfs.enable = true;
     vm.enable = true;
     tailscale.enable = true;
     tailscale.routing = "server";
-
   };
   networking.hostName = "vn";
   boot.loader.grub.device = "/dev/vda";
@@ -28,5 +28,8 @@
   #   useRoutingFeatures = "server";
   #   extraUpFlags = [ "--advertise-exit-node" ];
   # };
-
+  lollypops.deployment = {
+    local-evaluation = true;
+    ssh.host = "192.168.122.5";
+  };
 }
