@@ -20,6 +20,9 @@ in {
     environment.sessionVariables = {
       NIXOS_OZONE_WL = "1";
       MOZ_ENABLE_WAYLAND = "1";
+      QT_QPA_PLATFORM = "wayland"; # Might not be necessary
+      QT_AUTO_SCREEN_SCALE_FACTOR = "1"; # Might not be necessary
+      WAYLAND_DISPLAY = ""; # Fixes obsidian and VSCode crashing
     };
     services.dbus.enable = true;
     programs.light.enable = true;
