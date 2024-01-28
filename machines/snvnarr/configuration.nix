@@ -14,6 +14,12 @@
     tailscale.enable = true;
     tailscale.routing = "server";
   };
+  users.users.l.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDF+rCKg9anv0pU96BL0cUcbKU8w1q75kt+JGroJcE19 l@sn"
+  ];
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDF+rCKg9anv0pU96BL0cUcbKU8w1q75kt+JGroJcE19 l@sn"
+  ];
   networking.hostName = "snvnarr";
   boot.loader.grub.device = "/dev/vda";
   services.mullvad-vpn.enable = true;
@@ -28,5 +34,8 @@
     enable = true;
     useRoutingFeatures = "server";
     extraUpFlags = [ "--advertise-exit-node" ];
+  };
+  lollypops.deployment = {
+    local-evaluation = true;
   };
 }
