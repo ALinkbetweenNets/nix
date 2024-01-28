@@ -25,28 +25,28 @@ in
     };
   };
   config = mkIf cfg.enable {
-    # networking.resolvconf.useLocalResolver = true;
-    # networking.nameservers = [
-    #   "127.0.0.1"
-    #   "::1"
-    #   "100.100.100.100"
-    #   "194.242.2.2"
-    #   "9.9.9.9"
-    #   "1.0.0.1"
-    # ];
-    # services.resolved = {
-    #   enable = true;
-    #   fallbackDns = [
-    #     # "127.0.0.1"
-    #     "194.242.2.2"
-    #     "100.100.100.100"
-    #     "192.168.178.1"
-    #     "9.9.9.9"
-    #     "1.0.0.1"
-    #   ];
-    #   domains = [ "fritz.box" "monitor-banfish.ts.net" ];
-    # };
-    # networking.networkmanager.dns = lib.mkForce "systemd-resolved";
+    networking.resolvconf.useLocalResolver = true;
+    networking.nameservers = [
+      "127.0.0.1"
+      "::1"
+      "100.100.100.100"
+      "194.242.2.2"
+      "9.9.9.9"
+      "1.0.0.1"
+    ];
+    services.resolved = {
+      enable = true;
+      fallbackDns = [
+        "127.0.0.1"
+        "194.242.2.2"
+        "100.100.100.100"
+        "192.168.178.1"
+        "9.9.9.9"
+        "1.0.0.1"
+      ];
+      domains = [ "fritz.box" "monitor-banfish.ts.net" ];
+    };
+    networking.networkmanager.dns = lib.mkForce "systemd-resolved";
     services.unbound = {
       enable = true;
       settings = {
