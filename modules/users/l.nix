@@ -25,7 +25,7 @@ in {
       hashedPasswordFile = config.sops.secrets."users/l/hashedPassword".path; # Initial password
     };
     services.openssh.hostKeys = [{
-      path = "${config.users.users.l.home}/.ssh/ed25519.key";
+      path = "${config.users.users.l.home}/.ssh/id_ed25519";
       rounds = 500;
       type = "ed25519";
     }];

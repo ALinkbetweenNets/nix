@@ -14,7 +14,7 @@ in {
       #     mkdir -p /etc/secrets/initrd/ && ssh-keygen -t ed25519 -a 500 -f /etc/secrets/initrd/ed25519.key
       #   '';
       # };
-      systemd.tmpfiles.rules=[
+      systemd.tmpfiles.rules = [
         "d /etc/secrets/initrd 0600 root root"
       ];
       services.openssh.hostKeys = [{
@@ -28,9 +28,9 @@ in {
           "/etc/secrets/initrd/ed25519.key" = /etc/secrets/initrd/ed25519.key;
         };
         network = {
-          enable = lib.mkDefault true;
+          enable = true;
           ssh = {
-            enable = lib.mkDefault true;
+            enable = true;
             port = 25222;
             hostKeys = [ (builtins.head config.services.openssh.hostKeys).path ];
             ignoreEmptyHostKeys = true;
