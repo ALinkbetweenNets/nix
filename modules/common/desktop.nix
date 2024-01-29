@@ -48,9 +48,14 @@ in {
     };
     programs = {
       dconf.enable = true; # GTK themes are not applied in Wayland applications
+      # dconf.packages = with pkgs;[ maliit-keyboard ];
       light.enable = true; # backlight control command and udev rules granting access to members of the “video” group.
     };
     environment.systemPackages = with pkgs; [
+      glib
+      gsettings-qt
+      gsettings-desktop-schemas
+      gnome.dconf-editor
       # Virt Manager
       virt-manager
       spice
