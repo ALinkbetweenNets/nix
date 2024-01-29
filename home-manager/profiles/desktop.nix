@@ -6,6 +6,13 @@ with lib; {
     flake-self.homeManagerModules.xdg
   ];
   config = {
+    dconf.settings = {
+      "org/maliit/keyboard/maliit" = {
+        enabled-languages = [ "en" "de" "emoji" ];
+        theme = "BreezeDark";
+
+      };
+    };
     programs = {
       firefox.enable = true;
       yt-dlp = {
