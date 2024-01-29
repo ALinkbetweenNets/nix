@@ -32,7 +32,7 @@ in {
         # workDir = "${config.link.storage}/hedgedoc";
         settings = {
           domain = "hedgedoc.${config.link.domain}";
-          host = "127.0.0.1";
+          host = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
           port = cfg.port;
           protocolUseSSL = true;
           useSSL = false;
