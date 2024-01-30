@@ -8,13 +8,9 @@
   link = {
     # systemd-boot.enable = false;
     # grub.enable = true;
-    fs.btrfs.enable = true;
     vm.enable = true;
-    tailscale.enable = true;
-    tailscale.routing = "server";
-    desktop.enable = true;
   };
-  networking.hostName = "vn";
+  networking.hostName = "snvnlmh";
   boot.loader.grub.device = "/dev/vda";
   # services.mullvad-vpn.enable = true;
   # services.mullvad-vpn.package = pkgs.mullvad-vpn; # gui version
@@ -31,6 +27,6 @@
   # };
   lollypops.deployment = {
     local-evaluation = true;
-    ssh.host = "192.168.122.5";
+    # ssh.host = "192.168.122.5";
   };
 }
