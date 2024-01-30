@@ -4,7 +4,7 @@
     ./hardware-configuration.nix
     home-manager.nixosModules.home-manager
   ];
-  home-manager.users.l = flake-self.homeConfigurations.server;
+  # home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
     # systemd-boot.enable = false;
     # grub.enable = true;
