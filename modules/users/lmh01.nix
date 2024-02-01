@@ -16,6 +16,7 @@ in {
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIZC4KwR8QrKvOgClilSOhWFh7rblPoRbvVRZ6+uVhNn"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJl+fklAKH1RfSMIB34IK/Vb/tsE07a5fBM4Cy+8sg8q"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGRgxtfc9L1/T/q4JmYZlQupGfDqOx0ewYzOBz3BbehD"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGms0mqx1W833hFHUm8+5kKQKGjWPiYvkii23Ytx02cC"
       ];
     };
     # Note on sftp chrooting: The chroot folder must be owned by root and set to 755. Inside that folder create one or more folders owned by the user
