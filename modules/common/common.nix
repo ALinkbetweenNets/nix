@@ -12,6 +12,7 @@ in {
     programs.gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
+      pinentryFlavor = if config.link.plasma.enable then "qt" else "gnome3";
     };
 
     environment.shellInit = ''
