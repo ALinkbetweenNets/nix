@@ -28,6 +28,7 @@
     # service-ip = "10.0.1.1";
     service-interface = "tailscale0";
     users.lenny.enable = true;
+    users.lmh01.enable = true;
 
     nginx.enable = false;
     containers = {
