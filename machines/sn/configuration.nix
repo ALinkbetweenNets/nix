@@ -110,7 +110,7 @@
       # restic-server = { enable = true; expose = false; };
       coturn.enable = true;
       # dns.enable = true;
-      # wg-link.enable = true;
+      wg-link.enable = true;
       # services.jitsi = {
       #   enable = true;
       #   expose = false;
