@@ -37,6 +37,7 @@
     forwardPorts = [
       { sourcePort = 51820; proto = "udp"; destination = "100.89.40.41:51820"; loopbackIPs = [ "100.86.79.82" ]; }
       { sourcePort = 51822; proto = "udp"; destination = "100.89.178.137:51820"; loopbackIPs = [ "100.86.79.82" ]; }
+      { sourcePort = 41623; proto = "tcp"; destination = "100.89.178.137:41623"; loopbackIPs = [ "100.86.79.82" ]; }
     ];
   };
 
