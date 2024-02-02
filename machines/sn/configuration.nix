@@ -132,7 +132,16 @@
     device = "/rz/arr/lenny/";
     options = [ "bind" ];
   };
-
+  networking.nat = {
+    enable = true;
+    externalInterface = "tailscale0";
+    externalIP = "100.89.178.137";
+    internalInterfaces = [ "virbr0" ];
+    internalIPs = [ "192.168.122.91/32" ];
+    forwardPorts = [
+      { sourcePort = 41623; proto = "tcp"; destination = "192.168.122.91:22"; loopbackIPs = [ "192.168.122.1" ]; }
+    ];
+  };
   # virtualisation.oci-containers.containers.librespeedtest = {
   #   autoStart = true;
   #   image = "adolfintel/speedtest";
