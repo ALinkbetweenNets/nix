@@ -108,7 +108,7 @@ in {
         "workbench.editor.highlightModifiedTabs" = true;
         "workbench.editor.limit.enabled" = true;
         "workbench.list.smoothScrolling" = true;
-				# "window.titleBarStyle" = "native";
+        # "window.titleBarStyle" = "native";
         "vscode-pets.petColor" = "white";
         "vscode-pets.position" = "panel";
         # "vscode-pets.theme" = "castle";
