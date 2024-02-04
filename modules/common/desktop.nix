@@ -10,14 +10,45 @@ in {
       xserver.enable = lib.mkDefault true;
       plasma.enable = lib.mkDefault true;
     };
+    programs = {
+      dconf.enable = true; # GTK themes are not applied in Wayland applications
+      # dconf.packages = with pkgs;[ maliit-keyboard ];
+      light.enable = true; # backlight control command and udev rules granting access to members of the “video” group.
+    };
+    environment.systemPackages = with pkgs; [
+      barrier # KVM
+      gsettings-qt
+      kde-gtk-config
+      glib
+      gsettings-qt
+      gsettings-desktop-schemas
+      gnome.dconf-editor
+      # Virt Manager
+      virt-manager
+      spice
+      spice-vdagent
+    ];
+    networking = {
+      networkmanager = {
+        enable = true;
+        # dns = lib.mkDefault "systemd-resolved";
+      };
+      firewall = {
+        allowedTCPPortRanges = [{
+          from = 1714;
+          to = 1764;
+        } # KDE Connect
+        ];
+        allowedUDPPortRanges = [{
+          from = 1714;
+          to = 1764;
+        } # KDE Connect
+        ];
+      };
+    };
     fonts = {
       packages = with pkgs;
         [
-          barrier # KVM
-          glib
-          gsettings-desktop-schemas
-          gsettings-qt
-          kde-gtk-config
           font-awesome
           fira
           fira-code
@@ -45,39 +76,6 @@ in {
             [ "Berkeley Mono" "Inconsolata Nerd Font Mono" ];
           emoji = [ "Noto Color Emoji" ];
         };
-      };
-    };
-    programs = {
-      dconf.enable = true; # GTK themes are not applied in Wayland applications
-      # dconf.packages = with pkgs;[ maliit-keyboard ];
-      light.enable = true; # backlight control command and udev rules granting access to members of the “video” group.
-    };
-    environment.systemPackages = with pkgs; [
-      glib
-      gsettings-qt
-      gsettings-desktop-schemas
-      gnome.dconf-editor
-      # Virt Manager
-      virt-manager
-      spice
-      spice-vdagent
-    ];
-    networking = {
-      networkmanager = {
-        enable = true;
-        # dns = lib.mkDefault "systemd-resolved";
-      };
-      firewall = {
-        allowedTCPPortRanges = [{
-          from = 1714;
-          to = 1764;
-        } # KDE Connect
-        ];
-        allowedUDPPortRanges = [{
-          from = 1714;
-          to = 1764;
-        } # KDE Connect
-        ];
       };
     };
     nixpkgs.config.permittedInsecurePackages = [
