@@ -132,6 +132,7 @@ in {
           nip = "firefox https://search.nixos.org/packages";
           nio = "firefox https://search.nixos.org/options";
           yt = "~/s/y.sh";
+          spk = "~/s/speak.sh";
           dupl = "fdupes -rdnAst .";
           sm = "sm -i";
           g = "git";
