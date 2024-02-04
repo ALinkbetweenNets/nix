@@ -21,27 +21,27 @@
         "attic_key"
       ]
     },
-    {
-      "commands": [
-        "nix build '.#nixosConfigurations.deepserver.config.system.build.toplevel' -o 'result-deepserver'"
-      ],
-      "image": "bash",
-      "name": "Build deepserver"
-    },
-    {
-      "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-deepserver')"
-      ],
-      "image": "bash",
-      "name": "Show deepserver info"
-    },
-    {
-      "commands": [
-        "attic push lounge-rocks:nix-cache 'result-deepserver'"
-      ],
-      "image": "bash",
-      "name": "Push deepserver to Attic"
-    },
+    # {
+    #   "commands": [
+    #     "nix build '.#nixosConfigurations.deepserver.config.system.build.toplevel' -o 'result-deepserver'"
+    #   ],
+    #   "image": "bash",
+    #   "name": "Build deepserver"
+    # },
+    # {
+    #   "commands": [
+    #     "nix path-info --closure-size -h $(readlink -f 'result-deepserver')"
+    #   ],
+    #   "image": "bash",
+    #   "name": "Show deepserver info"
+    # },
+    # {
+    #   "commands": [
+    #     "attic push lounge-rocks:nix-cache 'result-deepserver'"
+    #   ],
+    #   "image": "bash",
+    #   "name": "Push deepserver to Attic"
+    # },
     {
       "commands": [
         "nix build '.#nixosConfigurations.vn.config.system.build.toplevel' -o 'result-vn'"
@@ -84,27 +84,27 @@
       "image": "bash",
       "name": "Push dn to Attic"
     },
-    {
-      "commands": [
-        "nix build '.#nixosConfigurations.dnvd.config.system.build.toplevel' -o 'result-dnvd'"
-      ],
-      "image": "bash",
-      "name": "Build dnvd"
-    },
-    {
-      "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-dnvd')"
-      ],
-      "image": "bash",
-      "name": "Show dnvd info"
-    },
-    {
-      "commands": [
-        "attic push lounge-rocks:nix-cache 'result-dnvd'"
-      ],
-      "image": "bash",
-      "name": "Push dnvd to Attic"
-    },
+    # {
+    #   "commands": [
+    #     "nix build '.#nixosConfigurations.dnvd.config.system.build.toplevel' -o 'result-dnvd'"
+    #   ],
+    #   "image": "bash",
+    #   "name": "Build dnvd"
+    # },
+    # {
+    #   "commands": [
+    #     "nix path-info --closure-size -h $(readlink -f 'result-dnvd')"
+    #   ],
+    #   "image": "bash",
+    #   "name": "Show dnvd info"
+    # },
+    # {
+    #   "commands": [
+    #     "attic push lounge-rocks:nix-cache 'result-dnvd'"
+    #   ],
+    #   "image": "bash",
+    #   "name": "Push dnvd to Attic"
+    # },
     {
       "commands": [
         "nix build '.#nixosConfigurations.hn.config.system.build.toplevel' -o 'result-hn'"
@@ -167,6 +167,27 @@
       ],
       "image": "bash",
       "name": "Push sn to Attic"
+    },
+    {
+      "commands": [
+        "nix build '.#nixosConfigurations.nc.config.system.build.toplevel' -o 'result-nc'"
+      ],
+      "image": "bash",
+      "name": "Build nc"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-nc')"
+      ],
+      "image": "bash",
+      "name": "Show nc info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-nc'"
+      ],
+      "image": "bash",
+      "name": "Push nc to Attic"
     },
     {
       "commands": [
