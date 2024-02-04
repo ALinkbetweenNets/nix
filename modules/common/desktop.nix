@@ -13,6 +13,7 @@ in {
     fonts = {
       packages = with pkgs;
         [
+          barrier # KVM
           glib
           gsettings-desktop-schemas
           gsettings-qt
