@@ -16,10 +16,10 @@
     # a common module should not take care about the bootloader
     # -> very specific to the hardware
     # use config.nixpkgs.hostPlatform.isAarch64 for conditional statements
-    common.enable = false;
-    users.l.enable = true;
-    users.root.enable = true;
-    openssh.enable = true;
+    common.enable = true;
+    # users.l.enable = true;
+    # users.root.enable = true;
+    # openssh.enable = true;
   };
 
   lollypops.deployment = {
