@@ -16,6 +16,7 @@ with lib; {
       indicator = false;
     };
     home.packages = with pkgs; [
+      ltex-ls # for vscode spell checking using languagetool
       piper-tts # text to speech synthesizer with models (download https://huggingface.co/rhasspy/piper-voices/tree/v1.0.0/en/en_US/lessac/high onnx and json to Downloads folder)
       gnome.gnome-disk-utility
       gparted
