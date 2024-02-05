@@ -75,6 +75,19 @@ in {
               params.keep = "3";
             };
           };
+          "w" = {
+            path = lib.mkDefault "${config.link.syncthingDir}/w";
+            devices = [
+              "dn"
+              "hn"
+              "sn"
+              "xn"
+            ];
+            versioning = {
+              type = "simple";
+              params.keep = "3";
+            };
+          };
           "doc" = {
             path = lib.mkDefault "${config.link.syncthingDir}/doc";
             devices = [
