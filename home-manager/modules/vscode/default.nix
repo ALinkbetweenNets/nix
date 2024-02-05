@@ -114,6 +114,10 @@ in {
         # "vscode-pets.theme" = "castle";
         "vscode-pets.throwBallWithMouse" = true;
         # "workbench.colorTheme" = "Dracula";
+        "latex-workshop.view.pdf.invertMode.enabled" = "auto";
+        "latex-workshop.view.pdf.invert" = 1;
+        "ltex.language" = "de-DE";
+        "ltex.additionalRules.enablePickyRules" = true;
       };
       globalSnippets = {
         fixme = {
