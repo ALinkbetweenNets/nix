@@ -118,6 +118,7 @@ in {
         "latex-workshop.view.pdf.invert" = 1;
         "ltex.language" = "de-DE";
         "ltex.additionalRules.enablePickyRules" = true;
+        "zenMode.showTabs" = "none";
       };
       globalSnippets = {
         fixme = {
