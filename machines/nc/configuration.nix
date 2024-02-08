@@ -28,21 +28,21 @@
   };
 
   # ctf vpn forwarding
-  networking.nat = {
-    enable = true;
-    externalInterface = "ens3";
-    externalIP = "202.61.251.70";
-    internalInterfaces = [ "tailscale0" ];
-    internalIPs = [ "100.89.40.41/32" "100.89.178.137/32" ];
-    forwardPorts = [
-      { sourcePort = 51820; proto = "udp"; destination = "100.89.40.41:51820"; loopbackIPs = [ "100.86.79.82" ]; }
-      { sourcePort = 51822; proto = "udp"; destination = "100.89.178.137:51820"; loopbackIPs = [ "100.86.79.82" ]; }
-      { sourcePort = 41623; proto = "tcp"; destination = "100.89.178.137:41623"; loopbackIPs = [ "100.86.79.82" ]; }
-    ];
-  };
+  # networking.nat = {
+  #   enable = true;
+  #   externalInterface = "ens3";
+  #   externalIP = "202.61.251.70";
+  #   internalInterfaces = [ "tailscale0" ];
+  #   internalIPs = [ "100.89.40.41/32" "100.89.178.137/32" ];
+  #   forwardPorts = [
+  #     { sourcePort = 51820; proto = "udp"; destination = "100.89.40.41:51820"; loopbackIPs = [ "100.86.79.82" ]; }
+  #     { sourcePort = 51822; proto = "udp"; destination = "100.89.178.137:51820"; loopbackIPs = [ "100.86.79.82" ]; }
+  #     { sourcePort = 41623; proto = "tcp"; destination = "100.89.178.137:41623"; loopbackIPs = [ "100.86.79.82" ]; }
+  #   ];
+  # };
 
   networking = {
-    firewall.allowedTCPPorts = [ 443 ];
+    firewall.allowedTCPPorts = [ 443 2522 ];
     firewall.allowedUDPPorts = [ 51820 51822 ];
     hostName = "v2202312204123249185";
     domain = "ultrasrv.de";
@@ -54,7 +54,6 @@
     };
   };
 
-
   services.nginx.virtualHosts."${config.link.domain}" = {
     enableACME = true;
     forceSSL = true;
@@ -63,6 +62,7 @@
       return = "301 https://www.youtube.com/watch?v=dQw4w9WgXcQ";
     };
   };
+  security.acme.certs."alinkbetweennets.de".domain = "*.alinkbetweennets.de";
   # services.nginx.virtualHosts."grist.${config.link.domain}" = {
   #   enableACME = true;
   #   forceSSL = true;
@@ -232,7 +232,6 @@
   # };
 
   ## CTF
-
   services.nginx.virtualHosts."slides.netintro.${config.link.domain}" = {
     enableACME = true;
     forceSSL = true;
@@ -249,72 +248,8 @@
       proxyPass = "http://100.89.40.41:31338/";
     };
   };
-  # services.nginx.virtualHosts."chal0.internal.netintro.${config.link.domain}" = {
-  #   enableACME = true;
-  #   # forceSSL = true;
-  #   # default = true;
-  #   locations."/" = {
-  #     proxyPass = "http://100.89.40.41:32772/";
-  #   };
-  #   extraConfig = ''
-  #     allow 127.0.0.1;
-  #     allow 172.28.2.0/24;
-  #     deny all; # deny all remaining ips
-  #   '';
-  # };
-  # services.nginx.virtualHosts."chal1.internal.netintro.${config.link.domain}" = {
-  #   enableACME = true;
-  #   # forceSSL = true;
-  #   # default = true;
-  #   locations."/" = {
-  #     proxyPass = "http://100.89.40.41:32770/";
-  #   };
-  #   extraConfig = ''
-  #     allow 127.0.0.1;
-  #     allow 172.28.2.0/24;
-  #     deny all; # deny all remaining ips
-  #   '';
-  # };
-  # services.nginx.virtualHosts."chal2.internal.netintro.${config.link.domain}" = {
-  #   enableACME = true;
-  #   # forceSSL = true;
-  #   # default = true;
-  #   locations."/" = {
-  #     proxyPass = "http://100.89.40.41:32768/";
-  #   };
-  #   extraConfig = ''
-  #     allow 127.0.0.1;
-  #     allow 172.28.2.0/24;
-  #     deny all; # deny all remaining ips
-  #   '';
-  # };
-  # services.nginx.virtualHosts."chal2b.internal.netintro.${config.link.domain}" = {
-  #   enableACME = true;
-  #   # forceSSL = true;
-  #   # default = true;
-  #   locations."/" = {
-  #     proxyPass = "http://100.89.40.41:32773/";
-  #   };
-  #   extraConfig = ''
-  #     allow 127.0.0.1;
-  #     allow 172.28.2.0/24;
-  #     deny all; # deny all remaining ips
-  #   '';
-  # };
-  # services.nginx.virtualHosts."chal2c.internal.netintro.${config.link.domain}" = {
-  #   enableACME = true;
-  #   # forceSSL = true;
-  #   # default = true;
-  #   locations."/" = {
-  #     proxyPass = "http://100.89.40.41:32771/";
-  #   };
-  #   extraConfig = ''
-  #     allow 127.0.0.1;
-  #     allow 172.28.2.0/24;
-  #     deny all; # deny all remaining ips
-  #   '';
-  # };
   ## /CTF
+
   # "speedtest.${config.link.domain}" = {
   #   enableACME = true;
   #   forceSSL = true;
@@ -332,11 +267,11 @@
   #   proxy_set_header X-Forwarded-Proto $scheme;
   # '';
   #};
-  # services.openssh.settings.PermitRootLogin = lib.mkForce "prohibit-password";
   # security.sudo.wheelNeedsPassword = true;
+  services.openssh.ports = [ 2522 ];
   lollypops.deployment = {
     local-evaluation = true;
-    ssh = { host = "100.86.79.82"; user = "root"; };
+    ssh.host = "nc";
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
