@@ -34,7 +34,7 @@ in {
         # package = pkgs.cudapkgs.jellyfin;
         enable = true;
       };
-      nginx.virtualHosts."jellyfin.${config.link.domain}" = mkIf {
+      nginx.virtualHosts."jellyfin.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
         locations."/" = { proxyPass = "http://127.0.0.1:${toString cfg.port}/"; };
