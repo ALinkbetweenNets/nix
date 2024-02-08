@@ -11,8 +11,8 @@
     main.enable = true;
     cpu-intel.enable = true;
   };
-  networking.hostName = "xn";
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ]; # Is this needed?
+  networking.hostName = "in";
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   environment.systemPackages = with pkgs;    [ ];
   #system.stateVersion = "23.05";
 }
