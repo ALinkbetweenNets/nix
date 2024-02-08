@@ -55,7 +55,7 @@
       # };
       outline = {
         enable = true;
-        nginx-expose = true;
+        # nginx-expose = true;
         oidClientId = "2085b101-ee5c-42c1-acac-2f9265767d1f";
       };
       paperless.enable = true;
