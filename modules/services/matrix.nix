@@ -4,15 +4,25 @@ let cfg = config.link.services.matrix;
 in {
   options.link.services.matrix = {
     enable = mkEnableOption "activate matrix";
-    expose = mkOption {
+    expose-port = mkOption {
       type = types.bool;
-      default = config.link.nginx-expose;
-      description = "expose matrix to the internet with NGINX and ACME";
+      default = config.link.service-ports-expose;
+      description = "directly expose the port of the application";
     };
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description = "Use service with NGINX";
+      description = "expose the application to the internet with NGINX and ACME";
+    };
+    nginx-expose = mkOption {
+      type = types.bool;
+      default = config.link.nginx-expose;
+      description = "expose the application to the internet";
+    };
+    port = mkOption {
+      type = types.int;
+      default = 8008;
+      description = "port to run the application on";
     };
   };
   config = mkIf cfg.enable
@@ -21,13 +31,16 @@ in {
       services = {
         matrix-synapse = with config.services.coturn;{
           enable = true;
+          # turn_shared_secret = static-auth-secret;
           settings = {
+            turn_user_lifetime = "1h";
+            turn_uris = [ "turn:${realm}:3478?transport=udp" "turn:${realm}:3478?transport=tcp" ];
             public_baseurl = if cfg.nginx then "https://matrix.${config.link.domain}" else "http://${config.link.service-ip}:8008";
             server_name = "matrix.${config.link.domain}";
             listeners = [
               {
-                port = 8008;
-                bind_addresses = [ "127.0.0.1" ];
+                port = cfg.port;
+                bind_addresses = if cfg.expose-port then [ "0.0.0.0" ] else [ "127.0.0.1" ];
                 type = "http";
                 tls = false;
                 x_forwarded = cfg.nginx;
@@ -85,5 +98,6 @@ in {
         #   '';
         # };
       };
+      networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
     };
 }

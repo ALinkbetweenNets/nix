@@ -37,14 +37,14 @@ in {
           "--current-user-principal user"
           "--dump-dav-xml"
         ];
-        routePrefix="/";
+        routePrefix = "/";
         address = if cfg.expose-port then "0.0.0.0" else "localhost";
         nginx = mkIf cfg.nginx {
           hostName = "cal.${config.link.domain}";
           enable = true;
         };
       };
-      nginx.virtualHosts."cal.${config.link.domain}" = mkIf cfg.nginx{
+      nginx.virtualHosts."cal.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
         # locations."/" = { proxyPass = "http://127.0.0.1:${toString cfg.port}/"; };

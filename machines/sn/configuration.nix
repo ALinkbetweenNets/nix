@@ -62,7 +62,7 @@
       };
       paperless.enable = true;
       vaultwarden.enable = true;
-      # matrix.enable = true;
+      matrix.enable = true;
       # restic-server = { enable = true; expose = false; };
       # coturn.enable = true;
       # dns.enable = true;
@@ -74,10 +74,11 @@
         ];
         backup-paths-lenny-storagebox = [
           "/home/l/.ssh"
-          "/rz/syncthing/uni"
-          "/rz/syncthing/sec"
-          "/rz/syncthing/music"
           "/rz/syncthing/doc"
+          "/rz/syncthing/music"
+          "/rz/syncthing/sec"
+          "/rz/syncthing/uni"
+          "/rz/syncthing/w"
         ];
       };
       wg-link.enable = true;

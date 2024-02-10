@@ -94,6 +94,13 @@
   #   #     deny all; # deny all remaining ips
   #   # '';
   # };
+  services.nginx.virtualHosts."matrix.${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.matrix.port}";
+    };
+  };
   services.nginx.virtualHosts."gitea.${config.link.domain}" = {
     enableACME = true;
     forceSSL = true;
