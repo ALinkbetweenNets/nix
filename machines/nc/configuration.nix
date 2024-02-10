@@ -20,7 +20,7 @@
     eth = "ens3";
     dyndns.enable = true;
     domain = "alinkbetweennets.de";
-    # fail2ban.enable = true;
+    fail2ban.enable = true;
     # coturn.enable = true;
     nginx.enable = true;
     serviceHost = "100.89.178.137";
