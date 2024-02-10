@@ -268,7 +268,7 @@
   # '';
   #};
   # security.sudo.wheelNeedsPassword = true;
-  services.openssh.ports = [ 2522 ];
+  services.openssh.ports = [ 22 2522 ];
   lollypops.deployment = {
     local-evaluation = true;
     ssh.host = "nc";
