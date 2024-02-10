@@ -23,8 +23,8 @@ in {
         tls-listening-port = 5349;
         use-auth-secret = true;
         # static-auth-secret-file = "/pwd/coturn";
-        cert = "${config.security.acme.certs.${realm}.directory}/full.pem";
-        pkey = "${config.security.acme.certs.${realm}.directory}/key.pem";
+        cert = "${config.security.acme.certs.${config.services.coturn.realm}.directory}/full.pem";
+        pkey = "${config.security.acme.certs.${config.services.coturn.realm}.directory}/key.pem";
         extraConfig = ''
           # for debugging
           verbose
