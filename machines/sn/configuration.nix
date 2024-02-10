@@ -26,17 +26,19 @@
     secrets = "/pwd";
     #seafile.enable = true;
     # service-ip = "10.0.1.1";
-    service-interface = "tailscale0";
     users.lenny.enable = true;
     users.lmh01.enable = true;
+    syncthing.enable = true;
+
+    service-interface = "tailscale0";
     nginx.enable = false;
+    nginx-expose = false;
+
     containers = {
       grist.enable = true;
       diagrams.enable = true;
     };
     # zola.enable = true;
-    syncthing.enable = true;
-    nginx-expose = false;
     service-ports-expose = true;
     services = {
       # photoprism.enable = true; # WIP
@@ -62,7 +64,7 @@
       vaultwarden.enable = true;
       # matrix.enable = true;
       # restic-server = { enable = true; expose = false; };
-      coturn.enable = true;
+      # coturn.enable = true;
       # dns.enable = true;
       restic-client = {
         enable = true;
@@ -87,8 +89,11 @@
     };
     eth = "enp6s0";
   };
+  # services.cloudflare-dyndns = {
+  #   ipv4 = lib.mkForce false;
+  #   ipv6 = lib.mkForce false;
+  # };
   # boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
-  networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = [ 31337 ];
   networking.firewall.allowedUDPPorts = [ 51821 ];
   networking.firewall.allowedTCPPorts = [ 51821 ];
   fileSystems."/rz/sftp/lenny/arr" = {
