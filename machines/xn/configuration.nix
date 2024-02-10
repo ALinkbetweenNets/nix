@@ -28,7 +28,6 @@
       backup-paths-sn = [
         "/home/l/.ssh"
         "/home/l/archive"
-        "/home/l/doc"
         "/home/l/Documents"
         "/home/l/obsidian"
         "/home/l/sec"
