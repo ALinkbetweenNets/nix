@@ -28,10 +28,11 @@ with lib; {
         "deepserver" = {
           port = 2522;
         };
-
+        "nc" = {
+          port = 2522;
+        };
       };
       compression = true;
-
     };
     fonts.fontconfig.enable = true;
     home.packages = with pkgs;
