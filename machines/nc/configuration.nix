@@ -25,8 +25,8 @@
     nginx.enable = true;
     serviceHost = "100.89.178.137";
     server.enable = true;
+    services.coturn.enable = true;
   };
-
   # ctf vpn forwarding
   # networking.nat = {
   #   enable = true;
@@ -38,6 +38,17 @@
   #     { sourcePort = 51820; proto = "udp"; destination = "100.89.40.41:51820"; loopbackIPs = [ "100.86.79.82" ]; }
   #     { sourcePort = 51822; proto = "udp"; destination = "100.89.178.137:51820"; loopbackIPs = [ "100.86.79.82" ]; }
   #     { sourcePort = 41623; proto = "tcp"; destination = "100.89.178.137:41623"; loopbackIPs = [ "100.86.79.82" ]; }
+  #   ];
+  # };
+
+  # networking.nat = {
+  #   enable = true;
+  #   externalInterface = "ens3";
+  #   externalIP = "202.61.251.70";
+  #   internalInterfaces = [ "tailscale0" ];
+  #   internalIPs = [ "100.89.40.41/32" "100.89.178.137/32" ];
+  #   forwardPorts = [
+  #     { sourcePort = 443; proto = "tcp"; destination = "100.89.178.137:443"; loopbackIPs = [ "100.86.79.82" ]; }
   #   ];
   # };
 
