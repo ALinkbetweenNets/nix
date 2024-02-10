@@ -43,7 +43,7 @@
       # keycloak.enable = true; # WIP but running
       gitea.enable = true;
       grafana.enable = true;
-      seafile.enable = true;
+      # seafile.enable = true;
       # xandikos.enable = true; # WIP
       hedgedoc.enable = true;
       jellyfin.enable = true;
