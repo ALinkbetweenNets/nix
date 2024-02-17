@@ -61,9 +61,9 @@ with lib; {
       qtox
       element-desktop
       ## keyboard
-      vial
-      via
-      qmk
+      # vial
+      # via
+      # qmk
       ## Utils
       bonn-mensa
       pomodoro
@@ -94,6 +94,7 @@ with lib; {
       monero-gui
       ## security
       authenticator
+      libsForQt5.korganizer
       ## finances
       # tradingview
     ];
