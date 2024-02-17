@@ -73,8 +73,8 @@ in {
             add_header Strict-Transport-Security $hsts_header;
           '';
           virtualHosts."nextcloud.${config.link.domain}" = {
-            enableACME = true;
-            forceSSL = true;
+            # enableACME = true;
+            # forceSSL = true;
             extraConfig = mkIf (!cfg.nginx-expose) ''
               allow ${config.link.service-ip}/24;
               allow 127.0.0.1;
@@ -114,6 +114,10 @@ in {
             #};
           };
         };
+    };
+    security.acme = mkIf (!cfg.nginx) {
+      acceptTerms = true;
+      defaults.email = "link2502+acme@proton.me";
     };
     networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
   };
