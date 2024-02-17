@@ -178,6 +178,7 @@ in {
     fish = {
       enable = true;
     };
+    ripgrep = { enable = true; };
     zsh.oh-my-zsh = {
       enable = true;
       theme = "agnoster";
@@ -186,10 +187,10 @@ in {
     zoxide.enable = true;
     thefuck.enable = true;
     #   watson.enable = true;
-    #   carapace.enable = true; # command argument completer
+    carapace.enable = true; # command argument completer
     #   dircolors.enable = true;
     btop = { enable = true; };
-    #   jq.enable = true;
+    jq.enable = true;
     nix-index = {
       enable = true;
     };
