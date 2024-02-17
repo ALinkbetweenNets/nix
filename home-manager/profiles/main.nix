@@ -53,6 +53,7 @@ with lib; {
       ## Editor
       mermaid-cli
       # logseq
+      # anytype
       # semantik # mind mapping
       ## Messenger
       signal-desktop
@@ -94,7 +95,8 @@ with lib; {
       monero-gui
       ## security
       authenticator
-      libsForQt5.korganizer
+      # libsForQt5.korganizer
+      # mailspring
       ## finances
       # tradingview
     ];
