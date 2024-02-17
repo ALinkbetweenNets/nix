@@ -10,7 +10,8 @@ in {
       /* insert here the right configuration to obtain a certificate */
       postRun = "systemctl restart coturn.service";
       group = "turnserver";
-      dnsProvider="cloudflare";
+      dnsProvider = mkIf config.link.dyndns.enable "cloudflare";
+      environmentFile = mkIf config.link.dyndns.enable config.sops.secrets."cloudflare-api".path;
     };
     services = {
       coturn = {
