@@ -51,10 +51,10 @@
       jellyfin.enable = true;
       jellyseer.enable = true;
       minio.enable = true;
-      # nextcloud = {
-      #   enable = true;
-      #   nginx-expose = true;
-      # };
+      nextcloud = {
+        enable = true;
+        nginx-expose = true;
+      };
       outline = {
         enable = true;
         # nginx-expose = true;
