@@ -206,7 +206,6 @@ in {
       enable = true;
       # This should pick up the correct colors for the generated theme. Otherwise
       # it is possible to generate a custom bat theme to ~/.config/bat/config
-      config = { theme = "base16"; };
     };
     fzf = {
       enable = true;
