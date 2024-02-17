@@ -11,6 +11,7 @@ in {
       fs.ntfs.enable = true;
       unbound.enable = true;
       tailscale.enable = true;
+      qmk.enable = true;
     };
     services.pcscd.enable = true; # smart card support
     services = {
