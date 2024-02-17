@@ -5,7 +5,11 @@ in {
   options.link.hardware.enable = mkEnableOption "activate hardware";
   config = mkIf cfg.enable {
     link.libvirt.enable = lib.mkDefault true;
-    environment.systemPackages = with pkgs; [ powertop ];
+    environment.systemPackages = with pkgs; [
+      powertop
+      lm_sensors
+      cpufrequtils
+    ] ++ lib.optionals (config.link.desktop.enable) [ cpupower-gui ];
     time.hardwareClockInLocalTime = true;
     services = {
       # for windows dualboot

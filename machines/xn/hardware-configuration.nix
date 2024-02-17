@@ -9,6 +9,7 @@
       # ./disk-config.nix
     ];
   boot = {
+    kernelParams = [ "intel_pstate=active" ];
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
     initrd = {
@@ -52,5 +53,5 @@
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode = true;
 }
