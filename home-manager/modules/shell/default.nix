@@ -128,7 +128,8 @@ in {
           f = "fuck";
           p = "python";
           b = "bat";
-          s = "links https://duckduckgo.com/";
+          s = "sudo";
+          search = "links https://duckduckgo.com/";
           nip = "firefox https://search.nixos.org/packages";
           nio = "firefox https://search.nixos.org/options";
           yt = "~/s/y.sh";
