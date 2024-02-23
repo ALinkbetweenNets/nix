@@ -74,6 +74,7 @@ in {
     };
     environment.systemPackages = with pkgs; [
       ## system
+      exfatprogs
       git-crypt
       libsecret
       gnupg
