@@ -8,6 +8,7 @@
     initrd.availableKernelModules =
       [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
     initrd.kernelModules = [ ];
+    kernelParams = [ "intel_pstate=active" ];
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
   };
