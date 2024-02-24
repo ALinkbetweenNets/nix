@@ -8,9 +8,11 @@ in {
     services.xserver = {
       enable = true;
       autorun = true;
-      layout = "de";
-      xkbVariant = "nodeadkeys";
-      xkbOptions = "eurosign:e,caps:escape";
+      xkb = {
+        layout = "de";
+        variant = "nodeadkeys";
+        options = "eurosign:e,caps:escape";
+      };
       libinput = {
         enable = true;
         touchpad.accelProfile = "adaptive";
