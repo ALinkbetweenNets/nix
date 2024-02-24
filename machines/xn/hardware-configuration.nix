@@ -10,7 +10,7 @@
     ];
   boot = {
     kernelParams = [ "intel_pstate=active" ];
-    kernelModules = [ "kvm-intel" ];
+    kernelModules = [ "kvm-intel" "usbnet" ];
     extraModulePackages = [ ];
     initrd = {
       availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
