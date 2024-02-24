@@ -44,6 +44,9 @@
       ];
     };
   };
+  environment.systemPackages = with pkgs; [
+    plasma5Packages.plasma-thunderbolt
+  ];
   services.fprintd = {
     enable = true;
     tod.enable = true;

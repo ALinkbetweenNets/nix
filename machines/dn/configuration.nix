@@ -54,6 +54,7 @@
   environment.systemPackages = with pkgs; [
     wacomtablet
     xf86_input_wacom
+    plasma5Packages.plasma-thunderbolt
   ];
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 }
