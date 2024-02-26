@@ -21,7 +21,7 @@
     # home-assistant.enable = true;
     docker.enable = true;
     services = {
-      matrix.enable = true;
+      # matrix.enable = true;
       restic-client = {
         enable = true;
         backup-paths-sn = [

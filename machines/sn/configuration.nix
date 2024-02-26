@@ -98,7 +98,11 @@
   networking.firewall.allowedUDPPorts = [ 51821 ];
   networking.firewall.allowedTCPPorts = [ 51821 ];
   fileSystems."/rz/sftp/lenny/arr" = {
-    device = "/rz/arr/lenny/";
+    device = "/rz/arr/";
+    options = [ "bind" ];
+  };
+  fileSystems."/rz/sftp/lmh01/arr" = {
+    device = "/rz/arr/";
     options = [ "bind" ];
   };
   networking.nat = {
