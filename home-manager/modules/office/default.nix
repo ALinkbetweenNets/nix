@@ -20,6 +20,7 @@ in
         gimp
         inkscape
         thunderbird
+        evolution
         calcure # tui calendar & task manager
         #teams # insecure
         evince

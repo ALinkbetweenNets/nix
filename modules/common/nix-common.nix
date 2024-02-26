@@ -6,6 +6,7 @@
       rebootWindow = { lower = "05:00"; upper = "07:00"; };
       persistent = true;
       flake = "github:alinkbetweennets/nix";
+      flags = [ "--update-input" "nixpkgs" "-L" ];
     };
     stateVersion = "23.11";
   };
@@ -18,6 +19,7 @@
       system-config = config;
     };
   };
+  programs.nix-ld.enable = true;
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;
     age.sshKeyPaths = [ "/home/l/.ssh/id_ed25519" ];
