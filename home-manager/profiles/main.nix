@@ -61,6 +61,7 @@ with lib; {
       discord
       qtox
       element-desktop
+      openvpn
       ## keyboard
       # vial
       # via
