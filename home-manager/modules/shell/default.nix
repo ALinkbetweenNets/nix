@@ -91,6 +91,7 @@ in {
           fhs-vscode = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
         in
         {
+          wetter = "curl wttr.in/bonn";
           myvs = "${fhs-vscode}/bin/code";
           # switching within a flake repository
           nrg = "nixos-rebuild switch --use-remote-sudo --flake github:alinkbetweennets/nix";
