@@ -62,7 +62,7 @@
       };
       paperless.enable = true;
       vaultwarden.enable = true;
-      matrix.enable = true;
+      # matrix.enable = true;
       # restic-server = { enable = true; expose = false; };
       # coturn.enable = true;
       # dns.enable = true;
