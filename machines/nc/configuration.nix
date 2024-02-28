@@ -73,7 +73,6 @@
       return = "301 https://www.youtube.com/watch?v=dQw4w9WgXcQ";
     };
   };
-  security.acme.certs."alinkbetweennets.de".domain = "*.alinkbetweennets.de";
   # services.nginx.virtualHosts."grist.${config.link.domain}" = {
   #   enableACME = true;
   #   forceSSL = true;
