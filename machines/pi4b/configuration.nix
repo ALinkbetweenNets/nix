@@ -8,9 +8,28 @@
     nixos-hardware.nixosModules.raspberry-pi-4
     home-manager.nixosModules.home-manager
   ];
-
+  hardware = {
+    raspberry-pi."4" = {
+      apply-overlays-dtmerge.enable = true;
+      fkms-3d.enable = true;
+    };
+    deviceTree = {
+      enable = true;
+      # filter = "*-rpi-*.dtb";
+      # overlays = [
+      #   {
+      #     name = "spi";
+      #     dtsoFile = ./spi0-0cd.dtso;
+      #   }
+      # ];
+    };
+  };
+  console.enable = true;
+  environment.systemPackages = with pkgs; [
+    libraspberrypi
+    raspberrypi-eeprom
+  ];
   home-manager.users.l = flake-self.homeConfigurations.server;
-
   link = {
     # make sure this module is compatible with ARM!
     # a common module should not take care about the bootloader
@@ -21,12 +40,10 @@
     # users.root.enable = true;
     # openssh.enable = true;
   };
-
   lollypops.deployment = {
     local-evaluation = true;
     ssh = { user = "root"; };
   };
-
   ### build sd-image
   # nix build .\#nixosConfigurations.pi4b.config.system.build.sdImage
   # add boot.binfmt.emulatedSystems = [ "aarch64-linux" ]; to your x86 system
@@ -44,10 +61,6 @@
         super.makeModulesClosure (x // { allowMissing = true; });
     })
   ];
-  ###
-
   networking.hostName = "pi4b";
-
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
-
 }
