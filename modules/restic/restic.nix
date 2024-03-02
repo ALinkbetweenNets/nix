@@ -17,6 +17,12 @@ in
       example = [ "/var/lib/gitea" ];
       description = "Paths to backup to sn";
     };
+    backup-paths-pi4b = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      example = [ "/var/lib/gitea" ];
+      description = "Paths to backup to pi4b";
+    };
     backup-paths-sciebo = mkOption {
       type = types.listOf types.str;
       default = [ ];
@@ -57,6 +63,8 @@ in
       "restic/sn/repository" = { };
       "restic/sn/password" = { };
       "restic/sn/environment" = { };
+      "restic/pi4b/password" = { };
+      "restic/pi4b/repository" = { };
       # "restic/sciebo/repository" = { };
       "restic/sciebo/password" = { };
       # "restic/sciebo/environment" = { };
@@ -151,6 +159,31 @@ in
           repositoryFile = config.sops.secrets."restic/sn/repository".path;
           passwordFile = config.sops.secrets."restic/sn/password".path;
           environmentFile = config.sops.secrets."restic/sn/environment".path;
+          pruneOpts = [
+            "--keep-daily 7"
+            "--keep-weekly 5"
+            "--keep-monthly 12"
+            "--keep-yearly 75"
+          ];
+          timerConfig = {
+            OnCalendar = "03:00";
+            Persistent = true;
+            RandomizedDelaySec = "5h";
+          };
+          extraBackupArgs = [
+            "--exclude-file=${restic-ignore-file}"
+            "--one-file-system"
+            "--compression=max"
+            # "--dry-run"
+            "-v"
+          ];
+          initialize = true;
+        };
+        pi4b = mkIf (config.networking.hostName != "pi4b") {
+          paths = cfg.backup-paths-pi4b;
+          repositoryFile = config.sops.secrets."restic/pi4b/repository".path;
+          passwordFile = config.sops.secrets."restic/pi4b/password".path;
+          # environmentFile = config.sops.secrets."restic/pi4b/environment".path;
           pruneOpts = [
             "--keep-daily 7"
             "--keep-weekly 5"
