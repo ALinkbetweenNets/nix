@@ -12,6 +12,7 @@ in {
       group = "turnserver";
       dnsProvider = mkIf config.link.dyndns.enable "cloudflare";
       environmentFile = mkIf config.link.dyndns.enable config.sops.secrets."cloudflare-api".path;
+      listenHTTP = mkIf (!config.link.dyndns.enable) ":80";
     };
     services = {
       coturn = {
