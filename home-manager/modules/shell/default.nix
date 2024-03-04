@@ -2,7 +2,17 @@
 with lib;
 let vars = import ../../vars.nix;
 in {
-  home.packages = with pkgs; [ btop fastfetch gdb tldr sysz fd bat eza ];
+  home.packages = with pkgs; [
+    bat
+    btop
+    cht-sh
+    eza
+    fastfetch
+    fd
+    gdb
+    sysz
+    tldr
+  ];
   programs = {
     # starship = {
     #   enable = true;
