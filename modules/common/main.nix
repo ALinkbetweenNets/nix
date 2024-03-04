@@ -25,6 +25,7 @@ in {
       };
     };
     environment.systemPackages = with pkgs; [
+      looking-glass-client # KVM relay
       #wine
       (wine.override { wineBuild = "wine64"; })
       wineWowPackages.staging
