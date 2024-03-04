@@ -41,6 +41,10 @@
       url = "github:alexanderwallau/bonn-mensa";
       inputs = { nixpkgs.follows = "nixpkgs"; };
     };
+    nixgl = {
+      url = "github:guibou/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Adblocking lists for Unbound DNS servers running on NixOS
     # https://github.com/MayNiklas/nixos-adblock-unbound
     adblock-unbound = {
@@ -67,7 +71,7 @@
       };
     };
   };
-  outputs = { self, nixpkgs, nur, ... }@inputs:
+  outputs = { self, nixpkgs, nur, nixgl, ... }@inputs:
     with inputs;
     let
       supportedSystems = [ "aarch64-linux" "x86_64-linux" ];
@@ -75,7 +79,7 @@
       nixpkgsFor = forAllSystems (system:
         import nixpkgs {
           inherit system;
-          overlays = [ self.overlays.default nur.overlay ];
+          overlays = [ self.overlays.default nur.overlay nixgl.overlay ];
         });
     in
     {

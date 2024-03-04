@@ -1,4 +1,4 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, config, nixgl, ... }:
 with lib;
 let
   cfg = config.link.nvidia;
@@ -25,6 +25,7 @@ in
     };
     # nixpkgs.config.cudaSupport = true;
     environment.systemPackages = with pkgs; [
+      nixgl
       libva-utils
       nvidia-vaapi-driver
       nvtop-nvidia
