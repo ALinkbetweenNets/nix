@@ -77,7 +77,7 @@ in {
           enableACME = true;
           forceSSL = true;
           locations."/" = { proxyPass = "http://127.0.0.1:8008"; };
-          extraConfig = mkIf (!cfg.expose) ''
+          extraConfig = mkIf (!cfg.nginx-expose) ''
             allow ${config.link.service-ip}/24;
             allow 127.0.0.1;
             deny all; # deny all remaining ips
