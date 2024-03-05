@@ -1,9 +1,10 @@
-{ lib, pkgs, config, nixgl, ... }:
+{ lib, pkgs, config, ... }:
 with lib;
 let cfg = config.link.cpu-intel;
 in {
   options.link.cpu-intel.enable = mkEnableOption "activate cpu-intel";
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [ intel-gpu-tools nvtop-intel ];
     boot.initrd.kernelModules = [ "i915" ];
     boot.kernelModules = [ "kvm-intel" ];
     boot.extraModprobeConfig = "options kvm_intel nested=1";
@@ -12,11 +13,6 @@ in {
     #   VDPAU_DRIVER =
     #     lib.mkIf config.hardware.opengl.enable (lib.mkDefault "va_gl");
     # };
-    environment.systemPackages = with pkgs; [
-      intel-gpu-tools
-      nvtop-intel
-      nixgl
-    ];
     hardware.opengl.extraPackages = with pkgs; [
       intel-media-driver
       libvdpau-va-gl
