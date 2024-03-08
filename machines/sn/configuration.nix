@@ -80,6 +80,15 @@
           "/rz/syncthing/uni"
           "/rz/syncthing/w"
         ];
+        backup-paths-pi4b = [
+          "/home/l/.ssh"
+          "/rz/syncthing/doc"
+          "/rz/syncthing/music"
+          "/rz/syncthing/sec"
+          "/rz/syncthing/uni"
+          "/rz/syncthing/w"
+          "/rz/srv"
+        ];
       };
       wg-link.enable = true;
       # services.jitsi = {
