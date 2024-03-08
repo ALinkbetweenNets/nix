@@ -33,7 +33,7 @@ with lib;
       "application/x-sh" = [ "codium.desktop" ];
       "application/x-tar" = [ "org.kde.ark.desktop" ];
       "application/zip" = [ "org.kde.ark.desktop" ];
-      "application/pdf" = [ "org.gnome.Evince.desktop" ];
+      "application/pdf" = [ "org.kde.okular.desktop" ];
       "application/xml" = [ "org.kde.kate.desktop" ];
       "audio/flac" = [ "vlc.desktop" ];
       "audio/mpeg" = [ "vlc.desktop" ];
