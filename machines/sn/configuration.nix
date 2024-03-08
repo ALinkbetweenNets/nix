@@ -34,10 +34,10 @@
     nginx.enable = false;
     nginx-expose = false;
 
-    containers = {
-      grist.enable = true;
-      diagrams.enable = true;
-    };
+    # containers = {
+    #   grist.enable = true;
+    #   diagrams.enable = true;
+    # };
     # zola.enable = true;
     service-ports-expose = true;
     services = {
