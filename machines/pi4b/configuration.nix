@@ -12,7 +12,7 @@
     ${pkgs.hdparm}/sbin/hdparm -S 9 -B 127 /dev/sda
   '';
   fileSystems."/mnt" = {
-    device = "/dev/deisk/by-uuid/865aca39-8ddc-4949-8413-50382b0a84ae";
+    device = "/dev/disk/by-uuid/865aca39-8ddc-4949-8413-50382b0a84ae";
     fsType = "btrfs";
   };
   hardware = {
