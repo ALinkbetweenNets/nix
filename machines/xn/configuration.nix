@@ -10,6 +10,8 @@
   home-manager.users.l = flake-self.homeConfigurations.convertible;
   link = {
     # sway.enable = true;
+    fs.zfs.enable = true;
+    fs.ntfs.enable = true;
     convertible.enable = true;
     main.enable = true;
     cpu-intel.enable = true;
@@ -42,8 +44,20 @@
         "/home/l/sec"
         "/home/l/w"
       ];
+        backup-paths-pi4b = [
+          "/home/l/.config"
+          "/home/l/.ssh"
+          "/home/l/archive"
+          "/home/l/doc"
+          "/home/l/Documents"
+          "/home/l/obsidian"
+          "/home/l/plasma-vault"
+          "/home/l/sec"
+          "/home/l/w"
+        ];
     };
   };
+  networking.hostId = "007f0200";
   environment.systemPackages = with pkgs; [
     plasma5Packages.plasma-thunderbolt
   ];
