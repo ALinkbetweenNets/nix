@@ -30,6 +30,7 @@ with lib; {
         ## Basics
         nfs-utils
         ## Spelling
+        aspell
         hunspell
         hunspellDicts.de_DE
         ## Audio
