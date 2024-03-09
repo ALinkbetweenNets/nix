@@ -34,10 +34,10 @@
     nginx.enable = false;
     nginx-expose = false;
 
-    containers = {
-      grist.enable = true;
-      diagrams.enable = true;
-    };
+    # containers = {
+    #   grist.enable = true;
+    #   diagrams.enable = true;
+    # };
     # zola.enable = true;
     service-ports-expose = true;
     services = {
@@ -79,6 +79,15 @@
           "/rz/syncthing/sec"
           "/rz/syncthing/uni"
           "/rz/syncthing/w"
+        ];
+        backup-paths-pi4b = [
+          "/home/l/.ssh"
+          "/rz/syncthing/doc"
+          "/rz/syncthing/music"
+          "/rz/syncthing/sec"
+          "/rz/syncthing/uni"
+          "/rz/syncthing/w"
+          "/rz/srv"
         ];
       };
       wg-link.enable = true;
