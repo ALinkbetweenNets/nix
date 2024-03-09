@@ -102,6 +102,9 @@ with lib; {
       # mailspring
       ## finances
       # tradingview
+      libsForQt5.neochat
+      libsForQt5.kontact
+      libsForQt5.akonadi
     ];
   };
 }
