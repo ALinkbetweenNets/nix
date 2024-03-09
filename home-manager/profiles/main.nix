@@ -88,6 +88,8 @@ with lib; {
       catimg
       mediainfo # audio and video information
       jellyfin-mpv-shim
+      libsForQt5.elisa # music player and organizer
+      lollypop
       digikam # photo library
       ## Silly BS
       figlet # Fancytext
