@@ -4,17 +4,25 @@ let cfg = config.link.common;
 in {
   options.link.common.enable = mkEnableOption "activate common";
   config = mkIf cfg.enable {
-    programs.ssh.startAgent = lib.mkDefault false;
-    programs.ssh.extraConfig = ''
-      Host deepserver
-        Port 2522
-    '';
+    programs.ssh = {
+      startAgent = lib.mkDefault false;
+      # agentTimeout = "1h";
+      extraConfig = ''
+        Host deepserver
+          Port 2522
+      '';
+      knownHosts = {
+        sn = {
+          hostNames= [ "sn.monitor-banfish.ts.net" ];
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDF+rCKg9anv0pU96BL0cUcbKU8w1q75kt+JGroJcE19";
+        };
+      };
+    };
     programs.gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
       pinentryFlavor = if config.link.plasma.enable then "qt" else "gnome3";
     };
-
     environment.shellInit = ''
       export GPG_TTY="$(tty)"
       gpg-connect-agent /bye
