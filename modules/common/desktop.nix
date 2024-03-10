@@ -14,6 +14,7 @@ in {
       dconf.enable = true; # GTK themes are not applied in Wayland applications
       # dconf.packages = with pkgs;[ maliit-keyboard ];
       light.enable = true; # backlight control command and udev rules granting access to members of the “video” group.
+      ssh.setXAuthLocation = true;
     };
     environment.systemPackages = with pkgs; [
       barrier # KVM
