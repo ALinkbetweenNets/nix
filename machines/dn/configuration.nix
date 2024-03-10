@@ -51,6 +51,7 @@
   };
   networking = {
     hostName = "dn";
+    domain = "monitor-banfish.ts.net";
     hostId = "007f0200";
     interfaces."${config.link.eth}".wakeOnLan.enable = true;
   };
