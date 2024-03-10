@@ -69,6 +69,7 @@
   # networking .  firewall.allowedTCPPorts = [ 5201 ];
   # networking .  firewall.allowedUDPPorts = [ 5201 ];
   networking.hostName = "xn";
+  networking.domain = "monitor-banfish.ts.net";
   services.throttled.enable = lib.mkForce true;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   lollypops.deployment = {
