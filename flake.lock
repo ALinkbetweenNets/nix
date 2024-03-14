@@ -861,6 +861,69 @@
         "type": "github"
       }
     },
+    "ondsel": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "ondsel-appimage-aarch64-linux": "ondsel-appimage-aarch64-linux",
+        "ondsel-appimage-x86_64-linux": "ondsel-appimage-x86_64-linux",
+        "ondsel-feedstock": "ondsel-feedstock"
+      },
+      "locked": {
+        "lastModified": 1710165992,
+        "narHash": "sha256-Nk/bndskmQJCiyqkhQJOEffZAL6hAP/B1efETSjxOWE=",
+        "owner": "pinpox",
+        "repo": "ondsel-nix",
+        "rev": "4a9755b94488d38400cdd10ec3fa9fe30d6140af",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pinpox",
+        "repo": "ondsel-nix",
+        "type": "github"
+      }
+    },
+    "ondsel-appimage-aarch64-linux": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-+5t+JbblTb8psKjLB/urN34ZsLnOSLuTGVzAiOmmWJg=",
+        "type": "file",
+        "url": "https://github.com/Ondsel-Development/FreeCAD/releases/download/2024.1.0/Ondsel_ES_2024.1.0.35694-Linux-aarch64.AppImage"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/Ondsel-Development/FreeCAD/releases/download/2024.1.0/Ondsel_ES_2024.1.0.35694-Linux-aarch64.AppImage"
+      }
+    },
+    "ondsel-appimage-x86_64-linux": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-VB/JmEdDhyOZNqPTWN7DyGXyxYO8BQYbo5nj+rHWByY=",
+        "type": "file",
+        "url": "https://github.com/Ondsel-Development/FreeCAD/releases/download/2024.1.0/Ondsel_ES_2024.1.0.35694-Linux-x86_64.AppImage"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/Ondsel-Development/FreeCAD/releases/download/2024.1.0/Ondsel_ES_2024.1.0.35694-Linux-x86_64.AppImage"
+      }
+    },
+    "ondsel-feedstock": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1709583214,
+        "narHash": "sha256-H5LbcK5iXS+QFhMayvCDSfXk2ulc6BJXWVwv97nPH9o=",
+        "owner": "Ondsel-Development",
+        "repo": "freecad-feedstock",
+        "rev": "386fab80c8aaa3bb1b9454aee8695c959d642bac",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Ondsel-Development",
+        "repo": "freecad-feedstock",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat_4",
@@ -906,6 +969,7 @@
         "nixpkgs": "nixpkgs_5",
         "nixvim": "nixvim",
         "nur": "nur",
+        "ondsel": "ondsel",
         "sops-nix": "sops-nix",
         "vscode-server": "vscode-server_2"
       }
