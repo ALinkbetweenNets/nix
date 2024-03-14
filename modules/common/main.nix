@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, ondsel, ... }:
 with lib;
 let cfg = config.link.main;
 in {
@@ -25,6 +25,7 @@ in {
       };
     };
     environment.systemPackages = with pkgs; [
+      ondsel
       sshfs
       rclone
       looking-glass-client # KVM relay
