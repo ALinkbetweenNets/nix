@@ -25,6 +25,8 @@ with lib; {
     };
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
+      freecad
+      openscad
       wcalc
       apg # generate passwords
       xkcdpass
