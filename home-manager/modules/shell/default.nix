@@ -2,17 +2,6 @@
 with lib;
 let vars = import ../../vars.nix;
 in {
-  home.packages = with pkgs; [
-    bat
-    btop
-    cht-sh
-    eza
-    fastfetch
-    fd
-    gdb
-    sysz
-    tldr
-  ];
   programs = {
     # starship = {
     #   enable = true;
@@ -207,12 +196,6 @@ in {
     };
     lf = { enable = true; };
     lesspipe = { enable = true; };
-    direnv = {
-      enable = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
-      nix-direnv.enable = true;
-    };
     bat = {
       enable = true;
       # This should pick up the correct colors for the generated theme. Otherwise
