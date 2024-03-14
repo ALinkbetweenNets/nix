@@ -6,7 +6,7 @@ in {
   config = mkIf cfg.enable {
     programs.vscode = {
       enable = true;
-      # package = pkgs.vscodium;
+      package = pkgs.vscodium;
       # package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config  ]);
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = false;
