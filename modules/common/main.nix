@@ -12,6 +12,7 @@ in {
       unbound.enable = true;
       tailscale.enable = true;
       qmk.enable = true;
+      security.enable = true;
     };
     services.pcscd.enable = true; # smart card support
     services = {
