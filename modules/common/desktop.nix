@@ -17,8 +17,8 @@ in {
       ssh.setXAuthLocation = true;
     };
     environment.systemPackages = with pkgs; [
-		  wifi-qr
-			cobang
+      wifi-qr
+      cobang
       barrier # KVM
       gsettings-qt
       kde-gtk-config
