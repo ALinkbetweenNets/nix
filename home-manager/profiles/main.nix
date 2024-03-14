@@ -17,7 +17,7 @@ with lib; {
       enable = true;
       indicator = false;
     };
-    direnv = {
+    programs.direnv = {
       enable = true;
       enableBashIntegration = true;
       enableZshIntegration = true;
