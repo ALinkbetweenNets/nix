@@ -88,6 +88,7 @@ in {
       gnupg
       gpg-tui
       sshfs
+			rclone
       ## basics
       gitFull
       file
