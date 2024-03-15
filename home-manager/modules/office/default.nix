@@ -27,6 +27,7 @@ in
         xournalpp
         anki
         darktable
+        rawtherapee
         pdfmixtool # appears to be broken and unbuildable
         onlyoffice-bin
         speedcrunch
