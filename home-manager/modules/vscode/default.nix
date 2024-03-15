@@ -4,9 +4,11 @@ let cfg = config.link.code;
 in {
   options.link.code.enable = mkEnableOption "activate vscodium";
   config = mkIf cfg.enable {
+    home.packages = with pkgs;
+      [ gdb ];
     programs.vscode = {
       enable = true;
-      # package = pkgs.vscodium;
+      package = pkgs.vscodium;
       # package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config  ]);
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = false;
