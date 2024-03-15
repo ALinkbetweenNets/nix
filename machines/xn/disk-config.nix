@@ -7,6 +7,11 @@
         content = {
           type = "gpt";
           partitions = {
+            boot = {
+              priority = 1;
+              size = "1M";
+              type = "EF02";
+            };
             ESP = {
               size = "512M";
               type = "EF00";
@@ -25,7 +30,7 @@
                 type = "luks";
                 name = "crypted";
                 # disable settings.keyFile if you want to use interactive password entry
-                # passwordFile = "/tmp/luks.key"; # Interactive
+                passwordFile = "/tmp/luks.key"; # Interactive
                 settings = {
                   allowDiscards = true;
                   #keyFile = "/tmp/secret.key";
