@@ -2,6 +2,7 @@
 with lib; {
   imports = [ ./desktop.nix ];
   config = {
+    # imports = with flake-self.homeManagerModules; [ git ];
     link = {
       office.enable = true;
       pentesting.enable = true;
@@ -9,13 +10,26 @@ with lib; {
       gaming.enable = true;
       python.enable = true;
       ansible.enable = true;
+      rust.enable = true;
       # beancount.enable = true;
     };
     services.kdeconnect = {
       enable = true;
       indicator = false;
     };
+    programs.direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
+    fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
+      freecad
+      openscad
+      wcalc
+      apg # generate passwords
+      xkcdpass
       ltex-ls # for vscode spell checking using languagetool
       piper-tts # text to speech synthesizer with models (download https://huggingface.co/rhasspy/piper-voices/tree/v1.0.0/en/en_US/lessac/high onnx and json to Downloads folder)
       gnome.gnome-disk-utility

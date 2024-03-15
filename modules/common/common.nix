@@ -13,7 +13,7 @@ in {
       '';
       knownHosts = {
         sn = {
-          hostNames= [ "sn.monitor-banfish.ts.net" ];
+          hostNames = [ "sn.monitor-banfish.ts.net" ];
           publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDF+rCKg9anv0pU96BL0cUcbKU8w1q75kt+JGroJcE19";
         };
       };
@@ -87,7 +87,6 @@ in {
       libsecret
       gnupg
       gpg-tui
-      sshfs
       ## basics
       gitFull
       file
@@ -98,7 +97,7 @@ in {
       ## encryption& filesystem
       cryptsetup
       gocryptfs
-      cryfs
+      # cryfs
       age
       ## Network tools
       wget
