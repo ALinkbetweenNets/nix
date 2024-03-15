@@ -49,7 +49,7 @@ with lib; {
         scrcpy # ADB screenshare
         ktailctl # Tailscale GUI
         ## Editor
-        libsForQt5.kate # kate
+        kdePackages.kate # kate
         kdiff3
         obsidian
         ## Hex Editor
@@ -66,15 +66,15 @@ with lib; {
         ## RDP
         remmina # VNC Client
         ## KDE Utils
-        libsForQt5.krfb # kde connect virtual monitor
+        kdePackages.krfb # kde connect virtual monitor
         libsForQt5.kpurpose # KDE share
         libsForQt5.qt5.qtwebsockets
-        libsForQt5.calendarsupport
-        libsForQt5.konsole
-        libsForQt5.yakuake
-        libsForQt5.plasma-vault
-        libsForQt5.plasma-disks
-        libsForQt5.kfind
+        kdePackages.calendarsupport
+        kdePackages.konsole
+        kdePackages.yakuake
+        kdePackages.plasma-vault
+        kdePackages.plasma-disks
+        kdePackages.kfind
         (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ] ++ lib.optionals
         (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];

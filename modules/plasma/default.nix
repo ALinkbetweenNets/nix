@@ -6,9 +6,9 @@ in {
   config = mkIf cfg.enable {
     services.xserver = {
       displayManager.sddm.enable = true;
-      desktopManager.plasma5.enable = true;
+      desktopManager.plasma6.enable = true;
       # desktopManager.plasma5.useQtScaling = true;
     };
-    environment.systemPackages = with pkgs;[ libsForQt5.plasma-nm ];
+    environment.systemPackages = with pkgs;[ kdePackages.plasma-nm ];
   };
 }
