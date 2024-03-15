@@ -51,14 +51,14 @@ in
           true; # with the open driver the screen will keep black after waking the pc from suspend
         modesetting.enable = true;
         powerManagement.enable = false;
-				package=config.boot.kernelPackages.nvidiaPackages.stable;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
         nvidiaSettings = true;
-				#dynamicBoost.enable=true;
-				#prime.offload={
+        #dynamicBoost.enable=true;
+        #prime.offload={
         #  enableOffloadCmd=true;
-				#	enable=true;
+        #	enable=true;
 
-				#};
+        #};
       };
     };
     # when docker is enabled, enable nvidia-docker
