@@ -102,7 +102,7 @@ with lib; {
       catimg
       mediainfo # audio and video information
       jellyfin-mpv-shim
-      libsForQt5.elisa # music player and organizer
+      kdePackages.elisa # music player and organizer
       lollypop
       digikam # photo library
       ## Silly BS
@@ -112,13 +112,13 @@ with lib; {
       monero-gui
       ## security
       authenticator
-      # libsForQt5.korganizer
+      # kdePackages.korganizer
       # mailspring
       ## finances
       # tradingview
-      libsForQt5.neochat
-      libsForQt5.kontact
-      libsForQt5.akonadi
+      kdePackages.neochat
+      kdePackages.kontact
+      kdePackages.akonadi
     ];
   };
 }
