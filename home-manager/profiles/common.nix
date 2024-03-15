@@ -34,16 +34,21 @@ with lib; {
       };
       compression = true;
     };
-    fonts.fontconfig.enable = true;
     home.packages = with pkgs;
       [
+        bat
+        btop
+        cht-sh
+        eza
+        fastfetch
+        fd
+        sysz
+        tldr
         ## top
         s-tui
         glances
         #home-manager
         ## security
-        apg # generate passwords
-        xkcdpass
         sops
         ssh-to-age
         bitwarden-cli
@@ -54,7 +59,6 @@ with lib; {
         fzf
         ## basics
         unixtools.watch
-        wcalc
         # gitFull
         ## networking
         iptables
