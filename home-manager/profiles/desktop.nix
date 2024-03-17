@@ -66,6 +66,7 @@ with lib; {
         ## RDP
         remmina # VNC Client
         ## KDE Utils
+        kdePackages.plasma-browser-integration
         libsForQt5.krfb # kde connect virtual monitor
         libsForQt5.kpurpose # KDE share
         libsForQt5.qt5.qtwebsockets
