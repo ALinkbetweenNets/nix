@@ -35,6 +35,9 @@
       flake-self.inputs.nur.overlay
       flake-self.inputs.crab_share.overlay
       flake-self.inputs.nixvim.overlays.default
+      (final: prev:{
+        ondsel=flake-self.inputs.ondsel.packages.${pkgs.system}.ondsel;
+      })
       (final: prev: {
         cudapkgs = import flake-self.inputs.nixpkgs {
           system = "${pkgs.system}";

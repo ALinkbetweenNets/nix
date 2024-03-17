@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ondsel, ... }:
+{ config, pkgs, lib, ... }:
 with lib;
 let cfg = config.link.main;
 in {
