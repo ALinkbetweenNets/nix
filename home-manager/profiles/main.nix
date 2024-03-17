@@ -25,7 +25,7 @@ with lib; {
     };
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
-      freecad
+      # freecad
       openscad
       wcalc
       apg # generate passwords
@@ -119,6 +119,7 @@ with lib; {
       kdePackages.neochat
       kdePackages.kontact
       kdePackages.akonadi
+      libsForQt5.krunner-symbols
     ];
   };
 }
