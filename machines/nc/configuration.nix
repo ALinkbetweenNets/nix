@@ -1,12 +1,6 @@
 # 202.61.251.70
 #	2a03:4000:54:8a::/64
 # nix run github:numtide/nixos-anywhere -- --flake .#nc root@202.61.251.70
-# TODO: remove hardware stuff from config module!
-# -> bootloader
-# -> energy stuff
-# -> etc.
-# Then everything should work.
-# Those things always should be opt in!
 { self, ... }:
 { pkgs, lib, config, flake-self, home-manager, ... }: {
   imports = [
