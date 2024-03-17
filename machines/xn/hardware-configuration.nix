@@ -15,9 +15,9 @@
     initrd = {
       availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
       kernelModules = [ ];
-      secrets = {
-        "/crypto_keyfile.bin" = null;
-      };
+      # secrets = {
+      #   "/crypto_keyfile.bin" = null;
+      # };
       # luks.devices = {
       #   "luks-3ad6d3e0-bab0-4e07-b33e-809fcf7cdc08" = {
       #     device = "/dev/disk/by-uuid/3ad6d3e0-bab0-4e07-b33e-809fcf7cdc08";

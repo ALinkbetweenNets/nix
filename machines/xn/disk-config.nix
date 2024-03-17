@@ -30,7 +30,7 @@
                 type = "luks";
                 name = "crypted";
                 # disable settings.keyFile if you want to use interactive password entry
-                passwordFile = "/tmp/luks.key"; # Interactive
+                # passwordFile = "/tmp/luks.key"; # Interactive
                 settings = {
                   allowDiscards = true;
                   #keyFile = "/tmp/secret.key";
