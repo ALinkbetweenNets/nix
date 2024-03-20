@@ -10,7 +10,7 @@
   home-manager.users.l = flake-self.homeConfigurations.convertible;
   link = {
     # sway.enable = true;
-    fs.zfs.enable = true;
+    # fs.zfs.enable = true;
     fs.ntfs.enable = true;
     convertible.enable = true;
     main.enable = true;
