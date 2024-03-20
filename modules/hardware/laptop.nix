@@ -20,7 +20,7 @@ in {
     services = {
       xserver.libinput.enable = true;
       auto-cpufreq = {
-        enable = false; # TLP replacement # caps xn cpu clock to 1.3 Ghz
+        enable = true; # TLP replacement # caps xn cpu clock to 1.3 Ghz
         settings = {
           battery = {
             governor = "powersave";
@@ -34,7 +34,7 @@ in {
       };
     };
     powerManagement = {
-      # enable = true;
+      enable = true;
       #powertop.enable = true; # no option to disable usb powersaving yet
     };
   };
