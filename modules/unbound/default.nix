@@ -44,7 +44,7 @@ in
         "9.9.9.9"
         "1.0.0.1"
       ];
-      domains = [ "fritz.box" "monitor-banfish.ts.net" ];
+      domains = [ "monitor-banfish.ts.net" ];
     };
     networking.networkmanager.dns = lib.mkForce "systemd-resolved";
     services.unbound = {

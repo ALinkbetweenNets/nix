@@ -4,7 +4,6 @@ let cfg = config.link.services.dns;
 in {
   options.link.services.dns.enable = mkEnableOption "activate services.dns";
   config = mkIf cfg.enable {
-    networking.hosts = { "192.168.178.110" = [ "sn.fritz.box" "paperless.sn.fritz.box" ]; };
     services = {
       dnsmasq = {
         enable = true;
