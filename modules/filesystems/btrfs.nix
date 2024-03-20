@@ -6,8 +6,10 @@ in {
   config = mkIf cfg.enable {
     boot.initrd.supportedFilesystems = [ "btrfs" ];
     virtualisation.docker.storageDriver = "btrfs";
-    services.btrfs.autoScrub.enable = true;
-    services.btrfs.autoScrub.fileSystems = [ "/" ];
+    services.btrfs.autoScrub = {
+      enable = true;
+      fileSystems = [ "/" ];
+    };
     fileSystems = { "/".options = [ "compress=zstd" ]; };
   };
 }
