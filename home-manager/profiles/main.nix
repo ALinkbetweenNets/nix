@@ -99,7 +99,8 @@ with lib; {
       youtube-tui
       ytui-music
       # yewtube # too complicated for a tui
-      catimg
+      # catimg
+      timg # display images and videos in terminal with sixel support
       mediainfo # audio and video information
       jellyfin-mpv-shim
       kdePackages.elisa # music player and organizer
