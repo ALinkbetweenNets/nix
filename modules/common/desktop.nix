@@ -61,6 +61,7 @@ in {
           source-sans-pro
           source-serif-pro
           noto-fonts-emoji
+          noto-fonts-cjk-sans # japanese fonts
           corefonts
           recursive
           iosevka-bin
