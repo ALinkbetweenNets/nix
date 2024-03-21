@@ -94,6 +94,7 @@ in {
     };
     environment.systemPackages = with pkgs; [
       ## system
+      nix-output-monitor
       exfatprogs
       git-crypt
       libsecret
