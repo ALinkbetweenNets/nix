@@ -33,6 +33,8 @@ in
         speedcrunch
         picard # music tagger
         # testdisk # data recovery
+        ocrmypdf # ocr for pdf
+        tesseract # ocr for images
       ];
   };
 }
