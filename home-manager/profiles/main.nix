@@ -25,6 +25,7 @@ with lib; {
     };
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
+      kdePackages.kdenlive
       # freecad
       openscad
       wcalc

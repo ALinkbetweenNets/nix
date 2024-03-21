@@ -25,6 +25,7 @@ in {
       };
     };
     environment.systemPackages = with pkgs; [
+      plasma5Packages.plasma-thunderbolt
       ondsel
       sshfs
       rclone
