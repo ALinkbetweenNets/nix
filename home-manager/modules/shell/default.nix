@@ -57,7 +57,7 @@ in {
     # };
     zsh = {
       enable = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       enableCompletion = true;
       enableVteIntegration = true;
       autocd = true;
