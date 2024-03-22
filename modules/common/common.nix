@@ -4,36 +4,38 @@ let cfg = config.link.common;
 in {
   options.link.common.enable = mkEnableOption "activate common";
   config = mkIf cfg.enable {
-    programs.ssh = {
-      startAgent = lib.mkDefault false;
-      # agentTimeout = "1h";
-      extraConfig = ''
-        Host deepserver
-          Port 2522
-      '';
-      knownHosts = {
-        sn = {
-          hostNames = [ "sn.monitor-banfish.ts.net" ];
-          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDF+rCKg9anv0pU96BL0cUcbKU8w1q75kt+JGroJcE19";
-        };
-        dn = {
-          hostNames = [ "dn.monitor-banfish.ts.net" ];
-          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINI74luZ3xJcgaZYHzn5DtSpYufml+SbhZQV12gWGShS";
-        };
-        xn = {
-          hostNames = [ "xn.monitor-banfish.ts.net" ];
-          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID/1eePE6/pYo4aahzcDRqbmnVdx9ikKH+93yw7M1pXH";
-        };
-        pi4b = {
-          hostNames = [ "pi4b.monitor-banfish.ts.net" ];
-          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO+rwC7YNUlQ7i2285iCVnopN2RXo/rBE8fAObogjoBc";
+    programs = {
+      ssh = {
+        startAgent = lib.mkDefault false;
+        # agentTimeout = "1h";
+        extraConfig = ''
+          Host deepserver
+            Port 2522
+        '';
+        knownHosts = {
+          sn = {
+            hostNames = [ "sn.monitor-banfish.ts.net" ];
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDF+rCKg9anv0pU96BL0cUcbKU8w1q75kt+JGroJcE19";
+          };
+          dn = {
+            hostNames = [ "dn.monitor-banfish.ts.net" ];
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINI74luZ3xJcgaZYHzn5DtSpYufml+SbhZQV12gWGShS";
+          };
+          xn = {
+            hostNames = [ "xn.monitor-banfish.ts.net" ];
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID/1eePE6/pYo4aahzcDRqbmnVdx9ikKH+93yw7M1pXH";
+          };
+          pi4b = {
+            hostNames = [ "pi4b.monitor-banfish.ts.net" ];
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO+rwC7YNUlQ7i2285iCVnopN2RXo/rBE8fAObogjoBc";
+          };
         };
       };
-    };
-    programs.gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-      # pinentryFlavor = if config.link.plasma.enable then "qt" else "gnome3";
+      gnupg.agent = {
+        enable = true;
+        enableSSHSupport = true;
+        # pinentryFlavor = if config.link.plasma.enable then "qt" else "gnome3";
+      };
     };
     environment.shellInit = ''
       export GPG_TTY="$(tty)"
