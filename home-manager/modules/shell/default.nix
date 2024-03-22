@@ -95,7 +95,7 @@ in {
           # switching within a flake repository
           nrg = "nixos-rebuild switch --use-remote-sudo --flake github:alinkbetweennets/nix";
           ns = "nix-shell -p ";
-          nr = "cd /home/l/nix;git pull;nixos-rebuild switch --use-remote-sudo --flake /home/l/nix";
+          nr = "cd /home/l/nix;git pull;nixos-rebuild switch --use-remote-sudo --flake /home/l/nix | nom";
           nrb = "nixos-rebuild switch --use-remote-sudo --flake /home/l/nix";
           ngc = "sudo nix-collect-garbage -d";
           lolly = "cd /home/l/nix;nix run .\#lollypops -- ";
