@@ -49,6 +49,7 @@
       };
     };
   };
+  services.unifi = { enable = true; openFirewall = true; };
   networking = {
     hostName = "dn";
     domain = "monitor-banfish.ts.net";
