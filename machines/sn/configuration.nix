@@ -74,6 +74,7 @@
         ];
         backup-paths-lenny-storagebox = [
           "/home/l/.ssh"
+          "/rz/syncthing/crypt"
           "/rz/syncthing/doc"
           "/rz/syncthing/music"
           "/rz/syncthing/sec"
@@ -82,12 +83,13 @@
         ];
         backup-paths-pi4b = [
           "/home/l/.ssh"
-          "/rz/syncthing/doc"
-          "/rz/syncthing/music"
-          "/rz/syncthing/sec"
-          "/rz/syncthing/uni"
-          "/rz/syncthing/w"
+          "/rz/archive"
+          "/rz/bkp/RTec"
+          "/rz/data"
+          "/rz/restic"
+          "/rz/sftp"
           "/rz/srv"
+          "/rz/syncthing"
         ];
       };
       wg-link.enable = true;
