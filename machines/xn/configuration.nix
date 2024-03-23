@@ -45,15 +45,16 @@
         "/home/l/w"
       ];
       backup-paths-pi4b = [
-        "/home/l/.config"
         "/home/l/.ssh"
         "/home/l/archive"
         "/home/l/doc"
-        "/home/l/Documents"
+        "/home/l/Music"
         "/home/l/obsidian"
         "/home/l/plasma-vault"
         "/home/l/sec"
         "/home/l/w"
+        "/home/l/Pictures"
+        "/home/l/uni"
       ];
     };
   };
