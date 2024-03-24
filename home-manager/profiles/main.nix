@@ -26,6 +26,7 @@ with lib; {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
       kdePackages.kdenlive
+      frei0r # video effects
       # freecad
       openscad
       wcalc
