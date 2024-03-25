@@ -13,7 +13,8 @@ in {
       tailscale.enable = true;
       qmk.enable = true;
     };
-    services.pcscd.enable = true; # smart card support
+    services.rpcbind.enable = true; # for NFS
+    # services.pcscd.enable = true; # smart card support
     services = {
       mullvad-vpn = {
         enable = true;
