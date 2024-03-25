@@ -46,29 +46,11 @@ in {
               "xn"
             ];
           };
-          "cal" = {
-            path = lib.mkDefault "${config.link.syncthingDir}/cal";
-            devices = [
-              "dn"
-              "hn"
-              "in"
-              "s22"
-              "sn"
-              "xn"
-            ];
-            versioning = {
-              type = "simple";
-              params.keep = "5";
-            };
-          };
           "camera" = {
             path = lib.mkDefault "${config.link.syncthingDir}/camera";
             devices = [
-              "dn"
-              "hn"
               "s22"
               "sn"
-              "xn"
             ];
             versioning = {
               type = "trashcan";
