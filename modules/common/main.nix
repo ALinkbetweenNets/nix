@@ -27,6 +27,12 @@ in {
     };
     environment.systemPackages = with pkgs; [
       plasma5Packages.plasma-thunderbolt
+      aha # for kde settings
+      eglinfo
+      glxinfo
+      clinfo
+      vulkaninfo
+      
       ondsel
       sshfs
       rclone
