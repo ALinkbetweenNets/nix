@@ -55,6 +55,7 @@
         enable = true;
         nginx-expose = true;
       };
+      nfs.enable = true;
       outline = {
         enable = true;
         # nginx-expose = true;

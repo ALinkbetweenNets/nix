@@ -1,19 +1,19 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.service.nfs;
+let cfg = config.link.services.nfs;
 in {
-  options.link.service.nfs.enable = mkEnableOption "activate nfs service";
+  options.link.services.nfs.enable = mkEnableOption "activate nfs service";
   config = mkIf cfg.enable {
     services = {
       nfs.server = {
         enable = true;
-        # hostName = "sn";
+        hostName = "sn";
         # createMountPoints = true;
-        # statdPort = 4000;
-        # lockdPort = 4001;
-        # mountdPort = 4002;
+        statdPort = 4000;
+        lockdPort = 4001;
+        mountdPort = 4002;
         exports = ''
-          /export *(rw,no_subtree_check,nohide)
+          /rz xn.monitor-banfish.ts.net(rw,no_subtree_check,nohide,insecure,sync,crossmnt,fsid=0)
         '';
       };
       rpcbind.enable = true;
@@ -26,5 +26,7 @@ in {
         package = lib.mkForce pkgs.gnome3.gvfs;
       };
     };
+    networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 111 2049 4000 4001 4002 20048 ];
+    networking.firewall.interfaces."tailscale0".allowedUDPPorts = [ 111 2049 4000 4001 4002 20048 ];
   };
 }
