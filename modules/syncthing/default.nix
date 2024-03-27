@@ -85,6 +85,14 @@ in {
               params.keep = "3";
             };
           };
+          "github" = {
+            path = lib.mkDefault "${config.link.syncthingDir}/github";
+            devices = [
+              "dn"
+              "hn"
+              "xn"
+            ];
+          };
           "doc" = {
             path = lib.mkDefault "${config.link.syncthingDir}/doc";
             devices = [
