@@ -15,9 +15,10 @@
     wireguard.enable = true;
     # services.jitsi.enable = true;
     nginx-expose = false;
+    service-ports-expose = false;
     domain = "deepserver.org";
     service-ip = "10.0.0.1";
-    eth = "eth0";
+    eth = "enp41s0";
     service-interface = "wg-deep";
     fail2ban.enable = true;
     server.enable = true;
