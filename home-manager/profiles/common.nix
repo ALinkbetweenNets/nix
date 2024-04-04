@@ -36,6 +36,7 @@ with lib; {
     };
     home.packages = with pkgs;
       [
+        broot
         bat
         btop
         cht-sh
