@@ -129,5 +129,22 @@ in {
       fdupes
     ];
     # console.font = "FiraCode Nerd Font";
+    #   system.replaceRuntimeDependencies =
+    #   let
+    #     fixed-xz = (import
+    #       (builtins.fetchGit {
+    #         name = "xz-5-4-4";
+    #         url = "https://github.com/NixOS/nixpkgs/";
+    #         ref = "refs/heads/nixpkgs-unstable";
+    #         rev = "9957cd48326fe8dbd52fdc50dd2502307f188b0d";
+    #       })
+    #       { system = "${pkgs.system}"; }).xz;
+    #   in
+    #   [
+    #     ({
+    #       original = pkgs.xz;
+    #       replacement = fixed-xz;
+    #     })
+    #   ];
   };
 }
