@@ -7,11 +7,7 @@
     ];
   boot = {
     initrd = {
-
-  boot.initrd.availableKernelModules = [ ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
+      availableKernelModules = [ "usbhid " ];
       kernelModules = [ ];
       luks.devices = {
         "LUKS-PPPN-ROOTFS" = {
