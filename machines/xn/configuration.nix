@@ -8,10 +8,12 @@
   ];
   hardware.enableRedistributableFirmware = true;
   home-manager.users.l = flake-self.homeConfigurations.convertible;
+  boot.initrd.systemd.enable = true;
   link = {
     # sway.enable = true;
     # fs.zfs.enable = true;
     fs.ntfs.enable = true;
+    fs.luks.enable = true;
     convertible.enable = true;
     main.enable = true;
     cpu-intel.enable = true;
@@ -58,6 +60,7 @@
       ];
     };
   };
+  boot.initrd.unl0kr.enable = true;
   networking.hostId = "007f0200";
   environment.systemPackages = with pkgs; [
     plasma5Packages.plasma-thunderbolt
