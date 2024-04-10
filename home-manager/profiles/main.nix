@@ -25,6 +25,8 @@ with lib; {
     };
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
+      # protonmail-bridge-gui
+      # protonmail-desktop
       kdePackages.kdenlive
       frei0r # video effects
       # freecad
