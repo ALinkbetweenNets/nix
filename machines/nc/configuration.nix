@@ -15,11 +15,11 @@
     dyndns.enable = true;
     domain = "alinkbetweennets.de";
     fail2ban.enable = true;
-    # coturn.enable = true;
     nginx.enable = true;
     serviceHost = "100.89.178.137";
     server.enable = true;
-    services.coturn.enable = true;
+    vm.enable = true;
+    # services.coturn.enable = true;
   };
   # ctf vpn forwarding
   # networking.nat = {
@@ -47,7 +47,7 @@
   # };
 
   networking = {
-    firewall.allowedTCPPorts = [ 443 2522 ];
+    firewall.allowedTCPPorts = [ 443 2522 8096 8920 ];
     firewall.allowedUDPPorts = [ 51820 51822 ];
     hostName = "v2202312204123249185";
     domain = "ultrasrv.de";
@@ -120,7 +120,7 @@
   services.nginx.virtualHosts."jellyfin.${config.link.domain}" = {
     enableACME = true;
     forceSSL = true;
-    listen=[{port = 443;  addr="0.0.0.0"; ssl=true;} {port = 8096;  addr="0.0.0.0"; ssl=true;} {port = 8920;  addr="0.0.0.0"; ssl=true;}];
+    listen = [{ port = 443; addr = "0.0.0.0"; ssl = true; } { port = 8096; addr = "0.0.0.0"; ssl = true; } { port = 8920; addr = "0.0.0.0"; ssl = true; }];
     locations."/".proxyPass = "http://${config.link.serviceHost}:8096/";
   };
   services.nginx.virtualHosts."jellyseer.${config.link.domain}" = {
@@ -285,5 +285,6 @@
     local-evaluation = true;
     ssh.host = "nc";
   };
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
