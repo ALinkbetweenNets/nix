@@ -10,9 +10,9 @@
     ];
   swapDevices = [{ device = "/.swapvol/swapfile"; }];
   boot = {
-    kernelParams = [ "intel_pstate=active" ];
-    kernelModules = [ "kvm-intel" "usbnet" ];
     extraModulePackages = [ ];
+    kernelModules = [ "kvm-intel" "usbnet" ];
+    kernelParams = [ "intel_pstate=active" ];
     resumeDevice = "/dev/disk/by-uuid/0022d4a1-7687-42cd-a702-f1176296ff0b";
     initrd = {
       availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
