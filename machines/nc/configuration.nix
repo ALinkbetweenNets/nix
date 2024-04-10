@@ -120,6 +120,7 @@
   services.nginx.virtualHosts."jellyfin.${config.link.domain}" = {
     enableACME = true;
     forceSSL = true;
+    listen=[{port = 443;  addr="0.0.0.0"; ssl=true;} {port = 8096;  addr="0.0.0.0"; ssl=true;} {port = 8920;  addr="0.0.0.0"; ssl=true;}];
     locations."/".proxyPass = "http://${config.link.serviceHost}:8096/";
   };
   services.nginx.virtualHosts."jellyseer.${config.link.domain}" = {
