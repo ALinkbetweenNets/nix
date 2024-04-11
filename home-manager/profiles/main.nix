@@ -27,10 +27,12 @@ with lib; {
     home.packages = with pkgs; [
       # protonmail-bridge-gui
       # protonmail-desktop
+      jetbrains.idea-community
       kdePackages.kdenlive
       frei0r # video effects
       # freecad
       openscad
+      slack
       wcalc
       apg # generate passwords
       xkcdpass
