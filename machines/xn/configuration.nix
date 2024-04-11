@@ -60,7 +60,6 @@
       ];
     };
   };
-  boot.initrd.unl0kr.enable = true;
   networking.hostId = "007f0200";
   environment.systemPackages = with pkgs; [
     plasma5Packages.plasma-thunderbolt
