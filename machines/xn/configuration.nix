@@ -74,6 +74,7 @@
   networking.hostName = "xn";
   networking.domain = "monitor-banfish.ts.net";
   services.throttled.enable = lib.mkForce true;
+  powerManagement.scsiLinkPolicy = "med_power_with_dipm";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   lollypops.deployment = {
     local-evaluation = true;
