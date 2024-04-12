@@ -8,8 +8,8 @@
   link = {
     common.enable = true;
     server.enable = true;
-    grub.enable = false;
-    systemd-boot.enable = true;
+    grub.enable = true;
+    systemd-boot.enable = false;
     fs.zfs.enable = true;
     fs.btrfs.enable = true;
     fs.luks.enable = true;
