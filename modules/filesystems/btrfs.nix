@@ -5,7 +5,7 @@ in {
   options.link.fs.btrfs.enable = mkEnableOption "activate btrfs";
   config = mkIf cfg.enable {
     boot.initrd.supportedFilesystems = [ "btrfs" ];
-    virtualisation.docker.storageDriver = "btrfs";
+    virtualisation.docker.storageDriver = lib.mkForce "btrfs";
     services.btrfs.autoScrub = {
       enable = true;
       fileSystems = [ "/" ];
