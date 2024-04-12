@@ -27,7 +27,8 @@ with lib; {
     home.packages = with pkgs; [
       # protonmail-bridge-gui
       # protonmail-desktop
-      kdePackages.kdenlive
+      kdePackages.kdenlive # video editor
+      reaper # audio editor
       frei0r # video effects
       # freecad
       openscad
