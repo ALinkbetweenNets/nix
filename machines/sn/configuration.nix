@@ -11,7 +11,9 @@
     grub.enable = true;
     systemd-boot.enable = false;
     fs.zfs.enable = true;
-    fs.ntfs.enable = true;
+    fs.btrfs.enable = true;
+    fs.luks.enable = true;
+    # fs.ntfs.enable = true;
     ##
     tower.enable = true;
     cpu-amd.enable = true;
@@ -23,12 +25,12 @@
     domain = "alinkbetweennets.de";
     storage = "/rz/srv";
     syncthingDir = "/rz/syncthing";
-    secrets = "/pwd";
+    # secrets = "/pwd";
     #seafile.enable = true;
     # service-ip = "10.0.1.1";
     users.lenny.enable = true;
     users.lmh01.enable = true;
-    syncthing.enable = true;
+    # syncthing.enable = true;
 
     service-interface = "tailscale0";
     nginx.enable = false;
@@ -43,57 +45,57 @@
     services = {
       # photoprism.enable = true; # WIP
       # keycloak.enable = true; # WIP but running
-      gitea.enable = true;
-      grafana.enable = true;
-      # seafile.enable = true;
-      # xandikos.enable = true; # WIP
-      hedgedoc.enable = true;
-      jellyfin.enable = true;
-      jellyseer.enable = true;
-      minio.enable = true;
-      nextcloud = {
-        enable = true;
-        nginx-expose = true;
-      };
-      nfs.enable = true;
-      outline = {
-        enable = true;
-        # nginx-expose = true;
-        oidClientId = "2085b101-ee5c-42c1-acac-2f9265767d1f";
-      };
-      paperless.enable = true;
-      vaultwarden.enable = true;
-      matrix.enable = true;
+      # gitea.enable = true;
+      # grafana.enable = true;
+      # # seafile.enable = true;
+      # # xandikos.enable = true; # WIP
+      # hedgedoc.enable = true;
+      # jellyfin.enable = true;
+      # jellyseer.enable = true;
+      # minio.enable = true;
+      # nextcloud = {
+      #   enable = true;
+      #   nginx-expose = true;
+      # };
+      # nfs.enable = true;
+      # outline = {
+      #   enable = true;
+      #   # nginx-expose = true;
+      #   oidClientId = "2085b101-ee5c-42c1-acac-2f9265767d1f";
+      # };
+      # paperless.enable = true;
+      # vaultwarden.enable = true;
+      # matrix.enable = true;
       # restic-server = { enable = true; expose = false; };
       # coturn.enable = true;
       # dns.enable = true;
-      restic-client = {
-        enable = true;
-        backup-paths-onedrive = [
-          "/home/l/.ssh"
-          "/rz/syncthing"
-        ];
-        backup-paths-lenny-storagebox = [
-          "/home/l/.ssh"
-          "/rz/syncthing/crypt"
-          "/rz/syncthing/doc"
-          "/rz/syncthing/music"
-          "/rz/syncthing/sec"
-          "/rz/syncthing/uni"
-          "/rz/syncthing/w"
-        ];
-        backup-paths-pi4b = [
-          "/home/l/.ssh"
-          "/rz/archive"
-          "/rz/bkp/RTec"
-          "/rz/data"
-          "/rz/restic"
-          "/rz/sftp"
-          "/rz/srv"
-          "/rz/syncthing"
-        ];
-      };
-      wg-link.enable = true;
+      # restic-client = {
+      #   enable = true;
+      #   backup-paths-onedrive = [
+      #     "/home/l/.ssh"
+      #     "/rz/syncthing"
+      #   ];
+      #   backup-paths-lenny-storagebox = [
+      #     "/home/l/.ssh"
+      #     "/rz/syncthing/crypt"
+      #     "/rz/syncthing/doc"
+      #     "/rz/syncthing/music"
+      #     "/rz/syncthing/sec"
+      #     "/rz/syncthing/uni"
+      #     "/rz/syncthing/w"
+      #   ];
+      #   backup-paths-pi4b = [
+      #     "/home/l/.ssh"
+      #     "/rz/archive"
+      #     "/rz/bkp/RTec"
+      #     "/rz/data"
+      #     "/rz/restic"
+      #     "/rz/sftp"
+      #     "/rz/srv"
+      #     "/rz/syncthing"
+      #   ];
+      # };
+      # wg-link.enable = true;
       # services.jitsi = {
       #   enable = true;
       #   expose = false;
@@ -160,9 +162,9 @@
   #     target = "/mnt/arr";
   #   };
   # };
-  services.onedrive.enable = true;
+  # services.onedrive.enable = true;
   boot = {
-    loader.grub.device = "/dev/sdd";
+    # loader.grub.device = "/dev/sdd";
     zfs.extraPools = [ "wdp" ];
   };
   # nix run .\#lollypops -- sn:rebuild
