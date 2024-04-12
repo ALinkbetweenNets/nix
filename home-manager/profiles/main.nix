@@ -28,7 +28,8 @@ with lib; {
       # protonmail-bridge-gui
       # protonmail-desktop
       jetbrains.idea-community
-      kdePackages.kdenlive
+      kdePackages.kdenlive # video editor
+      reaper # audio editor
       frei0r # video effects
       # freecad
       openscad
