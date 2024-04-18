@@ -8,23 +8,23 @@
   link = {
     common.enable = true;
     server.enable = true;
-    grub.enable = true;
-    systemd-boot.enable = false;
+    # grub.enable = true;
+    # systemd-boot.enable = false;
     fs.zfs.enable = true;
     fs.btrfs.enable = true;
     fs.luks.enable = true;
     # fs.ntfs.enable = true;
     ##
-    tower.enable = true;
-    cpu-amd.enable = true;
-    nvidia.enable = true;
+    vm.enable = true;
+    # cpu-amd.enable = true;
+    # nvidia.enable = true;
     ##
-    docker.enable = true;
+    # docker.enable = true;
     fail2ban.enable = true;
     ##
     domain = "alinkbetweennets.de";
-    storage = "/rz/srv";
-    syncthingDir = "/rz/syncthing";
+    # storage = "/rz/srv";
+    # syncthingDir = "/rz/syncthing";
     # secrets = "/pwd";
     #seafile.enable = true;
     # service-ip = "10.0.1.1";
@@ -102,7 +102,7 @@
       # };
       # keycloak.enable = true;
     };
-    eth = "enp6s0";
+    eth = "ens18";
   };
   nix.settings.auto-optimise-store = true;
   # services.cloudflare-dyndns = {
@@ -112,8 +112,8 @@
   # boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
   networking = {
     firewall = {
-      allowedUDPPorts = [ 51821 ];
-      allowedTCPPorts = [ 51821 ];
+      # allowedUDPPorts = [ 51821 ];
+      # allowedTCPPorts = [ 51821 ];
     };
     nat = {
       enable = true;
@@ -122,7 +122,7 @@
       internalInterfaces = [ "virbr0" ];
       internalIPs = [ "192.168.122.91/32" ];
       forwardPorts = [
-        { sourcePort = 41623; proto = "tcp"; destination = "192.168.122.91:22"; loopbackIPs = [ "192.168.122.1" ]; }
+        # { sourcePort = 41623; proto = "tcp"; destination = "192.168.122.91:22"; loopbackIPs = [ "192.168.122.1" ]; }
       ];
     };
     interfaces."${config.link.eth}".wakeOnLan.enable = true;
@@ -133,14 +133,14 @@
       192.168.122.200 snvnarr
     '';
   };
-  fileSystems."/rz/sftp/lenny/arr" = {
-    device = "/rz/arr/";
-    options = [ "bind" ];
-  };
-  fileSystems."/rz/sftp/lmh01/arr" = {
-    device = "/rz/arr/";
-    options = [ "bind" ];
-  };
+  # fileSystems."/rz/sftp/lenny/arr" = {
+  #   device = "/rz/arr/";
+  #   options = [ "bind" ];
+  # };
+  # fileSystems."/rz/sftp/lmh01/arr" = {
+  #   device = "/rz/arr/";
+  #   options = [ "bind" ];
+  # };
   # virtualisation.oci-containers.containers.librespeedtest = {
   #   autoStart = true;
   #   image = "adolfintel/speedtest";
@@ -163,10 +163,10 @@
   #   };
   # };
   # services.onedrive.enable = true;
-  boot = {
-    # loader.grub.device = "/dev/sdd";
-    zfs.extraPools = [ "wdp" ];
-  };
+  # boot = {
+  #   # loader.grub.device = "/dev/sdd";
+  #   zfs.extraPools = [ "wdp" ];
+  # };
   # nix run .\#lollypops -- sn:rebuild
   lollypops.deployment = {
     # local-evaluation = true;
