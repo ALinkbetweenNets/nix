@@ -14,7 +14,7 @@ in {
     # };
     environment.systemPackages = with pkgs; [
       intel-gpu-tools
-      nvtop-intel
+      nvtopPackages.intel
       nixgl
     ];
     hardware.opengl.extraPackages = with pkgs; [
