@@ -69,7 +69,10 @@ with lib; {
         ## Networking+
         ipfetch
         magic-wormhole # Secure data transfer
-        netcat-openbsd
+        # netcat-openbsd
+        # netcat
+        netcat-gnu
+        # iperf3 # speedtest
         crab_share
       ] ++ lib.optionals
         (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
