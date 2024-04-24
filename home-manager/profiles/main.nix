@@ -33,6 +33,7 @@ with lib; {
       frei0r # video effects
       # freecad
       openscad
+      dupeguru # good file deduplication
       slack
       wcalc
       apg # generate passwords
