@@ -16,6 +16,7 @@ in
     programs = { };
     home.packages = with pkgs;
       [
+        beekeeper-studio # RDB
         libreoffice-qt
         gimp
         inkscape

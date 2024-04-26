@@ -58,7 +58,7 @@ with lib; {
         ## File Sync
         #syncthing-tray
         ## Browser
-        # tor-browser-bundle-bin # compromised
+        tor-browser-bundle-bin # compromised
         # vivaldi # nice but proprietary
         floorp # firefox fork, seems promising, needs more research
         #mullvad-vpn # is defined as program
