@@ -69,8 +69,8 @@
     tod.enable = true;
     tod.driver = pkgs.libfprint-2-tod1-vfs0090;
   };
-  # networking .  firewall.allowedTCPPorts = [ 5201 ];
-  # networking .  firewall.allowedUDPPorts = [ 5201 ];
+  networking.firewall.allowedTCPPorts = [ 60955 ];
+  networking.firewall.allowedUDPPorts = [ 60955 ];
   networking.hostName = "xn";
   networking.domain = "monitor-banfish.ts.net";
   services.throttled.enable = lib.mkForce true;
