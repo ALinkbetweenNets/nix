@@ -101,6 +101,14 @@ in {
               "sn"
             ];
           };
+          "archive" = {
+            path = lib.mkDefault "${config.link.syncthingDir}/archive";
+            devices = [
+              "dn"
+              "xn"
+              "sn"
+            ];
+          };
           "doc" = {
             path = lib.mkDefault "${config.link.syncthingDir}/doc";
             devices = [
