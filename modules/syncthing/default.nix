@@ -93,6 +93,14 @@ in {
               "xn"
             ];
           };
+          "mirror" = {
+            path = lib.mkDefault "${config.link.syncthingDir}/.data-mirror";
+            devices = [
+              "dn"
+              "xn"
+              "sn"
+            ];
+          };
           "doc" = {
             path = lib.mkDefault "${config.link.syncthingDir}/doc";
             devices = [
