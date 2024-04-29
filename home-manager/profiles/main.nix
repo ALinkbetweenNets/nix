@@ -125,6 +125,7 @@ with lib; {
       # mailspring
       ## finances
       # tradingview
+      gnome.cheese
       kdePackages.kontact
       kdePackages.akonadi
       libsForQt5.krunner-symbols
