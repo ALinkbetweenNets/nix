@@ -7,5 +7,6 @@ in {
     home.packages = with pkgs; [ jdk21 ];
     programs.vscode.extensions = with pkgs.vscode-extensions; [ vscjava.vscode-java-pack redhat.java redhat.vscode-xml];
     programs.java.enable = true;
+    programs.vscode.userSettings."java.jdt.ls.jaca.home"="${pkgs.openjdk21}/lib/openjdk";
   };
 }
