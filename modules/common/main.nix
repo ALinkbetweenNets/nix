@@ -41,6 +41,7 @@ in {
       #wine
       #wineWowPackages.waylandFull
     ];
+    hardware.hackrf.enable = true;
     programs = {
       noisetorch.enable = true;
       adb.enable = true;
