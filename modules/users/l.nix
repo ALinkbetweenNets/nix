@@ -7,7 +7,7 @@ in {
     users.users.l = {
       isNormalUser = true;
       home = "/home/l";
-      extraGroups = [ "wheel" "adbusers" "audio" "plugdev" "wireshark" "video" "i2c" ]
+      extraGroups = [ "wheel" "adbusers" "audio" "plugdev" "wireshark" "video" "i2c" "plugdev" ]
         ++ lib.optionals config.networking.networkmanager.enable
         [ "networkmanager" ]
         ++ lib.optionals config.link.printing.enable
