@@ -1,18 +1,18 @@
 { self, ... }:
-{ pkgs, lib, config, flake-self, home-manager, ... }: {
+{ pkgs, lib, config, flake-self, home-manager, modulesPath, ... }: {
   imports = [
-    ./hardware-configuration.nix
-    home-manager.nixosModules.home-manager
+    (modulesPath + "/virtualisation/proxmox-lxc.nix")
+    # home-manager.nixosModules.home-manager
   ];
-  home-manager.users.l = flake-self.homeConfigurations.server;
+  # home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
     common.enable = true;
     server.enable = true;
-    grub.enable = true;
-    systemd-boot.enable = false;
-    fs.zfs.enable = true;
-    fs.btrfs.enable = true;
-    fs.luks.enable = true;
+    # grub.enable = true;
+    # systemd-boot.enable = false;
+    # fs.zfs.enable = true;
+    # fs.btrfs.enable = true;
+    # fs.luks.enable = true;
     # fs.ntfs.enable = true;
     ##
     vm.enable = true;
@@ -20,7 +20,7 @@
     # nvidia.enable = true;
     ##
     # docker.enable = true;
-    fail2ban.enable = true;
+    # fail2ban.enable = true;
     ##
     domain = "alinkbetweennets.de";
     # storage = "/rz/srv";
@@ -28,13 +28,13 @@
     # secrets = "/pwd";
     #seafile.enable = true;
     # service-ip = "10.0.1.1";
-    users.lenny.enable = true;
-    users.lmh01.enable = true;
+    # users.lenny.enable = true;
+    # users.lmh01.enable = true;
     # syncthing.enable = true;
 
-    service-interface = "tailscale0";
-    nginx.enable = false;
-    nginx-expose = false;
+    # service-interface = "tailscale0";
+    # nginx.enable = false;
+    # nginx-expose = false;
 
     # containers = {
     #   grist.enable = true;
@@ -102,7 +102,7 @@
       # };
       # keycloak.enable = true;
     };
-    eth = "ens18";
+    # eth = "ens18";
   };
   nix.settings.auto-optimise-store = true;
   # services.cloudflare-dyndns = {
@@ -110,29 +110,29 @@
   #   ipv6 = lib.mkForce false;
   # };
   # boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
-  networking = {
-    firewall = {
-      # allowedUDPPorts = [ 51821 ];
-      # allowedTCPPorts = [ 51821 ];
-    };
-    nat = {
-      enable = true;
-      externalInterface = "tailscale0";
-      externalIP = "100.89.178.137";
-      internalInterfaces = [ "virbr0" ];
-      internalIPs = [ "192.168.122.91/32" ];
-      forwardPorts = [
-        # { sourcePort = 41623; proto = "tcp"; destination = "192.168.122.91:22"; loopbackIPs = [ "192.168.122.1" ]; }
-      ];
-    };
-    interfaces."${config.link.eth}".wakeOnLan.enable = true;
-    hostName = "sn";
-    domain = "monitor-banfish.ts.net";
-    hostId = "007f0200";
-    extraHosts = ''
-      192.168.122.200 snvnarr
-    '';
-  };
+  # networking = {
+  #   firewall = {
+  #     # allowedUDPPorts = [ 51821 ];
+  #     # allowedTCPPorts = [ 51821 ];
+  #   };
+  #   nat = {
+  #     enable = true;
+  #     externalInterface = "tailscale0";
+  #     externalIP = "100.89.178.137";
+  #     internalInterfaces = [ "virbr0" ];
+  #     internalIPs = [ "192.168.122.91/32" ];
+  #     forwardPorts = [
+  #       # { sourcePort = 41623; proto = "tcp"; destination = "192.168.122.91:22"; loopbackIPs = [ "192.168.122.1" ]; }
+  #     ];
+  #   };
+  #   interfaces."${config.link.eth}".wakeOnLan.enable = true;
+  #   hostName = "sn";
+  #   domain = "monitor-banfish.ts.net";
+  #   hostId = "007f0200";
+  #   extraHosts = ''
+  #     192.168.122.200 snvnarr
+  #   '';
+  # };
   # fileSystems."/rz/sftp/lenny/arr" = {
   #   device = "/rz/arr/";
   #   options = [ "bind" ];
@@ -155,7 +155,7 @@
   # systemd.services.docker-librespeedtest = {
   #   preStop = "${pkgs.docker}/bin/docker kill librespeedtest";
   # };
-  powerManagement.powertop.enable = true;
+  # powerManagement.powertop.enable = true;
   # virtualisation.sharedDirectories = {
   #   arr = {
   #     source = "/rz/arr";
