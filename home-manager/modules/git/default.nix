@@ -7,6 +7,7 @@
       userName = "ALinkbetweenNets";
       aliases = {
         co = "checkout";
+        c = "clone";
         p = "pull";
         ps = "push";
         s = "status";
