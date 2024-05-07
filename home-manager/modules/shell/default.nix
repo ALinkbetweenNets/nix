@@ -90,6 +90,7 @@ in {
           fhs-vscode = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
         in
         {
+          cht="cht.sh";
           wetter = "curl wttr.in/bonn";
           myvs = "${fhs-vscode}/bin/code";
           # switching within a flake repository
