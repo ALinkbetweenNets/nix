@@ -3,6 +3,7 @@
   imports = [
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
     # home-manager.nixosModules.home-manager
+    ./hardware-configuration.nix
   ];
   # home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
