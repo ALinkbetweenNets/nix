@@ -8,7 +8,6 @@
     # https://github.com/numtide/flake-utils
     flake-utils = {
       url = "github:numtide/flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     lollypops = {
       url = "github:pinpox/lollypops";
