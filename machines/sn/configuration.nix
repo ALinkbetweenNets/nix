@@ -2,10 +2,10 @@
 { pkgs, lib, config, flake-self, home-manager, modulesPath, ... }: {
   imports = [
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
-    # home-manager.nixosModules.home-manager
+    home-manager.nixosModules.home-manager
     ./hardware-configuration.nix
   ];
-  # home-manager.users.l = flake-self.homeConfigurations.server;
+  home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
     common.enable = true;
     server.enable = true;
