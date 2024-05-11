@@ -41,6 +41,7 @@ in {
       #wine
       #wineWowPackages.waylandFull
     ];
+    hardware.hackrf.enable = true;
     programs = {
       noisetorch.enable = true;
       adb.enable = true;
@@ -48,6 +49,7 @@ in {
       steam.gamescopeSession.enable = true;
     };
     virtualisation.waydroid.enable = true;
+    networking.firewall.allowedTCPPorts = [ 24800 ];
     # networking.networkmanager.appendNameservers = [
     #   "1.1.1.1"
     #   "192.168.178.1"
