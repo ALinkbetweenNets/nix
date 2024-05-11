@@ -4,6 +4,7 @@
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
     home-manager.nixosModules.home-manager
     ./hardware-configuration.nix
+    <nixpkgs/nixos/modules/virtualisation/lxc-container.nix>
   ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
@@ -16,7 +17,7 @@
     # fs.luks.enable = true;
     # fs.ntfs.enable = true;
     ##
-    vm.enable = true;
+    # vm.enable = true;
     # cpu-amd.enable = true;
     # nvidia.enable = true;
     ##
@@ -174,4 +175,17 @@
     # ssh = { host = "100.89.178.137"; user = "root"; };
     # sudo.enable = true;
   };
+
+
+
+
+  # Supress systemd units that don't work because of LXC.
+  # https://blog.xirion.net/posts/nixos-proxmox-lxc/#configurationnix-tweak
+  systemd.suppressedSystemUnits = [
+    "dev-mqueue.mount"
+    "sys-kernel-debug.mount"
+    "sys-fs-fuse-connections.mount"
+  ];
+
+
 }
