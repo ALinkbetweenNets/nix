@@ -16,11 +16,12 @@ in
     programs = { };
     home.packages = with pkgs;
       [
+        beekeeper-studio # RDB
         libreoffice-qt
         gimp
         inkscape
         thunderbird
-        evolution
+        # evolution
         calcure # tui calendar & task manager
         #teams # insecure
         evince

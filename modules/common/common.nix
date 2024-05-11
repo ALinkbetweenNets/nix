@@ -23,7 +23,7 @@ in {
           };
           xn = {
             hostNames = [ "xn.monitor-banfish.ts.net" ];
-            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID/1eePE6/pYo4aahzcDRqbmnVdx9ikKH+93yw7M1pXH";
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOTI6IEjHQbsbMJMBQNk0/BR7W4QFVQLNOrhEdTHwS1P";
           };
           pi4b = {
             hostNames = [ "pi4b.monitor-banfish.ts.net" ];

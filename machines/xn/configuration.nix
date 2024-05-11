@@ -8,10 +8,12 @@
   ];
   hardware.enableRedistributableFirmware = true;
   home-manager.users.l = flake-self.homeConfigurations.convertible;
+  boot.initrd.systemd.enable = true;
   link = {
     # sway.enable = true;
     # fs.zfs.enable = true;
     fs.ntfs.enable = true;
+    fs.luks.enable = true;
     convertible.enable = true;
     main.enable = true;
     cpu-intel.enable = true;
@@ -67,11 +69,12 @@
     tod.enable = true;
     tod.driver = pkgs.libfprint-2-tod1-vfs0090;
   };
-  # networking .  firewall.allowedTCPPorts = [ 5201 ];
-  # networking .  firewall.allowedUDPPorts = [ 5201 ];
+  networking.firewall.allowedTCPPorts = [ 60955 ];
+  networking.firewall.allowedUDPPorts = [ 60955 ];
   networking.hostName = "xn";
   networking.domain = "monitor-banfish.ts.net";
   services.throttled.enable = lib.mkForce true;
+  powerManagement.scsiLinkPolicy = "med_power_with_dipm";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   lollypops.deployment = {
     local-evaluation = true;
