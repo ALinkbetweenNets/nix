@@ -4,7 +4,6 @@
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
     home-manager.nixosModules.home-manager
     ./hardware-configuration.nix
-    <nixpkgs/nixos/modules/virtualisation/lxc-container.nix>
   ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
