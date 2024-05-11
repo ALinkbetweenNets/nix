@@ -29,10 +29,10 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # vscode-server = {
-    #   url = "github:msteen/nixos-vscode-server";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    vscode-server = {
+      url = "github:msteen/nixos-vscode-server";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     crab_share = {
       url = "github:lounge-rocks/crab_share";
     };
@@ -184,7 +184,7 @@
           # import home manager modules from this flake
           imports = [
             inputs.nixvim.homeManagerModules.nixvim
-            # inputs.vscode-server.nixosModules.home
+            inputs.vscode-server.nixosModules.home
           ];
           # add overlays from this flake
           nixpkgs.overlays = [
@@ -199,10 +199,10 @@
             })
           ];
           # Visual Studio Code Server support
-          # services.vscode-server = {
-          #   enable = true;
-          #   installPath = "~/.vscode-server";
-          # };
+          services.vscode-server = {
+            enable = true;
+            installPath = "~/.vscode-server";
+          };
         };
       };
     };
