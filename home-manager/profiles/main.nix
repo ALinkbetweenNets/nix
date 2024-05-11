@@ -27,10 +27,14 @@ with lib; {
     home.packages = with pkgs; [
       # protonmail-bridge-gui
       # protonmail-desktop
-      kdePackages.kdenlive
+      jetbrains.idea-community
+      kdePackages.kdenlive # video editor
+      reaper # audio editor
       frei0r # video effects
       # freecad
       openscad
+      dupeguru # good file deduplication
+      slack
       wcalc
       apg # generate passwords
       xkcdpass
@@ -121,7 +125,7 @@ with lib; {
       # mailspring
       ## finances
       # tradingview
-      kdePackages.neochat
+      gnome.cheese
       kdePackages.kontact
       kdePackages.akonadi
       libsForQt5.krunner-symbols
