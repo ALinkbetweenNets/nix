@@ -36,6 +36,7 @@ with lib; {
     };
     home.packages = with pkgs;
       [
+        felix-fm
         broot
         bat
         btop
