@@ -13,10 +13,6 @@ in {
             Port 2522
         '';
         knownHosts = {
-          sn = {
-            hostNames = [ "sn.monitor-banfish.ts.net" ];
-            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDF+rCKg9anv0pU96BL0cUcbKU8w1q75kt+JGroJcE19";
-          };
           dn = {
             hostNames = [ "dn.monitor-banfish.ts.net" ];
             publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINI74luZ3xJcgaZYHzn5DtSpYufml+SbhZQV12gWGShS";
