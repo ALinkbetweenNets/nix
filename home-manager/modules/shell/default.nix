@@ -126,6 +126,9 @@ in {
           v = "codium";
           copium = "codium";
           cope = "codium";
+          t="tailscale";
+          opn="sudo openvpn";
+          ts="tailscale status";
           f = "fuck";
           p = "python";
           b = "bat";
