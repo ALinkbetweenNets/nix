@@ -24,6 +24,8 @@ in {
       openFirewall = true;
       extraBackends = with pkgs; [ epkowa sane-airscan ];
     };
+    networking.firewall.allowedTCPPorts = [ 53 631 139 443 445 515 631 9100 9101 9102 ]; # https://www.cups.org/doc/firewalls.html
+    networking.firewall.allowedUDPPorts = [ 5353 53 137 ];
     environment.systemPackages = with pkgs; [ skanpage ]; # Scanner Frontend
   };
 }
