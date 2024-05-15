@@ -15,7 +15,7 @@ in {
           cufflinks
           black
           rpy2 # python <-> R
-          # scikit-learn-extra
+          scikit-learn-extra
           scikit-learn
           # tensorflow # broken
           scipy
