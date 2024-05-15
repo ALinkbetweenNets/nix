@@ -22,6 +22,7 @@ in {
         firefox-devtools.vscode-firefox-debug
         github.copilot
         github.vscode-pull-request-github
+        gitlab.gitlab-workflow
         gruntfuggly.todo-tree
         jnoortheen.nix-ide
         mkhl.direnv

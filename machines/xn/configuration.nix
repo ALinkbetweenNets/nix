@@ -12,6 +12,7 @@
   link = {
     # sway.enable = true;
     # fs.zfs.enable = true;
+    printing.enable = true;
     fs.ntfs.enable = true;
     fs.luks.enable = true;
     convertible.enable = true;
@@ -69,6 +70,7 @@
     tod.enable = true;
     tod.driver = pkgs.libfprint-2-tod1-vfs0090;
   };
+  networking.firewall.enable=false;
   networking.firewall.allowedTCPPorts = [ 60955 ];
   networking.firewall.allowedUDPPorts = [ 60955 ];
   networking.hostName = "xn";
