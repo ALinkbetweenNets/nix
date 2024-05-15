@@ -128,6 +128,7 @@ with lib; {
       # tradingview
       gnome.cheese
       kdePackages.kontact
+      kdePackages.neochat
       kdePackages.akonadi
       libsForQt5.krunner-symbols
     ];
