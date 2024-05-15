@@ -21,7 +21,7 @@ in
         gimp
         inkscape
         thunderbird
-        # evolution
+        evolution
         calcure # tui calendar & task manager
         #teams # insecure
         evince
