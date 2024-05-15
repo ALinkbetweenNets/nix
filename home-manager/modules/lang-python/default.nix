@@ -17,7 +17,7 @@ in {
           rpy2 # python <-> R
           # scikit-learn-extra
           scikit-learn
-          # tensorflow # broken
+          tensorflow # broken
           scipy
           numpy
           # plotnine
