@@ -105,6 +105,7 @@ with lib; {
       # ytfzf # does not work 231230
       ani-cli
       youtube-tui
+      pipe-viewer
       ytui-music
       # yewtube # too complicated for a tui
       # catimg
@@ -127,6 +128,7 @@ with lib; {
       # tradingview
       gnome.cheese
       kdePackages.kontact
+      kdePackages.neochat
       kdePackages.akonadi
       libsForQt5.krunner-symbols
     ];
