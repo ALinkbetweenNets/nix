@@ -8,11 +8,12 @@
   link = {
     systemd-boot.enable = true;
     convertible.enable = true;
-    # main.enable = true;
+    main.enable = true;
     cpu-intel.enable = true;
     plasma.enable = false;
     gnome.enable = true;
   };
+  services.smartd.enable = false;
   networking.hostName = "in";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   lollypops.deployment = { local-evaluation = true; ssh.host = "192.168.178.65"; };
