@@ -27,6 +27,7 @@ in {
     };
     environment.systemPackages = with pkgs; [
       plasma5Packages.plasma-thunderbolt
+      vagrant
       aha # for kde settings
       glxinfo
       clinfo
