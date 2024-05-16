@@ -27,13 +27,14 @@ in {
       sushi.enable = true;
     };
     environment.systemPackages = with pkgs; [
-      gnomeExtensions.gtile
-      gnomeExtensions.zen
-      gnomeExtensions.yks-timer
-      gnomeExtensions.window-on-top
-      gnomeExtensions.wifi-qrcode
-      gnomeExtensions.weeks-start-on-monday-again
       gnomeExtensions.gsconnect
+      gnomeExtensions.gtile
+      gnomeExtensions.weeks-start-on-monday-again
+      gnomeExtensions.wifi-qrcode
+      gnomeExtensions.window-gestures
+      gnomeExtensions.window-on-top
+      gnomeExtensions.yks-timer
+      gnomeExtensions.zen
     ];
     qt.platformTheme = "gnome";
   };
