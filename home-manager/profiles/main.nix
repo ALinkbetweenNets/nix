@@ -9,7 +9,7 @@ with lib; {
       latex.enable = true;
       gaming.enable = true;
       python.enable = true;
-      ansible.enable = true;
+      # ansible.enable = true;
       rust.enable = true;
       # beancount.enable = true;
     };
@@ -101,7 +101,8 @@ with lib; {
       obs-studio
       # obs-studio-plugins.obs-backgroundremoval
       imagemagick
-      # brave # backup browser # multiple problems with privacy during end of 2023
+      brave # backup browser for teams # multiple problems with privacy during end of 2023
+      # chromium
       # ytfzf # does not work 231230
       ani-cli
       youtube-tui
