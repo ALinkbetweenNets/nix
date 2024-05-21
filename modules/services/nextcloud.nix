@@ -35,7 +35,7 @@ in {
           adminpassFile = "${config.link.secrets}/nextcloud";
         };
         #secretFile = "${config.link.secrets}/nextcloud-secrets.json";
-        package = pkgs.nextcloud28;
+        package = pkgs.nextcloud29;
         # extraApps = with config.services.nextcloud.package.packages.apps; {
         #   inherit bookmarks calendar contacts deck keeweb mail news notes onlyoffice polls tasks twofactor_webauthn;
         # };
