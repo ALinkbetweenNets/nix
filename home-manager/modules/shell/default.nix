@@ -90,7 +90,7 @@ in {
           fhs-vscode = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
         in
         {
-          cht="cht.sh";
+          cht = "cht.sh";
           wetter = "curl wttr.in/bonn";
           myvs = "${fhs-vscode}/bin/code";
           # switching within a flake repository
@@ -126,9 +126,9 @@ in {
           v = "codium";
           copium = "codium";
           cope = "codium";
-          t="tailscale";
-          opn="sudo openvpn";
-          ts="tailscale status";
+          t = "tailscale";
+          opn = "sudo openvpn";
+          ts = "tailscale status";
           f = "fuck";
           p = "python";
           b = "bat";
