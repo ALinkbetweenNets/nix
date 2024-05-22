@@ -116,12 +116,18 @@
       proxyWebsockets = true;
     };
   };
+  services.nginx.virtualHosts."gitlab.${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.gitlab.port}/";
+      proxyWebsockets = true;
+    };
+  };
   services.nginx.virtualHosts."hedgedoc.${config.link.domain}" = {
     enableACME = true;
     forceSSL = true;
-
     locations."/".proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.hedgedoc.port}";
-
   };
   services.nginx.virtualHosts."jellyfin.${config.link.domain}" = {
     enableACME = true;

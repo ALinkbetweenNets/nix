@@ -33,7 +33,7 @@
     # users.lmh01.enable = true;
     syncthing.enable = true;
 
-    # service-interface = "tailscale0";
+    service-interface = "tailscale0";
     # nginx.enable = false;
     # nginx-expose = false;
 
@@ -47,6 +47,7 @@
       # photoprism.enable = true; # WIP
       keycloak.enable = true; # WIP but running
       # gitea.enable = true;
+      gitlab.enable = true;
       # grafana.enable = true;
       # # seafile.enable = true;
       # # xandikos.enable = true; # WIP
