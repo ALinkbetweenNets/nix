@@ -26,7 +26,7 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    sops.secrets."keycloak" = { owner = "keycloak"; group = "keycloak"; };
+    sops.secrets."keycloak" = { owner = "postgres"; group = "postgres"; };
     environment.noXlibs = false;
     services = {
       keycloak = {
