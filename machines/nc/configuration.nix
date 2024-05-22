@@ -46,10 +46,9 @@
   #   ];
   # };
   services.openssh.openFirewall = lib.mkForce false;
-  networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = [ 22 2522 ];
 
   networking = {
-    firewall.allowedTCPPorts = [ 443 2522 8096 8920 ];
+    firewall.allowedTCPPorts = [ 443 2522 8096 8920  22 2522];
     firewall.allowedUDPPorts = [ 51820 51822 ];
     hostName = "v2202312204123249185";
     domain = "ultrasrv.de";
