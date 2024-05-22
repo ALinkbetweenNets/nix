@@ -31,7 +31,6 @@ in {
       "gitlab/dbPass" = { owner = "gitlab"; group = "gitlab"; };
       "gitlab/otp" = { owner = "gitlab"; group = "gitlab"; };
       "gitlab/initial-root" = { owner = "gitlab"; group = "gitlab"; };
-      "gitlab/jws" = { owner = "gitlab"; group = "gitlab"; };
       "gitlab/secret" = { owner = "gitlab"; group = "gitlab"; };
     };
     services = {
