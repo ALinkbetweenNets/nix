@@ -21,7 +21,7 @@
     # nvidia.enable = true;
     ##
     # docker.enable = true;
-    # fail2ban.enable = true;
+    fail2ban.enable = true;
     ##
     domain = "alinkbetweennets.de";
     # storage = "/rz/srv";
@@ -50,7 +50,7 @@
       # grafana.enable = true;
       # # seafile.enable = true;
       # # xandikos.enable = true; # WIP
-      # hedgedoc.enable = true;
+      hedgedoc.enable = true;
       # jellyfin.enable = true;
       # jellyseer.enable = true;
       minio.enable = true;
@@ -103,7 +103,7 @@
       # };
       # keycloak.enable = true;
     };
-    # eth = "ens18";
+    eth = "eth0@if146";
   };
   nix.settings.auto-optimise-store = true;
   # services.cloudflare-dyndns = {
