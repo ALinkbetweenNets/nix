@@ -35,7 +35,7 @@ in {
         database = {
           username = "keycloak";
           passwordFile = config.sops.secrets."keycloak".path;
-            createLocally = true;
+          createLocally = true;
         };
         settings = {
           hostname = "keycloak.${config.link.domain}";
@@ -46,29 +46,28 @@ in {
           proxy = "edge";
         };
       };
-      nginx.virtualHosts = {
-        "keycloak.${config.link.domain}" = {
-          enableACME = true;
-          forceSSL = true;
-          locations = {
-            "/" = {
-              proxyPass = "http://localhost:${toString cfg.port}";
-              extraConfig = ''
-                proxy_set_header X-Forwarded-Host $http_host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-Proto $scheme;
-              '';
-            };
+      nginx.virtualHosts."keycloak.${config.link.domain}" = mkIf cfg.nginx {
+        enableACME = true;
+        forceSSL = true;
+        locations = {
+          "/" = {
+            proxyPass = "http://localhost:${toString cfg.port}";
+            extraConfig = ''
+              proxy_set_header X-Forwarded-Host $http_host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-Proto $scheme;
+            '';
           };
-          # extraConfig = toString (
-          #   optional config.link.nginx.geoIP ''
-          #     if ($allowed_country = no) {
-          #         return 444;
-          #     }
-          #   ''
-          # );
         };
+        # extraConfig = toString (
+        #   optional config.link.nginx.geoIP ''
+        #     if ($allowed_country = no) {
+        #         return 444;
+        #     }
+        #   ''
+        # );
       };
+
     };
   };
 }
