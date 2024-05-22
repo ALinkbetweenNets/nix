@@ -34,7 +34,7 @@ in {
         initialAdminPassword = "enreehoWrerashsubNocjacPhilar8";
         database = {
           username = "keycloak";
-          passwordFile = sops.secrets."keycloak".path;
+          passwordFile = config.sops.secrets."keycloak".path;
             createLocally = true;
         };
         settings = {
