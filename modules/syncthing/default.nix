@@ -31,7 +31,7 @@ in {
           "xn".id = "MJHV5SK-OPIGX3Z-HWVAJE7-C74DVQN-YP4ZCGQ-CLHEFNF-RVPGD4J-5PJSGAK";
           "s22".id = "DOQGIQ6-WIAAZBV-EUQ6HWX-D6G2XYK-SAE6AGX-X3D4OLX-PGKELKL-RR6PSAE";
           "in".id = "IYOMGJ7-NZADKG2-L2PMGIH-VSTMTJ4-KLA7VF4-3CUONC2-BQMMWTW-I6KHDAY";
-          "sn".id = "QAZMWCF-N4MACEK-IFISGXL-QPX7YDP-AHD7CXC-WYUCVZJ-D35X5J2-4C6IQAQ";
+          # "sn".id = "QAZMWCF-N4MACEK-IFISGXL-QPX7YDP-AHD7CXC-WYUCVZJ-D35X5J2-4C6IQAQ";
           "hn".id = "YU4MCML-QWAYIDE-FSHCDWA-C2FGKTG-ERS6I36-SMCFI2J-RKLVOPN-PS3IFQD";
         };
         folders = {
@@ -42,7 +42,7 @@ in {
               "hn"
               "in"
               "s22"
-              "sn"
+              # "sn"
               "xn"
             ];
           };
@@ -50,7 +50,7 @@ in {
             path = lib.mkDefault "${config.link.syncthingDir}/camera";
             devices = [
               "s22"
-              "sn"
+              # "sn"
             ];
             versioning = {
               type = "trashcan";
@@ -64,7 +64,7 @@ in {
               "hn"
               "in"
               "s22"
-              "sn"
+              # "sn"
               "xn"
             ];
             versioning = {
@@ -77,7 +77,7 @@ in {
             devices = [
               "dn"
               "hn"
-              "sn"
+              # "sn"
               "xn"
             ];
             versioning = {
@@ -98,7 +98,7 @@ in {
             devices = [
               "dn"
               "xn"
-              "sn"
+              # "sn"
             ];
           };
           "archive" = {
@@ -106,7 +106,7 @@ in {
             devices = [
               "dn"
               "xn"
-              "sn"
+              # "sn"
             ];
           };
           "doc" = {
@@ -116,7 +116,7 @@ in {
               "hn"
               "in"
               "s22"
-              "sn"
+              # "sn"
               "xn"
             ];
             versioning = {
@@ -131,7 +131,7 @@ in {
               "hn"
               "in"
               "s22"
-              "sn"
+              # "sn"
               "xn"
             ];
             versioning = {
@@ -145,7 +145,7 @@ in {
               "dn"
               "hn"
               "in"
-              "sn"
+              # "sn"
               "xn"
             ];
           };
@@ -155,7 +155,7 @@ in {
               "dn"
               "hn"
               "in"
-              "sn"
+              # "sn"
               "xn"
             ];
             versioning = {
@@ -169,7 +169,7 @@ in {
               "dn"
               "hn"
               "in"
-              "sn"
+              # "sn"
               "xn"
             ];
             versioning = {
