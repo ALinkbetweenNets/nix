@@ -16,7 +16,7 @@
     domain = "alinkbetweennets.de";
     fail2ban.enable = true;
     nginx.enable = true;
-    serviceHost = "100.89.178.137";
+    serviceHost = "100.122.145.19";
     server.enable = true;
     vm.enable = true;
     # services.coturn.enable = true;
