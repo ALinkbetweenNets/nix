@@ -101,12 +101,18 @@
       proxyPass = "http://${config.link.serviceHost}:${toString config.services.gitea.settings.server.HTTP_PORT}";
     };
   };
+  services.nginx.virtualHosts."keycloak.${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.keycloak.port}";
+    };
+  };
   services.nginx.virtualHosts."grafana.${config.link.domain}" = {
     enableACME = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://${config.link.serviceHost
-            }:${toString config.link.services.grafana.port}/";
+      proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.grafana.port}/";
       proxyWebsockets = true;
     };
   };
