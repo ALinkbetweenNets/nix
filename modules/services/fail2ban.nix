@@ -17,6 +17,7 @@ in {
         "100.100.100.100"
         "100.119.237.77"
         "100.77.249.162"
+        "100.123.21.2"
       ] ++ lib.optionals (config.networking.hostName == "deepserver") [
         "10.0.1.0/24"
       ];
