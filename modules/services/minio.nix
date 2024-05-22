@@ -21,7 +21,7 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    sops.secrets."minio" = { owner="minio";group="minio";};
+    sops.secrets."minio" = { owner = "minio"; group = "minio"; };
     services = {
       minio = {
         enable = true;
