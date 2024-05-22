@@ -44,7 +44,5 @@ in {
       };
       networking.firewall.allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
       sops.secrets.immich = { };
-    }
-
-
-    }
+    };
+}
