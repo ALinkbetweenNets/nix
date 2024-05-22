@@ -45,6 +45,8 @@
   #     { sourcePort = 443; proto = "tcp"; destination = "100.89.178.137:443"; loopbackIPs = [ "100.86.79.82" ]; }
   #   ];
   # };
+  services.openssh.openFirewall = lib.mkForce false;
+  networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = [ 22 2522 ];
 
   networking = {
     firewall.allowedTCPPorts = [ 443 2522 8096 8920 ];
