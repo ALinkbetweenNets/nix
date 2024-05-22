@@ -29,7 +29,7 @@ in {
         consoleAddress = if cfg.expose-port then "0.0.0.0:9001" else "127.0.0.1:9001";
         region = "eu-central-1";
         rootCredentialsFile = config.sops.secrets."minio".path;
-        dataDir = [ "${config.link.storage}/minio/data" ];
+        # dataDir = [ "${config.link.storage}/minio/data" ];
       };
       nginx.virtualHosts."minio.s3.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
