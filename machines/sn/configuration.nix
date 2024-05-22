@@ -45,7 +45,7 @@
     service-ports-expose = true;
     services = {
       # photoprism.enable = true; # WIP
-      # keycloak.enable = true; # WIP but running
+      keycloak.enable = true; # WIP but running
       # gitea.enable = true;
       # grafana.enable = true;
       # # seafile.enable = true;
