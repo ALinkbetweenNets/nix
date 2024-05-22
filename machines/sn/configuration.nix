@@ -31,7 +31,7 @@
     # service-ip = "10.0.1.1";
     # users.lenny.enable = true;
     # users.lmh01.enable = true;
-    # syncthing.enable = true;
+    syncthing.enable = true;
 
     # service-interface = "tailscale0";
     # nginx.enable = false;
