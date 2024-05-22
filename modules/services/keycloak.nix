@@ -26,6 +26,7 @@ in {
     };
   };
   config = mkIf cfg.enable {
+    sops.secrets."keycloak" = { owner = "keycloak"; group = "keycloak"; };
     environment.noXlibs = false;
     services = {
       keycloak = {
@@ -33,8 +34,8 @@ in {
         initialAdminPassword = "enreehoWrerashsubNocjacPhilar8";
         database = {
           username = "keycloak";
-          passwordFile = "${config.link.secrets}/keycloak";
-          createLocally = true;
+          passwordFile = sops.secrets."keycloak".path;
+            createLocally = true;
         };
         settings = {
           hostname = "keycloak.${config.link.domain}";
