@@ -1,9 +1,9 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.home-assistant;
+let cfg = config.link.services.immich;
 in {
-  options.link.services.minio = {
-    enable = mkEnableOption "activate minio";
+  options.link.services.immich = {
+    enable = mkEnableOption "activate immich";
     expose-port = mkOption {
       type = types.bool;
       default = config.link.service-ports-expose;
