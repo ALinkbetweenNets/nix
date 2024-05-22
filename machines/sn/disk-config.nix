@@ -15,8 +15,8 @@
               #   # type = "EF02";
               #   flags = [ "bios_grub" ];
               # }
-              ESP={
-                priority=1;
+              ESP = {
+                priority = 1;
                 name = "ESP";
                 start = "1M";
                 end = "512M";
@@ -30,7 +30,7 @@
                   #];
                 };
               };
-              root={
+              root = {
                 name = "luks";
                 start = "512M";
                 end = "100%";
@@ -68,7 +68,7 @@
                   };
                 };
               };
-        };
+            };
         };
       };
     };
