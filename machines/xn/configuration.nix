@@ -70,7 +70,7 @@
     tod.enable = true;
     tod.driver = pkgs.libfprint-2-tod1-vfs0090;
   };
-  networking.firewall.enable=false;
+  networking.firewall.enable = false;
   networking.firewall.allowedTCPPorts = [ 60955 ];
   networking.firewall.allowedUDPPorts = [ 60955 ];
   networking.hostName = "xn";

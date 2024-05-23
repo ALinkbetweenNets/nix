@@ -135,6 +135,13 @@
               lollypops.nixosModules.lollypops
               disko.nixosModules.disko
               sops-nix.nixosModules.sops
+              # ({ config, ... }: {
+              #   # shut up state version warning
+              #   system.stateVersion = config.system.nixos.version;
+              #   # Adjust this to your liking.
+              #   # WARNING: if you set a too low value the image might be not big enough to contain the nixos installation
+              #   disko.devices.disk.vdb.imageSize = "10G";
+              # })
             ];
           };
         })
