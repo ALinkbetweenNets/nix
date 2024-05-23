@@ -98,6 +98,7 @@ in {
       libsecret
       gnupg
       gpg-tui
+      kmod # modprobe
       ## basics
       gitFull
       file

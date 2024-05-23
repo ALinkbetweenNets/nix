@@ -21,7 +21,7 @@
     # nvidia.enable = true;
     ##
     # docker.enable = true;
-    # fail2ban.enable = true;
+    fail2ban.enable = true;
     ##
     domain = "alinkbetweennets.de";
     # storage = "/rz/srv";
@@ -31,9 +31,9 @@
     # service-ip = "10.0.1.1";
     # users.lenny.enable = true;
     # users.lmh01.enable = true;
-    # syncthing.enable = true;
+    syncthing.enable = true;
 
-    # service-interface = "tailscale0";
+    service-interface = "tailscale0";
     # nginx.enable = false;
     # nginx-expose = false;
 
@@ -45,12 +45,13 @@
     service-ports-expose = true;
     services = {
       # photoprism.enable = true; # WIP
-      # keycloak.enable = true; # WIP but running
+      keycloak.enable = true; # WIP but running
       # gitea.enable = true;
+      gitlab.enable = true;
       # grafana.enable = true;
       # # seafile.enable = true;
       # # xandikos.enable = true; # WIP
-      # hedgedoc.enable = true;
+      hedgedoc.enable = true;
       # jellyfin.enable = true;
       # jellyseer.enable = true;
       minio.enable = true;
@@ -103,7 +104,7 @@
       # };
       # keycloak.enable = true;
     };
-    # eth = "ens18";
+    eth = "eth0@if146";
   };
   nix.settings.auto-optimise-store = true;
   # services.cloudflare-dyndns = {
