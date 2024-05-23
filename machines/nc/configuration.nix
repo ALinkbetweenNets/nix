@@ -16,7 +16,7 @@
     domain = "alinkbetweennets.de";
     fail2ban.enable = true;
     nginx.enable = true;
-    serviceHost = "100.89.178.137";
+    serviceHost = "100.122.145.19";
     server.enable = true;
     vm.enable = true;
     # services.coturn.enable = true;
@@ -45,9 +45,10 @@
   #     { sourcePort = 443; proto = "tcp"; destination = "100.89.178.137:443"; loopbackIPs = [ "100.86.79.82" ]; }
   #   ];
   # };
+  services.openssh.openFirewall = lib.mkForce false;
 
   networking = {
-    firewall.allowedTCPPorts = [ 443 2522 8096 8920 ];
+    firewall.allowedTCPPorts = [ 443 2522 8096 8920  22 2522];
     firewall.allowedUDPPorts = [ 51820 51822 ];
     hostName = "v2202312204123249185";
     domain = "ultrasrv.de";
@@ -101,21 +102,33 @@
       proxyPass = "http://${config.link.serviceHost}:${toString config.services.gitea.settings.server.HTTP_PORT}";
     };
   };
+  services.nginx.virtualHosts."keycloak.${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.keycloak.port}";
+    };
+  };
   services.nginx.virtualHosts."grafana.${config.link.domain}" = {
     enableACME = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://${config.link.serviceHost
-            }:${toString config.link.services.grafana.port}/";
+      proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.grafana.port}/";
+      proxyWebsockets = true;
+    };
+  };
+  services.nginx.virtualHosts."gitlab.${config.link.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.gitlab.port}/";
       proxyWebsockets = true;
     };
   };
   services.nginx.virtualHosts."hedgedoc.${config.link.domain}" = {
     enableACME = true;
     forceSSL = true;
-
     locations."/".proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.hedgedoc.port}";
-
   };
   services.nginx.virtualHosts."jellyfin.${config.link.domain}" = {
     enableACME = true;
