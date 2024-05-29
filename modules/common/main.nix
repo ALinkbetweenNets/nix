@@ -48,7 +48,7 @@ in {
       adb.enable = true;
       steam.enable = true;
       steam.gamescopeSession.enable = true;
-      ausweisapp={enable=true;openFirewall=true;};
+      ausweisapp = { enable = true; openFirewall = true; };
     };
     virtualisation.waydroid.enable = true;
     networking.firewall.allowedTCPPorts = [ 24800 ];
