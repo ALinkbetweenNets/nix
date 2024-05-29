@@ -26,13 +26,14 @@ in {
     };
   };
   config = mkIf cfg.enable {
+    sops.secrets."nextcloud" = { owner = "nextcloud"; group = "nextcloud"; };
     services = {
       nextcloud = {
         enable = true;
         hostName = "nextcloud.${config.link.domain}";
         config = {
           adminuser = "l";
-          adminpassFile = "${config.link.secrets}/nextcloud";
+          adminpassFile = config.sops.secrets."nextcloud".path;
         };
         #secretFile = "${config.link.secrets}/nextcloud-secrets.json";
         package = pkgs.nextcloud29;
@@ -49,7 +50,7 @@ in {
         https = true;
         configureRedis = true;
         database.createLocally = true;
-        home = "${config.link.storage}/nextcloud";
+        #home = "${config.link.storage}/nextcloud";
       };
       nginx =
         if (!cfg.nginx) then {

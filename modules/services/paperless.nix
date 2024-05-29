@@ -26,12 +26,14 @@ in {
     };
   };
   config = mkIf cfg.enable {
+    sops.secrets."paperless" = { };
     services = {
       paperless = {
         enable = true;
-        passwordFile = "${config.link.secrets}/paperless";
-        dataDir = "${config.link.storage}/paperless";
-        # address = "paperless.alinkbetweennets.de";
+        #address=if cfg.expose-port then "0.0.0.0" else ""127.0.0.1";
+        passwordFile = config.sops.secrets."paperless".path;
+        #dataDir =
+        address = "paperless.alinkbetweennets.de";
         port = cfg.port;
         settings = {
           PAPERLESS_ADMIN_USER = "l";
@@ -45,7 +47,7 @@ in {
           };
         };
       };
-      oauth2_proxy.nginx.virtualHosts = [ "paperless.${config.link.domain}" ];
+      #auth2_proxy.nginx.virtualHosts = [ "paperless.${config.link.domain}" ];
       nginx.virtualHosts."paperless.${config.link.domain}" = mkIf cfg.nginx-expose {
         enableACME = true;
         forceSSL = true;
