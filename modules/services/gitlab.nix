@@ -38,13 +38,15 @@ in {
         enable = true;
         recommendedProxySettings = true;
         virtualHosts = {
-          localhost = {
+          "gitlab.alinkbetweennets.de" = {
             locations."/".proxyPass = "http://unix:/run/gitlab/gitlab-workhorse.socket";
           };
         };
       };
       gitlab = {
         enable = true;
+        host = "gitlab.alinkbetweennets.de";
+        databaseCreateLocally = true;
         databasePasswordFile = config.sops.secrets."gitlab/dbPass".path;
         initialRootPasswordFile = config.sops.secrets."gitlab/initial-root".path;
         secrets = {
