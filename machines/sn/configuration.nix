@@ -34,8 +34,8 @@
     syncthing.enable = true;
 
     service-interface = "tailscale0";
-    # nginx.enable = false;
-    # nginx-expose = false;
+    nginx.enable = false;
+    nginx-expose = false;
 
     # containers = {
     #   grist.enable = true;
@@ -46,7 +46,7 @@
     services = {
       # photoprism.enable = true; # WIP
       keycloak.enable = true; # WIP but running
-      # gitea.enable = true;
+      #gitea.enable = true;
       gitlab.enable = true;
       # grafana.enable = true;
       # # seafile.enable = true;
@@ -55,17 +55,17 @@
       # jellyfin.enable = true;
       # jellyseer.enable = true;
       minio.enable = true;
-      # nextcloud = {
-      #   enable = true;
-      #   nginx-expose = true;
-      # };
+      #nextcloud = {
+      #  enable = true;
+      #  nginx-expose = true;
+      #};
       # nfs.enable = true;
       # outline = {
       #   enable = true;
       #   # nginx-expose = true;
       #   oidClientId = "2085b101-ee5c-42c1-acac-2f9265767d1f";
       # };
-      # paperless.enable = true;
+      paperless.enable = true;
       # vaultwarden.enable = true;
       # matrix.enable = true;
       # restic-server = { enable = true; expose = false; };
