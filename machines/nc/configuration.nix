@@ -48,7 +48,7 @@
   services.openssh.openFirewall = lib.mkForce false;
 
   networking = {
-    firewall.allowedTCPPorts = [ 443 2522 8096 8920  22 2522];
+    firewall.allowedTCPPorts = [ 443 2522 8096 8920 22 2522 ];
     firewall.allowedUDPPorts = [ 51820 51822 ];
     hostName = "v2202312204123249185";
     domain = "ultrasrv.de";
@@ -121,7 +121,7 @@
     enableACME = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.gitlab.port}/";
+      proxyPass = "http://${config.link.serviceHost}:443/";
       proxyWebsockets = true;
     };
   };
