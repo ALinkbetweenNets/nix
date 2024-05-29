@@ -34,14 +34,14 @@ with lib; {
         hunspell
         hunspellDicts.de_DE
         ## Audio
-        helvum # Patchbay
+        #helvum # Patchbay
         pavucontrol
         ## Multimedia
         vlc
         mpv
         cobang # qr codes
         ## Encryption
-        veracrypt
+        #veracrypt
         kleopatra # gpg/ pgp
         ## Misc
         bitwarden
@@ -64,7 +64,7 @@ with lib; {
         #mullvad-vpn # is defined as program
         mullvad-browser
         ## RDP
-        remmina # VNC Client
+        #remmina # VNC Client
         ## KDE Utils
         kdePackages.krfb # kde connect virtual monitor
         kdePackages.plasma-browser-integration

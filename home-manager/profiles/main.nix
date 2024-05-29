@@ -27,29 +27,29 @@ with lib; {
     home.packages = with pkgs; [
       # protonmail-bridge-gui
       # protonmail-desktop
-      jetbrains.idea-community
-      kdePackages.kdenlive # video editor
+      #jetbrains.idea-community
+      #kdePackages.kdenlive # video editor
       reaper # audio editor
-      frei0r # video effects
+      #frei0r # video effects
       # freecad
-      openscad
-      dupeguru # good file deduplication
+      #openscad
+      # dupeguru # good file deduplication
       slack
       wcalc
       apg # generate passwords
       xkcdpass
       ltex-ls # for vscode spell checking using languagetool
-      piper-tts # text to speech synthesizer with models (download https://huggingface.co/rhasspy/piper-voices/tree/v1.0.0/en/en_US/lessac/high onnx and json to Downloads folder)
+      #piper-tts # text to speech synthesizer with models (download https://huggingface.co/rhasspy/piper-voices/tree/v1.0.0/en/en_US/lessac/high onnx and json to Downloads folder)
       gnome.gnome-disk-utility
-      gparted
+      #gparted
       vagrant # quick tmp vm creation
       restic
-      hugo # static site generator
-      ghosttohugo
+      #hugo # static site generator
+      #ghosttohugo
       ## Desktop monitor settings change
       ddcui
       ddcutil
-      alacritty
+      #alacritty
       ## theming
       beauty-line-icon-theme
       # dracula-theme
@@ -59,11 +59,11 @@ with lib; {
       spice-vdagent
       ## ISO stuff
       # (import
-      # (builtins.fetchTarball {
-      # url = "https://github.com/nixos/nixpkgs/archive/9957cd48326fe8dbd52fdc50dd2502307f188b0d.tar.gz";
-      # sha256 = "sha256:1l2hq1n1jl2l64fdcpq3jrfphaz10sd1cpsax3xdya0xgsncgcsi";
-      # })
-      # { system = "${pkgs.system}"; }).popsicle # USB Flasher
+        # (builtins.fetchTarball {
+          # url = "https://github.com/nixos/nixpkgs/archive/9957cd48326fe8dbd52fdc50dd2502307f188b0d.tar.gz";
+          # sha256 = "sha256:1l2hq1n1jl2l64fdcpq3jrfphaz10sd1cpsax3xdya0xgsncgcsi";
+        # })
+        # { system = "${pkgs.system}"; }).popsicle # USB Flasher
       popsicle
       ## FS
       # nixos-anywhere # use nix-shell
@@ -73,7 +73,7 @@ with lib; {
       nextcloud-client
       seafile-client
       ## Editor
-      mermaid-cli
+      #mermaid-cli
       # logseq
       # anytype
       # semantik # mind mapping
@@ -81,7 +81,7 @@ with lib; {
       signal-desktop
       telegram-desktop
       discord
-      qtox
+      #qtox
       element-desktop
       openvpn
       ## keyboard
@@ -96,11 +96,11 @@ with lib; {
       # vhs # generating terminal GIFs with code (what about asciinema)
       # surfraw # TUI search engine interface # broken in nixos (240102)
       translate-shell
-      ffmpeg_6
+      #ffmpeg_6
       ## Multimedia
       obs-studio
       # obs-studio-plugins.obs-backgroundremoval
-      imagemagick
+      #imagemagick
       brave # backup browser for teams # multiple problems with privacy during end of 2023
       # chromium
       # ytfzf # does not work 231230
@@ -114,7 +114,7 @@ with lib; {
       mediainfo # audio and video information
       jellyfin-mpv-shim
       kdePackages.elisa # music player and organizer
-      lollypop
+      #lollypop
       digikam # photo library
       ## Silly BS
       figlet # Fancytext
