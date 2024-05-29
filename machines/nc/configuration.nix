@@ -121,7 +121,7 @@
     enableACME = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://${config.link.serviceHost}:80/";
+      proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.gitlab.port}/";
       proxyWebsockets = true;
     };
   };
