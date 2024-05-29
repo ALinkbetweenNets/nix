@@ -121,7 +121,7 @@
     enableACME = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://${config.link.serviceHost}:443/";
+      proxyPass = "http://${config.link.serviceHost}:80/";
       proxyWebsockets = true;
     };
   };
