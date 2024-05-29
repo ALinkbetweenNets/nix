@@ -13,11 +13,10 @@
     plasma.enable = false;
     gnome.enable = true;
   };
-  programs.steam.enable = lib.mkForce false;
   services.smartd.enable = false;
   networking.hostName = "in";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-  lollypops.deployment = { local-evaluation = true; };
+  lollypops.deployment = { local-evaluation = true; ssh.host = "192.168.178.65"; };
   environment.systemPackages = with pkgs;    [ ];
   #system.stateVersion = "23.05";
 }
