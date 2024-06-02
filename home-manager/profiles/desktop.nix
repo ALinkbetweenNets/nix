@@ -20,6 +20,29 @@ with lib; {
         extraConfig = "--update";
         settings = { embed-thumbnail = true; };
       };
+      mpv = {
+        enable = true;
+        scripts = with pkgs.mpvScripts; [ sponsorblock thumbfast mpv-webm uosc ];
+        config = {
+          profile = "gpu-hq";
+          force-window = true;
+          ytdl-format = "bestvideo+bestaudio";
+          cache-default = 4000000;
+        };
+        defaultProfiles = [
+          "gpu-hq"
+        ];
+        bindings = {
+          WHEEL_UP = "seek 10";
+          WHEEL_DOWN = "seek -10";
+          "Alt+0" = "set window-scale 0.5";
+        };
+        extraInput = ''
+          esc         quit                        #! Quit
+          #           script-binding uosc/video   #! Video tracks
+          # additional comments
+        '';
+      };
       #terminator.enable = true; # I prefer konsole
     };
     manual.html.enable = true;
@@ -37,8 +60,7 @@ with lib; {
         #helvum # Patchbay
         pavucontrol
         ## Multimedia
-        vlc
-        mpv
+        # vlc
         cobang # qr codes
         ## Encryption
         #veracrypt
@@ -72,7 +94,7 @@ with lib; {
         libsForQt5.qt5.qtwebsockets
         kdePackages.calendarsupport
         kdePackages.konsole
-        kdePackages.yakuake
+        # kdePackages.yakuake
         kdePackages.plasma-vault
         kdePackages.plasma-disks
         kdePackages.kfind
