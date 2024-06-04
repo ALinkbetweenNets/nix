@@ -18,7 +18,6 @@ in {
     };
     environment.systemPackages = with pkgs; [
       wifi-qr
-      cobang
       barrier # KVM
       gsettings-qt
       kde-gtk-config
@@ -30,7 +29,8 @@ in {
       virt-manager
       spice
       spice-vdagent
-    ];
+    ] ++ lib.optionals
+      (config.nixpkgs.hostPlatform.system == "x86_64-linux") [ cobang ];
     networking = {
       networkmanager = {
         enable = true;
