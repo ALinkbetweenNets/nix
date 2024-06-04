@@ -38,10 +38,8 @@ in {
     users.users."l".extraGroups = [ "video" "audio" ];
 
     hardware = {
-      # fixes'ÈGL_EXT_platform_base not supported'
+      # fixes'EGL_EXT_platform_base not supported'
       opengl.enable = true;
-      # nvidia-drm.modeset=1 is required for some wayland compositors, e.g. sway
-      nvidia.modesetting.enable = mkIf config.link.nvidia.enable true;
     };
   };
 }
