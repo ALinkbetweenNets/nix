@@ -6,6 +6,7 @@
   ];
   home-manager.users.l = flake-self.homeConfigurations.tower;
   link = {
+    gaming.enable = true;
     systemd-boot.enable = true;
     tower.enable = true;
     main.enable = true;
@@ -16,6 +17,7 @@
     wireguard.enable = true;
     wg-deep.enable = true;
     # wg-link.enable = true;
+    xserver.enable = true;
     eth = "enp111s0";
     domain = "dn.local"; # testing domain
     # home-assistant.enable = true;
