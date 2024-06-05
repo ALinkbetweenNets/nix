@@ -21,7 +21,7 @@ in {
     };
     port = mkOption {
       type = types.int;
-      default = 3000;
+      default = 443;
       description = "port to run the application on";
     };
   };
@@ -45,7 +45,9 @@ in {
       };
       gitlab = {
         enable = true;
+        port = cfg.port;
         host = "gitlab.alinkbetweennets.de";
+        pages.settings.pages-domain = "pages.alinkbetweennets.de";
         databaseCreateLocally = true;
         databasePasswordFile = config.sops.secrets."gitlab/dbPass".path;
         initialRootPasswordFile = config.sops.secrets."gitlab/initial-root".path;
