@@ -112,29 +112,29 @@
   #   ipv6 = lib.mkForce false;
   # };
   # boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
-  # networking = {
-  #   firewall = {
-  #     # allowedUDPPorts = [ 51821 ];
-  #     # allowedTCPPorts = [ 51821 ];
-  #   };
-  #   nat = {
-  #     enable = true;
-  #     externalInterface = "tailscale0";
-  #     externalIP = "100.89.178.137";
-  #     internalInterfaces = [ "virbr0" ];
-  #     internalIPs = [ "192.168.122.91/32" ];
-  #     forwardPorts = [
-  #       # { sourcePort = 41623; proto = "tcp"; destination = "192.168.122.91:22"; loopbackIPs = [ "192.168.122.1" ]; }
-  #     ];
-  #   };
-  #   interfaces."${config.link.eth}".wakeOnLan.enable = true;
-  #   hostName = "sn";
-  #   domain = "monitor-banfish.ts.net";
-  #   hostId = "007f0200";
-  #   extraHosts = ''
-  #     192.168.122.200 snvnarr
-  #   '';
-  # };
+  networking = {
+    #   firewall = {
+    #     # allowedUDPPorts = [ 51821 ];
+    #     # allowedTCPPorts = [ 51821 ];
+    #   };
+    #   nat = {
+    #     enable = true;
+    #     externalInterface = "tailscale0";
+    #     externalIP = "100.89.178.137";
+    #     internalInterfaces = [ "virbr0" ];
+    #     internalIPs = [ "192.168.122.91/32" ];
+    #     forwardPorts = [
+    #       # { sourcePort = 41623; proto = "tcp"; destination = "192.168.122.91:22"; loopbackIPs = [ "192.168.122.1" ]; }
+    #     ];
+    #   };
+    #   interfaces."${config.link.eth}".wakeOnLan.enable = true;
+    hostName = "sn";
+    domain = "monitor-banfish.ts.net";
+    hostId = "007f0200";
+    #   extraHosts = ''
+    #     192.168.122.200 snvnarr
+    #   '';
+  };
   # fileSystems."/rz/sftp/lenny/arr" = {
   #   device = "/rz/arr/";
   #   options = [ "bind" ];
@@ -172,7 +172,7 @@
   # nix run .\#lollypops -- sn:rebuild
   lollypops.deployment = {
     # local-evaluation = true;
-    # ssh = { host = "100.89.178.137"; user = "root"; };
+    ssh = { host = "sn"; user = "root"; };
     # sudo.enable = true;
   };
 

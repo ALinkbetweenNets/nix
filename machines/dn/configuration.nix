@@ -51,6 +51,35 @@
       };
     };
   };
+  # networking.resolvconf.useLocalResolver = true;
+  # networking.nameservers = [
+  #   # "127.0.0.1"
+  #   "192.168.150.1"
+  #   "::1"
+  #   "100.100.100.100"
+  #   "194.242.2.2"
+  #   "9.9.9.9"
+  #   "1.0.0.1"
+  # ];
+  # services.resolved = {
+  #   enable = true;
+  #   fallbackDns = [
+  #     # "127.0.0.1"
+  #     "192.168.150.1"
+  #     "194.242.2.2"
+  #     "100.100.100.100"192.168.150.1];
+  # };
+  networking.networkmanager.enable = true;
+  networking.nameservers = [
+    "192.168.150.1"
+    "194.242.2.2"
+  ];
+  services.postgresql = {
+    enable = true;
+    authentication = ''
+      local all all trust
+    '';
+  };
   # services.unifi = { enable = true; openFirewall = true; };
   networking = {
     hostName = "dn";
