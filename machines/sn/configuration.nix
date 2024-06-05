@@ -45,9 +45,12 @@
     service-ports-expose = true;
     services = {
       # photoprism.enable = true; # WIP
-      keycloak.enable = true; # WIP but running
+      keycloak.enable = true;
       #gitea.enable = true;
-      gitlab.enable = true;
+      gitlab = {
+        enable = true;
+        port = 443;
+      };
       # grafana.enable = true;
       # # seafile.enable = true;
       # # xandikos.enable = true; # WIP
