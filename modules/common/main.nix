@@ -32,22 +32,14 @@ in {
       glxinfo
       clinfo
       vulkan-tools
-      ondsel
+      # ondsel # Better FreeCAD
       sshfs
       rclone
-      looking-glass-client # KVM relay
-      (wine.override { wineBuild = "wine64"; })
-      wineWowPackages.staging
-      winetricks
-      #wine
-      #wineWowPackages.waylandFull
     ];
     hardware.hackrf.enable = true;
     programs = {
       noisetorch.enable = true;
       adb.enable = true;
-      steam.enable = true;
-      steam.gamescopeSession.enable = true;
       ausweisapp = { enable = true; openFirewall = true; };
     };
     virtualisation.waydroid.enable = true;
