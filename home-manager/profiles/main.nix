@@ -35,6 +35,10 @@ with lib; {
       #openscad
       # dupeguru # good file deduplication
       slack
+      timer
+      termdown
+      espeak
+      gh # github cli
       wcalc
       apg # generate passwords
       xkcdpass
@@ -131,6 +135,9 @@ with lib; {
       kdePackages.kontact
       kdePackages.neochat
       kdePackages.akonadi
+      kdePackages.kalarm
+      kdePackages.kteatime
+      ktimetracker
       libsForQt5.krunner-symbols
     ];
   };
