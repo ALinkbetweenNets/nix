@@ -30,10 +30,9 @@ in {
     services = {
       paperless = {
         enable = true;
-        #address=if cfg.expose-port then "0.0.0.0" else ""127.0.0.1";
+        address = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
         passwordFile = config.sops.secrets."paperless".path;
         #dataDir =
-        address = "paperless.alinkbetweennets.de";
         port = cfg.port;
         settings = {
           PAPERLESS_ADMIN_USER = "l";
