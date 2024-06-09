@@ -58,6 +58,7 @@
       # jellyfin.enable = true;
       # jellyseer.enable = true;
       minio.enable = true;
+      immich.enable = true;
       nextcloud = {
         enable = true;
         nginx-expose = true;
@@ -109,7 +110,8 @@
     };
     eth = "eth0@if146";
   };
-  services.clamav = { # Antivirus
+  services.clamav = {
+    # Antivirus
     daemon.enable = true;
     updater.enable = true;
   };
