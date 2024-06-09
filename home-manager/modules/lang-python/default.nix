@@ -8,18 +8,24 @@ in {
       #python311
       (python311.withPackages (ps:
         with ps; [
+          django
+          asgiref
+          sqlparse
+          typing-extensions
+          pillow
+          psycopg2
           pandas
-          seaborn
-          matplotlib
-          plotly
-          cufflinks
-          black
-          rpy2 # python <-> R
-          # scikit-learn-extra
-          scikit-learn
-          tensorflow # broken
-          scipy
-          numpy
+          # seaborn
+          # matplotlib
+          # plotly
+          # cufflinks
+          # black
+          # rpy2 # python <-> R
+          # # scikit-learn-extra
+          # scikit-learn
+          # tensorflow # broken
+          # scipy
+          # numpy
           # plotnine
           jupyter
           jupyter-client
