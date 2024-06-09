@@ -20,7 +20,7 @@
     # cpu-amd.enable = true;
     # nvidia.enable = true;
     ##
-    # docker.enable = true;
+    docker.enable = true;
     fail2ban.enable = true;
     ##
     domain = "alinkbetweennets.de";
