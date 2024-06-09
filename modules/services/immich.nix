@@ -37,7 +37,7 @@ in {
         ];
         serviceConfig = {
           WorkingDirectory = "${./immich}";
-          ExecStart = "${pkgs.docker}/bin/docker compose --env-file .env --env-file ${sops.secrets.immich.path} up --build";
+          ExecStart = "${pkgs.docker}/bin/docker compose --env-file .env --env-file ${config.sops.secrets.immich.path} up --build";
           ExecStop = "${pkgs.docker}/bin/docker compose down";
           Restart = "on-failure";
         };
