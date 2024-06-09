@@ -59,8 +59,8 @@
       # jellyseer.enable = true;
       minio.enable = true;
       nextcloud = {
-       enable = true;
-       nginx-expose = true;
+        enable = true;
+        nginx-expose = true;
       };
       # nfs.enable = true;
       # outline = {
@@ -108,6 +108,10 @@
       # keycloak.enable = true;
     };
     eth = "eth0@if146";
+  };
+  services.clamav = { # Antivirus
+    daemon.enable = true;
+    updater.enable = true;
   };
   nix.settings.auto-optimise-store = true;
   # services.cloudflare-dyndns = {
