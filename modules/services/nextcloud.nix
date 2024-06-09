@@ -31,15 +31,17 @@ in {
       nextcloud = {
         enable = true;
         hostName = "nextcloud.${config.link.domain}";
+        settings.trusted_proxies = [ "100.86.79.82" ];
         config = {
           adminuser = "l";
           adminpassFile = config.sops.secrets."nextcloud".path;
+          dbtype = "pgsql";
         };
         datadir = "/var/lib/nextcloud-data";
         #secretFile = "${config.link.secrets}/nextcloud-secrets.json";
         package = pkgs.nextcloud29;
         extraApps = with config.services.nextcloud.package.packages.apps; {
-          inherit bookmarks calendar contacts deck mail news notes onlyoffice polls tasks twofactor_webauthn;
+          inherit bookmarks calendar contacts deck mail notes onlyoffice polls tasks twofactor_webauthn;
         };
         #extraOptions = {
         #  mail_smtpmode = "sendmail";
