@@ -50,34 +50,35 @@ in {
       };
     };
     fonts = {
+      enableDefaultPackages = true;
       packages = with pkgs;
         [
-          font-awesome
-          fira
-          fira-code
-          fira-code-symbols
-          league-of-moveable-type
-          inter
-          source-sans-pro
-          source-serif-pro
-          noto-fonts-emoji
+          # font-awesome
+          jetbrains-mono
+          # fira
+          # fira-code
+          # fira-code-symbols
+          # league-of-moveable-type
+          # source-sans-pro
+          # source-serif-pro
+          noto-fonts-color-emoji
           noto-fonts-cjk-sans # japanese fonts
-          corefonts
-          recursive
-          iosevka-bin
-          font-awesome
-          line-awesome
+          # corefonts
+          # recursive
+          # iosevka-bin
+          # font-awesome
+          # line-awesome
           (nerdfonts.override { fonts = [ "FiraCode" ]; })
         ];
       fontDir.enable = true;
       fontconfig = {
         defaultFonts = {
           serif =
-            [ "Berkeley Mono" "Inconsolata Nerd Font Mono" ];
+            [ "FiraCode" ];
           sansSerif =
-            [ "Berkeley Mono" "Inconsolata Nerd Font Mono" ];
+            [ "FiraCode" ];
           monospace =
-            [ "Berkeley Mono" "Inconsolata Nerd Font Mono" ];
+            [ "FiraCode" ];
           emoji = [ "Noto Color Emoji" ];
         };
       };
