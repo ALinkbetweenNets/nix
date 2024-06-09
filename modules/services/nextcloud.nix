@@ -35,11 +35,12 @@ in {
           adminuser = "l";
           adminpassFile = config.sops.secrets."nextcloud".path;
         };
+        datadir = "/var/lib/nextcloud-data";
         #secretFile = "${config.link.secrets}/nextcloud-secrets.json";
         package = pkgs.nextcloud29;
-        # extraApps = with config.services.nextcloud.package.packages.apps; {
-        #   inherit bookmarks calendar contacts deck keeweb mail news notes onlyoffice polls tasks twofactor_webauthn;
-        # };
+        extraApps = with config.services.nextcloud.package.packages.apps; {
+          inherit bookmarks calendar contacts deck keeweb mail news notes onlyoffice polls tasks twofactor_webauthn;
+        };
         #extraOptions = {
         #  mail_smtpmode = "sendmail";
         #  mail_sendmailmode = "pipe";
