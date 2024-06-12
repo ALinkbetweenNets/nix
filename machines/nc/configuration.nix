@@ -151,6 +151,11 @@
     forceSSL = true;
     locations."/".proxyPass = "http://${config.link.serviceHost}:5055/";
   };
+  services.nginx.virtualHosts."kinky3d.de" = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/".proxyPass = "http://10.10.10.22:3214/";
+  };
   services.  nginx.virtualHosts."minio.s3.${config.link.domain}" = {
     enableACME = true;
     forceSSL = true;
