@@ -27,15 +27,19 @@
       restic-client = {
         enable = true;
         backup-paths-sn = [
-          "/home/l/.config"
+          # "/home/l/.config"
           "/home/l/.ssh"
           "/home/l/archive"
           "/home/l/doc"
+          "/home/l/uni"
           "/home/l/Documents"
+          "/home/l/Music"
+          "/home/l/Pictures"
           "/home/l/obsidian"
           "/home/l/plasma-vault"
           "/home/l/sec"
           "/home/l/w"
+          "/home/l/s"
         ];
         backup-paths-pi4b = [
           "/home/l/.config"
