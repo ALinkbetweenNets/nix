@@ -73,6 +73,7 @@
       # vaultwarden.enable = true;
       # matrix.enable = true;
       # restic-server = { enable = true; expose = false; };
+      restic-server.enable = true;
       # coturn.enable = true;
       # dns.enable = true;
       # restic-client = {
