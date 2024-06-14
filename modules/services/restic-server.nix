@@ -35,7 +35,7 @@ in {
         listenAddress = if cfg.expose-port then "0.0.0.0:${cfg.port}" else "127.0.0.1:${cfg.port}";
         appendOnly = true;
       };
-      nginx.virtualHosts."restic.${config.link.domain}" = cfg.nginx {
+      nginx.virtualHosts."restic.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
