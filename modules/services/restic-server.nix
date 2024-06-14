@@ -32,7 +32,7 @@ in {
         # dataDir = "${config.link.storage}/restic";
         prometheus = true;
         privateRepos = true;
-        listenAddress = if cfg.expose-port then "0.0.0.0:${cfg.port}" else "127.0.0.1:${cfg.port}";
+        listenAddress = if cfg.expose-port then "0.0.0.0:${toString cfg.port}" else "127.0.0.1:${toString cfg.port}";
         appendOnly = true;
       };
       nginx.virtualHosts."restic.${config.link.domain}" = mkIf cfg.nginx {
