@@ -47,10 +47,7 @@
       # photoprism.enable = true; # WIP
       keycloak.enable = true;
       #gitea.enable = true;
-      gitlab = {
-        enable = true;
-        port = 443;
-      };
+      gitlab.enable = true;
       # grafana.enable = true;
       # # seafile.enable = true;
       # # xandikos.enable = true; # WIP
@@ -70,7 +67,7 @@
       #   oidClientId = "2085b101-ee5c-42c1-acac-2f9265767d1f";
       # };
       paperless.enable = true;
-      # vaultwarden.enable = true;
+      vaultwarden.enable = true;
       # matrix.enable = true;
       # restic-server = { enable = true; expose = false; };
       restic-server.enable = true;

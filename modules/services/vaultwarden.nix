@@ -26,16 +26,19 @@ in {
     };
   };
   config = mkIf cfg.enable {
+    sops.secrets = {
+      "vaultwarden" = { owner = "gitlab"; group = "gitlab"; };
+    };
     services = {
       vaultwarden = {
         enable = true;
-        backupDir = "${config.link.storage}/vaultwarden";
-        environmentFile = "${config.link.secrets}/vaultwarden.env";
-        config = {
-          domain = "https://vaultwarden.${config.link.domain}";
-          ROCKET_ADDRESS = "0.0.0.0";
+        backupDir = "/var/lib/backup/vaultwarden/";
+        environmentFile= config.sops.secrets."vaultwarden".path;
+          config = {
+          DOMAIN = "https://vaultwarden.${config.link.domain}";
+          ROCKET_ADDRESS = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
           ROCKET_PORT = cfg.port;
-          ROCKET_LOG = "critical";
+          ROCKET_LOG = "warning";
           # SMTP_HOST = "127.0.0.1";
           # SMTP_PORT = 25;
           # SMTP_SSL = false;
