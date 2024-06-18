@@ -6,10 +6,10 @@ in {
   config = mkIf cfg.enable {
     services.udev.packages = with pkgs; [
       vial
-      via
+      # via
     ];
     environment.systemPackages = with pkgs; [
-      via
+      # via
       vial
       qmk
     ];
