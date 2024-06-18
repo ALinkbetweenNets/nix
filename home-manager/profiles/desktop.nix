@@ -60,7 +60,7 @@ with lib; {
         #helvum # Patchbay
         pavucontrol
         ## Multimedia
-        # vlc
+        vlc
         cobang # qr codes
         ## Encryption
         #veracrypt
