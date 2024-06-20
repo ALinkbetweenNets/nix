@@ -35,7 +35,6 @@ in {
         config = {
           adminuser = "l";
           adminpassFile = config.sops.secrets."nextcloud".path;
-          dbtype = "pgsql";
         };
         datadir = "/var/lib/nextcloud-data";
         #secretFile = "${config.link.secrets}/nextcloud-secrets.json";
