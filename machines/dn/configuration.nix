@@ -15,7 +15,7 @@
     nvidia.enable = true;
     secrets = "/home/l/.keys";
     wireguard.enable = true;
-    wg-deep.enable = true;
+    # wg-deep.enable = true;
     # wg-link.enable = true;
     xserver.enable = true;
     eth = "enp111s0";
