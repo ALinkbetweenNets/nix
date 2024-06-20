@@ -43,6 +43,7 @@
     # };
     # zola.enable = true;
     service-ports-expose = true;
+    users.lmh01.enable = true;
     services = {
       # photoprism.enable = true; # WIP
       keycloak.enable = true;
@@ -142,10 +143,10 @@
     #     192.168.122.200 snvnarr
     #   '';
   };
-  # fileSystems."/rz/sftp/lenny/arr" = {
-  #   device = "/rz/arr/";
-  #   options = [ "bind" ];
-  # };
+  fileSystems."/home/lmh01/jellyfin-data" = {
+    device = "/var/lib/jellyfin-data";
+    options = [ "bind" ];
+  };
   # fileSystems."/rz/sftp/lmh01/arr" = {
   #   device = "/rz/arr/";
   #   options = [ "bind" ];

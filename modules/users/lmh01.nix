@@ -5,8 +5,8 @@ in {
   options.link.users.lmh01 = { enable = mkEnableOption "activate user lmh01"; };
   config = mkIf cfg.enable {
     users.users.lmh01 = {
+      extraGroups = [ "jellyfin" ];
       isNormalUser = true;
-      home = "/rz/sftp/lmh01/home";
       # extraGroups = [ "wheel" "adbusers" "audio" "plugdev" "docker" ]
       #   ++ lib.optionals config.networking.networkmanager.enable
       #   [ "networkmanager" ];
@@ -22,7 +22,7 @@ in {
     # Note on sftp chrooting: The chroot folder must be owned by root and set to 755. Inside that folder create one or more folders owned by the user
     services.openssh.extraConfig = ''
       Match User lmh01
-        ChrootDirectory /rz/sftp/%u
+        ChrootDirectory %u
         ForceCommand internal-sftp
         AllowTcpForwarding no
     '';
