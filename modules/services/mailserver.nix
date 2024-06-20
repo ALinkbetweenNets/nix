@@ -55,13 +55,13 @@ in {
           hashedPasswordFile = "/a/file/containing/a/hashed/password";
           aliases = [ "postmaster@example.com" ];
         };
-        };
+      };
 
-        # Use Let's Encrypt certificates. Note that this needs to set up a stripped
-        # down nginx and opens port 80.
-        certificateScheme = "acme-nginx";
-        };
-        networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
-        systemd.services.gitlab-backup.environment.BACKUP = "dump";
-        };
-        }
+      # Use Let's Encrypt certificates. Note that this needs to set up a stripped
+      # down nginx and opens port 80.
+      certificateScheme = "acme-nginx";
+    };
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    systemd.services.gitlab-backup.environment.BACKUP = "dump";
+  };
+}

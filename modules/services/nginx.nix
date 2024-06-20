@@ -65,7 +65,7 @@ in {
         extraDomainNames = [ "*.${config.link.domain}" ];
         dnsProvider = mkIf config.link.dyndns.enable "cloudflare";
         environmentFile = mkIf config.link.dyndns.enable config.sops.secrets."cloudflare-api".path;
-        webroot=null;
+        webroot = null;
       };
     };
   };
