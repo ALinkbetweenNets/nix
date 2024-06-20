@@ -50,8 +50,8 @@ in
         open =
           true; # with the open driver the screen will keep black after waking the pc from suspend
         modesetting.enable = true;
-        powerManagement.enable = false;
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        # powerManagement.enable = false;
+        # package = config.boot.kernelPackages.nvidiaPackages.stable;
         nvidiaSettings = true;
         #dynamicBoost.enable=true;
         #prime.offload={
