@@ -18,7 +18,7 @@ in {
     };
     hardware.bluetooth.enable = true;
     services = {
-      xserver.libinput.enable = true;
+      libinput.enable = true;
       auto-cpufreq = {
         enable = true; # TLP replacement # caps xn cpu clock to 1.3 Ghz
         settings = {
