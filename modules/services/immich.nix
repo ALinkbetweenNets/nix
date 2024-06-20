@@ -43,6 +43,6 @@ in {
         };
       };
       networking.firewall.allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
-      sops.secrets.immich = { };
+      sops.secrets.immich = { path = "/run/keys/immich.env"; };
     };
 }
