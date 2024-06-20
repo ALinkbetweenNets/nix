@@ -33,8 +33,8 @@ in {
       vaultwarden = {
         enable = true;
         backupDir = "/var/lib/backup/vaultwarden/";
-        environmentFile= config.sops.secrets."vaultwarden".path;
-          config = {
+        environmentFile = config.sops.secrets."vaultwarden".path;
+        config = {
           DOMAIN = "https://vaultwarden.${config.link.domain}";
           ROCKET_ADDRESS = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
           ROCKET_PORT = cfg.port;

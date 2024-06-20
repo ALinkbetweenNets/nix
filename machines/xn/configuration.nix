@@ -17,7 +17,7 @@
     fs.ntfs.enable = true;
     fs.luks.enable = true;
     laptop.enable = true;
-    common.enable=true;
+    common.enable = true;
     main.enable = true;
     cpu-intel.enable = true;
     systemd-boot.enable = true;
