@@ -11,6 +11,18 @@ in {
         21027 # syncthing
       ];
     };
+    # systemd.tmpfiles.settings = {
+    #   "syncthing" = {
+    #     "/var/lib/syncthing" = {
+    #       d = {
+    #         user = "syncthing";
+    #         group = "syncthing";
+    #         mode = "750";
+    #       };
+    #     };
+    #   };
+    # };
+    systemd.tmpfiles.rules = [ "d /var/lib/syncthing 750 syncthing syncthing -" ];
     environment.systemPackages = with pkgs; [ syncthing ];
     services.syncthing = {
       enable = true;
