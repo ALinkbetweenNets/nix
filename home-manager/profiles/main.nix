@@ -9,6 +9,7 @@ with lib; {
       latex.enable = true;
       gaming.enable = true;
       python.enable = true;
+      golang.enable = true;
       # ansible.enable = true;
       rust.enable = true;
       # beancount.enable = true;
