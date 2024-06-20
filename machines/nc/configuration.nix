@@ -62,6 +62,7 @@
 
   services.nginx.virtualHosts."${config.link.domain}" = {
     enableACME = true;
+    # useACMEHost = config.link.domain;
     forceSSL = true;
     default = true;
     locations."/" = {
@@ -70,6 +71,7 @@
   };
   # services.nginx.virtualHosts."grist.${config.link.domain}" = {
   #   enableACME = true;
+  # useACMEHost = config.link.domain;
   #   forceSSL = true;
   #   locations."/" = {
   #     proxyPass = "http://127.0.0.1:8484";
@@ -89,28 +91,32 @@
   #   # '';
   # };
   services.nginx.virtualHosts."matrix.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.matrix.port}";
     };
   };
   services.nginx.virtualHosts."gitea.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://${config.link.serviceHost}:${toString config.services.gitea.settings.server.HTTP_PORT}";
     };
   };
   services.nginx.virtualHosts."keycloak.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.keycloak.port}";
     };
   };
   services.nginx.virtualHosts."grafana.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.grafana.port}/";
@@ -118,7 +124,8 @@
     };
   };
   services.nginx.virtualHosts."gitlab.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://${config.link.serviceHost}:80/";
@@ -126,48 +133,57 @@
     };
   };
   services.nginx.virtualHosts."hedgedoc.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     locations."/".proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.hedgedoc.port}";
   };
   services.nginx.virtualHosts."jellyfin.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     listen = [{ port = 443; addr = "0.0.0.0"; ssl = true; } { port = 8096; addr = "0.0.0.0"; ssl = true; } { port = 8920; addr = "0.0.0.0"; ssl = true; }];
     locations."/".proxyPass = "http://${config.link.serviceHost}:8096/";
   };
   services.nginx.virtualHosts."jellyfin1.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     locations."/".proxyPass = "http://${config.link.serviceHost}:8096/";
   };
   services.nginx.virtualHosts."jellyfin2.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     locations."/".proxyPass = "http://${config.link.serviceHost}:8920/";
   };
   services.nginx.virtualHosts."jellyseer.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     locations."/".proxyPass = "http://${config.link.serviceHost}:5055/";
   };
   services.nginx.virtualHosts."restic.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     locations."/".proxyPass = "http://${config.link.serviceHost}:2500/";
   };
   services.nginx.virtualHosts."immich.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     locations."/".proxyPass = "http://10.10.10.89:2283/";
   };
   services.nginx.virtualHosts."kinky3d.de" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     locations."/".proxyPass = "http://10.10.10.22:3214/";
   };
   services.nginx.virtualHosts."minio.s3.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://${config.link.serviceHost}:9001";
@@ -195,7 +211,8 @@
     '';
   };
   services.nginx.virtualHosts."s3.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://${config.link.serviceHost}:9000";
@@ -223,7 +240,8 @@
     '';
   };
   services.nginx.virtualHosts."diagrams.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://${config.link.serviceHost}:8765";
@@ -235,7 +253,8 @@
     # '';
   };
   services.nginx.virtualHosts."nextcloud.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://${config.link.serviceHost}:80";
@@ -262,7 +281,8 @@
     '';
   };
   services.nginx.virtualHosts."outline.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.outline.port}";
@@ -270,7 +290,8 @@
     };
   };
   services.nginx.virtualHosts."vaultwarden.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.vaultwarden.port}";
@@ -278,7 +299,8 @@
     };
   };
   services.nginx.virtualHosts."photoprism.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     http2 = true;
     locations."/" = {
@@ -294,6 +316,7 @@
   };
   # services.nginx.virtualHosts."paperless.${config.link.domain}" = {
   #   enableACME = true;
+  # useACMEHost = config.link.domain;
   #   forceSSL = true;
   #   locations."/" = {
   #     proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.paperless.port}";
@@ -303,7 +326,8 @@
 
   ## CTF
   services.nginx.virtualHosts."slides.netintro.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     # default = true;
     locations."/" = {
@@ -311,7 +335,8 @@
     };
   };
   services.nginx.virtualHosts."vpnconfig.netintro.${config.link.domain}" = {
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = config.link.domain;
     forceSSL = true;
     # default = true;
     locations."/" = {
@@ -322,6 +347,7 @@
 
   # "speedtest.${config.link.domain}" = {
   #   enableACME = true;
+  # useACMEHost = config.link.domain;
   #   forceSSL = true;
   #   locations."/" = {
   #     proxyPass = "http://${config.link.serviceHost}:8766";
