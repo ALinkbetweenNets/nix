@@ -106,6 +106,14 @@
       proxyPass = "http://${config.link.serviceHost}:${toString config.services.gitea.settings.server.HTTP_PORT}";
     };
   };
+  services.nginx.virtualHosts."asd-2024.${config.link.domain}" = {
+    # enableACME = true;
+    useACMEHost = config.link.domain;
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://131.220.186.200:80";
+    };
+  };
   services.nginx.virtualHosts."keycloak.${config.link.domain}" = {
     # enableACME = true;
     useACMEHost = config.link.domain;
