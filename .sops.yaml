@@ -5,7 +5,7 @@ keys:
   - &sn_l age1jvcze5cetax682pvu7rzeh9l3058rvl9pnn5fm5h5gsqvann5sdqjz7dzj
   - &snvnarr_l age1mwhj6e0tjarsrh2trsdgtd7d34szqcakylqkw2dve2ps72yes9zqqq3ynu
   - &vn_l age1hqwmpc6eawher5rju0g0m0e507pnwn38pc89ml22znzc98gv05sshkny9z
-  - &xn_l age1lummhsag5zpwn6yws4m8nvz56g2gwyrpdf4dpqvehjmp7rt4r9dszqfuru
+  - &xn_l age1nahzdssc0jnezeuj4u02gc56kh6sdrte25qgkflrf5zc5n24x3js0yuldc
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:

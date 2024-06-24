@@ -109,7 +109,7 @@
     };
     eth = "eth0@if146";
   };
-  sevices.onedrive.enable = true;
+  services.onedrive.enable = true;
   services.clamav = {
     # Antivirus
     daemon.enable = true;
