@@ -24,11 +24,13 @@
     docker.enable = true;
     services = {
       # matrix.enable = true;
+      # immich.enable = true;
       restic-client = {
         enable = true;
         backup-paths-sn = [
           # "/home/l/.config"
           "/home/l/.ssh"
+          "/home/l/.data-mirror"
           "/home/l/archive"
           "/home/l/doc"
           "/home/l/uni"
@@ -36,22 +38,22 @@
           "/home/l/Music"
           "/home/l/Pictures"
           "/home/l/obsidian"
-          "/home/l/plasma-vault"
+          # "/home/l/plasma-vault"
           "/home/l/sec"
           "/home/l/w"
           "/home/l/s"
         ];
-        backup-paths-pi4b = [
-          "/home/l/.config"
-          "/home/l/.ssh"
-          "/home/l/archive"
-          "/home/l/doc"
-          "/home/l/Documents"
-          "/home/l/obsidian"
-          "/home/l/plasma-vault"
-          "/home/l/sec"
-          "/home/l/w"
-        ];
+        # backup-paths-pi4b = [
+        #   "/home/l/.config"
+        #   "/home/l/.ssh"
+        #   "/home/l/archive"
+        #   "/home/l/doc"
+        #   "/home/l/Documents"
+        #   "/home/l/obsidian"
+        #   "/home/l/plasma-vault"
+        #   "/home/l/sec"
+        #   "/home/l/w"
+        # ];
       };
     };
   };
@@ -78,12 +80,12 @@
     "192.168.150.1"
     "194.242.2.2"
   ];
-  services.postgresql = {
-    enable = true;
-    authentication = ''
-      local all all trust
-    '';
-  };
+  # services.postgresql = {
+  #   enable = true;
+  #   authentication = ''
+  #     local all all trust
+  #   '';
+  # };
   services.unifi = { enable = true; openFirewall = true; unifiPackage = pkgs.unifi; };
   networking = {
     hostName = "dn";
