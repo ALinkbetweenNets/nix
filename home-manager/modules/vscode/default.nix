@@ -88,7 +88,7 @@ in {
         "editor.suggest.preview" = true;
         "editor.tabCompletion" = "on";
         "editor.tabSize" = 2;
-        "editor.wordWrap" = "bounded";
+        "editor.wordWrap" = "on";
         "editor.wordWrapColumn" = 160;
         "explorer.incrementalNaming" = "smart";
         "files.autoGuessEncoding" = true;
