@@ -86,7 +86,7 @@ with lib; {
       signal-desktop
       telegram-desktop
       discord
-      #qtox
+      qtox
       element-desktop
       openvpn
       ## keyboard
