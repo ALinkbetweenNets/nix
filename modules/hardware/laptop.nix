@@ -19,6 +19,7 @@ in {
     hardware.bluetooth.enable = true;
     services = {
       libinput.enable = true;
+      power-profiles-daemon.enable=lib.mkForce false;
       auto-cpufreq = {
         enable = true; # TLP replacement # caps xn cpu clock to 1.3 Ghz
         settings = {

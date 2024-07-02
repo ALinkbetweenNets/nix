@@ -9,6 +9,7 @@ in
   config = mkIf cfg.enable {
     link.hardware.enable = true;
     link.desktop.enable = true;
+    services.power-profiles-daemon.enable = lib.mkForce false;
     services.auto-cpufreq = {
       enable = true; # TLP replacement
       settings = {
