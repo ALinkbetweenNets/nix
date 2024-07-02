@@ -39,7 +39,7 @@ in {
 
     hardware = {
       # fixes'EGL_EXT_platform_base not supported'
-      opengl.enable = true;
+      graphics.enable = true;
     };
   };
 }
