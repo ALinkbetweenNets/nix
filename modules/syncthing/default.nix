@@ -4,6 +4,7 @@ let cfg = config.link.syncthing;
 in {
   options.link.syncthing.enable = mkEnableOption "activate syncthing";
   config = mkIf cfg.enable {
+  systemd.tmpfiles.rules=["d /var/lib/syncthing 1700 l wheel -"];
     networking.firewall = {
       allowedTCPPorts = [ 8384 22000 ];
       allowedUDPPorts = [
@@ -28,7 +29,7 @@ in {
         overrideFolders = true;
         devices = {
           "dn".id = "2UZCLBR-LR5DMFA-HWXNELR-3GF6BVU-RZEBCWZ-P72JF4N-ZV7H6MF-SEQX4QK";
-          "xn".id = "MJHV5SK-OPIGX3Z-HWVAJE7-C74DVQN-YP4ZCGQ-CLHEFNF-RVPGD4J-5PJSGAK";
+          "xn".id = "RTBEC4G-MYEMYIB-E5LLFXW-XO5WISG-G7NH5IM-ZMXWSOQ-ENW3FPA-SB2G4QI";
           "s22".id = "DOQGIQ6-WIAAZBV-EUQ6HWX-D6G2XYK-SAE6AGX-X3D4OLX-PGKELKL-RR6PSAE";
           "in".id = "IYOMGJ7-NZADKG2-L2PMGIH-VSTMTJ4-KLA7VF4-3CUONC2-BQMMWTW-I6KHDAY";
           "sn".id = "SSSFCB5-W4CIMVK-L33WJ4F-VBH4FZW-SZIRMMN-IGHQ7MA-BBTFKYM-V2NSDQS";
