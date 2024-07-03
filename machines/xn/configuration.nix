@@ -7,7 +7,7 @@
     flake-self.inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13-yoga-3th-gen
   ];
   hardware.enableRedistributableFirmware = true;
-  home-manager.users.l = flake-self.homeConfigurations.laptop;
+  home-manager.users.l = flake-self.homeConfigurations.convertible;
   boot.initrd.systemd.enable = true;
   systemd.extraConfig = "DefaultLimitNOFILE=2048";
   link = {
@@ -16,7 +16,7 @@
     #printing.enable = true;
     fs.ntfs.enable = true;
     fs.luks.enable = true;
-    laptop.enable = true;
+    convertible.enable = true;
     common.enable = true;
     main.enable = true;
     cpu-intel.enable = true;
