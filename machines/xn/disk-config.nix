@@ -40,7 +40,7 @@
                   type = "btrfs";
                   extraArgs = [ "-f" ];
                   subvolumes = {
-                    "/root" = {
+                    "/rootfs" = {
                       mountpoint = "/";
                       mountOptions = [ "compress=zstd" "noatime" ];
                     };
