@@ -17,7 +17,7 @@ in {
       nvtopPackages.intel
       nixgl
     ];
-    hardware.opengl.extraPackages = with pkgs; [
+    hardware.graphics.extraPackages = with pkgs; [
       intel-media-driver
       libvdpau-va-gl
       vaapiIntel
@@ -25,7 +25,7 @@ in {
       intel-compute-runtime
       intel-ocl
     ];
-    hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux;
+    hardware.graphics.extraPackages32 = with pkgs.pkgsi686Linux;
       [
         intel-media-driver
         # libvdpau-va-gl
