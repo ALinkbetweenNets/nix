@@ -5,18 +5,18 @@ in {
   options.link.fs.luks.enable = mkEnableOption "activate luks";
   config = mkIf cfg.enable
     {
-      # systemd.services.generate-initrd-ssh-key = {
-      #   wantedBy = [ "multi-user.target" ];
-      #   serviceConfig.Type = "oneshot";
-      #   path = [ pkgs.nix ];
-      #   script = ''
-      #     [[ -f /etc/nix/private-key ]] && exit
-      #     mkdir -p /etc/secrets/initrd/ && ssh-keygen -t ed25519 -a 500 -f /etc/secrets/initrd/ed25519.key
-      #   '';
-      # };
-      # systemd.tmpfiles.rules = [
-      #   "d /etc/secrets/initrd 0600 root root"
-      # ];
+      systemd.services.generate-initrd-ssh-key = {
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig.Type = "oneshot";
+        path = [ pkgs.nix ];
+        script = ''
+          [[ -f /etc/nix/private-key ]] && exit
+          mkdir -p /etc/secrets/initrd/ && ssh-keygen -t ed25519 -a 500 -f /etc/secrets/initrd/ed25519.key
+        '';
+      };
+      systemd.tmpfiles.rules = [
+        "d /etc/secrets/initrd 0600 root root"
+      ];
       services.openssh.hostKeys = [{
         path = "/etc/secrets/initrd/ed25519.key";
         rounds = 200;
