@@ -39,7 +39,6 @@ in {
         };
         settings = {
           hostname = "keycloak.${config.link.domain}";
-          hostname-strict-backchannel = true;
           http-host = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
           http-port = cfg.port;
           http-relative-path = "/";
