@@ -8,6 +8,11 @@ let cfg = config.link.plasma; in
     programs.plasma = {
       enable = true;
       workspace.lookAndFeel = "org.kde.breezedark.desktop";
+      hotkeys.commands."launch-konsole" = {
+        name = "Launch Konsole";
+        key = "Meta+Alt+K";
+        command = "konsole";
+      };
       panels = [{
         location = "bottom";
         widgets = [
@@ -16,6 +21,7 @@ let cfg = config.link.plasma; in
           # icon to "nix-snowflake-white" use the below configuration. This will
           # add the "icon" key to the "General" group for the widget in
           # ~/.config/plasma-org.kde.plasma.desktop-appletsrc.
+
           {
             name = "org.kde.plasma.kickoff";
             config = {
@@ -29,8 +35,12 @@ let cfg = config.link.plasma; in
             name = "org.kde.plasma.icontasks";
             config = {
               General.launchers = [
-                "applications:org.kde.dolphin.desktop"
                 "applications:org.kde.konsole.desktop"
+                "applications:org.kde.dolphin.desktop"
+                "applications:firefox.desktop"
+                "applications:obsidian.desktop"
+                "applications:signal-desktop.desktop"
+                "applications:org.telegram.desktop.desktop"
               ];
             };
           }
@@ -46,22 +56,19 @@ let cfg = config.link.plasma; in
           # first day of the week to sunday and another adding a systray with
           # some modifications in which entries to show.
           {
-            digitalClock = {
-              calendar.firstDayOfWeek = "sunday";
-              time.format = "12h";
-            };
+            digitalClock = { };
           }
+          "org.kde.plasma.appmenu"
           {
             systemTray.items = {
               # We explicitly show bluetooth and battery
               shown = [
                 "org.kde.plasma.battery"
                 "org.kde.plasma.bluetooth"
-              ];
-              # And explicitly hide networkmanagement and volume
-              hidden = [
                 "org.kde.plasma.networkmanagement"
                 "org.kde.plasma.volume"
+              ];
+              hidden = [
               ];
             };
           }
