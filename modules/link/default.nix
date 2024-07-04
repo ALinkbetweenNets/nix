@@ -21,6 +21,16 @@
       default = "eth0";
       description = "Main ethernet interface";
     };
+    tailscale-address = mkOption {
+      type = types.str;
+      default = "";
+      description = "Tailscale address of host";
+    };
+    sops = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Wether the host has sops access";
+    };
     service-ip = mkOption {
       type = types.str;
       default = "0.0.0.0";

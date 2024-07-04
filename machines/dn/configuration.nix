@@ -6,6 +6,8 @@
   ];
   home-manager.users.l = flake-self.homeConfigurations.tower;
   link = {
+    sops = true;
+    tailscale-address = "100.119.237.77";
     gaming.enable = true;
     systemd-boot.enable = true;
     tower.enable = true;
