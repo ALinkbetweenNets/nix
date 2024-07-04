@@ -26,19 +26,22 @@ in {
     };
   };
   config = mkIf cfg.enable {
+    sops.secrets."nextcloud" = { owner = "nextcloud"; group = "nextcloud"; };
     services = {
       nextcloud = {
         enable = true;
         hostName = "nextcloud.${config.link.domain}";
+        settings.trusted_proxies = [ "100.86.79.82" ];
         config = {
           adminuser = "l";
-          adminpassFile = "${config.link.secrets}/nextcloud";
+          adminpassFile = config.sops.secrets."nextcloud".path;
         };
+        datadir = "/var/lib/nextcloud-data";
         #secretFile = "${config.link.secrets}/nextcloud-secrets.json";
-        package = pkgs.nextcloud28;
-        # extraApps = with config.services.nextcloud.package.packages.apps; {
-        #   inherit bookmarks calendar contacts deck keeweb mail news notes onlyoffice polls tasks twofactor_webauthn;
-        # };
+        package = pkgs.nextcloud29;
+        extraApps = with config.services.nextcloud.package.packages.apps; {
+          inherit bookmarks calendar contacts deck mail notes onlyoffice polls tasks twofactor_webauthn;
+        };
         #extraOptions = {
         #  mail_smtpmode = "sendmail";
         #  mail_sendmailmode = "pipe";
@@ -49,7 +52,7 @@ in {
         https = true;
         configureRedis = true;
         database.createLocally = true;
-        home = "${config.link.storage}/nextcloud";
+        #home = "${config.link.storage}/nextcloud";
       };
       nginx =
         if (!cfg.nginx) then {

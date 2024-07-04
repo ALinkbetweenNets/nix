@@ -48,6 +48,12 @@
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+
+    };
     ondsel = {
       url = "github:pinpox/ondsel-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -135,6 +141,13 @@
               lollypops.nixosModules.lollypops
               disko.nixosModules.disko
               sops-nix.nixosModules.sops
+              # ({ config, ... }: {
+              #   # shut up state version warning
+              #   system.stateVersion = config.system.nixos.version;
+              #   # Adjust this to your liking.
+              #   # WARNING: if you set a too low value the image might be not big enough to contain the nixos installation
+              #   disko.devices.disk.vdb.imageSize = "10G";
+              # })
             ];
           };
         })
@@ -184,6 +197,7 @@
           # import home manager modules from this flake
           imports = [
             inputs.nixvim.homeManagerModules.nixvim
+            inputs.plasma-manager.homeManagerModules.plasma-manager
             # inputs.vscode-server.nixosModules.home
           ];
           # add overlays from this flake

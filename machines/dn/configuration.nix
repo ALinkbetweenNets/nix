@@ -6,6 +6,9 @@
   ];
   home-manager.users.l = flake-self.homeConfigurations.tower;
   link = {
+    sops = true;
+    tailscale-address = "100.119.237.77";
+    gaming.enable = true;
     systemd-boot.enable = true;
     tower.enable = true;
     main.enable = true;
@@ -14,42 +17,78 @@
     nvidia.enable = true;
     secrets = "/home/l/.keys";
     wireguard.enable = true;
-    wg-deep.enable = true;
+    # wg-deep.enable = true;
     # wg-link.enable = true;
+    xserver.enable = true;
     eth = "enp111s0";
     domain = "dn.local"; # testing domain
     # home-assistant.enable = true;
     docker.enable = true;
     services = {
       # matrix.enable = true;
+      # immich.enable = true;
       restic-client = {
         enable = true;
         backup-paths-sn = [
-          "/home/l/.config"
+          # "/home/l/.config"
           "/home/l/.ssh"
+          "/home/l/.data-mirror"
           "/home/l/archive"
           "/home/l/doc"
+          "/home/l/uni"
           "/home/l/Documents"
+          "/home/l/Music"
+          "/home/l/Pictures"
           "/home/l/obsidian"
-          "/home/l/plasma-vault"
+          # "/home/l/plasma-vault"
           "/home/l/sec"
           "/home/l/w"
+          "/home/l/s"
         ];
-        backup-paths-pi4b = [
-          "/home/l/.config"
-          "/home/l/.ssh"
-          "/home/l/archive"
-          "/home/l/doc"
-          "/home/l/Documents"
-          "/home/l/obsidian"
-          "/home/l/plasma-vault"
-          "/home/l/sec"
-          "/home/l/w"
-        ];
+        # backup-paths-pi4b = [
+        #   "/home/l/.config"
+        #   "/home/l/.ssh"
+        #   "/home/l/archive"
+        #   "/home/l/doc"
+        #   "/home/l/Documents"
+        #   "/home/l/obsidian"
+        #   "/home/l/plasma-vault"
+        #   "/home/l/sec"
+        #   "/home/l/w"
+        # ];
       };
     };
   };
-  # services.unifi = { enable = true; openFirewall = true; };
+  # networking.resolvconf.useLocalResolver = true;
+  # networking.nameservers = [
+  #   # "127.0.0.1"
+  #   "192.168.150.1"
+  #   "::1"
+  #   "100.100.100.100"
+  #   "194.242.2.2"
+  #   "9.9.9.9"
+  #   "1.0.0.1"
+  # ];
+  # services.resolved = {
+  #   enable = true;
+  #   fallbackDns = [
+  #     # "127.0.0.1"
+  #     "192.168.150.1"
+  #     "194.242.2.2"
+  #     "100.100.100.100"192.168.150.1];
+  # };
+  networking.networkmanager.enable = true;
+  networking.nameservers = [
+    "192.168.150.1"
+    "194.242.2.2"
+  ];
+  # services.postgresql = {
+  #   enable = true;
+  #   authentication = ''
+  #     local all all trust
+  #   '';
+  # };
+  services.unifi = { enable = true; openFirewall = true; unifiPackage = pkgs.unifi; };
   networking = {
     hostName = "dn";
     domain = "monitor-banfish.ts.net";

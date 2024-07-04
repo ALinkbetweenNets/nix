@@ -1,17 +1,15 @@
 keys:
-  - &deepserver_l age1qfsdurt20f8qf9szyddlnmjyd225xamxpr0pa0skfww3l25uk3cqf9f38a
   - &dn_l age14f0kyrhk3f3n59l2n6924ahnj55tndzu3hjhu54v5902tj9y0p4sv8pm9c
   - &nc_l age1vqzx7w0xlanxqmgeuxdapcmpzm65p7yq6dwp4zm2sx8535vpzf9qht3ghr
   - &pi4b_l age1wvwyqc05jhwcx7wr39xyc70encpmgp9pfwc6nz8kgasm0law6ukq9mf6f7
-  - &sn_l age1w68dvrwt00ydy29rutgqrxpxlnw9cs4275ahdlwdukdcn6gunutqs8xfh6
+  - &sn_l age1jvcze5cetax682pvu7rzeh9l3058rvl9pnn5fm5h5gsqvann5sdqjz7dzj
   - &snvnarr_l age1mwhj6e0tjarsrh2trsdgtd7d34szqcakylqkw2dve2ps72yes9zqqq3ynu
   - &vn_l age1hqwmpc6eawher5rju0g0m0e507pnwn38pc89ml22znzc98gv05sshkny9z
-  - &xn_l age1j6jjvtpyurh3ph3f5wpqrruyz5ccwzhy9fk8hsyn2kg8vagw7plq9lg4fa
+  - &xn_l age1zfrv9esrwa3dlx2yamfxz33w2dn4rkc3m54x0xje2nve4fhrtfuqlqv3f4
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
     - age:
-      - *deepserver_l
       - *dn_l
       - *nc_l
       - *pi4b_l

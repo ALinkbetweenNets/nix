@@ -9,7 +9,6 @@ in {
         prismlauncher # minecraft launcher
         jdk17
         glibc # required for minecraft
-        # steam
         # protonup-qt
         # protontricks
         # winetricks

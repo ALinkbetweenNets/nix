@@ -20,10 +20,36 @@ with lib; {
         extraConfig = "--update";
         settings = { embed-thumbnail = true; };
       };
+      mpv = {
+        enable = true;
+        scripts = with pkgs.mpvScripts; [ sponsorblock thumbfast mpv-webm uosc ];
+        config = {
+          profile = "gpu-hq";
+          force-window = true;
+          ytdl-format = "bestvideo+bestaudio";
+          cache-default = 4000000;
+        };
+        defaultProfiles = [
+          "gpu-hq"
+        ];
+        bindings = {
+          WHEEL_UP = "seek 10";
+          WHEEL_DOWN = "seek -10";
+          "Alt+0" = "set window-scale 0.5";
+        };
+        extraInput = ''
+          esc         quit                        #! Quit
+          #           script-binding uosc/video   #! Video tracks
+          # additional comments
+        '';
+      };
       #terminator.enable = true; # I prefer konsole
     };
     manual.html.enable = true;
-    link = { code.enable = true; };
+    link = {
+      code.enable = true;
+      plasma.enable = true;
+    };
     # Packages to install on all desktop systems
     home.packages = with pkgs;
       [
@@ -34,14 +60,13 @@ with lib; {
         hunspell
         hunspellDicts.de_DE
         ## Audio
-        helvum # Patchbay
+        #helvum # Patchbay
         pavucontrol
         ## Multimedia
         vlc
-        mpv
         cobang # qr codes
         ## Encryption
-        veracrypt
+        #veracrypt
         kleopatra # gpg/ pgp
         ## Misc
         bitwarden
@@ -64,7 +89,7 @@ with lib; {
         #mullvad-vpn # is defined as program
         mullvad-browser
         ## RDP
-        remmina # VNC Client
+        #remmina # VNC Client
         ## KDE Utils
         kdePackages.krfb # kde connect virtual monitor
         kdePackages.plasma-browser-integration
@@ -72,12 +97,12 @@ with lib; {
         libsForQt5.qt5.qtwebsockets
         kdePackages.calendarsupport
         kdePackages.konsole
-        kdePackages.yakuake
+        # kdePackages.yakuake
         kdePackages.plasma-vault
         kdePackages.plasma-disks
         kdePackages.kfind
         kdePackages.colord-kde
-        (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+        # (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ] ++ lib.optionals
         (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
   };

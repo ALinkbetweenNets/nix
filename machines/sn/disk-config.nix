@@ -5,23 +5,22 @@
         type = "disk";
         device = "/dev/sda";
         content = {
-          type = "table";
-          format = "gpt";
+          type = "gpt";
           partitions =
-            [
-              {
-                name = "boot";
-                start = "0";
-                end = "1M";
-                # type = "EF02";
-                flags = [ "bios_grub" ];
-              }
-              {
+            {
+              # {
+              #   name = "boot";
+              #   start = "0";
+              #   end = "1M";
+              #   # type = "EF02";
+              #   flags = [ "bios_grub" ];
+              # }
+              ESP = {
+                priority = 1;
                 name = "ESP";
                 start = "1M";
                 end = "512M";
-                # type = "EF00";
-                bootable = true;
+                type = "EF00";
                 content = {
                   type = "filesystem";
                   format = "vfat";
@@ -30,8 +29,8 @@
                   #  "defaults"
                   #];
                 };
-              }
-              {
+              };
+              root = {
                 name = "luks";
                 start = "512M";
                 end = "100%";
@@ -68,8 +67,8 @@
                     };
                   };
                 };
-              }
-            ];
+              };
+            };
         };
       };
     };

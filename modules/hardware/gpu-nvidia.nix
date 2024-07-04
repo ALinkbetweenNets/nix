@@ -35,10 +35,8 @@ in
     ];
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware = {
-      opengl = {
+      graphics = {
         enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
         extraPackages = with pkgs; [
           vaapiVdpau
           libvdpau-va-gl
@@ -50,8 +48,8 @@ in
         open =
           true; # with the open driver the screen will keep black after waking the pc from suspend
         modesetting.enable = true;
-        powerManagement.enable = false;
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        # powerManagement.enable = false;
+        # package = config.boot.kernelPackages.nvidiaPackages.stable;
         nvidiaSettings = true;
         #dynamicBoost.enable=true;
         #prime.offload={

@@ -20,8 +20,8 @@
     # cpu-amd.enable = true;
     # nvidia.enable = true;
     ##
-    # docker.enable = true;
-    # fail2ban.enable = true;
+    docker.enable = true;
+    fail2ban.enable = true;
     ##
     domain = "alinkbetweennets.de";
     # storage = "/rz/srv";
@@ -31,11 +31,11 @@
     # service-ip = "10.0.1.1";
     # users.lenny.enable = true;
     # users.lmh01.enable = true;
-    # syncthing.enable = true;
+    syncthing.enable = true;
 
-    # service-interface = "tailscale0";
-    # nginx.enable = false;
-    # nginx-expose = false;
+    service-interface = "tailscale0";
+    nginx.enable = false;
+    nginx-expose = false;
 
     # containers = {
     #   grist.enable = true;
@@ -43,31 +43,35 @@
     # };
     # zola.enable = true;
     service-ports-expose = true;
+    users.lmh01.enable = true;
     services = {
       # photoprism.enable = true; # WIP
-      # keycloak.enable = true; # WIP but running
-      # gitea.enable = true;
+      keycloak.enable = true;
+      #gitea.enable = true;
+      gitlab.enable = true;
       # grafana.enable = true;
       # # seafile.enable = true;
       # # xandikos.enable = true; # WIP
-      # hedgedoc.enable = true;
-      # jellyfin.enable = true;
+      hedgedoc.enable = true;
+      jellyfin.enable = true;
       # jellyseer.enable = true;
-      # minio.enable = true;
-      # nextcloud = {
-      #   enable = true;
-      #   nginx-expose = true;
-      # };
+      minio.enable = true;
+      immich.enable = true;
+      nextcloud = {
+        enable = true;
+        nginx-expose = true;
+      };
       # nfs.enable = true;
       # outline = {
       #   enable = true;
       #   # nginx-expose = true;
       #   oidClientId = "2085b101-ee5c-42c1-acac-2f9265767d1f";
       # };
-      # paperless.enable = true;
-      # vaultwarden.enable = true;
+      paperless.enable = true;
+      vaultwarden.enable = true;
       # matrix.enable = true;
       # restic-server = { enable = true; expose = false; };
+      restic-server.enable = true;
       # coturn.enable = true;
       # dns.enable = true;
       # restic-client = {
@@ -103,7 +107,13 @@
       # };
       # keycloak.enable = true;
     };
-    # eth = "ens18";
+    eth = "eth0@if146";
+  };
+  services.onedrive.enable = true;
+  services.clamav = {
+    # Antivirus
+    daemon.enable = true;
+    updater.enable = true;
   };
   nix.settings.auto-optimise-store = true;
   # services.cloudflare-dyndns = {
@@ -111,33 +121,33 @@
   #   ipv6 = lib.mkForce false;
   # };
   # boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
-  # networking = {
-  #   firewall = {
-  #     # allowedUDPPorts = [ 51821 ];
-  #     # allowedTCPPorts = [ 51821 ];
-  #   };
-  #   nat = {
-  #     enable = true;
-  #     externalInterface = "tailscale0";
-  #     externalIP = "100.89.178.137";
-  #     internalInterfaces = [ "virbr0" ];
-  #     internalIPs = [ "192.168.122.91/32" ];
-  #     forwardPorts = [
-  #       # { sourcePort = 41623; proto = "tcp"; destination = "192.168.122.91:22"; loopbackIPs = [ "192.168.122.1" ]; }
-  #     ];
-  #   };
-  #   interfaces."${config.link.eth}".wakeOnLan.enable = true;
-  #   hostName = "sn";
-  #   domain = "monitor-banfish.ts.net";
-  #   hostId = "007f0200";
-  #   extraHosts = ''
-  #     192.168.122.200 snvnarr
-  #   '';
-  # };
-  # fileSystems."/rz/sftp/lenny/arr" = {
-  #   device = "/rz/arr/";
-  #   options = [ "bind" ];
-  # };
+  networking = {
+    #   firewall = {
+    #     # allowedUDPPorts = [ 51821 ];
+    #     # allowedTCPPorts = [ 51821 ];
+    #   };
+    #   nat = {
+    #     enable = true;
+    #     externalInterface = "tailscale0";
+    #     externalIP = "100.89.178.137";
+    #     internalInterfaces = [ "virbr0" ];
+    #     internalIPs = [ "192.168.122.91/32" ];
+    #     forwardPorts = [
+    #       # { sourcePort = 41623; proto = "tcp"; destination = "192.168.122.91:22"; loopbackIPs = [ "192.168.122.1" ]; }
+    #     ];
+    #   };
+    #   interfaces."${config.link.eth}".wakeOnLan.enable = true;
+    hostName = "sn";
+    domain = "monitor-banfish.ts.net";
+    hostId = "007f0200";
+    #   extraHosts = ''
+    #     192.168.122.200 snvnarr
+    #   '';
+  };
+  fileSystems."/home/lmh01/jellyfin-data" = {
+    device = "/var/lib/jellyfin-data";
+    options = [ "bind" ];
+  };
   # fileSystems."/rz/sftp/lmh01/arr" = {
   #   device = "/rz/arr/";
   #   options = [ "bind" ];
@@ -171,7 +181,7 @@
   # nix run .\#lollypops -- sn:rebuild
   lollypops.deployment = {
     # local-evaluation = true;
-    # ssh = { host = "100.89.178.137"; user = "root"; };
+    ssh = { host = "sn"; user = "root"; };
     # sudo.enable = true;
   };
 

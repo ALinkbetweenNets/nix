@@ -21,6 +21,7 @@ in {
         esbenp.prettier-vscode
         firefox-devtools.vscode-firefox-debug
         github.copilot
+        github.vscode-github-actions
         github.vscode-pull-request-github
         gitlab.gitlab-workflow
         gruntfuggly.todo-tree
@@ -88,7 +89,7 @@ in {
         "editor.suggest.preview" = true;
         "editor.tabCompletion" = "on";
         "editor.tabSize" = 2;
-        "editor.wordWrap" = "bounded";
+        "editor.wordWrap" = "on";
         "editor.wordWrapColumn" = 160;
         "explorer.incrementalNaming" = "smart";
         "files.autoGuessEncoding" = true;

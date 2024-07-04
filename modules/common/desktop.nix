@@ -18,7 +18,6 @@ in {
     };
     environment.systemPackages = with pkgs; [
       wifi-qr
-      cobang
       barrier # KVM
       gsettings-qt
       kde-gtk-config
@@ -30,7 +29,8 @@ in {
       virt-manager
       spice
       spice-vdagent
-    ];
+    ] ++ lib.optionals
+      (config.nixpkgs.hostPlatform.system == "x86_64-linux") [ cobang ];
     networking = {
       networkmanager = {
         enable = true;
@@ -50,34 +50,35 @@ in {
       };
     };
     fonts = {
+      enableDefaultPackages = true;
       packages = with pkgs;
         [
-          font-awesome
-          fira
-          fira-code
-          fira-code-symbols
-          league-of-moveable-type
-          inter
-          source-sans-pro
-          source-serif-pro
-          noto-fonts-emoji
+          # font-awesome
+          jetbrains-mono
+          # fira
+          # fira-code
+          # fira-code-symbols
+          # league-of-moveable-type
+          # source-sans-pro
+          # source-serif-pro
+          noto-fonts-color-emoji
           noto-fonts-cjk-sans # japanese fonts
-          corefonts
-          recursive
-          iosevka-bin
-          font-awesome
-          line-awesome
+          # corefonts
+          # recursive
+          # iosevka-bin
+          # font-awesome
+          # line-awesome
           (nerdfonts.override { fonts = [ "FiraCode" ]; })
         ];
       fontDir.enable = true;
       fontconfig = {
         defaultFonts = {
           serif =
-            [ "Berkeley Mono" "Inconsolata Nerd Font Mono" ];
+            [ "FiraCode" ];
           sansSerif =
-            [ "Berkeley Mono" "Inconsolata Nerd Font Mono" ];
+            [ "FiraCode" ];
           monospace =
-            [ "Berkeley Mono" "Inconsolata Nerd Font Mono" ];
+            [ "FiraCode" ];
           emoji = [ "Noto Color Emoji" ];
         };
       };
@@ -99,6 +100,32 @@ in {
         #media-session.enable = true;
       };
     };
+    services.pipewire.extraConfig.pipewire."92-low-latency" = {
+      context.properties = {
+        default.clock.rate = 48000;
+        default.clock.quantum = 32;
+        default.clock.min-quantum = 32;
+        default.clock.max-quantum = 32;
+      };
+      context.modules = [
+        {
+          name = "libpipewire-module-protocol-pulse";
+          args = {
+            pulse.min.req = "32/48000";
+            pulse.default.req = "32/48000";
+            pulse.max.req = "32/48000";
+            pulse.min.quantum = "32/48000";
+            pulse.max.quantum = "32/48000";
+          };
+        }
+      ];
+      stream.properties = {
+        node.latency = "32/48000";
+        resample.quality = 1;
+      };
+
+    };
+
     # xdg = {
     #   icons.enable = true;
     #   portal = {

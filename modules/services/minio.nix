@@ -21,14 +21,15 @@ in {
     };
   };
   config = mkIf cfg.enable {
+    sops.secrets."minio" = { owner = "minio"; group = "minio"; };
     services = {
       minio = {
         enable = true;
         listenAddress = if cfg.expose-port then "0.0.0.0:9000" else "127.0.0.1:9000";
         consoleAddress = if cfg.expose-port then "0.0.0.0:9001" else "127.0.0.1:9001";
         region = "eu-central-1";
-        rootCredentialsFile = "${config.link.secrets}/minio";
-        dataDir = [ "${config.link.storage}/minio/data" ];
+        rootCredentialsFile = config.sops.secrets."minio".path;
+        # dataDir = [ "${config.link.storage}/minio/data" ];
       };
       nginx.virtualHosts."minio.s3.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
