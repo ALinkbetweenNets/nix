@@ -22,7 +22,7 @@ in {
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIOaLOyxsr6wgj0JoG/OrDywND2hG2nblOGUuZBPFG1U l@xn"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINI74luZ3xJcgaZYHzn5DtSpYufml+SbhZQV12gWGShS l@dn"
       ];
-      hashedPasswordFile = config.sops.secrets."users/l/hashedPassword".path; # Initial password
+      hashedPasswordFile = mkIf config.link.sops config.sops.secrets."users/l/hashedPassword".path; # Initial password
     };
     # services.openssh.hostKeys = [{
     #   path = "${config.users.users.l.home}/.ssh/id_ed25519";

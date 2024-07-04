@@ -10,6 +10,8 @@
   home-manager.users.l = flake-self.homeConfigurations.server;
   # home-manager.users.root = flake-self.homeConfigurations.server;
   link = {
+    sops = true;
+    tailscale-address = "100.86.79.82";
     common.enable = true;
     eth = "ens3";
     dyndns.enable = true;
@@ -48,7 +50,7 @@
   services.openssh.openFirewall = lib.mkForce false;
 
   networking = {
-    firewall.allowedTCPPorts = [ 443 2522 8096 8920 22 2522 ];
+    firewall.allowedTCPPorts = [ 443 8096 8920 22 ];
     firewall.allowedUDPPorts = [ 51820 51822 ];
     hostName = "v2202312204123249185";
     domain = "ultrasrv.de";
@@ -372,10 +374,12 @@
   # '';
   #};
   # security.sudo.wheelNeedsPassword = true;
-  services.openssh.ports = [ 22 2522 ];
+  services.openssh.ports = [ 2522 ];
   lollypops.deployment = {
     local-evaluation = true;
     ssh.host = "nc";
+    ssh.user = "l";
+    sudo.enable = true;
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
