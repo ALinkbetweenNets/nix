@@ -19,28 +19,22 @@ in
       type = "disk";
       device = primaryDisk;
       content = {
-        type = "table";
-        format = "gpt";
-        partitions = [
-          {
-            name = "boot";
+        type = "gpt";
+        partitions = {
+        boot = {
             start = "0";
             end = "1M";
-            flags = [ "bios_grub" ];
-          }
-          {
-            name = "ESP";
+          };
+        ESP = {
             start = "1M";
             end = "512M";
-            bootable = true;
             content = {
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
             };
-          }
-          {
-            name = "nixos";
+          };
+          root={
             start = "512M";
             end = "100%";
             content = {
@@ -48,8 +42,8 @@ in
               format = "ext4";
               mountpoint = "/";
             };
-          }
-        ];
+          };
+        };
       };
     };
     # During boot, resize the root partition to the size of the disk.
