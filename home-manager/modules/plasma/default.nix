@@ -37,8 +37,8 @@ let cfg = config.link.plasma; in
               General.launchers = [
                 "applications:org.kde.konsole.desktop"
                 "applications:org.kde.dolphin.desktop"
-                "applications:firefox.desktop"
                 "applications:obsidian.desktop"
+                "applications:firefox.desktop"
                 "applications:signal-desktop.desktop"
                 "applications:org.telegram.desktop.desktop"
               ];
@@ -58,6 +58,7 @@ let cfg = config.link.plasma; in
           {
             digitalClock = { };
           }
+          "org.kde.plasma.marginsseparator"
           "org.kde.plasma.appmenu"
           {
             systemTray.items = {
