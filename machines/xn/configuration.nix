@@ -11,11 +11,14 @@
   boot.initrd.systemd.enable = true;
   systemd.extraConfig = "DefaultLimitNOFILE=2048";
   link = {
+    sops = true;
+    tailscale-address = "100.108.198.22";
+    gaming.enable = true;
     # sway.enable = true;
     # fs.zfs.enable = true;
     #printing.enable = true;
     fs.ntfs.enable = true;
-    fs.luks.enable = true;
+    #fs.luks.enable = true;
     convertible.enable = true;
     common.enable = true;
     main.enable = true;
@@ -29,7 +32,7 @@
     service-ip = "127.0.0.1";
     # xrdp.enable = true;
     eth = "wlp0s20f3";
-    #docker.enable = true;
+    docker.enable = true;
     #services.restic-client = {
     #  enable = true;
     #  backup-paths-sn = [
