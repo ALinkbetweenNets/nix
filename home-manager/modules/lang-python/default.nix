@@ -15,14 +15,14 @@ in {
           pillow
           psycopg2
           pandas
-          # seaborn
-          # matplotlib
-          # plotly
-          # cufflinks
-          # black
-          # rpy2 # python <-> R
-          # # scikit-learn-extra
-          # scikit-learn
+          seaborn
+          matplotlib
+          plotly
+          cufflinks
+          black
+          rpy2 # python <-> R
+          scikit-learn-extra
+          scikit-learn
           # tensorflow # broken
           # scipy
           # numpy

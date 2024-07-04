@@ -29,7 +29,7 @@ in
         anki
         darktable
         rawtherapee
-        pdfmixtool # appears to be broken and unbuildable
+        pdfmixtool
         onlyoffice-bin
         speedcrunch
         picard # music tagger
