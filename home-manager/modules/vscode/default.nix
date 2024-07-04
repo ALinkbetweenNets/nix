@@ -21,6 +21,7 @@ in {
         esbenp.prettier-vscode
         firefox-devtools.vscode-firefox-debug
         github.copilot
+        github.vscode-github-actions
         github.vscode-pull-request-github
         gitlab.gitlab-workflow
         gruntfuggly.todo-tree
