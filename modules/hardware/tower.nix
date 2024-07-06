@@ -9,13 +9,16 @@ in
   config = mkIf cfg.enable {
     link.hardware.enable = true;
     link.desktop.enable = true;
-    services.power-profiles-daemon.enable = lib.mkForce false;
-    services.auto-cpufreq = {
-      enable = true; # TLP replacement
-      settings = {
-        charger = {
-          governor = "performance";
-          turbo = "auto";
+    services = {
+      power-profiles-daemon.enable = lib.mkForce false;
+      tlp.enable = lib.mkForce false;
+      auto-cpufreq = {
+        enable = true; # TLP replacement
+        settings = {
+          charger = {
+            governor = "performance";
+            turbo = "auto";
+          };
         };
       };
     };
