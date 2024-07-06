@@ -21,11 +21,11 @@ in
       content = {
         type = "gpt";
         partitions = {
-        boot = {
+          boot = {
             start = "0";
             end = "1M";
           };
-        ESP = {
+          ESP = {
             start = "1M";
             end = "512M";
             content = {
@@ -34,7 +34,7 @@ in
               mountpoint = "/boot";
             };
           };
-          root={
+          root = {
             start = "512M";
             end = "100%";
             content = {
