@@ -53,10 +53,26 @@ in {
           "serverPath" = "${pkgs.nil}/bin/nil";
           "serverSettings" = {
             "nil" = {
+              "diagnostics" = {
+                "ignored" = [ "unused_binding" "unused_with" ];
+              };
               "formatting" = {
                 "command" = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
               };
             };
+            # "nixd" = {
+            #   "eval" = { };
+            #   "formatting" = {
+            #     "command" = "nixpkgs-fmt";
+            #   };
+            #   "options" = {
+            #     "enable" = true;
+            #     "target" = {
+            #       "args" = [ ];
+            #       "installable" = "<flakeref>#nixosConfigurations.<name>.options";
+            #     };
+            #   };
+            # };
           };
         };
         "[jsonc]" = {
