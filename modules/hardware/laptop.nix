@@ -19,24 +19,31 @@ in {
     hardware.bluetooth.enable = true;
     services = {
       libinput.enable = true;
-      power-profiles-daemon.enable=lib.mkForce false;
-      auto-cpufreq = {
-        enable = true; # TLP replacement # caps xn cpu clock to 1.3 Ghz
-        settings = {
-          battery = {
-            governor = "powersave";
-            turbo = "never";
-          };
-          charger = {
-            governor = "performance";
-            turbo = "auto";
-          };
-        };
-      };
+      # power-profiles-daemon.enable = lib.mkForce false;
+      # tlp.enable = lib.mkForce false;
+      # auto-cpufreq = {
+      #   enable = true; # TLP replacement # caps xn cpu clock to 1.3 Ghz
+      #   settings = {
+      #     battery = {
+      #       governor = "powersave";
+      #       turbo = "never";
+      #     };
+      #     charger = {
+      #       governor = "performance";
+      #       turbo = "auto";
+      #     };
+      #   };
+      # };
     };
     powerManagement = {
       enable = true;
       #powertop.enable = true; # no option to disable usb powersaving yet
     };
+    systemd.sleep.extraConfig = ''
+      AllowSuspend=yes
+      AllowHibernation=yes
+      AllowHybridSleep=yes
+      AllowSuspendThenHibernate=yes
+    '';
   };
 }
