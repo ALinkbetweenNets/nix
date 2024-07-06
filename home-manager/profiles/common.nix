@@ -36,8 +36,7 @@ with lib; {
     };
     home.packages = with pkgs;
       [
-        felix-fm
-        broot
+        yazi # TUI File Manager with preview
         bat
         btop
         cht-sh
