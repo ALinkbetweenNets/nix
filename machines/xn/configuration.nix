@@ -10,6 +10,7 @@
   home-manager.users.l = flake-self.homeConfigurations.convertible;
   boot.initrd.systemd.enable = true;
   systemd.extraConfig = "DefaultLimitNOFILE=2048";
+  # security.protectKernelImage = false;
   link = {
     sops = true;
     tailscale-address = "100.108.198.22";
@@ -18,7 +19,7 @@
     # fs.zfs.enable = true;
     #printing.enable = true;
     fs.ntfs.enable = true;
-    #fs.luks.enable = true;
+    fs.luks.enable = true;
     convertible.enable = true;
     common.enable = true;
     main.enable = true;
