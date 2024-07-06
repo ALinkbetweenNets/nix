@@ -26,6 +26,8 @@ with lib; {
     };
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
+      quickemu
+      quickgui
       # protonmail-bridge-gui
       # protonmail-desktop
       #jetbrains.idea-community
