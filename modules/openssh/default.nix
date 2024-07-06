@@ -4,6 +4,7 @@ let cfg = config.link.openssh;
 in {
   options.link.openssh.enable = mkEnableOption "activate openssh";
   config = mkIf cfg.enable {
+    networking.firewall.allowedTCPPorts = [ 2522 ];
     # Enable the OpenSSH daemon.
     services.openssh = {
       enable = true;
