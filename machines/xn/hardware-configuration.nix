@@ -13,7 +13,7 @@
     extraModulePackages = [ ];
     kernelModules = [ "kvm-intel" "usbnet" ];
     kernelParams = [ "intel_pstate=active" "resume_offset=533760" ];
-    #resumeDevice = "/dev/disk/by-uuid/854c679d-ad2a-450b-830c-fd49633cbd31";
+    resumeDevice = "/dev/mapper/crypted";
     initrd = {
       availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
       kernelModules = [ ];
