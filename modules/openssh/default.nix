@@ -41,11 +41,19 @@ in {
           # "umac-128-etm@openssh.com"
         ];
         KexAlgorithms = [
-          # "sntrup761x25519-sha512@openssh.com"
+          #"sntrup761x25519-sha256@openssh.com"
           # "curve25519-sha256"
-          "curve25519-sha256@libssh.org"
+          #"curve25519-sha256@libssh.org"
           "diffie-hellman-group-exchange-sha256"
-          "ecdh-sha2-nistp521"
+          #"aes128-ctr"
+          #"aes128-gcm@openssh.com"
+          #"aes192-ctr"
+          "curve25519-sha256"
+          "diffie-hellman-group16-sha512"
+          "diffie-hellman-group18-sha512"
+          #"rsa-sha2-256"
+          #"rsa-sha2-512"
+          "sntrup761x25519-sha512@openssh.com"
         ];
       };
       sftpServerExecutable = "internal-sftp";
