@@ -47,7 +47,7 @@ with lib; {
       xkcdpass
       ltex-ls # for vscode spell checking using languagetool
       #piper-tts # text to speech synthesizer with models (download https://huggingface.co/rhasspy/piper-voices/tree/v1.0.0/en/en_US/lessac/high onnx and json to Downloads folder)
-      gnome.gnome-disk-utility
+      gnome-disk-utility
       #gparted
       vagrant # quick tmp vm creation
       restic
@@ -134,7 +134,7 @@ with lib; {
       # mailspring
       ## finances
       # tradingview
-      gnome.cheese
+      cheese
       kdePackages.kontact
       kdePackages.neochat
       kdePackages.akonadi
