@@ -43,6 +43,7 @@ with lib; {
         eza
         fastfetch
         fd
+        ncdu # disk usage
         sysz
         tldr
         ## top
