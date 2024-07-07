@@ -15,11 +15,11 @@ in {
           addr = "0.0.0.0";
           port = 2522;
         }
-      ] ++ lib.optionals (config.link.tailscale-address != "") [
-        {
-          addr = config.link.tailscale-address;
-          port = 22;
-        }
+        # ] ++ lib.optionals (config.link.tailscale-address != "") [
+        #   {
+        #     addr = config.link.tailscale-address;
+        #     port = 22;
+        #   }
       ];
       settings = {
         LogLevel = "VERBOSE"; # for fail2ban to work properly
