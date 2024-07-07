@@ -15,6 +15,11 @@ in
     # -> BIOS boot partition
     # -> EFI System Partition
     # -> NixOS root partition (ext4)
+    swapDevices = [{
+      device = "/var/lib/swapfile";
+      size = 8 * 1024;
+    }];
+
     disko.devices.disk.main = {
       type = "disk";
       device = primaryDisk;
