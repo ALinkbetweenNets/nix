@@ -4,7 +4,7 @@ let cfg = config.link.syncthing;
 in {
   options.link.syncthing.enable = mkEnableOption "activate syncthing";
   config = mkIf cfg.enable {
-  systemd.tmpfiles.rules=["d /var/lib/syncthing 1700 l wheel -"];
+    systemd.tmpfiles.rules = [ "d /var/lib/syncthing 1700 l wheel -" ];
     networking.firewall = {
       allowedTCPPorts = [ 8384 22000 ];
       allowedUDPPorts = [
