@@ -24,7 +24,7 @@ in {
       glib
       gsettings-qt
       gsettings-desktop-schemas
-      gnome.dconf-editor
+      dconf-editor
       # Virt Manager
       virt-manager
       spice
