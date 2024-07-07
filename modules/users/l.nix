@@ -30,6 +30,9 @@ in {
     #   type = "ed25519";
     # }];
     sops.secrets."users/l/hashedPassword" = { neededForUsers = true; };
-    nix.settings.allowed-users = [ "l" ];
+    nix.settings = {
+      allowed-users = [ "l" ];
+      trusted-users = [ "l" ];
+    };
   };
 }

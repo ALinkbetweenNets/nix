@@ -75,7 +75,7 @@
   #     # "127.0.0.1"
   #     "192.168.150.1"
   #     "194.242.2.2"
-  #     "100.100.100.100"192.168.150.1];
+  #     "100.100.100.100"];
   # };
   networking.networkmanager.enable = true;
   networking.nameservers = [
