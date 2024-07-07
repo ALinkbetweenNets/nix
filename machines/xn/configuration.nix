@@ -35,38 +35,38 @@
     eth = "wlp0s20f3";
     docker.enable = true;
     services.restic-client = {
-     enable = true;
-     backup-paths-sn = [
-       "/home/l/.ssh"
-       "/home/l/archive"
-       "/home/l/Documents"
-       "/home/l/Pictures"
-       "/home/l/obsidian"
-       "/home/l/sec"
-       "/home/l/doc"
-       "/home/l/w"
-     ];
-    #  backup-paths-sciebo = [
-    #    "/home/l/.ssh"
-    #    # "/home/l/archive"
-    #    "/home/l/doc"
-    #    # "/home/l/Documents"
-    #    "/home/l/obsidian"
-    #    "/home/l/sec"
-    #    "/home/l/w"
-    #  ];
-    #  backup-paths-pi4b = [
-    #    "/home/l/.ssh"
-    #    "/home/l/archive"
-    #    "/home/l/doc"
-    #    "/home/l/Music"
-    #    "/home/l/obsidian"
-    #    "/home/l/plasma-vault"
-    #    "/home/l/sec"
-    #    "/home/l/w"
-    #    "/home/l/Pictures"
-    #    "/home/l/uni"
-    #  ];
+      enable = true;
+      backup-paths-sn = [
+        "/home/l/.ssh"
+        "/home/l/archive"
+        "/home/l/Documents"
+        "/home/l/Pictures"
+        "/home/l/obsidian"
+        "/home/l/sec"
+        "/home/l/doc"
+        "/home/l/w"
+      ];
+      #  backup-paths-sciebo = [
+      #    "/home/l/.ssh"
+      #    # "/home/l/archive"
+      #    "/home/l/doc"
+      #    # "/home/l/Documents"
+      #    "/home/l/obsidian"
+      #    "/home/l/sec"
+      #    "/home/l/w"
+      #  ];
+      #  backup-paths-pi4b = [
+      #    "/home/l/.ssh"
+      #    "/home/l/archive"
+      #    "/home/l/doc"
+      #    "/home/l/Music"
+      #    "/home/l/obsidian"
+      #    "/home/l/plasma-vault"
+      #    "/home/l/sec"
+      #    "/home/l/w"
+      #    "/home/l/Pictures"
+      #    "/home/l/uni"
+      #  ];
     };
   };
   networking.hostId = "007f0200";
