@@ -9,7 +9,6 @@ in {
       syncthing.enable = true;
       git-sync.enable = true;
       fs.ntfs.enable = true;
-      unbound.enable = true;
       tailscale.enable = true;
       qmk.enable = true;
     };

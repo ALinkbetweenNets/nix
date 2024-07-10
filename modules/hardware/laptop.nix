@@ -7,6 +7,7 @@ in {
     link = {
       desktop.enable = true;
       hardware.enable = true;
+      unbound.enable = true;
       #wireguard.enable = true;
       #wg-fritz.enable = true;
     };
