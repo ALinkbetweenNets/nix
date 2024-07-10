@@ -36,45 +36,33 @@ with lib; {
     };
     home.packages = with pkgs;
       [
+        git-crypt
         yazi # TUI File Manager with preview
-        bat
-        btop
+        nix-output-monitor
+        gpg-tui
         cht-sh
-        eza
-        fastfetch
-        fd
-        ncdu # disk usage
-        sysz
-        tldr
-        ## top
-        s-tui
-        glances
+        # fastfetch
+        # tldr
         #home-manager
         ## security
         sops
         ssh-to-age
         # bitwarden-cli
         ## piping
-        gnugrep
-        ripgrep-all
         # vgrep
-        fzf
         ## basics
-        unixtools.watch
         # gitFull
         ## networking
         # iptables
         # nftables
-        wireguard-tools
-        dnsutils
         ## Networking+
         ipfetch
         # magic-wormhole # Secure data transfer
-        # netcat-openbsd
-        # netcat
-        netcat-gnu
         # iperf3 # speedtest
         crab_share
+        ## duplicate Finder
+        rmlint
+        fdupes
       ] ++ lib.optionals
         (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
     # Home-manager nixpkgs config
