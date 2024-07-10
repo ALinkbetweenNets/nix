@@ -8,8 +8,9 @@ in {
     virtualisation.docker.storageDriver = lib.mkForce "btrfs";
     services.btrfs.autoScrub = {
       enable = true;
+      interval = "weekly";
       fileSystems = [ "/" ];
     };
-    fileSystems = { "/".options = [ "compress=zstd" ]; };
+    # fileSystems = { "/".options = [ "compress=zstd" ]; };
   };
 }
