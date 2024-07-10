@@ -60,6 +60,7 @@ let cfg = config.link.plasma; in
           }
           "org.kde.plasma.marginsseparator"
           "org.kde.plasma.appmenu"
+          "org.kde.plasma.marginsseparator"
           {
             systemTray.items = {
               # We explicitly show bluetooth and battery
