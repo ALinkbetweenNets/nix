@@ -19,7 +19,7 @@
     # fs.zfs.enable = true;
     #printing.enable = true;
     fs.ntfs.enable = true;
-    fs.luks.enable = true;
+    fs.luks.enable = false;
     convertible.enable = true;
     common.enable = true;
     main.enable = true;
