@@ -53,23 +53,23 @@ with lib; {
         ## security
         sops
         ssh-to-age
-        bitwarden-cli
+        # bitwarden-cli
         ## piping
         gnugrep
         ripgrep-all
-        vgrep
+        # vgrep
         fzf
         ## basics
         unixtools.watch
         # gitFull
         ## networking
-        iptables
-        nftables
+        # iptables
+        # nftables
         wireguard-tools
         dnsutils
         ## Networking+
         ipfetch
-        magic-wormhole # Secure data transfer
+        # magic-wormhole # Secure data transfer
         # netcat-openbsd
         # netcat
         netcat-gnu
