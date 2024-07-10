@@ -92,15 +92,16 @@ in {
     };
     environment.systemPackages = with pkgs; [
       ## system
-      nix-output-monitor
       exfatprogs
-      git-crypt
       libsecret
       gnupg
-      gpg-tui
+
+      ## top
+      s-tui
+      glances
       kmod # modprobe
       ## basics
-      gitFull
+      # gitFull
       file
       killall
       trashy
@@ -121,9 +122,21 @@ in {
       xz
       bzip2
       p7zip
-      ## duplicate Finder
-      rmlint
-      fdupes
+      # netcat-openbsd
+      # netcat
+      fzf
+      netcat-gnu
+      gnugrep
+      ripgrep-all
+      unixtools.watch
+      wireguard-tools
+      dnsutils
+      fd
+      ncdu # disk usage
+      sysz
+      eza
+      bat
+      btop
     ];
     # console.font = "FiraCode Nerd Font";
     #   system.replaceRuntimeDependencies =
