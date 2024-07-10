@@ -108,6 +108,8 @@ in {
         "editor.wordWrap" = "on";
         "editor.wordWrapColumn" = 160;
         "explorer.incrementalNaming" = "smart";
+        "extensions.autoCheckUpdates"=false;
+        "extensions.autoUpdates"=false;
         "files.autoGuessEncoding" = true;
         "files.autoSave" = "afterDelay";
         "files.insertFinalNewline" = true;
@@ -116,6 +118,7 @@ in {
         "git.autofetch" = true;
         "git.confirmSync" = false;
         "git.enableSmartCommit" = true;
+        "markdown.extension.completion.enabled"= true;
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "${pkgs.nil}/bin/nil";
         "prettier.printWidth" = 160;
