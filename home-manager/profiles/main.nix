@@ -32,7 +32,7 @@ with lib; {
       # protonmail-desktop
       #jetbrains.idea-community
       #kdePackages.kdenlive # video editor
-      reaper # audio editor
+      # reaper # audio editor
       #frei0r # video effects
       # freecad
       #openscad
@@ -135,7 +135,7 @@ with lib; {
       ## finances
       # tradingview
       cheese
-      kdePackages.kontact
+      # kdePackages.kontact
       kdePackages.neochat
       kdePackages.akonadi
       kdePackages.kalarm
