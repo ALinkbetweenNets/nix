@@ -27,12 +27,12 @@ in
         type = "gpt";
         partitions = {
           boot = {
-            start = "0";
-            end = "1M";
+            size = "1M";
+            type = "EF02"; # for grub MBR
           };
           ESP = {
-            start = "1M";
-            end = "512M";
+            size = "512M";
+            type = "EF00";
             content = {
               type = "filesystem";
               format = "vfat";
@@ -40,8 +40,7 @@ in
             };
           };
           root = {
-            start = "512M";
-            end = "100%";
+            size = "100%";
             content = {
               type = "filesystem";
               format = "ext4";
@@ -72,5 +71,6 @@ in
     };
     # Currently all our providers use KVM / QEMU
     services.qemuGuest.enable = true;
+    networking.useDHCP = lib.mkDefault true;
   };
 }
