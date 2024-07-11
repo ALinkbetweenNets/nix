@@ -50,29 +50,30 @@ in {
         };
         "nix" = {
           "enableLanguageServer" = true;
-          "serverPath" = "${pkgs.nil}/bin/nixd";
+          "serverPath" = "${pkgs.nil}/bin/nil";
+          # "serverPath" = "${pkgs.nixd}/bin/nixd";
           "serverSettings" = {
-            # "nil" = {
-            #   "diagnostics" = {
-            #     "ignored" = [ "unused_binding" "unused_with" ];
-            #   };
-            #   "formatting" = {
-            #     "command" = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
-            #   };
-            # };
-            "nixd" = {
-              "eval" = { };
-              "formatting" = {
-                "command" = "nixpkgs-fmt";
+            "nil" = {
+              "diagnostics" = {
+                "ignored" = [ "unused_binding" "unused_with" ];
               };
-              "options" = {
-                "enable" = true;
-                "target" = {
-                  "args" = [ ];
-                  "installable" = "<flakeref>#nixosConfigurations.<name>.options";
-                };
+              "formatting" = {
+                "command" = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
               };
             };
+            # "nixd" = {
+            #   "eval" = { };
+            #   "formatting" = {
+            #     "command" = "nixpkgs-fmt";
+            #   };
+            #   "options" = {
+            #     "enable" = true;
+            #     "target" = {
+            #       "args" = [ ];
+            #       "installable" = "<flakeref>#nixosConfigurations.<name>.options";
+            #     };
+            #   };
+            # };
           };
         };
         "[jsonc]" = {
@@ -108,8 +109,8 @@ in {
         "editor.wordWrap" = "on";
         "editor.wordWrapColumn" = 160;
         "explorer.incrementalNaming" = "smart";
-        "extensions.autoCheckUpdates"=false;
-        "extensions.autoUpdates"=false;
+        "extensions.autoCheckUpdates" = false;
+        "extensions.autoUpdates" = false;
         "files.autoGuessEncoding" = true;
         "files.autoSave" = "afterDelay";
         "files.insertFinalNewline" = true;
@@ -118,7 +119,7 @@ in {
         "git.autofetch" = true;
         "git.confirmSync" = false;
         "git.enableSmartCommit" = true;
-        "markdown.extension.completion.enabled"= true;
+        "markdown.extension.completion.enabled" = true;
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "${pkgs.nil}/bin/nil";
         "prettier.printWidth" = 160;
