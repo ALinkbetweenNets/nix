@@ -69,8 +69,8 @@ let cfg = config.link.plasma; in
       };
       kwin = {
         # effects.shakeCursor.enable = true;
+        effects.desktopSwitching.animation = "fade";
         virtualDesktops = {
-          animation = "fade";
           rows = 1;
           number = 5;
         };
