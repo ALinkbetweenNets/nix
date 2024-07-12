@@ -189,7 +189,7 @@
       "image": "bash",
       "name": "Push snvnarr to Attic"
     },
-    {{
+    {
       "commands": [
         "nix build '.#nixosConfigurations.xn.config.system.build.toplevel' -o 'result-xn'"
       ],
@@ -210,6 +210,7 @@
       "image": "bash",
       "name": "Push xn to Attic"
     },
+    {
       "commands": [
         "nix build '.#nixosConfigurations.xn.config.system.build.toplevel' -o 'result-x390'"
       ],
