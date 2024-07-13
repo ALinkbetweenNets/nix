@@ -31,6 +31,15 @@ with lib; {
         "nc" = {
           port = 2522;
         };
+        "sn" = {
+          port = 2522;
+        };
+        "dn" = {
+          port = 2522;
+        };
+        "xn" = {
+          port = 2522;
+        };
       };
       compression = true;
     };
