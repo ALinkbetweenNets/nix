@@ -62,11 +62,11 @@
         nginx-expose = true;
       };
       # nfs.enable = true;
-      # outline = {
-      #   enable = true;
-      #   # nginx-expose = true;
-      #   oidClientId = "2085b101-ee5c-42c1-acac-2f9265767d1f";
-      # };
+      outline = {
+        enable = true;
+        # nginx-expose = true;
+        oidClientId = "7cec0458291c1d98c37bce1ad62ea7b02790d7330f1ce5b6a25d9da95c6b3108";
+      };
       paperless.enable = true;
       vaultwarden.enable = true;
       # matrix.enable = true;
