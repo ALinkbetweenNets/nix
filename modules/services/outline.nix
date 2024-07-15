@@ -36,22 +36,23 @@ in {
         port = cfg.port;
         publicUrl = "https://outline.${config.link.domain}";
         storage = {
-          accessKey = "T6Yv7hzGdIiULmydtCAV";
-          secretKeyFile = "${config.link.secrets}/minio-outline";
+          accessKey = "De2GYKESwHfPfht2U8vK";
+          secretKeyFile = config.sops.secrets."outline/gitlab".path;
           uploadBucketUrl = "https://s3.${config.link.domain}";
-          uploadBucketName = "outline";
+          uploadBucketName = "outline/minio";
           region = "eu-central-1";
         };
         oidcAuthentication = {
           # Parts taken from
           # http://dex.localhost/.well-known/openid-configuration
-          authUrl = "https://gitea.${config.link.domain}/login/oauth/authorize";
-          tokenUrl = "https://gitea.${config.link.domain}/login/oauth/access_token";
-          userinfoUrl = "https://gitea.${config.link.domain}/login/oauth/userinfo";
+          authUrl = "https://gitlab.${config.link.domain}/oauth/authorize";
+          tokenUrl = "https://gitlab.${config.link.domain}/oauth/token";
+          userinfoUrl = "https://gitlab.${config.link.domain}/oauth/userinfo";
+          usernameClaim = "username";
           clientId = cfg.oidClientId;
-          clientSecretFile = "${config.link.secrets}/outline";
-          scopes = [ "openid" "profile" "email" "groups" ];
-          displayName = "Gitea";
+          clientSecretFile = config.sops.secrets."outline".path;
+          scopes = [ "openid" "email" ];
+          displayName = "GitLab";
         };
       };
       nginx.virtualHosts."outline.${config.link.domain}" = mkIf cfg.nginx {
