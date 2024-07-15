@@ -181,8 +181,10 @@
   # nix run .\#lollypops -- sn:rebuild
   lollypops.deployment = {
     # local-evaluation = true;
-    ssh = { host = "sn"; user = "root"; };
+    ssh = { host = "sn"; user = "l"; };
     # sudo.enable = true;
+    ssh.opts = [ "-p 2522" ];
+    sudo.enable = true;
   };
 
 
