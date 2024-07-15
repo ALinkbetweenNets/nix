@@ -15,6 +15,8 @@ in
     sops.secrets."cloudflare-api" = { };
     services.cloudflare-dyndns = {
       enable = true;
+      ipv6 = true;
+      deleteMissing = true;
       apiTokenFile = config.sops.secrets."cloudflare-api".path;
       domains = cfg.domains;
     };
