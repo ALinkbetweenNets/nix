@@ -109,6 +109,7 @@ let cfg = config.link.plasma; in
                 "applications:firefox.desktop"
                 "applications:signal-desktop.desktop"
                 "applications:org.telegram.desktop.desktop"
+                "applications:virt-manager.desktop"
               ];
             };
           }
