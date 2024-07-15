@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.services.jellyseer;
+let cfg = config.link.services.jellyseerr;
 in {
-  options.link.services.jellyseer = {
-    enable = mkEnableOption "activate jellyseer";
+  options.link.services.jellyseerr = {
+    enable = mkEnableOption "activate jellyseerr";
     expose-port = mkOption {
       type = types.bool;
       default = config.link.service-ports-expose;
@@ -31,7 +31,7 @@ in {
         enable = true;
       };
       nginx.virtualHosts.
-      "jellyseer.${config.link.domain}" = mkIf cfg.nginx {
+      "jellyseerr.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
         locations."/" = { proxyPass = "http://127.0.0.1:${toString cfg.port}/"; };
