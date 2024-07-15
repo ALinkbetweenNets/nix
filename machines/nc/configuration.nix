@@ -15,6 +15,10 @@
     common.enable = true;
     eth = "ens3";
     dyndns.enable = config.link.sops;
+    dyndns.domains = [
+      config.link.domain
+      "shonk.de"
+    ];
     domain = "alinkbetweennets.de";
     fail2ban.enable = true;
     nginx.enable = true;
@@ -49,7 +53,7 @@
   # };
 
   networking = {
-    firewall.allowedTCPPorts = [ 443 8096 8920 22 2522 ];
+    firewall.allowedTCPPorts = [ 443 22 ];
     firewall.allowedUDPPorts = [ 51820 51822 ];
     hostName = "v2202312204123249185";
     domain = "ultrasrv.de";
@@ -61,16 +65,6 @@
     };
   };
   services.nginx.virtualHosts = {
-
-    "${config.link.domain}" = {
-      enableACME = true;
-      # useACMEHost = config.link.domain;
-      forceSSL = true;
-      default = true;
-      locations."/" = {
-        return = "301 https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-      };
-    };
     # services.nginx.virtualHosts."grist.${config.link.domain}" = {
     #   enableACME = true;
     # useACMEHost = config.link.domain;
@@ -155,19 +149,19 @@
       listen = [{ port = 443; addr = "0.0.0.0"; ssl = true; } { port = 8096; addr = "0.0.0.0"; ssl = true; } { port = 8920; addr = "0.0.0.0"; ssl = true; }];
       locations."/".proxyPass = "http://${config.link.serviceHost}:8096/";
     };
-    "jellyfin1.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/".proxyPass = "http://${config.link.serviceHost}:8096/";
-    };
-    "jellyfin2.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/".proxyPass = "http://${config.link.serviceHost}:8920/";
-    };
-    "jellyseer.${config.link.domain}" = {
+    # "jellyfin1.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   locations."/".proxyPass = "http://${config.link.serviceHost}:8096/";
+    # };
+    # "jellyfin2.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   locations."/".proxyPass = "http://${config.link.serviceHost}:8920/";
+    # };
+    "jellyseerr.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
@@ -184,12 +178,6 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/".proxyPass = "http://10.10.10.89:2283/";
-    };
-    "kinky3d.de" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/".proxyPass = "http://10.10.10.22:3214/";
     };
     "minio.s3.${config.link.domain}" = {
       # enableACME = true;
@@ -312,7 +300,6 @@
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
-      http2 = true;
       locations."/" = {
         proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.photoprism.port}/";
         proxyWebsockets = true;
@@ -322,6 +309,29 @@
         #   proxy_buffering off;
         #   proxy_http_version 1.1;
         # '';
+      };
+    };
+    "kinky3d.de" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/".proxyPass = "http://10.10.10.22:3214/";
+    };
+    "shonk.de" = {
+      forceSSL = true;
+      enableACME = true;
+      listen = [{ port = 443; addr = "0.0.0.0"; ssl = true; } { port = 8096; addr = "0.0.0.0"; ssl = true; } { port = 8920; addr = "0.0.0.0"; ssl = true; }];
+      locations."/" = {
+        proxyPass = "http://${config.link.serviceHost}:8096/";
+        proxyWebsockets = true;
+      };
+    };
+    "${config.link.domain}" = {
+      enableACME = true;
+      # useACMEHost = config.link.domain;
+      forceSSL = true;
+      default = true;
+      locations."/" = {
+        return = "301 https://www.youtube.com/watch?v=dQw4w9WgXcQ";
       };
     };
     # services.nginx.virtualHosts."paperless.${config.link.domain}" = {
@@ -335,24 +345,24 @@
     # };
 
     ## CTF
-    "slides.netintro.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      # default = true;
-      locations."/" = {
-        proxyPass = "http://100.89.40.41:31337/";
-      };
-    };
-    "vpnconfig.netintro.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      # default = true;
-      locations."/" = {
-        proxyPass = "http://100.89.40.41:31338/";
-      };
-    };
+    # "slides.netintro.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   # default = true;
+    #   locations."/" = {
+    #     proxyPass = "http://100.89.40.41:31337/";
+    #   };
+    # };
+    # "vpnconfig.netintro.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   # default = true;
+    #   locations."/" = {
+    #     proxyPass = "http://100.89.40.41:31338/";
+    #   };
+    # };
   };
   ## /CTF
 
@@ -374,11 +384,11 @@
   #   proxy_set_header X-Forwarded-Proto $scheme;
   # '';
   #};
-  # security.sudo.wheelNeedsPassword = true;
   lollypops.deployment = {
     local-evaluation = true;
     ssh.host = "nc";
     ssh.user = "l";
+    ssh.opts = [ "-p 2522" ];
     sudo.enable = true;
   };
 
