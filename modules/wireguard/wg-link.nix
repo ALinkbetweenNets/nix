@@ -9,7 +9,7 @@ in {
     #     10.0.1.1 linkserver.org
     #     10.0.1.1 jitsi.linkserver.org
     #     10.0.1.1 jellyfin.linkserver.org
-    #     10.0.1.1 jellyseer.linkserver.org
+    #     10.0.1.1 jellyseerr.linkserver.org
     #     10.0.1.1 gitea.linkserver.org
     #     10.0.1.1 paperless.linkserver.org
     #     10.0.1.1 hedgedoc.linkserver.org

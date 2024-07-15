@@ -51,7 +51,8 @@
   };
   lollypops.deployment = {
     local-evaluation = true;
-    ssh = { user = "root"; };
+    sudo.enable = true;
+    ssh = { user = "l"; opts = [ "-p 2522" ]; };
   };
   ### build sd-image
   # nix build .\#nixosConfigurations.pi4b.config.system.build.sdImage
