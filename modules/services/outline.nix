@@ -39,7 +39,7 @@ in {
           accessKey = "De2GYKESwHfPfht2U8vK";
           secretKeyFile = config.sops.secrets."outline/gitlab".path;
           uploadBucketUrl = "https://s3.${config.link.domain}";
-          uploadBucketName = "outline/minio";
+          uploadBucketName = "outline";
           region = "eu-central-1";
         };
         oidcAuthentication = {
