@@ -30,7 +30,7 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    sops.secrets."outline/minio" = { };
+    sops.secrets."outline/minio" = { owner = "outline"; group = "outline"; };
     sops.secrets."outline/oidc" = { };
     services = {
       outline = {
