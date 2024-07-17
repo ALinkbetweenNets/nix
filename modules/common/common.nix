@@ -99,6 +99,7 @@ in {
       ## top
       s-tui
       glances
+      nethogs
       kmod # modprobe
       ## basics
       # gitFull
