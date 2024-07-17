@@ -30,6 +30,8 @@ in {
     };
   };
   config = mkIf cfg.enable {
+    sops.secrets."outline/minio" = { };
+    sops.secrets."outline/oidc" = { };
     services = {
       outline = {
         enable = true;
@@ -37,7 +39,7 @@ in {
         publicUrl = "https://outline.${config.link.domain}";
         storage = {
           accessKey = "De2GYKESwHfPfht2U8vK";
-          secretKeyFile = config.sops.secrets."outline/gitlab".path;
+          secretKeyFile = config.sops.secrets."outline/minio".path;
           uploadBucketUrl = "https://s3.${config.link.domain}";
           uploadBucketName = "outline";
           region = "eu-central-1";
@@ -50,7 +52,7 @@ in {
           userinfoUrl = "https://gitlab.${config.link.domain}/oauth/userinfo";
           usernameClaim = "username";
           clientId = cfg.oidClientId;
-          clientSecretFile = config.sops.secrets."outline".path;
+          clientSecretFile = config.sops.secrets."outline/oidc".path;
           scopes = [ "openid" "email" ];
           displayName = "GitLab";
         };
