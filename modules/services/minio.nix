@@ -25,8 +25,8 @@ in {
     services = {
       minio = {
         enable = true;
-        listenAddress = if cfg.expose-port then "0.0.0.0:9000" else "127.0.0.1:9000";
-        consoleAddress = if cfg.expose-port then "0.0.0.0:9001" else "127.0.0.1:9001";
+        listenAddress = if cfg.expose-port then "0.0.0.0:9001" else "127.0.0.1:9001";
+        consoleAddress = if cfg.expose-port then "0.0.0.0:9002" else "127.0.0.1:9002";
         region = "eu-central-1";
         rootCredentialsFile = config.sops.secrets."minio".path;
         # dataDir = [ "${config.link.storage}/minio/data" ];
@@ -35,7 +35,7 @@ in {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "http://127.0.0.1:9001";
+          proxyPass = "http://127.0.0.1:9002";
           proxyWebsockets = true;
           extraConfig = ''
             proxy_set_header X-Real-IP $remote_addr;
@@ -63,7 +63,7 @@ in {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "http://127.0.0.1:9000";
+          proxyPass = "http://127.0.0.1:9001";
           extraConfig = ''
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -98,6 +98,6 @@ in {
       checkReversePath = lib.mkDefault "loose";
       # nameservers = [ "100.100.100.100" "1.1.1.1" ];
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ 9000 9001 ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ 9001 9002 ];
   };
 }
