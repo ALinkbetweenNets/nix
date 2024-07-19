@@ -89,7 +89,7 @@ with lib; {
         #mullvad-vpn # is defined as program
         mullvad-browser
         ## RDP
-        #remmina # VNC Client
+        remmina # VNC Client
         ## KDE Utils
         kdePackages.krfb # kde connect virtual monitor
         kdePackages.plasma-browser-integration
