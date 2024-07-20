@@ -74,12 +74,12 @@
       restic-server.enable = true;
       # coturn.enable = true;
       # dns.enable = true;
-      # restic-client = {
-      #   enable = true;
-      #   backup-paths-onedrive = [
-      #     "/home/l/.ssh"
-      #     "/rz/syncthing"
-      #   ];
+      restic-client = {
+        enable = true;
+        backup-paths-onedrive = [
+          "/home/l/.ssh"
+
+        ];
       #   backup-paths-lenny-storagebox = [
       #     "/home/l/.ssh"
       #     "/rz/syncthing/crypt"
@@ -89,17 +89,15 @@
       #     "/rz/syncthing/uni"
       #     "/rz/syncthing/w"
       #   ];
-      #   backup-paths-pi4b = [
-      #     "/home/l/.ssh"
-      #     "/rz/archive"
-      #     "/rz/bkp/RTec"
-      #     "/rz/data"
-      #     "/rz/restic"
-      #     "/rz/sftp"
-      #     "/rz/srv"
-      #     "/rz/syncthing"
-      #   ];
-      # };
+        backup-paths-pi4b = [
+          "/home/l/.ssh"
+          "/home/l/archive"
+          "/home/l/.data-mirror"
+          "/home/l/Sync"
+          "/home/l/doc"
+          "/home/l/uni"
+        ];
+      };
       # wg-link.enable = true;
       # services.jitsi = {
       #   enable = true;
