@@ -64,7 +64,7 @@ with lib; {
         pavucontrol
         ## Multimedia
         vlc
-        cobang # qr codes
+        # cobang # qr codes
         ## Encryption
         #veracrypt
         kleopatra # gpg/ pgp
