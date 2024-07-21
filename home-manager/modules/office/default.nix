@@ -22,7 +22,7 @@ in
         inkscape
         thunderbird
         evolution
-        calcure # tui calendar & task manager
+        # calcure # tui calendar & task manager # broken 240721
         #teams # insecure
         evince
         xournalpp
