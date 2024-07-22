@@ -22,6 +22,17 @@ let cfg = config.link.plasma; in
         "kcminputrc"."Libinput/1386/21125/Wacom HID 5285 Pen"."OutputName" = "eDP-1";
         "kcminputrc"."Libinput/1739/52828/SYNA800B:00 06CB:CE5C Touchpad"."NaturalScroll" = true;
         "kcminputrc"."Libinput/1739/52828/SYNA800B:00 06CB:CE5C Touchpad"."PointerAcceleration" = 0.200;
+        # "ksmserver"."Halt Without Confirmation" = "none,,Shut Down Without Confirmation";
+        # "ksmserver"."Lock Session" = [ "Meta+L" "Screensaver,Meta+L" "Screensaver,Lock Session" ];
+        # "ksmserver"."Log Out" = "Ctrl+Alt+Del";
+        # "ksmserver"."LogOut" = "none,,Log Out";
+        # "ksmserver"."Reboot" = "none,,Reboot";
+        # "org_kde_powerdevil"."Decrease Keyboard Brightness" = "Keyboard Brightness Down";
+        # "org_kde_powerdevil"."Decrease Screen Brightness" = "Monitor Brightness Down";
+        # "org_kde_powerdevil"."Decrease Screen Brightness Small" = "Shift+Monitor Brightness Down";
+        # "org_kde_powerdevil"."Hibernate" = "Hibernate";
+
+        # "ksmserver"."Reboot Without Confirmation" = "none,,Reboot Without Confirmation";
         "kded5rc"."Module-browserintegrationreminder"."autoload" = false;
         "kded5rc"."Module-device_automounter"."autoload" = false;
         "kdeglobals"."KDE"."AnimationDurationFactor" = 0.5;
