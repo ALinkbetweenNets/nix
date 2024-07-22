@@ -40,6 +40,9 @@ with lib; {
         "xn" = {
           port = 2522;
         };
+        "pi4b" = {
+          port = 2522;
+        };
       };
       compression = true;
     };
