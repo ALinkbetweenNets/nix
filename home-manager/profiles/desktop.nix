@@ -62,6 +62,7 @@ with lib; {
         aspell
         hunspell
         hunspellDicts.de_DE
+        hunspellDicts.en_US
         ## Audio
         #helvum # Patchbay
         pavucontrol
