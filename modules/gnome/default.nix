@@ -11,22 +11,24 @@ in {
       calls.enable = true;
     };
     services = {
+      udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
       xserver = {
         displayManager.gdm.enable = true;
         desktopManager.gnome.enable = true;
       };
-    };
-    services.gnome = {
-      gnome-keyring.enable = true;
-      gnome-user-share.enable = true;
-      gnome-online-miners.enable = true;
-      core-utilities.enable = true;
-      gnome-settings-daemon.enable = true;
-      core-shell.enable = true;
-      core-os-services.enable = true;
-      sushi.enable = true;
+      gnome = {
+        gnome-keyring.enable = true;
+        gnome-user-share.enable = true;
+        gnome-online-miners.enable = true;
+        core-utilities.enable = true;
+        gnome-settings-daemon.enable = true;
+        core-shell.enable = true;
+        core-os-services.enable = true;
+        sushi.enable = true;
+      };
     };
     environment.systemPackages = with pkgs; [
+      gnomeExtensions.appindicator
       gnomeExtensions.gsconnect
       gnomeExtensions.gtile
       gnomeExtensions.weeks-start-on-monday-again
