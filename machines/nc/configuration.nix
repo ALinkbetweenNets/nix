@@ -136,6 +136,12 @@
         proxyWebsockets = true;
       };
     };
+    "cyyyyyber.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      root = "${pkgs.cyberchef}/share/cyberchef";
+    };
     "hedgedoc.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
