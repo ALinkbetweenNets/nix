@@ -64,6 +64,7 @@ in {
         domain = config.link.domain;
         extraDomainNames = [ "*.${config.link.domain}" ];
         dnsProvider = mkIf config.link.dyndns.enable "cloudflare";
+        listenHTTP = mkIf (!config.link.dyndns.enable) ":80";
         environmentFile = mkIf config.link.dyndns.enable config.sops.secrets."cloudflare-api".path;
         webroot = null;
       };
