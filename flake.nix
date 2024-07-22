@@ -52,7 +52,6 @@
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
-
     };
     ondsel = {
       url = "github:pinpox/ondsel-nix";
