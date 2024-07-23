@@ -6,7 +6,7 @@ in {
   config = mkIf cfg.enable {
     link.libvirt.enable = lib.mkDefault true;
     environment.systemPackages = with pkgs; [
-      powertop
+      # powertop
       lm_sensors
       cpufrequtils
     ] ++ lib.optionals (config.link.desktop.enable) [ cpupower-gui ];
