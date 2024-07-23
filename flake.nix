@@ -52,7 +52,6 @@
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
-
     };
     ondsel = {
       url = "github:pinpox/ondsel-nix";
@@ -219,5 +218,13 @@
           # };
         };
       };
+      # colmena = {
+      #   meta = {
+      #     nixpkgs = import nixpkgs {
+      #       system = "x86_64-linux";
+      #     };
+      #   };
+      #   hosts = self.nixosConfigurations;
+      # };
     };
 }
