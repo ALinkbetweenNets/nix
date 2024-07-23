@@ -44,10 +44,7 @@
     # use config.nixpkgs.hostPlatform.isAarch64 for conditional statements
     common.enable = true;
     server.enable = true;
-    desktop.enable = true;
-    # users.l.enable = true;
-    # users.root.enable = true;
-    # openssh.enable = true;
+    # desktop.enable = true;
   };
   lollypops.deployment = {
     local-evaluation = true;
