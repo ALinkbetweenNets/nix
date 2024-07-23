@@ -6,11 +6,14 @@ with lib; {
     flake-self.homeManagerModules.xdg
   ];
   config = {
-    dconf.settings = {
-      "org/maliit/keyboard/maliit" = {
-        enabled-languages = [ "en" "de" "emoji" ];
-        theme = "BreezeDark";
-
+    dconf = {
+      enable = true;
+      settings = {
+        "org/maliit/keyboard/maliit" = {
+          enabled-languages = [ "en" "de" "emoji" ];
+          theme = "BreezeDark";
+        };
+        "org/gnome/desktop/interface".color-scheme = "prefer-dark";
       };
     };
     programs = {
@@ -59,6 +62,7 @@ with lib; {
         aspell
         hunspell
         hunspellDicts.de_DE
+        hunspellDicts.en_US
         ## Audio
         #helvum # Patchbay
         pavucontrol

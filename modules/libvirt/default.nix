@@ -13,6 +13,11 @@ in {
       ebtables
     ];
     virtualisation = {
+      # virtualbox.host = {
+      #   enable = true;
+      #   enableKvm = true;
+      #   addNetworkInterface = false;
+      # };
       libvirtd = {
         enable = true;
         qemu = {
