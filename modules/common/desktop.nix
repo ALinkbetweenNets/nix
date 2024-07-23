@@ -31,7 +31,9 @@ in {
       spice
       spice-vdagent
     ] ++ lib.optionals
-      (config.nixpkgs.hostPlatform.system == "x86_64-linux") [ cobang ];
+      (config.nixpkgs.hostPlatform.system == "x86_64-linux") [
+      # cobang
+    ];
     networking = {
       networkmanager = {
         enable = true;
