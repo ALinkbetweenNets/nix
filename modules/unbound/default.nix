@@ -26,20 +26,20 @@ in
   };
   config = mkIf cfg.enable {
     networking.resolvconf.useLocalResolver = true;
-    networking.nameservers = [
-      "127.0.0.1"
-      "192.168.150.1"
-      "::1"
-      "100.100.100.100"
-      "194.242.2.2"
-      "9.9.9.9"
-      "1.0.0.1"
-    ];
+    # networking.nameservers = [
+    #   "127.0.0.1"
+    #   "192.168.150.1"
+    #   "::1"
+    #   "100.100.100.100"
+    #   "194.242.2.2"
+    #   "9.9.9.9"
+    #   "1.0.0.1"
+    # ];
     services.resolved = {
-      enable = true;
+      # enable = true;
       fallbackDns = [
         "127.0.0.1"
-        "192.168.150.1"
+        # "192.168.150.1"
         "194.242.2.2"
         "100.100.100.100"
         # "192.168.178.1"
@@ -51,6 +51,7 @@ in
     networking.networkmanager.dns = lib.mkForce "systemd-resolved";
     services.unbound = {
       enable = true;
+      localControlSocketPath = "/run/unbound/unbound.ctl";
       settings = {
         server = {
           include = [
@@ -100,13 +101,11 @@ in
             name = ".";
             forward-addr = [
               "100.100.100.100"
-              # "192.168.178.1"
-              "192.168.150.1"
               "194.242.2.2"
               "9.9.9.9"
+              "1.0.0.1@853#cloudflare-dns.com"
+              "1.1.1.1@853#cloudflare-dns.com"
               "1.0.0.1"
-              # "1.0.0.1@853#cloudflare-dns.com"
-              # "1.1.1.1@853#cloudflare-dns.com"
             ];
             forward-first = "yes";
             forward-tls-upstream = "no";
