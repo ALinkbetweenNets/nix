@@ -70,11 +70,13 @@
         "https://cache.lounge.rocks/nix-cache"
         "https://cuda-maintainers.cachix.org"
         "https://numtide.cachix.org"
+        "https://ai.cachix.org"
       ];
       trusted-public-keys = [
         "nix-cache:4FILs79Adxn/798F8qk2PC1U8HaTlaPqptwNJrXNA1g="
         "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
         "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
+        "ai.cachix.org-1:N9dzRK+alWwoKXQlnn0H6aUx0lU/mspIoz8hMvGvbbc="
       ];
       # Enable flakes
       experimental-features = [ "nix-command" "flakes" ];

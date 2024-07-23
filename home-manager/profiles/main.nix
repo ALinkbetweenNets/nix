@@ -18,11 +18,22 @@ with lib; {
       enable = true;
       indicator = false;
     };
-    programs.direnv = {
-      enable = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
-      nix-direnv.enable = true;
+    programs = {
+      direnv = {
+        enable = true;
+        enableBashIntegration = true;
+        enableZshIntegration = true;
+        nix-direnv.enable = true;
+      };
+      mr = {
+        enable = true; # enable declarative git repository management
+        settings = {
+          # foo = {
+          #     checkout = "git clone git@github.com:joeyh/foo.git";
+          #     update = "git pull --rebase";
+          #   };
+        };
+      };
     };
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [

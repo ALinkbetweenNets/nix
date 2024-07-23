@@ -110,6 +110,14 @@
         proxyPass = "http://131.220.186.200:80";
       };
     };
+    "owncloud.asd-2024.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://131.220.186.200:8080";
+      };
+    };
     "keycloak.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
@@ -135,6 +143,12 @@
         proxyPass = "http://${config.link.serviceHost}:80/";
         proxyWebsockets = true;
       };
+    };
+    "cyyyyyber.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      root = "${pkgs.cyberchef}/share/cyberchef";
     };
     "hedgedoc.${config.link.domain}" = {
       # enableACME = true;
