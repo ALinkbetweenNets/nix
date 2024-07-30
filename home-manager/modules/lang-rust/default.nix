@@ -8,7 +8,7 @@ in
     home.packages = with pkgs; [
       cargo
       clippy
-      gcc
+      # gcc
       lldb
       rustc
       rustfmt
