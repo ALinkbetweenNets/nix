@@ -87,6 +87,7 @@ with lib; {
         ## File Sync
         #syncthing-tray
         ## Browser
+        librewolf
         tor-browser-bundle-bin # compromised
         # vivaldi # nice but proprietary
         floorp # firefox fork, seems promising, needs more research
