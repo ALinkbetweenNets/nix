@@ -102,22 +102,6 @@
         proxyPass = "http://${config.link.serviceHost}:${toString config.services.gitea.settings.server.HTTP_PORT}";
       };
     };
-    "asd-2024.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://131.220.186.200:80";
-      };
-    };
-    "owncloud.asd-2024.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://131.220.186.200:8080";
-      };
-    };
     "keycloak.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
