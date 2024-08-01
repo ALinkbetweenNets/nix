@@ -17,6 +17,7 @@ in {
       ssh.setXAuthLocation = true;
     };
     environment.systemPackages = with pkgs; [
+      kdePackages.partitionmanager
       adwaita-icon-theme
       wifi-qr
       barrier # KVM
