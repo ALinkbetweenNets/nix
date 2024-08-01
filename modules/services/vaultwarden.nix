@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 with lib;
 let cfg = config.link.services.vaultwarden;
 in {
@@ -40,12 +40,13 @@ in {
           ROCKET_ADDRESS = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
           ROCKET_PORT = cfg.port;
           ROCKET_LOG = "warning";
-          USE_SENDMAIL = true;
-          # SMTP_HOST = "127.0.0.1";
-          # SMTP_PORT = 25;
-          # SMTP_SSL = false;
-          # SMTP_FROM = "admin@bitwarden.example.com";
-          # SMTP_FROM_NAME = "example.com Bitwarden server";
+          # USE_SENDMAIL = true;
+          SMTP_HOST = "127.0.0.1";
+          SMTP_PORT = 25;
+          SMTP_FROM = "admin@bitwarden.example.com";
+          SMTP_FROM_NAME = "example.com Bitwarden server";
+          SMTP_USERNAME = "";
+          SMTP_PASSWORD = "";
         };
       };
       nginx.virtualHosts."vaultwarden.${config.link.domain}" = mkIf cfg.nginx-expose {
