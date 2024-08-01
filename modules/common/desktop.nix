@@ -6,6 +6,7 @@ in {
   config = mkIf cfg.enable {
     link = {
       common.enable = true;
+      dns.enable = true;
       wayland.enable = lib.mkDefault true;
       xserver.enable = lib.mkDefault true;
       plasma.enable = lib.mkDefault true;
@@ -88,9 +89,9 @@ in {
         };
       };
     };
-    nixpkgs.config.permittedInsecurePackages = [
-      "electron-25.9.0" # Temporary fix for Obsidian
-    ];
+    # nixpkgs.config.permittedInsecurePackages = [
+    #   "electron-25.9.0" # Temporary fix for Obsidian
+    # ];
     # sound.enable = true; # Enable alsa
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
@@ -101,7 +102,7 @@ in {
         alsa.enable = true;
         alsa.support32Bit = true;
         pulse.enable = true;
-        #jack.enable = true;
+        jack.enable = true;
         #media-session.enable = true;
       };
     };
