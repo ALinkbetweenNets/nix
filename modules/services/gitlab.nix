@@ -46,6 +46,7 @@ in {
       gitlab = {
         enable = true;
         port = cfg.port;
+        https = true;
         host = "gitlab.alinkbetweennets.de";
         pages.settings.pages-domain = "pages.alinkbetweennets.de";
         databaseCreateLocally = true;
