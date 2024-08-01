@@ -177,6 +177,7 @@ in {
             "eza --icons --group-directories-first --git -F --color always --sort=size --all -l --group";
           llar =
             "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all -l --group";
+          sudo = "sudo ";
         };
     };
     fish = {
