@@ -6,6 +6,7 @@ in {
   config = mkIf cfg.enable {
     link = {
       common.enable = true;
+      dns.enable = true;
       wayland.enable = lib.mkDefault true;
       xserver.enable = lib.mkDefault true;
       plasma.enable = lib.mkDefault true;
