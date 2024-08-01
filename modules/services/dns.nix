@@ -1,8 +1,8 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.services.dns;
+let cfg = config.link.dns;
 in {
-  options.link.services.dns.enable = mkEnableOption "activate services.dns";
+  options.link.dns.enable = mkEnableOption "activate dns";
   config = mkIf cfg.enable {
     # networking.resolvconf.useLocalResolver = true;
     # networking.nameservers = [
