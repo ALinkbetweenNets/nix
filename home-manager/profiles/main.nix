@@ -14,10 +14,10 @@ with lib; {
       rust.enable = true;
       # beancount.enable = true;
     };
-    services.kdeconnect = {
-      enable = true;
-      indicator = false;
-    };
+    # services.kdeconnect = {
+    #   enable = true;
+    #   indicator = false;
+    # };
     programs = {
       direnv = {
         enable = true;
