@@ -41,7 +41,7 @@ in {
       clientMaxBodySize = "1000m";
       commonHttpConfig = ''
         # sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
-        ssl_protocols TLSv1.3;
+        # ssl_protocols TLSv1.3;
         log_format myformat '$remote_addr - $remote_user [$time_local] '
           '"$request" $status $body_bytes_sent '
           '"$http_referer" "$http_user_agent"';
@@ -56,7 +56,7 @@ in {
         }
         add_header Strict-Transport-Security $hsts_header;
         # ssl_stapling_verify on;
-        add_header Content-Security-Policy "default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://*.${config.link.domain} ws://*.${config.link.domain} ; base-uri 'self' *.${config.link.domain} ${config.link.domain};" always;
+        add_header Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://*.${config.link.domain} ws://*.${config.link.domain} ; img-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://www.gravatar.com https://logo.clearbit.com https://*.${config.link.domain} ws://*.${config.link.domain} ; base-uri 'self' *.${config.link.domain} ${config.link.domain};" always;
         # no-referrer
         add_header Referrer-Policy strict-origin;
         add_header X-Frame-Options sameorigin;
@@ -87,8 +87,8 @@ in {
         # add_header Strict-Transport-Security "max-age=15552000; includeSubDomains" always;
         fastcgi_buffers 64 4K;
         fastcgi_hide_header X-Powered-By;
-        gzip_proxied expired no-cache no-store private no_last_modified no_etag auth;
-        gzip_types application/atom+xml application/javascript application/json application/ld+json application/manifest+json application/rss+xml application/vnd.geo+json application/vnd.ms-fontobject application/x-font-ttf application/x-web-app-manifest+json application/xhtml+xml application/xml font/opentype image/bmp image/svg+xml image/x-icon text/cache-manifest text/css text/plain text/vcard text/vnd.rim.location.xloc text/vtt text/x-component text/x-cross-domain-policy;
+        # gzip_proxied expired no-cache no-store private no_last_modified no_etag auth;
+        # gzip_types application/atom+xml application/javascript application/json application/ld+json application/manifest+json application/rss+xml application/vnd.geo+json application/vnd.ms-fontobject application/x-font-ttf application/x-web-app-manifest+json application/xhtml+xml application/xml font/opentype image/bmp image/svg+xml image/x-icon text/cache-manifest text/css text/plain text/vcard text/vnd.rim.location.xloc text/vtt text/x-component text/x-cross-domain-policy;
       '';
     };
   };
