@@ -69,17 +69,6 @@
       #  ];
     };
   };
-  services.resolved = {
-    enable = true;
-    fallbackDns = [
-      "127.0.0.1"
-      "192.168.250.1"
-      "194.242.2.2"
-      "192.168.150.1"
-      "1.0.0.1"
-      "1.1.1.1"
-    ];
-  };
 
   networking.hostId = "007f0200";
   environment.systemPackages = with pkgs; [
