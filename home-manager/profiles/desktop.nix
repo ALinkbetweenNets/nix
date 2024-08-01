@@ -51,7 +51,7 @@ with lib; {
     manual.html.enable = true;
     link = {
       code.enable = true;
-      plasma.enable = true;
+      #plasma.enable = true;
     };
     # Packages to install on all desktop systems
     home.packages = with pkgs;
