@@ -128,6 +128,15 @@
         proxyWebsockets = true;
       };
     };
+    "crypt.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://${config.link.serviceHost}:3004/";
+        proxyWebsockets = true;
+      };
+    };
     "cyyyyyber.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
