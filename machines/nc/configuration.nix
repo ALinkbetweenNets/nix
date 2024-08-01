@@ -134,6 +134,19 @@
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://${config.link.serviceHost}:3004/";
+        # proxyWebsockets = true;
+      };
+      locations."/cryptpad_websocket" = {
+        proxyPass = "http://${config.link.serviceHost}:3003/";
+        proxyWebsockets = true;
+      };
+    };
+    "cryptui.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://${config.link.serviceHost}:3004/";
         proxyWebsockets = true;
       };
     };
