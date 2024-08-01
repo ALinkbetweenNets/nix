@@ -27,7 +27,7 @@ in
         evince
         xournalpp
         anki
-        darktable
+        # darktable
         rawtherapee
         pdfmixtool # appears to be broken and unbuildable
         onlyoffice-bin
