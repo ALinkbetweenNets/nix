@@ -40,6 +40,7 @@ in {
           ROCKET_ADDRESS = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
           ROCKET_PORT = cfg.port;
           ROCKET_LOG = "warning";
+          USE_SENDMAIL = true;
           # SMTP_HOST = "127.0.0.1";
           # SMTP_PORT = 25;
           # SMTP_SSL = false;
