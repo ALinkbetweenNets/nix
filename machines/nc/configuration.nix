@@ -90,9 +90,8 @@
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.matrix.port}";
-      };
+      locations."/".proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.matrix.port}";
+      locations."/".proxyWebsockets = true;
     };
     "gitea.${config.link.domain}" = {
       # enableACME = true;
@@ -100,6 +99,7 @@
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://${config.link.serviceHost}:${toString config.services.gitea.settings.server.HTTP_PORT}";
+        proxyWebsockets = true;
       };
     };
     "keycloak.${config.link.domain}" = {
@@ -108,6 +108,7 @@
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.keycloak.port}";
+        proxyWebsockets = true;
       };
     };
     "grafana.${config.link.domain}" = {
@@ -160,7 +161,10 @@
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
-      locations."/".proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.hedgedoc.port}";
+      locations."/" = {
+        proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.hedgedoc.port}";
+        proxyWebsockets = true;
+      };
     };
     "jellyfin.${config.link.domain}" = {
       # enableACME = true;
@@ -168,6 +172,7 @@
       forceSSL = true;
       listen = [{ port = 443; addr = "0.0.0.0"; ssl = true; } { port = 8096; addr = "0.0.0.0"; ssl = true; } { port = 8920; addr = "0.0.0.0"; ssl = true; }];
       locations."/".proxyPass = "http://${config.link.serviceHost}:8096/";
+      locations."/".proxyWebsockets = true;
     };
     # "jellyfin1.${config.link.domain}" = {
     #   # enableACME = true;
@@ -186,18 +191,21 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/".proxyPass = "http://${config.link.serviceHost}:5055/";
+      locations."/".proxyWebsockets = true;
     };
     "restic.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/".proxyPass = "http://${config.link.serviceHost}:2500/";
+      locations."/".proxyWebsockets = true;
     };
     "immich.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/".proxyPass = "http://10.10.10.89:2283/";
+      locations."/".proxyWebsockets = true;
     };
     "minio.s3.${config.link.domain}" = {
       # enableACME = true;
@@ -206,27 +214,13 @@
       locations."/" = {
         proxyPass = "http://${config.link.serviceHost}:9001";
         proxyWebsockets = true;
-        extraConfig = ''
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          # proxy_set_header Host $host;
-          proxy_connect_timeout 300;
-          # Default is HTTP/1, keepalive is only enabled in HTTP/1.1
-          #proxy_http_version 1.1;
-          proxy_set_header Connection "";
-          chunked_transfer_encoding off;
-        '';
+        # extraConfig = ''
+
+        # '';
       };
-      extraConfig = ''
-        # To allow special characters in headers
-        ignore_invalid_headers off;
-        # Allow any size file to be uploaded.
-        # Set to a value such as 1000m; to restrict file size to a specific value
-        client_max_body_size 0;
-        # To disable buffering
-        proxy_buffering off;
-      '';
+      # extraConfig = ''
+
+      # '';
     };
     "s3.${config.link.domain}" = {
       # enableACME = true;
@@ -234,28 +228,28 @@
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://${config.link.serviceHost}:9000";
-        extraConfig = ''
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          # proxy_set_header Host $host;
-          proxy_connect_timeout 300;
-          # Default is HTTP/1, keepalive is only enabled in HTTP/1.1
-          # proxy_http_version 1.1;
-          proxy_set_header Connection "";
-          chunked_transfer_encoding off;
-        '';
+        # extraConfig = ''
+        #   proxy_set_header X-Real-IP $remote_addr;
+        #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        #   proxy_set_header X-Forwarded-Proto $scheme;
+        #   # proxy_set_header Host $host;
+        #   proxy_connect_timeout 300;
+        #   # Default is HTTP/1, keepalive is only enabled in HTTP/1.1
+        #   # proxy_http_version 1.1;
+        #   proxy_set_header Connection "";
+        #   chunked_transfer_encoding off;
+        # '';
         proxyWebsockets = true;
       };
-      extraConfig = ''
-        # To allow special characters in headers
-        ignore_invalid_headers off;
-        # Allow any size file to be uploaded.
-        # Set to a value such as 1000m; to restrict file size to a specific value
-        client_max_body_size 0;
-        # To disable buffering
-        proxy_buffering off;
-      '';
+      # extraConfig = ''
+      #   # To allow special characters in headers
+      #   ignore_invalid_headers off;
+      #   # Allow any size file to be uploaded.
+      #   # Set to a value such as 1000m; to restrict file size to a specific value
+      #   client_max_body_size 0;
+      #   # To disable buffering
+      #   proxy_buffering off;
+      # '';
     };
     "diagrams.${config.link.domain}" = {
       # enableACME = true;
@@ -278,24 +272,7 @@
         proxyPass = "http://${config.link.serviceHost}:80";
       };
       extraConfig = ''
-        index index.php index.html /index.php$request_uri;
-        add_header X-Content-Type-Options nosniff;
-        add_header X-XSS-Protection "1; mode=block";
-        add_header X-Robots-Tag "noindex, nofollow";
-        add_header X-Download-Options noopen;
-        add_header X-Permitted-Cross-Domain-Policies none;
-        add_header X-Frame-Options sameorigin;
-        add_header Referrer-Policy no-referrer;
-        add_header Strict-Transport-Security "max-age=15552000; includeSubDomains" always;
-        client_max_body_size 2048M;
-        fastcgi_buffers 64 4K;
-        fastcgi_hide_header X-Powered-By;
-        gzip on;
-        gzip_vary on;
-        gzip_comp_level 4;
-        gzip_min_length 256;
-        gzip_proxied expired no-cache no-store private no_last_modified no_etag auth;
-        gzip_types application/atom+xml application/javascript application/json application/ld+json application/manifest+json application/rss+xml application/vnd.geo+json application/vnd.ms-fontobject application/x-font-ttf application/x-web-app-manifest+json application/xhtml+xml application/xml font/opentype image/bmp image/svg+xml image/x-icon text/cache-manifest text/css text/plain text/vcard text/vnd.rim.location.xloc text/vtt text/x-component text/x-cross-domain-policy;
+
       '';
     };
     "outline.${config.link.domain}" = {
@@ -393,17 +370,6 @@
   #   locations."/" = {
   #     proxyPass = "http://${config.link.serviceHost}:8766";
   #   };
-  #locations."/" = {
-  #  proxyPass = "http://127.0.0.1:80/";
-  # extraConfig = ''
-  #   proxy_set_header Front-End-Https on;
-  #   proxy_set_header Strict-Transport-Security "max-age=2592000; includeSubdomains";
-  #   proxy_set_header X-Real-IP $remote_addr;
-  #   proxy_set_header Host $host;
-  #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-  #   proxy_set_header X-Forwarded-Proto $scheme;
-  # '';
-  #};
   lollypops.deployment = {
     local-evaluation = true;
     ssh.host = "nc";
