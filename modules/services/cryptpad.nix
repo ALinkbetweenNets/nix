@@ -32,8 +32,8 @@ in {
         settings = {
           httpPort = cfg.port;
           httpAddress = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
-          httpSafeOrigin = "https://cryptpad-ui.${config.link.domain}";
-          httpUnsafeOrigin = "https://cryptpad.${config.link.domain}";
+          httpSafeOrigin = "https://cryptui.${config.link.domain}";
+          httpUnsafeOrigin = "https://crypt.${config.link.domain}";
         };
       };
       nginx.virtualHosts."cryptpad.${config.link.domain}" = mkIf cfg.nginx {
