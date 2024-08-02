@@ -12,6 +12,7 @@
     vm.enable = true;
     tailscale.enable = true;
     tailscale.routing = "server";
+    security.enable = true;
   };
   networking.hostName = "vn";
   boot.loader.grub.device = "/dev/vda";
