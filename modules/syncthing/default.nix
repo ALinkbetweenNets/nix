@@ -30,6 +30,7 @@ in {
         devices = {
           "dn".id = "2UZCLBR-LR5DMFA-HWXNELR-3GF6BVU-RZEBCWZ-P72JF4N-ZV7H6MF-SEQX4QK";
           "xn".id = "RTBEC4G-MYEMYIB-E5LLFXW-XO5WISG-G7NH5IM-ZMXWSOQ-ENW3FPA-SB2G4QI";
+          "fn".id = "Z3YB7BR-O6OBQN7-HPPZ5N5-SVYLBAN-REOGNBX-5KDWGVF-2WJKFC4-MMIZTQT";
           "s22".id = "DOQGIQ6-WIAAZBV-EUQ6HWX-D6G2XYK-SAE6AGX-X3D4OLX-PGKELKL-RR6PSAE";
           "in".id = "IYOMGJ7-NZADKG2-L2PMGIH-VSTMTJ4-KLA7VF4-3CUONC2-BQMMWTW-I6KHDAY";
           "sn".id = "SSSFCB5-W4CIMVK-L33WJ4F-VBH4FZW-SZIRMMN-IGHQ7MA-BBTFKYM-V2NSDQS";
@@ -40,6 +41,7 @@ in {
             path = lib.mkDefault "${config.link.syncthingDir}/v";
             devices = [
               "dn"
+              "fn"
               "hn"
               "in"
               "s22"
@@ -63,6 +65,7 @@ in {
             devices = [
               "dn"
               "hn"
+              "fn"
               "in"
               "s22"
               "sn"
@@ -77,6 +80,7 @@ in {
             path = lib.mkDefault "${config.link.syncthingDir}/w";
             devices = [
               "dn"
+              "fn"
               "hn"
               "sn"
               "xn"
@@ -90,6 +94,7 @@ in {
             path = lib.mkDefault "${config.link.syncthingDir}/github";
             devices = [
               "dn"
+              "fn"
               "hn"
               "xn"
             ];
@@ -98,6 +103,7 @@ in {
             path = lib.mkDefault "${config.link.syncthingDir}/.data-mirror";
             devices = [
               "dn"
+              "fn"
               "xn"
               "sn"
             ];
@@ -106,6 +112,7 @@ in {
             path = lib.mkDefault "${config.link.syncthingDir}/archive";
             devices = [
               "dn"
+              "fn"
               "xn"
               "sn"
             ];
@@ -114,6 +121,7 @@ in {
             path = lib.mkDefault "${config.link.syncthingDir}/doc";
             devices = [
               "dn"
+              "fn"
               "hn"
               "in"
               "s22"
@@ -129,6 +137,7 @@ in {
             path = lib.mkDefault "${config.link.syncthingDir}/Music";
             devices = [
               "dn"
+              "fn"
               "hn"
               "in"
               "s22"
@@ -144,6 +153,7 @@ in {
             path = lib.mkDefault "${config.link.syncthingDir}/crypt";
             devices = [
               "dn"
+              "fn"
               "hn"
               "in"
               "sn"
@@ -154,6 +164,7 @@ in {
             path = lib.mkDefault "${config.link.syncthingDir}/sec";
             devices = [
               "dn"
+              "fn"
               "hn"
               "in"
               "sn"
@@ -168,6 +179,7 @@ in {
             path = lib.mkDefault "${config.link.syncthingDir}/.keys";
             devices = [
               "dn"
+              "fn"
               "hn"
               "in"
               "sn"
