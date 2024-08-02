@@ -32,6 +32,10 @@ with lib; {
           #     checkout = "git clone git@github.com:joeyh/foo.git";
           #     update = "git pull --rebase";
           #   };
+          ALinkbetweenNets-nix = {
+            checkout = "git clone https://github.com/ALinkbetweenNets/nix.git";
+            update = "git pull --rebase";
+          };
         };
       };
     };
