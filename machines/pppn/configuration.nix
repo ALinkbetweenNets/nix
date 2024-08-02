@@ -1,7 +1,8 @@
 { self, ... }:
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, home-manager, ... }: {
   imports = [
     ./hardware-configuration.nix
+    home-manager.nixosModules.home-manager
   ];
   networking.hostName = "pppn";
   # Use Network Manager
