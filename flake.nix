@@ -131,32 +131,46 @@
       # Each subdirectory in ./machines is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
       # configuration.nix that will be read first
-      nixosConfigurations = builtins.listToAttrs (map
-        (x: {
-          name = x;
-          value = nixpkgs.lib.nixosSystem {
-            # Make inputs and the flake itself accessible as module parameters.
-            # Technically, adding the inputs is redundant as they can be also
-            # accessed with flake-self.inputs.X, but adding them individually
-            # allows to only pass what is needed to each module.
-            specialArgs = { flake-self = self; } // inputs;
-            modules = builtins.attrValues self.nixosModules ++ [
-              (import "${./.}/machines/${x}/configuration.nix" { inherit self; })
-              lollypops.nixosModules.lollypops
-              disko.nixosModules.disko
-              sops-nix.nixosModules.sops
-              # ({ config, ... }: {
-              #   # shut up state version warning
-              #   system.stateVersion = config.system.nixos.version;
-              #   # Adjust this to your liking.
-              #   # WARNING: if you set a too low value the image might be not big enough to contain the nixos installation
-              #   disko.devices.disk.vdb.imageSize = "10G";
-              # })
-            ];
-          };
-        })
-        (builtins.attrNames (builtins.readDir ./machines)
-        )); # all except template folder
+      nixosConfigurations = builtins.listToAttrs
+        (map
+          (x: {
+            name = x;
+            value = nixpkgs.lib.nixosSystem {
+              # Make inputs and the flake itself accessible as module parameters.
+              # Technically, adding the inputs is redundant as they can be also
+              # accessed with flake-self.inputs.X, but adding them individually
+              # allows to only pass what is needed to each module.
+              specialArgs = { flake-self = self; } // inputs;
+              modules = builtins.attrValues self.nixosModules ++ [
+                (import "${./.}/machines/${x}/configuration.nix" { inherit self; })
+                lollypops.nixosModules.lollypops
+                disko.nixosModules.disko
+                sops-nix.nixosModules.sops
+                # ({ config, ... }: {
+                #   # shut up state version warning
+                #   system.stateVersion = config.system.nixos.version;
+                #   # Adjust this to your liking.
+                #   # WARNING: if you set a too low value the image might be not big enough to contain the nixos installation
+                #   disko.devices.disk.vdb.imageSize = "10G";
+                # })
+              ];
+            };
+          })
+          (builtins.filter (dirName: dirName != "pppn") (builtins.attrNames (builtins.readDir ./machines)))) // {
+
+        # specify pppn seperately since it relies on system being set
+        pppn = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          specialArgs = { flake-self = self; } // inputs;
+          modules = builtins.attrValues self.nixosModules ++ [
+            (import "${./.}/machines/pppn/configuration.nix" { inherit self; })
+            lollypops.nixosModules.lollypops
+            disko.nixosModules.disko
+            sops-nix.nixosModules.sops
+          ];
+        };
+
+      };
       homeConfigurations = {
         convertible = { pkgs, lib, ... }: {
           imports = [
