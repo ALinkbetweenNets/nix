@@ -41,6 +41,27 @@
       ],
       "image": "bash",
       "name": "Push pi4b to Attic"
+    },
+    {
+      "commands": [
+        "nix build '.#nixosConfigurations.pppn.config.system.build.toplevel' -o 'result-pppn'"
+      ],
+      "image": "bash",
+      "name": "Build pppn"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-pppn')"
+      ],
+      "image": "bash",
+      "name": "Show pppn info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-pppn'"
+      ],
+      "image": "bash",
+      "name": "Push pppn to Attic"
     }
   ]
 }
