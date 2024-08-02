@@ -1,6 +1,5 @@
-{ config, lib, pkgs, ... }:
-
-{
+{ self, ... }:
+{ config, lib, pkgs, ... }: {
   imports = [
     (import <mobile-nixos/lib/configuration.nix> { device = "pine64-pinephonepro"; })
     ./hardware-configuration.nix
