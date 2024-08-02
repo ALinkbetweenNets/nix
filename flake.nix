@@ -29,6 +29,11 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mobile-nixos = {
+      url = "github:NixOS/mobile-nixos";
+      # inputs.nixpkgs.follows = "nixpkgs";
+      flake = false;
+    };
     # vscode-server = {
     #   url = "github:msteen/nixos-vscode-server";
     #   inputs.nixpkgs.follows = "nixpkgs";
