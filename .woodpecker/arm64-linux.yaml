@@ -44,7 +44,7 @@
     },
     {
       "commands": [
-        "nix build '.#nixosConfigurations.pppn.config.system.build.toplevel' -o 'result-pppn'"
+        "nix build '.#nixosConfigurations.pppn.config.system.build.toplevel' --show-trace -o 'result-pppn'"
       ],
       "image": "bash",
       "name": "Build pppn"
