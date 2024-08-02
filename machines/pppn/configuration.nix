@@ -1,9 +1,9 @@
 { self, ... }:
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, mobile-nixos, ... }: {
   imports = [
-    (import <mobile-nixos/lib/configuration.nix> { device = "pine64-pinephonepro"; })
+    (import "${mobile-nixos}/lib/configuration.nix" { device = "pine64-pinephonepro"; })
     ./hardware-configuration.nix
-    <mobile-nixos/examples/phosh/phosh.nix>
+    "${mobile-nixos}/examples/phosh/phosh.nix"
   ];
   networking.hostName = "pppn";
   # Use Network Manager

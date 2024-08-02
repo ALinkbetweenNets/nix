@@ -613,6 +613,22 @@
         "type": "github"
       }
     },
+    "mobile-nixos": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1722056346,
+        "narHash": "sha256-50fcuCppaLMfSOTFO4IkCBs4folToCwlhTgc6IdZFHg=",
+        "owner": "NixOS",
+        "repo": "mobile-nixos",
+        "rev": "717ce90cfadffa449480bae2e155185c651e9993",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "mobile-nixos",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -1103,6 +1119,7 @@
         "home-manager": "home-manager",
         "lollypops": "lollypops",
         "mayniklas": "mayniklas",
+        "mobile-nixos": "mobile-nixos",
         "nixgl": "nixgl",
         "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
