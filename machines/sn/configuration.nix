@@ -45,6 +45,7 @@
     service-ports-expose = true;
     users.lmh01.enable = true;
     services = {
+      mailserver.enable = true;
       cryptpad.enable = true;
       # photoprism.enable = true; # WIP
       keycloak.enable = true;
