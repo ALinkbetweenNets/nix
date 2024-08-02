@@ -10,7 +10,7 @@ in {
     link = {
       tailscale.enable = true;
       tailscale.routing = "server";
-      unbound.enable = true;
+      # unbound.enable = true;
     };
     # programs.msmtp = { enable = true; };
   };

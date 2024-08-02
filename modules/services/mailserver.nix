@@ -5,10 +5,10 @@ in {
   imports = [
     (builtins.fetchTarball {
       # Pick a release version you are interested in and set its hash, e.g.
-      url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/nixos-23.05/nixos-mailserver-nixos-23.05.tar.gz";
+      url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/nixos-24.05/nixos-mailserver-nixos-24.05.tar.gz";
       # To get the sha256 of the nixos-mailserver tarball, we can use the nix-prefetch-url command:
       # release="nixos-23.05"; nix-prefetch-url "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/${release}/nixos-mailserver-${release}.tar.gz" --unpack
-      sha256 = "1ngil2shzkf61qxiqw11awyl81cr7ks2kv3r3k243zz7v2xakm5c";
+      sha256 = "0clvw4622mqzk1aqw1qn6shl9pai097q62mq1ibzscnjayhp278b";
     })
   ];
   options.link.services.mailserver = {
@@ -36,30 +36,26 @@ in {
   };
   config = mkIf cfg.enable {
     sops.secrets = {
-      "mailserver/alinkbetweennets" = { owner = "gitlab"; group = "gitlab"; };
-      "gitlab/dbPass" = { owner = "gitlab"; group = "gitlab"; };
-      "gitlab/otp" = { owner = "gitlab"; group = "gitlab"; };
-      "gitlab/initial-root" = { owner = "gitlab"; group = "gitlab"; };
-      "gitlab/secret" = { owner = "gitlab"; group = "gitlab"; };
+      "mailserver/alinkbetweennets" = { };
     };
 
     mailserver = {
       enable = true;
-      fqdn = "mail.example.com";
-      domains = [ "example.com" ];
+      fqdn = "mail.${config.link.domain}";
+      domains = [ config.link.domain ];
 
       # A list of all login accounts. To create the password hashes, use
       # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
       loginAccounts = {
-        "user1@example.com" = {
-          hashedPasswordFile = "/a/file/containing/a/hashed/password";
-          aliases = [ "postmaster@example.com" ];
+        "ALinkBetweenNets@${config.link.domain}" = {
+          hashedPasswordFile = config.sops.secrets."mailserver/alinkbetweennets".path;
+          aliases = [ "Link@${config.link.domain}" ];
         };
       };
 
       # Use Let's Encrypt certificates. Note that this needs to set up a stripped
       # down nginx and opens port 80.
-      certificateScheme = "acme-nginx";
+      # certificateScheme = "acme-nginx";
     };
     networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
     systemd.services.gitlab-backup.environment.BACKUP = "dump";
