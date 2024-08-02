@@ -163,6 +163,8 @@
           system = "aarch64-linux";
           specialArgs = { flake-self = self; } // inputs;
           modules = builtins.attrValues self.nixosModules ++ [
+            "${mobile-nixos}/examples/phosh/phosh.nix"
+            (import "${mobile-nixos}/lib/configuration.nix" { device = "pine64-pinephonepro"; })
             (import "${./.}/machines/pppn/configuration.nix" { inherit self; })
             lollypops.nixosModules.lollypops
             disko.nixosModules.disko
