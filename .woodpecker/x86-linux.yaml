@@ -63,6 +63,27 @@
       "image": "bash",
       "name": "Push dn to Attic"
     },
+    {
+      "commands": [
+        "nix build '.#nixosConfigurations.fn.config.system.build.toplevel' -o 'result-fn'"
+      ],
+      "image": "bash",
+      "name": "Build fn"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-fn')"
+      ],
+      "image": "bash",
+      "name": "Show fn info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-fn'"
+      ],
+      "image": "bash",
+      "name": "Push fn to Attic"
+    },
     # {
     #   "commands": [
     #     "nix build '.#nixosConfigurations.dnvd.config.system.build.toplevel' -o 'result-dnvd'"
