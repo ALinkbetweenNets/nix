@@ -21,7 +21,7 @@ in {
     };
     port = mkOption {
       type = types.int;
-      default = 5000;
+      default = 5500;
       description = "port to run the application on";
     };
   };
