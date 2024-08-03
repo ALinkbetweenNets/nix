@@ -1,9 +1,12 @@
 { self, ... }:
-{ config, lib, pkgs, home-manager, ... }: {
+{ config, lib, pkgs, flake-self, home-manager, ... }: {
   imports = [
     ./hardware-configuration.nix
     home-manager.nixosModules.home-manager
   ];
+  home-manager.users.l = flake-self.homeConfigurations.desktop;
+  link.desktop.enable = true;
+  link.syncthing.enable = true;
   networking.hostName = "pppn";
   # Use Network Manager
   networking.wireless.enable = false;
@@ -34,7 +37,10 @@
       "wheel"
     ];
   };
-  services.openssh.enable = true;
-  services.openssh.openFirewall = true;
-  services.openssh.startWhenNeeded = true;
+  hardware.enableAllFirmware = true;
+  lollypops.deployment = {
+    local-evaluation = true;
+    # ssh = {user = "l";};
+    # sudo.enable = true;
+  };
 }

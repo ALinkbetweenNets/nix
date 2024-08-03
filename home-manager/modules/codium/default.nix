@@ -64,14 +64,14 @@ in {
           "nixd" = {
             # "eval" = { };
             "formatting" = {
-              "command" =[ "${pkgs.nixfmt-rfc-style}/bin/nixfmt"];
+              "command" = [ "${pkgs.nixfmt-rfc-style}/bin/nixfmt" ];
             };
             "options" = {
-              "nixos"= {
-                  "expr"= "(builtins.getFlake .#nixosConfigurations.fn.options";
+              "nixos" = {
+                "expr" = "(builtins.getFlake .#nixosConfigurations.fn.options";
               };
-              "home-manager"= {
-                  "expr"= "(builtins.getFlake.#homeConfigurations.laptop.options";
+              "home-manager" = {
+                "expr" = "(builtins.getFlake.#homeConfigurations.laptop.options";
               };
               # "target" = {
               #   "args" = [ ];
