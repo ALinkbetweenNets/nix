@@ -68,10 +68,10 @@ in {
             };
             "options" = {
               "nixos"= {
-                  "expr"= "(builtins.getFlake \"/home/l/nix\").nixosConfigurations.fn.options";
+                  "expr"= "(builtins.getFlake .#nixosConfigurations.fn.options";
               };
               "home-manager"= {
-                  "expr"= "(builtins.getFlake \"/home/l/nix\").homeConfigurations.laptop.options";
+                  "expr"= "(builtins.getFlake.#homeConfigurations.laptop.options";
               };
               # "target" = {
               #   "args" = [ ];
