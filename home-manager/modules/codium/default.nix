@@ -5,7 +5,7 @@ in {
   options.link.code.enable = mkEnableOption "activate vscodium";
   config = mkIf cfg.enable {
     home.packages = with pkgs;
-      [ gdb ];
+      [ gdb nixd ];
     programs.vscode = {
       enable = true;
       package = pkgs.vscodium;
@@ -28,6 +28,7 @@ in {
         jnoortheen.nix-ide
         mkhl.direnv
         ms-vscode-remote.remote-ssh
+        redhat.vscode-xml
         redhat.vscode-yaml
         streetsidesoftware.code-spell-checker
         #tamasfe.even-better-toml
@@ -48,31 +49,34 @@ in {
         "[nix]" = {
           "editor.defaultFormatter" = "jnoortheen.nix-ide";
         };
-        "nix" = {
-          "enableLanguageServer" = true;
-          # "serverPath" = "${pkgs.nil}/bin/nil";
-          "serverPath" = "${pkgs.nixd}/bin/nixd";
-          "serverSettings" = {
-            # "nil" = {
-            #   "diagnostics" = {
-            #     "ignored" = [ "unused_binding" "unused_with" ];
-            #   };
-            #   "formatting" = {
-            #     "command" = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
-            #   };
-            # };
-            "nixd" = {
-              "eval" = { };
-              "formatting" = {
-                "command" = "nixpkgs-fmt";
+        "nix.enableLanguageServer" = true;
+        # "serverPath" = "${pkgs.nil}/bin/nil";
+        "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
+        "nix.serverSettings" = {
+          # "nil" = {
+          #   "diagnostics" = {
+          #     "ignored" = [ "unused_binding" "unused_with" ];
+          #   };
+          #   "formatting" = {
+          #     "command" = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
+          #   };
+          # };
+          "nixd" = {
+            # "eval" = { };
+            "formatting" = {
+              "command" =[ "${pkgs.nixfmt-rfc-style}/bin/nixfmt"];
+            };
+            "options" = {
+              "nixos"= {
+                  "expr"= "(builtins.getFlake \"/home/l/nix\").nixosConfigurations.fn.options";
               };
-              "options" = {
-                "enable" = true;
-                "target" = {
-                  "args" = [ ];
-                  "installable" = "<flakeref>#nixosConfigurations.<name>.options";
-                };
+              "home-manager"= {
+                  "expr"= "(builtins.getFlake \"/home/l/nix\").homeConfigurations.laptop.options";
               };
+              # "target" = {
+              #   "args" = [ ];
+              #   "installable" = "(builtins.getFlake \"\${workspaceFolder}\")#nixosConfigurations.<name>.options";
+              # };
             };
           };
         };
@@ -125,8 +129,6 @@ in {
         "ltex.additionalRules.enablePickyRules" = true;
         "ltex.language" = "de-DE";
         "markdown.extension.completion.enabled" = true;
-        "nix.enableLanguageServer" = true;
-        "nix.serverPath" = "${pkgs.nil}/bin/nil";
         "prettier.printWidth" = 160;
         "problems.showCurrentInStatus" = true;
         "redhat.telemetry.enabled" = false;
