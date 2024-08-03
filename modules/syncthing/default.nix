@@ -35,6 +35,7 @@ in {
           "in".id = "IYOMGJ7-NZADKG2-L2PMGIH-VSTMTJ4-KLA7VF4-3CUONC2-BQMMWTW-I6KHDAY";
           "sn".id = "SSSFCB5-W4CIMVK-L33WJ4F-VBH4FZW-SZIRMMN-IGHQ7MA-BBTFKYM-V2NSDQS";
           "hn".id = "YU4MCML-QWAYIDE-FSHCDWA-C2FGKTG-ERS6I36-SMCFI2J-RKLVOPN-PS3IFQD";
+          "pppn".id = "JCOKRQ5-67ARNA3-VOO4EOZ-5GUPCU6-63FSAID-EI4MVHH-T5ORT3Y-OFAGAAY";
         };
         folders = {
           "v" = {
@@ -127,6 +128,7 @@ in {
               "s22"
               "sn"
               "xn"
+
             ];
             versioning = {
               type = "simple";
@@ -169,6 +171,7 @@ in {
               "in"
               "sn"
               "xn"
+              "pppn"
             ];
             versioning = {
               type = "simple";
