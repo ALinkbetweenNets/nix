@@ -4,6 +4,8 @@ with lib; {
   config = {
     # imports = with flake-self.homeManagerModules; [ git ];
     link = {
+      code.enable = true;
+      # plasma.enable = true;
       office.enable = true;
       pentesting.enable = true;
       latex.enable = true;
