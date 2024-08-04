@@ -66,9 +66,9 @@
   #environment.systemPackages = with pkgs; [ davinci-resolve ];
   # nix run .\#lollypops -- meet:rebuild
   lollypops.deployment = {
-    # local-evaluation = true;
-    # ssh = { host = "10.0.1.1"; };
-    # sudo.enable = true;
+    local-evaluation = true;
+    ssh = { user = "l"; };
+    sudo.enable = true;
   };
   services.xserver.wacom.enable = true;
   environment.systemPackages = with pkgs; [
