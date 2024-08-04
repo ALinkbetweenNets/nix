@@ -179,6 +179,11 @@
             ./home-manager/profiles/convertible.nix
           ] ++ (builtins.attrValues self.homeManagerModules);
         };
+        desktop = { pkgs, lib, ... }: {
+          imports = [
+            ./home-manager/profiles/desktop.nix
+          ] ++ (builtins.attrValues self.homeManagerModules);
+        };
         laptop = { pkgs, lib, ... }: {
           imports = [
             ./home-manager/profiles/laptop.nix
