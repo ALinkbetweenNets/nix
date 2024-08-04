@@ -1,6 +1,13 @@
-{ lib, pkgs, config, self, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  self,
+  ...
+}:
 with lib;
-let cfg = config.link.dyndns;
+let
+  cfg = config.link.dyndns;
 in
 {
   options.link.dyndns = {

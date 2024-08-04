@@ -1,5 +1,13 @@
 { self, ... }:
-{ config, lib, pkgs, flake-self, home-manager, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  flake-self,
+  home-manager,
+  ...
+}:
+{
   imports = [
     ./hardware-configuration.nix
     home-manager.nixosModules.home-manager
@@ -41,7 +49,9 @@
   hardware.enableAllFirmware = true;
   lollypops.deployment = {
     local-evaluation = true;
-    ssh = { user = "l"; };
+    ssh = {
+      user = "l";
+    };
     sudo.enable = true;
   };
 }

@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.paperless;
-in {
+let
+  cfg = config.link.services.paperless;
+in
+{
   options.link.services.paperless = {
     enable = mkEnableOption "activate paperless";
     expose-port = mkOption {

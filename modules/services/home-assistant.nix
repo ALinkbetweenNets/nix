@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.home-assistant;
-in {
+let
+  cfg = config.link.home-assistant;
+in
+{
   options.link.home-assistant.enable = mkEnableOption "activate home-assistant";
   config = mkIf cfg.enable {
     virtualisation.oci-containers = {
@@ -16,7 +24,10 @@ in {
         ];
       };
     };
-    networking.firewall.allowedTCPPorts = [ 8123 1900 ];
+    networking.firewall.allowedTCPPorts = [
+      8123
+      1900
+    ];
     networking.firewall.allowedUDPPorts = [ 1900 ];
   };
 }

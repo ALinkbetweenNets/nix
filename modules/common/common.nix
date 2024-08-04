@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.common;
-in {
+let
+  cfg = config.link.common;
+in
+{
   options.link.common.enable = mkEnableOption "activate common";
   config = mkIf cfg.enable {
     programs = {
@@ -42,7 +50,10 @@ in {
     # services.tlp.settings = {
     #   USB_AUTOSUSPEND = 0;
     # };
-    environment.pathsToLink = [ "/share/zsh" "/share/fish" ];
+    environment.pathsToLink = [
+      "/share/zsh"
+      "/share/fish"
+    ];
     link = {
       # fs.luks.enable = true;
       users = {

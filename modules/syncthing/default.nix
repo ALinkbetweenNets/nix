@@ -1,12 +1,23 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.syncthing;
-in {
+let
+  cfg = config.link.syncthing;
+in
+{
   options.link.syncthing.enable = mkEnableOption "activate syncthing";
   config = mkIf cfg.enable {
     systemd.tmpfiles.rules = [ "d /var/lib/syncthing 1700 l wheel -" ];
     networking.firewall = {
-      allowedTCPPorts = [ 8384 22000 ];
+      allowedTCPPorts = [
+        8384
+        22000
+      ];
       allowedUDPPorts = [
         22000 # syncthing
         21027 # syncthing

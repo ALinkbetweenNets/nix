@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.gitlab;
-in {
+let
+  cfg = config.link.services.gitlab;
+in
+{
   options.link.services.gitlab = {
     enable = mkEnableOption "activate gitlab";
     expose-port = mkOption {
@@ -27,11 +35,26 @@ in {
   };
   config = mkIf cfg.enable {
     sops.secrets = {
-      "gitlab/db" = { owner = "gitlab"; group = "gitlab"; };
-      "gitlab/dbPass" = { owner = "gitlab"; group = "gitlab"; };
-      "gitlab/otp" = { owner = "gitlab"; group = "gitlab"; };
-      "gitlab/initial-root" = { owner = "gitlab"; group = "gitlab"; };
-      "gitlab/secret" = { owner = "gitlab"; group = "gitlab"; };
+      "gitlab/db" = {
+        owner = "gitlab";
+        group = "gitlab";
+      };
+      "gitlab/dbPass" = {
+        owner = "gitlab";
+        group = "gitlab";
+      };
+      "gitlab/otp" = {
+        owner = "gitlab";
+        group = "gitlab";
+      };
+      "gitlab/initial-root" = {
+        owner = "gitlab";
+        group = "gitlab";
+      };
+      "gitlab/secret" = {
+        owner = "gitlab";
+        group = "gitlab";
+      };
     };
     services = {
       nginx = {
@@ -60,7 +83,9 @@ in {
         };
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port
+        [ cfg.port ];
     systemd.services.gitlab-backup.environment.BACKUP = "dump";
   };
 }

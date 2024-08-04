@@ -1,6 +1,12 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.beancount;
+let
+  cfg = config.link.beancount;
 in
 {
   options.link.beancount.enable = mkEnableOption "activate beancount toolchain";

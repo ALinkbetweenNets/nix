@@ -1,5 +1,13 @@
 { self, ... }:
-{ pkgs, lib, config, flake-self, home-manager, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  flake-self,
+  home-manager,
+  ...
+}:
+{
   imports = [
     ./hardware-configuration.nix
     home-manager.nixosModules.home-manager
@@ -16,7 +24,9 @@
   services.smartd.enable = false;
   networking.hostName = "in";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-  lollypops.deployment = { local-evaluation = true; };
-  environment.systemPackages = with pkgs;    [ ];
+  lollypops.deployment = {
+    local-evaluation = true;
+  };
+  environment.systemPackages = with pkgs; [ ];
   #system.stateVersion = "23.05";
 }

@@ -1,6 +1,12 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.services.restic-client;
+let
+  cfg = config.link.services.restic-client;
 in
 {
   options.link.services.restic-client = {
@@ -102,7 +108,7 @@ in
         };
       in
       {
-        storagebox = mkIf (cfg.backup-paths-storagebox != []) {
+        storagebox = mkIf (cfg.backup-paths-storagebox != [ ]) {
           paths = cfg.backup-paths-storagebox;
           repositoryFile = config.sops.secrets."restic/storagebox/repository".path;
           passwordFile = config.sops.secrets."restic/storagebox/password".path;
@@ -128,7 +134,7 @@ in
           ];
           initialize = true;
         };
-        lenny-storagebox = mkIf (cfg.backup-paths-lenny-storagebox != []) {
+        lenny-storagebox = mkIf (cfg.backup-paths-lenny-storagebox != [ ]) {
           paths = cfg.backup-paths-lenny-storagebox;
           repositoryFile = config.sops.secrets."restic/lenny-storagebox/repository".path;
           passwordFile = config.sops.secrets."restic/lenny-storagebox/password".path;
@@ -154,7 +160,7 @@ in
           ];
           initialize = true;
         };
-        sn = mkIf (cfg.backup-paths-sn != []) {
+        sn = mkIf (cfg.backup-paths-sn != [ ]) {
           paths = cfg.backup-paths-sn;
           repositoryFile = config.sops.secrets."restic/sn/repository".path;
           passwordFile = config.sops.secrets."restic/sn/password".path;
@@ -179,7 +185,7 @@ in
           ];
           initialize = true;
         };
-        pi4b = mkIf (cfg.backup-paths-pi4b != []) {
+        pi4b = mkIf (cfg.backup-paths-pi4b != [ ]) {
           paths = cfg.backup-paths-pi4b;
           repositoryFile = config.sops.secrets."restic/pi4b/repository".path;
           passwordFile = config.sops.secrets."restic/pi4b/password".path;
@@ -235,7 +241,7 @@ in
         #   ];
         #   initialize = true;
         # };
-        onedrive = mkIf (cfg.backup-paths-onedrive != []) {
+        onedrive = mkIf (cfg.backup-paths-onedrive != [ ]) {
           paths = cfg.backup-paths-onedrive;
           repositoryFile = config.sops.secrets."restic/onedrive/repository".path;
           passwordFile = config.sops.secrets."restic/onedrive/password".path;

@@ -1,7 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
-let cfg = config.link.services.vaultwarden;
-in {
+let
+  cfg = config.link.services.vaultwarden;
+in
+{
   options.link.services.vaultwarden = {
     enable = mkEnableOption "activate vaultwarden";
     expose-port = mkOption {
@@ -27,7 +34,10 @@ in {
   };
   config = mkIf cfg.enable {
     sops.secrets = {
-      "vaultwarden" = { owner = "root"; group = "root"; };
+      "vaultwarden" = {
+        owner = "root";
+        group = "root";
+      };
     };
     services = {
       vaultwarden = {
@@ -62,6 +72,8 @@ in {
         '';
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port
+        [ cfg.port ];
   };
 }

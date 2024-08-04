@@ -1,5 +1,6 @@
 { lib, pkgs, ... }:
-with lib; {
+with lib;
+{
   imports = [ ./desktop.nix ];
   config = {
     # imports = with flake-self.homeManagerModules; [ git ];

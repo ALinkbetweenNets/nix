@@ -1,5 +1,16 @@
 { self, ... }:
-{ pkgs, lib, config, modulesPath, flake-self, home-manager, nixos-hardware, nixpkgs, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  modulesPath,
+  flake-self,
+  home-manager,
+  nixos-hardware,
+  nixpkgs,
+  ...
+}:
+{
 
   imports = [
     # being able to build the sd-image
@@ -49,7 +60,10 @@
   lollypops.deployment = {
     local-evaluation = true;
     sudo.enable = true;
-    ssh = { user = "l"; opts = [ "-p 2522" ]; };
+    ssh = {
+      user = "l";
+      opts = [ "-p 2522" ];
+    };
   };
   ### build sd-image
   # nix build .\#nixosConfigurations.pi4b.config.system.build.sdImage
@@ -64,8 +78,7 @@
   # remove this once the issue is fixed!
   nixpkgs.overlays = [
     (final: super: {
-      makeModulesClosure = x:
-        super.makeModulesClosure (x // { allowMissing = true; });
+      makeModulesClosure = x: super.makeModulesClosure (x // { allowMissing = true; });
     })
   ];
   networking.hostName = "pi4b";

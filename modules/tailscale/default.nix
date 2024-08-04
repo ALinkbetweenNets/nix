@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.tailscale;
-in {
+let
+  cfg = config.link.tailscale;
+in
+{
   options.link.tailscale = {
     enable = mkEnableOption "activate tailscale";
     routing = mkOption {
@@ -19,7 +27,8 @@ in {
     services.tailscale = {
       enable = true;
       useRoutingFeatures = "server";
-      extraUpFlags = [ ]
+      extraUpFlags =
+        [ ]
         ++ lib.optionals (cfg.advertise-exit-node) [ "--advertise-exit-node" ]
         ++ lib.optionals (config.link.unbound.enable) [ "--accept-dns=false" ];
     };

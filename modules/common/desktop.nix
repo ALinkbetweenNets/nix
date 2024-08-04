@@ -1,7 +1,16 @@
-{ config, system-config, flake-self, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  flake-self,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.desktop;
-in {
+let
+  cfg = config.link.desktop;
+in
+{
   options.link.desktop.enable = mkEnableOption "activate desktop";
   config = mkIf cfg.enable {
     link = {
@@ -18,73 +27,73 @@ in {
       ssh.setXAuthLocation = true;
       kdeconnect.enable = true;
     };
-    environment.systemPackages = with pkgs; [
-      kdePackages.partitionmanager
-      adwaita-icon-theme
-      wifi-qr
-      barrier # KVM
-      gsettings-qt
-      kde-gtk-config
-      glib
-      gsettings-qt
-      gsettings-desktop-schemas
-      dconf-editor
-      # Virt Manager
-      virt-manager
-      spice
-      spice-vdagent
-    ] ++ lib.optionals
-      (config.nixpkgs.hostPlatform.system == "x86_64-linux") [
-      # cobang
-    ];
+    environment.systemPackages =
+      with pkgs;
+      [
+        kdePackages.partitionmanager
+        adwaita-icon-theme
+        wifi-qr
+        barrier # KVM
+        gsettings-qt
+        kde-gtk-config
+        glib
+        gsettings-qt
+        gsettings-desktop-schemas
+        dconf-editor
+        # Virt Manager
+        virt-manager
+        spice
+        spice-vdagent
+      ]
+      ++ lib.optionals (config.nixpkgs.hostPlatform.system == "x86_64-linux") [
+        # cobang
+      ];
     networking = {
       networkmanager = {
         enable = true;
         # dns = lib.mkDefault "systemd-resolved";
       };
       firewall = {
-        allowedTCPPortRanges = [{
-          from = 1714;
-          to = 1764;
-        } # KDE Connect
+        allowedTCPPortRanges = [
+          {
+            from = 1714;
+            to = 1764;
+          } # KDE Connect
         ];
-        allowedUDPPortRanges = [{
-          from = 1714;
-          to = 1764;
-        } # KDE Connect
+        allowedUDPPortRanges = [
+          {
+            from = 1714;
+            to = 1764;
+          } # KDE Connect
         ];
       };
     };
     fonts = {
       enableDefaultPackages = true;
-      packages = with pkgs;
-        [
-          # font-awesome
-          jetbrains-mono
-          # fira
-          # fira-code
-          # fira-code-symbols
-          # league-of-moveable-type
-          # source-sans-pro
-          # source-serif-pro
-          noto-fonts-color-emoji
-          noto-fonts-cjk-sans # japanese fonts
-          # corefonts
-          # recursive
-          # iosevka-bin
-          # font-awesome
-          # line-awesome
-          (nerdfonts.override { fonts = [ "FiraCode" ]; })
-        ];
+      packages = with pkgs; [
+        # font-awesome
+        jetbrains-mono
+        # fira
+        # fira-code
+        # fira-code-symbols
+        # league-of-moveable-type
+        # source-sans-pro
+        # source-serif-pro
+        noto-fonts-color-emoji
+        noto-fonts-cjk-sans # japanese fonts
+        # corefonts
+        # recursive
+        # iosevka-bin
+        # font-awesome
+        # line-awesome
+        (nerdfonts.override { fonts = [ "FiraCode" ]; })
+      ];
       fontDir.enable = true;
       fontconfig = {
         defaultFonts = {
-          serif =
-            [ "FiraCode" ];
-          sansSerif =
-            [ "FiraCode" ];
-          monospace =
-            [ "FiraCode" ];
+          serif = [ "FiraCode" ];
+          sansSerif = [ "FiraCode" ];
+          monospace = [ "FiraCode" ];
           emoji = [ "Noto Color Emoji" ];
         };
       };

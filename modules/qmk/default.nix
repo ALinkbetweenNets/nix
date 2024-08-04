@@ -1,7 +1,14 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.qmk;
-in {
+let
+  cfg = config.link.qmk;
+in
+{
   options.link.qmk.enable = mkEnableOption "activate qmk containers";
   config = mkIf cfg.enable {
     hardware.keyboard.qmk.enable = true;

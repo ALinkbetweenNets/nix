@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.authelia;
-in {
+let
+  cfg = config.link.authelia;
+in
+{
   options.link.authelia.enable = mkEnableOption "activate authelia";
   config = mkIf cfg.enable {
     #     systemd.services.authelia-main.preStart = ''
@@ -24,9 +32,18 @@ in {
     #       sessionSecretFile = "/var/lib/authelia-main/session-secret-file";
     #     };
     sops.secrets = {
-      "authelia/main/jwtSecret" = { owner = "authelia-main"; group = "authelia-main"; };
-      "authelia/main/storageEncryptionKey" = { owner = "authelia-main"; group = "authelia-main"; };
-      "authelia/main/sessionSecret" = { owner = "authelia-main"; group = "authelia-main"; };
+      "authelia/main/jwtSecret" = {
+        owner = "authelia-main";
+        group = "authelia-main";
+      };
+      "authelia/main/storageEncryptionKey" = {
+        owner = "authelia-main";
+        group = "authelia-main";
+      };
+      "authelia/main/sessionSecret" = {
+        owner = "authelia-main";
+        group = "authelia-main";
+      };
     };
     services = {
       authelia.instances.main = {

@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.wg-deep;
-in {
+let
+  cfg = config.link.wg-deep;
+in
+{
   options.link.wg-deep.enable = mkEnableOption "activate wg-deep";
   config = mkIf cfg.enable {
     # networking.extraHosts =
@@ -13,18 +21,17 @@ in {
       interface=wg-deep
     '';
     networking = {
-      extraHosts =
-        ''
-          10.0.0.1 deeps
-          10.0.0.1 nextcloud.deepserver.org
-          10.0.0.1 matrix.deepserver.org
-          10.0.0.1 hedgedoc.deepserver.org
-          10.0.0.1 onlyoffice.deepserver.org
-          10.0.0.1 vaultwarden.deepserver.org
-          10.0.0.1 element.deepserver.org
-          10.0.0.1 outline.deepserver.org
-          10.0.0.1 gitea.deepserver.org
-        '';
+      extraHosts = ''
+        10.0.0.1 deeps
+        10.0.0.1 nextcloud.deepserver.org
+        10.0.0.1 matrix.deepserver.org
+        10.0.0.1 hedgedoc.deepserver.org
+        10.0.0.1 onlyoffice.deepserver.org
+        10.0.0.1 vaultwarden.deepserver.org
+        10.0.0.1 element.deepserver.org
+        10.0.0.1 outline.deepserver.org
+        10.0.0.1 gitea.deepserver.org
+      '';
       firewall = {
         allowedUDPPorts = [ 51820 ];
         checkReversePath = mkForce false;

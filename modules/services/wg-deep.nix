@@ -1,23 +1,30 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.wg-deep;
-in {
+let
+  cfg = config.link.services.wg-deep;
+in
+{
   options.link.services.wg-deep.enable = mkEnableOption "activate wg-deep";
   config = mkIf cfg.enable {
     networking = {
       nat.internalInterfaces = [ "wg-deep" ];
-      extraHosts =
-        ''
-          10.0.0.1 deeps
-          10.0.0.1 nextcloud.deepserver.org
-          10.0.0.1 matrix.deepserver.org
-          10.0.0.1 hedgedoc.deepserver.org
-          10.0.0.1 onlyoffice.deepserver.org
-          10.0.0.1 vaultwarden.deepserver.org
-          10.0.0.1 element.deepserver.org
-          10.0.0.1 outline.deepserver.org
-          10.0.0.1 gitea.deepserver.org
-        '';
+      extraHosts = ''
+        10.0.0.1 deeps
+        10.0.0.1 nextcloud.deepserver.org
+        10.0.0.1 matrix.deepserver.org
+        10.0.0.1 hedgedoc.deepserver.org
+        10.0.0.1 onlyoffice.deepserver.org
+        10.0.0.1 vaultwarden.deepserver.org
+        10.0.0.1 element.deepserver.org
+        10.0.0.1 outline.deepserver.org
+        10.0.0.1 gitea.deepserver.org
+      '';
       wireguard.interfaces = {
         wg-deep = {
           # Determines the IP/IPv6 address and subnet of the client's end of the tunnel interface

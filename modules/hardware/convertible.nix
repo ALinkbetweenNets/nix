@@ -1,6 +1,14 @@
-{ config, flake-self, system-config, pkgs, lib, ... }:
+{
+  config,
+  flake-self,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.convertible;
+let
+  cfg = config.link.convertible;
 in
 {
   options.link.convertible = {

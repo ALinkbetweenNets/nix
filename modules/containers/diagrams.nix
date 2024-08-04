@@ -1,6 +1,12 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.containers.diagrams;
+let
+  cfg = config.link.containers.diagrams;
 in
 {
   options.link.containers.diagrams = {
@@ -26,7 +32,9 @@ in
       volumes = [ "${config.link.storage}/diagrams:/persist" ];
       ports = [ "8765:8080" ];
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ 8765 ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port
+        [ 8765 ];
     services.nginx.virtualHosts."diagrams.${config.link.domain}" = mkIf cfg.nginx {
       enableACME = true;
       forceSSL = true;

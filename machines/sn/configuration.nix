@@ -1,5 +1,14 @@
 { self, ... }:
-{ pkgs, lib, config, flake-self, home-manager, modulesPath, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  flake-self,
+  home-manager,
+  modulesPath,
+  ...
+}:
+{
   imports = [
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
     home-manager.nixosModules.home-manager
@@ -118,13 +127,13 @@
     };
     eth = "eth0@if146";
   };
-services.owncast={
-  enable=true;
-  openFirewall = true;
-  listen="0.0.0.0";
-  rtmp-port=1935;
-  port=8888;
-};
+  services.owncast = {
+    enable = true;
+    openFirewall = true;
+    listen = "0.0.0.0";
+    rtmp-port = 1935;
+    port = 8888;
+  };
   services.onedrive.enable = true;
   services.clamav = {
     # Antivirus
@@ -132,7 +141,7 @@ services.owncast={
     updater.enable = true;
   };
   users.users.root.openssh.authorizedKeys.keys = [
-  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIELDx8vTqed3YBepK2EEcM0vsLZX3g9gxwzVknwYlAgh root@sn"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIELDx8vTqed3YBepK2EEcM0vsLZX3g9gxwzVknwYlAgh root@sn"
   ];
 
   nix.settings.auto-optimise-store = true;
@@ -201,14 +210,14 @@ services.owncast={
   # nix run .\#lollypops -- sn:rebuild
   lollypops.deployment = {
     # local-evaluation = true;
-    ssh = { host = "sn"; user = "l"; };
+    ssh = {
+      host = "sn";
+      user = "l";
+    };
     # sudo.enable = true;
     ssh.opts = [ "-p 2522" ];
     sudo.enable = true;
   };
-
-
-
 
   # Supress systemd units that don't work because of LXC.
   # https://blog.xirion.net/posts/nixos-proxmox-lxc/#configurationnix-tweak
@@ -217,6 +226,5 @@ services.owncast={
     "sys-kernel-debug.mount"
     "sys-fs-fuse-connections.mount"
   ];
-
 
 }

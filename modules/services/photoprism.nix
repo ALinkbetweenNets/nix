@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.photoprism;
-in {
+let
+  cfg = config.link.services.photoprism;
+in
+{
   options.link.services.photoprism = {
     enable = mkEnableOption "activate photoprism";
     expose-port = mkOption {
@@ -73,6 +81,8 @@ in {
         };
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port
+        [ cfg.port ];
   };
 }

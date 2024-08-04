@@ -1,7 +1,14 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.fs.zfs;
-in {
+let
+  cfg = config.link.fs.zfs;
+in
+{
   options.link.fs.zfs.enable = mkEnableOption "activate zfs";
   config = mkIf cfg.enable {
     services.zfs = {

@@ -1,12 +1,28 @@
-{ lib, pkgs, config, nixpkgs, flake-self, home-manager, ... }: {
+{
+  lib,
+  pkgs,
+  config,
+  nixpkgs,
+  flake-self,
+  home-manager,
+  ...
+}:
+{
   system = {
     autoUpgrade = {
       enable = true;
       allowReboot = true;
-      rebootWindow = { lower = "05:00"; upper = "07:00"; };
+      rebootWindow = {
+        lower = "05:00";
+        upper = "07:00";
+      };
       persistent = true;
       flake = "github:alinkbetweennets/nix";
-      flags = [ "--update-input" "nixpkgs" "-L" ];
+      flags = [
+        "--update-input"
+        "nixpkgs"
+        "-L"
+      ];
     };
     stateVersion = "23.11";
   };
@@ -35,13 +51,14 @@
       flake-self.inputs.nur.overlay
       flake-self.inputs.crab_share.overlay
       flake-self.inputs.nixvim.overlays.default
-      (final: prev: {
-        ondsel = flake-self.inputs.ondsel.packages.${pkgs.system}.ondsel;
-      })
+      (final: prev: { ondsel = flake-self.inputs.ondsel.packages.${pkgs.system}.ondsel; })
       (final: prev: {
         cudapkgs = import flake-self.inputs.nixpkgs {
           system = "${pkgs.system}";
-          config = { allowUnfree = true; cudaSupport = true; };
+          config = {
+            allowUnfree = true;
+            cudaSupport = true;
+          };
         };
       })
     ];
@@ -79,7 +96,10 @@
         "ai.cachix.org-1:N9dzRK+alWwoKXQlnn0H6aUx0lU/mspIoz8hMvGvbbc="
       ];
       # Enable flakes
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       # Save space by hardlinking store files
       auto-optimise-store = true;
     };

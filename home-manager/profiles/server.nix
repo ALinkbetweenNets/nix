@@ -1,11 +1,18 @@
-{ lib, pkgs, flake-self, config, system-config, ... }:
-with lib; {
+{
+  lib,
+  pkgs,
+  flake-self,
+  config,
+  system-config,
+  ...
+}:
+with lib;
+{
   imports = [ ./common.nix ];
   config = {
-    home.packages = with pkgs;
-      [
-        # zola
-        # hugo
-      ];
+    home.packages = with pkgs; [
+      # zola
+      # hugo
+    ];
   };
 }

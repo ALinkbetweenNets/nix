@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.nginx;
-in {
+let
+  cfg = config.link.nginx;
+in
+{
   options.link.nginx.enable = mkEnableOption "activate nginx";
   config = mkIf cfg.enable {
     networking.firewall.allowedTCPPorts = [
@@ -56,7 +64,7 @@ in {
         }
         add_header Strict-Transport-Security $hsts_header;
         # ssl_stapling_verify on;
-        add_header Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://*.${config.link.domain} ws://*.${config.link.domain} https://api-l.cofractal.com https://maputnik.github.io https://fonts.openmaptiles.org ; img-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://www.gravatar.com https://logo.clearbit.com https://*.${config.link.domain} ws://*.${config.link.domain} ; base-uri 'self' *.${config.link.domain} ${config.link.domain};" always;
+        add_header Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://*.${config.link.domain} ws://*.${config.link.domain} https://api-l.cofractal.com https://maputnik.github.io https://fonts.openmaptiles.org ; img-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://videos.owncast.online https://www.gravatar.com https://logo.clearbit.com https://*.${config.link.domain} ws://*.${config.link.domain} ; media-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://assets.owncast.tv https://videos.owncast.online https://www.gravatar.com https://logo.clearbit.com https://*.${config.link.domain} ws://*.${config.link.domain} ; base-uri 'self' *.${config.link.domain} ${config.link.domain};" always;
         # no-referrer
         add_header Referrer-Policy strict-origin;
         add_header X-Frame-Options sameorigin;

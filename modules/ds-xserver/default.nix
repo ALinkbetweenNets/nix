@@ -1,7 +1,14 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.xserver;
-in {
+let
+  cfg = config.link.xserver;
+in
+{
   options.link.xserver.enable = mkEnableOption "activate xserver";
   config = mkIf cfg.enable {
     # Enable the X11 windowing system.
@@ -20,14 +27,16 @@ in {
         };
         desktopManager = {
           xterm.enable = false;
-          session = [{
-            name = "home-manager";
-            start = ''
-              export `dbus-launch`
-              ${pkgs.runtimeShell} $HOME/.hm-xsession &
-               waitPID=$!
-            '';
-          }];
+          session = [
+            {
+              name = "home-manager";
+              start = ''
+                export `dbus-launch`
+                ${pkgs.runtimeShell} $HOME/.hm-xsession &
+                 waitPID=$!
+              '';
+            }
+          ];
         };
       };
     };

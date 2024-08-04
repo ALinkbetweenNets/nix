@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.keycloak;
-in {
+let
+  cfg = config.link.services.keycloak;
+in
+{
   options.link.services.keycloak = {
     enable = mkEnableOption "activate keycloak";
     expose-port = mkOption {
@@ -26,7 +34,10 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    sops.secrets."keycloak" = { owner = "postgres"; group = "postgres"; };
+    sops.secrets."keycloak" = {
+      owner = "postgres";
+      group = "postgres";
+    };
     environment.noXlibs = false;
     services = {
       keycloak = {

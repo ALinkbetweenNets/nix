@@ -1,8 +1,19 @@
-{ lib, pkgs, flake-self, system-config, ... }:
-with lib; {
+{
+  lib,
+  pkgs,
+  flake-self,
+  system-config,
+  ...
+}:
+with lib;
+{
   options.link.options = {
     type = mkOption {
-      type = types.enum [ "desktop" "laptop" "server" ];
+      type = types.enum [
+        "desktop"
+        "laptop"
+        "server"
+      ];
       default = system-config.link.options.type;
       example = "server";
     };
@@ -52,7 +63,8 @@ with lib; {
       };
       compression = true;
     };
-    home.packages = with pkgs;
+    home.packages =
+      with pkgs;
       [
         git-crypt
         yazi # TUI File Manager with preview
@@ -81,8 +93,8 @@ with lib; {
         ## duplicate Finder
         rmlint
         fdupes
-      ] ++ lib.optionals
-        (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
+      ]
+      ++ lib.optionals (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
     # Home-manager nixpkgs config
     nixpkgs = {
       # Allow "unfree" licenced packages

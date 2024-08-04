@@ -1,4 +1,10 @@
-{ lib, pkgs, inputs, nixvim, ... }:
+{
+  lib,
+  pkgs,
+  inputs,
+  nixvim,
+  ...
+}:
 with lib;
 {
   # programs.neovim = {

@@ -1,8 +1,17 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.users.lmh01;
-in {
-  options.link.users.lmh01 = { enable = mkEnableOption "activate user lmh01"; };
+let
+  cfg = config.link.users.lmh01;
+in
+{
+  options.link.users.lmh01 = {
+    enable = mkEnableOption "activate user lmh01";
+  };
   config = mkIf cfg.enable {
     users.users.lmh01 = {
       extraGroups = [ "jellyfin" ];

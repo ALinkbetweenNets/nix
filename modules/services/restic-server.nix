@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.restic-server;
-in {
+let
+  cfg = config.link.services.restic-server;
+in
+{
   options.link.services.restic-server = {
     enable = mkEnableOption "activate restic-server";
     expose = mkOption {
@@ -32,7 +40,8 @@ in {
         # dataDir = "${config.link.storage}/restic";
         prometheus = true;
         privateRepos = true;
-        listenAddress = if cfg.expose-port then "0.0.0.0:${toString cfg.port}" else "127.0.0.1:${toString cfg.port}";
+        listenAddress =
+          if cfg.expose-port then "0.0.0.0:${toString cfg.port}" else "127.0.0.1:${toString cfg.port}";
         appendOnly = true;
       };
       nginx.virtualHosts."restic.${config.link.domain}" = mkIf cfg.nginx {

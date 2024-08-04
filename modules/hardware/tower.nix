@@ -1,6 +1,14 @@
-{ config, flake-self, system-config, pkgs, lib, ... }:
+{
+  config,
+  flake-self,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.tower;
+let
+  cfg = config.link.tower;
 in
 {
   options.link.tower = {

@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   primaryDisk = "/dev/vda";
 in
@@ -15,10 +20,12 @@ in
     # -> BIOS boot partition
     # -> EFI System Partition
     # -> NixOS root partition (ext4)
-    swapDevices = [{
-      device = "/var/lib/swapfile";
-      size = 8 * 1024;
-    }];
+    swapDevices = [
+      {
+        device = "/var/lib/swapfile";
+        size = 8 * 1024;
+      }
+    ];
 
     disko.devices.disk.main = {
       type = "disk";
@@ -64,8 +71,20 @@ in
         };
       };
       initrd = {
-        availableKernelModules = [ "virtio_net" "virtio_pci" "virtio_mmio" "virtio_blk" "virtio_scsi" "9p" "9pnet_virtio" ];
-        kernelModules = [ "virtio_balloon" "virtio_console" "virtio_rng" ];
+        availableKernelModules = [
+          "virtio_net"
+          "virtio_pci"
+          "virtio_mmio"
+          "virtio_blk"
+          "virtio_scsi"
+          "9p"
+          "9pnet_virtio"
+        ];
+        kernelModules = [
+          "virtio_balloon"
+          "virtio_console"
+          "virtio_rng"
+        ];
       };
       kernelParams = [ "console=ttyS0" ];
     };

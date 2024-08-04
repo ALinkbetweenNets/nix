@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.gitea;
-in {
+let
+  cfg = config.link.services.gitea;
+in
+{
   options.link.services.gitea = {
     enable = mkEnableOption "activate gitea";
     expose-port = mkOption {
@@ -26,7 +34,10 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    sops.secrets."gitea" = { owner = "gitea"; group = "gitea"; };
+    sops.secrets."gitea" = {
+      owner = "gitea";
+      group = "gitea";
+    };
     services = {
       gitea = {
         enable = true;
@@ -42,7 +53,9 @@ in {
           REQUIRE_SIGNIN_VIEW = true;
           REGISTER_MANUAL_CONFIRM = true;
         };
-        settings.oauth2_client = { ENABLE_AUTO_REGISTRATION = false; };
+        settings.oauth2_client = {
+          ENABLE_AUTO_REGISTRATION = false;
+        };
         lfs.enable = true;
         database = {
           type = "postgres";
@@ -70,6 +83,8 @@ in {
         '';
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port
+        [ cfg.port ];
   };
 }

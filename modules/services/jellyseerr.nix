@@ -1,7 +1,14 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.jellyseerr;
-in {
+let
+  cfg = config.link.services.jellyseerr;
+in
+{
   options.link.services.jellyseerr = {
     enable = mkEnableOption "activate jellyseerr";
     expose-port = mkOption {
@@ -30,13 +37,16 @@ in {
       jellyseerr = {
         enable = true;
       };
-      nginx.virtualHosts.
-      "jellyseerr.${config.link.domain}" = mkIf cfg.nginx {
+      nginx.virtualHosts."jellyseerr.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
-        locations."/" = { proxyPass = "http://127.0.0.1:${toString cfg.port}/"; };
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString cfg.port}/";
+        };
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port
+        [ cfg.port ];
   };
 }

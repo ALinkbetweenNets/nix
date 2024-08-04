@@ -1,8 +1,17 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.users.lenny;
-in {
-  options.link.users.lenny = { enable = mkEnableOption "activate user lenny"; };
+let
+  cfg = config.link.users.lenny;
+in
+{
+  options.link.users.lenny = {
+    enable = mkEnableOption "activate user lenny";
+  };
   config = mkIf cfg.enable {
     users.users.lenny = {
       isNormalUser = true;

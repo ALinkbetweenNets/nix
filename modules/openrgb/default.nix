@@ -1,4 +1,9 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
 let
   #openrgb-rules = builtins.fetchurl {
@@ -11,7 +16,10 @@ in
   options.link.openrgb.enable = mkEnableOption "activate openrgb";
   config = mkIf cfg.enable {
     # set kernel modules required for openrgb to work
-    boot.kernelModules = [ "i2c-dev" "i2c-piix4" ];
+    boot.kernelModules = [
+      "i2c-dev"
+      "i2c-piix4"
+    ];
     # set udef rules that are required that openrgb can be run without root rights (currently broken)
     #services.udev.extraRules = builtins.readFile openrgb-rules;
     # install openrgb package globally

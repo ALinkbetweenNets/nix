@@ -1,7 +1,14 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.fail2ban;
-in {
+let
+  cfg = config.link.fail2ban;
+in
+{
   options.link.fail2ban = {
     enable = mkEnableOption "activate fail2ban";
   };
@@ -19,9 +26,7 @@ in {
         "100.87.16.37"
         "100.77.249.162"
         "100.123.21.2"
-      ] ++ lib.optionals (config.networking.hostName == "deepserver") [
-        "10.0.1.0/24"
-      ];
+      ] ++ lib.optionals (config.networking.hostName == "deepserver") [ "10.0.1.0/24" ];
       bantime = "24h"; # Set bantime to one day
       bantime-increment = {
         enable = true; # Enable increment of bantime after each violation
@@ -76,10 +81,12 @@ in {
       #   actionban = curl -H "Title: <ip> has been banned" -d "<name> jail has banned <ip> from accessing $(hostname) after <failures> attempts of hacking the system." https://ntfy.sh/Fail2banNotifications
       # '');
       # Defines a filter that detects URL probing by reading the Nginx access log
-      "fail2ban/filter.d/nginx-url-probe.local".text = pkgs.lib.mkDefault (pkgs.lib.mkAfter ''
-        [Definition]
-        failregex = ^<HOST>.*(GET /(wp-|admin|boaform|phpmyadmin|\.env|\.git)|\.(dll|so|cfm|asp)|(\?|&)(=PHPB8B5F2A0-3C92-11d3-A3A9-4C7B08C10000|=PHPE9568F36-D428-11d2-A769-00AA001ACF42|=PHPE9568F35-D428-11d2-A769-00AA001ACF42|=PHPE9568F34-D428-11d2-A769-00AA001ACF42)|\\x[0-9a-zA-Z]{2})
-      '');
+      "fail2ban/filter.d/nginx-url-probe.local".text = pkgs.lib.mkDefault (
+        pkgs.lib.mkAfter ''
+          [Definition]
+          failregex = ^<HOST>.*(GET /(wp-|admin|boaform|phpmyadmin|\.env|\.git)|\.(dll|so|cfm|asp)|(\?|&)(=PHPB8B5F2A0-3C92-11d3-A3A9-4C7B08C10000|=PHPE9568F36-D428-11d2-A769-00AA001ACF42|=PHPE9568F35-D428-11d2-A769-00AA001ACF42|=PHPE9568F34-D428-11d2-A769-00AA001ACF42)|\\x[0-9a-zA-Z]{2})
+        ''
+      );
       "fail2ban/filter.d/authelia.conf".text = ''
          # Fail2Ban filter for Authelia
          # Make sure that the HTTP header "X-Forwarded-For" received by Authelia's backend

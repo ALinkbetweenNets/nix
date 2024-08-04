@@ -1,7 +1,9 @@
 { lib, config, ... }:
 with lib;
-let cfg = config.link.hyprland;
-in {
+let
+  cfg = config.link.hyprland;
+in
+{
   options.link.hyprland.enable = mkEnableOption "activate sway";
   config = mkIf cfg.enable {
     home.packages = [ launcher ];
@@ -97,14 +99,26 @@ in {
 
         bind =
           let
-            binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
+            binding =
+              mod: cmd: key: arg:
+              "${mod}, ${key}, ${cmd}, ${arg}";
             mvfocus = binding "SUPER" "movefocus";
             ws = binding "SUPER" "workspace";
             resizeactive = binding "SUPER CTRL" "resizeactive";
             mvactive = binding "SUPER ALT" "moveactive";
             mvtows = binding "SUPER SHIFT" "movetoworkspace";
             e = "exec, ags -b hypr";
-            arr = [ 1 2 3 4 5 6 7 8 9 ];
+            arr = [
+              1
+              2
+              3
+              4
+              5
+              6
+              7
+              8
+              9
+            ];
             yt = pkgs.writeShellScriptBin "yt" ''
               notify-send "Opening video" "$(wl-paste)"
               mpv "$(wl-paste)"
@@ -153,23 +167,31 @@ in {
           ++ (map (i: ws (toString i) (toString i)) arr)
           ++ (map (i: mvtows (toString i) (toString i)) arr);
 
-        bindle = let e = "exec, ags -b hypr -r"; in [
-          ",XF86MonBrightnessUp,   ${e} 'brightness.screen += 0.05; indicator.display()'"
-          ",XF86MonBrightnessDown, ${e} 'brightness.screen -= 0.05; indicator.display()'"
-          ",XF86KbdBrightnessUp,   ${e} 'brightness.kbd++; indicator.kbd()'"
-          ",XF86KbdBrightnessDown, ${e} 'brightness.kbd--; indicator.kbd()'"
-          ",XF86AudioRaiseVolume,  ${e} 'audio.speaker.volume += 0.05; indicator.speaker()'"
-          ",XF86AudioLowerVolume,  ${e} 'audio.speaker.volume -= 0.05; indicator.speaker()'"
-        ];
+        bindle =
+          let
+            e = "exec, ags -b hypr -r";
+          in
+          [
+            ",XF86MonBrightnessUp,   ${e} 'brightness.screen += 0.05; indicator.display()'"
+            ",XF86MonBrightnessDown, ${e} 'brightness.screen -= 0.05; indicator.display()'"
+            ",XF86KbdBrightnessUp,   ${e} 'brightness.kbd++; indicator.kbd()'"
+            ",XF86KbdBrightnessDown, ${e} 'brightness.kbd--; indicator.kbd()'"
+            ",XF86AudioRaiseVolume,  ${e} 'audio.speaker.volume += 0.05; indicator.speaker()'"
+            ",XF86AudioLowerVolume,  ${e} 'audio.speaker.volume -= 0.05; indicator.speaker()'"
+          ];
 
-        bindl = let e = "exec, ags -b hypr -r"; in [
-          ",XF86AudioPlay,    ${e} 'mpris?.playPause()'"
-          ",XF86AudioStop,    ${e} 'mpris?.stop()'"
-          ",XF86AudioPause,   ${e} 'mpris?.pause()'"
-          ",XF86AudioPrev,    ${e} 'mpris?.previous()'"
-          ",XF86AudioNext,    ${e} 'mpris?.next()'"
-          ",XF86AudioMicMute, ${e} 'audio.microphone.isMuted = !audio.microphone.isMuted'"
-        ];
+        bindl =
+          let
+            e = "exec, ags -b hypr -r";
+          in
+          [
+            ",XF86AudioPlay,    ${e} 'mpris?.playPause()'"
+            ",XF86AudioStop,    ${e} 'mpris?.stop()'"
+            ",XF86AudioPause,   ${e} 'mpris?.pause()'"
+            ",XF86AudioPrev,    ${e} 'mpris?.previous()'"
+            ",XF86AudioNext,    ${e} 'mpris?.next()'"
+            ",XF86AudioMicMute, ${e} 'audio.microphone.isMuted = !audio.microphone.isMuted'"
+          ];
 
         bindm = [
           "SUPER, mouse:273, resizewindow"
@@ -189,7 +211,7 @@ in {
             size = 8;
             passes = 3;
             new_optimizations = "on";
-            noise = 0.01;
+            noise = 1.0e-2;
             contrast = 0.9;
             brightness = 0.8;
           };

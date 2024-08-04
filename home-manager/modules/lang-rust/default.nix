@@ -1,6 +1,12 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.rust;
+let
+  cfg = config.link.rust;
 in
 {
   options.link.rust.enable = mkEnableOption "activate rust toolchain";

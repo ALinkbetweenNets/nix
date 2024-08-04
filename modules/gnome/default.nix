@@ -1,7 +1,14 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.gnome;
-in {
+let
+  cfg = config.link.gnome;
+in
+{
   options.link.gnome.enable = mkEnableOption "activate gnome";
   config = mkIf cfg.enable {
     programs = {

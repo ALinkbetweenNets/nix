@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.outline;
-in {
+let
+  cfg = config.link.services.outline;
+in
+{
   options.link.services.outline = {
     enable = mkEnableOption "activate outline, a wiki with markdown support, requires nginx, gitea and minio";
     expose-port = mkOption {
@@ -30,8 +38,14 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    sops.secrets."outline/minio" = { owner = "outline"; group = "outline"; };
-    sops.secrets."outline/oidc" = { owner = "outline"; group = "outline"; };
+    sops.secrets."outline/minio" = {
+      owner = "outline";
+      group = "outline";
+    };
+    sops.secrets."outline/oidc" = {
+      owner = "outline";
+      group = "outline";
+    };
     services = {
       outline = {
         enable = true;
@@ -53,7 +67,10 @@ in {
           usernameClaim = "username";
           clientId = cfg.oidClientId;
           clientSecretFile = config.sops.secrets."outline/oidc".path;
-          scopes = [ "openid" "email" ];
+          scopes = [
+            "openid"
+            "email"
+          ];
           displayName = "GitLab";
         };
       };
@@ -71,6 +88,8 @@ in {
         '';
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port
+        [ cfg.port ];
   };
 }

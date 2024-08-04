@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.libvirt;
-in {
+let
+  cfg = config.link.libvirt;
+in
+{
   options.link.libvirt.enable = mkEnableOption "activate libvirt";
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
