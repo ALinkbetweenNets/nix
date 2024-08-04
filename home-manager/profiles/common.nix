@@ -46,6 +46,9 @@ with lib; {
         "pppn" = {
           port = 2522;
         };
+        "fn" = {
+          port = 2522;
+        };
       };
       compression = true;
     };
