@@ -1,7 +1,14 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.jellyfin;
-in {
+let
+  cfg = config.link.services.jellyfin;
+in
+{
   options.link.services.jellyfin = {
     enable = mkEnableOption "activate jellyfin";
     expose-port = mkOption {
@@ -26,9 +33,7 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      jellyfin-ffmpeg
-    ];
+    environment.systemPackages = with pkgs; [ jellyfin-ffmpeg ];
     services = {
       jellyfin = {
         # package = pkgs.cudapkgs.jellyfin;
@@ -37,9 +42,13 @@ in {
       nginx.virtualHosts."jellyfin.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
-        locations."/" = { proxyPass = "http://127.0.0.1:${toString cfg.port}/"; };
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString cfg.port}/";
+        };
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port
+        [ cfg.port ];
   };
 }

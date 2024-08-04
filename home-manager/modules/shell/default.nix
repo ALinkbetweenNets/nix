@@ -1,7 +1,9 @@
 { lib, pkgs, ... }:
 with lib;
-let vars = import ../../vars.nix;
-in {
+let
+  vars = import ../../vars.nix;
+in
+{
   programs = {
     # starship = {
     #   enable = true;
@@ -87,7 +89,14 @@ in {
       ];
       shellAliases =
         let
-          fhs-vscode = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
+          fhs-vscode = pkgs.vscode.fhsWithPackages (
+            ps: with ps; [
+              rustup
+              zlib
+              openssl.dev
+              pkg-config
+            ]
+          );
         in
         {
           cht = "cht.sh";
@@ -149,41 +158,29 @@ in {
             ${pkgs.git}/bin/git checkout main
             ${pkgs.git}/bin/git merge upstream/main
           '';
-          l =
-            "eza --icons --group-directories-first --git -F --color always --sort=modified"; # -F = --classify
-          lr =
-            "eza --icons --group-directories-first --git -F --color always --sort=modified --tree";
-          la =
-            "eza --icons --group-directories-first --git -F --color always --sort=modified --all";
-          lss =
-            "eza --icons --group-directories-first --git -F --color always --sort=size";
-          lsr =
-            "eza --icons --group-directories-first --git -F --color always --sort=size --tree";
-          lsa =
-            "eza --icons --group-directories-first --git -F --color always --sort=size --all";
-          lar =
-            "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all";
-          ll =
-            "eza --icons --group-directories-first --git -F --color always --sort=modified -l --group";
-          llr =
-            "eza --icons --group-directories-first --git -F --color always --sort=modified --tree -l --group";
-          lla =
-            "eza --icons --group-directories-first --git -F --color always --sort=modified --all -l --group";
-          lls =
-            "eza --icons --group-directories-first --git -F --color always --sort=size -l";
-          llsr =
-            "eza --icons --group-directories-first --git -F --color always --sort=size --tree -l --group";
-          llsa =
-            "eza --icons --group-directories-first --git -F --color always --sort=size --all -l --group";
-          llar =
-            "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all -l --group";
+          l = "eza --icons --group-directories-first --git -F --color always --sort=modified"; # -F = --classify
+          lr = "eza --icons --group-directories-first --git -F --color always --sort=modified --tree";
+          la = "eza --icons --group-directories-first --git -F --color always --sort=modified --all";
+          lss = "eza --icons --group-directories-first --git -F --color always --sort=size";
+          lsr = "eza --icons --group-directories-first --git -F --color always --sort=size --tree";
+          lsa = "eza --icons --group-directories-first --git -F --color always --sort=size --all";
+          lar = "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all";
+          ll = "eza --icons --group-directories-first --git -F --color always --sort=modified -l --group";
+          llr = "eza --icons --group-directories-first --git -F --color always --sort=modified --tree -l --group";
+          lla = "eza --icons --group-directories-first --git -F --color always --sort=modified --all -l --group";
+          lls = "eza --icons --group-directories-first --git -F --color always --sort=size -l";
+          llsr = "eza --icons --group-directories-first --git -F --color always --sort=size --tree -l --group";
+          llsa = "eza --icons --group-directories-first --git -F --color always --sort=size --all -l --group";
+          llar = "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all -l --group";
           sudo = "sudo ";
         };
     };
     fish = {
       enable = true;
     };
-    ripgrep = { enable = true; };
+    ripgrep = {
+      enable = true;
+    };
     zsh.oh-my-zsh = {
       enable = true;
       theme = "agnoster";
@@ -194,13 +191,19 @@ in {
     #   watson.enable = true;
     carapace.enable = true; # command argument completer
     #   dircolors.enable = true;
-    btop = { enable = true; };
+    btop = {
+      enable = true;
+    };
     jq.enable = true;
     nix-index = {
       enable = true;
     };
-    lf = { enable = true; };
-    lesspipe = { enable = true; };
+    lf = {
+      enable = true;
+    };
+    lesspipe = {
+      enable = true;
+    };
     bat = {
       enable = true;
       # This should pick up the correct colors for the generated theme. Otherwise

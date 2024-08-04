@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.hedgedoc;
-in {
+let
+  cfg = config.link.services.hedgedoc;
+in
+{
   options.link.services.hedgedoc = {
     enable = mkEnableOption "activate hedgedoc";
     expose-port = mkOption {
@@ -56,6 +64,8 @@ in {
       };
     };
 
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port
+        [ cfg.port ];
   };
 }

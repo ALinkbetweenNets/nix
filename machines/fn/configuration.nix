@@ -1,5 +1,13 @@
 { self, ... }:
-{ pkgs, lib, config, flake-self, home-manager, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  flake-self,
+  home-manager,
+  ...
+}:
+{
   imports = [
     ./hardware-configuration.nix
     home-manager.nixosModules.home-manager
@@ -67,9 +75,7 @@
   };
 
   networking.hostId = "007f0200";
-  environment.systemPackages = with pkgs; [
-    plasma5Packages.plasma-thunderbolt
-  ];
+  environment.systemPackages = with pkgs; [ plasma5Packages.plasma-thunderbolt ];
   #services.fprintd = {
   #  enable = true;
   #  tod.enable = true;
@@ -83,7 +89,9 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   lollypops.deployment = {
     local-evaluation = true;
-    ssh = { user = "l"; };
+    ssh = {
+      user = "l";
+    };
     sudo.enable = true;
   };
   #environment.systemPackages = with pkgs;    [ ];

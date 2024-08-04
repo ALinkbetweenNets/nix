@@ -1,8 +1,17 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.main;
-in {
-  options.link.main = { enable = mkEnableOption "activate main"; };
+let
+  cfg = config.link.main;
+in
+{
+  options.link.main = {
+    enable = mkEnableOption "activate main";
+  };
   config = mkIf cfg.enable {
     link = {
       desktop.enable = true;
@@ -39,7 +48,10 @@ in {
     programs = {
       noisetorch.enable = true;
       adb.enable = true;
-      ausweisapp = { enable = true; openFirewall = true; };
+      ausweisapp = {
+        enable = true;
+        openFirewall = true;
+      };
     };
     virtualisation.waydroid.enable = true;
     networking.firewall.allowedTCPPorts = [ 24800 ];

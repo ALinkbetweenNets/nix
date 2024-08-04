@@ -1,5 +1,13 @@
-{ lib, pkgs, flake-self, config, system-config, ... }:
-with lib; {
+{
+  lib,
+  pkgs,
+  flake-self,
+  config,
+  system-config,
+  ...
+}:
+with lib;
+{
   imports = [
     ../colorscheme.nix
     ./common.nix
@@ -10,7 +18,11 @@ with lib; {
       enable = true;
       settings = {
         "org/maliit/keyboard/maliit" = {
-          enabled-languages = [ "en" "de" "emoji" ];
+          enabled-languages = [
+            "en"
+            "de"
+            "emoji"
+          ];
           theme = "BreezeDark";
         };
         "org/gnome/desktop/interface".color-scheme = "prefer-dark";
@@ -21,20 +33,25 @@ with lib; {
       yt-dlp = {
         enable = true;
         extraConfig = "--update";
-        settings = { embed-thumbnail = true; };
+        settings = {
+          embed-thumbnail = true;
+        };
       };
       mpv = {
         enable = true;
-        scripts = with pkgs.mpvScripts; [ sponsorblock thumbfast mpv-webm uosc ];
+        scripts = with pkgs.mpvScripts; [
+          sponsorblock
+          thumbfast
+          mpv-webm
+          uosc
+        ];
         config = {
           profile = "gpu-hq";
           force-window = true;
           ytdl-format = "bestvideo+bestaudio";
           cache-default = 4000000;
         };
-        defaultProfiles = [
-          "gpu-hq"
-        ];
+        defaultProfiles = [ "gpu-hq" ];
         bindings = {
           WHEEL_UP = "seek 10";
           WHEEL_DOWN = "seek -10";
@@ -50,7 +67,8 @@ with lib; {
     };
     manual.html.enable = true;
     # Packages to install on all desktop systems
-    home.packages = with pkgs;
+    home.packages =
+      with pkgs;
       [
         ## Basics
         nfs-utils
@@ -101,8 +119,8 @@ with lib; {
         kdePackages.kfind
         kdePackages.colord-kde
         # (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
-      ] ++ lib.optionals
-        (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [
+      ]
+      ++ lib.optionals (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [
         bitwarden
         tor-browser-bundle-bin # compromisednix
         mullvad-browser

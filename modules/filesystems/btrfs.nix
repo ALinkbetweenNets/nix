@@ -1,7 +1,14 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.fs.btrfs;
-in {
+let
+  cfg = config.link.fs.btrfs;
+in
+{
   options.link.fs.btrfs.enable = mkEnableOption "activate btrfs";
   config = mkIf cfg.enable {
     boot.initrd.supportedFilesystems = [ "btrfs" ];

@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.cryptpad;
-in {
+let
+  cfg = config.link.services.cryptpad;
+in
+{
   options.link.services.cryptpad = {
     enable = mkEnableOption "activate cryptpad";
     expose-port = mkOption {
@@ -49,6 +57,8 @@ in {
         '';
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port
+        [ cfg.port ];
   };
 }

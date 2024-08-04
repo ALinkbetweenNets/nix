@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.seafile;
-in {
+let
+  cfg = config.link.services.seafile;
+in
+{
   options.link.services.seafile = {
     enable = mkEnableOption "activate seafile";
     expose-port = mkOption {
@@ -38,7 +46,9 @@ in {
       nginx.virtualHosts."seafile.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
-        locations."/" = { proxyPass = "http://127.0.0.1:${toString cfg.port}"; };
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString cfg.port}";
+        };
         extraConfig = mkIf (!cfg.nginx-expose) ''
           allow ${config.link.service-ip}/24;
           allow 127.0.0.1;
@@ -46,6 +56,8 @@ in {
         '';
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port
+        [ cfg.port ];
   };
 }

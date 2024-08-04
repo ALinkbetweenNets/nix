@@ -1,6 +1,12 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.hyprland;
+let
+  cfg = config.link.hyprland;
 in
 {
 

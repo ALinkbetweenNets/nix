@@ -1,5 +1,13 @@
 { self, ... }:
-{ pkgs, lib, config, flake-self, home-manager, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  flake-self,
+  home-manager,
+  ...
+}:
+{
   imports = [
     ./hardware-configuration.nix
     home-manager.nixosModules.home-manager
@@ -56,7 +64,11 @@
   #     local all all trust
   #   '';
   # };
-  services.unifi = { enable = true; openFirewall = true; unifiPackage = pkgs.unifi; };
+  services.unifi = {
+    enable = true;
+    openFirewall = true;
+    unifiPackage = pkgs.unifi;
+  };
   networking = {
     hostName = "dn";
     domain = "monitor-banfish.ts.net";
@@ -67,7 +79,9 @@
   # nix run .\#lollypops -- meet:rebuild
   lollypops.deployment = {
     local-evaluation = true;
-    ssh = { user = "l"; };
+    ssh = {
+      user = "l";
+    };
     sudo.enable = true;
   };
   services.xserver.wacom.enable = true;

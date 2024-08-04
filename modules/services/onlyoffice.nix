@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.onlyoffice;
-in {
+let
+  cfg = config.link.services.onlyoffice;
+in
+{
   options.link.services.onlyoffice = {
     enable = mkEnableOption "activate onlyoffice";
     expose-port = mkOption {
@@ -45,6 +53,8 @@ in {
         '';
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port
+        [ cfg.port ];
   };
 }

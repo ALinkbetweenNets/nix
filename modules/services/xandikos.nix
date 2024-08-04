@@ -1,7 +1,14 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.xandikos;
-in {
+let
+  cfg = config.link.services.xandikos;
+in
+{
   options.link.services.xandikos = {
     enable = mkEnableOption "activate xandikos";
     expose-port = mkOption {
@@ -50,6 +57,8 @@ in {
         # locations."/" = { proxyPass = "http://127.0.0.1:${toString cfg.port}/"; };
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port
+        [ cfg.port ];
   };
 }

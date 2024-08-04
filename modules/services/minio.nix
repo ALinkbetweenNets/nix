@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.minio;
-in {
+let
+  cfg = config.link.services.minio;
+in
+{
   options.link.services.minio = {
     enable = mkEnableOption "activate minio";
     expose-port = mkOption {
@@ -21,7 +29,10 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    sops.secrets."minio" = { owner = "minio"; group = "minio"; };
+    sops.secrets."minio" = {
+      owner = "minio";
+      group = "minio";
+    };
     services = {
       minio = {
         enable = true;
@@ -31,7 +42,7 @@ in {
         rootCredentialsFile = config.sops.secrets."minio".path;
         # dataDir = [ "${config.link.storage}/minio/data" ];
       };
-      nginx.virtualHosts."minio.s3.${config.link.domain}" = mkIf cfg.nginx {
+      nginx.virtualHosts."minio.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
@@ -91,13 +102,18 @@ in {
     systemd.services.minio = {
       environment = {
         MINIO_SERVER_URL = "https://s3.${config.link.domain}";
-        MINIO_BROWSER_REDIRECT_URL = "https://minio.s3.${config.link.domain}";
+        MINIO_BROWSER_REDIRECT_URL = "https://minio.${config.link.domain}";
       };
     };
     networking.firewall = {
       checkReversePath = lib.mkDefault "loose";
       # nameservers = [ "100.100.100.100" "1.1.1.1" ];
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ 9001 9002 ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port
+        [
+          9001
+          9002
+        ];
   };
 }

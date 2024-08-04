@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.jitsi;
-in {
+let
+  cfg = config.link.services.jitsi;
+in
+{
   options.link.services.jitsi = {
     enable = mkEnableOption "activate jitsi";
     expose = mkOption {
@@ -39,7 +47,9 @@ in {
       };
       jicofo = {
         enable = true;
-        config = { "org.jitsi.jicofo.auth.URL" = "XMPP:jitsi.${config.link.domain}"; };
+        config = {
+          "org.jitsi.jicofo.auth.URL" = "XMPP:jitsi.${config.link.domain}";
+        };
       };
       nginx.virtualHosts = {
         "jitsi.${config.link.domain}" = {

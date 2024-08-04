@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.prometheus;
-in {
+let
+  cfg = config.link.services.prometheus;
+in
+{
   options.link.services.prometheus = {
     enable = mkEnableOption "activate prometheus";
     expose-port = mkOption {
@@ -35,14 +43,14 @@ in {
         scrapeConfigs = [
           {
             job_name = "zfs";
-            static_configs = [{
-              targets = [ "127.0.0.1:${toString cfg.port}" ];
-            }];
+            static_configs = [ { targets = [ "127.0.0.1:${toString cfg.port}" ]; } ];
           }
         ];
       };
     };
 
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port
+        [ cfg.port ];
   };
 }

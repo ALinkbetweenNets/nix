@@ -1,7 +1,14 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.cpu-amd;
-in {
+let
+  cfg = config.link.cpu-amd;
+in
+{
   options.link.cpu-amd.enable = mkEnableOption "activate cpu-amd";
   config = mkIf cfg.enable {
     boot.extraModprobeConfig = "options kvm_amd nested=1";

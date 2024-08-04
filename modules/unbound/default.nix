@@ -1,12 +1,23 @@
-{ config, system-config, pkgs, lib, adblock-unbound, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  adblock-unbound,
+  ...
+}:
 with lib;
 let
   cfg = config.link.unbound;
   adlist = adblock-unbound.packages.${pkgs.system};
-  dns-overwrites-config = builtins.toFile "dns-overwrites.conf" (''
-    # DNS overwrites
-  '' + concatStringsSep "\n"
-    (mapAttrsToList (n: v: "local-data: \"${n} A ${toString v}\"") cfg.A-records));
+  dns-overwrites-config = builtins.toFile "dns-overwrites.conf" (
+    ''
+      # DNS overwrites
+    ''
+    + concatStringsSep "\n" (
+      mapAttrsToList (n: v: "local-data: \"${n} A ${toString v}\"") cfg.A-records
+    )
+  );
 in
 {
   options.link.unbound = {
@@ -62,9 +73,7 @@ in
             "::1"
             "127.0.0.1"
           ];
-          access-control = [
-            "127.0.0.0/8 allow"
-          ];
+          access-control = [ "127.0.0.0/8 allow" ];
         };
         # forward local DNS requests via Wireguard
         # domain-insecure = [ "haus" ];
@@ -77,16 +86,12 @@ in
         forward-zone = [
           {
             name = "monitor-banfish.ts.net.";
-            forward-addr = [
-              "100.100.100.100"
-            ];
+            forward-addr = [ "100.100.100.100" ];
             forward-tls-upstream = "no";
           }
           {
             name = "mullvad.net.";
-            forward-addr = [
-              "194.242.2.2@853#dns.mullvad.net"
-            ];
+            forward-addr = [ "194.242.2.2@853#dns.mullvad.net" ];
             forward-tls-upstream = "yes";
           }
           {

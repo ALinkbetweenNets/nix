@@ -1,15 +1,26 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.hardware;
-in {
+let
+  cfg = config.link.hardware;
+in
+{
   options.link.hardware.enable = mkEnableOption "activate hardware";
   config = mkIf cfg.enable {
     link.libvirt.enable = lib.mkDefault true;
-    environment.systemPackages = with pkgs; [
-      # powertop
-      lm_sensors
-      cpufrequtils
-    ] ++ lib.optionals (config.link.desktop.enable) [ cpupower-gui ];
+    environment.systemPackages =
+      with pkgs;
+      [
+        # powertop
+        lm_sensors
+        cpufrequtils
+      ]
+      ++ lib.optionals (config.link.desktop.enable) [ cpupower-gui ];
     time.hardwareClockInLocalTime = true;
     services = {
       # for windows dualboot

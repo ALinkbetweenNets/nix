@@ -1,14 +1,25 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.wg-link;
-in {
+let
+  cfg = config.link.services.wg-link;
+in
+{
   options.link.services.wg-link.enable = mkEnableOption "activate wg-link";
   config = mkIf cfg.enable {
     networking.nat.internalInterfaces = [ "wg-link" ];
     networking.wireguard.interfaces = {
       wg-link = {
         # Determines the IP/IPv6 address and subnet of the client's end of the tunnel interface
-        ips = [ "10.0.1.1/24" "fdc9:281f:04d7:9eea::1/64" ];
+        ips = [
+          "10.0.1.1/24"
+          "fdc9:281f:04d7:9eea::1/64"
+        ];
         # The port that WireGuard listens to - recommended that this be changed from default
         listenPort = 51820;
         # Path to the server's private key
@@ -27,13 +38,19 @@ in {
             # l
             publicKey = "0sORXE+4f3331BRLHFTciX4iurHgOYky3Xrg0DLCnjs=";
             presharedKeyFile = "/home/l/.keys/wg-link-l.preshared";
-            allowedIPs = [ "10.0.1.2/32" "fdc9:281f:04d7:9eea::2/128" ];
+            allowedIPs = [
+              "10.0.1.2/32"
+              "fdc9:281f:04d7:9eea::2/128"
+            ];
           }
           {
             # Louis
             publicKey = "p3ZnR7XTY8dO+zmUzMQUjVQHQwWFxIUTu9jvcuuUrQc=";
             presharedKeyFile = "/home/l/.keys/wg-link-louis.preshared";
-            allowedIPs = [ "10.0.1.3/32" "fdc9:281f:04d7:9eea::3/128" ];
+            allowedIPs = [
+              "10.0.1.3/32"
+              "fdc9:281f:04d7:9eea::3/128"
+            ];
           }
           # {
           #   # peer2

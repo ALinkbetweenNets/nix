@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.radicale;
-in {
+let
+  cfg = config.link.services.radicale;
+in
+{
   options.link.services.radicale = {
     enable = mkEnableOption "activate radicale";
     expose-port = mkOption {
@@ -31,7 +39,17 @@ in {
         enable = true;
         settings = {
           server = {
-            hosts = if cfg.expose-port then [ "0.0.0.0:5232" "[::]:5232" ] else [ "127.0.0.1:5232" "[::1]:5232" ];
+            hosts =
+              if cfg.expose-port then
+                [
+                  "0.0.0.0:5232"
+                  "[::]:5232"
+                ]
+              else
+                [
+                  "127.0.0.1:5232"
+                  "[::1]:5232"
+                ];
           };
           auth = {
             type = "htpasswd";
@@ -62,6 +80,8 @@ in {
         };
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port
+        [ cfg.port ];
   };
 }

@@ -1,6 +1,13 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.ansible; in
+let
+  cfg = config.link.ansible;
+in
 {
 
   options.link.ansible.enable = mkEnableOption "enable ansible dev stuff";
@@ -18,16 +25,17 @@ let cfg = config.link.ansible; in
         "ansible.ansibleLint.path" = "${pkgs.ansible-lint}/bin/ansible-lint";
         "ansible.python.interpreterPath" = "${pkgs.python3}/bin/python3";
       };
-      extensions = with pkgs.vscode-extensions; [
-        redhat.vscode-yaml
-      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        {
-          name = "ansible";
-          publisher = "redhat";
-          version = "2.9.118";
-          sha256 = "sha256-N/hkx5gcugnQn9Xlql/yUhU2p8/u9RxdYf0LDrKQzXo=";
-        }
-      ];
+      extensions =
+        with pkgs.vscode-extensions;
+        [ redhat.vscode-yaml ]
+        ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          {
+            name = "ansible";
+            publisher = "redhat";
+            version = "2.9.118";
+            sha256 = "sha256-N/hkx5gcugnQn9Xlql/yUhU2p8/u9RxdYf0LDrKQzXo=";
+          }
+        ];
     };
 
   };

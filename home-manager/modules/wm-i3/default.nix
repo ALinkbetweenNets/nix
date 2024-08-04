@@ -1,11 +1,17 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
 let
   cfg = config.link.i3;
-  suspend-pc = pkgs.writeShellScriptBin "suspend-pc" # sh
-    ''
-      i3lock -i ${./wallpaper.png} && systemctl suspend
-    '';
+  suspend-pc =
+    pkgs.writeShellScriptBin "suspend-pc" # sh
+      ''
+        i3lock -i ${./wallpaper.png} && systemctl suspend
+      '';
   theme_content = ''
     idle_bg = "#282a36" # Background
     idle_fg = "#6272a4" # Comment
@@ -55,17 +61,20 @@ in
         menu = "${pkgs.rofi}/bin/rofi -show combi";
         terminal = "${pkgs.konsole}/bin/konsole";
         defaultWorkspace = "workspace number 1";
-        bars = [{
-          fonts = [ "FontAwesome 11" ];
-          position = "top";
-          statusCommand =
-            "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-top.toml";
-        }];
-        startup = [{
-          command = "${pkgs.feh}/bin/feh --bg-fill ${./wallpaper.png}";
-          always = false;
-          notification = false;
-        }];
+        bars = [
+          {
+            fonts = [ "FontAwesome 11" ];
+            position = "top";
+            statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-top.toml";
+          }
+        ];
+        startup = [
+          {
+            command = "${pkgs.feh}/bin/feh --bg-fill ${./wallpaper.png}";
+            always = false;
+            notification = false;
+          }
+        ];
         programs.i3status-rust = {
           enable = true;
           bars = {
@@ -81,8 +90,7 @@ in
                   }
                   {
                     block = "music";
-                    format =
-                      "$icon {$combo.str(max_w:75,rot_interval:0.5) $prev $play $next } | $icon No Music";
+                    format = "$icon {$combo.str(max_w:75,rot_interval:0.5) $prev $play $next } | $icon No Music";
                   }
                   {
                     block = "disk_space";
@@ -93,10 +101,8 @@ in
                   }
                   {
                     block = "memory";
-                    format =
-                      " $icon {$mem_used}/{$mem_total}({$mem_used_percents})";
-                    format_alt =
-                      " $icon {$swap_used}/{$swap_total}({$swap_used_percents})";
+                    format = " $icon {$mem_used}/{$mem_total}({$mem_used_percents})";
+                    format_alt = " $icon {$swap_used}/{$swap_total}({$swap_used_percents})";
                     interval = 5;
                     warning_mem = 80;
                     warning_swap = 80;
@@ -142,15 +148,12 @@ in
               "${modifier}+Mod1+space" = "exec ${pkgs.rofi}/bin/rofi -show emoji";
               "${modifier}+Shift+Tab" = "workspace prev";
               "${modifier}+Tab" = "workspace next";
-              "XF86AudioLowerVolume" =
-                "exec --no-startup-id pactl set-sink-volume 0 -5%"; # decrease sound volume
-              "XF86AudioMute" =
-                "exec --no-startup-id pactl set-sink-mute 0 toggle"; # mute sound
+              "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume 0 -5%"; # decrease sound volume
+              "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute 0 toggle"; # mute sound
               "XF86AudioNext" = "exec playerctl next";
               "XF86AudioPlay" = "exec playerctl play-pause";
               "XF86AudioPrev" = "exec playerctl previous";
-              "XF86AudioRaiseVolume" =
-                "exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume";
+              "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume";
               "XF86AudioStop" = "exec playerctl stop";
               "Print" = "exec flameshot gui";
               "${modifier}+Shift+s" = "exec ${pkgs.flameshot}/bin/flameshot gui";

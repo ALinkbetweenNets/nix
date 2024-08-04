@@ -1,11 +1,15 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
 let
   cfg = config.link.programs.foot;
 in
 {
-  options.link.programs.foot.enable =
-    mkEnableOption "enable foot";
+  options.link.programs.foot.enable = mkEnableOption "enable foot";
 
   config = mkIf cfg.enable {
 

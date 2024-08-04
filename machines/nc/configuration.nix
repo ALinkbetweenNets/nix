@@ -2,7 +2,15 @@
 #	2a03:4000:54:8a::/64
 # nix run github:numtide/nixos-anywhere -- --flake .#nc root@202.61.251.70
 { self, ... }:
-{ pkgs, lib, config, flake-self, home-manager, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  flake-self,
+  home-manager,
+  ...
+}:
+{
   imports = [
     ./netcup.nix
     home-manager.nixosModules.home-manager
@@ -52,15 +60,23 @@
   # };
 
   networking = {
-    firewall.allowedTCPPorts = [ 443 22 ];
-    firewall.allowedUDPPorts = [ 51820 51822 ];
+    firewall.allowedTCPPorts = [
+      443
+      22
+    ];
+    firewall.allowedUDPPorts = [
+      51820
+      51822
+    ];
     hostName = "v2202312204123249185";
     domain = "ultrasrv.de";
     interfaces."ens3" = {
-      ipv6.addresses = [{
-        address = "2a03:4000:54:8a:585a:48ff:fee3:9d06";
-        prefixLength = 64;
-      }];
+      ipv6.addresses = [
+        {
+          address = "2a03:4000:54:8a:585a:48ff:fee3:9d06";
+          prefixLength = 64;
+        }
+      ];
     };
   };
   services.nginx.virtualHosts = {
@@ -178,7 +194,23 @@
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
-      listen = [{ port = 443; addr = "0.0.0.0"; ssl = true; } { port = 8096; addr = "0.0.0.0"; ssl = true; } { port = 8920; addr = "0.0.0.0"; ssl = true; }];
+      listen = [
+        {
+          port = 443;
+          addr = "0.0.0.0";
+          ssl = true;
+        }
+        {
+          port = 8096;
+          addr = "0.0.0.0";
+          ssl = true;
+        }
+        {
+          port = 8920;
+          addr = "0.0.0.0";
+          ssl = true;
+        }
+      ];
       locations."/".proxyPass = "http://${config.link.serviceHost}:8096/";
       locations."/".proxyWebsockets = true;
     };
@@ -324,7 +356,23 @@
     "shonk.de" = {
       forceSSL = true;
       enableACME = true;
-      listen = [{ port = 443; addr = "0.0.0.0"; ssl = true; } { port = 8096; addr = "0.0.0.0"; ssl = true; } { port = 8920; addr = "0.0.0.0"; ssl = true; }];
+      listen = [
+        {
+          port = 443;
+          addr = "0.0.0.0";
+          ssl = true;
+        }
+        {
+          port = 8096;
+          addr = "0.0.0.0";
+          ssl = true;
+        }
+        {
+          port = 8920;
+          addr = "0.0.0.0";
+          ssl = true;
+        }
+      ];
       locations."/" = {
         proxyPass = "http://${config.link.serviceHost}:8096/";
         proxyWebsockets = true;
@@ -380,7 +428,7 @@
   #   };
   lollypops.deployment = {
     local-evaluation = true;
-    ssh.host = "nc";
+    ssh.host = "nc.monitor-banfish.ts.net";
     ssh.user = "l";
     ssh.opts = [ "-p 2522" ];
     sudo.enable = true;

@@ -1,4 +1,9 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
 let
   cfg = config.link.programs.waybar;
@@ -50,8 +55,17 @@ in
         layer = "top";
         position = "bottom";
         spacing = 4; # Gaps between modules (4px)
-        modules-left = [ "sway/workspaces" "sway/mode" ];
-        modules-right = [ "tray" "network" "pulseaudio" "battery" "clock" ];
+        modules-left = [
+          "sway/workspaces"
+          "sway/mode"
+        ];
+        modules-right = [
+          "tray"
+          "network"
+          "pulseaudio"
+          "battery"
+          "clock"
+        ];
         tray = {
           spacing = 10;
         };
@@ -73,7 +87,11 @@ in
           format-source-muted = "";
           format-icons = {
             headphone = "";
-            default = [ "" "" "" ];
+            default = [
+              ""
+              ""
+              ""
+            ];
           };
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
         };

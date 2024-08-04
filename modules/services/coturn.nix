@@ -1,13 +1,21 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.coturn;
-in {
+let
+  cfg = config.link.services.coturn;
+in
+{
   options.link.services.coturn = {
     enable = mkEnableOption "activate coturn";
   };
   config = mkIf cfg.enable {
     security.acme.certs.${config.services.coturn.realm} = {
-      /* insert here the right configuration to obtain a certificate */
+      # insert here the right configuration to obtain a certificate
       postRun = "systemctl restart coturn.service";
       group = "turnserver";
       dnsProvider = mkIf config.link.dyndns.enable "cloudflare";
@@ -60,16 +68,25 @@ in {
     networking.firewall = {
       interfaces."${config.link.service-interface}" =
         let
-          range = with config.services.coturn; [{
-            from = min-port;
-            to = max-port;
-          }];
+          range = with config.services.coturn; [
+            {
+              from = min-port;
+              to = max-port;
+            }
+          ];
         in
         {
           allowedUDPPortRanges = range;
-          allowedUDPPorts = [ 3478 5349 ];
+          allowedUDPPorts = [
+            3478
+            5349
+          ];
           allowedTCPPortRanges = [ ];
-          allowedTCPPorts = [ 3478 5349 8008 ];
+          allowedTCPPorts = [
+            3478
+            5349
+            8008
+          ];
         };
     };
   };

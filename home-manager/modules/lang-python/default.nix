@@ -1,13 +1,21 @@
-{ lib, pkgs, config, system-config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  system-config,
+  ...
+}:
 with lib;
-let cfg = config.link.python;
-in {
+let
+  cfg = config.link.python;
+in
+{
   options.link.python.enable = mkEnableOption "enable python using texlive";
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       #python311
-      (python311.withPackages (ps:
-        with ps; [
+      (python311.withPackages (
+        ps: with ps; [
           django
           asgiref
           sqlparse
@@ -30,15 +38,15 @@ in {
           jupyter
           jupyter-client
           jupyterlab
-        ]))
+        ]
+      ))
     ];
-    programs.vscode.extensions = with pkgs.vscode-extensions;
+    programs.vscode.extensions =
+      with pkgs.vscode-extensions;
       [
         ms-toolsai.jupyter
         ms-pyright.pyright
-      ] ++ lib.optionals
-        (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [
-        ms-python.python
-      ];
+      ]
+      ++ lib.optionals (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ms-python.python ];
   };
 }

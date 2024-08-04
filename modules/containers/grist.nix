@@ -1,6 +1,12 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.containers.grist;
+let
+  cfg = config.link.containers.grist;
 in
 {
   options.link.containers.grist = {
@@ -64,6 +70,8 @@ in
     #     deny all; # deny all remaining ips
     # '';
     # '';
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ 8484 ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port
+        [ 8484 ];
   };
 }

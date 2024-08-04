@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.nftables;
-in {
+let
+  cfg = config.link.nftables;
+in
+{
   options.link.nftables.enable = mkEnableOption "activate nftables";
   config = mkIf cfg.enable {
     networking.nftables = {

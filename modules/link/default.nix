@@ -1,4 +1,13 @@
-{ lib, pkgs, config, nixpkgs, flake-self, home-manager, ... }: with lib;
+{
+  lib,
+  pkgs,
+  config,
+  nixpkgs,
+  flake-self,
+  home-manager,
+  ...
+}:
+with lib;
 {
   options.link = {
     domain = mkOption {

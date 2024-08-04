@@ -1,8 +1,17 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.gaming;
-in {
-  options.link.gaming = { enable = mkEnableOption "activate gaming"; };
+let
+  cfg = config.link.gaming;
+in
+{
+  options.link.gaming = {
+    enable = mkEnableOption "activate gaming";
+  };
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       looking-glass-client # KVM relay
