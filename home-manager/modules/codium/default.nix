@@ -1,57 +1,70 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.code;
-in {
+let
+  cfg = config.link.code;
+in
+{
   options.link.code.enable = mkEnableOption "activate vscodium";
   config = mkIf cfg.enable {
-    home.packages = with pkgs;
-      [ gdb nixd ];
+    home.packages = with pkgs; [
+      gdb
+      nixd
+      nixfmt-rfc-style
+    ];
     programs.vscode = {
       enable = true;
       package = pkgs.vscodium;
       # package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config  ]);
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = false;
-      extensions = with pkgs.vscode-extensions; [
-        #b4dm4n.vscode-nixpkgs-fmt
-        #vscodevim.vim
-        arrterian.nix-env-selector
-        # dracula-theme.theme-dracula
-        eamodio.gitlens
-        esbenp.prettier-vscode
-        firefox-devtools.vscode-firefox-debug
-        github.copilot
-        github.vscode-github-actions
-        github.vscode-pull-request-github
-        gitlab.gitlab-workflow
-        gruntfuggly.todo-tree
-        jnoortheen.nix-ide
-        mkhl.direnv
-        ms-vscode-remote.remote-ssh
-        redhat.vscode-xml
-        redhat.vscode-yaml
-        streetsidesoftware.code-spell-checker
-        #tamasfe.even-better-toml
-        usernamehw.errorlens
-        vadimcn.vscode-lldb
-        yzhang.markdown-all-in-one
-        # pokey.talon
-        # pokey.cursorless
-      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        {
-          name = "vscode-pets";
-          publisher = "tonybaloney";
-          version = "1.25.1";
-          sha256 = "6acdded8bcca052b221acfd4188674e97a9b2e1dfb8ab0d4682cec96a2131094";
-        }
-      ];
+      extensions =
+        with pkgs.vscode-extensions;
+        [
+          #b4dm4n.vscode-nixpkgs-fmt
+          #vscodevim.vim
+          arrterian.nix-env-selector
+          # dracula-theme.theme-dracula
+          eamodio.gitlens
+          esbenp.prettier-vscode
+          firefox-devtools.vscode-firefox-debug
+          github.copilot
+          github.vscode-github-actions
+          github.vscode-pull-request-github
+          gitlab.gitlab-workflow
+          gruntfuggly.todo-tree
+          jnoortheen.nix-ide
+          mkhl.direnv
+          ms-vscode-remote.remote-ssh
+          redhat.vscode-xml
+          redhat.vscode-yaml
+          streetsidesoftware.code-spell-checker
+          #tamasfe.even-better-toml
+          usernamehw.errorlens
+          vadimcn.vscode-lldb
+          yzhang.markdown-all-in-one
+          # pokey.talon
+          # pokey.cursorless
+        ]
+        ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          {
+            name = "vscode-pets";
+            publisher = "tonybaloney";
+            version = "1.25.1";
+            sha256 = "6acdded8bcca052b221acfd4188674e97a9b2e1dfb8ab0d4682cec96a2131094";
+          }
+        ];
       userSettings = {
         "[nix]" = {
           "editor.defaultFormatter" = "jnoortheen.nix-ide";
         };
         "nix.enableLanguageServer" = true;
         # "serverPath" = "${pkgs.nil}/bin/nil";
-        "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
+        "nix.serverPath" = "nixd";
         "nix.serverSettings" = {
           # "nil" = {
           #   "diagnostics" = {
@@ -64,7 +77,7 @@ in {
           "nixd" = {
             # "eval" = { };
             "formatting" = {
-              "command" = [ "${pkgs.nixfmt-rfc-style}/bin/nixfmt" ];
+              "command" = [ "nixfmt ." ];
             };
             "options" = {
               "nixos" = {
@@ -83,9 +96,7 @@ in {
         "[jsonc]" = {
           "editor.defaultFormatter" = "vscode.json-language-features";
         };
-        "cSpell.userWords" = [
-          "Linkbetween"
-        ];
+        "cSpell.userWords" = [ "Linkbetween" ];
         "diffEditor.codeLens" = true;
         "diffEditor.diffAlgorithm" = "advanced";
         "diffEditor.ignoreTrimWhitespace" = false;
