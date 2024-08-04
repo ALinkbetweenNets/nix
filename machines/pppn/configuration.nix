@@ -40,7 +40,7 @@
   hardware.enableAllFirmware = true;
   lollypops.deployment = {
     local-evaluation = true;
-    # ssh = {user = "l";};
-    # sudo.enable = true;
+    ssh = { user = "l"; };
+    sudo.enable = true;
   };
 }
