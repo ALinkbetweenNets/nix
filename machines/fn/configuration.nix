@@ -34,7 +34,7 @@
     # eth = "wlp0s20f3";
     docker.enable = true;
     services.restic-client = {
-      # enable = true;
+      enable = true;
       backup-paths-sn = [
         "/home/l/.ssh"
         "/home/l/Documents"
