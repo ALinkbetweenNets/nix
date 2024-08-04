@@ -235,7 +235,7 @@ in
         #   ];
         #   initialize = true;
         # };
-        onedrive = {
+        onedrive = mkIf (config.networking.hostName == "sn") {
           paths = cfg.backup-paths-onedrive;
           repositoryFile = config.sops.secrets."restic/onedrive/repository".path;
           passwordFile = config.sops.secrets."restic/onedrive/password".path;
