@@ -118,6 +118,13 @@
     };
     eth = "eth0@if146";
   };
+services.owncast={
+  enable=true;
+  openFirewall = true;
+  listen="0.0.0.0";
+  rtmp-port=1935;
+  port=8888;
+};
   services.onedrive.enable = true;
   services.clamav = {
     # Antivirus
