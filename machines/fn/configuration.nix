@@ -37,13 +37,10 @@
       # enable = true;
       backup-paths-sn = [
         "/home/l/.ssh"
-        "/home/l/archive"
         "/home/l/Documents"
         "/home/l/Pictures"
         "/home/l/obsidian"
-        "/home/l/sec"
-        "/home/l/doc"
-        "/home/l/w"
+        "/home/l/s"
       ];
       #  backup-paths-sciebo = [
       #    "/home/l/.ssh"

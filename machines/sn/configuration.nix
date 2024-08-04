@@ -79,8 +79,8 @@
       restic-client = {
         enable = true;
         backup-paths-onedrive = [
-          "/home/l/.ssh"
           "/home/l/.data-mirror"
+          "/home/l/.ssh"
           "/home/l/archive"
           "/home/l/doc"
           "/home/l/Music"
@@ -88,17 +88,18 @@
           "/home/l/Sync"
           "/home/l/uni"
           "/home/l/w"
-
         ];
-        #   backup-paths-lenny-storagebox = [
-        #     "/home/l/.ssh"
-        #     "/rz/syncthing/crypt"
-        #     "/rz/syncthing/doc"
-        #     "/rz/syncthing/music"
-        #     "/rz/syncthing/sec"
-        #     "/rz/syncthing/uni"
-        #     "/rz/syncthing/w"
-        #   ];
+        backup-paths-lenny-storagebox = [
+          "/home/l/.data-mirror"
+          "/home/l/.ssh"
+          "/home/l/archive"
+          "/home/l/doc"
+          "/home/l/Music"
+          "/home/l/sec"
+          "/home/l/Sync"
+          "/home/l/uni"
+          "/home/l/w"
+        ];
         backup-paths-pi4b = [
           "/home/l/.ssh"
           "/home/l/archive"
