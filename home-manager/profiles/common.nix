@@ -43,6 +43,9 @@ with lib; {
         "pi4b" = {
           port = 2522;
         };
+        "pppn" = {
+          port = 2522;
+        };
       };
       compression = true;
     };
