@@ -49,10 +49,6 @@ with lib; {
       #terminator.enable = true; # I prefer konsole
     };
     manual.html.enable = true;
-    link = {
-      code.enable = true;
-      #plasma.enable = true;
-    };
     # Packages to install on all desktop systems
     home.packages = with pkgs;
       [
