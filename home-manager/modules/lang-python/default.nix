@@ -1,4 +1,4 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, config, system-config, ... }:
 with lib;
 let cfg = config.link.python;
 in {
@@ -34,9 +34,11 @@ in {
     ];
     programs.vscode.extensions = with pkgs.vscode-extensions;
       [
-        ms-python.python
         ms-toolsai.jupyter
         ms-pyright.pyright
+      ] ++ lib.optionals
+        (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [
+        ms-python.python
       ];
   };
 }
