@@ -8,7 +8,6 @@
     home-manager.nixosModules.home-manager
   ];
   home-manager.users.l = flake-self.homeConfigurations.server;
-  # home-manager.users.root = flake-self.homeConfigurations.server;
   link = {
     sops = true;
     tailscale-address = "100.86.79.82";
@@ -139,6 +138,15 @@
       };
       locations."/cryptpad_websocket" = {
         proxyPass = "http://${config.link.serviceHost}:3003/";
+        proxyWebsockets = true;
+      };
+    };
+    "cast.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://${config.link.serviceHost}:8888/";
         proxyWebsockets = true;
       };
     };
