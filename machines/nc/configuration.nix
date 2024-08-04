@@ -215,12 +215,12 @@
       locations."/".proxyPass = "http://10.10.10.89:2283/";
       locations."/".proxyWebsockets = true;
     };
-    "minio.s3.${config.link.domain}" = {
+    "minio.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:9001";
+        proxyPass = "http://${config.link.serviceHost}:9002";
         proxyWebsockets = true;
         # extraConfig = ''
 
@@ -235,7 +235,7 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:9000";
+        proxyPass = "http://${config.link.serviceHost}:9001";
         # extraConfig = ''
         #   proxy_set_header X-Real-IP $remote_addr;
         #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
