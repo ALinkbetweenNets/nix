@@ -92,7 +92,7 @@
         backup-paths-lenny-storagebox = [
           "/home/l/.data-mirror"
           "/home/l/.ssh"
-          "/home/l/archive"
+          # "/home/l/archive"
           "/home/l/doc"
           "/home/l/Music"
           "/home/l/sec"
