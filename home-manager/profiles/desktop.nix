@@ -69,7 +69,6 @@ with lib; {
         #veracrypt
         kleopatra # gpg/ pgp
         ## Misc
-        bitwarden
         xdg-utils
         scrcpy # ADB screenshare
         ktailctl # Tailscale GUI
@@ -84,11 +83,9 @@ with lib; {
         #syncthing-tray
         ## Browser
         librewolf
-        tor-browser-bundle-bin # compromised
         # vivaldi # nice but proprietary
         floorp # firefox fork, seems promising, needs more research
         #mullvad-vpn # is defined as program
-        mullvad-browser
         ## RDP
         remmina # VNC Client
         ## KDE Utils
@@ -105,6 +102,10 @@ with lib; {
         kdePackages.colord-kde
         # (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ] ++ lib.optionals
-        (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
+        (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [
+        bitwarden
+        tor-browser-bundle-bin # compromisednix
+        mullvad-browser
+      ];
   };
 }
