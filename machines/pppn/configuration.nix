@@ -12,7 +12,8 @@
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;
   # Use PulseAudio
-  hardware.pulseaudio.enable = true;
+  # hardware.pulseaudio.enable = lib.mkForce true;
+  # services.pipewire.enable =  lib.mkForce true;
   # Enable Bluetooth
   hardware.bluetooth.enable = true;
   # Bluetooth audio
