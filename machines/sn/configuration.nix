@@ -131,6 +131,10 @@ services.owncast={
     daemon.enable = true;
     updater.enable = true;
   };
+  users.users.root.openssh.authorizedKeys.keys = [
+  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIELDx8vTqed3YBepK2EEcM0vsLZX3g9gxwzVknwYlAgh root@sn"
+  ];
+
   nix.settings.auto-optimise-store = true;
   # services.cloudflare-dyndns = {
   #   ipv4 = lib.mkForce false;
