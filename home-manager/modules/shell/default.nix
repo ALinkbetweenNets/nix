@@ -5,76 +5,99 @@ let
 in
 {
   programs = {
-    # starship = {
-    #   enable = true;
-    #   enableBashIntegration = true;
-    #   enableZshIntegration = true;
-    #   settings = {
-    #     # format = ''[░▒▓](bg:#a3aed2 fg:#090c0c)[](bg:#769ff0 fg:#a3aed2)$directory[](fg:#769ff0 bg:#394260)$git_branch$git_status[](fg:#394260 bg:#212736)$package[](fg:#212736 bg:#1d2230)$time[ ](fg:#1d2230)$line_break$character'';
-    #     time = {
-    #       disabled = false;
-    #       time_format = "%R"; # Hour:Minute Format
-    #       # style = "bg:#1d2230";
-    #       # format = ''[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'';
-    #     };
-    #     character = {
-    #       # success_symbol = "[»](bold green)";
-    #       # error_symbol = "[×](bold red) ";
-    #     };
-    #     directory = {
-    #       # style = "fg:#e3e5e5 bg:#769ff0";
-    #       # format = "[ $path ]($style)";
-    #       truncation_length = 40;
-    #       truncation_symbol = "…/";
-    #       # substitutions = {
-    #       # "Documents" = "󰈙 ";
-    #       # "Downloads" = " ";
-    #       # "Music" = " ";
-    #       # "Pictures" = " ";
-    #       # };
-    #     };
-    #     aws = { disabled = true; };
-    #     nix_shell = {
-    #       disabled = false;
-    #       # symbol = "❄  ";
-    #     };
-    #     #os.disabled = false;
-    #     username.disabled = false;
-    #     git_branch = {
-    #       # symbol = "";
-    #       # style = "bg:#394260";
-    #       # format = ''[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'';
-    #     };
-    #     # git_status = {
-    #     #   # style = "bg:#394260";
-    #     #   # format = ''[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'';
-    #     #   ahead = "↑";
-    #     #   behind = "↓";
-    #     #   diverged = "↕";
-    #     #   modified = "!";
-    #     #   staged = "±";
-    #     #   renamed = "→";
-    #     # };
-    #   };
-    # };
+    starship = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      settings = {
+        # format = ''[░▒▓](bg:#a3aed2 fg:#090c0c)[](bg:#769ff0 fg:#a3aed2)$directory[](fg:#769ff0 bg:#394260)$git_branch$git_status[](fg:#394260 bg:#212736)$package[](fg:#212736 bg:#1d2230)$time[ ](fg:#1d2230)$line_break$character'';
+        right_format=''$time'';
+        continuation_prompt = "▶▶ ";
+        time = {
+          disabled = false;
+          time_format = "%R"; # Hour:Minute Format
+          style = "bg:#1d2230";
+          format = ''[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'';
+        };
+        # character = {
+        #   success_symbol = "[»](bold green)";
+        #   error_symbol = "[×](bold red) ";
+        # };
+        cmd_duration.show_notifications=true;
+        directory = {
+          # style = "fg:#e3e5e5 bg:#769ff0";
+          # format = "[ $path ]($style)";
+          truncation_length = 70;
+          truncation_symbol = "…/";
+          # substitutions = {
+          # "Documents" = "󰈙 ";
+          # "Downloads" = " ";
+          # "Music" = " ";
+          # "Pictures" = " ";
+          # };
+        };
+        direnv.disabled = false;
+        status = {
+          disabled = false;
+        };
+        nix_shell = {
+          disabled = false;
+        };
+        #os.disabled = false;
+        username.disabled = false;
+        git_branch = {
+          symbol = "";
+          # style = "bg:#394260";
+          # format = ''[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'';
+        };
+        git_status = {
+          # style = "bg:#394260";
+          # format = ''[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'';
+          # ahead = "↑";
+          # behind = "↓";
+          # diverged = "↕";
+          # modified = "!";
+          # staged = "±";
+          # renamed = "→";
+        };
+        shlvl.disabled = false;
+        git_metrics.disabled = false;
+        memory_usage.disabled = false;
+      };
+    };
     zsh = {
       enable = true;
-      autosuggestion.enable = true;
+      enableAutosuggestions = true;
       enableCompletion = true;
-      enableVteIntegration = true;
       autocd = true;
       dotDir = ".config/zsh";
-      syntaxHighlighting.enable = true;
+      sessionVariables = {
+        ZDOTDIR = "/home/l/.config/zsh";
+      };
+      initExtra = ''
+        bindkey "^[[1;5C" forward-word
+        bindkey "^[[1;5D" backward-word
+
+        # revert last n commits
+        grv() {
+          ${pkgs.git}/bin/git reset --soft HEAD~$1
+        }
+
+        flake_update() {
+          ${pkgs.nix}/bin/nix flake update
+          ${pkgs.git}/bin/git add flake.lock
+          ${pkgs.git}/bin/git commit -m "❅ flake.lock: update"
+        }
+
+        eval "$(${pkgs.h}/bin/h --setup ~/code)"
+      '';
+
       history = {
         expireDuplicatesFirst = true;
         ignoreSpace = false;
         save = 15000;
         share = true;
       };
-      # initExtra = ''
-      #   bindkey "^[[1;5C" forward-word
-      #   bindkey "^[[1;5D" backward-word
-      # '';
       plugins = [
         {
           name = "fast-syntax-highlighting";
@@ -172,8 +195,11 @@ in
           llsr = "eza --icons --group-directories-first --git -F --color always --sort=size --tree -l --group";
           llsa = "eza --icons --group-directories-first --git -F --color always --sort=size --all -l --group";
           llar = "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all -l --group";
-          sudo = "sudo ";
         };
+    };
+    zsh.oh-my-zsh = {
+      enable = true;
+      # theme = "agnoster";
     };
     fish = {
       enable = true;
@@ -181,16 +207,12 @@ in
     ripgrep = {
       enable = true;
     };
-    zsh.oh-my-zsh = {
-      enable = true;
-      theme = "agnoster";
-    };
-    #   autojump.enable = true;
+    autojump.enable = true;
     zoxide.enable = true;
     thefuck.enable = true;
-    #   watson.enable = true;
-    carapace.enable = true; # command argument completer
-    #   dircolors.enable = true;
+    watson.enable = true;
+    # carapace.enable = true; # breaks autocompletion actually
+    dircolors.enable = true;
     btop = {
       enable = true;
     };
@@ -269,19 +291,18 @@ in
         highlight_megabytes = 1;
         highlight_threads = 1;
       };
-      #     # // (with htop; leftMeters [
-      #     #   (bar "AllCPUs2")
-      #     #   (bar "Memory")
-      #     #   (bar "Swap")
-      #     #   (text "Zram")
-      #     # ]) // (with htop; rightMeters [
-      #     #   (text "Tasks")
-      #     #   (text "LoadAverage")
-      #     #   (text "Uptime")
-      #     #   (text "Systemd")
-      #     # ]);
+      # // (with htop; leftMeters [
+      #   (bar "AllCPUs2")
+      #   (bar "Memory")
+      #   (bar "Swap")
+      #   (text "Zram")
+      # ]) // (with htop; rightMeters [
+      #   (text "Tasks")
+      #   (text "LoadAverage")
+      #   (text "Uptime")
+      #   (text "Systemd")
+      # ]);
     };
   };
-  # # Include man-pages
   manual.manpages.enable = true;
 }
