@@ -13,8 +13,9 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       gdb
+      nil
       nixd
-      nixfmt-rfc-style
+      nixfmt-classic
     ];
     programs.vscode = {
       enable = true;
@@ -63,35 +64,35 @@ in
           "editor.defaultFormatter" = "jnoortheen.nix-ide";
         };
         "nix.enableLanguageServer" = true;
-        # "serverPath" = "${pkgs.nil}/bin/nil";
-        "nix.serverPath" = "nixd";
+        "nix.serverPath" = "nil";
+        # "nix.serverPath" = "nixd";
         "nix.serverSettings" = {
-          # "nil" = {
-          #   "diagnostics" = {
-          #     "ignored" = [ "unused_binding" "unused_with" ];
-          #   };
-          #   "formatting" = {
-          #     "command" = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
-          #   };
-          # };
-          "nixd" = {
-            # "eval" = { };
-            "formatting" = {
-              "command" = [ "nixfmt ." ];
+          "nil" = {
+            "diagnostics" = {
+              "ignored" = [ "unused_binding" "unused_with" ];
             };
-            "options" = {
-              "nixos" = {
-                "expr" = "(builtins.getFlake .#nixosConfigurations.fn.options";
-              };
-              "home-manager" = {
-                "expr" = "(builtins.getFlake.#homeConfigurations.laptop.options";
-              };
-              # "target" = {
-              #   "args" = [ ];
-              #   "installable" = "(builtins.getFlake \"\${workspaceFolder}\")#nixosConfigurations.<name>.options";
-              # };
+            "formatting" = {
+              "command" = [ "nixfmt" ];
             };
           };
+          # "nixd" = {
+          #   # "eval" = { };
+          #   "formatting" = {
+          #     "command" = [ "nixfmt ." ];
+          #   };
+          #   "options" = {
+          #     "nixos" = {
+          #       "expr" = "(builtins.getFlake .#nixosConfigurations.fn.options";
+          #     };
+          #     "home-manager" = {
+          #       "expr" = "(builtins.getFlake.#homeConfigurations.laptop.options";
+          #     };
+          #     # "target" = {
+          #     #   "args" = [ ];
+          #     #   "installable" = "(builtins.getFlake \"\${workspaceFolder}\")#nixosConfigurations.<name>.options";
+          #     # };
+          #   };
+          # };
         };
         "[jsonc]" = {
           "editor.defaultFormatter" = "vscode.json-language-features";
