@@ -30,6 +30,7 @@ in
     environment.systemPackages =
       with pkgs;
       [
+        wezterm
         kdePackages.partitionmanager
         adwaita-icon-theme
         wifi-qr
