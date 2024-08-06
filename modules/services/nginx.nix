@@ -74,8 +74,13 @@ in
         proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
         add_header X-Real-IP $remote_addr;
         add_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        add_header X-Forwarded-Proto $scheme;
-        add_header Host $host;
+        add_header X-Forwarded-Proto https;
+        add_header X-Forwarded-Ssl on;
+        add_header X-Forwarded-Port $server_port;
+        add_header X-Forwarded-Host $host;
+        add_header Host $http_host;
+        add_header origin $http_origin;
+        add_header X-XSRF-TOKEN $http_x_xsrf_token;
         # proxy_connect_timeout 300;
         # Default is HTTP/1, keepalive is only enabled in HTTP/1.1
         #proxy_http_version 1.1;
