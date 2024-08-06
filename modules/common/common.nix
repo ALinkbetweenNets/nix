@@ -146,6 +146,7 @@ in
       fd
       ncdu # disk usage
       sysz
+      systemctl-tui
       eza
       bat
       btop
