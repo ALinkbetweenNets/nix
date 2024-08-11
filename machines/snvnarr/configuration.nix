@@ -1,17 +1,7 @@
 { self, ... }:
-{
-  pkgs,
-  lib,
-  config,
-  flake-self,
-  home-manager,
-  ...
-}:
-{
-  imports = [
-    ./hardware-configuration.nix
-    home-manager.nixosModules.home-manager
-  ];
+{ pkgs, lib, config, flake-self, home-manager, ... }: {
+  imports =
+    [ ./hardware-configuration.nix home-manager.nixosModules.home-manager ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
     arr.enable = true;
@@ -43,7 +33,5 @@
     useRoutingFeatures = "server";
     extraUpFlags = [ "--advertise-exit-node" ];
   };
-  lollypops.deployment = {
-    local-evaluation = true;
-  };
+  lollypops.deployment = { local-evaluation = true; };
 }

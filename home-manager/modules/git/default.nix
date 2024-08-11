@@ -1,11 +1,8 @@
-{ ... }:
-{
+{ ... }: {
   programs = {
     git = {
       enable = true;
-      extraConfig = {
-        pull.rebase = false;
-      };
+      extraConfig = { pull.rebase = false; };
       userEmail = "alinkbetweennets@protonmail.com";
       userName = "ALinkbetweenNets";
       aliases = {

@@ -1,14 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 with lib;
-let
-  cfg = config.link.services.vaultwarden;
-in
-{
+let cfg = config.link.services.vaultwarden;
+in {
   options.link.services.vaultwarden = {
     enable = mkEnableOption "activate vaultwarden";
     expose-port = mkOption {
@@ -19,7 +12,8 @@ in
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description = "expose the application to the internet with NGINX and ACME";
+      description =
+        "expose the application to the internet with NGINX and ACME";
     };
     nginx-expose = mkOption {
       type = types.bool;
@@ -59,21 +53,21 @@ in
           SMTP_PASSWORD = "";
         };
       };
-      nginx.virtualHosts."vaultwarden.${config.link.domain}" = mkIf cfg.nginx-expose {
-        enableACME = true;
-        forceSSL = true;
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString cfg.port}";
+      nginx.virtualHosts."vaultwarden.${config.link.domain}" =
+        mkIf cfg.nginx-expose {
+          enableACME = true;
+          forceSSL = true;
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:${toString cfg.port}";
+          };
+          extraConfig = mkIf (!cfg.nginx-expose) ''
+            allow ${config.link.service-ip}/24;
+            allow 127.0.0.1;
+            deny all; # deny all remaining ips
+          '';
         };
-        extraConfig = mkIf (!cfg.nginx-expose) ''
-          allow ${config.link.service-ip}/24;
-          allow 127.0.0.1;
-          deny all; # deny all remaining ips
-        '';
-      };
     };
     networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
-      mkIf cfg.expose-port
-        [ cfg.port ];
+      mkIf cfg.expose-port [ cfg.port ];
   };
 }

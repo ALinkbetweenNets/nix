@@ -1,15 +1,7 @@
-{
-  config,
-  system-config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, system-config, pkgs, lib, ... }:
 with lib;
-let
-  cfg = config.link.wireguard;
-in
-{
+let cfg = config.link.wireguard;
+in {
   options.link.wireguard.enable = mkEnableOption "activate wireguard";
   config = mkIf cfg.enable {
     networking = {
@@ -20,10 +12,7 @@ in
       };
       firewall = {
         allowedTCPPorts = [ 53 ];
-        allowedUDPPorts = [
-          53
-          51820
-        ];
+        allowedUDPPorts = [ 53 51820 ];
         logReversePathDrops = true;
       };
       # if packets are still dropped, they will show up in dmesg

@@ -1,15 +1,7 @@
-{
-  config,
-  system-config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, system-config, pkgs, lib, ... }:
 with lib;
-let
-  cfg = config.link.services.oauth-proxy;
-in
-{
+let cfg = config.link.services.oauth-proxy;
+in {
   options.link.services.oauth-proxy = {
     enable = mkEnableOption "activate matrix";
     expose = mkOption {

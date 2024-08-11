@@ -1,19 +1,12 @@
-{
-  config,
-  system-config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, system-config, pkgs, lib, ... }:
 with lib;
-let
-  cfg = config.link.services.mailserver;
-in
-{
+let cfg = config.link.services.mailserver;
+in {
   imports = [
     (builtins.fetchTarball {
       # Pick a release version you are interested in and set its hash, e.g.
-      url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/nixos-24.05/nixos-mailserver-nixos-24.05.tar.gz";
+      url =
+        "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/nixos-24.05/nixos-mailserver-nixos-24.05.tar.gz";
       # To get the sha256 of the nixos-mailserver tarball, we can use the nix-prefetch-url command:
       # release="nixos-23.05"; nix-prefetch-url "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/${release}/nixos-mailserver-${release}.tar.gz" --unpack
       sha256 = "0clvw4622mqzk1aqw1qn6shl9pai097q62mq1ibzscnjayhp278b";
@@ -29,7 +22,8 @@ in
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description = "expose the application to the internet with NGINX and ACME";
+      description =
+        "expose the application to the internet with NGINX and ACME";
     };
     nginx-expose = mkOption {
       type = types.bool;
@@ -43,9 +37,7 @@ in
     };
   };
   config = mkIf cfg.enable {
-    sops.secrets = {
-      "mailserver/alinkbetweennets" = { };
-    };
+    sops.secrets = { "mailserver/alinkbetweennets" = { }; };
 
     mailserver = {
       enable = true;
@@ -56,7 +48,8 @@ in
       # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
       loginAccounts = {
         "ALinkBetweenNets@${config.link.domain}" = {
-          hashedPasswordFile = config.sops.secrets."mailserver/alinkbetweennets".path;
+          hashedPasswordFile =
+            config.sops.secrets."mailserver/alinkbetweennets".path;
           aliases = [ "Link@${config.link.domain}" ];
         };
       };
@@ -66,8 +59,7 @@ in
       # certificateScheme = "acme-nginx";
     };
     networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
-      mkIf cfg.expose-port
-        [ cfg.port ];
+      mkIf cfg.expose-port [ cfg.port ];
     systemd.services.gitlab-backup.environment.BACKUP = "dump";
   };
 }

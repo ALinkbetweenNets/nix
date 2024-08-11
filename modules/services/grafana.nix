@@ -1,15 +1,7 @@
-{
-  config,
-  system-config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, system-config, pkgs, lib, ... }:
 with lib;
-let
-  cfg = config.link.services.grafana;
-in
-{
+let cfg = config.link.services.grafana;
+in {
   options.link.services.grafana = {
     enable = mkEnableOption "activate grafana";
     expose-port = mkOption {
@@ -20,7 +12,8 @@ in
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description = "expose the application to the internet with NGINX and ACME";
+      description =
+        "expose the application to the internet with NGINX and ACME";
     };
     port = mkOption {
       type = types.int;
@@ -44,13 +37,14 @@ in
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "http://${toString config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}/";
+          proxyPass = "http://${
+              toString config.services.grafana.settings.server.http_addr
+            }:${toString config.services.grafana.settings.server.http_port}/";
           proxyWebsockets = true;
         };
       };
     };
     networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
-      mkIf cfg.expose-port
-        [ cfg.port ];
+      mkIf cfg.expose-port [ cfg.port ];
   };
 }

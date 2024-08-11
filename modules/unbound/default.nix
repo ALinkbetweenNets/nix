@@ -1,25 +1,14 @@
-{
-  config,
-  system-config,
-  pkgs,
-  lib,
-  adblock-unbound,
-  ...
-}:
+{ config, system-config, pkgs, lib, adblock-unbound, ... }:
 with lib;
 let
   cfg = config.link.unbound;
   adlist = adblock-unbound.packages.${pkgs.system};
-  dns-overwrites-config = builtins.toFile "dns-overwrites.conf" (
-    ''
-      # DNS overwrites
-    ''
-    + concatStringsSep "\n" (
-      mapAttrsToList (n: v: "local-data: \"${n} A ${toString v}\"") cfg.A-records
-    )
-  );
-in
-{
+  dns-overwrites-config = builtins.toFile "dns-overwrites.conf" (''
+    # DNS overwrites
+  '' + concatStringsSep "\n"
+    (mapAttrsToList (n: v: ''local-data: "${n} A ${toString v}"'')
+      cfg.A-records));
+in {
   options.link.unbound = {
     enable = mkEnableOption "activate unbound";
     A-records = mkOption {
@@ -66,13 +55,10 @@ in
       settings = {
         server = {
           include = [
-            "\"${dns-overwrites-config}\""
-            "\"${adlist.unbound-adblockStevenBlack}\""
+            ''"${dns-overwrites-config}"''
+            ''"${adlist.unbound-adblockStevenBlack}"''
           ];
-          interface = [
-            "::1"
-            "127.0.0.1"
-          ];
+          interface = [ "::1" "127.0.0.1" ];
           access-control = [ "127.0.0.0/8 allow" ];
         };
         # forward local DNS requests via Wireguard
@@ -96,10 +82,8 @@ in
           }
           {
             name = "google.*.";
-            forward-addr = [
-              "8.8.8.8@853#dns.google"
-              "8.8.8.4@853#dns.google"
-            ];
+            forward-addr =
+              [ "8.8.8.8@853#dns.google" "8.8.8.4@853#dns.google" ];
             forward-tls-upstream = "yes";
           }
           {

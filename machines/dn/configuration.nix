@@ -1,17 +1,7 @@
 { self, ... }:
-{
-  pkgs,
-  lib,
-  config,
-  flake-self,
-  home-manager,
-  ...
-}:
-{
-  imports = [
-    ./hardware-configuration.nix
-    home-manager.nixosModules.home-manager
-  ];
+{ pkgs, lib, config, flake-self, home-manager, ... }: {
+  imports =
+    [ ./hardware-configuration.nix home-manager.nixosModules.home-manager ];
   home-manager.users.l = flake-self.homeConfigurations.tower;
   link = {
     sops = true;
@@ -79,15 +69,10 @@
   # nix run .\#lollypops -- meet:rebuild
   lollypops.deployment = {
     local-evaluation = true;
-    ssh = {
-      user = "l";
-    };
+    ssh = { user = "l"; };
     sudo.enable = true;
   };
   services.xserver.wacom.enable = true;
-  environment.systemPackages = with pkgs; [
-    wacomtablet
-    xf86_input_wacom
-  ];
+  environment.systemPackages = with pkgs; [ wacomtablet xf86_input_wacom ];
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 }

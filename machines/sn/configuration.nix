@@ -1,14 +1,5 @@
 { self, ... }:
-{
-  pkgs,
-  lib,
-  config,
-  flake-self,
-  home-manager,
-  modulesPath,
-  ...
-}:
-{
+{ pkgs, lib, config, flake-self, home-manager, modulesPath, ... }: {
   imports = [
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
     home-manager.nixosModules.home-manager
@@ -76,7 +67,8 @@
       outline = {
         enable = true;
         # nginx-expose = true;
-        oidClientId = "7cec0458291c1d98c37bce1ad62ea7b02790d7330f1ce5b6a25d9da95c6b3108";
+        oidClientId =
+          "7cec0458291c1d98c37bce1ad62ea7b02790d7330f1ce5b6a25d9da95c6b3108";
       };
       paperless.enable = true;
       vaultwarden.enable = true;

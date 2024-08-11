@@ -1,19 +1,10 @@
-{
-  lib,
-  pkgs,
-  config,
-  system-config,
-  ...
-}:
+{ lib, pkgs, config, system-config, ... }:
 with lib;
-let
-  cfg = config.link.gaming;
-in
-{
+let cfg = config.link.gaming;
+in {
   options.link.gaming.enable = mkEnableOption "enable gaming";
   config = mkIf cfg.enable {
-    home.packages =
-      with pkgs;
+    home.packages = with pkgs;
       [
         prismlauncher # minecraft launcher
         jdk17
@@ -25,11 +16,12 @@ in
         # wine64
         prismlauncher # minecraft launcher
         (lutris.override {
-          extraLibraries = pkgs: [
-            # List library dependencies here
-          ];
+          extraLibraries = pkgs:
+            [
+              # List library dependencies here
+            ];
         })
-      ]
-      ++ lib.optionals (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
+      ] ++ lib.optionals
+      (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
   };
 }

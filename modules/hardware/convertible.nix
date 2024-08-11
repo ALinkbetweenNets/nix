@@ -1,16 +1,7 @@
-{
-  config,
-  flake-self,
-  system-config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, flake-self, system-config, pkgs, lib, ... }:
 with lib;
-let
-  cfg = config.link.convertible;
-in
-{
+let cfg = config.link.convertible;
+in {
   options.link.convertible = {
     enable = mkEnableOption "activate convertible laptop";
   };

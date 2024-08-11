@@ -1,15 +1,7 @@
-{
-  config,
-  system-config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, system-config, pkgs, lib, ... }:
 with lib;
-let
-  cfg = config.link.arr;
-in
-{
+let cfg = config.link.arr;
+in {
   options.link.arr.enable = mkEnableOption "activate arr";
   config = mkIf cfg.enable {
     services = {

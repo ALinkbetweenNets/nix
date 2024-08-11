@@ -1,15 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  modulesPath,
-  ...
-}:
-{
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-    ./disk-config.nix
-  ];
+{ config, lib, pkgs, modulesPath, ... }: {
+  imports =
+    [ (modulesPath + "/installer/scan/not-detected.nix") ./disk-config.nix ];
   boot.loader.grub = {
     # no need to set devices, disko will add all devices that have a EF02 partition to the list already
     # devices = [ ];
@@ -17,13 +8,8 @@
     efiInstallAsRemovable = true;
   };
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
-  boot.initrd.availableKernelModules = [
-    "ahci"
-    "xhci_pci"
-    "virtio_pci"
-    "sr_mod"
-    "virtio_blk"
-  ];
+  boot.initrd.availableKernelModules =
+    [ "ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];

@@ -1,13 +1,6 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
-let
-  primaryDisk = "/dev/vda";
-in
-{
+{ pkgs, lib, config, ... }:
+let primaryDisk = "/dev/vda";
+in {
   config = {
     # Running fstrim weekly is a good idea for VMs.
     # Empty blocks are returned to the host, which can then be used for other VMs.
@@ -20,12 +13,10 @@ in
     # -> BIOS boot partition
     # -> EFI System Partition
     # -> NixOS root partition (ext4)
-    swapDevices = [
-      {
-        device = "/var/lib/swapfile";
-        size = 8 * 1024;
-      }
-    ];
+    swapDevices = [{
+      device = "/var/lib/swapfile";
+      size = 8 * 1024;
+    }];
 
     disko.devices.disk.main = {
       type = "disk";
@@ -80,11 +71,7 @@ in
           "9p"
           "9pnet_virtio"
         ];
-        kernelModules = [
-          "virtio_balloon"
-          "virtio_console"
-          "virtio_rng"
-        ];
+        kernelModules = [ "virtio_balloon" "virtio_console" "virtio_rng" ];
       };
       kernelParams = [ "console=ttyS0" ];
     };

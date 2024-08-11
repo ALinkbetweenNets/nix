@@ -1,13 +1,5 @@
 { self, ... }:
-{
-  pkgs,
-  lib,
-  config,
-  flake-self,
-  home-manager,
-  ...
-}:
-{
+{ pkgs, lib, config, flake-self, home-manager, ... }: {
   imports = [
     ./hardware-configuration.nix
     home-manager.nixosModules.home-manager
@@ -44,11 +36,8 @@
     docker.enable = true;
     services.restic-client = {
       enable = true;
-      backup-paths-sn = [
-        "/home/l/.ssh"
-        "/home/l/Documents"
-        "/home/l/Pictures"
-      ];
+      backup-paths-sn =
+        [ "/home/l/.ssh" "/home/l/Documents" "/home/l/Pictures" ];
       #  backup-paths-sciebo = [
       #    "/home/l/.ssh"
       #    # "/home/l/archive"
@@ -74,7 +63,8 @@
   };
 
   networking.hostId = "007f0200";
-  environment.systemPackages = with pkgs; [ plasma5Packages.plasma-thunderbolt ];
+  environment.systemPackages = with pkgs;
+    [ plasma5Packages.plasma-thunderbolt ];
   #services.fprintd = {
   #  enable = true;
   #  tod.enable = true;
@@ -89,9 +79,7 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   lollypops.deployment = {
     local-evaluation = true;
-    ssh = {
-      user = "l";
-    };
+    ssh = { user = "l"; };
     sudo.enable = true;
   };
   #environment.systemPackages = with pkgs;    [ ];

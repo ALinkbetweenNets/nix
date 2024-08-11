@@ -1,15 +1,7 @@
-{
-  lib,
-  pkgs,
-  config,
-  self,
-  ...
-}:
+{ lib, pkgs, config, self, ... }:
 with lib;
-let
-  cfg = config.link.dyndns;
-in
-{
+let cfg = config.link.dyndns;
+in {
   options.link.dyndns = {
     enable = mkEnableOption "activate dyndns";
     domains = mkOption {

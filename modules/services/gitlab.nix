@@ -1,15 +1,7 @@
-{
-  config,
-  system-config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, system-config, pkgs, lib, ... }:
 with lib;
-let
-  cfg = config.link.services.gitlab;
-in
-{
+let cfg = config.link.services.gitlab;
+in {
   options.link.services.gitlab = {
     enable = mkEnableOption "activate gitlab";
     expose-port = mkOption {
@@ -20,7 +12,8 @@ in
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description = "expose the application to the internet with NGINX and ACME";
+      description =
+        "expose the application to the internet with NGINX and ACME";
     };
     nginx-expose = mkOption {
       type = types.bool;
@@ -62,7 +55,8 @@ in
         recommendedProxySettings = true;
         virtualHosts = {
           "gitlab.alinkbetweennets.de" = {
-            locations."/".proxyPass = "http://unix:/run/gitlab/gitlab-workhorse.socket";
+            locations."/".proxyPass =
+              "http://unix:/run/gitlab/gitlab-workhorse.socket";
           };
         };
       };
@@ -74,18 +68,19 @@ in
         pages.settings.pages-domain = "pages.alinkbetweennets.de";
         databaseCreateLocally = true;
         databasePasswordFile = config.sops.secrets."gitlab/dbPass".path;
-        initialRootPasswordFile = config.sops.secrets."gitlab/initial-root".path;
+        initialRootPasswordFile =
+          config.sops.secrets."gitlab/initial-root".path;
         secrets = {
           secretFile = config.sops.secrets."gitlab/secret".path;
           otpFile = config.sops.secrets."gitlab/otp".path;
           dbFile = config.sops.secrets."gitlab/db".path;
-          jwsFile = pkgs.runCommand "oidcKeyBase" { } "${pkgs.openssl}/bin/openssl genrsa 2048 > $out";
+          jwsFile = pkgs.runCommand "oidcKeyBase" { }
+            "${pkgs.openssl}/bin/openssl genrsa 2048 > $out";
         };
       };
     };
     networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
-      mkIf cfg.expose-port
-        [ cfg.port ];
+      mkIf cfg.expose-port [ cfg.port ];
     systemd.services.gitlab-backup.environment.BACKUP = "dump";
   };
 }

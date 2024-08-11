@@ -1,14 +1,7 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, pkgs, config, ... }:
 with lib;
-let
-  cfg = config.link.plasma;
-in
-{
+let cfg = config.link.plasma;
+in {
   options.link.plasma.enable = mkEnableOption "enable plasma";
   config = mkIf cfg.enable {
     # home.packages = with pkgs; [ iosevka ];
@@ -24,11 +17,16 @@ in
         "dolphinrc"."KFileDialog Settings"."Places Icons Auto-resize" = true;
         "dolphinrc"."KFileDialog Settings"."Places Icons Static Size" = 16;
         "dolphinrc"."PlacesPanel"."IconSize" = "-1";
-        "dolphinrc"."PreviewSettings"."Plugins" = "appimagethumbnail,audiothumbnail,comicbookthumbnail,cursorthumbnail,directorythumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,opendocumentthumbnail,svgthumbnail,windowsexethumbnail,windowsimagethumbnail,fontthumbnail,blenderthumbnail,ffmpegthumbs,gsthumbnail,mobithumbnail,rawthumbnail";
-        "kcminputrc"."Libinput/1386/21125/Wacom HID 5285 Finger"."OutputName" = "eDP-1";
-        "kcminputrc"."Libinput/1386/21125/Wacom HID 5285 Pen"."OutputName" = "eDP-1";
-        "kcminputrc"."Libinput/1739/52828/SYNA800B:00 06CB:CE5C Touchpad"."NaturalScroll" = true;
-        "kcminputrc"."Libinput/1739/52828/SYNA800B:00 06CB:CE5C Touchpad"."PointerAcceleration" = 0.2;
+        "dolphinrc"."PreviewSettings"."Plugins" =
+          "appimagethumbnail,audiothumbnail,comicbookthumbnail,cursorthumbnail,directorythumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,opendocumentthumbnail,svgthumbnail,windowsexethumbnail,windowsimagethumbnail,fontthumbnail,blenderthumbnail,ffmpegthumbs,gsthumbnail,mobithumbnail,rawthumbnail";
+        "kcminputrc"."Libinput/1386/21125/Wacom HID 5285 Finger"."OutputName" =
+          "eDP-1";
+        "kcminputrc"."Libinput/1386/21125/Wacom HID 5285 Pen"."OutputName" =
+          "eDP-1";
+        "kcminputrc"."Libinput/1739/52828/SYNA800B:00 06CB:CE5C Touchpad"."NaturalScroll" =
+          true;
+        "kcminputrc"."Libinput/1739/52828/SYNA800B:00 06CB:CE5C Touchpad"."PointerAcceleration" =
+          0.2;
         # "ksmserver"."Halt Without Confirmation" = "none,,Shut Down Without Confirmation";
         # "ksmserver"."Lock Session" = [ "Meta+L" "Screensaver,Meta+L" "Screensaver,Lock Session" ];
         # "ksmserver"."Log Out" = "Ctrl+Alt+Del";
@@ -44,7 +42,8 @@ in
         "kded5rc"."Module-device_automounter"."autoload" = false;
         "kdeglobals"."KDE"."AnimationDurationFactor" = 0.5;
         "kdeglobals"."KFileDialog Settings"."Allow Expansion" = false;
-        "kdeglobals"."KFileDialog Settings"."Automatically select filename extension" = true;
+        "kdeglobals"."KFileDialog Settings"."Automatically select filename extension" =
+          true;
         "kdeglobals"."KFileDialog Settings"."Breadcrumb Navigation" = true;
         "kdeglobals"."KFileDialog Settings"."Decoration position" = 2;
         "kdeglobals"."KFileDialog Settings"."LocationCombo Completionmode" = 5;
@@ -78,7 +77,8 @@ in
         "kservicemenurc"."Show"."extractfileitemaction" = true;
         "kservicemenurc"."Show"."forgetfileitemaction" = true;
         "kservicemenurc"."Show"."installFont" = true;
-        "kservicemenurc"."Show"."kactivitymanagerd_fileitem_linking_plugin" = true;
+        "kservicemenurc"."Show"."kactivitymanagerd_fileitem_linking_plugin" =
+          true;
         "kservicemenurc"."Show"."kdeconnectfileitemaction" = true;
         "kservicemenurc"."Show"."kdiff3fileitemaction" = true;
         "kservicemenurc"."Show"."kio-admin" = true;
@@ -141,69 +141,65 @@ in
         key = "Meta+Alt+K";
         command = "konsole";
       };
-      panels = [
-        {
-          location = "bottom";
-          widgets = [
-            # We can configure the widgets by adding the name and config
-            # attributes. For example to add the the kickoff widget and set the
-            # icon to "nix-snowflake-white" use the below configuration. This will
-            # add the "icon" key to the "General" group for the widget in
-            # ~/.config/plasma-org.kde.plasma.desktop-appletsrc.
+      panels = [{
+        location = "bottom";
+        widgets = [
+          # We can configure the widgets by adding the name and config
+          # attributes. For example to add the the kickoff widget and set the
+          # icon to "nix-snowflake-white" use the below configuration. This will
+          # add the "icon" key to the "General" group for the widget in
+          # ~/.config/plasma-org.kde.plasma.desktop-appletsrc.
 
-            {
-              name = "org.kde.plasma.kickoff";
-              config = {
-                General.icon = "nix-snowflake-white";
-              };
-            }
-            # Adding configuration to the widgets can also for example be used to
-            # pin apps to the task-manager, which this example illustrates by
-            # pinning dolphin and konsole to the task-manager by default.
-            {
-              name = "org.kde.plasma.icontasks";
-              config = {
-                General.launchers = [
-                  "applications:org.kde.konsole.desktop"
-                  "applications:org.kde.dolphin.desktop"
-                  "applications:obsidian.desktop"
-                  "applications:firefox.desktop"
-                  "applications:signal-desktop.desktop"
-                  "applications:org.telegram.desktop.desktop"
-                  "applications:virt-manager.desktop"
-                ];
-              };
-            }
-            # If no configuration is needed, specifying only the name of the
-            # widget will add them with the default configuration.
-            "org.kde.plasma.marginsseparator"
-            # If you need configuration for your widget, instead of specifying the
-            # the keys and values directly using the config attribute as shown
-            # above, plasma-manager also provides some higher-level interfaces for
-            # configuring the widgets. See modules/widgets for supported widgets
-            # and options for these widgets. The widgets below shows two examples
-            # of usage, one where we add a digital clock, setting 12h time and
-            # first day of the week to sunday and another adding a systray with
-            # some modifications in which entries to show.
-            { digitalClock = { }; }
-            "org.kde.plasma.marginsseparator"
-            "org.kde.plasma.appmenu"
-            "org.kde.plasma.marginsseparator"
-            {
-              systemTray.items = {
-                # We explicitly show bluetooth and battery
-                shown = [
-                  "org.kde.plasma.battery"
-                  "org.kde.plasma.bluetooth"
-                  "org.kde.plasma.networkmanagement"
-                  "org.kde.plasma.volume"
-                ];
-                hidden = [ ];
-              };
-            }
-          ];
-        }
-      ];
+          {
+            name = "org.kde.plasma.kickoff";
+            config = { General.icon = "nix-snowflake-white"; };
+          }
+          # Adding configuration to the widgets can also for example be used to
+          # pin apps to the task-manager, which this example illustrates by
+          # pinning dolphin and konsole to the task-manager by default.
+          {
+            name = "org.kde.plasma.icontasks";
+            config = {
+              General.launchers = [
+                "applications:org.kde.konsole.desktop"
+                "applications:org.kde.dolphin.desktop"
+                "applications:obsidian.desktop"
+                "applications:firefox.desktop"
+                "applications:signal-desktop.desktop"
+                "applications:org.telegram.desktop.desktop"
+                "applications:virt-manager.desktop"
+              ];
+            };
+          }
+          # If no configuration is needed, specifying only the name of the
+          # widget will add them with the default configuration.
+          "org.kde.plasma.marginsseparator"
+          # If you need configuration for your widget, instead of specifying the
+          # the keys and values directly using the config attribute as shown
+          # above, plasma-manager also provides some higher-level interfaces for
+          # configuring the widgets. See modules/widgets for supported widgets
+          # and options for these widgets. The widgets below shows two examples
+          # of usage, one where we add a digital clock, setting 12h time and
+          # first day of the week to sunday and another adding a systray with
+          # some modifications in which entries to show.
+          { digitalClock = { }; }
+          "org.kde.plasma.marginsseparator"
+          "org.kde.plasma.appmenu"
+          "org.kde.plasma.marginsseparator"
+          {
+            systemTray.items = {
+              # We explicitly show bluetooth and battery
+              shown = [
+                "org.kde.plasma.battery"
+                "org.kde.plasma.bluetooth"
+                "org.kde.plasma.networkmanagement"
+                "org.kde.plasma.volume"
+              ];
+              hidden = [ ];
+            };
+          }
+        ];
+      }];
     };
   };
 }

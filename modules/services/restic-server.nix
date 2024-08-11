@@ -1,15 +1,7 @@
-{
-  config,
-  system-config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, system-config, pkgs, lib, ... }:
 with lib;
-let
-  cfg = config.link.services.restic-server;
-in
-{
+let cfg = config.link.services.restic-server;
+in {
   options.link.services.restic-server = {
     enable = mkEnableOption "activate restic-server";
     expose = mkOption {
@@ -25,7 +17,8 @@ in
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description = "expose the application to the internet with NGINX and ACME";
+      description =
+        "expose the application to the internet with NGINX and ACME";
     };
     port = mkOption {
       type = types.int;
@@ -40,16 +33,16 @@ in
         # dataDir = "${config.link.storage}/restic";
         prometheus = true;
         privateRepos = true;
-        listenAddress =
-          if cfg.expose-port then "0.0.0.0:${toString cfg.port}" else "127.0.0.1:${toString cfg.port}";
+        listenAddress = if cfg.expose-port then
+          "0.0.0.0:${toString cfg.port}"
+        else
+          "127.0.0.1:${toString cfg.port}";
         appendOnly = true;
       };
       nginx.virtualHosts."restic.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:2500";
-        };
+        locations."/" = { proxyPass = "http://127.0.0.1:2500"; };
         extraConfig = mkIf (!cfg.expose) ''
           allow ${config.link.service-ip}/24;
           allow 127.0.0.1;

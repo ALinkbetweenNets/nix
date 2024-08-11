@@ -1,19 +1,8 @@
-{
-  config,
-  flake-self,
-  system-config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, flake-self, system-config, pkgs, lib, ... }:
 with lib;
-let
-  cfg = config.link.vm;
-in
-{
-  options.link.vm = {
-    enable = mkEnableOption "activate vm";
-  };
+let cfg = config.link.vm;
+in {
+  options.link.vm = { enable = mkEnableOption "activate vm"; };
   config = mkIf cfg.enable {
     link.common.enable = true;
     environment.systemPackages = with pkgs; [ virtiofsd ];
@@ -34,11 +23,7 @@ in
         "9p"
         "9pnet_virtio"
       ];
-      kernelModules = [
-        "virtio_balloon"
-        "virtio_console"
-        "virtio_rng"
-      ];
+      kernelModules = [ "virtio_balloon" "virtio_console" "virtio_rng" ];
     };
   };
 }

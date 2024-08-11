@@ -1,24 +1,15 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, pkgs, config, ... }:
 with lib;
-let
-  cfg = config.link.fs.luks;
-in
-{
+let cfg = config.link.fs.luks;
+in {
   options.link.fs.luks.enable = mkEnableOption "activate luks";
   config = mkIf cfg.enable {
     systemd.tmpfiles.rules = [ "d /etc/secrets/initrd 0600 root root -" ];
-    services.openssh.hostKeys = [
-      {
-        path = "/etc/secrets/initrd/ed25519";
-        rounds = 200;
-        type = "ed25519";
-      }
-    ];
+    services.openssh.hostKeys = [{
+      path = "/etc/secrets/initrd/ed25519";
+      rounds = 200;
+      type = "ed25519";
+    }];
     boot.kernelParams = [ "ip=dhcp" ];
     ## This enables initrd to run a ssh server for entering the password for luks decryption
     boot.initrd = {
@@ -35,7 +26,8 @@ in
           ignoreEmptyHostKeys = true;
         };
       };
-      availableKernelModules = [ "r8169" ]; # should work for most network hardware
+      availableKernelModules =
+        [ "r8169" ]; # should work for most network hardware
     };
   };
 }

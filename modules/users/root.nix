@@ -1,14 +1,7 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, pkgs, config, ... }:
 with lib;
-let
-  cfg = config.link.users.root;
-in
-{
+let cfg = config.link.users.root;
+in {
   options.link.users.root.enable = mkEnableOption "activate user root";
   config = mkIf cfg.enable {
     users.users.root = {
@@ -18,10 +11,9 @@ in
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINI74luZ3xJcgaZYHzn5DtSpYufml+SbhZQV12gWGShS l@dn"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIj1OASl4OePBngiPlI4hixiD1GBlPOSoVNeoEcD23d+ l@fn"
       ];
-      hashedPasswordFile = config.sops.secrets."users/root/hashedPassword".path; # Initial password
+      hashedPasswordFile =
+        config.sops.secrets."users/root/hashedPassword".path; # Initial password
     };
-    sops.secrets."users/root/hashedPassword" = {
-      neededForUsers = true;
-    };
+    sops.secrets."users/root/hashedPassword" = { neededForUsers = true; };
   };
 }

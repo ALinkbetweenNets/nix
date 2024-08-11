@@ -1,14 +1,7 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, pkgs, config, ... }:
 with lib;
-let
-  cfg = config.link.java;
-in
-{
+let cfg = config.link.java;
+in {
   options.link.java.enable = mkEnableOption "activate java toolchain";
   config = mkIf cfg.enable {
     home.packages = with pkgs; [ jdk21 ];
@@ -18,6 +11,7 @@ in
       redhat.vscode-xml
     ];
     programs.java.enable = true;
-    programs.vscode.userSettings."java.jdt.ls.jaca.home" = "${pkgs.openjdk21}/lib/openjdk";
+    programs.vscode.userSettings."java.jdt.ls.jaca.home" =
+      "${pkgs.openjdk21}/lib/openjdk";
   };
 }

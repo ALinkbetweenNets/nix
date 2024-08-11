@@ -1,14 +1,7 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, pkgs, config, ... }:
 with lib;
-let
-  cfg = config.link.programs.swaylock;
-in
-{
+let cfg = config.link.programs.swaylock;
+in {
   options.link.programs.swaylock.enable = mkEnableOption "enable swaylock";
   config = mkIf cfg.enable {
 
@@ -55,18 +48,14 @@ in
     services = {
       swayidle = {
         enable = true;
-        timeouts = [
-          {
-            timeout = 180;
-            command = "${pkgs.swaylock}/bin/swaylock -fF && systemctl suspend";
-          }
-        ];
-        events = [
-          {
-            event = "before-sleep";
-            command = "${pkgs.swaylock}/bin/swaylock";
-          }
-        ];
+        timeouts = [{
+          timeout = 180;
+          command = "${pkgs.swaylock}/bin/swaylock -fF && systemctl suspend";
+        }];
+        events = [{
+          event = "before-sleep";
+          command = "${pkgs.swaylock}/bin/swaylock";
+        }];
       };
     };
 
