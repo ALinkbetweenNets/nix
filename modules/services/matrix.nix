@@ -1,15 +1,7 @@
-{
-  config,
-  system-config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, system-config, pkgs, lib, ... }:
 with lib;
-let
-  cfg = config.link.services.matrix;
-in
-{
+let cfg = config.link.services.matrix;
+in {
   options.link.services.matrix = {
     enable = mkEnableOption "activate matrix";
     expose-port = mkOption {
@@ -20,7 +12,8 @@ in
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description = "expose the application to the internet with NGINX and ACME";
+      description =
+        "expose the application to the internet with NGINX and ACME";
     };
     nginx-expose = mkOption {
       type = types.bool;
@@ -34,10 +27,7 @@ in
     };
   };
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      lottieconverter
-      element-web
-    ];
+    environment.systemPackages = with pkgs; [ lottieconverter element-web ];
     services = {
       matrix-synapse = with config.services.coturn; {
         enable = true;
@@ -48,31 +38,29 @@ in
             "turn:${realm}:3478?transport=udp"
             "turn:${realm}:3478?transport=tcp"
           ];
-          public_baseurl =
-            if cfg.nginx then
-              "https://matrix.${config.link.domain}"
-            else
-              "http://${config.link.service-ip}:8008";
+          public_baseurl = if cfg.nginx then
+            "https://matrix.${config.link.domain}"
+          else
+            "http://${config.link.service-ip}:8008";
           server_name = "matrix.${config.link.domain}";
-          listeners = [
-            {
-              port = cfg.port;
-              bind_addresses = if cfg.expose-port then [ "0.0.0.0" ] else [ "127.0.0.1" ];
-              type = "http";
-              tls = false;
-              x_forwarded = cfg.nginx;
-              resources = [
-                {
-                  compress = true;
-                  names = [ "client" ];
-                }
-                {
-                  compress = false;
-                  names = [ "federation" ];
-                }
-              ];
-            }
-          ];
+          listeners = [{
+            port = cfg.port;
+            bind_addresses =
+              if cfg.expose-port then [ "0.0.0.0" ] else [ "127.0.0.1" ];
+            type = "http";
+            tls = false;
+            x_forwarded = cfg.nginx;
+            resources = [
+              {
+                compress = true;
+                names = [ "client" ];
+              }
+              {
+                compress = false;
+                names = [ "federation" ];
+              }
+            ];
+          }];
         };
         extraConfigFiles = [ "/pwd/matrix-synapse-registration" ];
       };
@@ -89,9 +77,7 @@ in
       nginx.virtualHosts."matrix.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:8008";
-        };
+        locations."/" = { proxyPass = "http://127.0.0.1:8008"; };
         extraConfig = mkIf (!cfg.nginx-expose) ''
           allow ${config.link.service-ip}/24;
           allow 127.0.0.1;
@@ -114,7 +100,6 @@ in
       # };
     };
     networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
-      mkIf cfg.expose-port
-        [ cfg.port ];
+      mkIf cfg.expose-port [ cfg.port ];
   };
 }

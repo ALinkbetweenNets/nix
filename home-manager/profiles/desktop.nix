@@ -1,28 +1,13 @@
-{
-  lib,
-  pkgs,
-  flake-self,
-  config,
-  system-config,
-  ...
-}:
-with lib;
-{
-  imports = [
-    ../colorscheme.nix
-    ./common.nix
-    flake-self.homeManagerModules.xdg
-  ];
+{ lib, pkgs, flake-self, config, system-config, ... }:
+with lib; {
+  imports =
+    [ ../colorscheme.nix ./common.nix flake-self.homeManagerModules.xdg ];
   config = {
     dconf = {
       enable = true;
       settings = {
         "org/maliit/keyboard/maliit" = {
-          enabled-languages = [
-            "en"
-            "de"
-            "emoji"
-          ];
+          enabled-languages = [ "en" "de" "emoji" ];
           theme = "BreezeDark";
         };
         "org/gnome/desktop/interface".color-scheme = "prefer-dark";
@@ -33,9 +18,7 @@ with lib;
       yt-dlp = {
         enable = true;
         extraConfig = "--update";
-        settings = {
-          embed-thumbnail = true;
-        };
+        settings = { embed-thumbnail = true; };
       };
       mpv = {
         enable = true;
@@ -67,8 +50,7 @@ with lib;
     };
     manual.html.enable = true;
     # Packages to install on all desktop systems
-    home.packages =
-      with pkgs;
+    home.packages = with pkgs;
       [
         ## Basics
         nfs-utils
@@ -119,8 +101,8 @@ with lib;
         kdePackages.kfind
         kdePackages.colord-kde
         # (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
-      ]
-      ++ lib.optionals (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [
+      ] ++ lib.optionals
+      (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [
         bitwarden
         tor-browser-bundle-bin # compromisednix
         mullvad-browser

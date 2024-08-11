@@ -1,16 +1,6 @@
 { self, ... }:
-{
-  pkgs,
-  lib,
-  config,
-  modulesPath,
-  flake-self,
-  home-manager,
-  nixos-hardware,
-  nixpkgs,
-  ...
-}:
-{
+{ pkgs, lib, config, modulesPath, flake-self, home-manager, nixos-hardware
+, nixpkgs, ... }: {
 
   imports = [
     # being able to build the sd-image
@@ -43,10 +33,7 @@
     };
   };
   console.enable = true;
-  environment.systemPackages = with pkgs; [
-    libraspberrypi
-    raspberrypi-eeprom
-  ];
+  environment.systemPackages = with pkgs; [ libraspberrypi raspberrypi-eeprom ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
     # make sure this module is compatible with ARM!
@@ -65,6 +52,27 @@
       opts = [ "-p 2522" ];
     };
   };
+  services.frigate = {
+    enable = true;
+    hostname = "pi4b.monitor-banfish.ts.net";
+    settings.cameras = { };
+  };
+  services.home-assistant = {
+    enable = true;
+    config = {
+      lovelace.mode = "storage";
+      homeassistant.name = "Pi";
+    };
+    openFirewall = true;
+    lovelaceConfigWritable = true;
+    configWritable = true;
+    extraPackages = python3Packages:
+      with python3Packages;
+      [
+        # postgresql support
+        psycopg2
+      ];
+  };
   ### build sd-image
   # nix build .\#nixosConfigurations.pi4b.config.system.build.sdImage
   # add boot.binfmt.emulatedSystems = [ "aarch64-linux" ]; to your x86 system
@@ -78,7 +86,8 @@
   # remove this once the issue is fixed!
   nixpkgs.overlays = [
     (final: super: {
-      makeModulesClosure = x: super.makeModulesClosure (x // { allowMissing = true; });
+      makeModulesClosure = x:
+        super.makeModulesClosure (x // { allowMissing = true; });
     })
   ];
   networking.hostName = "pi4b";

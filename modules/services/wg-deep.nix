@@ -1,15 +1,7 @@
-{
-  config,
-  system-config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, system-config, pkgs, lib, ... }:
 with lib;
-let
-  cfg = config.link.services.wg-deep;
-in
-{
+let cfg = config.link.services.wg-deep;
+in {
   options.link.services.wg-deep.enable = mkEnableOption "activate wg-deep";
   config = mkIf cfg.enable {
     networking = {

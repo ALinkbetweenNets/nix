@@ -1,15 +1,7 @@
-{
-  config,
-  system-config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, system-config, pkgs, lib, ... }:
 with lib;
-let
-  cfg = config.link.git-sync;
-in
-{
+let cfg = config.link.git-sync;
+in {
   options.link.git-sync.enable = mkEnableOption "activate git-sync";
   config = mkIf cfg.enable {
     systemd.services.git-pull-repo-obsidian = {
@@ -18,7 +10,8 @@ in
       serviceConfig.ExecStart = "/usr/bin/git -C /home/l/obsidian pull";
     };
     systemd.timers.git-pull-timer-repo-obsidian = {
-      description = "Timer to regularly pull changes from Git repository obsidian";
+      description =
+        "Timer to regularly pull changes from Git repository obsidian";
       timerConfig.OnCalendar = "*-*-* *:0/05:00";
       timerConfig.Unit = "git-pull-repo-obsidian.service";
     };

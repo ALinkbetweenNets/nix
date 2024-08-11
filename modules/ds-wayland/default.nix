@@ -1,19 +1,11 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, pkgs, config, ... }:
 with lib;
-let
-  cfg = config.link.wayland;
-in
-{
+let cfg = config.link.wayland;
+in {
   options.link.wayland.enable = mkEnableOption "activate wayland";
   config = mkIf cfg.enable {
     programs.xwayland.enable = true;
-    environment.systemPackages =
-      with pkgs;
+    environment.systemPackages = with pkgs;
       [
         shotman
         wl-clipboard-x11
@@ -23,8 +15,8 @@ in
         wayland-utils
         wtype # xdotool
         wev # key codes
-      ]
-      ++ lib.optionals (config.link.plasma.enable) [ kdePackages.plasma-wayland-protocols ];
+      ] ++ lib.optionals (config.link.plasma.enable)
+      [ kdePackages.plasma-wayland-protocols ];
     environment.sessionVariables = {
       NIXOS_OZONE_WL = "1";
       MOZ_ENABLE_WAYLAND = "1";
@@ -43,10 +35,7 @@ in
       rtkit.enable = true;
     };
 
-    users.users."l".extraGroups = [
-      "video"
-      "audio"
-    ];
+    users.users."l".extraGroups = [ "video" "audio" ];
 
     hardware = {
       # fixes'EGL_EXT_platform_base not supported'

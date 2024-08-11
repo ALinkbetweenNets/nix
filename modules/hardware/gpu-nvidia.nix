@@ -1,28 +1,12 @@
-{
-  lib,
-  pkgs,
-  config,
-  nixgl,
-  ...
-}:
+{ lib, pkgs, config, nixgl, ... }:
 with lib;
 let
   cfg = config.link.nvidia;
-  cudaoverlay = (
-    self: super: {
-      inherit (pkgs.cudapkgs)
-        ffmpeg
-        hashcat
-        jellyfin
-        jellyfin-ffmpeg
-        ;
-    }
-  );
-in
-{
-  options.link.nvidia = {
-    enable = mkEnableOption "activate nvidia support";
-  };
+  cudaoverlay = (self: super: {
+    inherit (pkgs.cudapkgs) ffmpeg hashcat jellyfin jellyfin-ffmpeg;
+  });
+in {
+  options.link.nvidia = { enable = mkEnableOption "activate nvidia support"; };
   config = mkIf cfg.enable {
     nixpkgs.overlays = [ cudaoverlay ];
     home-manager.users."l" = mkIf config.link.users.l.enable {
@@ -51,7 +35,8 @@ in
         extraPackages32 = with pkgs; [ vaapiVdpau ];
       };
       nvidia = {
-        open = true; # with the open driver the screen will keep black after waking the pc from suspend
+        open =
+          true; # with the open driver the screen will keep black after waking the pc from suspend
         modesetting.enable = true;
         # powerManagement.enable = false;
         # package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -65,7 +50,8 @@ in
       };
     };
     # when docker is enabled, enable nvidia-docker
-    virtualisation.docker.enableNvidia = lib.mkIf config.virtualisation.docker.enable true;
+    virtualisation.docker.enableNvidia =
+      lib.mkIf config.virtualisation.docker.enable true;
     # fix electron problems with nvidia
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
   };

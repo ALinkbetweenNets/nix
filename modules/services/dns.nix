@@ -1,15 +1,7 @@
-{
-  config,
-  system-config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, system-config, pkgs, lib, ... }:
 with lib;
-let
-  cfg = config.link.dns;
-in
-{
+let cfg = config.link.dns;
+in {
   options.link.dns.enable = mkEnableOption "activate dns";
   config = mkIf cfg.enable {
     # networking.resolvconf.useLocalResolver = true;
@@ -26,8 +18,8 @@ in
     services.resolved = {
       enable = true;
       fallbackDns = [
-        "9.9.9.9"
         "192.168.150.1"
+        "9.9.9.9"
         # "127.0.0.1"
         "194.242.2.2"
         "100.100.100.100"

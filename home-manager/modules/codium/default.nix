@@ -1,30 +1,17 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, pkgs, config, ... }:
 with lib;
-let
-  cfg = config.link.code;
-in
-{
+let cfg = config.link.code;
+in {
   options.link.code.enable = mkEnableOption "activate vscodium";
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      gdb
-      nil
-      nixd
-      nixfmt-classic
-    ];
+    home.packages = with pkgs; [ gdb nil nixd nixfmt-classic ];
     programs.vscode = {
       enable = true;
       package = pkgs.vscodium;
       # package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config  ]);
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = false;
-      extensions =
-        with pkgs.vscode-extensions;
+      extensions = with pkgs.vscode-extensions;
         [
           #b4dm4n.vscode-nixpkgs-fmt
           #vscodevim.vim
@@ -50,30 +37,22 @@ in
           yzhang.markdown-all-in-one
           # pokey.talon
           # pokey.cursorless
-        ]
-        ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-          {
-            name = "vscode-pets";
-            publisher = "tonybaloney";
-            version = "1.25.1";
-            sha256 = "6acdded8bcca052b221acfd4188674e97a9b2e1dfb8ab0d4682cec96a2131094";
-          }
-        ];
+        ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
+          name = "vscode-pets";
+          publisher = "tonybaloney";
+          version = "1.25.1";
+          sha256 =
+            "6acdded8bcca052b221acfd4188674e97a9b2e1dfb8ab0d4682cec96a2131094";
+        }];
       userSettings = {
-        "[nix]" = {
-          "editor.defaultFormatter" = "jnoortheen.nix-ide";
-        };
+        "[nix]" = { "editor.defaultFormatter" = "jnoortheen.nix-ide"; };
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nil";
         # "nix.serverPath" = "nixd";
         "nix.serverSettings" = {
           "nil" = {
-            "diagnostics" = {
-              "ignored" = [ "unused_binding" "unused_with" ];
-            };
-            "formatting" = {
-              "command" = [ "nixfmt" ];
-            };
+            "diagnostics" = { "ignored" = [ "unused_binding" "unused_with" ]; };
+            "formatting" = { "command" = [ "nixfmt" ]; };
           };
           # "nixd" = {
           #   # "eval" = { };
@@ -106,7 +85,8 @@ in
         "editor.cursorSurroundingLinesStyle" = "all";
         "editor.defaultColorDecorators" = true;
         "editor.find.autoFindInSelection" = "multiline";
-        "editor.fontFamily" = "'Fira Code', 'Hack NF', 'Droid Sans Mono', 'monospace', monospace";
+        "editor.fontFamily" =
+          "'Fira Code', 'Hack NF', 'Droid Sans Mono', 'monospace', monospace";
         "editor.fontLigatures" = true;
         "editor.fontSize" = 12;
         "editor.formatOnPaste" = true;
@@ -180,7 +160,9 @@ in
           key = "ctrl+shift+d";
           command = "workbench.action.terminal.sendSequence";
           args = {
-            text = "cd /home/l/nix;nix run .\\#lollypops -- vn\n";
+            text = ''
+              cd /home/l/nix;nix run .\#lollypops -- vn
+            '';
           };
         }
       ];

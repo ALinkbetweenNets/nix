@@ -1,16 +1,7 @@
-{
-  config,
-  system-config,
-  flake-self,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, system-config, flake-self, pkgs, lib, ... }:
 with lib;
-let
-  cfg = config.link.desktop;
-in
-{
+let cfg = config.link.desktop;
+in {
   options.link.desktop.enable = mkEnableOption "activate desktop";
   config = mkIf cfg.enable {
     link = {
@@ -23,12 +14,12 @@ in
     programs = {
       dconf.enable = true; # GTK themes are not applied in Wayland applications
       # dconf.packages = with pkgs;[ maliit-keyboard ];
-      light.enable = true; # backlight control command and udev rules granting access to members of the “video” group.
+      light.enable =
+        true; # backlight control command and udev rules granting access to members of the “video” group.
       ssh.setXAuthLocation = true;
       kdeconnect.enable = true;
     };
-    environment.systemPackages =
-      with pkgs;
+    environment.systemPackages = with pkgs;
       [
         wezterm
         kdePackages.partitionmanager
@@ -45,8 +36,8 @@ in
         virt-manager
         spice
         spice-vdagent
-      ]
-      ++ lib.optionals (config.nixpkgs.hostPlatform.system == "x86_64-linux") [
+      ] ++ lib.optionals (config.nixpkgs.hostPlatform.system == "x86_64-linux")
+      [
         # cobang
       ];
     networking = {
@@ -55,18 +46,16 @@ in
         # dns = lib.mkDefault "systemd-resolved";
       };
       firewall = {
-        allowedTCPPortRanges = [
-          {
-            from = 1714;
-            to = 1764;
-          } # KDE Connect
-        ];
-        allowedUDPPortRanges = [
-          {
-            from = 1714;
-            to = 1764;
-          } # KDE Connect
-        ];
+        allowedTCPPortRanges = [{
+          from = 1714;
+          to = 1764;
+        } # KDE Connect
+          ];
+        allowedUDPPortRanges = [{
+          from = 1714;
+          to = 1764;
+        } # KDE Connect
+          ];
       };
     };
     fonts = {
@@ -123,18 +112,16 @@ in
         default.clock.min-quantum = 32;
         default.clock.max-quantum = 32;
       };
-      context.modules = [
-        {
-          name = "libpipewire-module-protocol-pulse";
-          args = {
-            pulse.min.req = "32/48000";
-            pulse.default.req = "32/48000";
-            pulse.max.req = "32/48000";
-            pulse.min.quantum = "32/48000";
-            pulse.max.quantum = "32/48000";
-          };
-        }
-      ];
+      context.modules = [{
+        name = "libpipewire-module-protocol-pulse";
+        args = {
+          pulse.min.req = "32/48000";
+          pulse.default.req = "32/48000";
+          pulse.max.req = "32/48000";
+          pulse.min.quantum = "32/48000";
+          pulse.max.quantum = "32/48000";
+        };
+      }];
       stream.properties = {
         node.latency = "32/48000";
         resample.quality = 1;

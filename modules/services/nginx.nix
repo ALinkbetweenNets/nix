@@ -1,15 +1,7 @@
-{
-  config,
-  system-config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, system-config, pkgs, lib, ... }:
 with lib;
-let
-  cfg = config.link.nginx;
-in
-{
+let cfg = config.link.nginx;
+in {
   options.link.nginx.enable = mkEnableOption "activate nginx";
   config = mkIf cfg.enable {
     networking.firewall.allowedTCPPorts = [
@@ -33,7 +25,8 @@ in
         extraDomainNames = [ "*.${config.link.domain}" ];
         dnsProvider = mkIf config.link.dyndns.enable "cloudflare";
         listenHTTP = mkIf (!config.link.dyndns.enable) ":80";
-        environmentFile = mkIf config.link.dyndns.enable config.sops.secrets."cloudflare-api".path;
+        environmentFile = mkIf config.link.dyndns.enable
+          config.sops.secrets."cloudflare-api".path;
         webroot = null;
       };
     };

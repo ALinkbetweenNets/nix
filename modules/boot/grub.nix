@@ -1,14 +1,7 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, pkgs, config, ... }:
 with lib;
-let
-  cfg = config.link.grub;
-in
-{
+let cfg = config.link.grub;
+in {
   options.link.grub.enable = mkEnableOption "activate grub";
   config = mkIf cfg.enable {
     boot.loader.grub = {
