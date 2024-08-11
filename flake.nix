@@ -6,9 +6,7 @@
     nur.url = "github:nix-community/NUR";
     # Pure Nix flake utility functions
     # https://github.com/numtide/flake-utils
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-    };
+    flake-utils = { url = "github:numtide/flake-utils"; };
     lollypops = {
       url = "github:pinpox/lollypops";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,18 +36,18 @@
     #   url = "github:msteen/nixos-vscode-server";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    crab_share = {
-      url = "github:lounge-rocks/crab_share";
-    };
+    crab_share = { url = "github:lounge-rocks/crab_share"; };
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nsearch = {
+      url = "github:niksingh710/nsearch";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     bonn-mensa = {
       url = "github:alexanderwallau/bonn-mensa";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
+      inputs = { nixpkgs.follows = "nixpkgs"; };
     };
     nixgl = {
       url = "github:guibou/nixGL";
@@ -90,108 +88,83 @@
       };
     };
   };
-  outputs =
-    {
-      self,
-      nixpkgs,
-      nur,
-      nixgl,
-      ...
-    }@inputs:
+  outputs = { self, nixpkgs, nur, nixgl, ... }@inputs:
     with inputs;
     let
-      supportedSystems = [
-        "aarch64-linux"
-        "x86_64-linux"
-      ];
+      supportedSystems = [ "aarch64-linux" "x86_64-linux" ];
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-      nixpkgsFor = forAllSystems (
-        system:
+      nixpkgsFor = forAllSystems (system:
         import nixpkgs {
           inherit system;
-          overlays = [
-            self.overlays.default
-            nur.overlay
-            nixgl.overlay
-          ];
-        }
-      );
-    in
-    {
+          overlays = [ self.overlays.default nur.overlay nixgl.overlay ];
+        });
+    in {
       formatter = forAllSystems (system: nixpkgsFor.${system}.nixpkgs-fmt);
       overlays.default = final: prev: (import ./pkgs inputs) final prev;
-      packages = forAllSystems (
-        system:
-        let
-          pkgs = nixpkgsFor.${system};
-        in
-        {
+      packages = forAllSystems (system:
+        let pkgs = nixpkgsFor.${system};
+        in {
           woodpecker-pipeline = pkgs.callPackage ./pkgs/woodpecker-pipeline {
             flake-self = self;
             inputs = inputs;
           };
-          build_outputs = pkgs.callPackage mayniklas.packages.${system}.build_outputs.override {
-            inherit self;
-            output_path = "~/.keep-nix-outputs-ALinkbetweenNets";
-          };
+          build_outputs = pkgs.callPackage
+            mayniklas.packages.${system}.build_outputs.override {
+              inherit self;
+              output_path = "~/.keep-nix-outputs-ALinkbetweenNets";
+            };
           inherit (pkgs.link) candy-icon-theme;
-        }
-      );
+        });
       apps = forAllSystems (system: {
         lollypops = lollypops.apps.${system}.default { configFlake = self; };
       });
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
-      nixosModules = builtins.listToAttrs (
-        map (x: {
-          name = x;
-          #specialArgs = { flake-self = self; } // inputs;
-          value = import (./modules + "/${x}");
-        }) (builtins.attrNames (builtins.readDir ./modules))
-      );
+      nixosModules = builtins.listToAttrs (map (x: {
+        name = x;
+        #specialArgs = { flake-self = self; } // inputs;
+        value = import (./modules + "/${x}");
+      }) (builtins.attrNames (builtins.readDir ./modules)));
       # Each subdirectory in ./machines is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
       # configuration.nix that will be read first
-      nixosConfigurations =
-        builtins.listToAttrs (
-          map (x: {
-            name = x;
-            value = nixpkgs.lib.nixosSystem {
-              # Make inputs and the flake itself accessible as module parameters.
-              # Technically, adding the inputs is redundant as they can be also
-              # accessed with flake-self.inputs.X, but adding them individually
-              # allows to only pass what is needed to each module.
-              specialArgs = {
-                flake-self = self;
-              } // inputs;
-              modules = builtins.attrValues self.nixosModules ++ [
-                (import "${./.}/machines/${x}/configuration.nix" { inherit self; })
-                lollypops.nixosModules.lollypops
-                disko.nixosModules.disko
-                sops-nix.nixosModules.sops
-                # ({ config, ... }: {
-                #   # shut up state version warning
-                #   system.stateVersion = config.system.nixos.version;
-                #   # Adjust this to your liking.
-                #   # WARNING: if you set a too low value the image might be not big enough to contain the nixos installation
-                #   disko.devices.disk.vdb.imageSize = "10G";
-                # })
-              ];
-            };
-          }) (builtins.filter (dirName: dirName != "pppn") (builtins.attrNames (builtins.readDir ./machines)))
-        )
-        // {
+      nixosConfigurations = builtins.listToAttrs (map (x: {
+        name = x;
+        value = nixpkgs.lib.nixosSystem {
+          # Make inputs and the flake itself accessible as module parameters.
+          # Technically, adding the inputs is redundant as they can be also
+          # accessed with flake-self.inputs.X, but adding them individually
+          # allows to only pass what is needed to each module.
+          specialArgs = { flake-self = self; } // inputs;
+          modules = builtins.attrValues self.nixosModules ++ [
+            (import "${./.}/machines/${x}/configuration.nix" { inherit self; })
+            lollypops.nixosModules.lollypops
+            disko.nixosModules.disko
+            sops-nix.nixosModules.sops
+            # ({ config, ... }: {
+            #   # shut up state version warning
+            #   system.stateVersion = config.system.nixos.version;
+            #   # Adjust this to your liking.
+            #   # WARNING: if you set a too low value the image might be not big enough to contain the nixos installation
+            #   disko.devices.disk.vdb.imageSize = "10G";
+            # })
+          ];
+        };
+      }) (builtins.filter (dirName: dirName != "pppn")
+        (builtins.attrNames (builtins.readDir ./machines)))) // {
 
           # specify pppn seperately since it relies on system being set
           pppn = nixpkgs.lib.nixosSystem {
             system = "aarch64-linux";
-            specialArgs = {
-              flake-self = self;
-            } // inputs;
+            specialArgs = { flake-self = self; } // inputs;
             modules = builtins.attrValues self.nixosModules ++ [
               "${mobile-nixos}/examples/phosh/phosh.nix"
-              (import "${mobile-nixos}/lib/configuration.nix" { device = "pine64-pinephonepro"; })
-              (import "${./.}/machines/pppn/configuration.nix" { inherit self; })
+              (import "${mobile-nixos}/lib/configuration.nix" {
+                device = "pine64-pinephonepro";
+              })
+              (import "${./.}/machines/pppn/configuration.nix" {
+                inherit self;
+              })
               lollypops.nixosModules.lollypops
               disko.nixosModules.disko
               sops-nix.nixosModules.sops
@@ -200,82 +173,68 @@
 
         };
       homeConfigurations = {
-        convertible =
-          { pkgs, lib, ... }:
-          {
-            imports = [
-              ./home-manager/profiles/convertible.nix
-            ] ++ (builtins.attrValues self.homeManagerModules);
-          };
-        desktop =
-          { pkgs, lib, ... }:
-          {
-            imports = [ ./home-manager/profiles/desktop.nix ] ++ (builtins.attrValues self.homeManagerModules);
-          };
-        laptop =
-          { pkgs, lib, ... }:
-          {
-            imports = [ ./home-manager/profiles/laptop.nix ] ++ (builtins.attrValues self.homeManagerModules);
-          };
-        tower =
-          { pkgs, lib, ... }:
-          {
-            imports = [ ./home-manager/profiles/tower.nix ] ++ (builtins.attrValues self.homeManagerModules);
-          };
-        gaming =
-          { pkgs, lib, ... }:
-          {
-            imports = [ ./home-manager/profiles/gaming.nix ] ++ (builtins.attrValues self.homeManagerModules);
-          };
-        server =
-          { pkgs, lib, ... }:
-          {
-            imports = [ ./home-manager/profiles/server.nix ] ++ (builtins.attrValues self.homeManagerModules);
-          };
-      };
-      homeManagerModules =
-        builtins.listToAttrs (
-          map (name: {
-            inherit name;
-            value = import (./home-manager/modules + "/${name}");
-          }) (builtins.attrNames (builtins.readDir ./home-manager/modules))
-        )
-        // {
-          # This module is appended to the list of home-manager modules.
-          # It's always enabled for all profiles.
-          # It's used to easily add overlays and imports to home-manager.
-          # Since this module is within this flake.nix, it will access our flake inputs.
-          nix =
-            { pkgs, ... }:
-            {
-              # import home manager modules from this flake
-              imports = [
-                inputs.nixvim.homeManagerModules.nixvim
-                inputs.plasma-manager.homeManagerModules.plasma-manager
-                # inputs.vscode-server.nixosModules.home
-              ];
-              # add overlays from this flake
-              nixpkgs.overlays = [
-                self.overlays.default
-                inputs.crab_share.overlay
-                inputs.nur.overlay
-                (final: prev: {
-                  cudapkgs = import inputs.nixpkgs {
-                    system = "${pkgs.system}";
-                    config = {
-                      allowUnfree = true;
-                      cudaSupport = true;
-                    };
-                  };
-                })
-              ];
-              # Visual Studio Code Server support
-              # services.vscode-server = {
-              #   enable = true;
-              #   installPath = "~/.vscode-server";
-              # };
-            };
+        convertible = { pkgs, lib, ... }: {
+          imports = [ ./home-manager/profiles/convertible.nix ]
+            ++ (builtins.attrValues self.homeManagerModules);
         };
+        desktop = { pkgs, lib, ... }: {
+          imports = [ ./home-manager/profiles/desktop.nix ]
+            ++ (builtins.attrValues self.homeManagerModules);
+        };
+        laptop = { pkgs, lib, ... }: {
+          imports = [ ./home-manager/profiles/laptop.nix ]
+            ++ (builtins.attrValues self.homeManagerModules);
+        };
+        tower = { pkgs, lib, ... }: {
+          imports = [ ./home-manager/profiles/tower.nix ]
+            ++ (builtins.attrValues self.homeManagerModules);
+        };
+        gaming = { pkgs, lib, ... }: {
+          imports = [ ./home-manager/profiles/gaming.nix ]
+            ++ (builtins.attrValues self.homeManagerModules);
+        };
+        server = { pkgs, lib, ... }: {
+          imports = [ ./home-manager/profiles/server.nix ]
+            ++ (builtins.attrValues self.homeManagerModules);
+        };
+      };
+      homeManagerModules = builtins.listToAttrs (map (name: {
+        inherit name;
+        value = import (./home-manager/modules + "/${name}");
+      }) (builtins.attrNames (builtins.readDir ./home-manager/modules))) // {
+        # This module is appended to the list of home-manager modules.
+        # It's always enabled for all profiles.
+        # It's used to easily add overlays and imports to home-manager.
+        # Since this module is within this flake.nix, it will access our flake inputs.
+        nix = { pkgs, ... }: {
+          # import home manager modules from this flake
+          imports = [
+            inputs.nixvim.homeManagerModules.nixvim
+            inputs.plasma-manager.homeManagerModules.plasma-manager
+            # inputs.vscode-server.nixosModules.home
+          ];
+          # add overlays from this flake
+          nixpkgs.overlays = [
+            self.overlays.default
+            inputs.crab_share.overlay
+            inputs.nur.overlay
+            (final: prev: {
+              cudapkgs = import inputs.nixpkgs {
+                system = "${pkgs.system}";
+                config = {
+                  allowUnfree = true;
+                  cudaSupport = true;
+                };
+              };
+            })
+          ];
+          # Visual Studio Code Server support
+          # services.vscode-server = {
+          #   enable = true;
+          #   installPath = "~/.vscode-server";
+          # };
+        };
+      };
       # colmena = {
       #   meta = {
       #     nixpkgs = import nixpkgs {
