@@ -1,14 +1,7 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, pkgs, config, ... }:
 with lib;
-let
-  cfg = config.link.programs.waybar;
-in
-{
+let cfg = config.link.programs.waybar;
+in {
   options.link.programs.waybar.enable = mkEnableOption "enable waybar";
   config = mkIf cfg.enable {
 
@@ -27,48 +20,34 @@ in
     programs.waybar = {
       enable = true;
 
-      style =
-        let
-          c = config.pinpox.colors;
-        in
-        ''
-          @define-color Black #${c.Black};
-          @define-color BrightBlack #${c.BrightBlack};
-          @define-color White #${c.White};
-          @define-color BrightWhite #${c.BrightWhite};
-          @define-color Yellow #${c.Yellow};
-          @define-color BrightYellow #${c.BrightYellow};
-          @define-color Green #${c.Green};
-          @define-color BrightGreen #${c.BrightGreen};
-          @define-color Cyan #${c.Cyan};
-          @define-color BrightCyan #${c.BrightCyan};
-          @define-color Blue #${c.Blue};
-          @define-color BrightBlue #${c.BrightBlue};
-          @define-color Magenta #${c.Magenta};
-          @define-color BrightMagenta #${c.BrightMagenta};
-          @define-color Red #${c.Red};
-          @define-color BrightRed #${c.BrightRed};
-          ${fileContents ./style.css}
-        '';
+      style = let c = config.pinpox.colors;
+      in ''
+        @define-color Black #${c.Black};
+        @define-color BrightBlack #${c.BrightBlack};
+        @define-color White #${c.White};
+        @define-color BrightWhite #${c.BrightWhite};
+        @define-color Yellow #${c.Yellow};
+        @define-color BrightYellow #${c.BrightYellow};
+        @define-color Green #${c.Green};
+        @define-color BrightGreen #${c.BrightGreen};
+        @define-color Cyan #${c.Cyan};
+        @define-color BrightCyan #${c.BrightCyan};
+        @define-color Blue #${c.Blue};
+        @define-color BrightBlue #${c.BrightBlue};
+        @define-color Magenta #${c.Magenta};
+        @define-color BrightMagenta #${c.BrightMagenta};
+        @define-color Red #${c.Red};
+        @define-color BrightRed #${c.BrightRed};
+        ${fileContents ./style.css}
+      '';
 
       settings.mainbar = {
         layer = "top";
         position = "bottom";
         spacing = 4; # Gaps between modules (4px)
-        modules-left = [
-          "sway/workspaces"
-          "sway/mode"
-        ];
-        modules-right = [
-          "tray"
-          "network"
-          "pulseaudio"
-          "battery"
-          "clock"
-        ];
-        tray = {
-          spacing = 10;
-        };
+        modules-left = [ "sway/workspaces" "sway/mode" ];
+        modules-right = [ "tray" "network" "pulseaudio" "battery" "clock" ];
+        tray = { spacing = 10; };
         network = {
           format-wifi = "{essid} ({signalStrength}%)  ";
           format-ethernet = "{ipaddr}/{cidr} ";
@@ -87,11 +66,7 @@ in
           format-source-muted = "";
           format-icons = {
             headphone = "";
-            default = [
-              ""
-              ""
-              ""
-            ];
+            default = [ "" "" "" ];
           };
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
         };

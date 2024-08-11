@@ -1,15 +1,7 @@
-{
-  config,
-  system-config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, system-config, pkgs, lib, ... }:
 with lib;
-let
-  cfg = config.link.common;
-in
-{
+let cfg = config.link.common;
+in {
   options.link.common.enable = mkEnableOption "activate common";
   config = mkIf cfg.enable {
     programs = {
@@ -23,15 +15,18 @@ in
         knownHosts = {
           dn = {
             hostNames = [ "dn.monitor-banfish.ts.net" ];
-            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINI74luZ3xJcgaZYHzn5DtSpYufml+SbhZQV12gWGShS";
+            publicKey =
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINI74luZ3xJcgaZYHzn5DtSpYufml+SbhZQV12gWGShS";
           };
           xn = {
             hostNames = [ "xn.monitor-banfish.ts.net" ];
-            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOTI6IEjHQbsbMJMBQNk0/BR7W4QFVQLNOrhEdTHwS1P";
+            publicKey =
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOTI6IEjHQbsbMJMBQNk0/BR7W4QFVQLNOrhEdTHwS1P";
           };
           pi4b = {
             hostNames = [ "pi4b.monitor-banfish.ts.net" ];
-            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO+rwC7YNUlQ7i2285iCVnopN2RXo/rBE8fAObogjoBc";
+            publicKey =
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO+rwC7YNUlQ7i2285iCVnopN2RXo/rBE8fAObogjoBc";
           };
         };
       };
@@ -50,10 +45,7 @@ in
     # services.tlp.settings = {
     #   USB_AUTOSUSPEND = 0;
     # };
-    environment.pathsToLink = [
-      "/share/zsh"
-      "/share/fish"
-    ];
+    environment.pathsToLink = [ "/share/zsh" "/share/fish" ];
     link = {
       # fs.luks.enable = true;
       users = {

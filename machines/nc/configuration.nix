@@ -2,19 +2,8 @@
 #	2a03:4000:54:8a::/64
 # nix run github:numtide/nixos-anywhere -- --flake .#nc root@202.61.251.70
 { self, ... }:
-{
-  pkgs,
-  lib,
-  config,
-  flake-self,
-  home-manager,
-  ...
-}:
-{
-  imports = [
-    ./netcup.nix
-    home-manager.nixosModules.home-manager
-  ];
+{ pkgs, lib, config, flake-self, home-manager, ... }: {
+  imports = [ ./netcup.nix home-manager.nixosModules.home-manager ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
     sops = true;
@@ -22,10 +11,7 @@
     common.enable = true;
     eth = "ens3";
     dyndns.enable = config.link.sops;
-    dyndns.domains = [
-      config.link.domain
-      "shonk.de"
-    ];
+    dyndns.domains = [ config.link.domain "shonk.de" ];
     domain = "alinkbetweennets.de";
     fail2ban.enable = true;
     nginx.enable = true;
@@ -60,23 +46,15 @@
   # };
 
   networking = {
-    firewall.allowedTCPPorts = [
-      443
-      22
-    ];
-    firewall.allowedUDPPorts = [
-      51820
-      51822
-    ];
+    firewall.allowedTCPPorts = [ 443 22 ];
+    firewall.allowedUDPPorts = [ 51820 51822 ];
     hostName = "v2202312204123249185";
     domain = "ultrasrv.de";
     interfaces."ens3" = {
-      ipv6.addresses = [
-        {
-          address = "2a03:4000:54:8a:585a:48ff:fee3:9d06";
-          prefixLength = 64;
-        }
-      ];
+      ipv6.addresses = [{
+        address = "2a03:4000:54:8a:585a:48ff:fee3:9d06";
+        prefixLength = 64;
+      }];
     };
   };
   services.nginx.virtualHosts = {
@@ -105,7 +83,9 @@
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
-      locations."/".proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.matrix.port}";
+      locations."/".proxyPass = "http://${config.link.serviceHost}:${
+          toString config.link.services.matrix.port
+        }";
       locations."/".proxyWebsockets = true;
     };
     "gitea.${config.link.domain}" = {
@@ -113,7 +93,9 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${toString config.services.gitea.settings.server.HTTP_PORT}";
+        proxyPass = "http://${config.link.serviceHost}:${
+            toString config.services.gitea.settings.server.HTTP_PORT
+          }";
         proxyWebsockets = true;
       };
     };
@@ -122,7 +104,9 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.keycloak.port}";
+        proxyPass = "http://${config.link.serviceHost}:${
+            toString config.link.services.keycloak.port
+          }";
         proxyWebsockets = true;
       };
     };
@@ -131,7 +115,9 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.grafana.port}/";
+        proxyPass = "http://${config.link.serviceHost}:${
+            toString config.link.services.grafana.port
+          }/";
         proxyWebsockets = true;
       };
     };
@@ -186,7 +172,9 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.hedgedoc.port}";
+        proxyPass = "http://${config.link.serviceHost}:${
+            toString config.link.services.hedgedoc.port
+          }";
         proxyWebsockets = true;
       };
     };
@@ -295,9 +283,7 @@
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:8765";
-      };
+      locations."/" = { proxyPass = "http://${config.link.serviceHost}:8765"; };
       # extraConfig = mkIf (!cfg.expose) ''
       #   allow ${config.link.service-ip}/24;
       #     allow 127.0.0.1;
@@ -308,19 +294,17 @@
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:80";
-      };
-      extraConfig = ''
-
-      '';
+      locations."/" = { proxyPass = "http://${config.link.serviceHost}:80"; };
+      extraConfig = "\n";
     };
     "outline.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.outline.port}";
+        proxyPass = "http://${config.link.serviceHost}:${
+            toString config.link.services.outline.port
+          }";
         proxyWebsockets = true;
       };
     };
@@ -329,7 +313,9 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.vaultwarden.port}";
+        proxyPass = "http://${config.link.serviceHost}:${
+            toString config.link.services.vaultwarden.port
+          }";
         proxyWebsockets = true;
       };
     };
@@ -338,7 +324,9 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.photoprism.port}/";
+        proxyPass = "http://${config.link.serviceHost}:${
+            toString config.link.services.photoprism.port
+          }/";
         proxyWebsockets = true;
         # extraConfig = ''
         #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -416,8 +404,11 @@
     #     proxyPass = "http://100.89.40.41:31338/";
     #   };
     # };
+    ## /CTF
   };
-  ## /CTF
+  # services.oauth2-proxy={
+  #   enable=true;
+  # };
 
   # "speedtest.${config.link.domain}" = {
   #   enableACME = true;

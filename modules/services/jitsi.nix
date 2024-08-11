@@ -1,15 +1,7 @@
-{
-  config,
-  system-config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, system-config, pkgs, lib, ... }:
 with lib;
-let
-  cfg = config.link.services.jitsi;
-in
-{
+let cfg = config.link.services.jitsi;
+in {
   options.link.services.jitsi = {
     enable = mkEnableOption "activate jitsi";
     expose = mkOption {
@@ -30,7 +22,8 @@ in
           SHOW_WATERMARK_FOR_GUESTS = false;
         };
         config = {
-          authdomain = mkIf config.link.nginx.enable "jitsi.${config.link.domain}";
+          authdomain =
+            mkIf config.link.nginx.enable "jitsi.${config.link.domain}";
           enableInsecureRoomNameWarning = true;
           fileRecordingsEnabled = false;
           liveStreamingEnabled = false;

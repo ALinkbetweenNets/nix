@@ -1,10 +1,4 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
-{
+{ lib, pkgs, config, ... }: {
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
   # Select internationalisation properties.

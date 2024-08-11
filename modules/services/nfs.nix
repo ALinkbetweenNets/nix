@@ -1,15 +1,7 @@
-{
-  config,
-  system-config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, system-config, pkgs, lib, ... }:
 with lib;
-let
-  cfg = config.link.services.nfs;
-in
-{
+let cfg = config.link.services.nfs;
+in {
   options.link.services.nfs.enable = mkEnableOption "activate nfs service";
   config = mkIf cfg.enable {
     services = {
@@ -34,21 +26,9 @@ in
         package = lib.mkForce pkgs.gnome3.gvfs;
       };
     };
-    networking.firewall.interfaces."tailscale0".allowedTCPPorts = [
-      111
-      2049
-      4000
-      4001
-      4002
-      20048
-    ];
-    networking.firewall.interfaces."tailscale0".allowedUDPPorts = [
-      111
-      2049
-      4000
-      4001
-      4002
-      20048
-    ];
+    networking.firewall.interfaces."tailscale0".allowedTCPPorts =
+      [ 111 2049 4000 4001 4002 20048 ];
+    networking.firewall.interfaces."tailscale0".allowedUDPPorts =
+      [ 111 2049 4000 4001 4002 20048 ];
   };
 }

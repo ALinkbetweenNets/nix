@@ -1,14 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 with lib;
-let
-  cfg = config.link.nginx;
-in
-{
+let cfg = config.link.nginx;
+in {
   # NGINX Snippet
   #  extraConfig = toString (
   #       optional config.link.nginx.geoIP ''
@@ -17,9 +10,7 @@ in
   #         }
   #       ''
   #     );
-  options.link.nginx = {
-    geoIP = mkEnableOption "enable GeoIP";
-  };
+  options.link.nginx = { geoIP = mkEnableOption "enable GeoIP"; };
   config = mkIf cfg.geoIP {
     # when Nginx is enabled, enable the GeoIP updater service
     services.geoipupdate = mkIf cfg.enable {

@@ -1,14 +1,7 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, pkgs, config, ... }:
 with lib;
-let
-  cfg = config.link.podman;
-in
-{
+let cfg = config.link.podman;
+in {
   options.link.podman.enable = mkEnableOption "activate podman containers";
   config = mkIf cfg.enable {
     virtualisation = {

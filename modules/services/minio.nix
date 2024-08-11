@@ -1,15 +1,7 @@
-{
-  config,
-  system-config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, system-config, pkgs, lib, ... }:
 with lib;
-let
-  cfg = config.link.services.minio;
-in
-{
+let cfg = config.link.services.minio;
+in {
   options.link.services.minio = {
     enable = mkEnableOption "activate minio";
     expose-port = mkOption {
@@ -20,7 +12,8 @@ in
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description = "expose the application to the internet with NGINX and ACME";
+      description =
+        "expose the application to the internet with NGINX and ACME";
     };
     nginx-expose = mkOption {
       type = types.bool;
@@ -36,8 +29,10 @@ in
     services = {
       minio = {
         enable = true;
-        listenAddress = if cfg.expose-port then "0.0.0.0:9001" else "127.0.0.1:9001";
-        consoleAddress = if cfg.expose-port then "0.0.0.0:9002" else "127.0.0.1:9002";
+        listenAddress =
+          if cfg.expose-port then "0.0.0.0:9001" else "127.0.0.1:9001";
+        consoleAddress =
+          if cfg.expose-port then "0.0.0.0:9002" else "127.0.0.1:9002";
         region = "eu-central-1";
         rootCredentialsFile = config.sops.secrets."minio".path;
         # dataDir = [ "${config.link.storage}/minio/data" ];
@@ -110,10 +105,6 @@ in
       # nameservers = [ "100.100.100.100" "1.1.1.1" ];
     };
     networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
-      mkIf cfg.expose-port
-        [
-          9001
-          9002
-        ];
+      mkIf cfg.expose-port [ 9001 9002 ];
   };
 }

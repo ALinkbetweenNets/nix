@@ -1,9 +1,4 @@
-{
-  lib,
-  stdenvNoCC,
-  fetchFromGitHub,
-  jdupes,
-}:
+{ lib, stdenvNoCC, fetchFromGitHub, jdupes, }:
 stdenvNoCC.mkDerivation {
   pname = "candy-icon-theme";
   version = "unstable-2021-07-21";

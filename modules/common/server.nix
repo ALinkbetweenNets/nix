@@ -1,17 +1,8 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, pkgs, lib, ... }:
 with lib;
-let
-  cfg = config.link.server;
-in
-{
-  options.link.server = {
-    enable = mkEnableOption "activate server";
-  };
+let cfg = config.link.server;
+in {
+  options.link.server = { enable = mkEnableOption "activate server"; };
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [ rclone ];
     link = {
