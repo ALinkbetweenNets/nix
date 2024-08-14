@@ -71,8 +71,6 @@ with lib; {
       #hugo # static site generator
       #ghosttohugo
       ## Desktop monitor settings change
-      ddcui
-      ddcutil
       #alacritty
       ## theming
       beauty-line-icon-theme
