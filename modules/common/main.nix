@@ -35,7 +35,12 @@ in {
       # ondsel # Better FreeCAD
       sshfs
       rclone
+      ddcui
+      ddcutil
     ];
+    hardware.i2c={enable=true;};
+    users.groups.i2c={};
+    services.udev.packages = with pkgs; [ddcutil];
     hardware.hackrf.enable = true;
     programs = {
       noisetorch.enable = true;
