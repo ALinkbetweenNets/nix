@@ -7,6 +7,7 @@ in {
     users.users.l = {
       isNormalUser = true;
       home = "/home/l";
+      group = "users";
       extraGroups = [
         "wheel"
         "adbusers"
