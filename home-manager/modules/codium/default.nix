@@ -85,8 +85,7 @@ in {
         "editor.cursorSurroundingLinesStyle" = "all";
         "editor.defaultColorDecorators" = true;
         "editor.find.autoFindInSelection" = "multiline";
-        "editor.fontFamily" =
-          "'Fira Code', 'Hack NF', 'Droid Sans Mono', 'monospace', monospace";
+        "editor.fontFamily" = "'FiraCode Nerd Font'";
         "editor.fontLigatures" = true;
         "editor.fontSize" = 12;
         "editor.formatOnPaste" = true;
@@ -128,6 +127,9 @@ in {
         "scm.alwaysShowRepositories" = true;
         "search.experimental.notebookSearch" = true;
         "search.smartCase" = true;
+        "terminal.integrated.enableImages" = true;
+        "terminal.integrated.enableVisualBell" = true;
+        "terminal.integrated.mouseWheelZoom" = true;
         "vscode-pets.petColor" = "white";
         "vscode-pets.position" = "panel";
         "vscode-pets.throwBallWithMouse" = true;
