@@ -65,7 +65,6 @@
     hostId = "007f0200";
     interfaces."${config.link.eth}".wakeOnLan.enable = true;
   };
-  #environment.systemPackages = with pkgs; [ davinci-resolve ];
   # nix run .\#lollypops -- meet:rebuild
   lollypops.deployment = {
     local-evaluation = true;
