@@ -6,7 +6,7 @@ in {
   config = mkIf cfg.enable {
     networking.firewall.allowedTCPPorts = [
       # 25
-      # 80
+      80
       # 143
       443
       # 993
@@ -43,6 +43,7 @@ in {
       commonHttpConfig = ''
         # sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
         # ssl_protocols TLSv1.3;
+        # ssl_prefer_server_ciphers   on;
         log_format myformat '$remote_addr - $remote_user [$time_local] '
           '"$request" $status $body_bytes_sent '
           '"$http_referer" "$http_user_agent"';
