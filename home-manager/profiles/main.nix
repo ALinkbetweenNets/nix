@@ -49,6 +49,7 @@ with lib; {
       # protonmail-desktop
       #jetbrains.idea-community
       #kdePackages.kdenlive # video editor
+      # davinci-resolve
       # reaper # audio editor
       #frei0r # video effects
       # freecad
@@ -121,7 +122,7 @@ with lib; {
       #ffmpeg_6
       ## Multimedia
       obs-studio
-      # obs-studio-plugins.obs-backgroundremoval
+      obs-studio-plugins.obs-backgroundremoval
       #imagemagick
       brave # backup browser for teams # multiple problems with privacy during end of 2023
       # chromium
