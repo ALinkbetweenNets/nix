@@ -7,9 +7,10 @@
         lower = "05:00";
         upper = "07:00";
       };
+      randomizedDelaySec = "45min";
       persistent = true;
       flake = "github:alinkbetweennets/nix";
-      flags = [ "--update-input" "nixpkgs" "-L" ];
+      flags = [ "-L" ];
     };
     stateVersion = "23.11";
   };
