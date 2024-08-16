@@ -896,6 +896,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_8": {
+      "locked": {
+        "lastModified": 1722630782,
+        "narHash": "sha256-hMyG9/WlUi0Ho9VkRrrez7SeNlDzLxalm9FwY7n/Noo=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d04953086551086b44b6f3c6b7eeb26294f207da",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixvim": {
       "inputs": {
         "devshell": "devshell",
@@ -1149,7 +1165,8 @@
         "nur": "nur",
         "ondsel": "ondsel_2",
         "plasma-manager": "plasma-manager",
-        "sops-nix": "sops-nix"
+        "sops-nix": "sops-nix",
+        "ucodenix": "ucodenix"
       }
     },
     "shelly-exporter": {
@@ -1313,6 +1330,24 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "ucodenix": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_8"
+      },
+      "locked": {
+        "lastModified": 1723152038,
+        "narHash": "sha256-Vm4LeY8QZnVtM0xDijL+S20589DpFF3dP5rYcmvzzAA=",
+        "owner": "e-tho",
+        "repo": "ucodenix",
+        "rev": "dfcd427c945c80b135725f43e0a716cdf710b9c5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "e-tho",
+        "repo": "ucodenix",
         "type": "github"
       }
     },

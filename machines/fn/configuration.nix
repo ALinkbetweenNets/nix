@@ -4,6 +4,7 @@
     ./hardware-configuration.nix
     home-manager.nixosModules.home-manager
     flake-self.inputs.nixos-hardware.nixosModules.framework-16-7040-amd
+    flake-self.inputs.ucodenix.nixosModules.ucodenix
   ];
   hardware.enableRedistributableFirmware = true;
   home-manager.users.l = flake-self.homeConfigurations.laptop;
@@ -80,6 +81,11 @@
   networking.domain = "monitor-banfish.ts.net";
   #powerManagement.scsiLinkPolicy = "med_power_with_dipm";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  services.ucodenix = {
+    enable = true;
+    cpuSerialNumber = "00A7-0F41-0000-0000-0000-0000"; # Replace with your processor's serial number
+  };
+
   lollypops.deployment = {
     local-evaluation = true;
     ssh = { user = "l"; };
