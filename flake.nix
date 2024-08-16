@@ -32,6 +32,7 @@
       # inputs.nixpkgs.follows = "nixpkgs";
       flake = false;
     };
+    ucodenix.url = "github:e-tho/ucodenix";
     # vscode-server = {
     #   url = "github:msteen/nixos-vscode-server";
     #   inputs.nixpkgs.follows = "nixpkgs";
