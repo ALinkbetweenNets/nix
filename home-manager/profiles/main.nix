@@ -43,6 +43,7 @@ with lib; {
     };
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
+      anime4k
       quickemu
       quickgui
       # protonmail-bridge-gui
