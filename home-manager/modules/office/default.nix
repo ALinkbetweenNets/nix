@@ -16,7 +16,7 @@ in {
   config = mkIf cfg.enable {
     programs = { };
     home.packages = with pkgs; [
-      beekeeper-studio # RDB
+      typst # better latex for papers
       libreoffice-qt
       gimp
       inkscape
