@@ -32,6 +32,8 @@ with lib; {
     };
     home.packages = with pkgs;
       [
+        xcp
+        dysk
         git-crypt
         yazi # TUI File Manager with preview
         nix-output-monitor
