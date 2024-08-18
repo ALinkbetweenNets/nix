@@ -24,17 +24,28 @@ in {
     #       sessionSecretFile = "/var/lib/authelia-main/session-secret-file";
     #     };
     sops.secrets = {
-      "authelia/main/jwtSecret" = { owner = "authelia-main"; group = "authelia-main"; };
-      "authelia/main/storageEncryptionKey" = { owner = "authelia-main"; group = "authelia-main"; };
-      "authelia/main/sessionSecret" = { owner = "authelia-main"; group = "authelia-main"; };
+      "authelia/main/jwtSecret" = {
+        owner = "authelia-main";
+        group = "authelia-main";
+      };
+      "authelia/main/storageEncryptionKey" = {
+        owner = "authelia-main";
+        group = "authelia-main";
+      };
+      "authelia/main/sessionSecret" = {
+        owner = "authelia-main";
+        group = "authelia-main";
+      };
     };
     services = {
       authelia.instances.main = {
         enable = true;
         secrets = {
           jwtSecretFile = config.sops.secrets."authelia/main/jwtSecret".path;
-          storageEncryptionKeyFile = config.sops.secrets."authelia/main/storageEncryptionKey".path;
-          sessionSecretFile = config.sops.secrets."authelia/main/sessionSecret".path;
+          storageEncryptionKeyFile =
+            config.sops.secrets."authelia/main/storageEncryptionKey".path;
+          sessionSecretFile =
+            config.sops.secrets."authelia/main/sessionSecret".path;
         };
         settings = {
           theme = "dark";
@@ -48,9 +59,7 @@ in {
             format = "text";
           };
           authentication_backend = {
-            file = {
-              path = "/var/lib/authelia-main/users_database.yml";
-            };
+            file = { path = "/var/lib/authelia-main/users_database.yml"; };
           };
           access_control = {
             default_policy = "deny";
@@ -79,9 +88,7 @@ in {
             ban_time = "15m";
           };
           storage = {
-            local = {
-              path = "/var/lib/authelia-main/db.sqlite3";
-            };
+            local = { path = "/var/lib/authelia-main/db.sqlite3"; };
           };
           notifier = {
             disable_startup_check = false;
@@ -104,7 +111,10 @@ in {
           forceSSL = true;
           locations = {
             "/" = {
-              proxyPass = "http://localhost:${toString config.services.authelia.instances.main.settings.server.port}/";
+              proxyPass = "http://localhost:${
+                  toString
+                  config.services.authelia.instances.main.settings.server.port
+                }/";
               extraConfig = ''
                 proxy_set_header X-Forwarded-Host $http_host;
                 proxy_set_header X-Real-IP $remote_addr;

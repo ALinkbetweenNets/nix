@@ -12,7 +12,8 @@ in {
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description = "expose the application to the internet with NGINX and ACME";
+      description =
+        "expose the application to the internet with NGINX and ACME";
     };
     nginx-expose = mkOption {
       type = types.bool;
@@ -25,24 +26,20 @@ in {
       description = "port to run the application on";
     };
   };
-  config = mkIf cfg.enable
-    {
-      systemd.services.docker-immich = {
-        description = "Immich docker-compose service";
-        wantedBy = [ "multi-user.target" ];
-        after = [
-          "docker.service"
-          "docker.socket"
-          "remote-fs.target"
-        ];
-        serviceConfig = {
-          WorkingDirectory = "${./immich}";
-          ExecStart = "${pkgs.docker}/bin/docker compose --env-file .env --env-file ${config.sops.secrets.immich.path} up --build";
-          ExecStop = "${pkgs.docker}/bin/docker compose down";
-          Restart = "on-failure";
-        };
+  config = mkIf cfg.enable {
+    systemd.services.docker-immich = {
+      description = "Immich docker-compose service";
+      wantedBy = [ "multi-user.target" ];
+      after = [ "docker.service" "docker.socket" "remote-fs.target" ];
+      serviceConfig = {
+        WorkingDirectory = "${./immich}";
+        ExecStart =
+          "${pkgs.docker}/bin/docker compose --env-file .env --env-file ${config.sops.secrets.immich.path} up --build";
+        ExecStop = "${pkgs.docker}/bin/docker compose down";
+        Restart = "on-failure";
       };
-      networking.firewall.allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
-      sops.secrets.immich = { path = "/run/keys/immich.env"; };
     };
+    networking.firewall.allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    sops.secrets.immich = { path = "/run/keys/immich.env"; };
+  };
 }

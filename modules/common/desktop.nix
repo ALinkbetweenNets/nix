@@ -14,30 +14,33 @@ in {
     programs = {
       dconf.enable = true; # GTK themes are not applied in Wayland applications
       # dconf.packages = with pkgs;[ maliit-keyboard ];
-      light.enable = true; # backlight control command and udev rules granting access to members of the “video” group.
+      light.enable =
+        true; # backlight control command and udev rules granting access to members of the “video” group.
       ssh.setXAuthLocation = true;
       kdeconnect.enable = true;
       ydotool.enable = true;
     };
-    environment.systemPackages = with pkgs; [
-      kdePackages.partitionmanager
-      adwaita-icon-theme
-      wifi-qr
-      barrier # KVM
-      gsettings-qt
-      kde-gtk-config
-      glib
-      gsettings-qt
-      gsettings-desktop-schemas
-      dconf-editor
-      # Virt Manager
-      virt-manager
-      spice
-      spice-vdagent
-    ] ++ lib.optionals
-      (config.nixpkgs.hostPlatform.system == "x86_64-linux") [
-      # cobang
-    ];
+    environment.systemPackages = with pkgs;
+      [
+        wezterm
+        kdePackages.partitionmanager
+        adwaita-icon-theme
+        wifi-qr
+        barrier # KVM
+        gsettings-qt
+        kde-gtk-config
+        glib
+        gsettings-qt
+        gsettings-desktop-schemas
+        dconf-editor
+        # Virt Manager
+        virt-manager
+        spice
+        spice-vdagent
+      ] ++ lib.optionals (config.nixpkgs.hostPlatform.system == "x86_64-linux")
+      [
+        # cobang
+      ];
     networking = {
       networkmanager = {
         enable = true;
@@ -48,44 +51,40 @@ in {
           from = 1714;
           to = 1764;
         } # KDE Connect
-        ];
+          ];
         allowedUDPPortRanges = [{
           from = 1714;
           to = 1764;
         } # KDE Connect
-        ];
+          ];
       };
     };
     fonts = {
       enableDefaultPackages = true;
-      packages = with pkgs;
-        [
-          # font-awesome
-          jetbrains-mono
-          # fira
-          # fira-code
-          # fira-code-symbols
-          # league-of-moveable-type
-          # source-sans-pro
-          # source-serif-pro
-          noto-fonts-color-emoji
-          noto-fonts-cjk-sans # japanese fonts
-          # corefonts
-          # recursive
-          # iosevka-bin
-          # font-awesome
-          # line-awesome
-          (nerdfonts.override { fonts = [ "FiraCode" ]; })
-        ];
+      packages = with pkgs; [
+        # font-awesome
+        jetbrains-mono
+        # fira
+        # fira-code
+        # fira-code-symbols
+        # league-of-moveable-type
+        # source-sans-pro
+        # source-serif-pro
+        noto-fonts-color-emoji
+        noto-fonts-cjk-sans # japanese fonts
+        # corefonts
+        # recursive
+        # iosevka-bin
+        # font-awesome
+        # line-awesome
+        (nerdfonts.override { fonts = [ "FiraCode" ]; })
+      ];
       fontDir.enable = true;
       fontconfig = {
         defaultFonts = {
-          serif =
-            [ "FiraCode" ];
-          sansSerif =
-            [ "FiraCode" ];
-          monospace =
-            [ "FiraCode" ];
+          serif = [ "FiraCode" ];
+          sansSerif = [ "FiraCode" ];
+          monospace = [ "FiraCode" ];
           emoji = [ "Noto Color Emoji" ];
         };
       };
@@ -114,18 +113,16 @@ in {
         default.clock.min-quantum = 32;
         default.clock.max-quantum = 32;
       };
-      context.modules = [
-        {
-          name = "libpipewire-module-protocol-pulse";
-          args = {
-            pulse.min.req = "32/48000";
-            pulse.default.req = "32/48000";
-            pulse.max.req = "32/48000";
-            pulse.min.quantum = "32/48000";
-            pulse.max.quantum = "32/48000";
-          };
-        }
-      ];
+      context.modules = [{
+        name = "libpipewire-module-protocol-pulse";
+        args = {
+          pulse.min.req = "32/48000";
+          pulse.default.req = "32/48000";
+          pulse.max.req = "32/48000";
+          pulse.min.quantum = "32/48000";
+          pulse.max.quantum = "32/48000";
+        };
+      }];
       stream.properties = {
         node.latency = "32/48000";
         resample.quality = 1;

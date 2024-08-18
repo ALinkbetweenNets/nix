@@ -15,8 +15,8 @@ in {
         wayland-utils
         wtype # xdotool
         wev # key codes
-      ] ++ lib.optionals
-        (config.link.plasma.enable) [ kdePackages.plasma-wayland-protocols ];
+      ] ++ lib.optionals (config.link.plasma.enable)
+      [ kdePackages.plasma-wayland-protocols ];
     environment.sessionVariables = {
       NIXOS_OZONE_WL = "1";
       MOZ_ENABLE_WAYLAND = "1";

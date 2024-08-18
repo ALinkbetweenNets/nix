@@ -1,9 +1,9 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.services.onlyoffice;
+let cfg = config.link.services.searx;
 in {
-  options.link.services.onlyoffice = {
-    enable = mkEnableOption "activate onlyoffice";
+  options.link.services.searx = {
+    enable = mkEnableOption "activate searx";
     expose-port = mkOption {
       type = types.bool;
       default = config.link.service-ports-expose;
@@ -22,31 +22,26 @@ in {
     };
     port = mkOption {
       type = types.int;
-      default = 8111;
+      default = 6715;
       description = "port to run the application on";
     };
   };
   config = mkIf cfg.enable {
+    sops.secrets.searx = { };
     services = {
-      onlyoffice = {
+      searx = {
         enable = true;
-        hostname = "onlyoffice.${config.link.domain}";
-        port = cfg.port;
-      };
-      nginx.virtualHosts."onlyoffice.${config.link.domain}" = mkIf cfg.nginx {
-        enableACME = true;
-        forceSSL = true;
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString cfg.port}";
+        redisCreateLocally = true;
+        environmentFile = config.sops.secrets.searx.path;
+        settings = {
+          server = {
+            port = cfg.port;
+            bind_address = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
+            secret_key = "@SEARX_SECRET_KEY@";
+          };
         };
-        extraConfig = mkIf (!cfg.nginx-expose) ''
-          allow ${config.link.service-ip}/24;
-          allow 127.0.0.1;
-          deny all; # deny all remaining ips
-        '';
+        uwsgiConfig = { };
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
-      mkIf cfg.expose-port [ cfg.port ];
   };
 }

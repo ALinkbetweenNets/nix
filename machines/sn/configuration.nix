@@ -45,6 +45,9 @@
     service-ports-expose = true;
     users.lmh01.enable = true;
     services = {
+      tt-rss.enable = true;
+      searx.enable = true;
+      microbin.enable = true;
       mailserver.enable = true;
       cryptpad.enable = true;
       # photoprism.enable = true; # WIP
@@ -67,7 +70,8 @@
       outline = {
         enable = true;
         # nginx-expose = true;
-        oidClientId = "7cec0458291c1d98c37bce1ad62ea7b02790d7330f1ce5b6a25d9da95c6b3108";
+        oidClientId =
+          "7cec0458291c1d98c37bce1ad62ea7b02790d7330f1ce5b6a25d9da95c6b3108";
       };
       paperless.enable = true;
       vaultwarden.enable = true;
@@ -79,8 +83,8 @@
       restic-client = {
         enable = true;
         backup-paths-onedrive = [
-          "/home/l/.ssh"
           "/home/l/.data-mirror"
+          "/home/l/.ssh"
           "/home/l/archive"
           "/home/l/doc"
           "/home/l/Music"
@@ -88,17 +92,18 @@
           "/home/l/Sync"
           "/home/l/uni"
           "/home/l/w"
-
         ];
-        #   backup-paths-lenny-storagebox = [
-        #     "/home/l/.ssh"
-        #     "/rz/syncthing/crypt"
-        #     "/rz/syncthing/doc"
-        #     "/rz/syncthing/music"
-        #     "/rz/syncthing/sec"
-        #     "/rz/syncthing/uni"
-        #     "/rz/syncthing/w"
-        #   ];
+        backup-paths-lenny-storagebox = [
+          "/home/l/.data-mirror"
+          "/home/l/.ssh"
+          # "/home/l/archive"
+          "/home/l/doc"
+          "/home/l/Music"
+          "/home/l/sec"
+          "/home/l/Sync"
+          "/home/l/uni"
+          "/home/l/w"
+        ];
         backup-paths-pi4b = [
           "/home/l/.ssh"
           "/home/l/archive"
@@ -117,12 +122,23 @@
     };
     eth = "eth0@if146";
   };
+  services.owncast = {
+    enable = true;
+    openFirewall = true;
+    listen = "0.0.0.0";
+    rtmp-port = 1935;
+    port = 8888;
+  };
   services.onedrive.enable = true;
   services.clamav = {
     # Antivirus
     daemon.enable = true;
     updater.enable = true;
   };
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIELDx8vTqed3YBepK2EEcM0vsLZX3g9gxwzVknwYlAgh root@sn"
+  ];
+
   nix.settings.auto-optimise-store = true;
   # services.cloudflare-dyndns = {
   #   ipv4 = lib.mkForce false;
@@ -189,14 +205,14 @@
   # nix run .\#lollypops -- sn:rebuild
   lollypops.deployment = {
     # local-evaluation = true;
-    ssh = { host = "sn"; user = "l"; };
+    ssh = {
+      host = "sn";
+      user = "l";
+    };
     # sudo.enable = true;
     ssh.opts = [ "-p 2522" ];
     sudo.enable = true;
   };
-
-
-
 
   # Supress systemd units that don't work because of LXC.
   # https://blog.xirion.net/posts/nixos-proxmox-lxc/#configurationnix-tweak
@@ -205,6 +221,5 @@
     "sys-kernel-debug.mount"
     "sys-fs-fuse-connections.mount"
   ];
-
 
 }

@@ -33,9 +33,6 @@ in {
     };
     # Enable pulseaudio compatible api for audio volume control in i3
     # services.pipewire.pulse.enable = true;
-    environment.systemPackages = with pkgs; [
-      xclip
-      xdotool
-    ];
+    environment.systemPackages = with pkgs; [ xclip xdotool ];
   };
 }

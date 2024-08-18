@@ -1,8 +1,7 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.link.containers.grist;
-in
-{
+in {
   options.link.containers.grist = {
     enable = mkEnableOption "activate grist container";
     expose-port = mkOption {
@@ -13,7 +12,8 @@ in
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description = "expose the application to the internet with NGINX and ACME";
+      description =
+        "expose the application to the internet with NGINX and ACME";
     };
   };
   config = mkIf cfg.enable {
@@ -25,7 +25,8 @@ in
       environment = {
         APP_HOME_URL = "https://grist.${config.link.domain}";
         GRIST_OIDC_SP_HOST = "https://grist.${config.link.domain}";
-        GRIST_OIDC_IDP_ISSUER = "https://gitea.${config.link.domain}/.well-known/openid-configuration";
+        GRIST_OIDC_IDP_ISSUER =
+          "https://gitea.${config.link.domain}/.well-known/openid-configuration";
         GRIST_OIDC_IDP_SCOPES = "openid profile email";
         GRIST_OIDC_IDP_SKIP_END_SESSION_ENDPOINT = "true";
       };
@@ -64,6 +65,7 @@ in
     #     deny all; # deny all remaining ips
     # '';
     # '';
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ 8484 ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port [ 8484 ];
   };
 }

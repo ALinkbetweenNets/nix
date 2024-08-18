@@ -1,9 +1,9 @@
-{ config, pkgs, lib, ... }:
+{ config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.services.jellyseerr;
+let cfg = config.link.services.tt-rss;
 in {
-  options.link.services.jellyseerr = {
-    enable = mkEnableOption "activate jellyseerr";
+  options.link.services.tt-rss = {
+    enable = mkEnableOption "activate tt-rss";
     expose-port = mkOption {
       type = types.bool;
       default = config.link.service-ports-expose;
@@ -22,22 +22,19 @@ in {
     };
     port = mkOption {
       type = types.int;
-      default = 5055;
+      default = 6715;
       description = "port to run the application on";
     };
   };
   config = mkIf cfg.enable {
     services = {
-      jellyseerr = { enable = true; };
-      nginx.virtualHosts."jellyseerr.${config.link.domain}" = mkIf cfg.nginx {
-        enableACME = true;
-        forceSSL = true;
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString cfg.port}/";
-        };
+      tt-rss = {
+        enable = true;
+        pubSubHubbub.enable = true;
+        selfUrlPath = "https://rss.${config.link.domain}";
+        virtualHost = null;
+        logDestination="syslog";
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
-      mkIf cfg.expose-port [ cfg.port ];
   };
 }

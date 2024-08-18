@@ -4,6 +4,7 @@
     ./hardware-configuration.nix
     home-manager.nixosModules.home-manager
     flake-self.inputs.nixos-hardware.nixosModules.framework-16-7040-amd
+    flake-self.inputs.ucodenix.nixosModules.ucodenix
   ];
   hardware.enableRedistributableFirmware = true;
   home-manager.users.l = flake-self.homeConfigurations.laptop;
@@ -34,16 +35,13 @@
     # eth = "wlp0s20f3";
     docker.enable = true;
     services.restic-client = {
-      # enable = true;
+      enable = true;
       backup-paths-sn = [
         "/home/l/.ssh"
-        "/home/l/archive"
         "/home/l/Documents"
         "/home/l/Pictures"
         "/home/l/obsidian"
-        "/home/l/sec"
-        "/home/l/doc"
-        "/home/l/w"
+        "/home/l/s"
       ];
       #  backup-paths-sciebo = [
       #    "/home/l/.ssh"
@@ -70,9 +68,8 @@
   };
 
   networking.hostId = "007f0200";
-  environment.systemPackages = with pkgs; [
-    plasma5Packages.plasma-thunderbolt
-  ];
+  environment.systemPackages = with pkgs;
+    [ plasma5Packages.plasma-thunderbolt ];
   #services.fprintd = {
   #  enable = true;
   #  tod.enable = true;
@@ -84,10 +81,15 @@
   networking.domain = "monitor-banfish.ts.net";
   #powerManagement.scsiLinkPolicy = "med_power_with_dipm";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  services.ucodenix = {
+    enable = true;
+    cpuSerialNumber = "00A7-0F41-0000-0000-0000-0000"; # Replace with your processor's serial number
+  };
+
   lollypops.deployment = {
-    # local-evaluation = true;
-    # ssh = { user = "l"; };
-    # sudo.enable = true;
+    local-evaluation = true;
+    ssh = { user = "l"; };
+    sudo.enable = true;
   };
   #environment.systemPackages = with pkgs;    [ ];
 }

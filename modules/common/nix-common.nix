@@ -3,10 +3,14 @@
     autoUpgrade = {
       enable = true;
       allowReboot = true;
-      rebootWindow = { lower = "05:00"; upper = "07:00"; };
+      rebootWindow = {
+        lower = "05:00";
+        upper = "07:00";
+      };
+      randomizedDelaySec = "45min";
       persistent = true;
       flake = "github:alinkbetweennets/nix";
-      flags = [ "--update-input" "nixpkgs" "-L" ];
+      flags = [ "-L" ];
     };
     stateVersion = "23.11";
   };
@@ -41,7 +45,10 @@
       (final: prev: {
         cudapkgs = import flake-self.inputs.nixpkgs {
           system = "${pkgs.system}";
-          config = { allowUnfree = true; cudaSupport = true; };
+          config = {
+            allowUnfree = true;
+            cudaSupport = true;
+          };
         };
       })
     ];

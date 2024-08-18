@@ -1,4 +1,4 @@
-{ lib, stdenvNoCC, fetchFromGitHub, jdupes }:
+{ lib, stdenvNoCC, fetchFromGitHub, jdupes, }:
 stdenvNoCC.mkDerivation {
   pname = "candy-icon-theme";
   version = "unstable-2021-07-21";
@@ -8,9 +8,7 @@ stdenvNoCC.mkDerivation {
     rev = "f78e4e763afb4ff2cc78ae7eb6a70d2235445d01";
     hash = "sha256-BwcuIu8dDSjhIGHGdGDBXI26EP2NIRXg924kRAqd2HI=";
   };
-  nativeBuildInputs = [
-    jdupes
-  ];
+  nativeBuildInputs = [ jdupes ];
   dontDropIconThemeCache = true;
   dontPatchELF = true;
   dontRewriteSymlinks = true;

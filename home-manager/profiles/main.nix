@@ -4,6 +4,8 @@ with lib; {
   config = {
     # imports = with flake-self.homeManagerModules; [ git ];
     link = {
+      code.enable = true;
+      # plasma.enable = true;
       office.enable = true;
       pentesting.enable = true;
       latex.enable = true;
@@ -41,12 +43,31 @@ with lib; {
     };
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
+      dust
+      choose # cut/ awk alternative
+      duf
+      procs
+      rm-improved
+      gping
+      zed-editor
+      erdtree
+      sd
+      tailspin
+      spacer
+      #csvlens
+      curlie # httpie for curl
+      #htmlq
+      dogdns
+      # inlyne
+      difftastic
+      anime4k
       quickemu
       quickgui
       # protonmail-bridge-gui
       # protonmail-desktop
       #jetbrains.idea-community
       #kdePackages.kdenlive # video editor
+      # davinci-resolve
       # reaper # audio editor
       #frei0r # video effects
       # freecad
@@ -69,8 +90,6 @@ with lib; {
       #hugo # static site generator
       #ghosttohugo
       ## Desktop monitor settings change
-      ddcui
-      ddcutil
       #alacritty
       ## theming
       beauty-line-icon-theme
@@ -121,7 +140,7 @@ with lib; {
       #ffmpeg_6
       ## Multimedia
       obs-studio
-      # obs-studio-plugins.obs-backgroundremoval
+      obs-studio-plugins.obs-backgroundremoval
       #imagemagick
       brave # backup browser for teams # multiple problems with privacy during end of 2023
       # chromium

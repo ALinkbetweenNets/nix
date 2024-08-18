@@ -12,9 +12,7 @@ in {
       };
       storageDriver = "overlay2";
     };
-    virtualisation.oci-containers = {
-      backend = "docker";
-    };
+    virtualisation.oci-containers = { backend = "docker"; };
     environment.systemPackages = with pkgs; [
       docker
       # docker-compose

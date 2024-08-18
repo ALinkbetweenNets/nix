@@ -1,9 +1,9 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.services.onlyoffice;
+let cfg = config.link.services.microbin;
 in {
-  options.link.services.onlyoffice = {
-    enable = mkEnableOption "activate onlyoffice";
+  options.link.services.microbin = {
+    enable = mkEnableOption "activate microbin";
     expose-port = mkOption {
       type = types.bool;
       default = config.link.service-ports-expose;
@@ -22,31 +22,22 @@ in {
     };
     port = mkOption {
       type = types.int;
-      default = 8111;
+      default = 9483;
       description = "port to run the application on";
     };
   };
   config = mkIf cfg.enable {
+    sops.secrets.microbin={};
     services = {
-      onlyoffice = {
+      microbin = {
         enable = true;
-        hostname = "onlyoffice.${config.link.domain}";
-        port = cfg.port;
-      };
-      nginx.virtualHosts."onlyoffice.${config.link.domain}" = mkIf cfg.nginx {
-        enableACME = true;
-        forceSSL = true;
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString cfg.port}";
+        passwordFile=config.sops.secrets.microbin.path;
+        settings = {
+          MICROBIN_HIDE_LOGO = true;
+          MICROBIN_PORT = cfg.port;
+
         };
-        extraConfig = mkIf (!cfg.nginx-expose) ''
-          allow ${config.link.service-ip}/24;
-          allow 127.0.0.1;
-          deny all; # deny all remaining ips
-        '';
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
-      mkIf cfg.expose-port [ cfg.port ];
   };
 }
