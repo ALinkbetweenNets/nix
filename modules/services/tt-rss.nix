@@ -27,7 +27,6 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    sops.secrets.tt-rss = { };
     services = {
       tt-rss = {
         enable = true;
