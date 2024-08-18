@@ -28,33 +28,31 @@ in {
         # overrides any folders added or deleted through the WebUI
         overrideFolders = true;
         devices = {
-          "dn".id = "2UZCLBR-LR5DMFA-HWXNELR-3GF6BVU-RZEBCWZ-P72JF4N-ZV7H6MF-SEQX4QK";
-          "xn".id = "RTBEC4G-MYEMYIB-E5LLFXW-XO5WISG-G7NH5IM-ZMXWSOQ-ENW3FPA-SB2G4QI";
-          "fn".id = "Z3YB7BR-O6OBQN7-HPPZ5N5-SVYLBAN-REOGNBX-5KDWGVF-2WJKFC4-MMIZTQT";
-          "s22".id = "DOQGIQ6-WIAAZBV-EUQ6HWX-D6G2XYK-SAE6AGX-X3D4OLX-PGKELKL-RR6PSAE";
-          "in".id = "IYOMGJ7-NZADKG2-L2PMGIH-VSTMTJ4-KLA7VF4-3CUONC2-BQMMWTW-I6KHDAY";
-          "sn".id = "SSSFCB5-W4CIMVK-L33WJ4F-VBH4FZW-SZIRMMN-IGHQ7MA-BBTFKYM-V2NSDQS";
-          "hn".id = "YU4MCML-QWAYIDE-FSHCDWA-C2FGKTG-ERS6I36-SMCFI2J-RKLVOPN-PS3IFQD";
+          "dn".id =
+            "2UZCLBR-LR5DMFA-HWXNELR-3GF6BVU-RZEBCWZ-P72JF4N-ZV7H6MF-SEQX4QK";
+          "xn".id =
+            "RTBEC4G-MYEMYIB-E5LLFXW-XO5WISG-G7NH5IM-ZMXWSOQ-ENW3FPA-SB2G4QI";
+          "fn".id =
+            "Z3YB7BR-O6OBQN7-HPPZ5N5-SVYLBAN-REOGNBX-5KDWGVF-2WJKFC4-MMIZTQT";
+          "s22".id =
+            "DOQGIQ6-WIAAZBV-EUQ6HWX-D6G2XYK-SAE6AGX-X3D4OLX-PGKELKL-RR6PSAE";
+          "in".id =
+            "IYOMGJ7-NZADKG2-L2PMGIH-VSTMTJ4-KLA7VF4-3CUONC2-BQMMWTW-I6KHDAY";
+          "sn".id =
+            "SSSFCB5-W4CIMVK-L33WJ4F-VBH4FZW-SZIRMMN-IGHQ7MA-BBTFKYM-V2NSDQS";
+          "hn".id =
+            "YU4MCML-QWAYIDE-FSHCDWA-C2FGKTG-ERS6I36-SMCFI2J-RKLVOPN-PS3IFQD";
+          "pppn".id =
+            "JCOKRQ5-67ARNA3-VOO4EOZ-5GUPCU6-63FSAID-EI4MVHH-T5ORT3Y-OFAGAAY";
         };
         folders = {
           "v" = {
             path = lib.mkDefault "${config.link.syncthingDir}/v";
-            devices = [
-              "dn"
-              "fn"
-              "hn"
-              "in"
-              "s22"
-              "sn"
-              "xn"
-            ];
+            devices = [ "dn" "fn" "hn" "in" "s22" "sn" "xn" ];
           };
           "camera" = {
             path = lib.mkDefault "${config.link.syncthingDir}/camera";
-            devices = [
-              "s22"
-              "sn"
-            ];
+            devices = [ "s22" "sn" ];
             versioning = {
               type = "trashcan";
               params.cleanoutDays = "1000";
@@ -62,15 +60,7 @@ in {
           };
           "uni" = {
             path = lib.mkDefault "${config.link.syncthingDir}/uni";
-            devices = [
-              "dn"
-              "hn"
-              "fn"
-              "in"
-              "s22"
-              "sn"
-              "xn"
-            ];
+            devices = [ "dn" "hn" "fn" "in" "s22" "sn" "xn" ];
             versioning = {
               type = "simple";
               params.keep = "3";
@@ -78,13 +68,7 @@ in {
           };
           "w" = {
             path = lib.mkDefault "${config.link.syncthingDir}/w";
-            devices = [
-              "dn"
-              "fn"
-              "hn"
-              "sn"
-              "xn"
-            ];
+            devices = [ "dn" "fn" "hn" "sn" "xn" ];
             versioning = {
               type = "simple";
               params.keep = "3";
@@ -92,30 +76,15 @@ in {
           };
           "github" = {
             path = lib.mkDefault "${config.link.syncthingDir}/github";
-            devices = [
-              "dn"
-              "fn"
-              "hn"
-              "xn"
-            ];
+            devices = [ "dn" "fn" "hn" "xn" ];
           };
           "mirror" = {
             path = lib.mkDefault "${config.link.syncthingDir}/.data-mirror";
-            devices = [
-              "dn"
-              "fn"
-              "xn"
-              "sn"
-            ];
+            devices = [ "dn" "fn" "xn" "sn" ];
           };
           "archive" = {
             path = lib.mkDefault "${config.link.syncthingDir}/archive";
-            devices = [
-              "dn"
-              "fn"
-              "xn"
-              "sn"
-            ];
+            devices = [ "dn" "fn" "xn" "sn" ];
           };
           "doc" = {
             path = lib.mkDefault "${config.link.syncthingDir}/doc";
@@ -127,6 +96,7 @@ in {
               "s22"
               "sn"
               "xn"
+
             ];
             versioning = {
               type = "simple";
@@ -135,15 +105,7 @@ in {
           };
           "music" = {
             path = lib.mkDefault "${config.link.syncthingDir}/Music";
-            devices = [
-              "dn"
-              "fn"
-              "hn"
-              "in"
-              "s22"
-              "sn"
-              "xn"
-            ];
+            devices = [ "dn" "fn" "hn" "in" "s22" "sn" "xn" ];
             versioning = {
               type = "trashcan";
               params.cleanoutDays = "1000";
@@ -151,25 +113,11 @@ in {
           };
           "crypt" = {
             path = lib.mkDefault "${config.link.syncthingDir}/crypt";
-            devices = [
-              "dn"
-              "fn"
-              "hn"
-              "in"
-              "sn"
-              "xn"
-            ];
+            devices = [ "dn" "fn" "hn" "in" "sn" "xn" ];
           };
           "sec" = {
             path = lib.mkDefault "${config.link.syncthingDir}/sec";
-            devices = [
-              "dn"
-              "fn"
-              "hn"
-              "in"
-              "sn"
-              "xn"
-            ];
+            devices = [ "dn" "fn" "hn" "in" "sn" "xn" "pppn" ];
             versioning = {
               type = "simple";
               params.keep = "10";
@@ -177,14 +125,7 @@ in {
           };
           "keys" = {
             path = lib.mkDefault "${config.link.syncthingDir}/.keys";
-            devices = [
-              "dn"
-              "fn"
-              "hn"
-              "in"
-              "sn"
-              "xn"
-            ];
+            devices = [ "dn" "fn" "hn" "in" "sn" "xn" ];
             versioning = {
               type = "simple";
               params.keep = "10";

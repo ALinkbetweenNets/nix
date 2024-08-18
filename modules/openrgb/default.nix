@@ -6,8 +6,7 @@ let
   #  sha256 = "0f5bmz0q8gs26mhy4m55gvbvcyvd7c0bf92aal4dsyg9n7lyq6xp";
   #};
   cfg = config.link.openrgb;
-in
-{
+in {
   options.link.openrgb.enable = mkEnableOption "activate openrgb";
   config = mkIf cfg.enable {
     # set kernel modules required for openrgb to work

@@ -12,7 +12,8 @@ in {
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description = "expose the application to the internet with NGINX and ACME";
+      description =
+        "expose the application to the internet with NGINX and ACME";
     };
     nginx-expose = mkOption {
       type = types.bool;
@@ -26,7 +27,10 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    sops.secrets."keycloak" = { owner = "postgres"; group = "postgres"; };
+    sops.secrets."keycloak" = {
+      owner = "postgres";
+      group = "postgres";
+    };
     environment.noXlibs = false;
     services = {
       keycloak = {

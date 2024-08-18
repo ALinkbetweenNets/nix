@@ -15,15 +15,18 @@ in {
         knownHosts = {
           dn = {
             hostNames = [ "dn.monitor-banfish.ts.net" ];
-            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINI74luZ3xJcgaZYHzn5DtSpYufml+SbhZQV12gWGShS";
+            publicKey =
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINI74luZ3xJcgaZYHzn5DtSpYufml+SbhZQV12gWGShS";
           };
           xn = {
             hostNames = [ "xn.monitor-banfish.ts.net" ];
-            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOTI6IEjHQbsbMJMBQNk0/BR7W4QFVQLNOrhEdTHwS1P";
+            publicKey =
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOTI6IEjHQbsbMJMBQNk0/BR7W4QFVQLNOrhEdTHwS1P";
           };
           pi4b = {
             hostNames = [ "pi4b.monitor-banfish.ts.net" ];
-            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO+rwC7YNUlQ7i2285iCVnopN2RXo/rBE8fAObogjoBc";
+            publicKey =
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO+rwC7YNUlQ7i2285iCVnopN2RXo/rBE8fAObogjoBc";
           };
         };
       };
@@ -135,6 +138,7 @@ in {
       fd
       ncdu # disk usage
       sysz
+      systemctl-tui
       eza
       bat
       btop

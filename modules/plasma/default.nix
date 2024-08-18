@@ -9,6 +9,6 @@ in {
       # desktopManager.plasma5.useQtScaling = true;
       desktopManager.plasma6.enable = true;
     };
-    environment.systemPackages = with pkgs;[ kdePackages.plasma-nm ];
+    environment.systemPackages = with pkgs; [ kdePackages.plasma-nm ];
   };
 }

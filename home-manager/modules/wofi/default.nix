@@ -1,9 +1,7 @@
 { lib, pkgs, config, ... }:
 with lib;
-let
-  cfg = config.link.programs.wofi;
-in
-{
+let cfg = config.link.programs.wofi;
+in {
   options.link.programs.wofi.enable = mkEnableOption "enable wofi";
 
   config = mkIf cfg.enable {

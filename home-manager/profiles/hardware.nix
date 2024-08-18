@@ -3,11 +3,7 @@ with lib; {
   imports = [ ./common.nix ];
   config = {
     home.packages = with pkgs;
-      [
-        hddtemp
-        lshw
-        usbutils
-      ] ++ lib.optionals
-        (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
+      [ hddtemp lshw usbutils ] ++ lib.optionals
+      (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
   };
 }

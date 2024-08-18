@@ -26,7 +26,9 @@ in {
         package = lib.mkForce pkgs.gnome3.gvfs;
       };
     };
-    networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 111 2049 4000 4001 4002 20048 ];
-    networking.firewall.interfaces."tailscale0".allowedUDPPorts = [ 111 2049 4000 4001 4002 20048 ];
+    networking.firewall.interfaces."tailscale0".allowedTCPPorts =
+      [ 111 2049 4000 4001 4002 20048 ];
+    networking.firewall.interfaces."tailscale0".allowedUDPPorts =
+      [ 111 2049 4000 4001 4002 20048 ];
   };
 }

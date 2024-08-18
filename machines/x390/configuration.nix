@@ -64,9 +64,8 @@
     #};
   };
   networking.hostId = "007f0200";
-  environment.systemPackages = with pkgs; [
-    plasma5Packages.plasma-thunderbolt
-  ];
+  environment.systemPackages = with pkgs;
+    [ plasma5Packages.plasma-thunderbolt ];
   #services.fprintd = {
   #  enable = true;
   #  tod.enable = true;

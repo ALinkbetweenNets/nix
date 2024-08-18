@@ -3,24 +3,14 @@ with lib;
 let
   cfg = config.link.nvidia;
   cudaoverlay = (self: super: {
-    inherit (pkgs.cudapkgs)
-      ffmpeg
-      hashcat
-      jellyfin
-      jellyfin-ffmpeg
-      ;
+    inherit (pkgs.cudapkgs) ffmpeg hashcat jellyfin jellyfin-ffmpeg;
   });
-in
-{
+in {
   options.link.nvidia = { enable = mkEnableOption "activate nvidia support"; };
   config = mkIf cfg.enable {
-    nixpkgs.overlays = [
-      cudaoverlay
-    ];
+    nixpkgs.overlays = [ cudaoverlay ];
     home-manager.users."l" = mkIf config.link.users.l.enable {
-      nixpkgs.overlays = [
-        cudaoverlay
-      ];
+      nixpkgs.overlays = [ cudaoverlay ];
       # nixpkgs.config.cudaSupport = true;
     };
     # nixpkgs.config.cudaSupport = true;

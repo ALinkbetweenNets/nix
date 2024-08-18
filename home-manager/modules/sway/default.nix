@@ -2,13 +2,12 @@
 with lib;
 let
   cfg = config.link.programs.sway;
-  start-sway = pkgs.writeShellScriptBin "start-sway" /* sh */
+  start-sway = pkgs.writeShellScriptBin "start-sway" # sh
     ''
       export WLR_DRM_NO_MODIFIERS=1
       dbus-launch --sh-syntax --exit-with-session ${pkgs.sway}/bin/sway
     '';
-in
-{
+in {
 
   options.link.programs.sway = {
     enable = mkEnableOption "enable sway";
@@ -21,13 +20,9 @@ in
 
   config = mkIf cfg.enable {
 
-    link = {
-      programs = {
-        waybar.enable = true;
-      };
-    };
+    link = { programs = { waybar.enable = true; }; };
 
-    home.packages = with pkgs;      [
+    home.packages = with pkgs; [
       mako
       start-sway
       wev # find out how a key is called
@@ -47,7 +42,7 @@ in
       wrapperFeatures.gtk = true;
 
       # Sway-specific Configuration
-      config = rec{
+      config = rec {
 
         input = {
           "type:keyboard" = {
@@ -71,37 +66,40 @@ in
         # Status bar(s)
         bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
 
-        startup = [
-          { command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"; }
-        ];
+        startup = [{
+          command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator";
+        }];
 
-        keybindings = lib.mkOptionDefault (
-          (lib.attrsets.mergeAttrsList [
+        keybindings = lib.mkOptionDefault ((lib.attrsets.mergeAttrsList [
 
-            # general keybindings not specific to laptop or desktop
-            (lib.optionalAttrs true {
-              # take screenshot of whole screen
-              "Print" = "exec ${pkgs.grim}/bin/grim /home/nik/Pictures/Screenshots/Screenshot-$(date +'%Y-%m-%d_%H-%M-%S.png')";
-              # control volume
-              "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
-              "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
-              "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
-            })
+          # general keybindings not specific to laptop or desktop
+          (lib.optionalAttrs true {
+            # take screenshot of whole screen
+            "Print" =
+              "exec ${pkgs.grim}/bin/grim /home/nik/Pictures/Screenshots/Screenshot-$(date +'%Y-%m-%d_%H-%M-%S.png')";
+            # control volume
+            "XF86AudioMute" =
+              "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
+            "XF86AudioRaiseVolume" =
+              "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
+            "XF86AudioLowerVolume" =
+              "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
+          })
 
-            # desktop specific keybindings
-            (lib.optionalAttrs (cfg.type == "desktop") { })
+          # desktop specific keybindings
+          (lib.optionalAttrs (cfg.type == "desktop") { })
 
-            # laptop specific keybindings
-            (lib.optionalAttrs (cfg.type == "laptop") {
-              # control brightness
-              "XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 10";
-              "XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 10";
-            })
+          # laptop specific keybindings
+          (lib.optionalAttrs (cfg.type == "laptop") {
+            # control brightness
+            "XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 10";
+            "XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 10";
+          })
 
-          ])
-        );
+        ]));
 
-        colors = let c = config.pinpox.colors; in {
+        colors = let c = config.pinpox.colors;
+        in {
           focused = {
             background = "#${c.Blue}";
             border = "#${c.BrightBlue}";

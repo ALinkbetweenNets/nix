@@ -1,6 +1,5 @@
 { lib, pkgs, inputs, nixvim, ... }:
-with lib;
-{
+with lib; {
   # programs.neovim = {
   #   enable = true;
   #   coc.enable = true;
@@ -43,14 +42,12 @@ with lib;
       undofile = true; # Automatically save and restore undo history
       updatetime = 100; # Faster completion
     };
-    keymaps = [
-      {
-        mode = "t";
-        key = "<Esc>";
-        options.silent = true;
-        action = "<C-\><C-n>";
-      }
-    ];
+    keymaps = [{
+      mode = "t";
+      key = "<Esc>";
+      options.silent = true;
+      action = "<C-><C-n>";
+    }];
     plugins = {
       lightline.enable = true;
 
@@ -346,13 +343,7 @@ with lib;
       # }      # Enable spellcheck for some filetypes
       {
         event = "FileType";
-        pattern = [
-          "tex"
-          "latex"
-          "markdown"
-          "norg"
-          "text"
-        ];
+        pattern = [ "tex" "latex" "markdown" "norg" "text" ];
         command = "setlocal spell spelllang=en";
       }
     ];

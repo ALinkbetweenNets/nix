@@ -1,12 +1,9 @@
 { pkgs, lib, config, ... }:
 with lib;
 let cfg = config.link.sway;
-in
-{
+in {
 
-  options.link.sway = {
-    enable = mkEnableOption "activate sway";
-  };
+  options.link.sway = { enable = mkEnableOption "activate sway"; };
 
   config = mkIf cfg.enable {
 
@@ -20,12 +17,14 @@ in
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd start-sway";
+          command =
+            "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd start-sway";
           user = "greeter";
         };
 
         river_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd start-river";
+          command =
+            "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd start-river";
           user = "greeter";
         };
       };

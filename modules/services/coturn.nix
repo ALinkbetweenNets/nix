@@ -2,16 +2,15 @@
 with lib;
 let cfg = config.link.services.coturn;
 in {
-  options.link.services.coturn = {
-    enable = mkEnableOption "activate coturn";
-  };
+  options.link.services.coturn = { enable = mkEnableOption "activate coturn"; };
   config = mkIf cfg.enable {
     security.acme.certs.${config.services.coturn.realm} = {
-      /* insert here the right configuration to obtain a certificate */
+      # insert here the right configuration to obtain a certificate
       postRun = "systemctl restart coturn.service";
       group = "turnserver";
       dnsProvider = mkIf config.link.dyndns.enable "cloudflare";
-      environmentFile = mkIf config.link.dyndns.enable config.sops.secrets."cloudflare-api".path;
+      environmentFile = mkIf config.link.dyndns.enable
+        config.sops.secrets."cloudflare-api".path;
       listenHTTP = mkIf (!config.link.dyndns.enable) ":80";
     };
     services = {
@@ -25,8 +24,12 @@ in {
         tls-listening-port = 5349;
         use-auth-secret = true;
         # static-auth-secret-file = "/pwd/coturn";
-        cert = "${config.security.acme.certs.${config.services.coturn.realm}.directory}/full.pem";
-        pkey = "${config.security.acme.certs.${config.services.coturn.realm}.directory}/key.pem";
+        cert = "${
+            config.security.acme.certs.${config.services.coturn.realm}.directory
+          }/full.pem";
+        pkey = "${
+            config.security.acme.certs.${config.services.coturn.realm}.directory
+          }/key.pem";
         extraConfig = ''
           # for debugging
           verbose
@@ -58,19 +61,17 @@ in {
       };
     };
     networking.firewall = {
-      interfaces."${config.link.service-interface}" =
-        let
-          range = with config.services.coturn; [{
-            from = min-port;
-            to = max-port;
-          }];
-        in
-        {
-          allowedUDPPortRanges = range;
-          allowedUDPPorts = [ 3478 5349 ];
-          allowedTCPPortRanges = [ ];
-          allowedTCPPorts = [ 3478 5349 8008 ];
-        };
+      interfaces."${config.link.service-interface}" = let
+        range = with config.services.coturn; [{
+          from = min-port;
+          to = max-port;
+        }];
+      in {
+        allowedUDPPortRanges = range;
+        allowedUDPPorts = [ 3478 5349 ];
+        allowedTCPPortRanges = [ ];
+        allowedTCPPorts = [ 3478 5349 8008 ];
+      };
     };
   };
 }

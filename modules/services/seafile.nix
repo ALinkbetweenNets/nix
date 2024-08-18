@@ -12,7 +12,8 @@ in {
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description = "expose the application to the internet with NGINX and ACME";
+      description =
+        "expose the application to the internet with NGINX and ACME";
     };
     nginx-expose = mkOption {
       type = types.bool;
@@ -30,15 +31,19 @@ in {
       seafile = {
         enable = true;
         adminEmail = "alinkbetweennets@protonmail.com";
-        seafileSettings.fileserver.host = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
+        seafileSettings.fileserver.host =
+          if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
         seafileSettings.fileserver.port = cfg.port;
-        ccnetSettings.General.SERVICE_URL = "https://seafile.${config.link.domain}:8000";
+        ccnetSettings.General.SERVICE_URL =
+          "https://seafile.${config.link.domain}:8000";
         initialAdminPassword = "re9zy2aYMJjZXCvLgleBKUCATis1Qlfv";
       };
       nginx.virtualHosts."seafile.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
-        locations."/" = { proxyPass = "http://127.0.0.1:${toString cfg.port}"; };
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString cfg.port}";
+        };
         extraConfig = mkIf (!cfg.nginx-expose) ''
           allow ${config.link.service-ip}/24;
           allow 127.0.0.1;
@@ -46,6 +51,7 @@ in {
         '';
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port [ cfg.port ];
   };
 }

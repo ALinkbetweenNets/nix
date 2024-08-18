@@ -22,7 +22,8 @@ in {
           SHOW_WATERMARK_FOR_GUESTS = false;
         };
         config = {
-          authdomain = mkIf config.link.nginx.enable "jitsi.${config.link.domain}";
+          authdomain =
+            mkIf config.link.nginx.enable "jitsi.${config.link.domain}";
           enableInsecureRoomNameWarning = true;
           fileRecordingsEnabled = false;
           liveStreamingEnabled = false;
@@ -39,7 +40,9 @@ in {
       };
       jicofo = {
         enable = true;
-        config = { "org.jitsi.jicofo.auth.URL" = "XMPP:jitsi.${config.link.domain}"; };
+        config = {
+          "org.jitsi.jicofo.auth.URL" = "XMPP:jitsi.${config.link.domain}";
+        };
       };
       nginx.virtualHosts = {
         "jitsi.${config.link.domain}" = {
