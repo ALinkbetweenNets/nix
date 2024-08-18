@@ -44,17 +44,21 @@ with lib; {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
       dust
+      choose # cut/ awk alternative
+      duf
       procs
       rm-improved
+      gping
       zed-editor
       erdtree
       sd
       tailspin
       spacer
       #csvlens
+      curlie # httpie for curl
       #htmlq
       dogdns
-      inlyne
+      # inlyne
       difftastic
       anime4k
       quickemu
