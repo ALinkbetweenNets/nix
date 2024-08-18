@@ -1,6 +1,6 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.searx;
+let cfg = config.link.services.searx;
 in {
   options.link.services.searx = {
     enable = mkEnableOption "activate searx";
