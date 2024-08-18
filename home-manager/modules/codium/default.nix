@@ -13,6 +13,7 @@ in {
       enableExtensionUpdateCheck = false;
       extensions = with pkgs.vscode-extensions;
         [
+          myriad-dreamin.tinymist # typst
           #b4dm4n.vscode-nixpkgs-fmt
           #vscodevim.vim
           arrterian.nix-env-selector
