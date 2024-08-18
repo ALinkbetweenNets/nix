@@ -43,6 +43,19 @@ with lib; {
     };
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
+      dust
+      procs
+      rm-improved
+      zed-editor
+      erdtree
+      sd
+      tailspin
+      spacer
+      #csvlens
+      #htmlq
+      dogdns
+      inlyne
+      difftastic
       anime4k
       quickemu
       quickgui
