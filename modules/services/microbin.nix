@@ -1,9 +1,9 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.searx;
+let cfg = config.link.services.microbin;
 in {
-  options.link.services.searx = {
-    enable = mkEnableOption "activate searx";
+  options.link.services.microbin = {
+    enable = mkEnableOption "activate microbin";
     expose-port = mkOption {
       type = types.bool;
       default = config.link.service-ports-expose;
