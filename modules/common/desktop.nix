@@ -17,6 +17,7 @@ in {
       light.enable = true; # backlight control command and udev rules granting access to members of the “video” group.
       ssh.setXAuthLocation = true;
       kdeconnect.enable = true;
+      ydotool.enable = true;
     };
     environment.systemPackages = with pkgs; [
       kdePackages.partitionmanager
