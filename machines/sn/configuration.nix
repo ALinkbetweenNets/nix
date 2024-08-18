@@ -45,6 +45,9 @@
     service-ports-expose = true;
     users.lmh01.enable = true;
     services = {
+      tt-rss.enable = true;
+      searx.enable = true;
+      microbin.enable = true;
       mailserver.enable = true;
       cryptpad.enable = true;
       # photoprism.enable = true; # WIP
