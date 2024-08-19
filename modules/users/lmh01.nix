@@ -22,7 +22,7 @@ in {
     # Note on sftp chrooting: The chroot folder must be owned by root and set to 755. Inside that folder create one or more folders owned by the user
     services.openssh.extraConfig = ''
       Match User lmh01
-        ChrootDirectory %u
+        ChrootDirectory /home/
         ForceCommand internal-sftp
         AllowTcpForwarding no
     '';

@@ -30,7 +30,7 @@
     #seafile.enable = true;
     # service-ip = "10.0.1.1";
     # users.lenny.enable = true;
-    # users.lmh01.enable = true;
+    users.lmh01.enable = true;
     syncthing.enable = true;
 
     service-interface = "tailscale0";
@@ -43,7 +43,6 @@
     # };
     # zola.enable = true;
     service-ports-expose = true;
-    users.lmh01.enable = true;
     services = {
       tt-rss.enable = true;
       searx.enable = true;
