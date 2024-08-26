@@ -22,7 +22,7 @@ in {
     };
     port = mkOption {
       type = types.int;
-      default = 6715;
+      default = 6719;
       description = "port to run the application on";
     };
   };
@@ -33,7 +33,35 @@ in {
         pubSubHubbub.enable = true;
         selfUrlPath = "https://rss.${config.link.domain}";
         virtualHost = null;
-        logDestination="syslog";
+        logDestination = "syslog";
+      };
+      services.nginx = {
+        enable = lib.mkForce true;
+        virtualHosts = {
+          "rss.${config.link.domain} " = {
+            listen = [{
+              port = cfg.port;
+              addr = "0.0.0.0";
+              ssl = false;
+            }];
+            root = "${cfg.root}/www";
+
+            locations."/" = { index = "index.php"; };
+
+            locations."^~ /feed-icons" = { root = "${cfg.root}"; };
+
+            locations."~ \\.php$" = {
+              extraConfig = ''
+                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                fastcgi_pass unix:${
+                  config.services.phpfpm.pools.${cfg.pool}.socket
+                };
+                fastcgi_index index.php;
+              '';
+            };
+          };
+        };
+
       };
     };
   };
