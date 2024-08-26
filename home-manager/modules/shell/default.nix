@@ -159,6 +159,7 @@ in {
         dupl = "fdupes -rdnAst .";
         sm = "sm -i";
         g = "git";
+        gp = "git pull";
         gs = "git status";
         gac = "git commit -am '$(date -I)'";
         gpp = "git pull&&git push";
