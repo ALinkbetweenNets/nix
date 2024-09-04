@@ -17,6 +17,7 @@ in {
       docker
       # docker-compose
       docker-buildx
+      lazydocker # tui
     ];
   };
 }
