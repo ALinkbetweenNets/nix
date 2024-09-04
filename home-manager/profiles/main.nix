@@ -43,6 +43,7 @@ with lib; {
     };
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
+      jan # ai
       dust
       choose # cut/ awk alternative
       duf
