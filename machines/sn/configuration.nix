@@ -44,7 +44,7 @@
     # zola.enable = true;
     service-ports-expose = true;
     services = {
-      tt-rss.enable = true;
+      # tt-rss.enable = true;
       searx.enable = true;
       microbin.enable = true;
       mailserver.enable = true;
@@ -75,7 +75,6 @@
       paperless.enable = true;
       vaultwarden.enable = true;
       # matrix.enable = true;
-      # restic-server = { enable = true; expose = false; };
       restic-server.enable = true;
       # coturn.enable = true;
       # dns.enable = true;
