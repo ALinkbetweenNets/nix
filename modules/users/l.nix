@@ -4,6 +4,9 @@ let cfg = config.link.users.l;
 in {
   options.link.users.l = { enable = mkEnableOption "activate user l"; };
   config = mkIf cfg.enable {
+    users.groups = {
+      wireshark={};
+    };
     users.users.l = {
       isNormalUser = true;
       home = "/home/l";
