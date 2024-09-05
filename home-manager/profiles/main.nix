@@ -43,13 +43,15 @@ with lib; {
     };
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
+      limitcpu
       jan # ai
       dust
       choose # cut/ awk alternative
       duf
       procs
       rm-improved
-      gping
+      gping # ping with graph of response times
+      mtr # better ping
       zed-editor
       erdtree
       sd
