@@ -61,6 +61,7 @@ with lib; {
       curlie # httpie for curl
       #htmlq
       dogdns
+      zombietrackergps # gps track display
       # inlyne
       difftastic
       anime4k
