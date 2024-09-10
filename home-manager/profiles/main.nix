@@ -174,7 +174,7 @@ with lib; {
       # tradingview
       cheese
       # kdePackages.kontact
-      kdePackages.neochat
+      # kdePackages.neochat
       kdePackages.akonadi
       kdePackages.kalarm
       kdePackages.kteatime
