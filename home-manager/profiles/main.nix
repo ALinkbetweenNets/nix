@@ -43,7 +43,7 @@ with lib; {
     };
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
-      limitcpu
+      teams-for-linux
       jan # ai
       dust
       choose # cut/ awk alternative

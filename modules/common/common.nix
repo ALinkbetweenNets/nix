@@ -95,6 +95,7 @@ in {
     };
     environment.systemPackages = with pkgs; [
       ## system
+      limitcpu
       exfatprogs
       libsecret
       gnupg
