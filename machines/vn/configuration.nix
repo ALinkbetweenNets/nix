@@ -6,11 +6,32 @@
   link = {
     # systemd-boot.enable = false;
     # grub.enable = true;
-    fs.btrfs.enable = true;
+    # fs.btrfs.enable = true;
     vm.enable = true;
-    tailscale.enable = true;
-    tailscale.routing = "server";
+    # tailscale.enable = true;
+    # tailscale.routing = "server";
   };
+     # You need to configure a root filesytem
+   fileSystems."/".label = "vmdisk";
+
+   # Add a test user who can sudo to the root account for debugging
+   users.extraUsers.vm = {
+     password = "vm";
+     shell = "${pkgs.bash}/bin/bash";
+     group = "wheel";
+     isNormalUser = true;
+   };
+   security.sudo = {
+     enable = true;
+     wheelNeedsPassword = false;
+   };
+
+   # Enable your new service!
+  #  services =  {
+  #    myNewService = {
+  #      enable = true;
+  #    };
+  #  };
   networking.hostName = "vn";
   boot.loader.grub.device = "/dev/vda";
   # services.mullvad-vpn.enable = true;
