@@ -66,7 +66,7 @@ with lib; {
       difftastic
       anime4k
       quickemu
-      quickgui
+      # quickgui
       # protonmail-bridge-gui
       # protonmail-desktop
       #jetbrains.idea-community
