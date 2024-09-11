@@ -96,6 +96,7 @@ with lib; {
         ## Hex Editor
         hexdino # terminal vimlike hex editor
         okteta # hex editor
+        imhex
         ## File Sync
         #syncthing-tray
         ## Browser
