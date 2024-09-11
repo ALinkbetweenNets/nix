@@ -19,7 +19,6 @@ in {
       gnome = {
         gnome-keyring.enable = true;
         gnome-user-share.enable = true;
-        gnome-online-miners.enable = true;
         core-utilities.enable = true;
         gnome-settings-daemon.enable = true;
         core-shell.enable = true;

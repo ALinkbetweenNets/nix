@@ -44,7 +44,7 @@ in {
         #secretFile = "${config.link.secrets}/nextcloud-secrets.json";
         package = pkgs.nextcloud29;
         extraApps = with config.services.nextcloud.package.packages.apps; {
-          inherit bookmarks calendar contacts deck mail news notes onlyoffice polls
+          inherit bookmarks calendar contacts deck mail notes onlyoffice polls
             tasks twofactor_webauthn;
         };
         #extraOptions = {

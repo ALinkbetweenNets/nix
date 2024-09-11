@@ -66,7 +66,7 @@ with lib; {
       difftastic
       anime4k
       quickemu
-      quickgui
+      # quickgui
       # protonmail-bridge-gui
       # protonmail-desktop
       #jetbrains.idea-community
@@ -174,7 +174,7 @@ with lib; {
       # tradingview
       cheese
       # kdePackages.kontact
-      kdePackages.neochat
+      # kdePackages.neochat
       kdePackages.akonadi
       kdePackages.kalarm
       kdePackages.kteatime
