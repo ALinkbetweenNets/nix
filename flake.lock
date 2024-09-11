@@ -53,11 +53,11 @@
     "adblockStevenBlack": {
       "flake": false,
       "locked": {
-        "lastModified": 1725674607,
-        "narHash": "sha256-vTaoz2yRd9g3NZNKYufZeB8UJ381aBPmRV91lEmV37o=",
+        "lastModified": 1725980841,
+        "narHash": "sha256-lvLHuWcTgGv1wAZSSmV8roKf2PEEfePoQIw8cdz2C8c=",
         "owner": "StevenBlack",
         "repo": "hosts",
-        "rev": "10b187280ec15374e4d2b28e7705046e7d535d91",
+        "rev": "d01e665e1938b8ed7e9f13d5bdde2e8ff6db161d",
         "type": "github"
       },
       "original": {
@@ -930,11 +930,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1725921389,
-        "narHash": "sha256-RBpN0ToD8O3qniBjqUiB1d2/LQJt5kH5P3Gt6dF91L0=",
+        "lastModified": 1725986804,
+        "narHash": "sha256-gUHvO+9lI7YyAmRuaOHZmBPfx9DloySIJ/bhPstb2WU=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "facf6b2d0c9e22d858956d1d458eac6baf155a08",
+        "rev": "d0c082124535acd6f0f786be42b38c32abe89d64",
         "type": "github"
       },
       "original": {
@@ -965,11 +965,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1725949843,
-        "narHash": "sha256-vGv6dWlwW6R6QFmbLkW7kxEvGrvZKsWio1Ztj9Rot8w=",
+        "lastModified": 1725997505,
+        "narHash": "sha256-Xqc7WL0++RoPFf+zClPJE0f9bDhXK17QSjgcDn2l6kk=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "4232cb810c157448c1283cda9de6f9551245f61a",
+        "rev": "594bcadb31e3d6e449ff0126a7351514cfc329be",
         "type": "github"
       },
       "original": {
