@@ -102,7 +102,7 @@ with lib; {
         ## Browser
         librewolf
         # vivaldi # nice but proprietary
-        floorp # firefox fork, seems promising, needs more research
+        # floorp # firefox fork, seems promising, needs more research
         #mullvad-vpn # is defined as program
         ## RDP
         remmina # VNC Client
