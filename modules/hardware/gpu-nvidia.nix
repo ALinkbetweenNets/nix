@@ -22,6 +22,8 @@ in {
       pciutils
       vdpauinfo
       cudaPackages.cudatoolkit
+      cudaPackages.cudnn
+      cudaPackages.cutensor
     ];
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware = {
