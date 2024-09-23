@@ -71,7 +71,7 @@
       enable = true;
       port = 11434;
       host = "127.0.0.1";
-      loadModels = [ "llama3.1:70b" "nomic-embed-text" ];
+      loadModels = [ "llama3.1:70b" "nomic-embed-text" "starcoder2:3b" ];
     };
     # private-gpt = {
     #   enable = true;
