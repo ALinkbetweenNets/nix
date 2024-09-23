@@ -92,6 +92,7 @@ with lib; {
       anime4k
       quickemu
       # quickgui
+      code-cursor
       # protonmail-bridge-gui
       # protonmail-desktop
       #jetbrains.idea-community
