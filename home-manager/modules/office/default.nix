@@ -27,8 +27,9 @@ in {
       evince
       xournalpp
       anki
-      # darktable
-      rawtherapee
+      darktable # photo color editor
+      # rawtherapee
+      art
       pdfmixtool # appears to be broken and unbuildable
       onlyoffice-bin
       speedcrunch
