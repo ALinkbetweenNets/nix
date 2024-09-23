@@ -82,6 +82,10 @@ in {
             path = lib.mkDefault "${config.link.syncthingDir}/.data-mirror";
             devices = [ "dn" "fn" "xn" "sn" ];
           };
+          "backups" = {
+            path = lib.mkDefault "${config.link.syncthingDir}/backups";
+            devices = [ "sn" ];
+          };
           "archive" = {
             path = lib.mkDefault "${config.link.syncthingDir}/archive";
             devices = [ "dn" "fn" "xn" "sn" ];
@@ -131,6 +135,7 @@ in {
               params.keep = "10";
             };
           };
+
         };
       };
     };
