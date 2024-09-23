@@ -66,6 +66,47 @@
       #  ];
     };
   };
+  services = {
+    ollama = {
+      enable = true;
+      port = 11434;
+      host = "127.0.0.1";
+      loadModels = [ "llama3.1:70b" "nomic-embed-text" ];
+    };
+    # private-gpt = {
+    #   enable = true;
+    #   settings = {
+    #     azopenai = { };
+    #     data = { local_data_folder = "/var/lib/private-gpt"; };
+    #     embedding = { mode = "ollama"; };
+    #     llm = {
+    #       mode = "ollama";
+    #       tokenizer = "";
+    #     };
+    #     ollama = {
+    #       api_base = "http://localhost:11434";
+    #       embedding_api_base = "http://localhost:11434";
+    #       embedding_model = "nomic-embed-text";
+    #       keep_alive = "5m";
+    #       llm_model = "llama3.1:405b";
+    #       repeat_last_n = 64;
+    #       repeat_penalty = 1.2;
+    #       request_timeout = 120;
+    #       tfs_z = 1;
+    #       top_k = 40;
+    #       top_p = 0.9;
+    #     };
+    #     openai = { };
+    #     qdrant = { path = "/var/lib/private-gpt/vectorstore/qdrant"; };
+    #     vectorstore = { database = "qdrant"; };
+    #   };
+    # };
+    nextjs-ollama-llm-ui = {
+      enable = true;
+      port = 11444;
+      ollamaUrl = "127.0.0.1:11444";
+    };
+  };
   networking.hostId = "007f0200";
   environment.systemPackages = with pkgs; [
     plasma5Packages.plasma-thunderbolt
