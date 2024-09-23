@@ -40,6 +40,31 @@ with lib; {
           };
         };
       };
+      newsboat = {
+        enable = true;
+        autoReload = true;
+        maxItems = 500;
+        urls = [
+          {
+            url =
+              "https://wid.cert-bund.de/content/public/securityAdvisory/rss";
+          }
+          {
+            url =
+              "https://www.bsi.bund.de/SiteGlobals/Functions/RSSFeed/RSSNewsfeed/RSSNewsfeed_CSW.xml";
+          }
+          {
+            url =
+              "https://www.bsi.bund.de/SiteGlobals/Functions/RSSFeed/RSSNewsfeed/RSSNewsfeed_Presse_Veranstaltungen.xml";
+          }
+          {
+            url =
+              "https://www.bsi.bund.de/SiteGlobals/Functions/RSSFeed/RSSNewsfeed/ACS_RSSNewsfeed.xml"; # allianz für cybersicherheit
+          }
+          {url="https://www.evilsocket.net/atom.xml";
+          }
+        ];
+      };
     };
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
