@@ -43,6 +43,8 @@
     common.enable = true;
     server.enable = true;
     # desktop.enable = true;
+    syncthing.enable = true;
+    syncthingDir = "/mnt/syncthing";
   };
   lollypops.deployment = {
     local-evaluation = true;
