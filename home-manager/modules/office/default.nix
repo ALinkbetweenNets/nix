@@ -19,7 +19,7 @@ in {
       typst # better latex for papers
       libreoffice-qt
       gimp
-      inkscape
+      # inkscape # svg editor
       thunderbird
       evolution
       # calcure # tui calendar & task manager # broken 240721
