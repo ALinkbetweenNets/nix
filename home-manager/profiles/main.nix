@@ -93,6 +93,7 @@ with lib; {
       quickemu
       # quickgui
       code-cursor
+      aider-chat
       # protonmail-bridge-gui
       # protonmail-desktop
       #jetbrains.idea-community
