@@ -27,7 +27,6 @@ in {
     environment.systemPackages = with pkgs; [
       flake-self.inputs.nsearch.packages.${pkgs.system}.default
       plasma5Packages.plasma-thunderbolt
-      vagrant
       aha # for kde settings
       glxinfo
       clinfo
