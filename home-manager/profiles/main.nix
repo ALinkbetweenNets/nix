@@ -11,9 +11,9 @@ with lib; {
       latex.enable = true;
       gaming.enable = true;
       python.enable = true;
-      golang.enable = true;
+      # golang.enable = true;
       # ansible.enable = true;
-      rust.enable = true;
+      # rust.enable = true;
       # beancount.enable = true;
     };
     # services.kdeconnect = {
@@ -104,7 +104,6 @@ with lib; {
       # freecad
       #openscad
       # dupeguru # good file deduplication
-      slack
       timer
       termdown
       espeak
@@ -143,7 +142,6 @@ with lib; {
       # gsettings-desktop-schemas # required for some apps like jami
       ## File Sync
       nextcloud-client
-      seafile-client
       ## Editor
       #mermaid-cli
       # logseq
@@ -153,7 +151,7 @@ with lib; {
       signal-desktop
       telegram-desktop
       discord
-      qtox
+      # qtox
       element-desktop
       openvpn
       ## keyboard
