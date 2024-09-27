@@ -170,6 +170,9 @@ with lib; {
       ## Multimedia
       obs-studio
       obs-studio-plugins.obs-backgroundremoval
+      obs-studio-plugins.obs-ndi
+      easyeffects
+      artyFX
       #imagemagick
       brave # backup browser for teams # multiple problems with privacy during end of 2023
       # chromium
