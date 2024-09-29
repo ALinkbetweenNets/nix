@@ -107,6 +107,7 @@
       ollamaUrl = "127.0.0.1:11444";
     };
   };
+  boot.kernelParams = [ "quiet" ];
   networking.hostId = "007f0200";
   environment.systemPackages = with pkgs; [
     plasma5Packages.plasma-thunderbolt
