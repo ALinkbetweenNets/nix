@@ -22,22 +22,20 @@ in {
     };
     port = mkOption {
       type = types.int;
-      default = 2283;
+      default = 3001;
       description = "port to run the application on";
     };
   };
   config = mkIf cfg.enable {
-    systemd.services.docker-immich = {
-      description = "Immich docker-compose service";
-      wantedBy = [ "multi-user.target" ];
-      after = [ "docker.service" "docker.socket" "remote-fs.target" ];
-      serviceConfig = {
-        WorkingDirectory = "${./immich}";
-        ExecStart =
-          "${pkgs.docker}/bin/docker compose --env-file .env --env-file ${config.sops.secrets.immich.path} up --build";
-        ExecStop = "${pkgs.docker}/bin/docker compose down";
-        Restart = "on-failure";
-      };
+    sops.secrets.immich = {
+      owner = "immich";
+      group = "immich";
+    };
+    services.immich = {
+      enable = true;
+      port = cfg.port;
+      host = if cfg.expose-port then "0.0.0.0" else "localhost";
+      secretsFile = sops.secrets.immich.path;
     };
     networking.firewall.allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
     sops.secrets.immich = { path = "/run/keys/immich.env"; };
