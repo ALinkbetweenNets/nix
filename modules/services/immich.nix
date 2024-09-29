@@ -27,17 +27,17 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    # sops.secrets.immich = {
-    #   owner = "immich";
-    #   group = "immich";
-    # };
-    # services.immich = {
-    #   enable = true;
-    #   port = cfg.port;
-    #   host = if cfg.expose-port then "0.0.0.0" else "localhost";
-    #   secretsFile = config.sops.secrets.immich.path;
-    # };
-    # networking.firewall.allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
-    # sops.secrets.immich = { path = "/run/keys/immich.env"; };
+    sops.secrets.immich = {
+      owner = "immich";
+      group = "immich";
+    };
+    services.immich = {
+      enable = true;
+      port = cfg.port;
+      host = if cfg.expose-port then "0.0.0.0" else "localhost";
+      secretsFile = config.sops.secrets.immich.path;
+    };
+    networking.firewall.allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    sops.secrets.immich = { path = "/run/keys/immich.env"; };
   };
 }
