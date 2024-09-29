@@ -73,7 +73,7 @@ in {
             devices = [ "dn" "fn" "hn" "sn" "xn" ];
             versioning = {
               type = "simple";
-              params.keep = "3";
+              params.keep = "5";
             };
           };
           "github" = {
@@ -83,14 +83,26 @@ in {
           "mirror" = {
             path = lib.mkDefault "${config.link.syncthingDir}/.data-mirror";
             devices = [ "fn" "xn" "sn" ];
+            versioning = {
+              type = "simple";
+              params.keep = "3";
+            };
           };
           "backups" = {
             path = lib.mkDefault "${config.link.syncthingDir}/backups";
             devices = [ "sn" "pi4b" ];
+            versioning = {
+              type = "simple";
+              params.keep = "3";
+            };
           };
           "archive" = {
             path = lib.mkDefault "${config.link.syncthingDir}/archive";
             devices = [ "dn" "fn" "xn" "sn" ];
+            versioning = {
+              type = "simple";
+              params.keep = "3";
+            };
           };
           "doc" = {
             path = lib.mkDefault "${config.link.syncthingDir}/doc";
@@ -106,7 +118,7 @@ in {
             ];
             versioning = {
               type = "simple";
-              params.keep = "10";
+              params.keep = "5";
             };
           };
           "music" = {
