@@ -35,7 +35,7 @@ in {
       enable = true;
       port = cfg.port;
       host = if cfg.expose-port then "0.0.0.0" else "localhost";
-      secretsFile = sops.secrets.immich.path;
+      secretsFile = config.sops.secrets.immich.path;
     };
     networking.firewall.allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
     sops.secrets.immich = { path = "/run/keys/immich.env"; };
