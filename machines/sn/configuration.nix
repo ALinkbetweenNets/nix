@@ -120,6 +120,12 @@
     };
     eth = "eth0@if146";
   };
+  services.ollama = {
+    enable = true;
+    port = 11434;
+    host = "100.122.145.19";
+    loadModels = [ "llama3.1:70b" "nomic-embed-text" "starcoder2:3b" ];
+  };
   services.owncast = {
     enable = true;
     openFirewall = true;
@@ -136,7 +142,6 @@
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIELDx8vTqed3YBepK2EEcM0vsLZX3g9gxwzVknwYlAgh root@sn"
   ];
-
   nix.settings.auto-optimise-store = true;
   # services.cloudflare-dyndns = {
   #   ipv4 = lib.mkForce false;
