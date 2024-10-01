@@ -22,20 +22,23 @@ in {
     };
     port = mkOption {
       type = types.int;
-      default = 9000;
+      default = 4123;
       description = "port to run the application on";
     };
   };
   config = mkIf cfg.enable {
     sops.secrets.mealie = {
-      owner = "mealie";
-      group = "mealie";
+      # owner = "mealie";
+      # group = "mealie";
     };
     services.mealie = {
       enable = true;
       port = cfg.port;
       listenAddress = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
       credentialsFile = config.sops.secrets.mealie.path;
+      settings={
+        ALLOW_SIGNUP = "false";
+      };
     };
     networking.firewall.allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
   };
