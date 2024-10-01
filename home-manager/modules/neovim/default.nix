@@ -7,9 +7,9 @@ with lib; {
   # };
   programs.nixvim = {
     enable = true;
-    enableMan = true;
-    viAlias = true;
-    vimAlias = true;
+    # enableMan = true;
+    # viAlias = true;
+    # vimAlias = true;
     # let bindings
     globals = {
       mapleader = " "; # Sets the leader key to space
