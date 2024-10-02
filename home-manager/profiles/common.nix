@@ -68,7 +68,6 @@ with lib; {
       # Allow "unfree" licenced packages
       config = {
         allowUnfree = true;
-        permittedInsecurePackages = [ "electron-25.9.0" ];
       };
       overlays = [
         flake-self.overlays.default
