@@ -128,6 +128,7 @@ with lib; {
       virt-manager
       spice
       spice-vdagent
+      gnome-network-displays # samsung smart view
       ## ISO stuff
       # (import
       # (builtins.fetchTarball {
