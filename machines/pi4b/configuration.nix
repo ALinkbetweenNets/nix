@@ -45,6 +45,7 @@
     # desktop.enable = true;
     syncthing.enable = true;
     syncthingDir = "/mnt/syncthing";
+    services.home-assistant.enable = true;
   };
   lollypops.deployment = {
     local-evaluation = true;
