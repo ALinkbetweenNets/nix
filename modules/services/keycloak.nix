@@ -31,7 +31,6 @@ in {
       owner = "postgres";
       group = "postgres";
     };
-    environment.noXlibs = false;
     services = {
       keycloak = {
         enable = true;
