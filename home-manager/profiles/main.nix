@@ -87,7 +87,7 @@ with lib; {
       gpodder # podcast client
       #htmlq
       dogdns
-      zombietrackergps # gps track display
+      # zombietrackergps # gps track display
       # inlyne
       difftastic
       anime4k
