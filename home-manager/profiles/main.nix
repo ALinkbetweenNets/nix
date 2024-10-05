@@ -61,8 +61,8 @@ with lib; {
             url =
               "https://www.bsi.bund.de/SiteGlobals/Functions/RSSFeed/RSSNewsfeed/ACS_RSSNewsfeed.xml"; # allianz für cybersicherheit
           }
-          {url="https://www.evilsocket.net/atom.xml";
-          }
+          { url = "https://www.evilsocket.net/atom.xml"; }
+          { url = "https://events.ccc.de/feed"; }
         ];
       };
     };
