@@ -232,8 +232,12 @@
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
-      locations."/".proxyPass = "http://10.10.10.89:2283/";
-      locations."/".proxyWebsockets = true;
+      locations."/" = {
+        proxyPass = "http://${config.link.serviceHost}:${
+            toString config.link.services.immich.port
+          }";
+        proxyWebsockets = true;
+      };
     };
     "minio.${config.link.domain}" = {
       # enableACME = true;
