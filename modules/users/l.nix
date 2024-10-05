@@ -20,6 +20,7 @@ in {
         "video"
         "i2c"
         "plugdev"
+        "ydotool"
       ] ++ lib.optionals config.networking.networkmanager.enable
         [ "networkmanager" ]
         ++ lib.optionals config.link.printing.enable [ "scanner" "lp" ]
