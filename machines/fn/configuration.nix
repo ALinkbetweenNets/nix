@@ -118,6 +118,7 @@
   environment.systemPackages = with pkgs; [
     plasma5Packages.plasma-thunderbolt
     fw-ectool
+    framework-tool
   ];
   #services.fprintd = {
   #  enable = true;
