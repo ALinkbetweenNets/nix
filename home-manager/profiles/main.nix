@@ -72,7 +72,7 @@ with lib; {
       jan # ai
       dust
       choose # cut/ awk alternative
-      duf
+      duf # better df
       procs
       rm-improved
       gping # ping with graph of response times
@@ -84,6 +84,7 @@ with lib; {
       spacer
       #csvlens
       curlie # httpie for curl
+      gpodder # podcast client
       #htmlq
       dogdns
       zombietrackergps # gps track display
