@@ -5,7 +5,8 @@
   home-manager.users.l = flake-self.homeConfigurations.desktop;
   link.desktop.enable = true;
   link.syncthing.enable = true;
-  link.plasma.enable=false;
+  link.plasma.enable = false;
+  xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
   networking.hostName = "pppn";
   # Use Network Manager
   networking.wireless.enable = false;
