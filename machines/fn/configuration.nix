@@ -106,11 +106,11 @@
       port = 11444;
       ollamaUrl = "127.0.0.1:11444";
     };
-    unifi = {
-      enable = true;
-      openFirewall = true;
-      unifiPackage = pkgs.unifi;
-    };
+    # unifi = {
+    #   enable = true;
+    #   openFirewall = true;
+    #   unifiPackage = pkgs.unifi;
+    # };
   };
   nixpkgs.config.permittedInsecurePackages = [ "unifi-controller-7.5.187" ];
   boot.kernelParams = [ "quiet" ];
@@ -118,6 +118,7 @@
   environment.systemPackages = with pkgs; [
     plasma5Packages.plasma-thunderbolt
     fw-ectool
+    framework-tool
   ];
   #services.fprintd = {
   #  enable = true;

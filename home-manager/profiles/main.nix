@@ -61,8 +61,8 @@ with lib; {
             url =
               "https://www.bsi.bund.de/SiteGlobals/Functions/RSSFeed/RSSNewsfeed/ACS_RSSNewsfeed.xml"; # allianz für cybersicherheit
           }
-          {url="https://www.evilsocket.net/atom.xml";
-          }
+          { url = "https://www.evilsocket.net/atom.xml"; }
+          { url = "https://events.ccc.de/feed"; }
         ];
       };
     };
@@ -72,7 +72,7 @@ with lib; {
       jan # ai
       dust
       choose # cut/ awk alternative
-      duf
+      duf # better df
       procs
       rm-improved
       gping # ping with graph of response times
@@ -84,9 +84,10 @@ with lib; {
       spacer
       #csvlens
       curlie # httpie for curl
+      gpodder # podcast client
       #htmlq
       dogdns
-      zombietrackergps # gps track display
+      # zombietrackergps # gps track display
       # inlyne
       difftastic
       anime4k

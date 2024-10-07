@@ -35,16 +35,18 @@ in {
         configWritable = true;
         extraComponents = [
           "default_config"
-          "met"
           "esphome"
-          "tuya"
-          "my"
-          "shopping_list"
-          "wled"
-          "ollama"
           "jellyfin"
+          "met"
+          "my"
+          "ollama"
+          "pushover"
+          "radio_browser"
+          "shopping_list"
           "tts"
+          "tuya"
           "unifi"
+          "wled"
           "zoneminder"
         ];
         config = {

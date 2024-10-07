@@ -5,6 +5,8 @@
   home-manager.users.l = flake-self.homeConfigurations.desktop;
   link.desktop.enable = true;
   link.syncthing.enable = true;
+  link.plasma.enable = false;
+  # xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
   networking.hostName = "pppn";
   # Use Network Manager
   networking.wireless.enable = false;
@@ -21,6 +23,7 @@
   # It's recommended to keep enabled on these constrained devices
   zramSwap.enable = true;
   # Auto-login for phosh
+  services.xserver.desktopManager.phosh.enable = true;
   services.xserver.desktopManager.phosh = { user = "l"; };
   users.users."l" = {
     isNormalUser = true;
