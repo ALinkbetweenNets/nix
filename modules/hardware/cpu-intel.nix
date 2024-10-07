@@ -28,7 +28,7 @@ in {
     hardware.graphics.extraPackages32 = with pkgs.pkgsi686Linux; [
       intel-media-driver
       # libvdpau-va-gl
-      vaapiIntel
+      # vaapiIntel
       # vaapiVdpau
       #intel-compute-runtime
       #intel-ocl
