@@ -86,7 +86,7 @@ with lib; {
         #veracrypt
         kleopatra # gpg/ pgp
         ## Misc
-        # xdg-utils
+        xdg-utils
         scrcpy # ADB screenshare
         ktailctl # Tailscale GUI
         ## Editor
