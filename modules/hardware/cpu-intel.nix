@@ -20,7 +20,7 @@ in {
     hardware.graphics.extraPackages = with pkgs; [
       intel-media-driver
       libvdpau-va-gl
-      vaapiIntel
+      # vaapiIntel
       vaapiVdpau
       intel-compute-runtime
       intel-ocl
