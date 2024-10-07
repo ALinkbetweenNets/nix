@@ -9,6 +9,8 @@ with lib; {
         [ ] ++ lib.optionals (system-config.link.plasma.enable)
         [ kdePackages.xdg-desktop-portal-kde ]
         ++ lib.optionals (system-config.link.gnome.enable)
+        [ xdg-desktop-portal-gnome ] ++ lib.optionals
+        (system-config.services.xserver.desktopManager.phosh.enable)
         [ xdg-desktop-portal-gnome ]
         ++ lib.optionals (system-config.link.sway.enable)
         [ xdg-desktop-portal-wlr ]
@@ -18,6 +20,8 @@ with lib; {
         [ ] ++ lib.optionals (system-config.link.plasma.enable)
         [ kdePackages.xdg-desktop-portal-kde ]
         ++ lib.optionals (system-config.link.gnome.enable)
+        [ xdg-desktop-portal-gnome ] ++ lib.optionals
+        (system-config.services.xserver.desktopManager.phosh.enable)
         [ xdg-desktop-portal-gnome ]
         ++ lib.optionals (system-config.link.sway.enable)
         [ xdg-desktop-portal-wlr ]
