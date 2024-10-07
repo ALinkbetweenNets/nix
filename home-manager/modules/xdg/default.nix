@@ -17,8 +17,8 @@ with lib; {
       extraPortals = with pkgs;
         [ ] ++ lib.optionals (system-config.link.plasma.enable)
         [ kdePackages.xdg-desktop-portal-kde ]
-        # ++ lib.optionals (system-config.link.gnome.enable)
-        # [ xdg-desktop-portal-gnome ]
+        ++ lib.optionals (system-config.link.gnome.enable)
+        [ xdg-desktop-portal-gnome ]
         ++ lib.optionals (system-config.link.sway.enable)
         [ xdg-desktop-portal-wlr ]
         ++ lib.optionals (system-config.link.hyprland.enable)
