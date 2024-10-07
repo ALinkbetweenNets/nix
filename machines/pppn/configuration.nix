@@ -5,6 +5,7 @@
   home-manager.users.l = flake-self.homeConfigurations.desktop;
   link.desktop.enable = true;
   link.syncthing.enable = true;
+  link.plasma.enable=false;
   networking.hostName = "pppn";
   # Use Network Manager
   networking.wireless.enable = false;
