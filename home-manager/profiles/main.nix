@@ -64,6 +64,7 @@ with lib; {
           { url = "https://www.evilsocket.net/atom.xml"; }
           { url = "https://events.ccc.de/feed"; }
           { url = "https://benjitrapp.github.io/feed.xml"; }
+          { url = "https://blog.fefe.de/rss.xml?html"; }
         ];
       };
     };
