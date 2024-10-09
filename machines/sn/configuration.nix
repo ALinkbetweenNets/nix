@@ -62,6 +62,7 @@
       # jellyseer.enable = true;
       minio.enable = true;
       immich.enable = true;
+      audiobookshelf.enable = true;
       nextcloud = {
         enable = true;
         nginx-expose = true;
