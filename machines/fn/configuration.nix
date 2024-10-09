@@ -17,7 +17,7 @@
     gaming.enable = true;
     # sway.enable = true;
     # fs.zfs.enable = true;
-    #printing.enable = true;
+    printing.enable = true;
     fs.ntfs.enable = true;
     fs.luks.enable = false;
     laptop.enable = true;
@@ -106,11 +106,19 @@
       port = 11444;
       ollamaUrl = "127.0.0.1:11444";
     };
+    # unifi = {
+    #   enable = true;
+    #   openFirewall = true;
+    #   unifiPackage = pkgs.unifi;
+    # };
   };
+  nixpkgs.config.permittedInsecurePackages = [ "unifi-controller-7.5.187" ];
+  boot.kernelParams = [ "quiet" ];
   networking.hostId = "007f0200";
   environment.systemPackages = with pkgs; [
     plasma5Packages.plasma-thunderbolt
     fw-ectool
+    framework-tool
   ];
   #services.fprintd = {
   #  enable = true;

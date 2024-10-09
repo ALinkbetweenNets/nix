@@ -44,6 +44,8 @@ in {
             "YU4MCML-QWAYIDE-FSHCDWA-C2FGKTG-ERS6I36-SMCFI2J-RKLVOPN-PS3IFQD";
           "pppn".id =
             "JCOKRQ5-67ARNA3-VOO4EOZ-5GUPCU6-63FSAID-EI4MVHH-T5ORT3Y-OFAGAAY";
+          "pi4b".id =
+            "D64D4HR-7GZLZDK-UZKAFD5-YBJAURJ-Q2HXQB2-LNFYZNU-HNOIYFY-JUMR5A5";
         };
         folders = {
           "v" = {
@@ -71,7 +73,7 @@ in {
             devices = [ "dn" "fn" "hn" "sn" "xn" ];
             versioning = {
               type = "simple";
-              params.keep = "3";
+              params.keep = "5";
             };
           };
           "github" = {
@@ -80,15 +82,27 @@ in {
           };
           "mirror" = {
             path = lib.mkDefault "${config.link.syncthingDir}/.data-mirror";
-            devices = [ "dn" "fn" "xn" "sn" ];
+            devices = [ "fn" "xn" "sn" ];
+            versioning = {
+              type = "simple";
+              params.keep = "3";
+            };
           };
           "backups" = {
             path = lib.mkDefault "${config.link.syncthingDir}/backups";
-            devices = [ "sn" ];
+            devices = [ "sn" "pi4b" ];
+            versioning = {
+              type = "simple";
+              params.keep = "3";
+            };
           };
           "archive" = {
             path = lib.mkDefault "${config.link.syncthingDir}/archive";
             devices = [ "dn" "fn" "xn" "sn" ];
+            versioning = {
+              type = "simple";
+              params.keep = "3";
+            };
           };
           "doc" = {
             path = lib.mkDefault "${config.link.syncthingDir}/doc";
@@ -104,7 +118,7 @@ in {
             ];
             versioning = {
               type = "simple";
-              params.keep = "10";
+              params.keep = "5";
             };
           };
           "music" = {

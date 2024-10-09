@@ -11,9 +11,9 @@ with lib; {
       latex.enable = true;
       gaming.enable = true;
       python.enable = true;
-      golang.enable = true;
+      # golang.enable = true;
       # ansible.enable = true;
-      rust.enable = true;
+      # rust.enable = true;
       # beancount.enable = true;
     };
     # services.kdeconnect = {
@@ -61,8 +61,10 @@ with lib; {
             url =
               "https://www.bsi.bund.de/SiteGlobals/Functions/RSSFeed/RSSNewsfeed/ACS_RSSNewsfeed.xml"; # allianz für cybersicherheit
           }
-          {url="https://www.evilsocket.net/atom.xml";
-          }
+          { url = "https://www.evilsocket.net/atom.xml"; }
+          { url = "https://events.ccc.de/feed"; }
+          { url = "https://benjitrapp.github.io/feed.xml"; }
+          { url = "https://blog.fefe.de/rss.xml?html"; }
         ];
       };
     };
@@ -72,7 +74,7 @@ with lib; {
       jan # ai
       dust
       choose # cut/ awk alternative
-      duf
+      duf # better df
       procs
       rm-improved
       gping # ping with graph of response times
@@ -84,15 +86,17 @@ with lib; {
       spacer
       #csvlens
       curlie # httpie for curl
+      gpodder # podcast client
       #htmlq
       dogdns
-      zombietrackergps # gps track display
+      # zombietrackergps # gps track display
       # inlyne
       difftastic
       anime4k
       quickemu
       # quickgui
       code-cursor
+      aider-chat
       # protonmail-bridge-gui
       # protonmail-desktop
       #jetbrains.idea-community
@@ -103,7 +107,6 @@ with lib; {
       # freecad
       #openscad
       # dupeguru # good file deduplication
-      slack
       timer
       termdown
       espeak
@@ -128,6 +131,7 @@ with lib; {
       virt-manager
       spice
       spice-vdagent
+      gnome-network-displays # samsung smart view
       ## ISO stuff
       # (import
       # (builtins.fetchTarball {
@@ -142,7 +146,6 @@ with lib; {
       # gsettings-desktop-schemas # required for some apps like jami
       ## File Sync
       nextcloud-client
-      seafile-client
       ## Editor
       #mermaid-cli
       # logseq
@@ -152,7 +155,7 @@ with lib; {
       signal-desktop
       telegram-desktop
       discord
-      qtox
+      # qtox
       element-desktop
       openvpn
       ## keyboard
@@ -171,6 +174,9 @@ with lib; {
       ## Multimedia
       obs-studio
       obs-studio-plugins.obs-backgroundremoval
+      obs-studio-plugins.obs-ndi
+      easyeffects
+      artyFX
       #imagemagick
       brave # backup browser for teams # multiple problems with privacy during end of 2023
       # chromium

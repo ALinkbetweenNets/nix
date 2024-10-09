@@ -22,7 +22,7 @@ in {
     };
     port = mkOption {
       type = types.int;
-      default = 3004;
+      default = 5000;
       description = "port to run the application on";
     };
   };
@@ -32,6 +32,7 @@ in {
         enable = true;
         settings = {
           httpPort = cfg.port;
+          websocketPort = cfg.port + 1;
           httpAddress = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
           httpSafeOrigin = "https://cryptui.${config.link.domain}";
           httpUnsafeOrigin = "https://crypt.${config.link.domain}";

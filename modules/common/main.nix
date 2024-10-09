@@ -12,6 +12,7 @@ in {
       tailscale.enable = true;
       qmk.enable = true;
     };
+    boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
     services.rpcbind.enable = true; # for NFS
     # services.pcscd.enable = true; # smart card support
     services = {
@@ -27,7 +28,6 @@ in {
     environment.systemPackages = with pkgs; [
       flake-self.inputs.nsearch.packages.${pkgs.system}.default
       plasma5Packages.plasma-thunderbolt
-      vagrant
       aha # for kde settings
       glxinfo
       clinfo

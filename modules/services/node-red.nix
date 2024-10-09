@@ -1,9 +1,9 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.services.immich;
+let cfg = config.link.services.node-red;
 in {
-  options.link.services.immich = {
-    enable = mkEnableOption "activate immich";
+  options.link.services.node-red = {
+    enable = mkEnableOption "activate node-red";
     expose-port = mkOption {
       type = types.bool;
       default = config.link.service-ports-expose;
@@ -22,22 +22,16 @@ in {
     };
     port = mkOption {
       type = types.int;
-      default = 3001;
+      default = 1880;
       description = "port to run the application on";
     };
   };
   config = mkIf cfg.enable {
-    sops.secrets.immich = {
-      owner = "immich";
-      group = "immich";
-    };
-    services.immich = {
+    services.node-red = {
       enable = true;
       port = cfg.port;
-      host = if cfg.expose-port then "0.0.0.0" else "localhost";
-      secretsFile = config.sops.secrets.immich.path;
+      withNpmAndGcc=true;
     };
     networking.firewall.allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
-    sops.secrets.immich = { path = "/run/keys/immich.env"; };
   };
 }
