@@ -135,11 +135,11 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:3004/";
+        proxyPass = "http://${config.link.serviceHost}:5000/";
         # proxyWebsockets = true;
       };
       locations."/cryptpad_websocket" = {
-        proxyPass = "http://${config.link.serviceHost}:3003/";
+        proxyPass = "http://${config.link.serviceHost}:5001/";
         proxyWebsockets = true;
       };
     };
@@ -232,8 +232,12 @@
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
-      locations."/".proxyPass = "http://10.10.10.89:2283/";
-      locations."/".proxyWebsockets = true;
+      locations."/" = {
+        proxyPass = "http://${config.link.serviceHost}:${
+            toString config.link.services.immich.port
+          }";
+        proxyWebsockets = true;
+      };
     };
     "minio.${config.link.domain}" = {
       # enableACME = true;

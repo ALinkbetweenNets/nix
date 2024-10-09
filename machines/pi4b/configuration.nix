@@ -45,6 +45,10 @@
     # desktop.enable = true;
     syncthing.enable = true;
     syncthingDir = "/mnt/syncthing";
+    services = {
+      home-assistant.enable = true;
+      node-red.enable = true;
+    };
   };
   lollypops.deployment = {
     local-evaluation = true;
@@ -57,7 +61,14 @@
   services.frigate = {
     enable = true;
     hostname = "pi4b.monitor-banfish.ts.net";
-    settings.cameras = { };
+    settings.cameras = {
+      "pizero1" = {
+        ffmpeg.inputs = [{
+          path = "rtsp://192.168.123.108:8554/unicast";
+          roles = [ "detect" ];
+        }];
+      };
+    };
   };
   services.home-assistant = {
     enable = true;

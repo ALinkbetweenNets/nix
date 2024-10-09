@@ -54,11 +54,12 @@
   #     local all all trust
   #   '';
   # };
-  # services.unifi = {
-  #   enable = true;
-  #   openFirewall = true;
-  #   unifiPackage = pkgs.unifi;
-  # };
+  services.unifi = {
+    enable = true;
+    openFirewall = true;
+    unifiPackage = pkgs.unifi;
+  };
+  nixpkgs.config.permittedInsecurePackages = [ "unifi-controller-7.5.187" ];
   networking = {
     hostName = "dn";
     domain = "monitor-banfish.ts.net";

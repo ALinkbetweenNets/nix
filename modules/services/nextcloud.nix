@@ -34,6 +34,7 @@ in {
     services = {
       nextcloud = {
         enable = true;
+        package = pkgs.nextcloud30;
         hostName = "nextcloud.${config.link.domain}";
         settings.trusted_proxies = [ "100.86.79.82" ];
         config = {
@@ -42,7 +43,6 @@ in {
         };
         datadir = "/var/lib/nextcloud-data";
         #secretFile = "${config.link.secrets}/nextcloud-secrets.json";
-        package = pkgs.nextcloud29;
         extraApps = with config.services.nextcloud.package.packages.apps; {
           inherit bookmarks calendar contacts deck mail notes onlyoffice polls
             tasks twofactor_webauthn;
