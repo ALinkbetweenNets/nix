@@ -135,11 +135,11 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:3004/";
+        proxyPass = "http://${config.link.serviceHost}:5000/";
         # proxyWebsockets = true;
       };
       locations."/cryptpad_websocket" = {
-        proxyPass = "http://${config.link.serviceHost}:3003/";
+        proxyPass = "http://${config.link.serviceHost}:5001/";
         proxyWebsockets = true;
       };
     };
