@@ -7,32 +7,23 @@
         content = {
           type = "gpt";
           partitions = {
-            # {
-            #   name = "boot";
-            #   start = "0";
-            #   end = "1M";
-            #   # type = "EF02";
-            #   flags = [ "bios_grub" ];
-            # }
-            ESP = {
+            boot = {
               priority = 1;
-              name = "ESP";
-              start = "1M";
-              end = "512M";
+              size = "1M";
+              type = "EF02";
+            };
+            ESP = {
+              size = "512M";
               type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                #mountOptions = [
-                #  "defaults"
-                #];
+                mountOptions = [ "defaults" ];
               };
             };
-            root = {
-              name = "luks";
-              start = "512M";
-              end = "100%";
+            luks = {
+              size = "100%";
               content = {
                 type = "luks";
                 name = "crypted";
