@@ -16,8 +16,8 @@
     # fs.luks.enable = true;
     # fs.ntfs.enable = true;
     ##
-    # vm.enable = true;
-    # cpu-amd.enable = true;
+    vm.enable = true;
+    cpu-amd.enable = true;
     # nvidia.enable = true;
     ##
     # docker.enable = true;
