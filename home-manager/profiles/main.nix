@@ -72,6 +72,7 @@ with lib; {
     home.packages = with pkgs; [
       teams-for-linux
       jan # ai
+      qrtool
       dust
       choose # cut/ awk alternative
       duf # better df
