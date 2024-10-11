@@ -37,9 +37,10 @@ in {
 
     users.users."l".extraGroups = [ "video" "audio" ];
 
-    hardware = {
+    hardware.graphics = {
       # fixes'EGL_EXT_platform_base not supported'
-      graphics.enable = true;
+      enable = true;
+      enable32Bit = true;
     };
   };
 }
