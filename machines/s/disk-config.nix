@@ -22,11 +22,11 @@
                 mountOptions = [ "defaults" ];
               };
             };
-            luks = {
+            luks-root = {
               size = "100%";
               content = {
                 type = "luks";
-                name = "crypted";
+                name = "luks-root";
                 # disable settings.keyFile if you want to use interactive password entry
                 # passwordFile = "/tmp/luks.key"; # Interactive
                 settings = {
@@ -50,11 +50,11 @@
         content = {
           type = "gpt";
           partitions = {
-            luks = {
+            luks-data = {
               size = "100%";
               content = {
                 type = "luks";
-                name = "crypted";
+                name = "luks-data";
                 # disable settings.keyFile if you want to use interactive password entry
                 # passwordFile = "/tmp/luks.key"; # Interactive
                 settings = {
