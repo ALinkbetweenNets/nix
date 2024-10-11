@@ -143,21 +143,21 @@
         proxyWebsockets = true;
       };
     };
+    "cryptui.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://${config.link.serviceHost}:5000/";
+        proxyWebsockets = true;
+      };
+    };
     "cast.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://${config.link.serviceHost}:8888/";
-        proxyWebsockets = true;
-      };
-    };
-    "cryptui.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:3004/";
         proxyWebsockets = true;
       };
     };
