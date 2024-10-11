@@ -38,7 +38,7 @@ in {
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
       logError = "stderr debug";
-      package = pkgs.nginxStable.override { openssl = pkgs.libressl; };
+      package = pkgs.nginxMainline.override { openssl = pkgs.libressl; };
       clientMaxBodySize = "1000m";
       commonHttpConfig = ''
         # sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
