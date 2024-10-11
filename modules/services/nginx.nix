@@ -64,8 +64,9 @@ in {
         add_header X-Frame-Options sameorigin;
         # Prevent injection of code in other mime types (XSS Attacks)
         add_header X-Content-Type-Options nosniff;
-        # This might create errors
-        proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
+        # This might create errors - doc
+        # Yep it destroyed the immich login - me
+        #proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
         add_header X-Real-IP $remote_addr;
         add_header X-Forwarded-For $proxy_add_x_forwarded_for;
         add_header X-Forwarded-Proto https;
