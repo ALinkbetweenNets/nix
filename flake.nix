@@ -38,8 +38,8 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
     crab_share = { url = "github:lounge-rocks/crab_share"; };
-    nixvim = {
-      url = "github:nix-community/nixvim";
+    nvf = {
+      url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nsearch = {
@@ -210,7 +210,7 @@
         nix = { pkgs, ... }: {
           # import home manager modules from this flake
           imports = [
-            inputs.nixvim.homeManagerModules.nixvim
+            inputs.nvf.homeManagerModules.default
             inputs.plasma-manager.homeManagerModules.plasma-manager
             # inputs.vscode-server.nixosModules.home
           ];
