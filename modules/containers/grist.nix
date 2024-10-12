@@ -1,8 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
-let cfg = config.link.services.containers.grist;
+let cfg = config.link.containers.grist;
 in {
-  options.link.services.containers.grist = {
+  options.link.containers.grist = {
     enable = mkEnableOption "activate grist container";
     expose-port = mkOption {
       type = types.bool;
@@ -41,6 +41,7 @@ in {
       volumes = [ "${config.link.storage}/grist:/persist" ];
       ports = [ "8484:8484" ];
     };
+    sops.secrets."grist" = { };
     # sops.secrets = {
     #   "oid/grist/clientId" = {
     #     group = "docker";
