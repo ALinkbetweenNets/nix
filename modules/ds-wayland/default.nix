@@ -40,7 +40,6 @@ in {
     hardware.graphics = {
       # fixes'EGL_EXT_platform_base not supported'
       enable = true;
-      enable32Bit = true;
     };
   };
 }
