@@ -58,6 +58,8 @@
     enable = true;
     openFirewall = true;
     unifiPackage = pkgs.unifi;
+    mongodbPackage = pkgs.mongodb-6_0;
+
   };
   nixpkgs.config.permittedInsecurePackages = [ "unifi-controller-7.5.187" ];
   networking = {
