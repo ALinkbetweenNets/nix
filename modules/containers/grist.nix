@@ -1,8 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
-let cfg = config.link.containers.grist;
+let cfg = config.link.services.containers;
 in {
-  options.link.containers.grist = {
+  options.link.services.containers = {
     enable = mkEnableOption "activate grist container";
     expose-port = mkOption {
       type = types.bool;
