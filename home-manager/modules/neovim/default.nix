@@ -140,7 +140,7 @@ with lib; {
             navbuddy.enable = true;
           };
           smartcolumn = {
-            enable = true;
+            enable = false;
             setupOpts.custom_colorcolumn = {
               # this is a freeform module, it's `buftype = int;` for configuring column position
               nix = "110";
