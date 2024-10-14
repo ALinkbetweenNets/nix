@@ -36,6 +36,7 @@ in {
         IMMICH_MACHINE_LEARNING_URL = "http://localhost:3003";
         IMMICH_LOG_LEVEL = "verbose";
       };
+      mediaLocation = "${config.link.storage}/immich";
       enable = true;
       port = cfg.port;
       host = if cfg.expose-port then "0.0.0.0" else "localhost";

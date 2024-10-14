@@ -24,8 +24,8 @@
     fail2ban.enable = true;
     ##
     domain = "alinkbetweennets.de";
-    # storage = "/rz/srv";
-    # syncthingDir = "/rz/syncthing";
+    storage = "/hdd/lib";
+    syncthingDir = "/hdd/syncthing";
     # secrets = "/pwd";
     #seafile.enable = true;
     # service-ip = "10.0.1.1";
@@ -123,6 +123,8 @@
     };
     eth = "eth0@if146";
   };
+  services.postgresql.dataDir =
+    "${config.link.storage}/postgresql/${config.services.postgresql.package.psqlSchema}";
   services.ollama = {
     enable = true;
     port = 11434;

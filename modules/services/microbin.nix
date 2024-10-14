@@ -27,11 +27,12 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    sops.secrets.microbin={};
+    sops.secrets.microbin = { };
     services = {
       microbin = {
         enable = true;
-        passwordFile=config.sops.secrets.microbin.path;
+        passwordFile = config.sops.secrets.microbin.path;
+        dataDir = "${config.link.storage}/microbin";
         settings = {
           MICROBIN_HIDE_LOGO = true;
           MICROBIN_PORT = cfg.port;
