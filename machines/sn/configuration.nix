@@ -63,6 +63,7 @@
       minio.enable = true;
       immich.enable = true;
       audiobookshelf.enable = true;
+      openvscode-server.enable = true;
       nextcloud = {
         enable = true;
         nginx-expose = true;
