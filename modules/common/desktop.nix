@@ -19,6 +19,10 @@ in {
       ssh.setXAuthLocation = true;
       kdeconnect.enable = true;
       ydotool.enable = true;
+      java = {
+        binfmt = true;
+        enable = true;
+      };
     };
     environment.systemPackages = with pkgs;
       [
