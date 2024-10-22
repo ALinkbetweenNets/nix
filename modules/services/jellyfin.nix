@@ -32,6 +32,7 @@ in {
       jellyfin = {
         # package = pkgs.cudapkgs.jellyfin;
         enable = true;
+        dataDir = "${config.link.storage}/jellyfin";
       };
       nginx.virtualHosts."jellyfin.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;

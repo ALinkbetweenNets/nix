@@ -36,7 +36,7 @@ in {
     services = {
       vaultwarden = {
         enable = true;
-        backupDir = "/var/lib/backup/vaultwarden/";
+        backupDir = "${config.link.storage}/backup/vaultwarden/";
         environmentFile = config.sops.secrets."vaultwarden".path;
         config = {
           DOMAIN = "https://vaultwarden.${config.link.domain}";

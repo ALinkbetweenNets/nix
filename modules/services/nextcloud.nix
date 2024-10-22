@@ -41,7 +41,7 @@ in {
           adminuser = "l";
           adminpassFile = config.sops.secrets."nextcloud".path;
         };
-        datadir = "/var/lib/nextcloud-data";
+        datadir = "${config.link.storage}/nextcloud-data";
         #secretFile = "${config.link.secrets}/nextcloud-secrets.json";
         extraApps = with config.services.nextcloud.package.packages.apps; {
           inherit bookmarks calendar contacts deck mail notes onlyoffice polls
@@ -57,7 +57,7 @@ in {
         https = true;
         configureRedis = true;
         database.createLocally = true;
-        #home = "${config.link.storage}/nextcloud";
+        home = "${config.link.storage}/nextcloud";
       };
       nginx = if (!cfg.nginx) then {
         enable = true;

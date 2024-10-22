@@ -24,8 +24,8 @@
     fail2ban.enable = true;
     ##
     domain = "alinkbetweennets.de";
-    # storage = "/rz/srv";
-    # syncthingDir = "/rz/syncthing";
+    storage = "/hdd/lib";
+    syncthingDir = "/hdd/syncthing";
     # secrets = "/pwd";
     #seafile.enable = true;
     # service-ip = "10.0.1.1";
@@ -124,25 +124,27 @@
     # };
     eth = "eth0@if146";
   };
-  # services.ollama = {
-  #   enable = true;
-  #   port = 11434;
-  #   host = "100.122.145.19";
-  #   loadModels = [ "llama3.1:70b" "nomic-embed-text" "starcoder2:3b" ];
-  # };
-  # services.owncast = {
-  #   enable = true;
-  #   openFirewall = true;
-  #   listen = "0.0.0.0";
-  #   rtmp-port = 1935;
-  #   port = 8888;
-  # };
-  # services.onedrive.enable = true;
-  # services.clamav = {
-  #   # Antivirus
-  #   daemon.enable = true;
-  #   updater.enable = true;
-  # };
+  services.postgresql.dataDir =
+    "${config.link.storage}/postgresql/${config.services.postgresql.package.psqlSchema}";
+  services.ollama = {
+    enable = true;
+    port = 11434;
+    host = "100.122.145.19";
+    loadModels = [ "llama3.1:70b" "nomic-embed-text" "starcoder2:3b" ];
+  };
+  services.owncast = {
+    enable = true;
+    openFirewall = true;
+    listen = "0.0.0.0";
+    rtmp-port = 1935;
+    port = 8888;
+  };
+  services.onedrive.enable = true;
+  services.clamav = {
+    # Antivirus
+    daemon.enable = true;
+    updater.enable = true;
+  };
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIELDx8vTqed3YBepK2EEcM0vsLZX3g9gxwzVknwYlAgh root@sn"
   ];
