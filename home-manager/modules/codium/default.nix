@@ -19,6 +19,11 @@ in {
           #vscodevim.vim
           arrterian.nix-env-selector
           # dracula-theme.theme-dracula
+          christian-kohler.path-intellisense
+          dbaeumer.vscode-eslint
+          christian-kohler.npm-intellisense
+          yoavbls.pretty-ts-errors
+          bradlc.vscode-tailwindcss
           eamodio.gitlens
           esbenp.prettier-vscode
           firefox-devtools.vscode-firefox-debug
@@ -47,6 +52,9 @@ in {
             "6acdded8bcca052b221acfd4188674e97a9b2e1dfb8ab0d4682cec96a2131094";
         }];
       userSettings = {
+        "[typescriptreact]" = {
+          "editor.defaultFormatter" = "vscode.typescript-language-features";
+        };
         "[nix]" = { "editor.defaultFormatter" = "jnoortheen.nix-ide"; };
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nil";
