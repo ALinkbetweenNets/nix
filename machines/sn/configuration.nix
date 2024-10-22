@@ -43,85 +43,85 @@
     # };
     # zola.enable = true;
     service-ports-expose = true;
-    # services = {
-    #   # tt-rss.enable = true;
-    #   searx.enable = true;
-    #   microbin.enable = true;
-    #   mailserver.enable = true;
-    #   cryptpad.enable = true;
-    #   # photoprism.enable = true; # WIP
-    #   keycloak.enable = true;
-    #   #gitea.enable = true;
-    #   gitlab.enable = true;
-    #   # grafana.enable = true;
-    #   # # seafile.enable = true;
-    #   # # xandikos.enable = true; # WIP
-    #   hedgedoc.enable = true;
-    #   jellyfin.enable = true;
-    #   mealie.enable = true;
-    #   # jellyseer.enable = true;
-    #   minio.enable = true;
-    #   immich.enable = true;
-    #   audiobookshelf.enable = true;
-    #   openvscode-server.enable = true;
-    #   nextcloud = {
-    #     enable = true;
-    #     nginx-expose = true;
-    #   };
-    #   # nfs.enable = true;
-    #   outline = {
-    #     enable = true;
-    #     # nginx-expose = true;
-    #     oidClientId =
-    #       "7cec0458291c1d98c37bce1ad62ea7b02790d7330f1ce5b6a25d9da95c6b3108";
-    #   };
-    #   paperless.enable = true;
-    #   vaultwarden.enable = true;
-    #   # matrix.enable = true;
-    #   restic-server.enable = true;
-    #   containers.grist.enable = true;
-    #   # coturn.enable = true;
-    #   # dns.enable = true;
-    #   restic-client = {
-    #     enable = true;
-    #     backup-paths-onedrive = [
-    #       "/home/l/.data-mirror"
-    #       "/home/l/.ssh"
-    #       "/home/l/archive"
-    #       "/home/l/doc"
-    #       "/home/l/Music"
-    #       "/home/l/sec"
-    #       "/home/l/Sync"
-    #       "/home/l/uni"
-    #       "/home/l/w"
-    #     ];
-    #     backup-paths-lenny-storagebox = [
-    #       "/home/l/.data-mirror"
-    #       "/home/l/.ssh"
-    #       # "/home/l/archive"
-    #       "/home/l/doc"
-    #       "/home/l/Music"
-    #       "/home/l/sec"
-    #       "/home/l/Sync"
-    #       "/home/l/uni"
-    #       "/home/l/w"
-    #     ];
-    #     backup-paths-pi4b = [
-    #       "/home/l/.ssh"
-    #       "/home/l/archive"
-    #       "/home/l/.data-mirror"
-    #       "/home/l/Sync"
-    #       "/home/l/doc"
-    #       "/home/l/uni"
-    #     ];
-    #   };
-    #   # wg-link.enable = true;
-    #   # services.jitsi = {
-    #   #   enable = true;
-    #   #   expose = false;
-    #   # };
-    #   # keycloak.enable = true;
-    # };
+    services = {
+      # tt-rss.enable = true;
+      searx.enable = true;
+      microbin.enable = true;
+      mailserver.enable = true;
+      cryptpad.enable = true;
+      # photoprism.enable = true; # WIP
+      keycloak.enable = true;
+      #gitea.enable = true;
+      gitlab.enable = true;
+      # grafana.enable = true;
+      # # seafile.enable = true;
+      # # xandikos.enable = true; # WIP
+      hedgedoc.enable = true;
+      jellyfin.enable = true;
+      mealie.enable = true;
+      # jellyseer.enable = true;
+      minio.enable = true;
+      immich.enable = true;
+      audiobookshelf.enable = true;
+      openvscode-server.enable = true;
+      nextcloud = {
+        enable = true;
+        nginx-expose = true;
+      };
+      # nfs.enable = true;
+      outline = {
+        enable = true;
+        # nginx-expose = true;
+        oidClientId =
+          "7cec0458291c1d98c37bce1ad62ea7b02790d7330f1ce5b6a25d9da95c6b3108";
+      };
+      paperless.enable = true;
+      vaultwarden.enable = true;
+      # matrix.enable = true;
+      restic-server.enable = true;
+      containers.grist.enable = true;
+      # coturn.enable = true;
+      # dns.enable = true;
+      restic-client = {
+        enable = true;
+        backup-paths-onedrive = [
+          "/home/l/.data-mirror"
+          "/home/l/.ssh"
+          "/home/l/archive"
+          "/home/l/doc"
+          "/home/l/Music"
+          "/home/l/sec"
+          "/home/l/Sync"
+          "/home/l/uni"
+          "/home/l/w"
+        ];
+        backup-paths-lenny-storagebox = [
+          "/home/l/.data-mirror"
+          "/home/l/.ssh"
+          # "/home/l/archive"
+          "/home/l/doc"
+          "/home/l/Music"
+          "/home/l/sec"
+          "/home/l/Sync"
+          "/home/l/uni"
+          "/home/l/w"
+        ];
+        backup-paths-pi4b = [
+          "/home/l/.ssh"
+          "/home/l/archive"
+          "/home/l/.data-mirror"
+          "/home/l/Sync"
+          "/home/l/doc"
+          "/home/l/uni"
+        ];
+      };
+      # wg-link.enable = true;
+      # services.jitsi = {
+      #   enable = true;
+      #   expose = false;
+      # };
+      # keycloak.enable = true;
+    };
     eth = "eth0@if146";
   };
   services.postgresql.dataDir =
