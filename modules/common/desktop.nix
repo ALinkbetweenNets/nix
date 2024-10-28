@@ -129,13 +129,15 @@ in {
       # alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
-      # extraConfig.pipewire."92-low-latency" = {
-      #   context.properties = {
-      #     default.clock.rate = 48000;
-      #     default.clock.quantum = 32;
-      #     default.clock.min-quantum = 32;
-      #     default.clock.max-quantum = 32;
-      #   };
+      extraConfig.pipewire."92-low-latency" = {
+        "context.properties" = {
+          "default.clock.rate" = 48000;
+          "default.clock.allowed-rates" = [ 48000 ];
+          "default.clock.quantum" = 2018;
+          "default.clock.min-quantum" = 1024;
+          "default.clock.max-quantum" = 2048;
+        };
+      };
       #   context.modules = [{
       #     name = "libpipewire-module-protocol-pulse";
       #     args = {
@@ -151,6 +153,7 @@ in {
       #     resample.quality = 1;
       #   };
       # };
+
     };
     services = {
       dbus.enable = true;
