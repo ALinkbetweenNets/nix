@@ -79,7 +79,7 @@ with lib; {
           enable = true;
           type = "nvim-cmp";
         };
-        filetree = { nvimTree = { enable = true; }; };
+        # filetree = { nvimTree = { enable = true; }; };
         tabline = { nvimBufferline.enable = true; };
         treesitter.context.enable = true;
         binds = {
