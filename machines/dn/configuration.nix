@@ -23,6 +23,7 @@
     # home-assistant.enable = true;
     docker.enable = true;
     services = {
+      ollama.enable = true;
       # matrix.enable = true;
       # immich.enable = true;
       restic-client = {
@@ -47,12 +48,6 @@
         # ];
       };
     };
-  };
-  services.ollama = {
-    enable = true;
-    port = 11434;
-    host = "0.0.0.0";
-    loadModels = [ "llama3.1:70b" "nomic-embed-text" "starcoder2:3b" ];
   };
   services.unifi = {
     enable = true;
