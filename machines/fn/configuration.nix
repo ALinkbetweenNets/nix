@@ -52,18 +52,17 @@
       #    "/home/l/sec"
       #    "/home/l/w"
       #  ];
-      #  backup-paths-pi4b = [
-      #    "/home/l/.ssh"
-      #    "/home/l/archive"
-      #    "/home/l/doc"
-      #    "/home/l/Music"
-      #    "/home/l/obsidian"
-      #    "/home/l/plasma-vault"
-      #    "/home/l/sec"
-      #    "/home/l/w"
-      #    "/home/l/Pictures"
-      #    "/home/l/uni"
-      #  ];
+       backup-paths-pi4b = [
+         "/home/l/.ssh"
+         "/home/l/archive"
+         "/home/l/doc"
+         "/home/l/Music"
+         "/home/l/obsidian"
+         "/home/l/sec"
+         "/home/l/w"
+         "/home/l/Pictures"
+         "/home/l/uni"
+       ];
     };
   };
   services = {
