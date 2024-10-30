@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.services.jellyfin;
+let cfg = config.link.services.ollama;
 in {
-  options.link.services.jellyfin = {
-    enable = mkEnableOption "activate jellyfin";
+  options.link.services.ollama = {
+    enable = mkEnableOption "activate ollama";
     expose-port = mkOption {
       type = types.bool;
       default = config.link.service-ports-expose;
