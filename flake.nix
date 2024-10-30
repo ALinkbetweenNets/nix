@@ -46,7 +46,6 @@
       url = "github:niksingh710/nsearch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zen-browser.url = "github:ch4og/zen-browser-flake";
     bonn-mensa = {
       url = "github:alexanderwallau/bonn-mensa";
       inputs = { nixpkgs.follows = "nixpkgs"; };
