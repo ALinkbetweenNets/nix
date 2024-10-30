@@ -59,7 +59,6 @@
   };
   services.nginx.virtualHosts = {
     "grist.${config.link.domain}" = {
-      enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
