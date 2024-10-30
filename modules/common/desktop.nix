@@ -26,6 +26,7 @@ in {
     };
     environment.systemPackages = with pkgs;
       [
+        flake-self.inputs.zen-browser.packages.x86_64-linux.specific
         wezterm
         kdePackages.partitionmanager
         adwaita-icon-theme
