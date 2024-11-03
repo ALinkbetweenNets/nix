@@ -49,7 +49,7 @@ in {
               if cfg.expose-port then [ "0.0.0.0" ] else [ "127.0.0.1" ];
             type = "http";
             tls = false;
-            x_forwarded = cfg.nginx;
+            x_forwarded = true;
             resources = [
               {
                 compress = true;
@@ -62,7 +62,8 @@ in {
             ];
           }];
         };
-        extraConfigFiles = [ "/pwd/matrix-synapse-registration" ];
+        extraConfigFiles =
+          [ config.sops.secrets."matrix-synapse-registration".path ];
       };
       postgresql = {
         enable = true;
