@@ -52,26 +52,26 @@
       #    "/home/l/sec"
       #    "/home/l/w"
       #  ];
-       backup-paths-pi4b = [
-         "/home/l/.ssh"
-         "/home/l/archive"
-         "/home/l/doc"
-         "/home/l/Music"
-         "/home/l/obsidian"
-         "/home/l/sec"
-         "/home/l/w"
-         "/home/l/Pictures"
-         "/home/l/uni"
-       ];
+      backup-paths-pi4b = [
+        "/home/l/.ssh"
+        "/home/l/archive"
+        "/home/l/doc"
+        "/home/l/Music"
+        "/home/l/obsidian"
+        "/home/l/sec"
+        "/home/l/w"
+        "/home/l/Pictures"
+        "/home/l/uni"
+      ];
     };
   };
   services = {
-    ollama = {
-      enable = true;
-      port = 11434;
-      host = "127.0.0.1";
-      loadModels = [ "llama3.1:70b" "nomic-embed-text" "starcoder2:3b" ];
-    };
+    # ollama = {
+    #   enable = true;
+    #   port = 11434;
+    #   host = "127.0.0.1";
+    #   loadModels = [ "llama3.1:70b" "nomic-embed-text" "starcoder2:3b" ];
+    # };
     # private-gpt = {
     #   enable = true;
     #   settings = {
@@ -100,11 +100,11 @@
     #     vectorstore = { database = "qdrant"; };
     #   };
     # };
-    nextjs-ollama-llm-ui = {
-      enable = true;
-      port = 11444;
-      ollamaUrl = "127.0.0.1:11444";
-    };
+    # nextjs-ollama-llm-ui = {
+    #   enable = true;
+    #   port = 11444;
+    #   ollamaUrl = "127.0.0.1:11444";
+    # };
   };
   nixpkgs.config.permittedInsecurePackages = [ "unifi-controller-7.5.187" ];
   boot.kernelParams = [ "quiet" ];

@@ -58,14 +58,14 @@
     };
   };
   services.nginx.virtualHosts = {
-    # services.nginx.virtualHosts."grist.${config.link.domain}" = {
-    #   enableACME = true;
-    # useACMEHost = config.link.domain;
+    # "grist.${config.link.domain}" = {
+    #   useACMEHost = config.link.domain;
     #   forceSSL = true;
     #   locations."/" = {
-    #     proxyPass = "http://127.0.0.1:8484";
+    #     proxyPass = "http://${config.link.serviceHost}:8484";
     #     proxyWebsockets = true;
     #   };
+    # };
     # services.nginx.virtualHosts."diagrams.${config.link.domain}" = {
     #   enableACME = true;
     #   forceSSL = true;
