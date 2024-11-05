@@ -108,11 +108,7 @@
         ];
         backup-paths-pi4b = [
           "/home/l/.ssh"
-          "/home/l/archive"
-          "/home/l/.data-mirror"
-          "/home/l/Sync"
-          "/home/l/doc"
-          "/home/l/uni"
+          "/hdd/lib"
         ];
       };
       # wg-link.enable = true;
