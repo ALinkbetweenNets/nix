@@ -172,7 +172,8 @@ with lib; {
       # vhs # generating terminal GIFs with code (what about asciinema)
       # surfraw # TUI search engine interface # broken in nixos (240102)
       translate-shell
-      #ffmpeg_6
+      ffmpeg
+      gallery-dl
       ## Multimedia
       obs-studio
       obs-studio-plugins.obs-backgroundremoval
