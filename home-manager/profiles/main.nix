@@ -65,6 +65,7 @@ with lib; {
           { url = "https://events.ccc.de/feed"; }
           { url = "https://benjitrapp.github.io/feed.xml"; }
           { url = "https://blog.fefe.de/rss.xml?html"; }
+          { url = "https://voidcruiser.nl/index.xml"; }
         ];
       };
     };
