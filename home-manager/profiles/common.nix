@@ -66,9 +66,7 @@ with lib; {
     # Home-manager nixpkgs config
     nixpkgs = {
       # Allow "unfree" licenced packages
-      config = {
-        allowUnfree = true;
-      };
+      config.allowUnfree = true;
       overlays = [
         flake-self.overlays.default
         flake-self.inputs.bonn-mensa.overlays.default
