@@ -12,7 +12,8 @@ in {
       tailscale.enable = true;
       qmk.enable = true;
     };
-    boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+    boot.extraModulePackages = with config.boot.kernelPackages;
+      [ v4l2loopback ];
     services.rpcbind.enable = true; # for NFS
     # services.pcscd.enable = true; # smart card support
     services = {
@@ -38,9 +39,9 @@ in {
       ddcui
       ddcutil
     ];
-    hardware.i2c={enable=true;};
-    users.groups.i2c={};
-    services.udev.packages = with pkgs; [ddcutil];
+    hardware.i2c.enable = true;
+    users.groups.i2c = { };
+    services.udev.packages = with pkgs; [ ddcutil ];
     hardware.hackrf.enable = true;
     programs = {
       noisetorch.enable = true;
@@ -50,7 +51,7 @@ in {
         openFirewall = true;
       };
     };
-    virtualisation.waydroid.enable = true;
+    # virtualisation.waydroid.enable = true;
     networking.firewall.allowedTCPPorts = [ 24800 ];
     # networking.networkmanager.appendNameservers = [
     #   "1.1.1.1"
