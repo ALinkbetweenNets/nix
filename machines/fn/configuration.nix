@@ -34,6 +34,7 @@
     # xrdp.enable = true;
     # eth = "wlp0s20f3";
     docker.enable = true;
+    i2p.enable = true;
     services.restic-client = {
       enable = true;
       backup-paths-sn = [
