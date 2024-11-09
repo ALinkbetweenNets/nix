@@ -66,7 +66,9 @@
       ];
     };
   };
+  users.users.l.extraGroups = [ config.services.kubo.group ];
   services = {
+    kubo.enable = true;
     # ollama = {
     #   enable = true;
     #   port = 11434;
