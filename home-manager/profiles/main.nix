@@ -84,7 +84,7 @@ with lib; {
       zed-editor
       erdtree
       sd
-      tailspin
+      # tailspin # broken
       spacer
       #csvlens
       curlie # httpie for curl
