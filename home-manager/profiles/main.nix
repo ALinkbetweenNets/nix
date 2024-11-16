@@ -120,7 +120,7 @@ with lib; {
       #piper-tts # text to speech synthesizer with models (download https://huggingface.co/rhasspy/piper-voices/tree/v1.0.0/en/en_US/lessac/high onnx and json to Downloads folder)
       gnome-disk-utility
       #gparted
-      vagrant # quick tmp vm creation
+      # vagrant # quick tmp vm creation # broken
       restic
       #hugo # static site generator
       #ghosttohugo
