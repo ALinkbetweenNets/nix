@@ -177,7 +177,7 @@ with lib; {
       ## Multimedia
       obs-studio
       obs-studio-plugins.obs-backgroundremoval
-      obs-studio-plugins.obs-ndi
+      # obs-studio-plugins.obs-ndi # broken
       easyeffects
       artyFX
       #imagemagick
