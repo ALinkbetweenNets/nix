@@ -24,8 +24,8 @@
     fail2ban.enable = true;
     ##
     domain = "alinkbetweennets.de";
-    storage = "/var/lib";
-    # syncthingDir = "//syncthing";
+    storage = "/hdd/lib";
+    syncthingDir = "/hdd/syncthing";
     # secrets = "/pwd";
     #seafile.enable = true;
     # service-ip = "10.0.1.1";
