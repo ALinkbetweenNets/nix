@@ -59,6 +59,7 @@ with lib; {
       "image/webp" = [ "org.kde.gwenview.desktop" ];
       "text/calendar" = [ "thunderbird.desktop" ];
       "text/javascript" = [ "codium.desktop" ];
+      "text/markdown" = [ "neovide.desktop" ];
       "text/plain" = [ "org.kde.kate.desktop" ];
       "text/xml" = [ "org.kde.kate.desktop" ];
       "video/mp4" = [ "vlc.desktop" ];
