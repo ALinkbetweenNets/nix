@@ -69,6 +69,7 @@ with lib; {
     # Packages to install on all desktop systems
     home.packages = with pkgs;
       [
+        neovide # neovim frontend
         ## Basics
         nfs-utils
         ## Spelling
