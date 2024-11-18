@@ -24,7 +24,7 @@
     fail2ban.enable = true;
     ##
     domain = "alinkbetweennets.de";
-    storage = "/hdd/lib";
+    storage = "/var/lib";
     syncthingDir = "/hdd/syncthing";
     # secrets = "/pwd";
     #seafile.enable = true;
@@ -106,10 +106,7 @@
           "/home/l/uni"
           "/home/l/w"
         ];
-        backup-paths-pi4b = [
-          "/home/l/.ssh"
-          "/hdd/lib"
-        ];
+        backup-paths-pi4b = [ "/home/l/.ssh" "/hdd/lib" ];
       };
       # wg-link.enable = true;
       # services.jitsi = {
