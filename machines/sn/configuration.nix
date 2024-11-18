@@ -25,7 +25,7 @@
     ##
     domain = "alinkbetweennets.de";
     storage = "/var/lib";
-    # syncthingDir = "/hdd/syncthing";
+    syncthingDir = "/var/lib/syncthing-data";
     # secrets = "/pwd";
     #seafile.enable = true;
     # service-ip = "10.0.1.1";
