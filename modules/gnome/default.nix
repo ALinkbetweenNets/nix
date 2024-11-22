@@ -34,7 +34,7 @@ in {
       gnomeExtensions.wifi-qrcode
       gnomeExtensions.window-gestures
       gnomeExtensions.window-on-top
-      gnomeExtensions.yks-timer
+      # gnomeExtensions.yks-timer # broken
       gnomeExtensions.zen
     ];
     qt.platformTheme = "gnome";
