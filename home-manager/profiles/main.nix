@@ -212,6 +212,7 @@ with lib; {
       # kdePackages.neochat
       kdePackages.akonadi
       kdePackages.kalarm
+      kdePackages.krohnkite
       kdePackages.kteatime
       ktimetracker
       libsForQt5.krunner-symbols
