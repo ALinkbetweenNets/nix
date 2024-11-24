@@ -106,7 +106,7 @@
           "/home/l/uni"
           "/home/l/w"
         ];
-        backup-paths-pi4b = [ "/home/l/.ssh" "/hdd/lib" ];
+        backup-paths-pi4b = [ "/home/l/.ssh" "/var/lib" "/var/gitlab" ];
       };
       # wg-link.enable = true;
       # services.jitsi = {
