@@ -59,7 +59,7 @@
   # };
 
   networking = {
-    firewall.allowedTCPPorts = [ 443 22 ];
+    firewall.allowedTCPPorts = [ 443 22 41623 ];
     firewall.allowedUDPPorts = [ 51820 51822 ];
     hostName = "v2202312204123249185";
     domain = "ultrasrv.de";
