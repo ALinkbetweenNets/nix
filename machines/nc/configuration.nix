@@ -228,6 +228,13 @@
       locations."/".proxyPass = "http://${config.link.serviceHost}:2500/";
       locations."/".proxyWebsockets = true;
     };
+    "karsten.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/".proxyPass = "http://fn:5000/";
+      locations."/".proxyWebsockets = true;
+    };
     "immich.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
