@@ -18,7 +18,7 @@
     ##
     # vm.enable = true;
     # cpu-amd.enable = true;
-    # nvidia.enable = true;
+    nvidia.enable = true;
     ##
     docker.enable = true;
     fail2ban.enable = true;
@@ -106,7 +106,7 @@
           "/home/l/uni"
           "/home/l/w"
         ];
-        backup-paths-pi4b = [ "/home/l/.ssh" "/hdd/lib" ];
+        backup-paths-pi4b = [ "/home/l/.ssh" "/var/lib" "/var/gitlab" ];
       };
       # wg-link.enable = true;
       # services.jitsi = {
@@ -208,7 +208,7 @@
   lollypops.deployment = {
     # local-evaluation = true;
     ssh = {
-      host = "sn";
+      host = "sn.monitor-banfish.ts.net";
       user = "l";
     };
     # sudo.enable = true;
