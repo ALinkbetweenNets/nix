@@ -18,7 +18,7 @@
     ##
     # vm.enable = true;
     # cpu-amd.enable = true;
-    # nvidia.enable = true;
+    nvidia.enable = true;
     ##
     docker.enable = true;
     fail2ban.enable = true;
@@ -208,7 +208,7 @@
   lollypops.deployment = {
     # local-evaluation = true;
     ssh = {
-      host = "sn";
+      host = "sn.monitor-banfish.ts.net";
       user = "l";
     };
     # sudo.enable = true;
