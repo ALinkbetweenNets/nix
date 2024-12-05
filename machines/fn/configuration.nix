@@ -66,7 +66,6 @@
       ];
     };
   };
-  users.users.l.extraGroups = [ config.services.kubo.group ];
   services = {
     # ollama = {
     #   enable = true;
