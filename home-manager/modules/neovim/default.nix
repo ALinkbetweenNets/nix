@@ -49,17 +49,16 @@ with lib; {
           };
         };
         visuals = {
-          enable = true;
-          nvimWebDevicons.enable = true;
-          scrollBar.enable = true;
-          smoothScroll.enable = true;
-          cellularAutomaton.enable = false;
+          nvim-web-devicons.enable = true;
+          nvim-scrollbar.enable = true;
+          cinnamon-nvim.enable = true;
+          cellular-automaton.enable = false;
           fidget-nvim.enable = true;
           highlight-undo.enable = true;
-          indentBlankline.enable = true;
-          cursorline = {
+          indent-blankline.enable = true;
+          nvim-cursorline = {
             enable = true;
-            lineTimeout = 0;
+            setupOpts.line_timeout = 0;
           };
         };
         statusline = {
@@ -73,11 +72,6 @@ with lib; {
           name = "catppuccin";
           style = "mocha";
           transparent = false;
-        };
-        autopairs.enable = true;
-        autocomplete = {
-          enable = true;
-          type = "nvim-cmp";
         };
         # filetree = { nvimTree = { enable = true; }; };
         tabline = { nvimBufferline.enable = true; };
