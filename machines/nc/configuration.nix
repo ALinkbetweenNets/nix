@@ -21,18 +21,18 @@
     # services.coturn.enable = true;
   };
   # ctf vpn forwarding
-  # networking.nat = {
-  #   enable = true;
-  #   externalInterface = "ens3";
-  #   externalIP = "202.61.251.70";
-  #   internalInterfaces = [ "tailscale0" ];
-  #   internalIPs = [ "100.89.40.41/32" "100.89.178.137/32" ];
-  #   forwardPorts = [
-  #     { sourcePort = 51820; proto = "udp"; destination = "100.89.40.41:51820"; loopbackIPs = [ "100.86.79.82" ]; }
-  #     { sourcePort = 51822; proto = "udp"; destination = "100.89.178.137:51820"; loopbackIPs = [ "100.86.79.82" ]; }
-  #     { sourcePort = 41623; proto = "tcp"; destination = "100.89.178.137:41623"; loopbackIPs = [ "100.86.79.82" ]; }
-  #   ];
-  # };
+  networking.nat = {
+    enable = true;
+    externalInterface = "ens3";
+    externalIP = "202.61.251.70";
+    internalInterfaces = [ "tailscale0" ];
+    internalIPs = [ "10\.10\.10\.45/32" "100.87.16.37/32" ];
+    forwardPorts = [
+      { sourcePort = 51820; proto = "udp"; destination = "10\.10\.10\.45:51820"; loopbackIPs = [ "100.87.16.37" ]; }
+      { sourcePort = 51822; proto = "udp"; destination = "10\.10\.10\.45:51820"; loopbackIPs = [ "100.87.16.37" ]; }
+      { sourcePort = 41623; proto = "tcp"; destination = "10\.10\.10\.45:41623"; loopbackIPs = [ "100.87.16.37" ]; }
+    ];
+  };
 
   # networking.nat = {
   #   enable = true;
@@ -389,26 +389,26 @@
     #   };
     # };
 
-    ## CTF
-    # "slides.netintro.${config.link.domain}" = {
-    #   # enableACME = true;
-    #   useACMEHost = config.link.domain;
-    #   forceSSL = true;
-    #   # default = true;
-    #   locations."/" = {
-    #     proxyPass = "http://100.89.40.41:31337/";
-    #   };
-    # };
-    # "vpnconfig.netintro.${config.link.domain}" = {
-    #   # enableACME = true;
-    #   useACMEHost = config.link.domain;
-    #   forceSSL = true;
-    #   # default = true;
-    #   locations."/" = {
-    #     proxyPass = "http://100.89.40.41:31338/";
-    #   };
-    # };
-    ## /CTF
+    # CTF
+    "slides.netintro.${config.link.domain}" = {
+      enableACME = true;
+      # useACMEHost = config.link.domain;
+      forceSSL = true;
+      # default = true;
+      locations."/" = {
+        proxyPass = "http://10\.10\.10\.45:31337/";
+      };
+    };
+    "vpnconfig.netintro.${config.link.domain}" = {
+      enableACME = true;
+      # useACMEHost = config.link.domain;
+      forceSSL = true;
+      # default = true;
+      locations."/" = {
+        proxyPass = "http://10.10.10.45:31338/";
+      };
+    };
+    # /CTF
   };
   # services.oauth2-proxy={
   #   enable=true;
