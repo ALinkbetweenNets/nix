@@ -11,7 +11,7 @@ in {
       calls.enable = true;
     };
     services = {
-      udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+      udev.packages = with pkgs; [ gnome-settings-daemon ];
       xserver = {
         displayManager.gdm.enable = true;
         desktopManager.gnome.enable = true;
