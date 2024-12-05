@@ -32,18 +32,20 @@ in {
         enable = true;
         environment = { SERVER_PORT = cfg.port; };
       };
+      nginx.virtualHosts."stirling.${config.link.domain}" = mkIf cfg.nginx {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString cfg.port}";
+        };
+        extraConfig = mkIf (!cfg.nginx-expose) ''
+          allow ${config.link.service-ip}/24;
+          allow 127.0.0.1;
+          deny all; # deny all remaining ips
+        '';
+      };
     };
-    nginx.virtualHosts."stirling.${config.link.domain}" = mkIf cfg.nginx {
-      enableACME = true;
-      forceSSL = true;
-      locations."/" = { proxyPass = "http://127.0.0.1:${toString cfg.port}"; };
-      extraConfig = mkIf (!cfg.nginx-expose) ''
-        allow ${config.link.service-ip}/24;
-        allow 127.0.0.1;
-        deny all; # deny all remaining ips
-      '';
-    };
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port [ cfg.port ];
   };
-  networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
-    mkIf cfg.expose-port [ cfg.port ];
 }
