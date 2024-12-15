@@ -402,18 +402,14 @@
       # useACMEHost = config.link.domain;
       forceSSL = true;
       # default = true;
-      locations."/" = {
-        proxyPass = "http://10\.10\.10\.45:31337/";
-      };
+      locations."/" = { proxyPass = "http://10.10.10.45:31337/"; };
     };
     "vpnconfig.netintro.${config.link.domain}" = {
       enableACME = true;
       # useACMEHost = config.link.domain;
       forceSSL = true;
       # default = true;
-      locations."/" = {
-        proxyPass = "http://10.10.10.45:31338/";
-      };
+      locations."/" = { proxyPass = "http://10.10.10.45:31338/"; };
     };
     # /CTF
   };
