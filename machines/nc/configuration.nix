@@ -26,6 +26,18 @@
     externalInterface = "ens3";
     externalIP = "202.61.251.70";
     internalInterfaces = [ "tailscale0" ];
+    internalIPs = [ "10\.10\.10\.45/32" "100.87.16.37/32" ];
+    forwardPorts = [
+      { sourcePort = 51820; proto = "udp"; destination = "10\.10\.10\.45:51820"; loopbackIPs = [ "100.87.16.37" ]; }
+      { sourcePort = 51822; proto = "udp"; destination = "10\.10\.10\.45:51820"; loopbackIPs = [ "100.87.16.37" ]; }
+      { sourcePort = 41623; proto = "tcp"; destination = "10\.10\.10\.45:41623"; loopbackIPs = [ "100.87.16.37" ]; }
+    ];
+  };
+  networking.nat = {
+    enable = true;
+    externalInterface = "ens3";
+    externalIP = "202.61.251.70";
+    internalInterfaces = [ "tailscale0" ];
     internalIPs = [ "10.10.10.63/32" "100.87.16.37/32" ];
     forwardPorts = [
       { sourcePort = 51820; proto = "udp"; destination = "10.10.10.63:51820"; loopbackIPs = [ "100.87.16.37" ]; }
@@ -403,7 +415,7 @@
       forceSSL = true;
       # default = true;
       locations."/" = {
-        proxyPass = "http://10.10.10.63:31337/";
+        proxyPass = "http://10\.10\.10\.45:31337/";
       };
     };
     "vpnconfig.netintro.${config.link.domain}" = {
@@ -412,7 +424,7 @@
       forceSSL = true;
       # default = true;
       locations."/" = {
-        proxyPass = "http://10.10.10.63:31338/";
+        proxyPass = "http://10.10.10.45:31338/";
       };
     };
     # /CTF
