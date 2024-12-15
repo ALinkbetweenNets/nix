@@ -216,6 +216,7 @@ with lib; {
       kdePackages.kteatime
       ktimetracker
       libsForQt5.krunner-symbols
+      kdePackages.ksystemlog
     ];
   };
 }
