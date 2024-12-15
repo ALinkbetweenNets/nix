@@ -26,11 +26,26 @@
     externalInterface = "ens3";
     externalIP = "202.61.251.70";
     internalInterfaces = [ "tailscale0" ];
-    internalIPs = [ "10\.10\.10\.45/32" "100.87.16.37/32" ];
+    internalIPs = [ "10.10.10.45/32" "100.87.16.37/32" ];
     forwardPorts = [
-      { sourcePort = 51820; proto = "udp"; destination = "10\.10\.10\.45:51820"; loopbackIPs = [ "100.87.16.37" ]; }
-      { sourcePort = 51822; proto = "udp"; destination = "10\.10\.10\.45:51820"; loopbackIPs = [ "100.87.16.37" ]; }
-      { sourcePort = 41623; proto = "tcp"; destination = "10\.10\.10\.45:41623"; loopbackIPs = [ "100.87.16.37" ]; }
+      {
+        sourcePort = 51820;
+        proto = "udp";
+        destination = "10.10.10.45:51820";
+        loopbackIPs = [ "100.87.16.37" ];
+      }
+      {
+        sourcePort = 51822;
+        proto = "udp";
+        destination = "10.10.10.45:51820";
+        loopbackIPs = [ "100.87.16.37" ];
+      }
+      {
+        sourcePort = 41623;
+        proto = "tcp";
+        destination = "10.10.10.45:41623";
+        loopbackIPs = [ "100.87.16.37" ];
+      }
     ];
   };
 
@@ -228,6 +243,13 @@
       locations."/".proxyPass = "http://${config.link.serviceHost}:2500/";
       locations."/".proxyWebsockets = true;
     };
+    "karsten.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/".proxyPass = "http://fn:5000/";
+      locations."/".proxyWebsockets = true;
+    };
     "immich.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
@@ -395,18 +417,14 @@
       # useACMEHost = config.link.domain;
       forceSSL = true;
       # default = true;
-      locations."/" = {
-        proxyPass = "http://10\.10\.10\.45:31337/";
-      };
+      locations."/" = { proxyPass = "http://10.10.10.45:31337/"; };
     };
     "vpnconfig.netintro.${config.link.domain}" = {
       enableACME = true;
       # useACMEHost = config.link.domain;
       forceSSL = true;
       # default = true;
-      locations."/" = {
-        proxyPass = "http://10.10.10.45:31338/";
-      };
+      locations."/" = { proxyPass = "http://10.10.10.45:31338/"; };
     };
     # /CTF
   };
