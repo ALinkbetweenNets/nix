@@ -17,8 +17,7 @@ in {
         "100.87.16.37"
         "100.77.249.162"
         "100.123.21.2"
-      ] ++ lib.optionals (config.networking.hostName == "deepserver")
-        [ "10.0.1.0/24" ];
+      ];
       bantime = "24h"; # Set bantime to one day
       bantime-increment = {
         enable = true; # Enable increment of bantime after each violation
