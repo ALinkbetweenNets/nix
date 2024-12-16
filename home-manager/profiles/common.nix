@@ -19,7 +19,6 @@ with lib; {
       enable = true;
       forwardAgent = true;
       matchBlocks = {
-        "deepserver" = { port = 2522; };
         "nc" = { port = 2522; };
         "sn" = { port = 2522; };
         "dn" = { port = 2522; };
