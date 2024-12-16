@@ -13,7 +13,7 @@
     # tailscale.routing = "server";
   };
   # You need to configure a root filesytem
-  fileSystems."/".label = "vmdisk";
+  # fileSystems."/".label = "vmdisk";
 
   # Add a test user who can sudo to the root account for debugging
   users.extraUsers.vm = {
