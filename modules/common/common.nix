@@ -8,10 +8,6 @@ in {
       ssh = {
         startAgent = lib.mkDefault false;
         # agentTimeout = "1h";
-        extraConfig = ''
-          Host deepserver
-            Port 2522
-        '';
         knownHosts = {
           dn = {
             hostNames = [ "dn.monitor-banfish.ts.net" ];
