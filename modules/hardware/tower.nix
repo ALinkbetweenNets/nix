@@ -15,6 +15,8 @@ in {
           charger = {
             governor = "performance";
             turbo = "auto";
+            energy_performance_preference = "performance";
+            platform_profile = "performance";
           };
         };
       };

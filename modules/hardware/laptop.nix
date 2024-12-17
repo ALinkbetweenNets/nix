@@ -20,21 +20,24 @@ in {
     hardware.bluetooth.enable = true;
     services = {
       libinput.enable = true;
-      # power-profiles-daemon.enable = lib.mkForce false;
-      # tlp.enable = lib.mkForce false;
-      # auto-cpufreq = {
-      #   enable = true; # TLP replacement # caps xn cpu clock to 1.3 Ghz
-      #   settings = {
-      #     battery = {
-      #       governor = "powersave";
-      #       turbo = "never";
-      #     };
-      #     charger = {
-      #       governor = "performance";
-      #       turbo = "auto";
-      #     };
-      #   };
-      # };
+      power-profiles-daemon.enable = lib.mkForce false;
+      auto-cpufreq = {
+        enable = true; # TLP replacement
+        settings = {
+          charger = {
+            governor = "performance";
+            turbo = "auto";
+            energy_performance_preference = "performance";
+            platform_profile = "performance";
+          };
+          battery = {
+            governor = "powersave";
+            turbo = "never";
+            energy_performance_preference = "power";
+            platform_profile = "low-power";
+          };
+        };
+      };
     };
     powerManagement = {
       enable = true;
