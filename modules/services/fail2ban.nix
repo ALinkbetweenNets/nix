@@ -32,7 +32,6 @@ in {
           filter = nginx-url-probe
           logpath = /var/log/nginx/access.log
           action = %(action_)s[blocktype=DROP]
-          backend = auto # Do not forget to specify this if your jail uses a log file
           maxretry = 5
           findtime = 600
         '';
