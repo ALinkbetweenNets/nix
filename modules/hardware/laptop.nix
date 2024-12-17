@@ -14,7 +14,6 @@ in {
     #options.type = "laptop";
     #networking.wireless.enable = !config.networking.networkmanager.enable;
     networking.networkmanager = {
-      enableStrongSwan = true;
       wifi.macAddress = "stable";
     };
     hardware.bluetooth.enable = true;
