@@ -6,11 +6,14 @@
   link.desktop.enable = true;
   link.syncthing.enable = true;
   link.plasma.enable = false;
-  # xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-  networking.hostName = "pppn";
-  # Use Network Manager
-  networking.wireless.enable = false;
-  networking.networkmanager.enable = true;
+    # xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+  networking = {
+    hostName = "pppn";
+    domain = "monitor-banfish.ts.net";
+    # Use Network Manager
+    wireless.enable = false;
+    networkmanager.enable = true;
+  };
   # Use PulseAudio
   # hardware.pulseaudio.enable = lib.mkForce true;
   # services.pipewire.enable =  lib.mkForce true;

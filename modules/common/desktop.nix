@@ -81,7 +81,7 @@ in {
         # iosevka-bin
         # font-awesome
         # line-awesome
-        (nerdfonts.override { fonts = [ "FiraCode" ]; })
+        nerd-fonts.fira-code
       ];
       fontDir.enable = true;
       fontconfig = {

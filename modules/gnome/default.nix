@@ -11,7 +11,7 @@ in {
       calls.enable = true;
     };
     services = {
-      udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+      udev.packages = with pkgs; [ gnome-settings-daemon ];
       xserver = {
         displayManager.gdm.enable = true;
         desktopManager.gnome.enable = true;
@@ -34,7 +34,7 @@ in {
       gnomeExtensions.wifi-qrcode
       gnomeExtensions.window-gestures
       gnomeExtensions.window-on-top
-      gnomeExtensions.yks-timer
+      # gnomeExtensions.yks-timer # broken
       gnomeExtensions.zen
     ];
     qt.platformTheme = "gnome";
