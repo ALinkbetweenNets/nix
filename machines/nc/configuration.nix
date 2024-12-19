@@ -10,8 +10,6 @@
     tailscale-address = "100.86.79.82";
     common.enable = true;
     eth = "ens3";
-    dyndns.enable = config.link.sops;
-    dyndns.domains = [ config.link.domain "shonk.de" ];
     domain = "alinkbetweennets.de";
     fail2ban.enable = true;
     nginx.enable = true;
