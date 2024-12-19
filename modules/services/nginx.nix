@@ -17,16 +17,16 @@ in {
       # 4002
     ];
     # networking.firewall.allowedUDPPorts = [ 111 2049 4000 4001 4002 20048 ]; # nfs
+    sops.secrets."cloudflare-api"={};
     security.acme = {
       acceptTerms = true;
       defaults.email = "link2502+acme@proton.me";
+      defaults.webroot = "/var/lib/acme/acme-challenge";
       certs."${config.link.domain}" = {
         domain = config.link.domain;
         extraDomainNames = [ "*.${config.link.domain}" ];
-        dnsProvider = mkIf config.link.dyndns.enable "cloudflare";
-        listenHTTP = mkIf (!config.link.dyndns.enable) ":80";
-        environmentFile = mkIf config.link.dyndns.enable
-          config.sops.secrets."cloudflare-api".path;
+        dnsProvider = "cloudflare";
+        environmentFile = config.sops.secrets."cloudflare-api".path;
         webroot = null;
       };
     };
