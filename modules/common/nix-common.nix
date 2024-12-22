@@ -33,7 +33,8 @@
   # Home Manager configuration
   # Allow unfree licenced packages
   nixpkgs = {
-    config.permittedInsecurePackages = [ "dotnet-sdk-6.0.428" ];
+    config.permittedInsecurePackages =
+      [ "dotnet-sdk-6.0.428" "aspnetcore-runtime-6.0.36" ];
     config.allowUnfree = true;
     overlays = [
       flake-self.overlays.default
