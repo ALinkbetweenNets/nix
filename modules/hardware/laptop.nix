@@ -13,13 +13,12 @@ in {
     };
     #options.type = "laptop";
     #networking.wireless.enable = !config.networking.networkmanager.enable;
-    networking.networkmanager = {
-      wifi.macAddress = "stable";
-    };
+    networking.networkmanager = { wifi.macAddress = "stable"; };
     hardware.bluetooth.enable = true;
     services = {
       libinput.enable = true;
       power-profiles-daemon.enable = lib.mkForce false;
+      tlp.enable = false;
       auto-cpufreq = {
         enable = true; # TLP replacement
         settings = {
