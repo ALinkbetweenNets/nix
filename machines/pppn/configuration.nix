@@ -7,6 +7,7 @@
     desktop.enable = true;
     syncthing.enable = true;
     plasma.enable = false;
+    xserver.enable = false;
     tailscale.enable = true;
   };
 
