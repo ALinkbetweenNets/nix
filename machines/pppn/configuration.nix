@@ -3,10 +3,14 @@
   imports =
     [ ./hardware-configuration.nix home-manager.nixosModules.home-manager ];
   home-manager.users.l = flake-self.homeConfigurations.desktop;
-  link.desktop.enable = true;
-  link.syncthing.enable = true;
-  link.plasma.enable = false;
-    # xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+  link = {
+    desktop.enable = true;
+    syncthing.enable = true;
+    plasma.enable = false;
+    tailscale.enable = true;
+  };
+
+  # xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
   networking = {
     hostName = "pppn";
     domain = "monitor-banfish.ts.net";
