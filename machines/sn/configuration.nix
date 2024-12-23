@@ -48,7 +48,7 @@
       stirling-pdf.enable=true;
       searx.enable = true;
       microbin.enable = true;
-      mailserver.enable = true;
+      # mailserver.enable = true;
       cryptpad.enable = true;
       # photoprism.enable = true; # WIP
       keycloak.enable = true;
