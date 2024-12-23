@@ -143,7 +143,7 @@ in {
           };
           "obsidian" = {
             path = lib.mkDefault "${config.link.syncthingDir}/obsidian";
-            devices = [ "fn" "sn" "xn" "s22" ];
+            devices = [ "fn" "sn" "xn" "s22" "pppn" ];
             versioning = {
               type = "simple";
               params.keep = "5";
