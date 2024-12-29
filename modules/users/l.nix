@@ -14,6 +14,7 @@ in {
         "audio"
         "i2c"
         "plugdev"
+        "render"
         "video"
         "wheel"
         "wireshark"
