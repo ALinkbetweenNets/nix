@@ -57,9 +57,8 @@ with lib; {
         # magic-wormhole # Secure data transfer
         # iperf3 # speedtest
         crab_share
-        ## duplicate Finder
+        fdupes # duplicate Finder
         rmlint
-        fdupes
       ] ++ lib.optionals
       (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
     # Home-manager nixpkgs config
