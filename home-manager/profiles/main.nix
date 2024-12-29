@@ -95,7 +95,7 @@ with lib; {
       # inlyne
       difftastic
       anime4k
-      quickemu
+      # quickemu # broken
       # quickgui
       code-cursor
       aider-chat
