@@ -24,6 +24,11 @@ in {
             publicKey =
               "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO+rwC7YNUlQ7i2285iCVnopN2RXo/rBE8fAObogjoBc";
           };
+          sn = {
+            hostNames = [ "sn.monitor-banfish.ts.net" ];
+            publicKey =
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMN0npgyMxdnljCmUdZD5sZURtYXUjtNqf1236CEwrB";
+          };
         };
       };
       gnupg.agent = {
