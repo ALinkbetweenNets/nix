@@ -10,14 +10,13 @@ in {
       home = "/home/l";
       group = "users";
       extraGroups = [
-        "wheel"
         "adbusers"
         "audio"
-        "plugdev"
-        "wireshark"
-        "video"
         "i2c"
         "plugdev"
+        "video"
+        "wheel"
+        "wireshark"
         "ydotool"
       ] ++ lib.optionals config.networking.networkmanager.enable
         [ "networkmanager" ]
