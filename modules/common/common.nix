@@ -66,6 +66,7 @@ in {
       # auditd.enable = true;
     };
     networking = {
+      networkmanager.wifi.backend = "iwd";
       firewall = {
         enable = lib.mkDefault true;
         allowedUDPPorts = [
