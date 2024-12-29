@@ -28,7 +28,7 @@ in {
       xournalpp
       anki
       darktable # photo color editor
-      # rawtherapee
+      rawtherapee
       art
       pdfmixtool # appears to be broken and unbuildable
       onlyoffice-bin
