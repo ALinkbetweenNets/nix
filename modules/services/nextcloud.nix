@@ -44,8 +44,10 @@ in {
         datadir = "${config.link.storage}/nextcloud-data";
         #secretFile = "${config.link.secrets}/nextcloud-secrets.json";
         extraApps = with config.services.nextcloud.package.packages.apps; {
-          inherit bookmarks calendar contacts deck mail notes onlyoffice polls
-            tasks twofactor_webauthn;
+          inherit bookmarks calendar deck mail notes onlyoffice polls tasks
+            twofactor_webauthn
+            # contacts # broken
+          ;
         };
         #extraOptions = {
         #  mail_smtpmode = "sendmail";
