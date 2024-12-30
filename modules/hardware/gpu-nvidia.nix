@@ -25,7 +25,7 @@ in {
       cudaPackages.cudnn
       cudaPackages.cutensor
     ];
-    services.xserver.videoDrivers = [ "nvidia" ];
+    # services.xserver.videoDrivers = [ "nvidia" ];
     hardware = {
       graphics = {
         enable = true;
@@ -52,8 +52,8 @@ in {
       };
     };
     # when docker is enabled, enable nvidia-docker
-    hardware.nvidia-container-toolkit.enable =
-      lib.mkIf config.virtualisation.docker.enable true;
+    # hardware.nvidia-container-toolkit.enable =
+    #   lib.mkIf config.virtualisation.docker.enable true;
     # fix electron problems with nvidia
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
   };
