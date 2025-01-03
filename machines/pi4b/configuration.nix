@@ -45,11 +45,9 @@
     # desktop.enable = true;
     syncthing.enable = true;
     syncthingDir = "/mnt/syncthing";
-    storage = "/mnt/services";
     services = {
       home-assistant.enable = true;
       node-red.enable = true;
-      immich.enable = true;
     };
   };
   users.users.l.openssh.authorizedKeys.keys = [
