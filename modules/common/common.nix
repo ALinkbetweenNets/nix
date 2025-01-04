@@ -70,8 +70,17 @@ in {
       # security.tpm2.abrmd.enable = true;
       # auditd.enable = true;
     };
+    services.connman.wifi.backend = "iwd";
     networking = {
       networkmanager.wifi.backend = "iwd";
+      wireless.iwd = {
+        enable = true;
+        settings = {
+          General.EnableNetworkConfiguration = true;
+          Settings.AutoConnect = true;
+          Network.EnableIPv6 = true;
+        };
+      };
       firewall = {
         enable = lib.mkDefault true;
         allowedUDPPorts = [
