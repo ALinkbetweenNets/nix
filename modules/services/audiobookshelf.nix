@@ -31,7 +31,6 @@ in {
       enable = true;
       port = cfg.port;
       host = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
-      dataDir = "${config.link.storage}/audiobookshelf";
     };
     networking.firewall.allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
   };
