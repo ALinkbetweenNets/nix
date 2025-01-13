@@ -143,6 +143,15 @@
         proxyWebsockets = true;
       };
     };
+    "audiobookshelf.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://${config.link.serviceHost}:4124/";
+        proxyWebsockets = true;
+      };
+    };
     "crypt.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
@@ -240,6 +249,12 @@
       forceSSL = true;
       locations."/".proxyPass = "http://${config.link.serviceHost}:2500/";
       locations."/".proxyWebsockets = true;
+    };
+    "microbin.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/".proxyPass = "http://${config.link.serviceHost}:9483/";
     };
     "karsten.${config.link.domain}" = {
       # enableACME = true;

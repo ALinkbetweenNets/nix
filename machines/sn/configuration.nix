@@ -28,7 +28,7 @@
     # service-ip = "10.0.1.1";
     # users.lenny.enable = true;
     # users.lmh01.enable = true;
-    # syncthing.enable = true;
+    syncthing.enable = true;
 
     service-interface = "tailscale0";
     nginx.enable = false;
@@ -60,7 +60,7 @@
       # jellyseer.enable = true;
       minio.enable = true;
       immich.enable = true;
-      # audiobookshelf.enable = true;
+      audiobookshelf.enable = true;
       # openvscode-server.enable = true;
       nextcloud = {
         enable = true;
@@ -73,10 +73,10 @@
       #   oidClientId =
       #     "7cec0458291c1d98c37bce1ad62ea7b02790d7330f1ce5b6a25d9da95c6b3108";
       # };
-      # paperless.enable = true;
+      paperless.enable = true;
       # vaultwarden.enable = true;
       # # matrix.enable = true;
-      # restic-server.enable = true;
+      restic-server.enable = true;
       # containers.grist.enable = true;
       # # coturn.enable = true;
       # # dns.enable = true;
@@ -117,12 +117,12 @@
   };
   services.postgresql.dataDir =
     "${config.link.storage}/postgresql/${config.services.postgresql.package.psqlSchema}";
-  # services.ollama = {
-  #   enable = true;
-  #   port = 11434;
-  #   host = "100.122.145.19";
-  #   loadModels = [ "llama3.1:70b" "nomic-embed-text" "starcoder2:3b" ];
-  # };
+  services.ollama = {
+    enable = true;
+    port = 11434;
+    host = "100.108.233.76";
+    loadModels = [ "llama3.1:70b" "nomic-embed-text" "starcoder2:3b" ];
+  };
   # services.owncast = {
   #   enable = true;
   #   openFirewall = true;
