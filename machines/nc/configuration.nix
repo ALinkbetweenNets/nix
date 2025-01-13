@@ -13,7 +13,7 @@
     domain = "alinkbetweennets.de";
     fail2ban.enable = true;
     nginx.enable = true;
-    serviceHost = "100.122.145.19";
+    serviceHost = "100.108.233.76";
     server.enable = true;
     vm.enable = true;
     # services.coturn.enable = true;
@@ -128,6 +128,15 @@
         proxyWebsockets = true;
       };
     };
+    "audiobookshelf.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://${config.link.serviceHost}:4124/";
+        proxyWebsockets = true;
+      };
+    };
     "crypt.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
@@ -225,6 +234,12 @@
       forceSSL = true;
       locations."/".proxyPass = "http://${config.link.serviceHost}:2500/";
       locations."/".proxyWebsockets = true;
+    };
+    "microbin.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/".proxyPass = "http://${config.link.serviceHost}:9483/";
     };
     "karsten.${config.link.domain}" = {
       # enableACME = true;
