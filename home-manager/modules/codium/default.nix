@@ -93,7 +93,7 @@ in {
         "editor.cursorBlinking" = "expand";
         "editor.cursorSmoothCaretAnimation" = "on";
         "editor.cursorSurroundingLinesStyle" = "all";
-        "editor.defaultColorDecorators" = true;
+        "editor.defaultColorDecorators" = "auto";
         "editor.find.autoFindInSelection" = "multiline";
         "editor.fontFamily" = "'FiraCode Nerd Font'";
         "editor.fontLigatures" = true;
