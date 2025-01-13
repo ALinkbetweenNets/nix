@@ -32,7 +32,7 @@
     service-ip = "127.0.0.1";
     # xrdp.enable = true;
     # eth = "wlp0s20f3";
-    nftables.enable = true;
+    # nftables.enable = true;
     fail2ban.enable = true;
     podman.enable = true;
     # docker.enable = true;
