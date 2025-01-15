@@ -15,7 +15,6 @@
     ##
     vm.enable = true;
     cpu-amd.enable = true;
-    nvidia.enable = true;
     ##
     # docker.enable = true;
     fail2ban.enable = true;
