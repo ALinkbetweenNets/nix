@@ -6,7 +6,7 @@
     nur.url = "github:nix-community/NUR";
     # Pure Nix flake utility functions
     # https://github.com/numtide/flake-utils
-    flake-utils = { url = "github:numtide/flake-utils"; };
+    flake-utils.url = "github:numtide/flake-utils";
     lollypops = {
       url = "github:pinpox/lollypops";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -97,7 +97,8 @@
       nixpkgsFor = forAllSystems (system:
         import nixpkgs {
           inherit system;
-          overlays = [ self.overlays.default nur.overlay nixgl.overlay ];
+          overlays =
+            [ self.overlays.default nur.overlays.default nixgl.overlay ];
         });
     in {
       formatter = forAllSystems (system: nixpkgsFor.${system}.nixpkgs-fmt);
@@ -218,7 +219,7 @@
           nixpkgs.overlays = [
             self.overlays.default
             inputs.crab_share.overlay
-            inputs.nur.overlay
+            inputs.nur.overlays.default
             (final: prev: {
               cudapkgs = import inputs.nixpkgs {
                 system = "${pkgs.system}";

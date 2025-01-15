@@ -21,7 +21,7 @@ in {
       gimp
       # inkscape # svg editor
       thunderbird
-      evolution
+      # evolution # broken
       # calcure # tui calendar & task manager # broken 240721
       #teams # insecure
       evince

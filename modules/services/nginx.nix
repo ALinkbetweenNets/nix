@@ -39,7 +39,7 @@ in {
       recommendedTlsSettings = true;
       logError = "stderr debug";
       package = pkgs.nginxMainline.override { openssl = pkgs.libressl; };
-      clientMaxBodySize = "1000m";
+      clientMaxBodySize = "2000m";
       commonHttpConfig = ''
         # sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
         # ssl_protocols TLSv1.3;

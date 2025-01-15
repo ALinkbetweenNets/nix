@@ -13,7 +13,7 @@
     domain = "alinkbetweennets.de";
     fail2ban.enable = true;
     nginx.enable = true;
-    serviceHost = "100.122.145.19";
+    serviceHost = "100.108.233.76";
     server.enable = true;
     vm.enable = true;
     # services.coturn.enable = true;
@@ -24,26 +24,11 @@
     externalInterface = "ens3";
     externalIP = "202.61.251.70";
     internalInterfaces = [ "tailscale0" ];
-    internalIPs = [ "10.10.10.45/32" "100.87.16.37/32" ];
+    internalIPs = [ "10.10.10.63/32" "100.87.16.37/32" ];
     forwardPorts = [
-      {
-        sourcePort = 51820;
-        proto = "udp";
-        destination = "10.10.10.45:51820";
-        loopbackIPs = [ "100.87.16.37" ];
-      }
-      {
-        sourcePort = 51822;
-        proto = "udp";
-        destination = "10.10.10.45:51820";
-        loopbackIPs = [ "100.87.16.37" ];
-      }
-      {
-        sourcePort = 41623;
-        proto = "tcp";
-        destination = "10.10.10.45:41623";
-        loopbackIPs = [ "100.87.16.37" ];
-      }
+      { sourcePort = 51820; proto = "udp"; destination = "10.10.10.63:51820"; loopbackIPs = [ "100.87.16.37" ]; }
+      { sourcePort = 51822; proto = "udp"; destination = "10.10.10.63:51820"; loopbackIPs = [ "100.87.16.37" ]; }
+      { sourcePort = 41623; proto = "tcp"; destination = "10.10.10.63:41623"; loopbackIPs = [ "100.87.16.37" ]; }
     ];
   };
 
@@ -140,6 +125,15 @@
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://${config.link.serviceHost}:80/";
+        proxyWebsockets = true;
+      };
+    };
+    "audiobookshelf.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://${config.link.serviceHost}:4124/";
         proxyWebsockets = true;
       };
     };
@@ -240,6 +234,12 @@
       forceSSL = true;
       locations."/".proxyPass = "http://${config.link.serviceHost}:2500/";
       locations."/".proxyWebsockets = true;
+    };
+    "microbin.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/".proxyPass = "http://${config.link.serviceHost}:9483/";
     };
     "karsten.${config.link.domain}" = {
       # enableACME = true;
