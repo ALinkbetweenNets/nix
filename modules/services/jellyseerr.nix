@@ -12,7 +12,8 @@ in {
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description = "expose the application to the internet with NGINX and ACME";
+      description =
+        "expose the application to the internet with NGINX and ACME";
     };
     nginx-expose = mkOption {
       type = types.bool;
@@ -27,16 +28,16 @@ in {
   };
   config = mkIf cfg.enable {
     services = {
-      jellyseerr = {
-        enable = true;
-      };
-      nginx.virtualHosts.
-      "jellyseerr.${config.link.domain}" = mkIf cfg.nginx {
+      jellyseerr = { enable = true; };
+      nginx.virtualHosts."jellyseerr.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
-        locations."/" = { proxyPass = "http://127.0.0.1:${toString cfg.port}/"; };
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString cfg.port}/";
+        };
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port [ cfg.port ];
   };
 }

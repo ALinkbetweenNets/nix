@@ -21,9 +21,6 @@ in {
     #     10.0.1.1 element.linkserver.org
     #     10.0.1.1 outline.linkserver.org
     #   '';
-    services.dnsmasq.extraConfig = ''
-      interface = wg-deep
-    '';
     networking = {
       firewall = {
         allowedUDPPorts = [ 51821 ];
@@ -35,15 +32,13 @@ in {
           # listenPort = 51821;
           # dns = [ "10.0.0.1" "fdc9:281f:04d7:9ee9::1" ];
           privateKeyFile = "${config.link.secrets}/wg-link-l.private";
-          peers = [
-            {
-              publicKey = "9Hn/0/npzyZ+afzk0ux5oDvqjsbgLrrU9UC7qij13yE=";
-              presharedKeyFile = "${config.link.secrets}/wg-link-l.preshared";
-              allowedIPs = [ "10.0.1.0/24" "fdc9:281f:04d7:9eea::1/64" ];
-              endpoint = "alinkbetweennets.de:51820";
-              persistentKeepalive = 25;
-            }
-          ];
+          peers = [{
+            publicKey = "9Hn/0/npzyZ+afzk0ux5oDvqjsbgLrrU9UC7qij13yE=";
+            presharedKeyFile = "${config.link.secrets}/wg-link-l.preshared";
+            allowedIPs = [ "10.0.1.0/24" "fdc9:281f:04d7:9eea::1/64" ];
+            endpoint = "alinkbetweennets.de:51820";
+            persistentKeepalive = 25;
+          }];
         };
       };
     };

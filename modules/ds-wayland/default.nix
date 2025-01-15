@@ -15,8 +15,8 @@ in {
         wayland-utils
         wtype # xdotool
         wev # key codes
-      ] ++ lib.optionals
-        (config.link.plasma.enable) [ kdePackages.plasma-wayland-protocols ];
+      ] ++ lib.optionals (config.link.plasma.enable)
+      [ kdePackages.plasma-wayland-protocols ];
     environment.sessionVariables = {
       NIXOS_OZONE_WL = "1";
       MOZ_ENABLE_WAYLAND = "1";
@@ -37,9 +37,9 @@ in {
 
     users.users."l".extraGroups = [ "video" "audio" ];
 
-    hardware = {
+    hardware.graphics = {
       # fixes'EGL_EXT_platform_base not supported'
-      graphics.enable = true;
+      enable = true;
     };
   };
 }

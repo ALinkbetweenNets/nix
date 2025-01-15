@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, flake-self, ... }:
 with lib;
 let cfg = config.link.main;
 in {
@@ -12,6 +12,8 @@ in {
       tailscale.enable = true;
       qmk.enable = true;
     };
+    boot.extraModulePackages = with config.boot.kernelPackages;
+      [ v4l2loopback ];
     services.rpcbind.enable = true; # for NFS
     # services.pcscd.enable = true; # smart card support
     services = {
@@ -25,8 +27,8 @@ in {
       };
     };
     environment.systemPackages = with pkgs; [
+      flake-self.inputs.nsearch.packages.${pkgs.system}.default
       plasma5Packages.plasma-thunderbolt
-      vagrant
       aha # for kde settings
       glxinfo
       clinfo
@@ -34,14 +36,22 @@ in {
       # ondsel # Better FreeCAD
       sshfs
       rclone
+      ddcui
+      ddcutil
     ];
+    hardware.i2c.enable = true;
+    users.groups.i2c = { };
+    services.udev.packages = with pkgs; [ ddcutil ];
     hardware.hackrf.enable = true;
     programs = {
       noisetorch.enable = true;
       adb.enable = true;
-      ausweisapp = { enable = true; openFirewall = true; };
+      ausweisapp = {
+        enable = true;
+        openFirewall = true;
+      };
     };
-    virtualisation.waydroid.enable = true;
+    # virtualisation.waydroid.enable = true;
     networking.firewall.allowedTCPPorts = [ 24800 ];
     # networking.networkmanager.appendNameservers = [
     #   "1.1.1.1"

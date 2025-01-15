@@ -1,10 +1,7 @@
 { lib, pkgs, flake-self, config, system-config, ... }:
 with lib; {
-  imports = [
-    ../colorscheme.nix
-    ./common.nix
-    flake-self.homeManagerModules.xdg
-  ];
+  imports =
+    [ ../colorscheme.nix ./common.nix flake-self.homeManagerModules.xdg ];
   config = {
     dconf = {
       enable = true;
@@ -25,21 +22,41 @@ with lib; {
       };
       mpv = {
         enable = true;
-        scripts = with pkgs.mpvScripts; [ sponsorblock thumbfast mpv-webm uosc ];
-        config = {
-          profile = "gpu-hq";
-          force-window = true;
-          ytdl-format = "bestvideo+bestaudio";
-          cache-default = 4000000;
-        };
-        defaultProfiles = [
-          "gpu-hq"
+        scripts = with pkgs.mpvScripts; [
+          sponsorblock
+          thumbfast
+          mpv-webm
+          uosc
         ];
         bindings = {
           WHEEL_UP = "seek 10";
           WHEEL_DOWN = "seek -10";
           "Alt+0" = "set window-scale 0.5";
+          "CTRL+1" = ''
+            no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode A (HQ)"'';
+          "CTRL+2" = ''
+            no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_Soft_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode B (HQ)"'';
+          "CTRL+3" = ''
+            no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Upscale_Denoise_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode C (HQ)"'';
+          "CTRL+4" = ''
+            no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_Restore_CNN_M.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode A+A (HQ)"'';
+          "CTRL+5" = ''
+            no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_Soft_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Restore_CNN_Soft_M.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode B+B (HQ)"'';
+          "CTRL+6" = ''
+            no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Upscale_Denoise_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Restore_CNN_M.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode C+A (HQ)"'';
+          "CTRL+0" = ''
+            no-osd change-list glsl-shaders clr ""; show-text "GLSL shaders cleared"'';
         };
+        config = {
+          profile = "gpu-hq";
+          force-window = true;
+          ytdl-format = "bestvideo+bestaudio";
+          cache-default = 4000000;
+          # Optimized shaders for higher-end GPU: Mode A (HQ)
+          glsl-shaders =
+            "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl";
+        };
+        defaultProfiles = [ "gpu-hq" ];
         extraInput = ''
           esc         quit                        #! Quit
           #           script-binding uosc/video   #! Video tracks
@@ -49,13 +66,10 @@ with lib; {
       #terminator.enable = true; # I prefer konsole
     };
     manual.html.enable = true;
-    link = {
-      code.enable = true;
-      #plasma.enable = true;
-    };
     # Packages to install on all desktop systems
     home.packages = with pkgs;
       [
+        neovide # neovim frontend
         ## Basics
         nfs-utils
         ## Spelling
@@ -73,7 +87,6 @@ with lib; {
         #veracrypt
         kleopatra # gpg/ pgp
         ## Misc
-        bitwarden
         xdg-utils
         scrcpy # ADB screenshare
         ktailctl # Tailscale GUI
@@ -84,15 +97,14 @@ with lib; {
         ## Hex Editor
         hexdino # terminal vimlike hex editor
         okteta # hex editor
+        imhex
         ## File Sync
         #syncthing-tray
         ## Browser
         librewolf
-        tor-browser-bundle-bin # compromised
         # vivaldi # nice but proprietary
-        floorp # firefox fork, seems promising, needs more research
+        # floorp # firefox fork, seems promising, needs more research
         #mullvad-vpn # is defined as program
-        mullvad-browser
         ## RDP
         remmina # VNC Client
         ## KDE Utils
@@ -109,6 +121,10 @@ with lib; {
         kdePackages.colord-kde
         # (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ] ++ lib.optionals
-        (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
+      (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [
+        bitwarden
+        tor-browser-bundle-bin # compromisednix
+        mullvad-browser
+      ];
   };
 }

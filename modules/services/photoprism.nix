@@ -12,7 +12,8 @@ in {
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description = "expose the application to the internet with NGINX and ACME";
+      description =
+        "expose the application to the internet with NGINX and ACME";
     };
     nginx-expose = mkOption {
       type = types.bool;
@@ -33,7 +34,8 @@ in {
         storagePath = "${config.link.storage}/photoprism/storage";
         settings = {
           PHOTOPRISM_ADMIN_USER = "l";
-          PHOTOPRISM_ADMIN_PASSWORD = "GzJ&<8C@RD]Cv]Y3DF5VgTAfY543q}M:{S7h?BoIhu[_j#P0B5"; # initial
+          PHOTOPRISM_ADMIN_PASSWORD =
+            "GzJ&<8C@RD]Cv]Y3DF5VgTAfY543q}M:{S7h?BoIhu[_j#P0B5"; # initial
           PHOTOPRISM_DEFAULT_LOCALE = "de";
           PHOTOPRISM_SITE_URL = "https://photoprism.${config.link.domain}";
           PHOTOPRISM_SITE_TITLE = "Pics";
@@ -62,7 +64,8 @@ in {
         forceSSL = true;
         http2 = true;
         locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString config.services.photoprism.port}/";
+          proxyPass =
+            "http://127.0.0.1:${toString config.services.photoprism.port}/";
           proxyWebsockets = true;
           extraConfig = ''
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -73,6 +76,7 @@ in {
         };
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port [ cfg.port ];
   };
 }

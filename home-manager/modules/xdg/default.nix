@@ -1,21 +1,31 @@
 { lib, pkgs, system-config, ... }:
-with lib;
-{
-
+with lib; {
   xdg = mkIf system-config.link.desktop.enable {
     portal = {
       enable = true;
       xdgOpenUsePortal = true;
-      configPackages = with pkgs;[ ]
-        ++ lib.optionals (system-config.link.plasma.enable) [ kdePackages.xdg-desktop-portal-kde ]
-        ++ lib.optionals (system-config.link.gnome.enable) [ xdg-desktop-portal-gnome ]
-        ++ lib.optionals (system-config.link.sway.enable) [ xdg-desktop-portal-wlr ]
-        ++ lib.optionals (system-config.link.hyprland.enable) [ xdg-desktop-portal-hyprland ];
-      extraPortals = with pkgs;[ ]
-        ++ lib.optionals (system-config.link.plasma.enable) [ kdePackages.xdg-desktop-portal-kde ]
-        ++ lib.optionals (system-config.link.gnome.enable) [ xdg-desktop-portal-gnome ]
-        ++ lib.optionals (system-config.link.sway.enable) [ xdg-desktop-portal-wlr ]
-        ++ lib.optionals (system-config.link.hyprland.enable) [ xdg-desktop-portal-hyprland ];
+      configPackages = with pkgs;
+        [ ] ++ lib.optionals (system-config.link.plasma.enable)
+        [ kdePackages.xdg-desktop-portal-kde ]
+        ++ lib.optionals (system-config.link.gnome.enable)
+        [ xdg-desktop-portal-gnome ] ++ lib.optionals
+        (system-config.services.xserver.desktopManager.phosh.enable)
+        [ xdg-desktop-portal-gnome ]
+        ++ lib.optionals (system-config.link.sway.enable)
+        [ xdg-desktop-portal-wlr ]
+        ++ lib.optionals (system-config.link.hyprland.enable)
+        [ xdg-desktop-portal-hyprland ];
+      extraPortals = with pkgs;
+        [ ] ++ lib.optionals (system-config.link.plasma.enable)
+        [ kdePackages.xdg-desktop-portal-kde ]
+        ++ lib.optionals (system-config.link.gnome.enable)
+        [ xdg-desktop-portal-gnome ] ++ lib.optionals
+        (system-config.services.xserver.desktopManager.phosh.enable)
+        [ xdg-desktop-portal-gnome ]
+        ++ lib.optionals (system-config.link.sway.enable)
+        [ xdg-desktop-portal-wlr ]
+        ++ lib.optionals (system-config.link.hyprland.enable)
+        [ xdg-desktop-portal-hyprland ];
     };
     userDirs = {
       enable = true;
@@ -49,11 +59,12 @@ with lib;
       "image/webp" = [ "org.kde.gwenview.desktop" ];
       "text/calendar" = [ "thunderbird.desktop" ];
       "text/javascript" = [ "codium.desktop" ];
+      "text/markdown" = [ "neovide.desktop" ];
       "text/plain" = [ "org.kde.kate.desktop" ];
       "text/xml" = [ "org.kde.kate.desktop" ];
-      "video/mp4" = [ "mpv.desktop" ];
-      "video/mpeg" = [ "mpv.desktop" ];
-      "video/webm" = [ "mpv.desktop" ];
+      "video/mp4" = [ "vlc.desktop" ];
+      "video/mpeg" = [ "vlc.desktop" ];
+      "video/webm" = [ "vlc.desktop" ];
       "x-scheme-handler/sgnl" = [ "signal-desktop.desktop" ];
       "x-scheme-handler/signalcaptcha" = [ "signal-desktop.desktop" ];
       "x-scheme-handler/http" = [ "firefox.desktop" ];

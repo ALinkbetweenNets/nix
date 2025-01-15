@@ -6,7 +6,7 @@ in {
   config = mkIf cfg.enable {
     networking.firewall.allowedTCPPorts = [
       # 25
-      # 80
+      80
       # 143
       443
       # 993
@@ -17,15 +17,16 @@ in {
       # 4002
     ];
     # networking.firewall.allowedUDPPorts = [ 111 2049 4000 4001 4002 20048 ]; # nfs
+    sops.secrets."cloudflare-api"={};
     security.acme = {
       acceptTerms = true;
       defaults.email = "link2502+acme@proton.me";
+      defaults.webroot = "/var/lib/acme/acme-challenge";
       certs."${config.link.domain}" = {
         domain = config.link.domain;
         extraDomainNames = [ "*.${config.link.domain}" ];
-        dnsProvider = mkIf config.link.dyndns.enable "cloudflare";
-        listenHTTP = mkIf (!config.link.dyndns.enable) ":80";
-        environmentFile = mkIf config.link.dyndns.enable config.sops.secrets."cloudflare-api".path;
+        dnsProvider = "cloudflare";
+        environmentFile = config.sops.secrets."cloudflare-api".path;
         webroot = null;
       };
     };
@@ -37,11 +38,12 @@ in {
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
       logError = "stderr debug";
-      package = pkgs.nginxStable.override { openssl = pkgs.libressl; };
-      clientMaxBodySize = "1000m";
+      package = pkgs.nginxMainline.override { openssl = pkgs.libressl; };
+      clientMaxBodySize = "2000m";
       commonHttpConfig = ''
         # sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
         # ssl_protocols TLSv1.3;
+        # ssl_prefer_server_ciphers   on;
         log_format myformat '$remote_addr - $remote_user [$time_local] '
           '"$request" $status $body_bytes_sent '
           '"$http_referer" "$http_user_agent"';
@@ -56,18 +58,24 @@ in {
         }
         add_header Strict-Transport-Security $hsts_header;
         # ssl_stapling_verify on;
-        add_header Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://*.${config.link.domain} ws://*.${config.link.domain} ; img-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://www.gravatar.com https://logo.clearbit.com https://*.${config.link.domain} ws://*.${config.link.domain} ; base-uri 'self' *.${config.link.domain} ${config.link.domain};" always;
+        add_header Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://*.${config.link.domain} ws://*.${config.link.domain} https://tiles.immich.cloud https://api-l.cofractal.com https://maputnik.github.io https://fonts.openmaptiles.org ; img-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://videos.owncast.online https://www.gravatar.com https://logo.clearbit.com https://*.${config.link.domain} ws://*.${config.link.domain} ; media-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://assets.owncast.tv https://videos.owncast.online https://www.gravatar.com https://logo.clearbit.com https://*.${config.link.domain} ws://*.${config.link.domain} ; base-uri 'self' *.${config.link.domain} ${config.link.domain};" always;
         # no-referrer
         add_header Referrer-Policy strict-origin;
         add_header X-Frame-Options sameorigin;
         # Prevent injection of code in other mime types (XSS Attacks)
         add_header X-Content-Type-Options nosniff;
-        # This might create errors
-        proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
+        # This might create errors - doc
+        # Yep it destroyed the immich login - me
+        #proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
         add_header X-Real-IP $remote_addr;
         add_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        add_header X-Forwarded-Proto $scheme;
-        add_header Host $host;
+        add_header X-Forwarded-Proto https;
+        add_header X-Forwarded-Ssl on;
+        add_header X-Forwarded-Port $server_port;
+        add_header X-Forwarded-Host $host;
+        add_header Host $http_host;
+        add_header origin $http_origin;
+        add_header X-XSRF-TOKEN $http_x_xsrf_token;
         # proxy_connect_timeout 300;
         # Default is HTTP/1, keepalive is only enabled in HTTP/1.1
         #proxy_http_version 1.1;

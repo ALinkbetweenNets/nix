@@ -4,93 +4,98 @@ let cfg = config.link.code;
 in {
   options.link.code.enable = mkEnableOption "activate vscodium";
   config = mkIf cfg.enable {
-    home.packages = with pkgs;
-      [ gdb ];
+    home.packages = with pkgs; [ gdb nil nixd nixfmt-classic ];
     programs.vscode = {
       enable = true;
       package = pkgs.vscodium;
       # package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config  ]);
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = false;
-      extensions = with pkgs.vscode-extensions; [
-        #b4dm4n.vscode-nixpkgs-fmt
-        #vscodevim.vim
-        arrterian.nix-env-selector
-        # dracula-theme.theme-dracula
-        eamodio.gitlens
-        esbenp.prettier-vscode
-        firefox-devtools.vscode-firefox-debug
-        github.copilot
-        github.vscode-github-actions
-        github.vscode-pull-request-github
-        gitlab.gitlab-workflow
-        gruntfuggly.todo-tree
-        jnoortheen.nix-ide
-        mkhl.direnv
-        ms-vscode-remote.remote-ssh
-        redhat.vscode-yaml
-        streetsidesoftware.code-spell-checker
-        #tamasfe.even-better-toml
-        usernamehw.errorlens
-        vadimcn.vscode-lldb
-        yzhang.markdown-all-in-one
-        # pokey.talon
-        # pokey.cursorless
-      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        {
+      extensions = with pkgs.vscode-extensions;
+        [
+          # continue.continue # ollama
+          myriad-dreamin.tinymist # typst
+          #b4dm4n.vscode-nixpkgs-fmt
+          #vscodevim.vim
+          arrterian.nix-env-selector
+          # dracula-theme.theme-dracula
+          christian-kohler.path-intellisense
+          dbaeumer.vscode-eslint
+          christian-kohler.npm-intellisense
+          yoavbls.pretty-ts-errors
+          bradlc.vscode-tailwindcss
+          eamodio.gitlens
+          esbenp.prettier-vscode
+          firefox-devtools.vscode-firefox-debug
+          github.copilot
+          github.vscode-github-actions
+          github.vscode-pull-request-github
+          gitlab.gitlab-workflow
+          gruntfuggly.todo-tree
+          jnoortheen.nix-ide
+          mkhl.direnv
+          ms-vscode-remote.remote-ssh
+          redhat.vscode-xml
+          redhat.vscode-yaml
+          streetsidesoftware.code-spell-checker
+          #tamasfe.even-better-toml
+          usernamehw.errorlens
+          vadimcn.vscode-lldb
+          yzhang.markdown-all-in-one
+          # pokey.talon
+          # pokey.cursorless
+        ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
           name = "vscode-pets";
           publisher = "tonybaloney";
           version = "1.25.1";
-          sha256 = "6acdded8bcca052b221acfd4188674e97a9b2e1dfb8ab0d4682cec96a2131094";
-        }
-      ];
+          sha256 =
+            "6acdded8bcca052b221acfd4188674e97a9b2e1dfb8ab0d4682cec96a2131094";
+        }];
       userSettings = {
-        "[nix]" = {
-          "editor.defaultFormatter" = "jnoortheen.nix-ide";
+        "[typescriptreact]" = {
+          "editor.defaultFormatter" = "vscode.typescript-language-features";
         };
-        "nix" = {
-          "enableLanguageServer" = true;
-          "serverPath" = "${pkgs.nil}/bin/nil";
-          # "serverPath" = "${pkgs.nixd}/bin/nixd";
-          "serverSettings" = {
-            "nil" = {
-              "diagnostics" = {
-                "ignored" = [ "unused_binding" "unused_with" ];
-              };
-              "formatting" = {
-                "command" = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
-              };
-            };
-            # "nixd" = {
-            #   "eval" = { };
-            #   "formatting" = {
-            #     "command" = "nixpkgs-fmt";
-            #   };
-            #   "options" = {
-            #     "enable" = true;
-            #     "target" = {
-            #       "args" = [ ];
-            #       "installable" = "<flakeref>#nixosConfigurations.<name>.options";
-            #     };
-            #   };
-            # };
+        "[nix]" = { "editor.defaultFormatter" = "jnoortheen.nix-ide"; };
+        "nix.enableLanguageServer" = true;
+        "nix.serverPath" = "nil";
+        # "nix.serverPath" = "nixd";
+        "nix.serverSettings" = {
+          "nil" = {
+            "diagnostics" = { "ignored" = [ "unused_binding" "unused_with" ]; };
+            "formatting" = { "command" = [ "nixfmt" ]; };
           };
+          # "nixd" = {
+          #   # "eval" = { };
+          #   "formatting" = {
+          #     "command" = [ "nixfmt ." ];
+          #   };
+          #   "options" = {
+          #     "nixos" = {
+          #       "expr" = "(builtins.getFlake .#nixosConfigurations.fn.options";
+          #     };
+          #     "home-manager" = {
+          #       "expr" = "(builtins.getFlake.#homeConfigurations.laptop.options";
+          #     };
+          #     # "target" = {
+          #     #   "args" = [ ];
+          #     #   "installable" = "(builtins.getFlake \"\${workspaceFolder}\")#nixosConfigurations.<name>.options";
+          #     # };
+          #   };
+          # };
         };
         "[jsonc]" = {
           "editor.defaultFormatter" = "vscode.json-language-features";
         };
-        "cSpell.userWords" = [
-          "Linkbetween"
-        ];
+        "cSpell.userWords" = [ "Linkbetween" ];
         "diffEditor.codeLens" = true;
         "diffEditor.diffAlgorithm" = "advanced";
         "diffEditor.ignoreTrimWhitespace" = false;
         "editor.cursorBlinking" = "expand";
         "editor.cursorSmoothCaretAnimation" = "on";
         "editor.cursorSurroundingLinesStyle" = "all";
-        "editor.defaultColorDecorators" = true;
+        "editor.defaultColorDecorators" = "auto";
         "editor.find.autoFindInSelection" = "multiline";
-        "editor.fontFamily" = "'Fira Code', 'Hack NF', 'Droid Sans Mono', 'monospace', monospace";
+        "editor.fontFamily" = "'FiraCode Nerd Font'";
         "editor.fontLigatures" = true;
         "editor.fontSize" = 12;
         "editor.formatOnPaste" = true;
@@ -125,8 +130,6 @@ in {
         "ltex.additionalRules.enablePickyRules" = true;
         "ltex.language" = "de-DE";
         "markdown.extension.completion.enabled" = true;
-        "nix.enableLanguageServer" = true;
-        "nix.serverPath" = "${pkgs.nil}/bin/nil";
         "prettier.printWidth" = 160;
         "problems.showCurrentInStatus" = true;
         "redhat.telemetry.enabled" = false;
@@ -134,6 +137,9 @@ in {
         "scm.alwaysShowRepositories" = true;
         "search.experimental.notebookSearch" = true;
         "search.smartCase" = true;
+        "terminal.integrated.enableImages" = true;
+        "terminal.integrated.enableVisualBell" = true;
+        "terminal.integrated.mouseWheelZoom" = true;
         "vscode-pets.petColor" = "white";
         "vscode-pets.position" = "panel";
         "vscode-pets.throwBallWithMouse" = true;
@@ -166,7 +172,9 @@ in {
           key = "ctrl+shift+d";
           command = "workbench.action.terminal.sendSequence";
           args = {
-            text = "cd /home/l/nix;nix run .\\#lollypops -- vn\n";
+            text = ''
+              cd /home/l/nix;nix run .\#lollypops -- vn
+            '';
           };
         }
       ];

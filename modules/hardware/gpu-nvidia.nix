@@ -3,24 +3,14 @@ with lib;
 let
   cfg = config.link.nvidia;
   cudaoverlay = (self: super: {
-    inherit (pkgs.cudapkgs)
-      ffmpeg
-      hashcat
-      jellyfin
-      jellyfin-ffmpeg
-      ;
+    inherit (pkgs.cudapkgs) ffmpeg hashcat jellyfin jellyfin-ffmpeg;
   });
-in
-{
+in {
   options.link.nvidia = { enable = mkEnableOption "activate nvidia support"; };
   config = mkIf cfg.enable {
-    nixpkgs.overlays = [
-      cudaoverlay
-    ];
+    nixpkgs.overlays = [ cudaoverlay ];
     home-manager.users."l" = mkIf config.link.users.l.enable {
-      nixpkgs.overlays = [
-        cudaoverlay
-      ];
+      nixpkgs.overlays = [ cudaoverlay ];
       # nixpkgs.config.cudaSupport = true;
     };
     # nixpkgs.config.cudaSupport = true;
@@ -32,8 +22,10 @@ in
       pciutils
       vdpauinfo
       cudaPackages.cudatoolkit
+      cudaPackages.cudnn
+      cudaPackages.cutensor
     ];
-    services.xserver.videoDrivers = [ "nvidia" ];
+    # services.xserver.videoDrivers = [ "nvidia" ];
     hardware = {
       graphics = {
         enable = true;
@@ -60,8 +52,8 @@ in
       };
     };
     # when docker is enabled, enable nvidia-docker
-    virtualisation.docker.enableNvidia =
-      lib.mkIf config.virtualisation.docker.enable true;
+    # hardware.nvidia-container-toolkit.enable =
+    #   lib.mkIf config.virtualisation.docker.enable true;
     # fix electron problems with nvidia
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
   };
