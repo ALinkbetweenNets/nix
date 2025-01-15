@@ -17,7 +17,7 @@
     gaming.enable = true;
     # sway.enable = true;
     # fs.zfs.enable = true;
-    printing.enable = true;
+    # printing.enable = true;
     fs.ntfs.enable = true;
     fs.luks.enable = false; # DO NOT ACTIVATE, DEBUG IN VM
     laptop.enable = true;

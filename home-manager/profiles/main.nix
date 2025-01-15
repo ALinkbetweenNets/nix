@@ -84,7 +84,7 @@ with lib; {
       zed-editor
       erdtree
       sd
-      tailspin
+      # tailspin # broken
       spacer
       #csvlens
       curlie # httpie for curl
@@ -95,7 +95,7 @@ with lib; {
       # inlyne
       difftastic
       anime4k
-      quickemu
+      # quickemu # broken
       # quickgui
       code-cursor
       aider-chat
@@ -120,7 +120,7 @@ with lib; {
       #piper-tts # text to speech synthesizer with models (download https://huggingface.co/rhasspy/piper-voices/tree/v1.0.0/en/en_US/lessac/high onnx and json to Downloads folder)
       gnome-disk-utility
       #gparted
-      vagrant # quick tmp vm creation
+      # vagrant # quick tmp vm creation # broken
       restic
       #hugo # static site generator
       #ghosttohugo
@@ -177,7 +177,7 @@ with lib; {
       ## Multimedia
       obs-studio
       obs-studio-plugins.obs-backgroundremoval
-      obs-studio-plugins.obs-ndi
+      # obs-studio-plugins.obs-ndi # broken
       easyeffects
       artyFX
       #imagemagick
