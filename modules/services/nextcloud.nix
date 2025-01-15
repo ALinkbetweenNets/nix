@@ -38,6 +38,7 @@ in {
         hostName = "nextcloud.${config.link.domain}";
         settings.trusted_proxies = [ "100.86.79.82" ];
         config = {
+          dbType = "sqlite";
           adminuser = "l";
           adminpassFile = config.sops.secrets."nextcloud".path;
         };
