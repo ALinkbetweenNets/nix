@@ -40,7 +40,6 @@
       "$6$.p.3CNgeNfys/lfs$C5ey0R0CMDlcebtek9bKoCfetajpwmvMG5LqRXzgFGOmLGqsvV.xTVcUtDKtj/c9WJRlv7WDyxIzU2BitOXIy1";
     extraGroups = [ "dialout" "feedbackd" "networkmanager" "video" "wheel" ];
   };
-  nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];
   hardware.enableAllFirmware = true;
   lollypops.deployment = {
     local-evaluation = true;
