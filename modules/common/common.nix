@@ -8,10 +8,6 @@ in {
       ssh = {
         startAgent = lib.mkDefault false;
         # agentTimeout = "1h";
-        extraConfig = ''
-          Host deepserver
-            Port 2522
-        '';
         knownHosts = {
           dn = {
             hostNames = [ "dn.monitor-banfish.ts.net" ];
@@ -27,6 +23,11 @@ in {
             hostNames = [ "pi4b.monitor-banfish.ts.net" ];
             publicKey =
               "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO+rwC7YNUlQ7i2285iCVnopN2RXo/rBE8fAObogjoBc";
+          };
+          sn = {
+            hostNames = [ "sn.monitor-banfish.ts.net" ];
+            publicKey =
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMN0npgyMxdnljCmUdZD5sZURtYXUjtNqf1236CEwrB";
           };
         };
       };
@@ -69,7 +70,17 @@ in {
       # security.tpm2.abrmd.enable = true;
       # auditd.enable = true;
     };
+    # services.connman.wifi.backend = "iwd";
     networking = {
+      #   networkmanager.wifi.backend = "iwd";
+      #   wireless.iwd = {
+      #     enable = true;
+      #     settings = {
+      #       General.EnableNetworkConfiguration = true;
+      #       Settings.AutoConnect = true;
+      #       Network.EnableIPv6 = true;
+      #     };
+      #   };
       firewall = {
         enable = lib.mkDefault true;
         allowedUDPPorts = [
@@ -99,7 +110,6 @@ in {
       exfatprogs
       libsecret
       gnupg
-
       ## top
       s-tui
       glances

@@ -65,6 +65,7 @@ with lib; {
           { url = "https://events.ccc.de/feed"; }
           { url = "https://benjitrapp.github.io/feed.xml"; }
           { url = "https://blog.fefe.de/rss.xml?html"; }
+          { url = "https://voidcruiser.nl/index.xml"; }
         ];
       };
     };
@@ -72,6 +73,7 @@ with lib; {
     home.packages = with pkgs; [
       teams-for-linux
       jan # ai
+      qrtool
       dust
       choose # cut/ awk alternative
       duf # better df
@@ -82,7 +84,7 @@ with lib; {
       zed-editor
       erdtree
       sd
-      tailspin
+      # tailspin # broken
       spacer
       #csvlens
       curlie # httpie for curl
@@ -93,7 +95,7 @@ with lib; {
       # inlyne
       difftastic
       anime4k
-      quickemu
+      # quickemu # broken
       # quickgui
       code-cursor
       aider-chat
@@ -118,7 +120,7 @@ with lib; {
       #piper-tts # text to speech synthesizer with models (download https://huggingface.co/rhasspy/piper-voices/tree/v1.0.0/en/en_US/lessac/high onnx and json to Downloads folder)
       gnome-disk-utility
       #gparted
-      vagrant # quick tmp vm creation
+      # vagrant # quick tmp vm creation # broken
       restic
       #hugo # static site generator
       #ghosttohugo
@@ -170,15 +172,16 @@ with lib; {
       # vhs # generating terminal GIFs with code (what about asciinema)
       # surfraw # TUI search engine interface # broken in nixos (240102)
       translate-shell
-      #ffmpeg_6
+      ffmpeg
+      gallery-dl
       ## Multimedia
       obs-studio
       obs-studio-plugins.obs-backgroundremoval
-      obs-studio-plugins.obs-ndi
+      # obs-studio-plugins.obs-ndi # broken
       easyeffects
       artyFX
       #imagemagick
-      brave # backup browser for teams # multiple problems with privacy during end of 2023
+      # brave # backup browser for teams # multiple problems with privacy during end of 2023
       # chromium
       # ytfzf # does not work 231230
       ani-cli
@@ -209,9 +212,11 @@ with lib; {
       # kdePackages.neochat
       kdePackages.akonadi
       kdePackages.kalarm
+      kdePackages.krohnkite
       kdePackages.kteatime
       ktimetracker
       libsForQt5.krunner-symbols
+      kdePackages.ksystemlog
     ];
   };
 }

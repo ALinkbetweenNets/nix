@@ -21,9 +21,6 @@ in {
     #     10.0.1.1 element.linkserver.org
     #     10.0.1.1 outline.linkserver.org
     #   '';
-    services.dnsmasq.extraConfig = ''
-      interface = wg-deep
-    '';
     networking = {
       firewall = {
         allowedUDPPorts = [ 51821 ];

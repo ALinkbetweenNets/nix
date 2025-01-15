@@ -38,14 +38,17 @@ in {
         hostName = "nextcloud.${config.link.domain}";
         settings.trusted_proxies = [ "100.86.79.82" ];
         config = {
+          dbtype = "sqlite";
           adminuser = "l";
           adminpassFile = config.sops.secrets."nextcloud".path;
         };
-        datadir = "/var/lib/nextcloud-data";
+        datadir = "${config.link.storage}/nextcloud-data";
         #secretFile = "${config.link.secrets}/nextcloud-secrets.json";
         extraApps = with config.services.nextcloud.package.packages.apps; {
-          inherit bookmarks calendar contacts deck mail notes onlyoffice polls
-            tasks twofactor_webauthn;
+          inherit bookmarks calendar deck mail notes onlyoffice polls tasks
+            twofactor_webauthn
+            # contacts # broken
+          ;
         };
         #extraOptions = {
         #  mail_smtpmode = "sendmail";
@@ -57,7 +60,7 @@ in {
         https = true;
         configureRedis = true;
         database.createLocally = true;
-        #home = "${config.link.storage}/nextcloud";
+        home = "${config.link.storage}/nextcloud";
       };
       nginx = if (!cfg.nginx) then {
         enable = true;

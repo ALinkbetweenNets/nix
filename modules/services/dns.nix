@@ -20,10 +20,10 @@ in {
     services.resolved = {
       enable = true;
       fallbackDns = [
-        # "192.168.150.1" # sudo systemd-resolve --interface tun0 --set-dns 192.168.150.1
-        "9.9.9.9"
-        "194.242.2.2"
         "1.0.0.1"
+        "194.242.2.2"
+        "9.9.9.9"
+        "192.168.150.1" # sudo systemd-resolve --interface tun0 --set-dns 192.168.150.1
       ];
       dnssec = "allow-downgrade";
       dnsovertls = "opportunistic";

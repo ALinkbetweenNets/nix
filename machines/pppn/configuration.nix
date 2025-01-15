@@ -3,14 +3,22 @@
   imports =
     [ ./hardware-configuration.nix home-manager.nixosModules.home-manager ];
   home-manager.users.l = flake-self.homeConfigurations.desktop;
-  link.desktop.enable = true;
-  link.syncthing.enable = true;
-  link.plasma.enable = false;
+  link = {
+    desktop.enable = true;
+    syncthing.enable = true;
+    plasma.enable = false;
+    xserver.enable = false;
+    tailscale.enable = true;
+  };
+
   # xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-  networking.hostName = "pppn";
-  # Use Network Manager
-  networking.wireless.enable = false;
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "pppn";
+    domain = "monitor-banfish.ts.net";
+    # Use Network Manager
+    wireless.enable = false;
+    networkmanager.enable = true;
+  };
   # Use PulseAudio
   # hardware.pulseaudio.enable = lib.mkForce true;
   # services.pipewire.enable =  lib.mkForce true;

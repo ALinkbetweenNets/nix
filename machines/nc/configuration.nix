@@ -10,29 +10,27 @@
     tailscale-address = "100.86.79.82";
     common.enable = true;
     eth = "ens3";
-    dyndns.enable = config.link.sops;
-    dyndns.domains = [ config.link.domain "shonk.de" ];
     domain = "alinkbetweennets.de";
     fail2ban.enable = true;
     nginx.enable = true;
-    serviceHost = "100.122.145.19";
+    serviceHost = "100.108.233.76";
     server.enable = true;
     vm.enable = true;
     # services.coturn.enable = true;
   };
   # ctf vpn forwarding
-  # networking.nat = {
-  #   enable = true;
-  #   externalInterface = "ens3";
-  #   externalIP = "202.61.251.70";
-  #   internalInterfaces = [ "tailscale0" ];
-  #   internalIPs = [ "100.89.40.41/32" "100.89.178.137/32" ];
-  #   forwardPorts = [
-  #     { sourcePort = 51820; proto = "udp"; destination = "100.89.40.41:51820"; loopbackIPs = [ "100.86.79.82" ]; }
-  #     { sourcePort = 51822; proto = "udp"; destination = "100.89.178.137:51820"; loopbackIPs = [ "100.86.79.82" ]; }
-  #     { sourcePort = 41623; proto = "tcp"; destination = "100.89.178.137:41623"; loopbackIPs = [ "100.86.79.82" ]; }
-  #   ];
-  # };
+  networking.nat = {
+    enable = true;
+    externalInterface = "ens3";
+    externalIP = "202.61.251.70";
+    internalInterfaces = [ "tailscale0" ];
+    internalIPs = [ "10.10.10.63/32" "100.87.16.37/32" ];
+    forwardPorts = [
+      { sourcePort = 51820; proto = "udp"; destination = "10.10.10.63:51820"; loopbackIPs = [ "100.87.16.37" ]; }
+      { sourcePort = 51822; proto = "udp"; destination = "10.10.10.63:51820"; loopbackIPs = [ "100.87.16.37" ]; }
+      { sourcePort = 41623; proto = "tcp"; destination = "10.10.10.63:41623"; loopbackIPs = [ "100.87.16.37" ]; }
+    ];
+  };
 
   # networking.nat = {
   #   enable = true;
@@ -46,7 +44,7 @@
   # };
 
   networking = {
-    firewall.allowedTCPPorts = [ 443 22 ];
+    firewall.allowedTCPPorts = [ 443 22 41623 ];
     firewall.allowedUDPPorts = [ 51820 51822 ];
     hostName = "v2202312204123249185";
     domain = "ultrasrv.de";
@@ -58,14 +56,14 @@
     };
   };
   services.nginx.virtualHosts = {
-    # services.nginx.virtualHosts."grist.${config.link.domain}" = {
-    #   enableACME = true;
-    # useACMEHost = config.link.domain;
+    # "grist.${config.link.domain}" = {
+    #   useACMEHost = config.link.domain;
     #   forceSSL = true;
     #   locations."/" = {
-    #     proxyPass = "http://127.0.0.1:8484";
+    #     proxyPass = "http://${config.link.serviceHost}:8484";
     #     proxyWebsockets = true;
     #   };
+    # };
     # services.nginx.virtualHosts."diagrams.${config.link.domain}" = {
     #   enableACME = true;
     #   forceSSL = true;
@@ -130,6 +128,15 @@
         proxyWebsockets = true;
       };
     };
+    "audiobookshelf.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://${config.link.serviceHost}:4124/";
+        proxyWebsockets = true;
+      };
+    };
     "crypt.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
@@ -143,21 +150,21 @@
         proxyWebsockets = true;
       };
     };
+    "cryptui.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://${config.link.serviceHost}:5000/";
+        proxyWebsockets = true;
+      };
+    };
     "cast.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://${config.link.serviceHost}:8888/";
-        proxyWebsockets = true;
-      };
-    };
-    "cryptui.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:3004/";
         proxyWebsockets = true;
       };
     };
@@ -226,6 +233,19 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/".proxyPass = "http://${config.link.serviceHost}:2500/";
+      locations."/".proxyWebsockets = true;
+    };
+    "microbin.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/".proxyPass = "http://${config.link.serviceHost}:9483/";
+    };
+    "karsten.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/".proxyPass = "http://100.98.48.88:5000/";
       locations."/".proxyWebsockets = true;
     };
     "immich.${config.link.domain}" = {
@@ -389,26 +409,22 @@
     #   };
     # };
 
-    ## CTF
-    # "slides.netintro.${config.link.domain}" = {
-    #   # enableACME = true;
-    #   useACMEHost = config.link.domain;
-    #   forceSSL = true;
-    #   # default = true;
-    #   locations."/" = {
-    #     proxyPass = "http://100.89.40.41:31337/";
-    #   };
-    # };
-    # "vpnconfig.netintro.${config.link.domain}" = {
-    #   # enableACME = true;
-    #   useACMEHost = config.link.domain;
-    #   forceSSL = true;
-    #   # default = true;
-    #   locations."/" = {
-    #     proxyPass = "http://100.89.40.41:31338/";
-    #   };
-    # };
-    ## /CTF
+    # CTF
+    "slides.netintro.${config.link.domain}" = {
+      enableACME = true;
+      # useACMEHost = config.link.domain;
+      forceSSL = true;
+      # default = true;
+      locations."/" = { proxyPass = "http://10.10.10.45:31337/"; };
+    };
+    "vpnconfig.netintro.${config.link.domain}" = {
+      enableACME = true;
+      # useACMEHost = config.link.domain;
+      forceSSL = true;
+      # default = true;
+      locations."/" = { proxyPass = "http://10.10.10.45:31338/"; };
+    };
+    # /CTF
   };
   # services.oauth2-proxy={
   #   enable=true;

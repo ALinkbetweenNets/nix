@@ -63,6 +63,7 @@ in {
       gitlab = {
         enable = true;
         port = cfg.port;
+        statePath = "${config.link.storage}/gitlab/state";
         # https = true;
         host = "gitlab.alinkbetweennets.de";
         pages.settings.pages-domain = "pages.alinkbetweennets.de";

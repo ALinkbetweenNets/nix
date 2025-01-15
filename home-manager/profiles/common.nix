@@ -19,7 +19,6 @@ with lib; {
       enable = true;
       forwardAgent = true;
       matchBlocks = {
-        "deepserver" = { port = 2522; };
         "nc" = { port = 2522; };
         "sn" = { port = 2522; };
         "dn" = { port = 2522; };
@@ -58,17 +57,14 @@ with lib; {
         # magic-wormhole # Secure data transfer
         # iperf3 # speedtest
         crab_share
-        ## duplicate Finder
-        rmlint
-        fdupes
+        fdupes # duplicate Finder
+        # rmlint # broken
       ] ++ lib.optionals
       (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
     # Home-manager nixpkgs config
     nixpkgs = {
       # Allow "unfree" licenced packages
-      config = {
-        allowUnfree = true;
-      };
+      config.allowUnfree = true;
       overlays = [
         flake-self.overlays.default
         flake-self.inputs.bonn-mensa.overlays.default

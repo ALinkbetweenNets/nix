@@ -1,9 +1,9 @@
 { config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.services.microbin;
+let cfg = config.link.services.audiobookshelf;
 in {
-  options.link.services.microbin = {
-    enable = mkEnableOption "activate microbin";
+  options.link.services.audiobookshelf = {
+    enable = mkEnableOption "activate audiobookshelf";
     expose-port = mkOption {
       type = types.bool;
       default = config.link.service-ports-expose;
@@ -22,23 +22,16 @@ in {
     };
     port = mkOption {
       type = types.int;
-      default = 9483;
+      default = 4124;
       description = "port to run the application on";
     };
   };
   config = mkIf cfg.enable {
-    sops.secrets.microbin = { };
-    services = {
-      microbin = {
-        enable = true;
-        passwordFile = config.sops.secrets.microbin.path;
-        dataDir = "${config.link.storage}/microbin";
-        settings = {
-          MICROBIN_HIDE_LOGO = true;
-          MICROBIN_PORT = cfg.port;
-
-        };
-      };
+    services.audiobookshelf = {
+      enable = true;
+      port = cfg.port;
+      host = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
     };
+    networking.firewall.allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
   };
 }

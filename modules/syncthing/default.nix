@@ -35,7 +35,7 @@ in {
           "fn".id =
             "Z3YB7BR-O6OBQN7-HPPZ5N5-SVYLBAN-REOGNBX-5KDWGVF-2WJKFC4-MMIZTQT";
           "s22".id =
-            "DOQGIQ6-WIAAZBV-EUQ6HWX-D6G2XYK-SAE6AGX-X3D4OLX-PGKELKL-RR6PSAE";
+            "V446NPI-YZNXTZL-5LFFQFV-GW7DXHV-IMAX7VX-B27RYFO-FZFSEYG-TMSTTAR";
           "in".id =
             "IYOMGJ7-NZADKG2-L2PMGIH-VSTMTJ4-KLA7VF4-3CUONC2-BQMMWTW-I6KHDAY";
           "sn".id =
@@ -139,6 +139,14 @@ in {
             versioning = {
               type = "simple";
               params.keep = "10";
+            };
+          };
+          "obsidian" = {
+            path = lib.mkDefault "${config.link.syncthingDir}/obsidian";
+            devices = [ "fn" "sn" "xn" "s22" "pppn" ];
+            versioning = {
+              type = "simple";
+              params.keep = "5";
             };
           };
           "keys" = {

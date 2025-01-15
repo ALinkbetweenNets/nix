@@ -13,12 +13,17 @@ in {
       enableExtensionUpdateCheck = false;
       extensions = with pkgs.vscode-extensions;
         [
-          continue.continue # ollama
+          # continue.continue # ollama
           myriad-dreamin.tinymist # typst
           #b4dm4n.vscode-nixpkgs-fmt
           #vscodevim.vim
           arrterian.nix-env-selector
           # dracula-theme.theme-dracula
+          christian-kohler.path-intellisense
+          dbaeumer.vscode-eslint
+          christian-kohler.npm-intellisense
+          yoavbls.pretty-ts-errors
+          bradlc.vscode-tailwindcss
           eamodio.gitlens
           esbenp.prettier-vscode
           firefox-devtools.vscode-firefox-debug
@@ -47,6 +52,9 @@ in {
             "6acdded8bcca052b221acfd4188674e97a9b2e1dfb8ab0d4682cec96a2131094";
         }];
       userSettings = {
+        "[typescriptreact]" = {
+          "editor.defaultFormatter" = "vscode.typescript-language-features";
+        };
         "[nix]" = { "editor.defaultFormatter" = "jnoortheen.nix-ide"; };
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nil";
@@ -85,7 +93,7 @@ in {
         "editor.cursorBlinking" = "expand";
         "editor.cursorSmoothCaretAnimation" = "on";
         "editor.cursorSurroundingLinesStyle" = "all";
-        "editor.defaultColorDecorators" = true;
+        "editor.defaultColorDecorators" = "auto";
         "editor.find.autoFindInSelection" = "multiline";
         "editor.fontFamily" = "'FiraCode Nerd Font'";
         "editor.fontLigatures" = true;

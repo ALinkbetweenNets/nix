@@ -17,9 +17,9 @@
     gaming.enable = true;
     # sway.enable = true;
     # fs.zfs.enable = true;
-    printing.enable = true;
+    # printing.enable = true;
     fs.ntfs.enable = true;
-    fs.luks.enable = false;
+    fs.luks.enable = false; # DO NOT ACTIVATE, DEBUG IN VM
     laptop.enable = true;
     common.enable = true;
     main.enable = true;
@@ -27,13 +27,16 @@
     systemd-boot.enable = true;
     #secrets = "/home/l/.keys";
     #wireguard.enable = true;
-    #wg-deep.enable = true;
     # wg-link.enable = true;
     domain = "fn.local";
     service-ip = "127.0.0.1";
     # xrdp.enable = true;
     # eth = "wlp0s20f3";
-    docker.enable = true;
+    # nftables.enable = true;
+    fail2ban.enable = true;
+    podman.enable = true;
+    # docker.enable = true;
+    i2p.enable = true;
     services.restic-client = {
       enable = true;
       backup-paths-sn = [
@@ -52,27 +55,26 @@
       #    "/home/l/sec"
       #    "/home/l/w"
       #  ];
-      #  backup-paths-pi4b = [
-      #    "/home/l/.ssh"
-      #    "/home/l/archive"
-      #    "/home/l/doc"
-      #    "/home/l/Music"
-      #    "/home/l/obsidian"
-      #    "/home/l/plasma-vault"
-      #    "/home/l/sec"
-      #    "/home/l/w"
-      #    "/home/l/Pictures"
-      #    "/home/l/uni"
-      #  ];
+      backup-paths-pi4b = [
+        "/home/l/.ssh"
+        "/home/l/archive"
+        "/home/l/doc"
+        "/home/l/Music"
+        "/home/l/obsidian"
+        "/home/l/sec"
+        "/home/l/w"
+        "/home/l/Pictures"
+        "/home/l/uni"
+      ];
     };
   };
   services = {
-    ollama = {
-      enable = true;
-      port = 11434;
-      host = "127.0.0.1";
-      loadModels = [ "llama3.1:70b" "nomic-embed-text" "starcoder2:3b" ];
-    };
+    # ollama = {
+    #   enable = true;
+    #   port = 11434;
+    #   host = "127.0.0.1";
+    #   loadModels = [ "llama3.1:70b" "nomic-embed-text" "starcoder2:3b" ];
+    # };
     # private-gpt = {
     #   enable = true;
     #   settings = {
@@ -101,15 +103,10 @@
     #     vectorstore = { database = "qdrant"; };
     #   };
     # };
-    nextjs-ollama-llm-ui = {
-      enable = true;
-      port = 11444;
-      ollamaUrl = "127.0.0.1:11444";
-    };
-    # unifi = {
+    # nextjs-ollama-llm-ui = {
     #   enable = true;
-    #   openFirewall = true;
-    #   unifiPackage = pkgs.unifi;
+    #   port = 11444;
+    #   ollamaUrl = "127.0.0.1:11444";
     # };
   };
   nixpkgs.config.permittedInsecurePackages = [ "unifi-controller-7.5.187" ];

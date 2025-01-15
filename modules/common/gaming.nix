@@ -6,7 +6,7 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs;
       [
-        looking-glass-client # KVM relay
+        # looking-glass-client # KVM relay
         # (wine.override { wineBuild = "wine64"; })
         # wineWowPackages.staging
         # winetricks

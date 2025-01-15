@@ -35,7 +35,7 @@ in {
           if cfg.expose-port then "0.0.0.0:9002" else "127.0.0.1:9002";
         region = "eu-central-1";
         rootCredentialsFile = config.sops.secrets."minio".path;
-        # dataDir = [ "${config.link.storage}/minio/data" ];
+        dataDir = [ "${config.link.storage}/minio/data" ];
       };
       nginx.virtualHosts."minio.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;

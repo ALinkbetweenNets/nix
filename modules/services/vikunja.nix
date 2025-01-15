@@ -1,9 +1,9 @@
-{ config, pkgs, lib, ... }:
+{ config, system-config, pkgs, lib, ... }:
 with lib;
-let cfg = config.link.services.jellyfin;
+let cfg = config.link.services.vikunja;
 in {
-  options.link.services.jellyfin = {
-    enable = mkEnableOption "activate jellyfin";
+  options.link.services.vikunja = {
+    enable = mkEnableOption "activate vikunja";
     expose-port = mkOption {
       type = types.bool;
       default = config.link.service-ports-expose;
@@ -22,24 +22,29 @@ in {
     };
     port = mkOption {
       type = types.int;
-      default = 8096;
+      default = 3456;
       description = "port to run the application on";
     };
   };
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ jellyfin-ffmpeg ];
     services = {
-      jellyfin = {
-        # package = pkgs.cudapkgs.jellyfin;
+      vikunja = {
         enable = true;
-        dataDir = "${config.link.storage}/jellyfin";
+        database.path = "${config.link.storage}/vikunja/vikunja.db";
+        frontendHostname = "vikunja.${config.link.domain}";
+        frontendScheme = "https";
       };
-      nginx.virtualHosts."jellyfin.${config.link.domain}" = mkIf cfg.nginx {
+      nginx.virtualHosts."vikunja.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString cfg.port}/";
+          proxyPass = "http://127.0.0.1:${toString cfg.port}";
         };
+        extraConfig = mkIf (!cfg.nginx-expose) ''
+          allow ${config.link.service-ip}/24;
+          allow 127.0.0.1;
+          deny all; # deny all remaining ips
+        '';
       };
     };
     networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =

@@ -1,6 +1,5 @@
 { lib, pkgs, system-config, ... }:
 with lib; {
-
   xdg = mkIf system-config.link.desktop.enable {
     portal = {
       enable = true;
@@ -60,11 +59,12 @@ with lib; {
       "image/webp" = [ "org.kde.gwenview.desktop" ];
       "text/calendar" = [ "thunderbird.desktop" ];
       "text/javascript" = [ "codium.desktop" ];
+      "text/markdown" = [ "neovide.desktop" ];
       "text/plain" = [ "org.kde.kate.desktop" ];
       "text/xml" = [ "org.kde.kate.desktop" ];
-      "video/mp4" = [ "mpv.desktop" ];
-      "video/mpeg" = [ "mpv.desktop" ];
-      "video/webm" = [ "mpv.desktop" ];
+      "video/mp4" = [ "vlc.desktop" ];
+      "video/mpeg" = [ "vlc.desktop" ];
+      "video/webm" = [ "vlc.desktop" ];
       "x-scheme-handler/sgnl" = [ "signal-desktop.desktop" ];
       "x-scheme-handler/signalcaptcha" = [ "signal-desktop.desktop" ];
       "x-scheme-handler/http" = [ "firefox.desktop" ];

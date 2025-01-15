@@ -10,12 +10,11 @@
     systemd-boot.enable = true;
     tower.enable = true;
     main.enable = true;
-    printing.enable = lib.mkDefault true;
+    # printing.enable = lib.mkDefault true;
     cpu-intel.enable = true;
     nvidia.enable = true;
     secrets = "/home/l/.keys";
     wireguard.enable = true;
-    # wg-deep.enable = true;
     # wg-link.enable = true;
     xserver.enable = true;
     eth = "enp111s0";
@@ -23,6 +22,7 @@
     # home-assistant.enable = true;
     docker.enable = true;
     services = {
+      ollama.enable = true;
       # matrix.enable = true;
       # immich.enable = true;
       restic-client = {
@@ -48,16 +48,12 @@
       };
     };
   };
-  # services.postgresql = {
-  #   enable = true;
-  #   authentication = ''
-  #     local all all trust
-  #   '';
-  # };
   services.unifi = {
     enable = true;
     openFirewall = true;
     unifiPackage = pkgs.unifi;
+    mongodbPackage = pkgs.mongodb-6_0;
+
   };
   nixpkgs.config.permittedInsecurePackages = [ "unifi-controller-7.5.187" ];
   networking = {

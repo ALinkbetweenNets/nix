@@ -2,11 +2,12 @@
   description = "My NixOS infrastructure";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nur.url = "github:nix-community/NUR";
     # Pure Nix flake utility functions
     # https://github.com/numtide/flake-utils
-    flake-utils = { url = "github:numtide/flake-utils"; };
+    flake-utils.url = "github:numtide/flake-utils";
     lollypops = {
       url = "github:pinpox/lollypops";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,8 +39,8 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
     crab_share = { url = "github:lounge-rocks/crab_share"; };
-    nixvim = {
-      url = "github:nix-community/nixvim";
+    nvf = {
+      url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nsearch = {
@@ -97,7 +98,8 @@
       nixpkgsFor = forAllSystems (system:
         import nixpkgs {
           inherit system;
-          overlays = [ self.overlays.default nur.overlay nixgl.overlay ];
+          overlays =
+            [ self.overlays.default nur.overlays.default nixgl.overlay ];
         });
     in {
       formatter = forAllSystems (system: nixpkgsFor.${system}.nixpkgs-fmt);
@@ -210,7 +212,7 @@
         nix = { pkgs, ... }: {
           # import home manager modules from this flake
           imports = [
-            inputs.nixvim.homeManagerModules.nixvim
+            inputs.nvf.homeManagerModules.default
             inputs.plasma-manager.homeManagerModules.plasma-manager
             # inputs.vscode-server.nixosModules.home
           ];
@@ -218,7 +220,7 @@
           nixpkgs.overlays = [
             self.overlays.default
             inputs.crab_share.overlay
-            inputs.nur.overlay
+            inputs.nur.overlays.default
             (final: prev: {
               cudapkgs = import inputs.nixpkgs {
                 system = "${pkgs.system}";

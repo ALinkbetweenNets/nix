@@ -7,7 +7,7 @@
   #swapDevices = [{ device = "/.swapvol/swapfile"; }];
   boot = {
     extraModulePackages = [ ];
-    kernelModules = [ "kvm-intel" "usbnet" ];
+    kernelModules = [ "usbnet" ];
     kernelParams = [ "resume_offset=533760" ];
     resumeDevice = "/dev/mapper/crypted";
     initrd = {

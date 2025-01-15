@@ -3,11 +3,10 @@ keys:
   - &fn_l age1mk7h2nffg0lgst2ym94mhzgcgu0vfs0rf7ghtf3ccvr5qwgj9egqlt9yft
   - &nc_l age1chem32xws33htffv58mp65qjgzr4wurlgkm2y6457jdpxm6m5fusjjjcck
   - &pi4b_l age1wvwyqc05jhwcx7wr39xyc70encpmgp9pfwc6nz8kgasm0law6ukq9mf6f7
-  - &sn_l age1jvcze5cetax682pvu7rzeh9l3058rvl9pnn5fm5h5gsqvann5sdqjz7dzj
+  - &sn_l age1ntmjlv7k0h67rtylfw0jflqrflt2t6feuuksh7davtx5v5alj3rqqsxpnr
   - &snvnarr_l age1mwhj6e0tjarsrh2trsdgtd7d34szqcakylqkw2dve2ps72yes9zqqq3ynu
   - &vn_l age1hqwmpc6eawher5rju0g0m0e507pnwn38pc89ml22znzc98gv05sshkny9z
   - &xn_l age1zfrv9esrwa3dlx2yamfxz33w2dn4rkc3m54x0xje2nve4fhrtfuqlqv3f4
-  - &x390_l age1lummhsag5zpwn6yws4m8nvz56g2gwyrpdf4dpqvehjmp7rt4r9dszqfuru
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
@@ -20,4 +19,3 @@ creation_rules:
       - *snvnarr_l
       - *vn_l
       - *xn_l
-      - *x390_l

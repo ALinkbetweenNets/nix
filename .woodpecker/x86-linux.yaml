@@ -233,24 +233,18 @@
     },
     {
       "commands": [
-        "nix build '.#nixosConfigurations.xn.config.system.build.toplevel' -o 'result-x390'"
       ],
       "image": "bash",
-      "name": "Build x390"
     },
     {
       "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-x390')"
       ],
       "image": "bash",
-      "name": "Show x390 info"
     },
     {
       "commands": [
-        "attic push lounge-rocks:nix-cache 'result-x390'"
       ],
       "image": "bash",
-      "name": "Push x390 to Attic"
     }
   ]
 }
