@@ -120,7 +120,7 @@
   services.ollama = {
     enable = true;
     port = 11434;
-    host = "100.108.233.76";
+    host = "0.0.0.0";
     loadModels = [ "llama3.1:70b" "nomic-embed-text" "starcoder2:3b" ];
   };
   # services.owncast = {
