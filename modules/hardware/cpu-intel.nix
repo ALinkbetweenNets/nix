@@ -17,23 +17,25 @@ in {
       nvtopPackages.intel
       nixgl
     ];
-    hardware.graphics.extraPackages = with pkgs; [
-      intel-media-driver
-      libvdpau-va-gl
-      vaapiIntel
-      vaapiVdpau
-      intel-compute-runtime
-      intel-ocl
-    ];
-    hardware.graphics.extraPackages32 = with pkgs.pkgsi686Linux;
-      [
+    hardware.graphics = {
+      extraPackages = with pkgs; [
         intel-media-driver
-        # libvdpau-va-gl
-        vaapiIntel
-        # vaapiVdpau
-        #intel-compute-runtime
-        #intel-ocl
+        libvdpau-va-gl
+        # vaapiIntel
+        vaapiVdpau
+        intel-compute-runtime
+        intel-ocl
       ];
+      extraPackages32 = with pkgs.pkgsi686Linux;
+        [
+          intel-media-driver
+          # libvdpau-va-gl
+          # vaapiIntel
+          # vaapiVdpau
+          #intel-compute-runtime
+          #intel-ocl
+        ];
+    };
     hardware.cpu.intel.updateMicrocode = true;
   };
 }

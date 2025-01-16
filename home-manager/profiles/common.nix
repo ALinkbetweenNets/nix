@@ -7,15 +7,9 @@ with lib; {
       example = "server";
     };
   };
-  imports = with flake-self.homeManagerModules; [
-    neovim
-    shell
-    git
-  ];
+  imports = with flake-self.homeManagerModules; [ neovim shell git ];
   config = {
-    home.sessionVariables = {
-      EDITOR = "nvim";
-    };
+    home.sessionVariables = { EDITOR = "nvim"; };
     services.gpg-agent = {
       enable = true;
       enableExtraSocket = true;
@@ -25,29 +19,20 @@ with lib; {
       enable = true;
       forwardAgent = true;
       matchBlocks = {
-        "deepserver" = {
-          port = 2522;
-        };
-        "nc" = {
-          port = 2522;
-        };
-        "sn" = {
-          port = 2522;
-        };
-        "dn" = {
-          port = 2522;
-        };
-        "xn" = {
-          port = 2522;
-        };
-        "pi4b" = {
-          port = 2522;
-        };
+        "nc" = { port = 2522; };
+        "sn" = { port = 2522; };
+        "dn" = { port = 2522; };
+        "xn" = { port = 2522; };
+        "pi4b" = { port = 2522; };
+        "pppn" = { port = 2522; };
+        "fn" = { port = 2522; };
       };
       compression = true;
     };
     home.packages = with pkgs;
       [
+        xcp
+        dysk
         git-crypt
         yazi # TUI File Manager with preview
         nix-output-monitor
@@ -72,18 +57,14 @@ with lib; {
         # magic-wormhole # Secure data transfer
         # iperf3 # speedtest
         crab_share
-        ## duplicate Finder
-        rmlint
-        fdupes
+        fdupes # duplicate Finder
+        # rmlint # broken
       ] ++ lib.optionals
-        (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
+      (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
     # Home-manager nixpkgs config
     nixpkgs = {
       # Allow "unfree" licenced packages
-      config = {
-        allowUnfree = true;
-        permittedInsecurePackages = [ "electron-25.9.0" ];
-      };
+      config.allowUnfree = true;
       overlays = [
         flake-self.overlays.default
         flake-self.inputs.bonn-mensa.overlays.default

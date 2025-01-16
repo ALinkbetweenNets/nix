@@ -1,10 +1,7 @@
 { self, ... }:
 { pkgs, lib, config, flake-self, home-manager, modulesPath, ... }: {
-  imports = [
-    (modulesPath + "/virtualisation/proxmox-lxc.nix")
-    home-manager.nixosModules.home-manager
-    ./hardware-configuration.nix
-  ];
+  imports =
+    [ home-manager.nixosModules.home-manager ./hardware-configuration.nix ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
     common.enable = true;
@@ -16,16 +13,15 @@
     # fs.luks.enable = true;
     # fs.ntfs.enable = true;
     ##
-    # vm.enable = true;
-    # cpu-amd.enable = true;
-    # nvidia.enable = true;
+    vm.enable = true;
+    cpu-amd.enable = true;
     ##
-    docker.enable = true;
+    # docker.enable = true;
     fail2ban.enable = true;
     ##
     domain = "alinkbetweennets.de";
-    # storage = "/rz/srv";
-    # syncthingDir = "/rz/syncthing";
+    storage = "/var/lib";
+    syncthingDir = "/var/lib/syncthing-data";
     # secrets = "/pwd";
     #seafile.enable = true;
     # service-ip = "10.0.1.1";
@@ -43,86 +39,105 @@
     # };
     # zola.enable = true;
     service-ports-expose = true;
-    users.lmh01.enable = true;
     services = {
-      mailserver.enable = true;
+      # tt-rss.enable = true;
+      stirling-pdf.enable=true;
+      searx.enable = true;
+      microbin.enable = true;
+      # mailserver.enable = true;
       cryptpad.enable = true;
       # photoprism.enable = true; # WIP
-      keycloak.enable = true;
+      # keycloak.enable = true;
       #gitea.enable = true;
       gitlab.enable = true;
       # grafana.enable = true;
       # # seafile.enable = true;
       # # xandikos.enable = true; # WIP
-      hedgedoc.enable = true;
+      # hedgedoc.enable = true;
       jellyfin.enable = true;
+      mealie.enable = true;
       # jellyseer.enable = true;
       minio.enable = true;
       immich.enable = true;
+      audiobookshelf.enable = true;
+      # openvscode-server.enable = true;
       nextcloud = {
         enable = true;
         nginx-expose = true;
       };
       # nfs.enable = true;
-      outline = {
-        enable = true;
-        # nginx-expose = true;
-        oidClientId = "7cec0458291c1d98c37bce1ad62ea7b02790d7330f1ce5b6a25d9da95c6b3108";
-      };
-      paperless.enable = true;
-      vaultwarden.enable = true;
-      # matrix.enable = true;
-      # restic-server = { enable = true; expose = false; };
-      restic-server.enable = true;
-      # coturn.enable = true;
-      # dns.enable = true;
-      restic-client = {
-        enable = true;
-        backup-paths-onedrive = [
-          "/home/l/.ssh"
-          "/home/l/.data-mirror"
-          "/home/l/archive"
-          "/home/l/doc"
-          "/home/l/Music"
-          "/home/l/sec"
-          "/home/l/Sync"
-          "/home/l/uni"
-          "/home/l/w"
-
-        ];
-        #   backup-paths-lenny-storagebox = [
-        #     "/home/l/.ssh"
-        #     "/rz/syncthing/crypt"
-        #     "/rz/syncthing/doc"
-        #     "/rz/syncthing/music"
-        #     "/rz/syncthing/sec"
-        #     "/rz/syncthing/uni"
-        #     "/rz/syncthing/w"
-        #   ];
-        backup-paths-pi4b = [
-          "/home/l/.ssh"
-          "/home/l/archive"
-          "/home/l/.data-mirror"
-          "/home/l/Sync"
-          "/home/l/doc"
-          "/home/l/uni"
-        ];
-      };
-      # wg-link.enable = true;
-      # services.jitsi = {
+      # outline = {
       #   enable = true;
-      #   expose = false;
+      #   # nginx-expose = true;
+      #   oidClientId =
+      #     "7cec0458291c1d98c37bce1ad62ea7b02790d7330f1ce5b6a25d9da95c6b3108";
       # };
-      # keycloak.enable = true;
+      paperless.enable = true;
+      # vaultwarden.enable = true;
+      # # matrix.enable = true;
+      restic-server.enable = true;
+      # containers.grist.enable = true;
+      # # coturn.enable = true;
+      # # dns.enable = true;
+      # restic-client = {
+      #   enable = true;
+      #   backup-paths-onedrive = [
+      #     "/home/l/.data-mirror"
+      #     "/home/l/.ssh"
+      #     "/home/l/archive"
+      #     "/home/l/doc"
+      #     "/home/l/Music"
+      #     "/home/l/sec"
+      #     "/home/l/Sync"
+      #     "/home/l/uni"
+      #     "/home/l/w"
+      #   ];
+      #   backup-paths-lenny-storagebox = [
+      #     "/home/l/.data-mirror"
+      #     "/home/l/.ssh"
+      #     # "/home/l/archive"
+      #     "/home/l/doc"
+      #     "/home/l/Music"
+      #     "/home/l/sec"
+      #     "/home/l/Sync"
+      #     "/home/l/uni"
+      #     "/home/l/w"
+      #   ];
+      #   backup-paths-pi4b = [ "/home/l/.ssh" "/var/lib" "/var/gitlab" ];
     };
-    eth = "eth0@if146";
+    # wg-link.enable = true;
+    # services.jitsi = {
+    #   enable = true;
+    #   expose = false;
+    # };
+    # keycloak.enable = true;
+    # };
+    eth = "enp6s18";
   };
-  services.onedrive.enable = true;
-  services.clamav = {
-    # Antivirus
-    daemon.enable = true;
-    updater.enable = true;
+  services.postgresql.dataDir =
+    "${config.link.storage}/postgresql/${config.services.postgresql.package.psqlSchema}";
+  services.ollama = {
+    enable = true;
+    port = 11434;
+    host = "0.0.0.0";
+    loadModels = [ "llama3.1:70b" "nomic-embed-text" "starcoder2:3b" ];
   };
+  # services.owncast = {
+  #   enable = true;
+  #   openFirewall = true;
+  #   listen = "0.0.0.0";
+  #   rtmp-port = 1935;
+  #   port = 8888;
+  # };
+  # services.onedrive.enable = true;
+  # services.clamav = {
+  #   # Antivirus
+  #   daemon.enable = true;
+  #   updater.enable = true;
+  # };
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIELDx8vTqed3YBepK2EEcM0vsLZX3g9gxwzVknwYlAgh root@sn"
+  ];
   nix.settings.auto-optimise-store = true;
   # services.cloudflare-dyndns = {
   #   ipv4 = lib.mkForce false;
@@ -152,10 +167,10 @@
     #     192.168.122.200 snvnarr
     #   '';
   };
-  fileSystems."/home/lmh01/jellyfin-data" = {
-    device = "/var/lib/jellyfin-data";
-    options = [ "bind" ];
-  };
+  # fileSystems."/home/lmh01/jellyfin-data" = {
+  #   device = "/var/lib/jellyfin-data";
+  #   options = [ "bind" ];
+  # };
   # fileSystems."/rz/sftp/lmh01/arr" = {
   #   device = "/rz/arr/";
   #   options = [ "bind" ];
@@ -189,14 +204,14 @@
   # nix run .\#lollypops -- sn:rebuild
   lollypops.deployment = {
     # local-evaluation = true;
-    ssh = { host = "sn"; user = "l"; };
+    ssh = {
+      host = "sn.monitor-banfish.ts.net";
+      user = "l";
+    };
     # sudo.enable = true;
     ssh.opts = [ "-p 2522" ];
     sudo.enable = true;
   };
-
-
-
 
   # Supress systemd units that don't work because of LXC.
   # https://blog.xirion.net/posts/nixos-proxmox-lxc/#configurationnix-tweak
@@ -205,6 +220,5 @@
     "sys-kernel-debug.mount"
     "sys-fs-fuse-connections.mount"
   ];
-
 
 }

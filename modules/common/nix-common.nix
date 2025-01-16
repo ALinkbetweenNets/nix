@@ -3,10 +3,14 @@
     autoUpgrade = {
       enable = true;
       allowReboot = true;
-      rebootWindow = { lower = "05:00"; upper = "07:00"; };
+      rebootWindow = {
+        lower = "05:00";
+        upper = "07:00";
+      };
+      randomizedDelaySec = "45min";
       persistent = true;
       flake = "github:alinkbetweennets/nix";
-      flags = [ "--update-input" "nixpkgs" "-L" ];
+      flags = [ "-L" ];
     };
     stateVersion = "23.11";
   };
@@ -29,19 +33,23 @@
   # Home Manager configuration
   # Allow unfree licenced packages
   nixpkgs = {
+    config.permittedInsecurePackages =
+      [ "dotnet-sdk-6.0.428" "aspnetcore-runtime-6.0.36" ];
     config.allowUnfree = true;
     overlays = [
       flake-self.overlays.default
-      flake-self.inputs.nur.overlay
+      flake-self.inputs.nur.overlays.default
       flake-self.inputs.crab_share.overlay
-      flake-self.inputs.nixvim.overlays.default
       (final: prev: {
         ondsel = flake-self.inputs.ondsel.packages.${pkgs.system}.ondsel;
       })
       (final: prev: {
         cudapkgs = import flake-self.inputs.nixpkgs {
           system = "${pkgs.system}";
-          config = { allowUnfree = true; cudaSupport = true; };
+          config = {
+            allowUnfree = true;
+            cudaSupport = true;
+          };
         };
       })
     ];

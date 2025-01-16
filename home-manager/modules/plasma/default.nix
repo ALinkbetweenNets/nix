@@ -1,7 +1,7 @@
 { lib, pkgs, config, ... }:
 with lib;
-let cfg = config.link.plasma; in
-{
+let cfg = config.link.plasma;
+in {
   options.link.plasma.enable = mkEnableOption "enable plasma";
   config = mkIf cfg.enable {
     # home.packages = with pkgs; [ iosevka ];
@@ -17,11 +17,16 @@ let cfg = config.link.plasma; in
         "dolphinrc"."KFileDialog Settings"."Places Icons Auto-resize" = true;
         "dolphinrc"."KFileDialog Settings"."Places Icons Static Size" = 16;
         "dolphinrc"."PlacesPanel"."IconSize" = "-1";
-        "dolphinrc"."PreviewSettings"."Plugins" = "appimagethumbnail,audiothumbnail,comicbookthumbnail,cursorthumbnail,directorythumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,opendocumentthumbnail,svgthumbnail,windowsexethumbnail,windowsimagethumbnail,fontthumbnail,blenderthumbnail,ffmpegthumbs,gsthumbnail,mobithumbnail,rawthumbnail";
-        "kcminputrc"."Libinput/1386/21125/Wacom HID 5285 Finger"."OutputName" = "eDP-1";
-        "kcminputrc"."Libinput/1386/21125/Wacom HID 5285 Pen"."OutputName" = "eDP-1";
-        "kcminputrc"."Libinput/1739/52828/SYNA800B:00 06CB:CE5C Touchpad"."NaturalScroll" = true;
-        "kcminputrc"."Libinput/1739/52828/SYNA800B:00 06CB:CE5C Touchpad"."PointerAcceleration" = 0.200;
+        "dolphinrc"."PreviewSettings"."Plugins" =
+          "appimagethumbnail,audiothumbnail,comicbookthumbnail,cursorthumbnail,directorythumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,opendocumentthumbnail,svgthumbnail,windowsexethumbnail,windowsimagethumbnail,fontthumbnail,blenderthumbnail,ffmpegthumbs,gsthumbnail,mobithumbnail,rawthumbnail";
+        "kcminputrc"."Libinput/1386/21125/Wacom HID 5285 Finger"."OutputName" =
+          "eDP-1";
+        "kcminputrc"."Libinput/1386/21125/Wacom HID 5285 Pen"."OutputName" =
+          "eDP-1";
+        "kcminputrc"."Libinput/1739/52828/SYNA800B:00 06CB:CE5C Touchpad"."NaturalScroll" =
+          true;
+        "kcminputrc"."Libinput/1739/52828/SYNA800B:00 06CB:CE5C Touchpad"."PointerAcceleration" =
+          0.2;
         # "ksmserver"."Halt Without Confirmation" = "none,,Shut Down Without Confirmation";
         # "ksmserver"."Lock Session" = [ "Meta+L" "Screensaver,Meta+L" "Screensaver,Lock Session" ];
         # "ksmserver"."Log Out" = "Ctrl+Alt+Del";
@@ -37,7 +42,8 @@ let cfg = config.link.plasma; in
         "kded5rc"."Module-device_automounter"."autoload" = false;
         "kdeglobals"."KDE"."AnimationDurationFactor" = 0.5;
         "kdeglobals"."KFileDialog Settings"."Allow Expansion" = false;
-        "kdeglobals"."KFileDialog Settings"."Automatically select filename extension" = true;
+        "kdeglobals"."KFileDialog Settings"."Automatically select filename extension" =
+          true;
         "kdeglobals"."KFileDialog Settings"."Breadcrumb Navigation" = true;
         "kdeglobals"."KFileDialog Settings"."Decoration position" = 2;
         "kdeglobals"."KFileDialog Settings"."LocationCombo Completionmode" = 5;
@@ -71,7 +77,8 @@ let cfg = config.link.plasma; in
         "kservicemenurc"."Show"."extractfileitemaction" = true;
         "kservicemenurc"."Show"."forgetfileitemaction" = true;
         "kservicemenurc"."Show"."installFont" = true;
-        "kservicemenurc"."Show"."kactivitymanagerd_fileitem_linking_plugin" = true;
+        "kservicemenurc"."Show"."kactivitymanagerd_fileitem_linking_plugin" =
+          true;
         "kservicemenurc"."Show"."kdeconnectfileitemaction" = true;
         "kservicemenurc"."Show"."kdiff3fileitemaction" = true;
         "kservicemenurc"."Show"."kio-admin" = true;
@@ -145,9 +152,7 @@ let cfg = config.link.plasma; in
 
           {
             name = "org.kde.plasma.kickoff";
-            config = {
-              General.icon = "nix-snowflake-white";
-            };
+            config = { General.icon = "nix-snowflake-white"; };
           }
           # Adding configuration to the widgets can also for example be used to
           # pin apps to the task-manager, which this example illustrates by
@@ -177,9 +182,7 @@ let cfg = config.link.plasma; in
           # of usage, one where we add a digital clock, setting 12h time and
           # first day of the week to sunday and another adding a systray with
           # some modifications in which entries to show.
-          {
-            digitalClock = { };
-          }
+          { digitalClock = { }; }
           "org.kde.plasma.marginsseparator"
           "org.kde.plasma.appmenu"
           "org.kde.plasma.marginsseparator"
@@ -192,8 +195,7 @@ let cfg = config.link.plasma; in
                 "org.kde.plasma.networkmanagement"
                 "org.kde.plasma.volume"
               ];
-              hidden = [
-              ];
+              hidden = [ ];
             };
           }
         ];

@@ -4,14 +4,16 @@ with lib; {
   config = {
     # imports = with flake-self.homeManagerModules; [ git ];
     link = {
+      code.enable = true;
+      # plasma.enable = true;
       office.enable = true;
       pentesting.enable = true;
       latex.enable = true;
       gaming.enable = true;
       python.enable = true;
-      golang.enable = true;
+      # golang.enable = true;
       # ansible.enable = true;
-      rust.enable = true;
+      # rust.enable = true;
       # beancount.enable = true;
     };
     # services.kdeconnect = {
@@ -38,21 +40,75 @@ with lib; {
           };
         };
       };
+      newsboat = {
+        enable = true;
+        autoReload = true;
+        maxItems = 500;
+        urls = [
+          {
+            url =
+              "https://wid.cert-bund.de/content/public/securityAdvisory/rss";
+          }
+          {
+            url =
+              "https://www.bsi.bund.de/SiteGlobals/Functions/RSSFeed/RSSNewsfeed/RSSNewsfeed_CSW.xml";
+          }
+          {
+            url =
+              "https://www.bsi.bund.de/SiteGlobals/Functions/RSSFeed/RSSNewsfeed/RSSNewsfeed_Presse_Veranstaltungen.xml";
+          }
+          {
+            url =
+              "https://www.bsi.bund.de/SiteGlobals/Functions/RSSFeed/RSSNewsfeed/ACS_RSSNewsfeed.xml"; # allianz für cybersicherheit
+          }
+          { url = "https://www.evilsocket.net/atom.xml"; }
+          { url = "https://events.ccc.de/feed"; }
+          { url = "https://benjitrapp.github.io/feed.xml"; }
+          { url = "https://blog.fefe.de/rss.xml?html"; }
+          { url = "https://voidcruiser.nl/index.xml"; }
+        ];
+      };
     };
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
-      quickemu
-      quickgui
+      teams-for-linux
+      jan # ai
+      qrtool
+      dust
+      choose # cut/ awk alternative
+      duf # better df
+      procs
+      rm-improved
+      gping # ping with graph of response times
+      mtr # better ping
+      zed-editor
+      erdtree
+      sd
+      # tailspin # broken
+      spacer
+      #csvlens
+      curlie # httpie for curl
+      gpodder # podcast client
+      #htmlq
+      dogdns
+      # zombietrackergps # gps track display
+      # inlyne
+      difftastic
+      anime4k
+      # quickemu # broken
+      # quickgui
+      code-cursor
+      aider-chat
       # protonmail-bridge-gui
       # protonmail-desktop
       #jetbrains.idea-community
       #kdePackages.kdenlive # video editor
+      # davinci-resolve
       # reaper # audio editor
       #frei0r # video effects
       # freecad
       #openscad
       # dupeguru # good file deduplication
-      slack
       timer
       termdown
       espeak
@@ -64,13 +120,11 @@ with lib; {
       #piper-tts # text to speech synthesizer with models (download https://huggingface.co/rhasspy/piper-voices/tree/v1.0.0/en/en_US/lessac/high onnx and json to Downloads folder)
       gnome-disk-utility
       #gparted
-      vagrant # quick tmp vm creation
+      # vagrant # quick tmp vm creation # broken
       restic
       #hugo # static site generator
       #ghosttohugo
       ## Desktop monitor settings change
-      ddcui
-      ddcutil
       #alacritty
       ## theming
       beauty-line-icon-theme
@@ -79,6 +133,7 @@ with lib; {
       virt-manager
       spice
       spice-vdagent
+      gnome-network-displays # samsung smart view
       ## ISO stuff
       # (import
       # (builtins.fetchTarball {
@@ -93,7 +148,6 @@ with lib; {
       # gsettings-desktop-schemas # required for some apps like jami
       ## File Sync
       nextcloud-client
-      seafile-client
       ## Editor
       #mermaid-cli
       # logseq
@@ -103,7 +157,7 @@ with lib; {
       signal-desktop
       telegram-desktop
       discord
-      qtox
+      # qtox
       element-desktop
       openvpn
       ## keyboard
@@ -118,12 +172,16 @@ with lib; {
       # vhs # generating terminal GIFs with code (what about asciinema)
       # surfraw # TUI search engine interface # broken in nixos (240102)
       translate-shell
-      #ffmpeg_6
+      ffmpeg
+      gallery-dl
       ## Multimedia
       obs-studio
-      # obs-studio-plugins.obs-backgroundremoval
+      obs-studio-plugins.obs-backgroundremoval
+      # obs-studio-plugins.obs-ndi # broken
+      easyeffects
+      artyFX
       #imagemagick
-      brave # backup browser for teams # multiple problems with privacy during end of 2023
+      # brave # backup browser for teams # multiple problems with privacy during end of 2023
       # chromium
       # ytfzf # does not work 231230
       ani-cli
@@ -151,12 +209,14 @@ with lib; {
       # tradingview
       cheese
       # kdePackages.kontact
-      kdePackages.neochat
+      # kdePackages.neochat
       kdePackages.akonadi
       kdePackages.kalarm
+      kdePackages.krohnkite
       kdePackages.kteatime
       ktimetracker
       libsForQt5.krunner-symbols
+      kdePackages.ksystemlog
     ];
   };
 }

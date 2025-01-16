@@ -12,7 +12,8 @@ in {
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description = "expose the application to the internet with NGINX and ACME";
+      description =
+        "expose the application to the internet with NGINX and ACME";
     };
     nginx-expose = mkOption {
       type = types.bool;
@@ -27,11 +28,26 @@ in {
   };
   config = mkIf cfg.enable {
     sops.secrets = {
-      "gitlab/db" = { owner = "gitlab"; group = "gitlab"; };
-      "gitlab/dbPass" = { owner = "gitlab"; group = "gitlab"; };
-      "gitlab/otp" = { owner = "gitlab"; group = "gitlab"; };
-      "gitlab/initial-root" = { owner = "gitlab"; group = "gitlab"; };
-      "gitlab/secret" = { owner = "gitlab"; group = "gitlab"; };
+      "gitlab/db" = {
+        owner = "gitlab";
+        group = "gitlab";
+      };
+      "gitlab/dbPass" = {
+        owner = "gitlab";
+        group = "gitlab";
+      };
+      "gitlab/otp" = {
+        owner = "gitlab";
+        group = "gitlab";
+      };
+      "gitlab/initial-root" = {
+        owner = "gitlab";
+        group = "gitlab";
+      };
+      "gitlab/secret" = {
+        owner = "gitlab";
+        group = "gitlab";
+      };
     };
     services = {
       nginx = {
@@ -39,28 +55,33 @@ in {
         recommendedProxySettings = true;
         virtualHosts = {
           "gitlab.alinkbetweennets.de" = {
-            locations."/".proxyPass = "http://unix:/run/gitlab/gitlab-workhorse.socket";
+            locations."/".proxyPass =
+              "http://unix:/run/gitlab/gitlab-workhorse.socket";
           };
         };
       };
       gitlab = {
         enable = true;
         port = cfg.port;
-        https = true;
+        statePath = "${config.link.storage}/gitlab/state";
+        # https = true;
         host = "gitlab.alinkbetweennets.de";
         pages.settings.pages-domain = "pages.alinkbetweennets.de";
         databaseCreateLocally = true;
         databasePasswordFile = config.sops.secrets."gitlab/dbPass".path;
-        initialRootPasswordFile = config.sops.secrets."gitlab/initial-root".path;
+        initialRootPasswordFile =
+          config.sops.secrets."gitlab/initial-root".path;
         secrets = {
           secretFile = config.sops.secrets."gitlab/secret".path;
           otpFile = config.sops.secrets."gitlab/otp".path;
           dbFile = config.sops.secrets."gitlab/db".path;
-          jwsFile = pkgs.runCommand "oidcKeyBase" { } "${pkgs.openssl}/bin/openssl genrsa 2048 > $out";
+          jwsFile = pkgs.runCommand "oidcKeyBase" { }
+            "${pkgs.openssl}/bin/openssl genrsa 2048 > $out";
         };
       };
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port [ cfg.port ];
     systemd.services.gitlab-backup.environment.BACKUP = "dump";
   };
 }

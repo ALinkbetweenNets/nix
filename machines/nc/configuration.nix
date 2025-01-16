@@ -3,43 +3,34 @@
 # nix run github:numtide/nixos-anywhere -- --flake .#nc root@202.61.251.70
 { self, ... }:
 { pkgs, lib, config, flake-self, home-manager, ... }: {
-  imports = [
-    ./netcup.nix
-    home-manager.nixosModules.home-manager
-  ];
+  imports = [ ./netcup.nix home-manager.nixosModules.home-manager ];
   home-manager.users.l = flake-self.homeConfigurations.server;
-  # home-manager.users.root = flake-self.homeConfigurations.server;
   link = {
     sops = true;
     tailscale-address = "100.86.79.82";
     common.enable = true;
     eth = "ens3";
-    dyndns.enable = config.link.sops;
-    dyndns.domains = [
-      config.link.domain
-      "shonk.de"
-    ];
     domain = "alinkbetweennets.de";
     fail2ban.enable = true;
     nginx.enable = true;
-    serviceHost = "100.122.145.19";
+    serviceHost = "100.108.233.76";
     server.enable = true;
     vm.enable = true;
     # services.coturn.enable = true;
   };
   # ctf vpn forwarding
-  # networking.nat = {
-  #   enable = true;
-  #   externalInterface = "ens3";
-  #   externalIP = "202.61.251.70";
-  #   internalInterfaces = [ "tailscale0" ];
-  #   internalIPs = [ "100.89.40.41/32" "100.89.178.137/32" ];
-  #   forwardPorts = [
-  #     { sourcePort = 51820; proto = "udp"; destination = "100.89.40.41:51820"; loopbackIPs = [ "100.86.79.82" ]; }
-  #     { sourcePort = 51822; proto = "udp"; destination = "100.89.178.137:51820"; loopbackIPs = [ "100.86.79.82" ]; }
-  #     { sourcePort = 41623; proto = "tcp"; destination = "100.89.178.137:41623"; loopbackIPs = [ "100.86.79.82" ]; }
-  #   ];
-  # };
+  networking.nat = {
+    enable = true;
+    externalInterface = "ens3";
+    externalIP = "202.61.251.70";
+    internalInterfaces = [ "tailscale0" ];
+    internalIPs = [ "10.10.10.63/32" "100.87.16.37/32" ];
+    forwardPorts = [
+      { sourcePort = 51820; proto = "udp"; destination = "10.10.10.63:51820"; loopbackIPs = [ "100.87.16.37" ]; }
+      { sourcePort = 51822; proto = "udp"; destination = "10.10.10.63:51820"; loopbackIPs = [ "100.87.16.37" ]; }
+      { sourcePort = 41623; proto = "tcp"; destination = "10.10.10.63:41623"; loopbackIPs = [ "100.87.16.37" ]; }
+    ];
+  };
 
   # networking.nat = {
   #   enable = true;
@@ -53,7 +44,7 @@
   # };
 
   networking = {
-    firewall.allowedTCPPorts = [ 443 22 ];
+    firewall.allowedTCPPorts = [ 443 22 41623 ];
     firewall.allowedUDPPorts = [ 51820 51822 ];
     hostName = "v2202312204123249185";
     domain = "ultrasrv.de";
@@ -65,14 +56,14 @@
     };
   };
   services.nginx.virtualHosts = {
-    # services.nginx.virtualHosts."grist.${config.link.domain}" = {
-    #   enableACME = true;
-    # useACMEHost = config.link.domain;
+    # "grist.${config.link.domain}" = {
+    #   useACMEHost = config.link.domain;
     #   forceSSL = true;
     #   locations."/" = {
-    #     proxyPass = "http://127.0.0.1:8484";
+    #     proxyPass = "http://${config.link.serviceHost}:8484";
     #     proxyWebsockets = true;
     #   };
+    # };
     # services.nginx.virtualHosts."diagrams.${config.link.domain}" = {
     #   enableACME = true;
     #   forceSSL = true;
@@ -90,7 +81,9 @@
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
-      locations."/".proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.matrix.port}";
+      locations."/".proxyPass = "http://${config.link.serviceHost}:${
+          toString config.link.services.matrix.port
+        }";
       locations."/".proxyWebsockets = true;
     };
     "gitea.${config.link.domain}" = {
@@ -98,7 +91,9 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${toString config.services.gitea.settings.server.HTTP_PORT}";
+        proxyPass = "http://${config.link.serviceHost}:${
+            toString config.services.gitea.settings.server.HTTP_PORT
+          }";
         proxyWebsockets = true;
       };
     };
@@ -107,7 +102,9 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.keycloak.port}";
+        proxyPass = "http://${config.link.serviceHost}:${
+            toString config.link.services.keycloak.port
+          }";
         proxyWebsockets = true;
       };
     };
@@ -116,7 +113,9 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.grafana.port}/";
+        proxyPass = "http://${config.link.serviceHost}:${
+            toString config.link.services.grafana.port
+          }/";
         proxyWebsockets = true;
       };
     };
@@ -129,16 +128,25 @@
         proxyWebsockets = true;
       };
     };
+    "audiobookshelf.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://${config.link.serviceHost}:4124/";
+        proxyWebsockets = true;
+      };
+    };
     "crypt.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:3004/";
+        proxyPass = "http://${config.link.serviceHost}:5000/";
         # proxyWebsockets = true;
       };
       locations."/cryptpad_websocket" = {
-        proxyPass = "http://${config.link.serviceHost}:3003/";
+        proxyPass = "http://${config.link.serviceHost}:5001/";
         proxyWebsockets = true;
       };
     };
@@ -147,7 +155,16 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:3004/";
+        proxyPass = "http://${config.link.serviceHost}:5000/";
+        proxyWebsockets = true;
+      };
+    };
+    "cast.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://${config.link.serviceHost}:8888/";
         proxyWebsockets = true;
       };
     };
@@ -162,7 +179,9 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.hedgedoc.port}";
+        proxyPass = "http://${config.link.serviceHost}:${
+            toString config.link.services.hedgedoc.port
+          }";
         proxyWebsockets = true;
       };
     };
@@ -170,7 +189,23 @@
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
-      listen = [{ port = 443; addr = "0.0.0.0"; ssl = true; } { port = 8096; addr = "0.0.0.0"; ssl = true; } { port = 8920; addr = "0.0.0.0"; ssl = true; }];
+      listen = [
+        {
+          port = 443;
+          addr = "0.0.0.0";
+          ssl = true;
+        }
+        {
+          port = 8096;
+          addr = "0.0.0.0";
+          ssl = true;
+        }
+        {
+          port = 8920;
+          addr = "0.0.0.0";
+          ssl = true;
+        }
+      ];
       locations."/".proxyPass = "http://${config.link.serviceHost}:8096/";
       locations."/".proxyWebsockets = true;
     };
@@ -200,19 +235,36 @@
       locations."/".proxyPass = "http://${config.link.serviceHost}:2500/";
       locations."/".proxyWebsockets = true;
     };
+    "microbin.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/".proxyPass = "http://${config.link.serviceHost}:9483/";
+    };
+    "karsten.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/".proxyPass = "http://100.98.48.88:5000/";
+      locations."/".proxyWebsockets = true;
+    };
     "immich.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
-      locations."/".proxyPass = "http://10.10.10.89:2283/";
-      locations."/".proxyWebsockets = true;
+      locations."/" = {
+        proxyPass = "http://${config.link.serviceHost}:${
+            toString config.link.services.immich.port
+          }";
+        proxyWebsockets = true;
+      };
     };
-    "minio.s3.${config.link.domain}" = {
+    "minio.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:9001";
+        proxyPass = "http://${config.link.serviceHost}:9002";
         proxyWebsockets = true;
         # extraConfig = ''
 
@@ -227,7 +279,7 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:9000";
+        proxyPass = "http://${config.link.serviceHost}:9001";
         # extraConfig = ''
         #   proxy_set_header X-Real-IP $remote_addr;
         #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -255,9 +307,7 @@
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:8765";
-      };
+      locations."/" = { proxyPass = "http://${config.link.serviceHost}:8765"; };
       # extraConfig = mkIf (!cfg.expose) ''
       #   allow ${config.link.service-ip}/24;
       #     allow 127.0.0.1;
@@ -268,19 +318,17 @@
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:80";
-      };
-      extraConfig = ''
-
-      '';
+      locations."/" = { proxyPass = "http://${config.link.serviceHost}:80"; };
+      extraConfig = "\n";
     };
     "outline.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.outline.port}";
+        proxyPass = "http://${config.link.serviceHost}:${
+            toString config.link.services.outline.port
+          }";
         proxyWebsockets = true;
       };
     };
@@ -289,7 +337,9 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.vaultwarden.port}";
+        proxyPass = "http://${config.link.serviceHost}:${
+            toString config.link.services.vaultwarden.port
+          }";
         proxyWebsockets = true;
       };
     };
@@ -298,7 +348,9 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.photoprism.port}/";
+        proxyPass = "http://${config.link.serviceHost}:${
+            toString config.link.services.photoprism.port
+          }/";
         proxyWebsockets = true;
         # extraConfig = ''
         #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -316,7 +368,23 @@
     "shonk.de" = {
       forceSSL = true;
       enableACME = true;
-      listen = [{ port = 443; addr = "0.0.0.0"; ssl = true; } { port = 8096; addr = "0.0.0.0"; ssl = true; } { port = 8920; addr = "0.0.0.0"; ssl = true; }];
+      listen = [
+        {
+          port = 443;
+          addr = "0.0.0.0";
+          ssl = true;
+        }
+        {
+          port = 8096;
+          addr = "0.0.0.0";
+          ssl = true;
+        }
+        {
+          port = 8920;
+          addr = "0.0.0.0";
+          ssl = true;
+        }
+      ];
       locations."/" = {
         proxyPass = "http://${config.link.serviceHost}:8096/";
         proxyWebsockets = true;
@@ -341,27 +409,26 @@
     #   };
     # };
 
-    ## CTF
-    # "slides.netintro.${config.link.domain}" = {
-    #   # enableACME = true;
-    #   useACMEHost = config.link.domain;
-    #   forceSSL = true;
-    #   # default = true;
-    #   locations."/" = {
-    #     proxyPass = "http://100.89.40.41:31337/";
-    #   };
-    # };
-    # "vpnconfig.netintro.${config.link.domain}" = {
-    #   # enableACME = true;
-    #   useACMEHost = config.link.domain;
-    #   forceSSL = true;
-    #   # default = true;
-    #   locations."/" = {
-    #     proxyPass = "http://100.89.40.41:31338/";
-    #   };
-    # };
+    # CTF
+    "slides.netintro.${config.link.domain}" = {
+      enableACME = true;
+      # useACMEHost = config.link.domain;
+      forceSSL = true;
+      # default = true;
+      locations."/" = { proxyPass = "http://10.10.10.45:31337/"; };
+    };
+    "vpnconfig.netintro.${config.link.domain}" = {
+      enableACME = true;
+      # useACMEHost = config.link.domain;
+      forceSSL = true;
+      # default = true;
+      locations."/" = { proxyPass = "http://10.10.10.45:31338/"; };
+    };
+    # /CTF
   };
-  ## /CTF
+  # services.oauth2-proxy={
+  #   enable=true;
+  # };
 
   # "speedtest.${config.link.domain}" = {
   #   enableACME = true;
@@ -372,7 +439,7 @@
   #   };
   lollypops.deployment = {
     local-evaluation = true;
-    ssh.host = "nc";
+    ssh.host = "nc.monitor-banfish.ts.net";
     ssh.user = "l";
     ssh.opts = [ "-p 2522" ];
     sudo.enable = true;

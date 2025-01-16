@@ -1,5 +1,6 @@
 { self, ... }:
-{ pkgs, lib, config, modulesPath, flake-self, home-manager, nixos-hardware, nixpkgs, ... }: {
+{ pkgs, lib, config, modulesPath, flake-self, home-manager, nixos-hardware
+, nixpkgs, ... }: {
 
   imports = [
     # being able to build the sd-image
@@ -32,10 +33,7 @@
     };
   };
   console.enable = true;
-  environment.systemPackages = with pkgs; [
-    libraspberrypi
-    raspberrypi-eeprom
-  ];
+  environment.systemPackages = with pkgs; [ libraspberrypi raspberrypi-eeprom ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
     # make sure this module is compatible with ARM!
@@ -45,11 +43,52 @@
     common.enable = true;
     server.enable = true;
     # desktop.enable = true;
+    syncthing.enable = true;
+    syncthingDir = "/mnt/syncthing";
+    services = {
+      home-assistant.enable = true;
+      node-red.enable = true;
+    };
   };
+  users.users.l.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIER/dVmTaW5sjMi3Yf60y5pqDlXs7pI6w/CCBEfofKQL root@fn"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIELDx8vTqed3YBepK2EEcM0vsLZX3g9gxwzVknwYlAgh root@sn"
+  ];
   lollypops.deployment = {
     local-evaluation = true;
     sudo.enable = true;
-    ssh = { user = "l"; opts = [ "-p 2522" ]; };
+    ssh = {
+      user = "l";
+      opts = [ "-p 2522" ];
+    };
+  };
+  services.frigate = {
+    enable = true;
+    hostname = "pi4b.monitor-banfish.ts.net";
+    settings.cameras = {
+      "pizero1" = {
+        ffmpeg.inputs = [{
+          path = "rtsp://192.168.123.108:8554/unicast";
+          roles = [ "detect" ];
+        }];
+      };
+    };
+  };
+  services.home-assistant = {
+    enable = true;
+    config = {
+      lovelace.mode = "storage";
+      homeassistant.name = "Pi";
+    };
+    openFirewall = true;
+    lovelaceConfigWritable = true;
+    configWritable = true;
+    extraPackages = python3Packages:
+      with python3Packages;
+      [
+        # postgresql support
+        psycopg2
+      ];
   };
   ### build sd-image
   # nix build .\#nixosConfigurations.pi4b.config.system.build.sdImage

@@ -32,17 +32,15 @@ in {
           #   port="443";
           # };
         };
-        scrapeConfigs = [
-          {
-            job_name = "zfs";
-            static_configs = [{
-              targets = [ "127.0.0.1:${toString cfg.port}" ];
-            }];
-          }
-        ];
+        scrapeConfigs = [{
+          job_name = "zfs";
+          static_configs =
+            [{ targets = [ "127.0.0.1:${toString cfg.port}" ]; }];
+        }];
       };
     };
 
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port [ cfg.port ];
   };
 }

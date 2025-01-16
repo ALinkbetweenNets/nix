@@ -12,7 +12,8 @@ in {
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description = "expose the application to the internet with NGINX and ACME";
+      description =
+        "expose the application to the internet with NGINX and ACME";
     };
     nginx-expose = mkOption {
       type = types.bool;
@@ -21,17 +22,22 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    sops.secrets."minio" = { owner = "minio"; group = "minio"; };
+    sops.secrets."minio" = {
+      owner = "minio";
+      group = "minio";
+    };
     services = {
       minio = {
         enable = true;
-        listenAddress = if cfg.expose-port then "0.0.0.0:9001" else "127.0.0.1:9001";
-        consoleAddress = if cfg.expose-port then "0.0.0.0:9002" else "127.0.0.1:9002";
+        listenAddress =
+          if cfg.expose-port then "0.0.0.0:9001" else "127.0.0.1:9001";
+        consoleAddress =
+          if cfg.expose-port then "0.0.0.0:9002" else "127.0.0.1:9002";
         region = "eu-central-1";
         rootCredentialsFile = config.sops.secrets."minio".path;
-        # dataDir = [ "${config.link.storage}/minio/data" ];
+        dataDir = [ "${config.link.storage}/minio/data" ];
       };
-      nginx.virtualHosts."minio.s3.${config.link.domain}" = mkIf cfg.nginx {
+      nginx.virtualHosts."minio.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
@@ -91,13 +97,14 @@ in {
     systemd.services.minio = {
       environment = {
         MINIO_SERVER_URL = "https://s3.${config.link.domain}";
-        MINIO_BROWSER_REDIRECT_URL = "https://minio.s3.${config.link.domain}";
+        MINIO_BROWSER_REDIRECT_URL = "https://minio.${config.link.domain}";
       };
     };
     networking.firewall = {
       checkReversePath = lib.mkDefault "loose";
       # nameservers = [ "100.100.100.100" "1.1.1.1" ];
     };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts = mkIf cfg.expose-port [ 9001 9002 ];
+    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+      mkIf cfg.expose-port [ 9001 9002 ];
   };
 }

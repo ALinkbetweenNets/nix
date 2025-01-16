@@ -1,5 +1,5 @@
-{ lib, pkgs, config, nixpkgs, flake-self, home-manager, ... }: with lib;
-{
+{ lib, pkgs, config, nixpkgs, flake-self, home-manager, ... }:
+with lib; {
   options.link = {
     domain = mkOption {
       type = types.str;
@@ -9,7 +9,8 @@
     nginx-expose = mkOption {
       type = types.bool;
       default = config.link.domain != "";
-      description = "if domain is empty services will be made available locally with self-signed certificates";
+      description =
+        "if domain is empty services will be made available locally with self-signed certificates";
     };
     serviceHost = mkOption {
       type = types.str;
@@ -44,7 +45,8 @@
     service-ports-expose = mkOption {
       type = types.bool;
       default = config.link.domain != "";
-      description = "if domain is empty services will be made available locally with self-signed certificates";
+      description =
+        "if domain is empty services will be made available locally with self-signed certificates";
     };
     allowed = mkOption {
       type = types.listOf types.str;

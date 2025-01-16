@@ -5,19 +5,19 @@ in {
   options.link.openssh.enable = mkEnableOption "activate openssh";
   config = mkIf cfg.enable {
     # networking.firewall.allowedTCPPorts = [ 2522 ];
-    networking.firewall.interfaces."tailscale0".allowedTCPPorts = mkIf config.link.tailscale.enable [ 2522 ];
-    networking.firewall.allowedTCPPorts = mkIf (!config.link.sops || !config.link.tailscale.enable) [ 2522 ];
+    networking.firewall.interfaces."tailscale0".allowedTCPPorts =
+      mkIf config.link.tailscale.enable [ 2522 ];
+    networking.firewall.allowedTCPPorts =
+      mkIf (!config.link.sops || !config.link.tailscale.enable) [ 2522 ];
     # Enable the OpenSSH daemon.
     services.openssh = {
       enable = true;
       openFirewall = false;
       startWhenNeeded = true;
-      listenAddresses = [
-        {
-          addr = "0.0.0.0";
-          port = 2522;
-        }
-      ];
+      listenAddresses = [{
+        addr = "0.0.0.0";
+        port = 2522;
+      }];
       settings = {
         LogLevel = "VERBOSE"; # for fail2ban to work properly
         PermitRootLogin = "prohibit-password";

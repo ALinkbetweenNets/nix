@@ -1,12 +1,9 @@
 { pkgs, lib, config, ... }:
 with lib;
 let cfg = config.link.hyprland;
-in
-{
+in {
 
-  options.link.hyprland = {
-    enable = mkEnableOption "activate hyprland";
-  };
+  options.link.hyprland = { enable = mkEnableOption "activate hyprland"; };
 
   config = mkIf cfg.enable {
 
@@ -27,9 +24,7 @@ in
     #   extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
     # };
 
-    security = {
-      polkit.enable = true;
-    };
+    security = { polkit.enable = true; };
 
     environment.systemPackages = with pkgs.gnome; [
       pkgs.loupe
@@ -54,7 +49,8 @@ in
         after = [ "graphical-session.target" ];
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          ExecStart =
+            "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
           Restart = "on-failure";
           RestartSec = 1;
           TimeoutStopSec = 10;
@@ -73,14 +69,11 @@ in
         evolution-data-server.enable = true;
         glib-networking.enable = true;
         gnome-keyring.enable = true;
-        gnome-online-accounts.enable = true;
       };
     };
 
     home-manager.users."l" = {
-      link.programs = {
-        hyprland.enable = true;
-      };
+      link.programs = { hyprland.enable = true; };
       home.packages = [ ];
     };
 

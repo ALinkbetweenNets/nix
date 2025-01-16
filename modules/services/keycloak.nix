@@ -12,7 +12,8 @@ in {
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description = "expose the application to the internet with NGINX and ACME";
+      description =
+        "expose the application to the internet with NGINX and ACME";
     };
     nginx-expose = mkOption {
       type = types.bool;
@@ -26,8 +27,10 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    sops.secrets."keycloak" = { owner = "postgres"; group = "postgres"; };
-    environment.noXlibs = false;
+    sops.secrets."keycloak" = {
+      owner = "postgres";
+      group = "postgres";
+    };
     services = {
       keycloak = {
         enable = true;
@@ -42,7 +45,7 @@ in {
           http-host = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
           http-port = cfg.port;
           http-relative-path = "/";
-          proxy = "edge";
+          proxy-headers = "forwarded";
         };
       };
       nginx.virtualHosts."keycloak.${config.link.domain}" = mkIf cfg.nginx {
