@@ -41,7 +41,7 @@
     service-ports-expose = true;
     services = {
       # tt-rss.enable = true;
-      stirling-pdf.enable=true;
+      stirling-pdf.enable = true;
       searx.enable = true;
       microbin.enable = true;
       # mailserver.enable = true;
