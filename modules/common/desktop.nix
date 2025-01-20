@@ -7,7 +7,7 @@ in {
     link = {
       common.enable = true;
       dns.enable = true;
-      unbound.enable = true;
+      # unbound.enable = true;
       wayland.enable = lib.mkDefault true;
       xserver.enable = lib.mkDefault true;
       plasma.enable = lib.mkDefault true;
