@@ -739,6 +739,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_8": {
+      "locked": {
+        "lastModified": 1736883708,
+        "narHash": "sha256-uQ+NQ0/xYU0N1CnXsa2zghgNaOPxWpMJXSUJJ9W7140=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "eb62e6aa39ea67e0b8018ba8ea077efe65807dc8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nmd": {
       "flake": false,
       "locked": {
@@ -3083,7 +3099,8 @@
         "ondsel": "ondsel_2",
         "plasma-manager": "plasma-manager",
         "sops-nix": "sops-nix",
-        "ucodenix": "ucodenix"
+        "ucodenix": "ucodenix",
+        "zen-browser": "zen-browser"
       }
     },
     "rust-overlay": {
@@ -3366,6 +3383,24 @@
         "owner": "pinpox",
         "repo": "wallpaper-generator",
         "rev": "6461fa794745fb18f2b04f58015e9a2871ca7099",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_8"
+      },
+      "locked": {
+        "lastModified": 1737000317,
+        "narHash": "sha256-wcDS44vy7pBruOsR5vVQ/1aaPfp/X9sDGOpZ31reTko=",
+        "owner": "youwen5",
+        "repo": "zen-browser-flake",
+        "rev": "6b3a74dedc4af7f088ad4817d509c2ce4c897477",
+        "type": "github"
+      },
+      "original": {
+        "owner": "youwen5",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }
