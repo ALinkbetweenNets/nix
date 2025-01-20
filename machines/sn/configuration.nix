@@ -79,31 +79,33 @@
       # containers.grist.enable = true;
       # # coturn.enable = true;
       # # dns.enable = true;
-      # restic-client = {
-      #   enable = true;
-      #   backup-paths-onedrive = [
-      #     "/home/l/.data-mirror"
-      #     "/home/l/.ssh"
-      #     "/home/l/archive"
-      #     "/home/l/doc"
-      #     "/home/l/Music"
-      #     "/home/l/sec"
-      #     "/home/l/Sync"
-      #     "/home/l/uni"
-      #     "/home/l/w"
-      #   ];
-      #   backup-paths-lenny-storagebox = [
-      #     "/home/l/.data-mirror"
-      #     "/home/l/.ssh"
-      #     # "/home/l/archive"
-      #     "/home/l/doc"
-      #     "/home/l/Music"
-      #     "/home/l/sec"
-      #     "/home/l/Sync"
-      #     "/home/l/uni"
-      #     "/home/l/w"
-      #   ];
-      #   backup-paths-pi4b = [ "/home/l/.ssh" "/var/lib" "/var/gitlab" ];
+      restic-client = {
+        enable = true;
+        backup-paths-lenny-storagebox = [
+          "/var/lib/cryptpad"
+          "/var/lib/gitlab"
+          "/var/lib/hedgedoc"
+          "/var/lib/immich"
+          "/var/lib/nextcloud-data"
+          "/var/lib/paperless"
+          "/var/lib/postgresql"
+          "/var/lib/restic"
+          "/var/lib/syncthing-data"
+        ];
+        backup-paths-pi4b = [
+          "/home/l/.ssh"
+          "/var/lib/audiobookshelf"
+          "/var/lib/cryptpad"
+          "/var/lib/gitlab"
+          "/var/lib/hedgedoc"
+          "/var/lib/immich"
+          "/var/lib/nextcloud-data"
+          "/var/lib/paperless"
+          "/var/lib/postgresql"
+          "/var/lib/restic"
+          "/var/lib/syncthing-data"
+        ];
+      };
     };
     # wg-link.enable = true;
     # services.jitsi = {
@@ -177,7 +179,10 @@
   # };
   fileSystems."/var/lib/onedrive/restic" = {
     device = "/var/lib/restic";
-    options = [ "bind" "ro" ]; # read only, wouldnt want a onedrive mess up to be able to affect the main repo
+    options = [
+      "bind"
+      "ro"
+    ]; # read only, wouldnt want a onedrive mess up to be able to affect the main repo
   };
   # virtualisation.oci-containers.containers.librespeedtest = {
   #   autoStart = true;
