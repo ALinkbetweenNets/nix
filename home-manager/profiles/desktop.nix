@@ -119,6 +119,7 @@ with lib; {
         kdePackages.plasma-disks
         kdePackages.kfind
         kdePackages.colord-kde
+        flake-self.inputs.zen-browser.packages.${system}.default
         # (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ] ++ lib.optionals
       (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [
