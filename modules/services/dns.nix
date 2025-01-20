@@ -22,6 +22,7 @@ in {
       fallbackDns = [
         "127.0.0.1"
         "1.0.0.1"
+        "100.100.100.100"
         "194.242.2.2"
         "9.9.9.9"
         "192.168.150.1" # sudo systemd-resolve --interface tun0 --set-dns 192.168.150.1
