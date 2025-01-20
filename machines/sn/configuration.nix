@@ -129,7 +129,7 @@
   #   rtmp-port = 1935;
   #   port = 8888;
   # };
-  # services.onedrive.enable = true;
+  services.onedrive.enable = true;
   # services.clamav = {
   #   # Antivirus
   #   daemon.enable = true;
@@ -175,6 +175,10 @@
   #   device = "/rz/arr/";
   #   options = [ "bind" ];
   # };
+  fileSystems."/var/lib/onedrive/restic" = {
+    device = "/var/lib/restic";
+    options = [ "bind" "ro" ]; # read only, wouldnt want a onedrive mess up to be able to affect the main repo
+  };
   # virtualisation.oci-containers.containers.librespeedtest = {
   #   autoStart = true;
   #   image = "adolfintel/speedtest";
