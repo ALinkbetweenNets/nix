@@ -47,11 +47,11 @@ in {
         #   }
         # ];
         forward-zone = [
-          # {
-          #   name = "monitor-banfish.ts.net.";
-          #   forward-addr = [ "100.100.100.100" ];
-          #   forward-tls-upstream = "no";
-          # }
+          {
+            name = "monitor-banfish.ts.net.";
+            forward-addr = [ "100.100.100.100" ];
+            forward-tls-upstream = "no";
+          }
           # {
           #   name = "mullvad.net.";
           #   forward-addr = [ "194.242.2.2@853#dns.mullvad.net" ];
@@ -69,9 +69,10 @@ in {
               "9.9.9.9"
               "100.100.100.100"
               "194.242.2.2"
-              "1.0.0.1@853#cloudflare-dns.com"
-              "1.1.1.1@853#cloudflare-dns.com"
+              # "1.0.0.1@853#cloudflare-dns.com"
+              # "1.1.1.1@853#cloudflare-dns.com"
               "1.0.0.1"
+              "1.1.1.1"
             ];
             forward-first = "yes";
             forward-tls-upstream = "no";
