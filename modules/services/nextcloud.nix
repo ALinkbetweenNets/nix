@@ -47,7 +47,7 @@ in {
         extraApps = with config.services.nextcloud.package.packages.apps; {
           inherit bookmarks calendar deck mail notes onlyoffice polls tasks
             twofactor_webauthn
-            # contacts # broken
+            contacts
           ;
         };
         #extraOptions = {
