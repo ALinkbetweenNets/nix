@@ -15,7 +15,7 @@ in {
         # wine
         # wine64
         prismlauncher # minecraft launcher
-        (lutris.override { # broken
+        (lutris.override {
           extraLibraries = pkgs:
             [
               # List library dependencies here
