@@ -30,7 +30,7 @@ in {
       darktable # photo color editor
       rawtherapee
       art
-      pdfmixtool # appears to be broken and unbuildable
+      pdfmixtool
       onlyoffice-bin
       speedcrunch
       picard # music tagger
