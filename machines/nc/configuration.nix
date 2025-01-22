@@ -86,6 +86,15 @@
         }";
       locations."/".proxyWebsockets = true;
     };
+    "vikunja.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/".proxyPass = "http://${config.link.serviceHost}:${
+          toString config.link.services.vikunja.port
+        }";
+      locations."/".proxyWebsockets = true;
+    };
     "gitea.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
