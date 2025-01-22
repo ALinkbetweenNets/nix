@@ -152,8 +152,8 @@ in {
         b = "bat";
         s = "sudo";
         search = "links https://duckduckgo.com/";
-        nip = "firefox https://search.nixos.org/packages";
-        nio = "firefox https://search.nixos.org/options";
+        nip = "zen https://search.nixos.org/packages";
+        nio = "zen https://search.nixos.org/options";
         yt = "~/s/y.sh";
         spk = "~/s/speak.sh";
         dupl = "fdupes -rdnAst .";

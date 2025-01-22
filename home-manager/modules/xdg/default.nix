@@ -67,16 +67,16 @@ with lib; {
       "video/webm" = [ "vlc.desktop" ];
       "x-scheme-handler/sgnl" = [ "signal-desktop.desktop" ];
       "x-scheme-handler/signalcaptcha" = [ "signal-desktop.desktop" ];
-      "x-scheme-handler/http" = [ "firefox.desktop" ];
-      "x-scheme-handler/https" = [ "firefox.desktop" ];
-      "text/html" = [ "firefox.desktop" ];
-      "x-scheme-handler/chrome" = [ "firefox.desktop" ];
-      "application/x-extension-htm" = [ "firefox.desktop" ];
-      "application/x-extension-html" = [ "firefox.desktop" ];
-      "application/x-extension-shtml" = [ "firefox.desktop" ];
-      "application/x-extension-xhtml" = [ "firefox.desktop" ];
-      "application/x-extension-xht" = [ "firefox.desktop" ];
-      "application/xhtml+xml" = [ "firefox.desktop" ];
+      "x-scheme-handler/http" = [ "zen.desktop" ];
+      "x-scheme-handler/https" = [ "zen.desktop" ];
+      "text/html" = [ "zen.desktop" ];
+      "x-scheme-handler/chrome" = [ "zen.desktop" ];
+      "application/x-extension-htm" = [ "zen.desktop" ];
+      "application/x-extension-html" = [ "zen.desktop" ];
+      "application/x-extension-shtml" = [ "zen.desktop" ];
+      "application/x-extension-xhtml" = [ "zen.desktop" ];
+      "application/x-extension-xht" = [ "zen.desktop" ];
+      "application/xhtml+xml" = [ "zen.desktop" ];
     };
   };
 }
