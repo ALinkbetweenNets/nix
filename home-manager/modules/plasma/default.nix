@@ -164,7 +164,7 @@ in {
                 "applications:org.kde.konsole.desktop"
                 "applications:org.kde.dolphin.desktop"
                 "applications:obsidian.desktop"
-                "applications:firefox.desktop"
+                "applications:zen.desktop"
                 "applications:signal-desktop.desktop"
                 "applications:org.telegram.desktop.desktop"
                 "applications:virt-manager.desktop"
