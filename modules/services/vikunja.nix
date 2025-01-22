@@ -33,6 +33,7 @@ in {
         database.path = "${config.link.storage}/vikunja/vikunja.db";
         frontendHostname = "vikunja.${config.link.domain}";
         frontendScheme = "https";
+        settings = { service.enableregistration = false; };
       };
       nginx.virtualHosts."vikunja.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
