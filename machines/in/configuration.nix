@@ -6,7 +6,8 @@
   link = {
     systemd-boot.enable = true;
     convertible.enable = true;
-    main.enable = true;
+    # main.enable = true;
+    desktop.enable = true;
     cpu-intel.enable = true;
     plasma.enable = false;
     gnome.enable = true;
