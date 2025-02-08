@@ -139,7 +139,7 @@
   #   updater.enable = true;
   # };
   users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIELDx8vTqed3YBepK2EEcM0vsLZX3g9gxwzVknwYlAgh root@sn"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBu+WcpENdr7FaCIwj6WsinGnykIPV/tnIyrfEHSeU+E root@sn"
   ];
   nix.settings.auto-optimise-store = true;
   # services.cloudflare-dyndns = {
