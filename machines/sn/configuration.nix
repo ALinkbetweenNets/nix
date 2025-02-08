@@ -66,7 +66,7 @@
         enable = true;
         nginx-expose = true;
       };
-      vikunja.enable=true;
+      vikunja.enable = true;
       # nfs.enable = true;
       # outline = {
       #   enable = true;
@@ -96,7 +96,6 @@
         ];
         backup-paths-pi4b = [
           "/home/l/.ssh"
-          "/var/lib/audiobookshelf"
           "/var/lib/cryptpad"
           "/var/lib/gitlab"
           "/var/lib/hedgedoc"
