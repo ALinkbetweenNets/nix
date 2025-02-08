@@ -52,7 +52,7 @@
   };
   users.users.l.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIER/dVmTaW5sjMi3Yf60y5pqDlXs7pI6w/CCBEfofKQL root@fn"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIELDx8vTqed3YBepK2EEcM0vsLZX3g9gxwzVknwYlAgh root@sn"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBu+WcpENdr7FaCIwj6WsinGnykIPV/tnIyrfEHSeU+E root@sn"
   ];
   lollypops.deployment = {
     local-evaluation = true;
