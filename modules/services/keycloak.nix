@@ -44,9 +44,12 @@ in {
           hostname = "keycloak.${config.link.domain}";
           http-host = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
           http-port = cfg.port;
+          https-port = 8443;
           http-relative-path = "/";
           proxy-headers = "forwarded";
         };
+        # plugins
+        # themes
       };
       nginx.virtualHosts."keycloak.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;

@@ -48,7 +48,7 @@
       # mailserver.enable = true;
       cryptpad.enable = true;
       # photoprism.enable = true; # WIP
-      # keycloak.enable = true;
+      keycloak.enable = true;
       #gitea.enable = true;
       gitlab.enable = true;
       # grafana.enable = true;
