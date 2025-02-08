@@ -106,6 +106,15 @@
           "/var/lib/restic"
           "/var/lib/syncthing-data"
         ];
+        backup-paths-sn = [
+          "/var/lib/cryptpad"
+          "/var/lib/gitlab"
+          "/var/lib/hedgedoc"
+          "/var/lib/immich"
+          "/var/lib/nextcloud-data"
+          "/var/lib/paperless"
+          "/var/lib/postgresql"
+        ];
       };
     };
     # wg-link.enable = true;
