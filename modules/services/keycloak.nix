@@ -41,12 +41,13 @@ in {
           createLocally = true;
         };
         settings = {
-          hostname = "keycloak.${config.link.domain}";
+          http-enabled = true;
+          hostname = "https://keycloak.${config.link.domain}";
           http-host = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
           http-port = cfg.port;
           https-port = 8443;
           http-relative-path = "/";
-          proxy-headers = "forwarded";
+          proxy-headers = "xforwarded";
         };
         # plugins
         # themes
