@@ -217,6 +217,8 @@ with lib; {
       ktimetracker
       libsForQt5.krunner-symbols
       kdePackages.ksystemlog
+      imagemagick
+      immich-go
     ];
   };
 }
