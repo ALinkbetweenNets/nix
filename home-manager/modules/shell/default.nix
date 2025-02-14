@@ -202,19 +202,19 @@ in {
       enable = true;
       # theme = "agnoster";
     };
-    fish = { enable = true; };
-    ripgrep = { enable = true; };
+     fish.enable = true;
+     ripgrep.enable = true;
     autojump.enable = true;
     zoxide.enable = true;
     thefuck.enable = true;
     watson.enable = true;
     # carapace.enable = true; # breaks autocompletion actually
     dircolors.enable = true;
-    btop = { enable = true; };
+    btop.enable = true;
     jq.enable = true;
-    nix-index = { enable = true; };
-    lf = { enable = true; };
-    lesspipe = { enable = true; };
+    nix-index.enable = true;
+    lf.enable = true;
+     lesspipe.enable = true;
     bat = {
       enable = true;
       # This should pick up the correct colors for the generated theme. Otherwise
