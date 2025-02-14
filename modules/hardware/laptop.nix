@@ -4,6 +4,7 @@ let cfg = config.link.laptop;
 in {
   options.link.laptop = { enable = mkEnableOption "activate laptop"; };
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [ wireless-regdb ];
     link = {
       desktop.enable = true;
       hardware.enable = true;
