@@ -3,6 +3,7 @@
   imports =
     [ home-manager.nixosModules.home-manager ./hardware-configuration.nix ];
   home-manager.users.l = flake-self.homeConfigurations.server;
+  system.autoUpgrade.enable=lib.mkForce false;
   link = {
     common.enable = true;
     server.enable = true;
@@ -12,27 +13,22 @@
     # fs.btrfs.enable = true;
     # fs.luks.enable = true;
     # fs.ntfs.enable = true;
-    ##
     vm.enable = true;
     cpu-amd.enable = true;
-    ##
     # docker.enable = true;
     fail2ban.enable = true;
-    ##
     domain = "alinkbetweennets.de";
     storage = "/var/lib";
     syncthingDir = "/var/lib/syncthing-data";
     # secrets = "/pwd";
-    #seafile.enable = true;
+    # seafile.enable = true;
     # service-ip = "10.0.1.1";
     # users.lenny.enable = true;
     # users.lmh01.enable = true;
     syncthing.enable = true;
-
     service-interface = "tailscale0";
     nginx.enable = false;
     nginx-expose = false;
-
     # containers = {
     #   grist.enable = true;
     #   diagrams.enable = true;
@@ -43,11 +39,12 @@
       # tt-rss.enable = true;
       stirling-pdf.enable = true;
       searx.enable = true;
+      cockpit.enable = true;
       microbin.enable = true;
       # mailserver.enable = true;
       cryptpad.enable = true;
       # photoprism.enable = true; # WIP
-      # keycloak.enable = true;
+      keycloak.enable = true;
       #gitea.enable = true;
       gitlab.enable = true;
       # grafana.enable = true;
@@ -65,7 +62,7 @@
         enable = true;
         nginx-expose = true;
       };
-      vikunja.enable=true;
+      vikunja.enable = true;
       # nfs.enable = true;
       # outline = {
       #   enable = true;
@@ -90,12 +87,13 @@
           "/var/lib/nextcloud-data"
           "/var/lib/paperless"
           "/var/lib/postgresql"
-          "/var/lib/restic"
-          "/var/lib/syncthing-data"
+          "/var/lib/syncthing-data/.data-mirror"
+          "/var/lib/syncthing-data/w"
+          "/var/lib/syncthing-data/doc"
+          "/var/lib/syncthing-data/sec"
         ];
         backup-paths-pi4b = [
           "/home/l/.ssh"
-          "/var/lib/audiobookshelf"
           "/var/lib/cryptpad"
           "/var/lib/gitlab"
           "/var/lib/hedgedoc"
@@ -106,14 +104,21 @@
           "/var/lib/restic"
           "/var/lib/syncthing-data"
         ];
+        backup-paths-sn = [
+          "/var/lib/cryptpad"
+          "/var/lib/gitlab"
+          "/var/lib/hedgedoc"
+          "/var/lib/immich"
+          "/var/lib/nextcloud-data"
+          "/var/lib/paperless"
+          "/var/lib/postgresql"
+        ];
       };
     };
     # wg-link.enable = true;
     # services.jitsi = {
     #   enable = true;
     #   expose = false;
-    # };
-    # keycloak.enable = true;
     # };
     eth = "enp6s18";
   };
@@ -139,7 +144,7 @@
   #   updater.enable = true;
   # };
   users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIELDx8vTqed3YBepK2EEcM0vsLZX3g9gxwzVknwYlAgh root@sn"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBu+WcpENdr7FaCIwj6WsinGnykIPV/tnIyrfEHSeU+E root@sn"
   ];
   nix.settings.auto-optimise-store = true;
   # services.cloudflare-dyndns = {

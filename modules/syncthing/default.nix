@@ -82,7 +82,7 @@ in {
           };
           "mirror" = {
             path = lib.mkDefault "${config.link.syncthingDir}/.data-mirror";
-            devices = [ "fn" "xn" "sn" ];
+            devices = [ "fn" "xn" "sn" "pi4b" ];
             versioning = {
               type = "simple";
               params.keep = "3";
