@@ -3,6 +3,7 @@
   imports =
     [ home-manager.nixosModules.home-manager ./hardware-configuration.nix ];
   home-manager.users.l = flake-self.homeConfigurations.server;
+  system.autoUpgrade.enable=lib.mkForce false;
   link = {
     common.enable = true;
     server.enable = true;
@@ -12,27 +13,22 @@
     # fs.btrfs.enable = true;
     # fs.luks.enable = true;
     # fs.ntfs.enable = true;
-    ##
     vm.enable = true;
     cpu-amd.enable = true;
-    ##
     # docker.enable = true;
     fail2ban.enable = true;
-    ##
     domain = "alinkbetweennets.de";
     storage = "/var/lib";
     syncthingDir = "/var/lib/syncthing-data";
     # secrets = "/pwd";
-    #seafile.enable = true;
+    # seafile.enable = true;
     # service-ip = "10.0.1.1";
     # users.lenny.enable = true;
     # users.lmh01.enable = true;
     syncthing.enable = true;
-
     service-interface = "tailscale0";
     nginx.enable = false;
     nginx-expose = false;
-
     # containers = {
     #   grist.enable = true;
     #   diagrams.enable = true;
@@ -91,8 +87,10 @@
           "/var/lib/nextcloud-data"
           "/var/lib/paperless"
           "/var/lib/postgresql"
-          "/var/lib/restic"
-          "/var/lib/syncthing-data"
+          "/var/lib/syncthing-data/.data-mirror"
+          "/var/lib/syncthing-data/w"
+          "/var/lib/syncthing-data/doc"
+          "/var/lib/syncthing-data/sec"
         ];
         backup-paths-pi4b = [
           "/home/l/.ssh"
@@ -121,8 +119,6 @@
     # services.jitsi = {
     #   enable = true;
     #   expose = false;
-    # };
-    # keycloak.enable = true;
     # };
     eth = "enp6s18";
   };

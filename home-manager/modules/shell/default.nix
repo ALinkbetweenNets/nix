@@ -134,6 +134,7 @@ in {
         rmt = "trash put";
         n = "nvim";
         c = "cd";
+        optimizeimage = "oxipng -o max -s -i 1 -p --fast --scale16 -a -r ";
         ci = ''
           # echo link to woodpecker
           url=$(${pkgs.git}/bin/git config --get remote.origin.url | sed -e 's/\(.*\)git@\(.*\):[0-9\/]*/https:\/\/\2\//g')
