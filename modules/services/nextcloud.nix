@@ -32,6 +32,12 @@ in {
       group = "nextcloud";
     };
     services = {
+      nextcloud-whiteboard-server = {
+        enable = true;
+        settings = {
+          NEXTCLOUD_URL = "https://nextcloud.${config.link.domain}";
+        };
+      };
       nextcloud = {
         enable = true;
         package = pkgs.nextcloud30;
@@ -46,9 +52,7 @@ in {
         #secretFile = "${config.link.secrets}/nextcloud-secrets.json";
         extraApps = with config.services.nextcloud.package.packages.apps; {
           inherit bookmarks calendar deck mail notes onlyoffice polls tasks
-            twofactor_webauthn
-            # contacts # broken
-          ;
+            twofactor_webauthn contacts;
         };
         #extraOptions = {
         #  mail_smtpmode = "sendmail";
