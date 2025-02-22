@@ -58,7 +58,7 @@ with lib; {
         # iperf3 # speedtest
         crab_share
         fdupes # duplicate Finder
-        # rmlint # broken
+        rmlint
       ] ++ lib.optionals
       (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
     # Home-manager nixpkgs config
