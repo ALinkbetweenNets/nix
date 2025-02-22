@@ -26,9 +26,24 @@
     internalInterfaces = [ "tailscale0" ];
     internalIPs = [ "10.10.10.63/32" "100.87.16.37/32" ];
     forwardPorts = [
-      { sourcePort = 51820; proto = "udp"; destination = "10.10.10.63:51820"; loopbackIPs = [ "100.87.16.37" ]; }
-      { sourcePort = 51822; proto = "udp"; destination = "10.10.10.63:51820"; loopbackIPs = [ "100.87.16.37" ]; }
-      { sourcePort = 41623; proto = "tcp"; destination = "10.10.10.63:41623"; loopbackIPs = [ "100.87.16.37" ]; }
+      {
+        sourcePort = 51820;
+        proto = "udp";
+        destination = "10.10.10.63:51820";
+        loopbackIPs = [ "100.87.16.37" ];
+      }
+      {
+        sourcePort = 51822;
+        proto = "udp";
+        destination = "10.10.10.63:51820";
+        loopbackIPs = [ "100.87.16.37" ];
+      }
+      {
+        sourcePort = 41623;
+        proto = "tcp";
+        destination = "10.10.10.63:41623";
+        loopbackIPs = [ "100.87.16.37" ];
+      }
     ];
   };
 
@@ -275,13 +290,7 @@
       locations."/" = {
         proxyPass = "http://${config.link.serviceHost}:9002";
         proxyWebsockets = true;
-        # extraConfig = ''
-
-        # '';
       };
-      # extraConfig = ''
-
-      # '';
     };
     "s3.${config.link.domain}" = {
       # enableACME = true;
@@ -316,18 +325,13 @@
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
-      locations."/" = { proxyPass = "http://${config.link.serviceHost}:8765"; };
-      # extraConfig = mkIf (!cfg.expose) ''
-      #   allow ${config.link.service-ip}/24;
-      #     allow 127.0.0.1;
-      #     deny all; # deny all remaining ips
-      # '';
+      locations."/".proxyPass = "http://${config.link.serviceHost}:8765";
     };
     "nextcloud.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
-      locations."/" = { proxyPass = "http://${config.link.serviceHost}:80"; };
+      locations."/".proxyPass = "http://${config.link.serviceHost}:80";
       extraConfig = "\n";
     };
     "outline.${config.link.domain}" = {
