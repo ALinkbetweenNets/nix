@@ -72,9 +72,9 @@ with lib; {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
       teams-for-linux
-      jan # ai
+      # jan # ai
       qrtool
-      dust
+      dust # Disk usage
       choose # cut/ awk alternative
       duf # better df
       procs
