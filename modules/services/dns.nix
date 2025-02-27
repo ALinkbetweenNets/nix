@@ -28,8 +28,8 @@ in {
         "192.168.150.1" # sudo systemd-resolve --interface tun0 --set-dns 192.168.150.1
       ];
       domains = [ "monitor-banfish.ts.net" ];
-      dnssec = "allow-downgrade";
-      dnsovertls = "opportunistic";
+      # dnssec = "allow-downgrade";
+      # dnsovertls = "opportunistic";
     };
     # services.dnsmasq = {
     #   enable = true;
