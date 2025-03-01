@@ -147,7 +147,7 @@ with lib; {
       # ventoy-full # use nix-shell
       # gsettings-desktop-schemas # required for some apps like jami
       ## File Sync
-      nextcloud-client
+      # nextcloud-client
       ## Editor
       #mermaid-cli
       # logseq
