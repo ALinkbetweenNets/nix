@@ -86,6 +86,7 @@ in {
         "[jsonc]" = {
           "editor.defaultFormatter" = "vscode.json-language-features";
         };
+        "continue.telemetryEnabled" = false;
         "cSpell.userWords" = [ "Linkbetween" ];
         "diffEditor.codeLens" = true;
         "diffEditor.diffAlgorithm" = "advanced";
