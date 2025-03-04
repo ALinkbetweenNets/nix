@@ -38,7 +38,6 @@ in {
           redhat.vscode-xml
           redhat.vscode-yaml
           streetsidesoftware.code-spell-checker
-          #tamasfe.even-better-toml
           usernamehw.errorlens
           vadimcn.vscode-lldb
           yzhang.markdown-all-in-one
