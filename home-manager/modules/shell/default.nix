@@ -134,7 +134,9 @@ in {
         rmt = "trash put";
         n = "nvim";
         c = "cd";
-        optimizeimage = "oxipng -o max -s -i 1 -p --fast --scale16 -a -r ";
+        optimizeimage = "oxipng -o max -s -i 1 -p --fast -a -r ";
+        deduplicate-hardlink = "jdupes --recurse -L "; # Replace duplicates with hardlinks
+        deduplicate = "rmlint -r -g -k ";
         ci = ''
           # echo link to woodpecker
           url=$(${pkgs.git}/bin/git config --get remote.origin.url | sed -e 's/\(.*\)git@\(.*\):[0-9\/]*/https:\/\/\2\//g')
