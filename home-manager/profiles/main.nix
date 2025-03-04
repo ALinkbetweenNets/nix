@@ -74,7 +74,7 @@ with lib; {
       teams-for-linux
       jan # ai
       qrtool
-      dust
+      dust # Disk usage
       choose # cut/ awk alternative
       duf # better df
       procs
