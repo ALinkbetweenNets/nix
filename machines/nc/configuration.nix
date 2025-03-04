@@ -198,6 +198,12 @@
       forceSSL = true;
       root = "${pkgs.cyberchef}/share/cyberchef";
     };
+    "webhacking.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      root = "/var/www/Burpsuite-Presentation";
+    };
     "hedgedoc.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
