@@ -11,9 +11,9 @@ with lib; {
       latex.enable = true;
       gaming.enable = true;
       python.enable = true;
-      # golang.enable = true;
+      golang.enable = true;
       # ansible.enable = true;
-      # rust.enable = true;
+      rust.enable = true;
       # beancount.enable = true;
     };
     # services.kdeconnect = {
@@ -107,7 +107,8 @@ with lib; {
       # reaper # audio editor
       #frei0r # video effects
       # freecad
-      #openscad
+      # openscad # CAD
+      # kicad # PCB Design
       # dupeguru # good file deduplication
       timer
       termdown
