@@ -11,6 +11,7 @@ in {
           with ps; [
             django
             asgiref
+            qrcode
             sqlparse
             typing-extensions
             pillow

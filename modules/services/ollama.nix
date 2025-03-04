@@ -32,7 +32,7 @@ in {
         enable = true;
         port = 11434;
         host = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
-        loadModels = [ "llama3.1:405b" "nomic-embed-text" "starcoder2:3b" ];
+        loadModels = [ "deepseek-r1" "nomic-embed-text" "starcoder2:3b" ];
       };
       nextjs-ollama-llm-ui = {
         enable = true;

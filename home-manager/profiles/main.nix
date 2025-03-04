@@ -11,9 +11,9 @@ with lib; {
       latex.enable = true;
       gaming.enable = true;
       python.enable = true;
-      # golang.enable = true;
+      golang.enable = true;
       # ansible.enable = true;
-      # rust.enable = true;
+      rust.enable = true;
       # beancount.enable = true;
     };
     # services.kdeconnect = {
@@ -72,7 +72,7 @@ with lib; {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
       teams-for-linux
-      # jan # ai
+      jan # ai
       qrtool
       dust # Disk usage
       choose # cut/ awk alternative
@@ -107,7 +107,8 @@ with lib; {
       # reaper # audio editor
       #frei0r # video effects
       # freecad
-      #openscad
+      # openscad # CAD
+      # kicad # PCB Design
       # dupeguru # good file deduplication
       timer
       termdown
@@ -147,7 +148,7 @@ with lib; {
       # ventoy-full # use nix-shell
       # gsettings-desktop-schemas # required for some apps like jami
       ## File Sync
-      nextcloud-client
+      # nextcloud-client
       ## Editor
       #mermaid-cli
       # logseq

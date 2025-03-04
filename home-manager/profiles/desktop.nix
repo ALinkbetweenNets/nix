@@ -85,7 +85,7 @@ with lib; {
         # cobang # qr codes
         ## Encryption
         #veracrypt
-        kleopatra # gpg/ pgp
+        kdePackages.kleopatra # gpg/ pgp
         ## Misc
         xdg-utils
         scrcpy # ADB screenshare
