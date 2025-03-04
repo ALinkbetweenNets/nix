@@ -32,7 +32,7 @@ in {
         wifi-qr
         barrier # KVM
         gsettings-qt
-        kde-gtk-config
+        kdePackages.kde-gtk-config
         glib
         gsettings-qt
         gsettings-desktop-schemas
