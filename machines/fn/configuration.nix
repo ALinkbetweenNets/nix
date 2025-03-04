@@ -6,7 +6,7 @@
     flake-self.inputs.nixos-hardware.nixosModules.framework-16-7040-amd
     # flake-self.inputs.ucodenix.nixosModules.ucodenix
   ];
-  system.autoUpgrade.enable=lib.mkForce false;
+  system.autoUpgrade.enable = lib.mkForce false;
   link = {
     sops = false;
     # tailscale-address = "100.108.198.22";
@@ -33,6 +33,7 @@
     podman.enable = true;
     # docker.enable = true;
     i2p.enable = true;
+    # services.ollama.enable = true;
     services.restic-client = {
       enable = true;
       backup-paths-sn = [

@@ -64,14 +64,14 @@ with lib; {
         statusline = {
           lualine = {
             enable = true;
-            theme = "catppuccin";
+            theme = "auto";
           };
         };
         theme = {
           enable = true;
-          name = "catppuccin";
-          style = "mocha";
-          transparent = false;
+          #name = "darker";
+          # style = "darker";
+          transparent = true;
         };
         # filetree = { nvimTree = { enable = true; }; };
         tabline = { nvimBufferline.enable = true; };
