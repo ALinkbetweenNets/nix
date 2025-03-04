@@ -38,7 +38,6 @@ in {
           redhat.vscode-xml
           redhat.vscode-yaml
           streetsidesoftware.code-spell-checker
-          #tamasfe.even-better-toml
           usernamehw.errorlens
           vadimcn.vscode-lldb
           yzhang.markdown-all-in-one
@@ -86,6 +85,7 @@ in {
         "[jsonc]" = {
           "editor.defaultFormatter" = "vscode.json-language-features";
         };
+        "continue.telemetryEnabled" = false;
         "cSpell.userWords" = [ "Linkbetween" ];
         "diffEditor.codeLens" = true;
         "diffEditor.diffAlgorithm" = "advanced";

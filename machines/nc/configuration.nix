@@ -198,6 +198,12 @@
       forceSSL = true;
       root = "${pkgs.cyberchef}/share/cyberchef";
     };
+    "webhacking.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      root = "/var/www/Burpsuite-Presentation";
+    };
     "hedgedoc.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
@@ -450,6 +456,9 @@
   #   locations."/" = {
   #     proxyPass = "http://${config.link.serviceHost}:8766";
   #   };
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBu+WcpENdr7FaCIwj6WsinGnykIPV/tnIyrfEHSeU+E root@sn"
+  ];
   lollypops.deployment = {
     local-evaluation = true;
     ssh.host = "nc.monitor-banfish.ts.net";

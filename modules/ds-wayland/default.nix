@@ -11,7 +11,7 @@ in {
         wl-clipboard-x11
         wl-clipboard
         xwayland
-        xwaylandvideobridge
+        kdePackages.xwaylandvideobridge
         wayland-utils
         wtype # xdotool
         wev # key codes
