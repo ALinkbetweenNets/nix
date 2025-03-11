@@ -4,79 +4,70 @@ let cfg = config.link.hyprland;
 in {
 
   options.link.hyprland = { enable = mkEnableOption "activate hyprland"; };
-
   config = mkIf cfg.enable {
-
     link = {
       wayland.enable = true;
-      plasma.enable = mkForce false;
+      # plasma.enable = mkForce false;
       xserver.enable = mkForce false;
-
     };
-    programs.hyprland = {
-      enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      xwayland.enable = true;
+    services.hypridle.enable = true;
+    programs = {
+      hyprland = {
+        enable = true;
+        xwayland.enable = true;
+        withUWSM = true;
+      };
+      uwsm.enable = true;
+      wayfire.enable = true;
+      waybar.enable = true;
+      hyprlock.enable = true;
+      iio-hyprland.enable = true;
     };
-
+    security.pam.services.hyprlock = { text = "auth include login"; };
+    environment.systemPackages = with pkgs; [
+      mako
+      ags
+      kitty # required for the default Hyprland config
+      cliphist
+      hyprpolkitagent
+    ];
     # xdg.portal = {
     #   enable = true;
     #   extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
     # };
 
-    security = { polkit.enable = true; };
-
-    environment.systemPackages = with pkgs.gnome; [
-      pkgs.loupe
-      adwaita-icon-theme
-      nautilus
-      baobab
-      gnome-calendar
-      gnome-boxes
-      gnome-system-monitor
-      gnome-control-center
-      gnome-weather
-      gnome-calculator
-      gnome-clocks
-      gnome-software # for flatpak
-    ];
-
-    systemd = {
-      user.services.polkit-gnome-authentication-agent-1 = {
-        description = "polkit-gnome-authentication-agent-1";
-        wantedBy = [ "graphical-session.target" ];
-        wants = [ "graphical-session.target" ];
-        after = [ "graphical-session.target" ];
-        serviceConfig = {
-          Type = "simple";
-          ExecStart =
-            "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-          Restart = "on-failure";
-          RestartSec = 1;
-          TimeoutStopSec = 10;
-        };
-      };
-    };
-
+    # systemd = {
+    #   user.services.polkit-gnome-authentication-agent-1 = {
+    #     description = "polkit-gnome-authentication-agent-1";
+    #     wantedBy = [ "graphical-session.target" ];
+    #     wants = [ "graphical-session.target" ];
+    #     after = [ "graphical-session.target" ];
+    #     serviceConfig = {
+    #       Type = "simple";
+    #       ExecStart =
+    #         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+    #       Restart = "on-failure";
+    #       RestartSec = 1;
+    #       TimeoutStopSec = 10;
+    #     };
+    #   };
+    # };
     services = {
       gvfs.enable = true;
-      devmon.enable = true;
+      #   devmon.enable = true;
       udisks2.enable = true;
       upower.enable = true;
-      power-profiles-daemon.enable = true;
+      #   power-profiles-daemon.enable = true;
       accounts-daemon.enable = true;
-      gnome = {
-        evolution-data-server.enable = true;
-        glib-networking.enable = true;
-        gnome-keyring.enable = true;
-      };
+      #   gnome = {
+      #     evolution-data-server.enable = true;
+      #     glib-networking.enable = true;
+      #     gnome-keyring.enable = true;
+      #   };
     };
-
     home-manager.users."l" = {
-      link.programs = { hyprland.enable = true; };
+      link.hyprland.enable = true;
       home.packages = [ ];
     };
-
   };
-
 }

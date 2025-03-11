@@ -1,19 +1,115 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 with lib;
 let cfg = config.link.hyprland;
 in {
-  options.link.hyprland.enable = mkEnableOption "activate sway";
+  options.link.hyprland.enable = mkEnableOption "activate hyprland";
   config = mkIf cfg.enable {
-    home.packages = [ launcher ];
+    link.programs.wofi.enable = true;
+    # home.packages = [ launcher ];
 
-    xdg.desktopEntries."org.gnome.Settings" = {
-      name = "Settings";
-      comment = "Gnome Control Center";
-      icon = "org.gnome.Settings";
-      exec =
-        "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome.gnome-control-center}/bin/gnome-control-center";
-      categories = [ "X-Preferences" ];
-      terminal = false;
+    # xdg.desktopEntries."org.gnome.Settings" = {
+    #   name = "Settings";
+    #   comment = "Gnome Control Center";
+    #   icon = "org.gnome.Settings";
+    #   exec =
+    #     "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome.gnome-control-center}/bin/gnome-control-center";
+    #   categories = [ "X-Preferences" ];
+    #   terminal = false;
+    # };
+    programs.fuzzel = {
+      enable = true;
+      settings = {
+        main = {
+          terminal = "wezterm";
+          layer = "overlay";
+          width = 60;
+        };
+        colors.background = "01010101";
+        border.radius = 0;
+      };
+    };
+    programs.hyprlock = {
+      enable = true;
+      settings = {
+        general = {
+          disable_loading_bar = false;
+          grace = 300;
+          hide_cursor = true;
+          # ignore_empty_inpput = true;
+        };
+        background = [{
+          path = "screenshot";
+          blur_passes = 3;
+          blur_size = 8;
+        }];
+        input-field = [{
+          size = "400, 400";
+          # size = "100, 100";
+          outline_thickness = 20;
+          # dots_size = 0.2;
+          # dots_spacing = 0.5;
+          dots_center = true;
+          font_color = "rgb(226, 226, 226)";
+          inner_color = "rgba(0,0,0,0)";
+          # outer_color = "rgba(33ccffee) rgba(00ff99ee) rgba(faf76eee)";
+          outer_color = "rgba(255, 0, 0, 0)";
+          fade_on_empty = false;
+          rounding = -1;
+          placeholder_text = "";
+          # placeholder_text = ''
+          # <span foreground="##8bd5ca"><i>󰌾 Logged in as </i><span foreground="##8bd5ca">$USER</span></span>'';
+          hide_input = true;
+          check_color = "rgb(8, 169, 8)";
+          fail_color = "rgb(130, 14, 14)";
+          fail_text = "$ATTEMPTS";
+          capslock_color = "rgb(192, 204, 23)";
+          position = "0, -185";
+          halign = "center";
+          valign = "center";
+          shadow_passes = 0;
+
+        }];
+        label = [
+          {
+            text = ''cmd[update:30000] echo "$(date +"%I:%M %p")"'';
+            font_size = 90;
+            position = "0, -100";
+            halign = "center";
+            valign = "top";
+            shadow_passes = 2;
+          }
+          {
+            text = ''cmd[update:43200000] echo "$(date +"%A, %d %B %Y")"'';
+            font_size = 25;
+            position = "0, -250";
+            halign = "center";
+            valign = "top";
+            shadow_passes = 2;
+          }
+        ];
+      };
+    };
+    services.hypridle = {
+      enable = true;
+      settings = {
+        general = {
+          after_sleep_cmd = "hyprctl dispatch dpms on";
+          ignore_dbus_inhibit = false;
+          lock_cmd = "hyprlock";
+        };
+
+        listener = [
+          {
+            timeout = 900;
+            on-timeout = "hyprlock";
+          }
+          {
+            timeout = 1200;
+            on-timeout = "hyprctl dispatch dpms off";
+            on-resume = "hyprctl dispatch dpms on";
+          }
+        ];
+      };
     };
 
     wayland.windowManager.hyprland = {
@@ -24,8 +120,12 @@ in {
       # plugins = with plugins; [ hyprbars borderspp ];
 
       settings = {
-        exec-once =
-          [ "ags -b hypr" "hyprctl setcursor Qogir 24" "transmission-gtk" ];
+        exec-once = [
+          "ags -b hypr"
+          "hyprctl setcursor Qogir 24"
+          "transmission-gtk"
+          "wl-paste --watch cliphist store"
+        ];
 
         monitor = [
           # "eDP-1, 1920x1080, 0x0, 1"
@@ -45,7 +145,8 @@ in {
         };
 
         input = {
-          kb_layout = "hu";
+          kb_layout = "de";
+          kb_variant = "nodeadkeys";
           kb_model = "pc104";
           follow_mouse = 1;
           touchpad = {
@@ -62,13 +163,11 @@ in {
         dwindle = {
           pseudotile = "yes";
           preserve_split = "yes";
-          # no_gaps_when_only = "yes";
         };
 
         gestures = {
           workspace_swipe = true;
           workspace_swipe_forever = true;
-          workspace_swipe_numbered = true;
         };
 
         windowrule = let f = regex: "float, ^(${regex})$";
@@ -91,55 +190,57 @@ in {
         bind = let
           binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
           mvfocus = binding "SUPER" "movefocus";
-          ws = binding "SUPER" "workspace";
-          resizeactive = binding "SUPER CTRL" "resizeactive";
-          mvactive = binding "SUPER ALT" "moveactive";
-          mvtows = binding "SUPER SHIFT" "movetoworkspace";
+          ws = binding "SUPER CTRL" "workspace";
+          resizeactive = binding "SUPER ALT SHIFT" "resizeactive";
+          mvactive = binding "SUPER SHIFT" "moveactive";
+          mvtows = binding "SUPER CTRL SHIFT" "movetoworkspace";
           e = "exec, ags -b hypr";
           arr = [ 1 2 3 4 5 6 7 8 9 ];
-          yt = pkgs.writeShellScriptBin "yt" ''
-            notify-send "Opening video" "$(wl-paste)"
-            mpv "$(wl-paste)"
-          '';
+          # yt = pkgs.writeShellScriptBin "yt" ''
+          #   notify-send "Opening video" "$(wl-paste)"
+          #   mpv "$(wl-paste)"
+          # '';
         in [
           "CTRL SHIFT, R,  ${e} quit; ags -b hypr"
-          "SUPER, R,       ${e} -t applauncher"
           ", XF86PowerOff, ${e} -t powermenu"
           "SUPER, Tab,     ${e} -t overview"
-          ", XF86Launch4,  ${e} -r 'recorder.start()'"
-          ",Print,         ${e} -r 'recorder.screenshot()'"
+          # ", XF86Launch4,  ${e} -r 'recorder.start()'"
+          # ",Print,         ${e} -r 'recorder.screenshot()'"
           "SHIFT,Print,    ${e} -r 'recorder.screenshot(true)'"
-          "SUPER, Return, exec, xterm" # xterm is a symlink, not actually xterm
-          "SUPER, W, exec, firefox"
-          "SUPER, E, exec, wezterm -e lf"
+          "SUPER, R,       exec, ${pkgs.wofi}/bin/wofi --show run"
+          "SUPER, Return, exec, wezterm" # xterm is a symlink, not actually xterm
+          "SUPER, N, exec, zen --enable-transparent-background"
+          "SUPER, E, exec, dolphin"
+          "SUPER SHIFT, L, exec, hyprlock --immediate"
+          "SUPER, V, exec, cliphist list | ${pkgs.fuzzel}/bin/fuzzel --dmenu | cliphist decode | wl-copy"
+          "SUPER CTRL ALT SHIFT, V, exec, cliphist list | ${pkgs.fuzzel}/bin/fuzzel --dmenu | cliphist delete"
 
           # youtube
-          ", XF86Launch1,  exec, ${yt}/bin/yt"
+          # ", XF86Launch1,  exec, ${yt}/bin/yt"
 
           "ALT, Tab, focuscurrentorlast"
           "CTRL ALT, Delete, exit"
-          "ALT, Q, killactive"
+          "SUPER SHIFT, Q, killactive"
           "SUPER, F, togglefloating"
-          "SUPER, G, fullscreen"
-          "SUPER, O, fakefullscreen"
+          "SUPER, M, fullscreen"
           "SUPER, P, togglesplit"
 
-          (mvfocus "k" "u")
-          (mvfocus "j" "d")
-          (mvfocus "l" "r")
-          (mvfocus "h" "l")
+          (mvfocus "up" "u")
+          (mvfocus "down" "d")
+          (mvfocus "right" "r")
+          (mvfocus "left" "l")
           (ws "left" "e-1")
           (ws "right" "e+1")
           (mvtows "left" "e-1")
           (mvtows "right" "e+1")
-          (resizeactive "k" "0 -20")
-          (resizeactive "j" "0 20")
-          (resizeactive "l" "20 0")
-          (resizeactive "h" "-20 0")
-          (mvactive "k" "0 -20")
-          (mvactive "j" "0 20")
-          (mvactive "l" "20 0")
-          (mvactive "h" "-20 0")
+          (resizeactive "up" "0 -40")
+          (resizeactive "down" "0 40")
+          (resizeactive "right" "40 0")
+          (resizeactive "left" "-40 0")
+          (mvactive "up" "0 -20")
+          (mvactive "down" "0 20")
+          (mvactive "right" "20 0")
+          (mvactive "left" "-20 0")
         ] ++ (map (i: ws (toString i) (toString i)) arr)
         ++ (map (i: mvtows (toString i) (toString i)) arr);
 
@@ -167,13 +268,7 @@ in {
           [ "SUPER, mouse:273, resizewindow" "SUPER, mouse:272, movewindow" ];
 
         decoration = {
-          drop_shadow = "yes";
-          shadow_range = 8;
-          shadow_render_power = 2;
-          "col.shadow" = "rgba(00000044)";
-
           dim_inactive = false;
-
           blur = {
             enabled = true;
             size = 8;
