@@ -10,6 +10,10 @@ in {
         shotman
         wl-clipboard-x11
         wl-clipboard
+        wlay
+        wlr-randr
+        wl-mirror
+        xdg-utils
         xwayland
         kdePackages.xwaylandvideobridge
         wayland-utils
