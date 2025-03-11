@@ -9,7 +9,7 @@ in {
       dns.enable = true;
       # unbound.enable = true;
       wayland.enable = lib.mkDefault true;
-      xserver.enable = lib.mkDefault true;
+      xserver.enable = lib.mkDefault false;
       plasma.enable = lib.mkDefault true;
     };
     programs = {
