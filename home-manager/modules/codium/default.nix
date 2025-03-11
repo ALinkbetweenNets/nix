@@ -165,6 +165,10 @@ in {
           when = "textInputFocus";
         }
         {
+          "key" = "ctrl+shift+i";
+          "command" = "-continue.focusEditWithoutClear";
+        }
+        {
           key = "ctrl+[Backquote]";
           command = "terminal.focus";
         }
