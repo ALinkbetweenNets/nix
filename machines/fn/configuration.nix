@@ -8,6 +8,7 @@
   ];
   system.autoUpgrade.enable = lib.mkForce false;
   link = {
+    hyprland.enable = true;
     sops = false;
     # tailscale-address = "100.108.198.22";
     gaming.enable = true;
@@ -95,6 +96,7 @@
     hostName = "fn";
     domain = "monitor-banfish.ts.net";
   };
+  services.languagetool.enable = true;
   # services.ucodenix = {
   #   enable = true;
   #   cpuSerialNumber =
