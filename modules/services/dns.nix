@@ -4,10 +4,13 @@ let cfg = config.link.dns;
 in {
   options.link.dns.enable = mkEnableOption "activate dns";
   config = mkIf cfg.enable {
-    networking.resolvconf.useLocalResolver = true;
-    networking.networkmanager.enable = true;
-    networking.networkmanager.dns = "systemd-resolved";
-    networking.search = [ "local" "monitor-banfish.ts.net" ];
+    link.unbound.enable = true;
+    networking = {
+      resolvconf.useLocalResolver = true;
+      networkmanager.enable = true;
+      networkmanager.dns = "systemd-resolved";
+      search = [ "local" "monitor-banfish.ts.net" ];
+    };
     # networking.nameservers = [
     #   # "127.0.0.1"
     #   "9.9.9.9"
@@ -20,6 +23,7 @@ in {
     services.resolved = {
       enable = true;
       fallbackDns = [
+        "127.0.0.2"
         "127.0.0.1"
         "8.8.8.8"
         "1.0.0.1"
