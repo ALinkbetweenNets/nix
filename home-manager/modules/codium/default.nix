@@ -9,9 +9,9 @@ in {
       enable = true;
       package = pkgs.vscodium;
       # package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config  ]);
-      enableUpdateCheck = false;
-      enableExtensionUpdateCheck = false;
-      extensions = with pkgs.vscode-extensions;
+      profiles.default.enableUpdateCheck = false;
+      profiles.default.enableExtensionUpdateCheck = true;
+      profiles.default.extensions = with pkgs.vscode-extensions;
         [
           # continue.continue # ollama
           myriad-dreamin.tinymist # typst
@@ -50,7 +50,7 @@ in {
           sha256 =
             "6acdded8bcca052b221acfd4188674e97a9b2e1dfb8ab0d4682cec96a2131094";
         }];
-      userSettings = {
+      profiles.default.userSettings = {
         "[typescriptreact]" = {
           "editor.defaultFormatter" = "vscode.typescript-language-features";
         };
@@ -151,14 +151,14 @@ in {
         # "window.titleBarStyle" = "native";
         # "workbench.colorTheme" = "Dracula";
       };
-      globalSnippets = {
+      profiles.default.globalSnippets = {
         fixme = {
           body = [ "$LINE_COMMENT FIXME: $0" ];
           description = "Insert a FIXME remark";
           prefix = [ "fixme" ];
         };
       };
-      keybindings = [
+      profiles.default.keybindings = [
         {
           key = "ctrl+c";
           command = "editor.action.clipboardCopyAction";
