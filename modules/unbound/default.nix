@@ -25,17 +25,18 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    link.dns.enable = lib.mkDefault true;
+    # link.dns.enable = lib.mkDefault true;
     services.unbound = {
       enable = true;
       localControlSocketPath = "/run/unbound/unbound.ctl";
+      resolveLocalQueries = false;
       settings = {
         server = {
           include = [
             ''"${dns-overwrites-config}"''
             ''"${adlist.unbound-adblockStevenBlack}"''
           ];
-          interface = [ "::1" "127.0.0.1" ];
+          interface = [ "::1" "127.0.0.2" ];
           access-control = [ "127.0.0.0/8 allow" ];
         };
         # forward local DNS requests via Wireguard
