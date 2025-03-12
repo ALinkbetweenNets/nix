@@ -72,6 +72,7 @@ with lib; {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
       teams-for-linux
+      linphone
       jan # ai
       qrtool
       dust # Disk usage
