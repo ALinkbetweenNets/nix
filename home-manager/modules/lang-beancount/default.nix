@@ -8,7 +8,7 @@ in {
       [
         beancount # bookkeeping
       ];
-    programs.vscode.extensions =
+    programs.vscode.profiles.default.extensions =
       pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
           name = "beancount";

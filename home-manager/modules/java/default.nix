@@ -5,7 +5,7 @@ in {
   options.link.java.enable = mkEnableOption "activate java toolchain";
   config = mkIf cfg.enable {
     home.packages = with pkgs; [ jdk21 ];
-    programs.vscode.extensions = with pkgs.vscode-extensions; [
+    programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
       vscjava.vscode-java-pack
       redhat.java
       redhat.vscode-xml

@@ -5,6 +5,7 @@ in {
   options.link.golang.enable = mkEnableOption "activate golang toolchain";
   config = mkIf cfg.enable {
     home.packages = with pkgs; [ go delve ];
-    programs.vscode.extensions = with pkgs.vscode-extensions; [ golang.go ];
+    programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions;
+      [ golang.go ];
   };
 }
