@@ -24,8 +24,10 @@ with lib; {
         [ xdg-desktop-portal-gnome ]
         ++ lib.optionals (system-config.link.sway.enable)
         [ xdg-desktop-portal-wlr ]
-        ++ lib.optionals (system-config.link.hyprland.enable)
-        [ xdg-desktop-portal-hyprland ];
+        ++ lib.optionals (system-config.link.hyprland.enable) [
+          xdg-desktop-portal-hyprland
+          kdePackages.xdg-desktop-portal-kde
+        ];
     };
     userDirs = {
       enable = true;
