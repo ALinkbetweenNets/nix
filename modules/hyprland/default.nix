@@ -19,7 +19,7 @@ in {
       };
       uwsm.enable = true;
       wayfire.enable = true;
-      waybar.enable = true;
+      waybar.enable = false;
       hyprlock.enable = true;
       iio-hyprland.enable = true;
     };
@@ -30,6 +30,18 @@ in {
       kitty # required for the default Hyprland config
       cliphist
       hyprpolkitagent
+      waybar
+      brightnessctl
+      playerctl
+      libnotify
+      oxipng
+      wofi
+      grim
+      swappy
+      slurp
+      rofi-wayland-unwrapped
+      kdePackages.qt6ct
+      xdg-desktop-portal-kde
     ];
     # xdg.portal = {
     #   enable = true;
