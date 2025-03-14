@@ -88,7 +88,7 @@ with lib; {
       # tailspin # broken
       spacer
       #csvlens
-      kdePackageskcolorchooser
+      kdePackages.kcolorchooser
       curlie # httpie for curl
       gpodder # podcast client
       #htmlq
