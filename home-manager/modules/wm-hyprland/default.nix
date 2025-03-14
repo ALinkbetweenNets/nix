@@ -16,35 +16,77 @@ in {
     # };
     services = {
       # Networking
-      # network-manager-applet.enable = true;
-      # # Bluetooth
-      # blueman.enable = true;
-      # # Pulseaudio
-      # pasystray.enable = true;
-      # # Battery Warning
-      # cbatticon.enable = true;
-      # hypridle = {
+      network-manager-applet.enable = true;
+      # Bluetooth
+      blueman-applet.enable = true;
+      # Pulseaudio
+      pasystray.enable = true;
+      # cliphist = {
       #   enable = true;
-      #   settings = {
-      #     general = {
-      #       after_sleep_cmd = "hyprctl dispatch dpms on";
-      #       ignore_dbus_inhibit = false;
-      #       lock_cmd = "hyprlock";
-      #     };
-
-      #     listener = [
-      #       {
-      #         timeout = 900;
-      #         on-timeout = "hyprlock";
-      #       }
-      #       {
-      #         timeout = 1200;
-      #         on-timeout = "hyprctl dispatch dpms off";
-      #         on-resume = "hyprctl dispatch dpms on";
-      #       }
-      #     ];
-      #   };
+      #   extraOptions = [ "-max-dedupe-search" "10" "-max-items" "500" ];
       # };
+      copyq.enable = true;
+      cbatticon = {
+        enable = true;
+        # Battery Warning
+        criticalLevelPercent = 5;
+        iconType = "symbolic";
+        lowLevelPercent = 20;
+        hideNotification = true;
+        updateIntervalSeconds = 10;
+        commandCriticalLevel = ''
+          notify-send "battery critical!"
+        '';
+      };
+      mako = {
+        enable = true;
+        anchor = "bottom-center";
+        backgroundColor = "#0f1115";
+        width = 300;
+        height = 110;
+        borderSize = 1;
+        borderColor = "#88c0d0";
+        borderRadius = 10;
+        maxIconSize = 64;
+        defaultTimeout = 5000;
+        ignoreTimeout = false;
+        # font = monospace 14;
+        #         backgroundColor = "#00000000";
+        extraConfig = ''
+          [urgency=low]
+          border-color=#cccccc
+          [urgency=normal]
+          border-color=#d08770
+          [urgency=high]
+          border-color=#bf616a
+          default-timeout=0
+          [category=mpd]
+          default-timeout=2000
+          group-by=category
+        '';
+      };
+      hypridle = {
+        enable = true;
+        settings = {
+          general = {
+            after_sleep_cmd = "hyprctl dispatch dpms on";
+            ignore_dbus_inhibit = false;
+            lock_cmd = "hyprlock";
+          };
+
+          listener = [
+            {
+              timeout = 900;
+              on-timeout = "hyprlock";
+            }
+            {
+              timeout = 1200;
+              on-timeout = "hyprctl dispatch dpms off";
+              on-resume = "hyprctl dispatch dpms on";
+            }
+          ];
+        };
+      };
     };
     programs = {
       fuzzel = {
@@ -125,10 +167,11 @@ in {
           layer = "top";
           position = "top";
           height = 20;
-          output = [ "eDP-1" "DP-2" ];
-          modules-left = [ "hyprland/workspaces" ];
-          modules-center = [ "hyprland/window" "clock" ];
+          # output = [ "eDP-1" "DP-2" ];
+          modules-left = [ "hyprland/workspaces" "hyprland/window" ];
+          modules-center = [ "clock" ];
           modules-right = [
+            "cava"
             "tray"
             "mpd"
             "temperature"
@@ -137,15 +180,66 @@ in {
             "mpris"
             "wireplumber"
             "battery"
+            "group/group-power"
           ];
+          "group/group-power" = {
+            "orientation" = "inherit";
+            "drawer" = {
+              "transition-duration" = 500;
+              "children-class" = "not-power";
+              "transition-left-to-right" = false;
+            };
+            "modules" =
+              [ "custom/power" "custom/quit" "custom/lock" "custom/reboot" ];
+          };
+          "custom/quit" = {
+            "format" = "󰗼";
+            "tooltip" = false;
+            "on-click" = "hyprctl dispatch exit";
+          };
+          "custom/lock" = {
+            "format" = "󰍁";
+            "tooltip" = false;
+            "on-click" = "swaylock";
+          };
+          "custom/reboot" = {
+            "format" = "󰜉";
+            "tooltip" = false;
+            "on-click" = "reboot";
+          };
+          "custom/power" = {
+            "format" = "";
+            "tooltip" = false;
+            "on-click" = "shutdown now";
+          };
           "hyprland/workspaces" = {
             "on-scroll-up" = "hyprctl dispatch workspace e+1";
+            "format" = "{icon}";
             "on-scroll-down" = "hyprctl dispatch workspace e-1";
-            all-outputs = true;
+            separate-outputs = true;
           };
           "hyprland/window" = { "separate-outputs" = true; };
-          "tray"={
-            show-passive-items=true;
+          "tray" = { show-passive-items = true; };
+          "clock" = { format = "{:%a,%e(%V),%b,%g %H:%M}"; };
+          "cava" = {
+            # "cava_config" = "$XDG_CONFIG_HOME/cava/cava.conf";
+            "framerate" = 30;
+            "autosens" = 1;
+            "sensitivity" = 100;
+            "bars" = 14;
+            "lower_cutoff_freq" = 50;
+            "higher_cutoff_freq" = 10000;
+            "method" = "pulse";
+            "source" = "auto";
+            "stereo" = true;
+            "reverse" = false;
+            "bar_delimiter" = 0;
+            "monstercat" = false;
+            "waves" = false;
+            "noise_reduction" = 0.77;
+            "input_delay" = 2;
+            "format-icons" = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
+            "actions" = { "on-click-right" = "mode"; };
           };
           "custom/hello-from-waybar" = {
             format = "hello {}";
@@ -191,15 +285,18 @@ in {
       settings = {
         exec-once = [
           "waybar"
+          # "poweralertd"
           "hyprctl setcursor Qogir 24"
           "kwalletd6&"
-          "wl-paste --watch cliphist store" # hook to store anything copied in cliphist
-          "mako"
+          # "${pkgs.mako}/bin/mako"
+          # "${pkgs.blueman}/bin/blueman-applet"
+          # "${pkgs.pasystray}/bin/pasystray"
+          # "${pkgs.networkmanagerapplet}/bin/nm-applet"
           "signal-desktop --password-store=kwallet6"
           ''
             gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"''
         ];
-        env = ["QT_QPA_PLATFORMTHEME,qt6ct"];
+        env = [ "QT_QPA_PLATFORMTHEME,qt6ct" ];
         monitor = [
           # "eDP-1, 1920x1080, 0x0, 1"
           # "HDMI-A-1, 2560x1440, 1920x0, 1"
@@ -250,6 +347,8 @@ in {
           (f "pavucontrol")
           (f "nm-connection-editor")
           (f "blueberry.py")
+          (f "copyq")
+          # "move cursor 0% 0%, ^(copyq)$"
           (f "org.gnome.Settings")
           (f "org.gnome.design.Palette")
           (f "Color Picker")
@@ -262,8 +361,10 @@ in {
         bind = let
           binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
           mvfocus = binding "SUPER" "movefocus";
+          mvfocusmonitor = binding "SUPER" "focusmonitor";
+          swapwindow = binding "SUPER SHIFT" "swapwindow";
           resizeactive = binding "SUPER ALT SHIFT" "resizeactive";
-          mvactive = binding "SUPER SHIFT" "moveactive";
+          # mvactive = binding "SUPER SHIFT" "moveactive";
           ws = binding "SUPER CTRL" "workspace";
           mvtows = binding "SUPER CTRL SHIFT" "movetoworkspace";
           e = "exec, ";
@@ -273,6 +374,16 @@ in {
           (mvfocus "down" "d")
           (mvfocus "right" "r")
           (mvfocus "left" "l")
+          (mvfocusmonitor "0" "0")
+          (mvfocusmonitor "1" "1")
+          (mvfocusmonitor "2" "2")
+          (mvfocusmonitor "3" "3")
+          (mvfocusmonitor "4" "4")
+          (mvfocusmonitor "5" "5")
+          (mvfocusmonitor "6" "6")
+          (mvfocusmonitor "7" "7")
+          (mvfocusmonitor "8" "8")
+          (mvfocusmonitor "9" "9")
           (ws "0" "0")
           (ws "1" "1")
           (ws "2" "2")
@@ -301,10 +412,14 @@ in {
           (resizeactive "down" "0 40")
           (resizeactive "right" "40 0")
           (resizeactive "left" "-40 0")
-          (mvactive "up" "0 -20")
-          (mvactive "down" "0 20")
-          (mvactive "right" "20 0")
-          (mvactive "left" "-20 0")
+          (swapwindow "up" "u")
+          (swapwindow "down" "d")
+          (swapwindow "right" "r")
+          (swapwindow "left" "l")
+          # (mvactive "up" "0 -20")
+          # (mvactive "down" "0 20")
+          # (mvactive "right" "20 0")
+          # (mvactive "left" "-20 0")
           ", XF86PowerOff, ${e} -t powermenu"
           "SUPER, Tab,     ${e} -t overview"
           ",Print,    exec, /home/l/s/screenshot.sh"
@@ -316,8 +431,9 @@ in {
           "SUPER, E, exec, dolphin"
           "SUPER SHIFT, L, exec, hyprlock --immediate"
           "SUPER, V, exec, cliphist list | ${pkgs.wofi}/bin/wofi --dmenu | cliphist decode | wl-copy"
+          "SUPER, C, exec, copyq toggle"
           "SUPER CTRL ALT SHIFT, V, exec, cliphist list | ${pkgs.wofi}/bin/wofi --dmenu | cliphist delete"
-          "ALT, Tab, focuscurrentorlast"
+          "ALT, Tab, focusurgentorlast"
           "CTRL ALT, Delete, exit"
           "SUPER SHIFT, Q, killactive"
           "SUPER, F, togglefloating"
@@ -328,21 +444,21 @@ in {
 
         bindle = let e = "exec, ";
         in [
-          ",XF86MonBrightnessUp,   ${e} 'ddcutil --display 1 setvcp 10 + 5& ddcutil --display 2 setvcp 10 + 5& ddcutil --display 3 setvcp 10 + 5& ddcutil --display 4 setvcp 10 + 5& ddcutil --display 5 setvcp 10 + 5& brightnessctl s 10%+&'"
-          ",XF86MonBrightnessDown,   ${e} 'ddcutil --display 1 setvcp 10 - 5& ddcutil --display 2 setvcp 10 - 5& ddcutil --display 3 setvcp 10 - 5& ddcutil --display 4 setvcp 10 - 5& ddcutil --display 5 setvcp 10 - 5& brightnessctl s 10%-&'"
+          ",XF86MonBrightnessUp,   exec, 'ddcutil --display 1 setvcp 10 + 5& ddcutil --display 2 setvcp 10 + 5& ddcutil --display 3 setvcp 10 + 5& ddcutil --display 4 setvcp 10 + 5& ddcutil --display 5 setvcp 10 + 5& brightnessctl s 10%+&'"
+          ",XF86MonBrightnessDown,   exec,'ddcutil --display 1 setvcp 10 - 5& ddcutil --display 2 setvcp 10 - 5& ddcutil --display 3 setvcp 10 - 5& ddcutil --display 4 setvcp 10 - 5& ddcutil --display 5 setvcp 10 - 5& brightnessctl s 10%-&'"
           ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
           ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-"
         ];
         bindl = let e = "exec, ";
         in [
           ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-          ",XF86AudioMicMute, ${e} 'wpctl set-mute  @DEFAULT_AUDIO_SOURCE@ toggle'"
-          ",F20, ${e} 'wpctl set-mute  @DEFAULT_AUDIO_SOURCE@ toggle'"
-          ",XF86AudioPlay,    ${e} '${pkgs.playerctl}/bin/playerctl play-pause'"
-          ",XF86AudioStop,    ${e} '${pkgs.playerctl}/bin/playerctl play-pause'"
-          ",XF86AudioPause,   ${e} '${pkgs.playerctl}/bin/playerctl play-pause'"
-          ",XF86AudioPrev,    ${e} '${pkgs.playerctl}/bin/playerctl previous'"
-          ",XF86AudioNext,    ${e} '${pkgs.playerctl}/bin/playerctl next'"
+          ",XF86AudioMicMute, exec,'wpctl set-mute  @DEFAULT_AUDIO_SOURCE@ toggle'"
+          ",F20, exec,'wpctl set-mute  @DEFAULT_AUDIO_SOURCE@ toggle'"
+          ",XF86AudioPlay,    exec,'${pkgs.playerctl}/bin/playerctl play-pause'"
+          ",XF86AudioStop,    exec,'${pkgs.playerctl}/bin/playerctl play-pause'"
+          ",XF86AudioPause,   exec,'${pkgs.playerctl}/bin/playerctl play-pause'"
+          ",XF86AudioPrev,    exec,'${pkgs.playerctl}/bin/playerctl previous'"
+          ",XF86AudioNext,    exec,'${pkgs.playerctl}/bin/playerctl next'"
         ];
         bindm =
           [ "SUPER, mouse:273, resizewindow" "SUPER, mouse:272, movewindow" ];
