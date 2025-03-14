@@ -3,7 +3,7 @@
   imports =
     [ home-manager.nixosModules.home-manager ./hardware-configuration.nix ];
   home-manager.users.l = flake-self.homeConfigurations.server;
-  system.autoUpgrade.enable=lib.mkForce false;
+  system.autoUpgrade.enable = lib.mkForce false;
   link = {
     common.enable = true;
     server.enable = true;
@@ -87,7 +87,7 @@
           "/var/lib/nextcloud-data"
           "/var/lib/paperless"
           "/var/lib/postgresql"
-          "/var/lib/syncthing-data/.data-mirror"
+          #"/var/lib/syncthing-data/.data-mirror" # too much space
           "/var/lib/syncthing-data/w"
           "/var/lib/syncthing-data/doc"
           "/var/lib/syncthing-data/sec"
