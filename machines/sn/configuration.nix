@@ -87,10 +87,10 @@
           "/var/lib/nextcloud-data"
           "/var/lib/paperless"
           "/var/lib/postgresql"
-          #"/var/lib/syncthing-data/.data-mirror" # too much space
           "/var/lib/syncthing-data/w"
           "/var/lib/syncthing-data/doc"
           "/var/lib/syncthing-data/sec"
+          "/var/lib/syncthing-data/Music"
         ];
         backup-paths-pi4b = [
           "/home/l/.ssh"
@@ -101,17 +101,7 @@
           "/var/lib/nextcloud-data"
           "/var/lib/paperless"
           "/var/lib/postgresql"
-          "/var/lib/restic"
           "/var/lib/syncthing-data"
-        ];
-        backup-paths-sn = [
-          "/var/lib/cryptpad"
-          "/var/lib/gitlab"
-          "/var/lib/hedgedoc"
-          "/var/lib/immich"
-          "/var/lib/nextcloud-data"
-          "/var/lib/paperless"
-          "/var/lib/postgresql"
         ];
       };
     };
