@@ -170,6 +170,27 @@
     },
     {
       "commands": [
+        "nix build '.#nixosConfigurations.npn.config.system.build.toplevel' -o 'result-npn'"
+      ],
+      "image": "bash",
+      "name": "Build npn"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-npn')"
+      ],
+      "image": "bash",
+      "name": "Show npn info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-npn'"
+      ],
+      "image": "bash",
+      "name": "Push npn to Attic"
+    },
+    {
+      "commands": [
         "nix build '.#nixosConfigurations.nc.config.system.build.toplevel' -o 'result-nc'"
       ],
       "image": "bash",
