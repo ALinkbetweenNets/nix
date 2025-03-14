@@ -41,7 +41,10 @@ in {
       slurp
       rofi-wayland-unwrapped
       kdePackages.qt6ct
-      xdg-desktop-portal-kde
+      kdePackages.xdg-desktop-portal-kde
+      poweralertd
+      cava
+      adwaita-qt
     ];
     # xdg.portal = {
     #   enable = true;
