@@ -68,8 +68,8 @@ in {
     };
     # During boot, resize the root partition to the size of the disk.
     # This makes upgrading the size of the vDisk easier.
-    fileSystems."/".autoResize = true;
-    fileSystems."/var/lib".autoResize = true;
+    # fileSystems."/".fsType = "ext4";
+    # fileSystems."/".autoResize = true;
     boot.growPartition = true;
     boot = {
       loader = {
