@@ -47,7 +47,8 @@
       keycloak.enable = true;
       #gitea.enable = true;
       gitlab.enable = true;
-      # grafana.enable = true;
+      onlyoffice.enable = true;
+      grafana.enable = true;
       # # seafile.enable = true;
       # # xandikos.enable = true; # WIP
       # hedgedoc.enable = true;
