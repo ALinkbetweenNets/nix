@@ -141,7 +141,7 @@ in {
         "terminal.integrated.enableVisualBell" = true;
         "terminal.integrated.mouseWheelZoom" = true;
         "vscode-pets.petColor" = "white";
-        "vscode-pets.position" = "panel";
+        # "vscode-pets.position" = "panel";
         "vscode-pets.throwBallWithMouse" = true;
         "workbench.editor.highlightModifiedTabs" = true;
         "workbench.editor.limit.enabled" = true;
