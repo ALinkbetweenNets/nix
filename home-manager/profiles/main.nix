@@ -72,6 +72,7 @@ with lib; {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
       teams-for-linux
+      linphone
       jan # ai
       qrtool
       dust # Disk usage
@@ -87,6 +88,7 @@ with lib; {
       # tailspin # broken
       spacer
       #csvlens
+      kdePackages.kcolorchooser
       curlie # httpie for curl
       gpodder # podcast client
       #htmlq

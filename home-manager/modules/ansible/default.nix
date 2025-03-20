@@ -9,7 +9,7 @@ in {
 
     home.packages = with pkgs; [ ansible ansible-lint ];
 
-    programs.vscode = mkIf config.programs.vscode.enable {
+    programs.vscode.profiles.default = mkIf config.programs.vscode.enable {
       userSettings = {
         "ansible.ansible.path" = "${pkgs.ansible}/bin/ansible";
         "ansible.ansibleLint.path" = "${pkgs.ansible-lint}/bin/ansible-lint";
