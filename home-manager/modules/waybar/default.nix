@@ -43,32 +43,24 @@ in {
 
       settings.mainbar = {
         layer = "top";
-        position = "bottom";
-        spacing = 4; # Gaps between modules (4px)
-        modules-left = [ "sway/workspaces" "sway/mode" ];
-        modules-right = [ "tray" "network" "pulseaudio" "battery" "clock" ];
-        tray = { spacing = 10; };
-        network = {
-          format-wifi = "{essid} ({signalStrength}%)  ";
-          format-ethernet = "{ipaddr}/{cidr} ";
-          tooltip-format = "{ifname} via {gwaddr} ";
-          format-linked = "{ifname} (No IP) ";
-          format-disconnected = "Disconnected ⚠";
-          format-alt = "{ifname}: {ipaddr}/{cidr}";
+        position = "top";
+        height = 30;
+        output = [ "eDP-1" "HDMI-A-1" ];
+        modules-left = [ "sway/workspaces" "sway/mode" "wlr/taskbar" ];
+        modules-center = [ "sway/window" "custom/hello-from-waybar" ];
+        modules-right = [ "mpd" "custom/mymodule#with-css-id" "temperature" ];
+
+        "sway/workspaces" = {
+          disable-scroll = true;
+          all-outputs = true;
         };
-        pulseaudio = {
-          scroll-step = 1; # %, can be a float
-          format = "{volume}% {icon} {format_source}";
-          format-bluetooth = "{volume}% {icon} {format_source}";
-          format-bluetooth-muted = "ﱝ {icon} {format_source}";
-          format-muted = "ﱝ {format_source}";
-          format-source = "{volume}% ";
-          format-source-muted = "";
-          format-icons = {
-            headphone = "";
-            default = [ "" "" "" ];
-          };
-          on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
+        "custom/hello-from-waybar" = {
+          format = "hello {}";
+          max-length = 40;
+          interval = "once";
+          exec = pkgs.writeShellScript "hello-from-waybar" ''
+            echo "from within waybar"
+          '';
         };
       };
     };

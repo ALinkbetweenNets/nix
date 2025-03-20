@@ -5,7 +5,7 @@ in {
   programs = {
     starship = {
       enable = true;
-      enableBashIntegration = true;
+      enableBashIntegration = false;
       enableZshIntegration = true;
       settings = {
         # format = ''[░▒▓](bg:#a3aed2 fg:#090c0c)[](bg:#769ff0 fg:#a3aed2)$directory[](fg:#769ff0 bg:#394260)$git_branch$git_status[](fg:#394260 bg:#212736)$package[](fg:#212736 bg:#1d2230)$time[ ](fg:#1d2230)$line_break$character'';
@@ -134,7 +134,9 @@ in {
         rmt = "trash put";
         n = "nvim";
         c = "cd";
-        optimizeimage = "oxipng -o max -s -i 1 -p --fast --scale16 -a -r ";
+        optimizeimage = "oxipng -o max -s -i 1 -p --fast -a -r ";
+        deduplicate-hardlink = "jdupes --recurse -L "; # Replace duplicates with hardlinks
+        deduplicate = "rmlint -r -g -k ";
         ci = ''
           # echo link to woodpecker
           url=$(${pkgs.git}/bin/git config --get remote.origin.url | sed -e 's/\(.*\)git@\(.*\):[0-9\/]*/https:\/\/\2\//g')
