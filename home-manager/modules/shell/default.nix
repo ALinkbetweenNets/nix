@@ -135,7 +135,8 @@ in {
         n = "nvim";
         c = "cd";
         optimizeimage = "oxipng -o max -s -i 1 -p --fast -a -r ";
-        deduplicate-hardlink = "jdupes --recurse -L "; # Replace duplicates with hardlinks
+        deduplicate-hardlink =
+          "jdupes --recurse -L "; # Replace duplicates with hardlinks
         deduplicate = "rmlint -r -g -k ";
         ci = ''
           # echo link to woodpecker
@@ -205,8 +206,11 @@ in {
       enable = true;
       # theme = "agnoster";
     };
-     fish.enable = true;
-     ripgrep.enable = true;
+    fish.enable = true;
+    ripgrep = {
+      enable = true;
+      arguments = [ "-S" "--max-columns-preview" "--colors=line:style:bold" ];
+    };
     autojump.enable = true;
     zoxide.enable = true;
     thefuck.enable = true;
@@ -217,7 +221,7 @@ in {
     jq.enable = true;
     nix-index.enable = true;
     lf.enable = true;
-     lesspipe.enable = true;
+    lesspipe.enable = true;
     bat = {
       enable = true;
       # This should pick up the correct colors for the generated theme. Otherwise
