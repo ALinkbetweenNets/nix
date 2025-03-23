@@ -16,6 +16,7 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -149,7 +150,11 @@
           # allows to only pass what is needed to each module.
           specialArgs = { flake-self = self; } // inputs;
           modules = builtins.attrValues self.nixosModules ++ [
-            (import "${./.}/machines/${x}/configuration.nix" { inherit self; })
+            inputs.nixos-facter-modules.nixosModules.facter
+            (import "${./.}/machines/${x}/configuration.nix" {
+              inherit self;
+              config.facter.reportPath = ./facter.json;
+            })
             lollypops.nixosModules.lollypops
             disko.nixosModules.disko
             sops-nix.nixosModules.sops
