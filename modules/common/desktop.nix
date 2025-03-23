@@ -41,10 +41,10 @@ in {
         virt-manager
         spice
         spice-vdagent
-        ghostty.packages.x86_64-linux.default
       ] ++ lib.optionals (config.nixpkgs.hostPlatform.system == "x86_64-linux")
       [
         # cobang
+        ghostty.packages.x86_64-linux.default
       ] ++ lib.optionals (config.link.podman.enable) [ pods podman-desktop ];
     networking = {
       networkmanager = {
