@@ -1,5 +1,5 @@
 { pkgs, lib, config, ... }:
-let primaryDisk = "/dev/vda";
+let primaryDisk = "/dev/sda";
 in {
   config = {
     # Running fstrim weekly is a good idea for VMs.
@@ -14,8 +14,8 @@ in {
     # -> EFI System Partition
     # -> NixOS root partition (ext4)
     swapDevices = [{
-      device = "/var/lib/swapfile";
-      size = 8 * 1024;
+      device = "/.swapfile";
+      size = 32 * 1024;
     }];
     disko = {
       devices.disk.main = {
