@@ -1,4 +1,4 @@
-{ config, system-config, flake-self, pkgs, lib, ... }:
+{ config, system-config, flake-self, pkgs, lib, ghostty, ... }:
 with lib;
 let cfg = config.link.desktop;
 in {
