@@ -66,7 +66,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pwndbg = {
-      url="github:pwndbg/pwndbg";
+      url = "github:pwndbg/pwndbg";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Adblocking lists for Unbound DNS servers running on NixOS

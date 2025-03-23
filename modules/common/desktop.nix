@@ -41,6 +41,7 @@ in {
         virt-manager
         spice
         spice-vdagent
+        ghostty.packages.x86_64-linux.default
       ] ++ lib.optionals (config.nixpkgs.hostPlatform.system == "x86_64-linux")
       [
         # cobang
