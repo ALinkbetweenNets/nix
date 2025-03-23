@@ -1,4 +1,4 @@
-{ config, system-config, flake-self, pkgs, lib, ... }:
+{ config, system-config, flake-self, pkgs, lib, ghostty, ... }:
 with lib;
 let cfg = config.link.desktop;
 in {
@@ -44,6 +44,7 @@ in {
       ] ++ lib.optionals (config.nixpkgs.hostPlatform.system == "x86_64-linux")
       [
         # cobang
+        ghostty.packages.x86_64-linux.default
       ] ++ lib.optionals (config.link.podman.enable) [ pods podman-desktop ];
     networking = {
       networkmanager = {
