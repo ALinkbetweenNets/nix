@@ -110,7 +110,7 @@
     #   enable = true;
     #   expose = false;
     # };
-    eth = "enp6s18";
+    eth = "ens18";
   };
   services.postgresql.dataDir =
     "${config.link.storage}/postgresql/${config.services.postgresql.package.psqlSchema}";
@@ -155,7 +155,7 @@
     #     ];
     #   };
     #   interfaces."${config.link.eth}".wakeOnLan.enable = true;
-    hostName = "sn";
+    hostName = "npn";
     domain = "monitor-banfish.ts.net";
     hostId = "007f0200";
     #   extraHosts = ''
@@ -207,7 +207,7 @@
   lollypops.deployment = {
     # local-evaluation = true;
     ssh = {
-      host = "sn.monitor-banfish.ts.net";
+      host = "npn.monitor-banfish.ts.net";
       user = "l";
     };
     # sudo.enable = true;
