@@ -53,11 +53,11 @@ in {
             forward-addr = [ "100.100.100.100" ];
             forward-tls-upstream = "no";
           }
-          # {
-          #   name = "mullvad.net.";
-          #   forward-addr = [ "194.242.2.2@853#dns.mullvad.net" ];
-          #   forward-tls-upstream = "yes";
-          # }
+          {
+            name = "mullvad.net.";
+            forward-addr = [ "194.242.2.2@853#dns.mullvad.net" ];
+            forward-tls-upstream = "yes";
+          }
           {
             name = "google.*.";
             forward-addr =
@@ -67,13 +67,18 @@ in {
           {
             name = ".";
             forward-addr = [
-              "9.9.9.9"
-              "100.100.100.100"
-              "194.242.2.2"
-              # "1.0.0.1@853#cloudflare-dns.com"
-              # "1.1.1.1@853#cloudflare-dns.com"
-              "1.0.0.1"
-              "1.1.1.1"
+              "194.242.2.4" # mullvad base
+              "2a07:e340::4" # mullvad base
+              "192.168.188.3" # npo
+              "100.100.100.100" # tailscale
+              "185.222.222.222" # dns.sb
+              "45.11.45.11" # dns.sb
+              "2a09::" # dns.sb
+              "2a11::" # dns.sb
+              "8.8.8.8" # google
+              "1.0.0.1" # cloudflare
+              "194.242.2.2" # mullvad
+              "9.9.9.9" # quad9
             ];
             forward-first = "yes";
             forward-tls-upstream = "no";
