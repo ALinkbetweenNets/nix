@@ -17,7 +17,7 @@ in {
       # 4002
     ];
     # networking.firewall.allowedUDPPorts = [ 111 2049 4000 4001 4002 20048 ]; # nfs
-    sops.secrets."cloudflare-api"={};
+    sops.secrets."cloudflare-api" = { };
     security.acme = {
       acceptTerms = true;
       defaults.email = "link2502+acme@proton.me";

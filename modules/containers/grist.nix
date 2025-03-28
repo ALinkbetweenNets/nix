@@ -24,7 +24,7 @@ in {
       # container_name = "grist-aio-mastercontainer";
       environment = {
         # APP_HOME_URL = "https://grist.${config.link.domain}";
-        APP_HOME_URL="http://sn:8484";
+        APP_HOME_URL = "http://sn:8484";
         GRIST_SANDBOX_FLAVOR = "gvisor";
         GRIST_WIDGET_LIST_URL =
           "https://github.com/gristlabs/grist-widget/releases/download/latest/manifest.json";
