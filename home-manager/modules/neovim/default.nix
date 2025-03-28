@@ -70,7 +70,7 @@ with lib; {
         theme = {
           enable = true;
           #name = "darker";
-          # style = "darker";
+          style = "darker";
           transparent = true;
         };
         # filetree = { nvimTree = { enable = true; }; };
