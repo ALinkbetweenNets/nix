@@ -91,6 +91,7 @@ with lib; {
       kdePackages.kcolorchooser
       curlie # httpie for curl
       gpodder # podcast client
+      sox
       #htmlq
       dogdns
       # zombietrackergps # gps track display
