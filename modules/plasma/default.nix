@@ -16,6 +16,7 @@ in {
     environment.systemPackages = with pkgs; [
       kdePackages.sddm-kcm # sddm config module
       kdePackages.plasma-nm
+      kdePackages.qtmultimedia
     ];
   };
 }
