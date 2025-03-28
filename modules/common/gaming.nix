@@ -17,7 +17,7 @@ in {
       steam.enable = true;
       steam.gamescopeSession.enable = true;
       gamescope.capSysNice = true;
-      gamescope.enable= true;
+      gamescope.enable = true;
     };
   };
 }

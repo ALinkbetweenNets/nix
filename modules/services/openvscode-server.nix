@@ -31,7 +31,7 @@ in {
       openvscode-server = {
         enable = true;
         extraGroups = [ "docker" ];
-        extraPackages = with pkgs; [  python3 ];
+        extraPackages = with pkgs; [ python3 ];
         port = cfg.port;
         host = "0.0.0.0";
       };

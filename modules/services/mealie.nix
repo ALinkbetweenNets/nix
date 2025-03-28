@@ -36,9 +36,7 @@ in {
       port = cfg.port;
       listenAddress = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
       credentialsFile = config.sops.secrets.mealie.path;
-      settings={
-        ALLOW_SIGNUP = "false";
-      };
+      settings = { ALLOW_SIGNUP = "false"; };
     };
     networking.firewall.allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
   };

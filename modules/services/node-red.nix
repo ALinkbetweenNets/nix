@@ -30,7 +30,7 @@ in {
     services.node-red = {
       enable = true;
       port = cfg.port;
-      withNpmAndGcc=true;
+      withNpmAndGcc = true;
     };
     networking.firewall.allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
   };

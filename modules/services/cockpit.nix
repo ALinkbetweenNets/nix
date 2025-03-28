@@ -27,9 +27,9 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    services.cockpit={
-      enable=true;
-      port=cfg.port;
+    services.cockpit = {
+      enable = true;
+      port = cfg.port;
     };
     networking.firewall.allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
   };
