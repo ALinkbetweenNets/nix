@@ -33,7 +33,7 @@
     #   diagrams.enable = true;
     # };
     # zola.enable = true;
-    # syncthing.enable = true;
+    syncthing.enable = true;
     service-ports-expose = true;
     # services = {
     #   # tt-rss.enable = true;
