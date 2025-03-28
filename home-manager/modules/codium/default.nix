@@ -13,7 +13,7 @@ in {
       profiles.default.enableExtensionUpdateCheck = true;
       profiles.default.extensions = with pkgs.vscode-extensions;
         [
-          # continue.continue # ollama
+          continue.continue # ollama
           myriad-dreamin.tinymist # typst
           #b4dm4n.vscode-nixpkgs-fmt
           #vscodevim.vim
