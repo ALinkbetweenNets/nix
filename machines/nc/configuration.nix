@@ -398,6 +398,20 @@
       forceSSL = true;
       locations."/".proxyPass = "http://10.10.10.22:3214/";
     };
+    "alinkbn.de" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://100.98.48.88:5000/";
+        proxyWebsockets = true;
+      };
+      extraConfig = ''
+        error_page 502 /error-page.html;
+      '';
+      locations."/error" = {
+        return = "307 https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+      };
+    };
     "shonk.de" = {
       forceSSL = true;
       enableACME = true;
