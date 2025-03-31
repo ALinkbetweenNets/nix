@@ -198,11 +198,25 @@
       forceSSL = true;
       root = "${pkgs.cyberchef}/share/cyberchef";
     };
-    "webhacking.${config.link.domain}" = {
-      # enableACME = true;
+    "burp.${config.link.domain}" = {
+      serverAliases = [
+        "burpsuite.${config.link.domain}"
+        "webhacking.${config.link.domain}"
+        "xn--w38h.${config.link.domain}"
+      ];
       useACMEHost = config.link.domain;
       forceSSL = true;
-      root = "/var/www/Burpsuite-Presentation";
+      root = "/var/www/Vortrag-Burpsuite";
+    };
+    "lockpicking.${config.link.domain}" = {
+      # enableACME = true;
+      serverAliases = [
+        "vortrag-lockpicking.${config.link.domain}"
+        "xn--e18h.${config.link.domain}"
+      ];
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      root = "/var/www/Vortrag-Lockpicking";
     };
     "hedgedoc.${config.link.domain}" = {
       # enableACME = true;
