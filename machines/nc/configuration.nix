@@ -415,7 +415,7 @@
       forceSSL = true;
       default = true;
       locations."/" = {
-        return = "301 https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        return = "307 https://www.youtube.com/watch?v=dQw4w9WgXcQ";
       };
     };
     # services.nginx.virtualHosts."paperless.${config.link.domain}" = {
