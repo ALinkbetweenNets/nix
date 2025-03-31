@@ -4,6 +4,7 @@ let cfg = config.link.nginx;
 in {
   options.link.nginx.enable = mkEnableOption "activate nginx";
   config = mkIf cfg.enable {
+    networking.firewall.allowedUDPPorts = [ 80 443 ];
     networking.firewall.allowedTCPPorts = [
       # 25
       80
@@ -38,7 +39,8 @@ in {
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
       logError = "stderr debug";
-      package = pkgs.nginxMainline.override { openssl = pkgs.libressl; };
+      enableQuicBPF = true;
+      package = pkgs.nginxQuic.override { openssl = pkgs.libressl; };
       clientMaxBodySize = "2000m";
       commonHttpConfig = ''
         # sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
