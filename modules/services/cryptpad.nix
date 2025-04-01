@@ -36,6 +36,9 @@ in {
           httpAddress = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
           httpSafeOrigin = "https://cryptui.${config.link.domain}";
           httpUnsafeOrigin = "https://crypt.${config.link.domain}";
+          adminKeys = [
+            "[alinkbetweennets@crypt.alinkbetweennets.de/3ZgaliPddqU4QpSkK6I1xwWV8dgQirqqH0VqZJIEXog=]"
+          ];
         };
       };
       nginx.virtualHosts."cryptpad.${config.link.domain}" = mkIf cfg.nginx {
