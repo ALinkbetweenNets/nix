@@ -45,6 +45,7 @@ in {
       commonHttpConfig = ''
         # sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
         # ssl_protocols TLSv1.3;
+        # ssl_conf_command Options KTLS; # not supported on nc
         # ssl_prefer_server_ciphers on; # disabled as only secure ciphers enabled. Clients may choose the most performant cipher for them from our whitelist
         log_format myformat '$remote_addr - $remote_user [$time_local] '
           '"$request" $status $body_bytes_sent '
