@@ -73,7 +73,7 @@ in {
         ];
         kernelModules = [ "virtio_balloon" "virtio_console" "virtio_rng" ];
       };
-      kernelParams = [ "console=ttyS0" ];
+      # kernelParams = [ "console=ttyS0" ];
     };
     # Currently all our providers use KVM / QEMU
     services.qemuGuest.enable = true;
