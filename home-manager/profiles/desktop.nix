@@ -14,19 +14,39 @@ with lib; {
       };
     };
     programs = {
-      firefox.enable = true;
+      firefox = { enable = true; };
       yt-dlp = {
         enable = true;
-        extraConfig = "--update";
+        extraConfig = "--no-update";
         settings = { embed-thumbnail = true; };
       };
       mpv = {
+        # package = pkgs.mpv-unwrapped.wrapper {
+        #   mpv = pkgs.mpv-unwrapped.override { vapoursynthSupport = true; };
+        #   youtubeSupport = true;
+        # };
         enable = true;
         scripts = with pkgs.mpvScripts; [
+          # uosc
+          dynamic-crop
+          eisa01.smartskip
+          manga-reader
+          mpris
+          mpv-cheatsheet
+          mpv-image-viewer.image-positioning
+          mpv-image-viewer.ruler
+          mpv-notify-send
+          mpv-osc-tethys
+          mpv-playlistmanager
+          mpv-webm
+          occivink.seekTo
+          quality-menu
+          skipsilence
           sponsorblock
           thumbfast
-          mpv-webm
-          uosc
+          visualizer
+          webtorrent-mpv-hook
+          youtube-upnext
         ];
         bindings = {
           WHEEL_UP = "seek 10";
@@ -49,9 +69,11 @@ with lib; {
         };
         config = {
           profile = "gpu-hq";
+          # profiles = { fast = { vo = "vdpau"; }; };
           force-window = true;
           ytdl-format = "bestvideo+bestaudio";
           cache-default = 4000000;
+          scriptOpts = "ytdl_hook-ytdl_path=${pkgs.yt-dlp}/bin/yt-dlp";
           # Optimized shaders for higher-end GPU: Mode A (HQ)
           glsl-shaders =
             "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl";
