@@ -67,6 +67,7 @@ in {
           {
             name = ".";
             forward-addr = [
+              "192.168.1.1"
               "194.242.2.4" # mullvad base
               "2a07:e340::4" # mullvad base
               "192.168.188.3" # npo
