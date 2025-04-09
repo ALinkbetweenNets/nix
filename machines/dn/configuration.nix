@@ -22,7 +22,7 @@
     # home-assistant.enable = true;
     docker.enable = true;
     services = {
-      ollama.enable = true;
+      # ollama.enable = true;
       # matrix.enable = true;
       # immich.enable = true;
       restic-client = {
