@@ -68,7 +68,7 @@
     ssh = { user = "l"; };
     sudo.enable = true;
   };
-  services.xserver.wacom.enable = true;
-  environment.systemPackages = with pkgs; [ wacomtablet xf86_input_wacom ];
+  # services.xserver.wacom.enable = true;
+  # environment.systemPackages = with pkgs; [ wacomtablet xf86_input_wacom ];
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 }
