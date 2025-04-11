@@ -15,4 +15,4 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v3
       - name: Build default package
-        run: nix build
+        run: nix flake check --all-systems
