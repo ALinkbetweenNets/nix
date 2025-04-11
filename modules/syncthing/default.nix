@@ -40,6 +40,8 @@ in {
             "IYOMGJ7-NZADKG2-L2PMGIH-VSTMTJ4-KLA7VF4-3CUONC2-BQMMWTW-I6KHDAY";
           "sn".id =
             "SSSFCB5-W4CIMVK-L33WJ4F-VBH4FZW-SZIRMMN-IGHQ7MA-BBTFKYM-V2NSDQS";
+          "npn".id =
+            "PNVPZKG-I4RHS42-CEO4OMC-7ILR3TP-DK463Q4-32FAZ3P-WVZUA5T-KDRHPQA";
           "hn".id =
             "YU4MCML-QWAYIDE-FSHCDWA-C2FGKTG-ERS6I36-SMCFI2J-RKLVOPN-PS3IFQD";
           "pppn".id =
@@ -50,7 +52,7 @@ in {
         folders = {
           "v" = {
             path = lib.mkDefault "${config.link.syncthingDir}/v";
-            devices = [ "dn" "fn" "hn" "in" "s22" "sn" "xn" ];
+            devices = [ "dn" "fn" "hn" "in" "s22" "sn" "npn" "xn" ];
           };
           "camera" = {
             path = lib.mkDefault "${config.link.syncthingDir}/camera";
@@ -70,7 +72,7 @@ in {
           };
           "w" = {
             path = lib.mkDefault "${config.link.syncthingDir}/w";
-            devices = [ "dn" "fn" "hn" "sn" "xn" ];
+            devices = [ "dn" "fn" "hn" "sn" "xn" "npn" ];
             versioning = {
               type = "simple";
               params.keep = "5";
