@@ -25,7 +25,7 @@
   # Enable Bluetooth
   hardware.bluetooth.enable = true;
   # Bluetooth audio
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
+  services.pulseaudio.package = pkgs.pulseaudioFull;
   # Enable power management options
   powerManagement.enable = true;
   # It's recommended to keep enabled on these constrained devices

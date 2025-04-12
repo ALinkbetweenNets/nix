@@ -21,28 +21,27 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-fileSystems."/" =
-{ device = "/dev/disk/by-uuid/84e96d28-868c-4ca1-8b2a-28ed055cf018";
-fsType = "ext4";
-};
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/84e96d28-868c-4ca1-8b2a-28ed055cf018";
+    fsType = "ext4";
+  };
 
-fileSystems."/var/lib" =
-{ device = "/dev/disk/by-uuid/bcff450c-b6b7-4011-8d33-609471ef62af";
-fsType = "ext4";
-};
+  fileSystems."/var/lib" = {
+    device = "/dev/disk/by-uuid/bcff450c-b6b7-4011-8d33-609471ef62af";
+    fsType = "ext4";
+  };
 
-boot.initrd.luks.devices."luks-658c45cd-701a-4482-9945-4f24fe3a7aa9".device = "/dev/disk/by-uuid/658c45cd-701a-4482-9945-4f24fe3a7aa9";
-boot.initrd.luks.devices."luks-6beabdba-300a-4e0e-9243-fe24d94311d5".device = "/dev/disk/by-uuid/6beabdba-300a-4e0e-9243-fe24d94311d5";
-boot.initrd.luks.devices."luks-c6af59e9-346c-4eb4-b2e3-66284db01787".device = "/dev/disk/by-uuid/c6af59e9-346c-4eb4-b2e3-66284db01787";
+  boot.initrd.luks.devices."luks-658c45cd-701a-4482-9945-4f24fe3a7aa9".device =
+    "/dev/disk/by-uuid/658c45cd-701a-4482-9945-4f24fe3a7aa9";
+  boot.initrd.luks.devices."luks-6beabdba-300a-4e0e-9243-fe24d94311d5".device =
+    "/dev/disk/by-uuid/6beabdba-300a-4e0e-9243-fe24d94311d5";
+  boot.initrd.luks.devices."luks-c6af59e9-346c-4eb4-b2e3-66284db01787".device =
+    "/dev/disk/by-uuid/c6af59e9-346c-4eb4-b2e3-66284db01787";
 
-swapDevices =
-[ { device = "/dev/disk/by-uuid/6bbf070f-a001-40cd-962e-ff7799f1d0e0"; }
-];
+  swapDevices =
+    [{ device = "/dev/disk/by-uuid/6bbf070f-a001-40cd-962e-ff7799f1d0e0"; }];
 
   boot.loader.grub.enableCryptodisk = true;
-
-
-
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

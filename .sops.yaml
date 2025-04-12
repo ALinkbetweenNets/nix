@@ -2,6 +2,7 @@ keys:
   - &dn_l age14f0kyrhk3f3n59l2n6924ahnj55tndzu3hjhu54v5902tj9y0p4sv8pm9c
   - &fn_l age1mk7h2nffg0lgst2ym94mhzgcgu0vfs0rf7ghtf3ccvr5qwgj9egqlt9yft
   - &nc_l age1chem32xws33htffv58mp65qjgzr4wurlgkm2y6457jdpxm6m5fusjjjcck
+  - &npn_l age1eqppy2a3zxl5zjgprrcq84vhprl6x7x3yeyxc2kr9mw7ltwvtvqqe4jpan
   - &pi4b_l age1wvwyqc05jhwcx7wr39xyc70encpmgp9pfwc6nz8kgasm0law6ukq9mf6f7
   - &sn_l age1ntmjlv7k0h67rtylfw0jflqrflt2t6feuuksh7davtx5v5alj3rqqsxpnr
   - &snvnarr_l age1mwhj6e0tjarsrh2trsdgtd7d34szqcakylqkw2dve2ps72yes9zqqq3ynu
@@ -14,6 +15,7 @@ creation_rules:
       - *dn_l
       - *fn_l
       - *nc_l
+      - *npn_l
       - *pi4b_l
       - *sn_l
       - *snvnarr_l
