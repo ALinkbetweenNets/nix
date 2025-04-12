@@ -29,5 +29,6 @@ in {
         drives = [ "/dev/disk/by-id/*" ];
       };
     };
+    zramSwap.enable = true;
   };
 }
