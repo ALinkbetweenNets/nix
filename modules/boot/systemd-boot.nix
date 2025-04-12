@@ -11,7 +11,7 @@ in {
         efi.canTouchEfiVariables = lib.mkDefault true;
         systemd-boot = {
           enable = true;
-          configurationLimit = 50;
+          configurationLimit = 64;
           memtest86.enable = true;
           #consoleMode = true;
         };
