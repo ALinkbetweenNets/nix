@@ -83,7 +83,7 @@ in {
 
         eval "$(${pkgs.h}/bin/h --setup ~/code)"
       '';
-
+      historySubstringSearch.enable = true;
       history = {
         expireDuplicatesFirst = true;
         ignoreSpace = false;
@@ -135,7 +135,8 @@ in {
         n = "nvim";
         c = "cd";
         optimizeimage = "oxipng -o max -s -i 1 -p --fast -a -r ";
-        deduplicate-hardlink = "jdupes --recurse -L "; # Replace duplicates with hardlinks
+        deduplicate-hardlink =
+          "jdupes --recurse -L "; # Replace duplicates with hardlinks
         deduplicate = "rmlint -r -g -k ";
         ci = ''
           # echo link to woodpecker
@@ -205,8 +206,11 @@ in {
       enable = true;
       # theme = "agnoster";
     };
-     fish.enable = true;
-     ripgrep.enable = true;
+    fish.enable = true;
+    ripgrep = {
+      enable = true;
+      arguments = [ "-S" "--max-columns-preview" "--colors=line:style:bold" ];
+    };
     autojump.enable = true;
     zoxide.enable = true;
     thefuck.enable = true;
@@ -217,7 +221,7 @@ in {
     jq.enable = true;
     nix-index.enable = true;
     lf.enable = true;
-     lesspipe.enable = true;
+    lesspipe.enable = true;
     bat = {
       enable = true;
       # This should pick up the correct colors for the generated theme. Otherwise
@@ -229,24 +233,24 @@ in {
       defaultOptions = [
         "--height 80%"
         "--layout=reverse"
-        "--border"
+        # "--border"
         "--inline-info"
-        "--color 'fg:#${vars.colors.base05}'" # Text
-        "--color 'bg:#${vars.colors.base00}'" # Background
-        "--color 'preview-fg:#${vars.colors.base05}'" # Preview window text
-        "--color 'preview-bg:#${vars.colors.base00}'" # Preview window background
-        "--color 'hl:#${vars.colors.base0A}'" # Highlighted substrings
-        "--color 'fg+:#${vars.colors.base0D}'" # Text (current line)
-        "--color 'bg+:#${vars.colors.base02}'" # Background (current line)
-        "--color 'gutter:#${vars.colors.base02}'" # Gutter on the left (defaults to bg+)
-        "--color 'hl+:#${vars.colors.base0E}'" # Highlighted substrings (current line)
-        "--color 'info:#${vars.colors.base0E}'" # Info line (match counters)
-        "--color 'border:#${vars.colors.base0D}'" # Border around the window (--border and --preview)
-        "--color 'prompt:#${vars.colors.base05}'" # Prompt
-        "--color 'pointer:#${vars.colors.base0E}'" # Pointer to the current line
-        "--color 'marker:#${vars.colors.base0E}'" # Multi-select marker
-        "--color 'spinner:#${vars.colors.base0E}'" # Streaming input indicator
-        "--color 'header:#${vars.colors.base05}'" # Header
+        # "--color 'fg:#${vars.colors.base05}'" # Text
+        # #"--color 'bg:#${vars.colors.base00}'" # Background
+        # "--color 'preview-fg:#${vars.colors.base05}'" # Preview window text
+        # "--color 'preview-bg:#${vars.colors.base00}'" # Preview window background
+        # "--color 'hl:#${vars.colors.base0A}'" # Highlighted substrings
+        # "--color 'fg+:#${vars.colors.base0D}'" # Text (current line)
+        # "--color 'bg+:#${vars.colors.base02}'" # Background (current line)
+        # "--color 'gutter:#${vars.colors.base02}'" # Gutter on the left (defaults to bg+)
+        # "--color 'hl+:#${vars.colors.base0E}'" # Highlighted substrings (current line)
+        # "--color 'info:#${vars.colors.base0E}'" # Info line (match counters)
+        # "--color 'border:#${vars.colors.base0D}'" # Border around the window (--border and --preview)
+        # "--color 'prompt:#${vars.colors.base05}'" # Prompt
+        # "--color 'pointer:#${vars.colors.base0E}'" # Pointer to the current line
+        # "--color 'marker:#${vars.colors.base0E}'" # Multi-select marker
+        # "--color 'spinner:#${vars.colors.base0E}'" # Streaming input indicator
+        # "--color 'header:#${vars.colors.base05}'" # Header
       ];
     };
     # zellij = {

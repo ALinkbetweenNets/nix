@@ -4,7 +4,7 @@ let cfg = config.link.libvirt;
 in {
   options.link.libvirt.enable = mkEnableOption "activate libvirt";
   config = mkIf cfg.enable {
-    boot.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio"  ];
+    boot.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
     environment.systemPackages = with pkgs; [
       virtiofsd
       libvirt

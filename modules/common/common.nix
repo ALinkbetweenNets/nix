@@ -137,10 +137,10 @@ in {
       xz
       bzip2
       p7zip
-      # netcat-openbsd
+      netcat-openbsd
       # netcat
+      # netcat-gnu
       fzf
-      netcat-gnu
       gnugrep
       ripgrep-all
       unixtools.watch

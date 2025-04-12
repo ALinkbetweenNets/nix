@@ -59,7 +59,7 @@
   # };
 
   networking = {
-    firewall.allowedTCPPorts = [ 443 22 41623 ];
+    firewall.allowedTCPPorts = [ 22 41623 8920 8096 ];
     firewall.allowedUDPPorts = [ 51820 51822 ];
     hostName = "v2202312204123249185";
     domain = "ultrasrv.de";
@@ -198,11 +198,28 @@
       forceSSL = true;
       root = "${pkgs.cyberchef}/share/cyberchef";
     };
-    "webhacking.${config.link.domain}" = {
+    "burp.${config.link.domain}" = {
+      quic = true;
+      http3_hq = true;
       # enableACME = true;
+      serverAliases = [
+        "burpsuite.${config.link.domain}"
+        "webhacking.${config.link.domain}"
+        "xn--w38h.${config.link.domain}"
+      ];
       useACMEHost = config.link.domain;
       forceSSL = true;
-      root = "/var/www/Burpsuite-Presentation";
+      root = "/var/www/Vortrag-Burpsuite";
+    };
+    "lockpicking.${config.link.domain}" = {
+      # enableACME = true;
+      serverAliases = [
+        "vortrag-lockpicking.${config.link.domain}"
+        "xn--e18h.${config.link.domain}"
+      ];
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      root = "/var/www/Vortrag-Lockpicking";
     };
     "hedgedoc.${config.link.domain}" = {
       # enableACME = true;
@@ -384,6 +401,20 @@
       forceSSL = true;
       locations."/".proxyPass = "http://10.10.10.22:3214/";
     };
+    "alinkbn.de" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://100.98.48.88:5000/";
+        proxyWebsockets = true;
+      };
+      extraConfig = ''
+        error_page 502 /error-page.html;
+      '';
+      locations."/error" = {
+        return = "307 https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+      };
+    };
     "shonk.de" = {
       forceSSL = true;
       enableACME = true;
@@ -415,7 +446,7 @@
       forceSSL = true;
       default = true;
       locations."/" = {
-        return = "301 https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        return = "307 https://www.youtube.com/watch?v=dQw4w9WgXcQ";
       };
     };
     # services.nginx.virtualHosts."paperless.${config.link.domain}" = {

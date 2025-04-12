@@ -50,9 +50,7 @@ in {
             sam.enable = true;
           };
         };
-        services.kubo={
-          enable = true;
-        };
+        services.kubo = { enable = true; };
       };
     };
   };
