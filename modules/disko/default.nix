@@ -1,5 +1,7 @@
 { config, lib, ... }:
-with lib; {
+with lib;
+let cfg = config.link.disko;
+in {
   options.link.disko = {
     enable = mkEnableOption "enable Disko";
     disks = mkOption {
@@ -7,13 +9,18 @@ with lib; {
       default = "/dev/vda";
       description = "Disk(s) to use for disko";
     };
+    swapSize = mkOption {
+      type = types.str;
+      default = "8G";
+      description = "Size of swap volume";
+    };
   };
   config = mkIf config.link.disko.enable {
     disko.devices = {
       disk = {
         main = {
           type = "disk";
-          device = builtins.elemAt disks 0;
+          device = builtins.elemAt cfg.disks 0;
           content = {
             type = "gpt";
             partitions = {
@@ -43,7 +50,7 @@ with lib; {
                   content = {
                     type = "btrfs";
                     extraArgs = [ "-f" ]; # Override existing partition
-                    subvolumes = if (builtins.length disks == 1) then {
+                    subvolumes = if (builtins.length cfg.disks == 1) then {
                       "@" = { };
                       "@/root" = {
                         mountpoint = "/";
@@ -73,9 +80,9 @@ with lib; {
                         mountpoint = "/var/tmp";
                         mountOptions = [ "compress=zstd" "noatime" ];
                       };
-                      "@/.swap" = {
+                      "@/swap" = {
                         mountpoint = "/.swapvol";
-                        swap.swapfile.size = "64G";
+                          swap.swapfile.size = cfg.swapSize;
                       };
                     } else {
                       "@" = { };
@@ -103,9 +110,9 @@ with lib; {
                         mountpoint = "/var/tmp";
                         mountOptions = [ "compress=zstd" "noatime" ];
                       };
-                      "@/.swap" = {
+                      "@/swap" = {
                         mountpoint = "/.swapvol";
-                        swap.swapfile.size = "64G";
+                        swap.swapfile.size = cfg.swapSize;
                       };
                     };
                   };
@@ -114,11 +121,10 @@ with lib; {
             };
           };
         };
-        data = if (number_of_disks == 1) then
-          { }
-        else if (number_of_disks == 2) then {
+        data = mkIf (builtins.length cfg.disks > 1) {
           type = "disk";
-          device = builtins.elemAt disks 1;
+          device =
+            mkIf (builtins.length cfg.disks > 1) builtins.elemAt cfg.disks 1;
           content = {
             type = "gpt";
             partitions = {
@@ -126,67 +132,45 @@ with lib; {
                 size = "100%";
                 content = {
                   type = "luks";
-                  name = "data";
+                  name = if (builtins.length cfg.disks == 2) then
+                    "data"
+                  else
+                    "data-p1";
                   settings = {
                     allowDiscards = true;
                     #keyFile = "/tmp/secret.key";
                   };
                   content = {
-                    content = {
-                      type = "btrfs";
-                      extraArgs = [ "-f" ]; # Override existing partition
-                      subvolumes = {
-                        "@" = {
-                          mountpoint = "/var/lib";
-                          mountOptions = [ "compress=zstd" "noatime" ];
-                        };
-                        # "@/home" = {
-                        #   mountpoint = "/home";
-                        #   mountOptions = [ "compress=zstd" ];
-                        # };
+                    type = "btrfs";
+                    subvolumes = {
+                      "@" = {
+                        mountpoint = "/var/lib";
+                        mountOptions = [ "compress=zstd" "noatime" ];
                       };
+                      # "@/home" = {
+                      #   mountpoint = "/home";
+                      #   mountOptions = [ "compress=zstd" ];
+                      # };
                     };
+                    extraArgs = if (builtins.length cfg.disks == 2) then
+                      [
+                        "-f" # Override existing partition
+                      ]
+                    else [
+                      "-f"
+                      "-d raid1"
+                      "/dev/mapper/data-p2" # Use decrypted mapped device, same name as defined in disk1
+                    ];
                   };
-                };
-              };
-            };
-          };
-        } else {
-          type = "disk";
-          device = builtins.elemAt disks 1;
-          content = {
-            type = "gpt";
-            partitions = {
-              luks-data-p1 = {
-                size = "100%";
-                content = {
-                  type = "luks";
-                  name = "data-p1";
-                  settings = {
-                    allowDiscards = true;
-                    #keyFile = "/tmp/secret.key";
-                  };
-                  # content = {
-                  #   type = "btrfs";
-                  #   extraArgs = [
-                  #     "-d raid1"
-                  #     "/dev/mapper/p1" # Use decrypted mapped device, same name as defined in disk1
-                  #   ];
-                  #   subvolumes = {
-                  #     "/root" = {
-                  #       mountpoint = "/";
-                  #       mountOptions = [ "rw" "relatime" "ssd" ];
-                  #     };
-                  #   };
-                  # };
                 };
               };
             };
           };
         };
-        datap2 = if (number_of_disks == 3) then {
+        datap2 = mkIf (builtins.length cfg.disks == 3) {
           type = "disk";
-          device = builtins.elemAt disks 2;
+          device =
+            mkIf (builtins.length cfg.disks == 3) builtins.elemAt cfg.disks 2;
           content = {
             type = "gpt";
             partitions = {
@@ -199,29 +183,12 @@ with lib; {
                     allowDiscards = true;
                     #keyFile = "/tmp/secret.key";
                   };
-                  content = {
-                    type = "btrfs";
-                    extraArgs = [
-                      "-d raid1"
-                      "/dev/mapper/data-p1" # Use decrypted mapped device, same name as defined in disk1
-                    ];
-                    subvolumes = {
-                      "@" = {
-                        mountpoint = "/var/lib";
-                        mountOptions = [ "compress=zstd" "noatime" ];
-                      };
-                      # "@/home" = {
-                      #   mountpoint = "/home";
-                      #   mountOptions = [ "compress=zstd" ];
-                      # };
-                    };
-                  };
+
                 };
               };
             };
           };
-        } else
-          { };
+        };
       };
     };
   };
