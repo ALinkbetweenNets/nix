@@ -17,7 +17,7 @@
     # fs.zfs.enable = true;
     # printing.enable = true;
     fs.ntfs.enable = true;
-    fs.luks.enable = false; # DO NOT ACTIVATE, DEBUG IN VM
+    fs.luks.enable = true;
     laptop.enable = true;
     common.enable = true;
     main.enable = true;
