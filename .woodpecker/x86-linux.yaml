@@ -21,6 +21,27 @@
         "attic_key"
       ]
     },
+      {
+      "commands": [
+        "nix build '.#nixosConfigurations.sn.config.system.build.toplevel' -o 'result-sn'"
+      ],
+      "image": "bash",
+      "name": "Build sn"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-sn')"
+      ],
+      "image": "bash",
+      "name": "Show sn info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-sn'"
+      ],
+      "image": "bash",
+      "name": "Push sn to Attic"
+    },
     {
       "commands": [
         "nix build '.#nixosConfigurations.vn.config.system.build.toplevel' -o 'result-vn'"
@@ -147,27 +168,7 @@
     #   "image": "bash",
     #   "name": "Push in to Attic"
     # },
-    {
-      "commands": [
-        "nix build '.#nixosConfigurations.sn.config.system.build.toplevel' -o 'result-sn'"
-      ],
-      "image": "bash",
-      "name": "Build sn"
-    },
-    {
-      "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-sn')"
-      ],
-      "image": "bash",
-      "name": "Show sn info"
-    },
-    {
-      "commands": [
-        "attic push lounge-rocks:nix-cache 'result-sn'"
-      ],
-      "image": "bash",
-      "name": "Push sn to Attic"
-    },
+
     {
       "commands": [
         "nix build '.#nixosConfigurations.npn.config.system.build.toplevel' -o 'result-npn'"
