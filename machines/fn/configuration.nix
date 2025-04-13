@@ -8,6 +8,7 @@
   ];
   system.autoUpgrade.enable = lib.mkForce false;
   link = {
+    plymouth.enable = true;
     # hyprland.enable = true;
     sops = false;
     # tailscale-address = "100.108.198.22";
