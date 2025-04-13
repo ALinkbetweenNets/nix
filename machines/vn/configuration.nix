@@ -8,7 +8,7 @@
     # grub.enable = true;
     # fs.btrfs.enable = true;
     vm.enable = true;
-    fs.luks.enable = false;
+    fs.luks.enable = false; # DISABLE BEFORE INSTALL
     # tailscale.enable = true;
     # tailscale.routing = "server";
   };
