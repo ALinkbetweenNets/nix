@@ -1,13 +1,21 @@
-{ lib, pkgs, config, ... }:
+{ lib, system-config, pkgs, config, ... }:
 with lib;
 let cfg = config.link.fs.luks;
 in {
   options.link.fs.luks.enable = mkEnableOption "activate luks";
   # ONLY ENABLE ONCE "/etc/secrets/initrd/id_ed25519" exists
-  # mkdir -p /etc/secrets/initrd
-  # ssh-keygen -t ed25519 -N "" -f /etc/secrets/initrd/id_ed25519
+  # sudo mkdir -p /etc/secrets/initrd && sudo ssh-keygen -t ed25519 -N "" -f /etc/secrets/initrd/id_ed25519
   config = mkIf cfg.enable {
-    systemd.tmpfiles.rules = [ "d /etc/secrets/initrd 0600 root root -" ];
+    # systemd.tmpfiles.rules = [ "d /etc/secrets/initrd 0600 root root" ];
+    systemd.tmpfiles.settings = {
+      "initrd-secrets"."/etc/secrets/initrd" = {
+        d = {
+          mode = "0600";
+          # user = "root";
+          # group = "root";
+        };
+      };
+    };
     services.openssh.hostKeys = [{
       path = "/etc/secrets/initrd/id_ed25519";
       rounds = 200;
@@ -26,10 +34,11 @@ in {
           enable = true;
           flushBeforeStage2 = true;
           # udhcpc.enable = true;
-          # postCommands = ''
-          #   # Automatically ask for the password on SSH login
-          #   echo 'cryptsetup-askpass || echo "Unlock was successful; exiting SSH session" && exit 1' >> /root/.profile
-          # '';
+          postCommands = mkIf
+            (config.nixpkgs.hostPlatform == "x86_64-linux") ''
+              # Automatically ask for the password on SSH login
+              echo 'cryptsetup-askpass || echo "Unlock was successful; exiting SSH session" && exit 1' >> /root/.profile
+            '';
           ssh = {
             enable = true;
             port = 25222;
