@@ -29,6 +29,7 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    microvm.url = "github:astro/microvm.nix";
     mobile-nixos = {
       url = "github:NixOS/mobile-nixos";
       # inputs.nixpkgs.follows = "nixpkgs";
