@@ -4,7 +4,9 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ./disk-config.nix ];
+  imports = [
+    (modulesPath + "/profiles/qemu-guest.nix") # ./disk-config.nix
+  ];
   boot = {
     kernelModules = [ "kvm-amd" "kvm-intel" ];
     extraModulePackages = [ ];

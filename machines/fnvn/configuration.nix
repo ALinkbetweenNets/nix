@@ -8,12 +8,13 @@
     common.enable = true;
     server.enable = true;
     disko.enable = true;
+    disko.disks = [ "/dev/vda" ];
     grub.enable = true;
     systemd-boot.enable = false;
     # fs.zfs.enable = true;
-    # fs.btrfs.enable = true;
+    fs.btrfs.enable = true;
     plymouth.enable = true;
-    fs.luks.enable = true;
+    fs.luks.enable = true; # DISABLE BEFORE INSTALL
     # fs.ntfs.enable = true;
     vm.enable = true;
     # cpu-intel.enable = true;
