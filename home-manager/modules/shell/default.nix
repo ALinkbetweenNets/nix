@@ -83,14 +83,19 @@ in {
 
         eval "$(${pkgs.h}/bin/h --setup ~/code)"
       '';
-      historySubstringSearch.enable = true;
-      history = {
-        expireDuplicatesFirst = true;
-        ignoreSpace = false;
-        save = 15000;
-        share = true;
-      };
+      # historySubstringSearch.enable = true;
+      # history = {
+      #   expireDuplicatesFirst = true;
+      #   ignoreSpace = false;
+      #   save = 15000;
+      #   share = true;
+      # };
       plugins = [
+        {
+          name = "zsh-fzf-history-search";
+          file = "zsh-fzf-history-search.plugin.zsh";
+          src = "${pkgs.zsh-fzf-history-search}/share/zsh-fzf-history-search";
+        }
         {
           name = "fast-syntax-highlighting";
           file = "fast-syntax-highlighting.plugin.zsh";
@@ -206,7 +211,7 @@ in {
       enable = true;
       # theme = "agnoster";
     };
-    fish.enable = true;
+    # fish.enable = true;
     ripgrep = {
       enable = true;
       arguments = [ "-S" "--max-columns-preview" "--colors=line:style:bold" ];
@@ -230,6 +235,8 @@ in {
     fzf = {
       enable = true;
       enableZshIntegration = true;
+      tmux.enableShellIntegration = true;
+      historyWidgetOptions = [ "--sort" ];
       defaultOptions = [
         "--height 80%"
         "--layout=reverse"
