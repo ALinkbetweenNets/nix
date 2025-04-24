@@ -295,6 +295,13 @@
       locations."/".proxyPass = "http://100.98.48.88:5000/";
       locations."/".proxyWebsockets = true;
     };
+    "kasten.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/".proxyPass = "http://npn:5000/";
+      locations."/".proxyWebsockets = true;
+    };
     "immich.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
