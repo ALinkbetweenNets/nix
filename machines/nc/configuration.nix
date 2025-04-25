@@ -299,7 +299,7 @@
       # enableACME = true;
       useACMEHost = config.link.domain;
       forceSSL = true;
-      locations."/".proxyPass = "http://npn:5000/";
+      locations."/".proxyPass = "http://100.98.35.19:5000/";
       locations."/".proxyWebsockets = true;
     };
     "immich.${config.link.domain}" = {
