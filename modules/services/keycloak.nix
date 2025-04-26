@@ -53,7 +53,7 @@ in {
         # themes
       };
       nginx.virtualHosts."keycloak.${config.link.domain}" = mkIf cfg.nginx {
-        enableACME = true;
+        useACMEHost = config.link.domain;
         forceSSL = true;
         locations = {
           "/" = {
@@ -63,6 +63,7 @@ in {
               proxy_set_header X-Real-IP $remote_addr;
               proxy_set_header X-Forwarded-Proto $scheme;
             '';
+            proxyWebsockets = true;
           };
         };
         # extraConfig = toString (
