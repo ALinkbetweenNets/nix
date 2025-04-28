@@ -66,7 +66,7 @@ in {
       autocd = true;
       dotDir = ".config/zsh";
       sessionVariables = { ZDOTDIR = "/home/l/.config/zsh"; };
-      initExtra = ''
+      initContent = ''
         bindkey "^[[1;5C" forward-word
         bindkey "^[[1;5D" backward-word
 
