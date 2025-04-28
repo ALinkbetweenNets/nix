@@ -26,10 +26,13 @@ in {
       grafana = {
         enable = true;
         settings = {
+          log.level = "debug";
           server = {
             domain = "grafana.${config.link.domain}";
             http_addr = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
             http_port = cfg.port;
+            root_url = "https://grafana.${config.link.domain}/";
+            router_logging = true;
           };
         };
       };
