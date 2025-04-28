@@ -30,6 +30,13 @@ in {
         environmentFile = config.sops.secrets."cloudflare-api".path;
         webroot = null;
       };
+      certs."alinkbn.de" = {
+        domain = config.link.domain;
+        extraDomainNames = [ "*.alinkbn.de" ];
+        dnsProvider = "cloudflare";
+        environmentFile = config.sops.secrets."cloudflare-api".path;
+        webroot = null;
+      };
     };
     services.nginx = {
       enable = true;
