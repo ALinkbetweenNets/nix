@@ -111,9 +111,9 @@ in {
         fhs-vscode = pkgs.vscode.fhsWithPackages
           (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
       in {
-        teams =
-          "cd ~/w/image && tmux new -s teams-npx -d 'sudo npx http-server -p 80 --cors \"
-          * \" -g'&&sleep 10 && tmux new -s teams -d 'teams-for-linux --customBGServiceIgnoreMSDefaults=true --isCustomBackgroundEnabled=true --customBGServiceURL=http://localhost'";
+        teams = ''
+          cd ~/w/image && tmux new -s teams-npx -d 'sudo npx http-server -p 80 --cors "*" -g' && sleep 10 && tmux new -s teams -d 'teams-for-linux --customBGServiceIgnoreMSDefaults=true --isCustomBackgroundEnabled=true --customBGServiceURL=http://localhost'
+        '';
         webserver =
           "tmux new -s npx -d 'sudo npx http-server -p 5000 --cors \"*\" -g'";
         cht = "cht.sh";
