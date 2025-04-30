@@ -46,7 +46,6 @@
       }
     ];
   };
-
   # networking.nat = {
   #   enable = true;
   #   externalInterface = "ens3";
@@ -57,7 +56,6 @@
   #     { sourcePort = 443; proto = "tcp"; destination = "100.89.178.137:443"; loopbackIPs = [ "100.86.79.82" ]; }
   #   ];
   # };
-
   networking = {
     firewall.allowedTCPPorts = [ 22 41623 8920 8096 ];
     firewall.allowedUDPPorts = [ 51820 51822 ];
@@ -132,6 +130,16 @@
         proxyWebsockets = true;
       };
     };
+    "keycloak.alinkbn.de" = {
+      # enableACME = true;
+      useACMEHost = "alinkbn.de";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass =
+          "http://100.98.35.19:${toString config.link.services.keycloak.port}";
+        proxyWebsockets = true;
+      };
+    };
     "grafana.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
@@ -140,6 +148,16 @@
         proxyPass = "http://${config.link.serviceHost}:${
             toString config.link.services.grafana.port
           }/";
+        proxyWebsockets = true;
+      };
+    };
+    "grafana.alinkbn.de" = {
+      # enableACME = true;
+      useACMEHost = "alinkbn.de";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass =
+          "http://100.98.35.19:${toString config.link.services.grafana.port}/";
         proxyWebsockets = true;
       };
     };
