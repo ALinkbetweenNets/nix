@@ -29,9 +29,9 @@ in {
             # scipy
             # numpy
             # plotnine
-            jupyter
-            jupyter-client
-            jupyterlab
+            # jupyter
+            # jupyter-client
+            # jupyterlab
           ]))
       ];
     programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions;
