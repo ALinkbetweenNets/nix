@@ -222,7 +222,10 @@ in {
       arguments = [ "-S" "--max-columns-preview" "--colors=line:style:bold" ];
     };
     autojump.enable = true;
-    zoxide.enable = true;
+    zoxide = {
+      enable = true;
+      options = [ "--cmd cd" ];
+    };
     thefuck.enable = true;
     watson.enable = true;
     # carapace.enable = true; # breaks autocompletion actually
