@@ -15,5 +15,9 @@ in {
       splashMode = "normal";
       enableCryptodisk = true;
     };
+    boot.loader.grub2-theme = {
+      enable = true;
+      theme = "sicher";
+    };
   };
 }
