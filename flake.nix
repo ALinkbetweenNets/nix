@@ -97,6 +97,9 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+    grub2-themes = {
+      url = "github:paulmiro/grub2-themes";
+    };
   };
   outputs = { self, nixpkgs, nur, nixgl, ... }@inputs:
     with inputs;
@@ -156,6 +159,7 @@
             lollypops.nixosModules.lollypops
             disko.nixosModules.disko
             sops-nix.nixosModules.sops
+            grub2-themes.nixosModules.default
             # ({ config, ... }: {
             #   # shut up state version warning
             #   system.stateVersion = config.system.nixos.version;
