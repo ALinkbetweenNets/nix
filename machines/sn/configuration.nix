@@ -35,6 +35,7 @@
     # };
     # zola.enable = true;
     service-ports-expose = true;
+    arr.enable=true;
     services = {
       # tt-rss.enable = true;
       stirling-pdf.enable = true;

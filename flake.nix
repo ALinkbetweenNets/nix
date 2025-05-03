@@ -30,6 +30,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     microvm.url = "github:astro/microvm.nix";
+    microvm.inputs.nixpkgs.follows = "nixpkgs";
     mobile-nixos = {
       url = "github:NixOS/mobile-nixos";
       # inputs.nixpkgs.follows = "nixpkgs";
@@ -159,7 +160,8 @@
             lollypops.nixosModules.lollypops
             disko.nixosModules.disko
             sops-nix.nixosModules.sops
-            grub2-themes.nixosModules.default
+            microvm.nixosModules.microvm
+            microvm.nixosModules.host
             # ({ config, ... }: {
             #   # shut up state version warning
             #   system.stateVersion = config.system.nixos.version;

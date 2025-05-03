@@ -4,9 +4,9 @@
     [ ./hardware-configuration.nix home-manager.nixosModules.home-manager ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
-    arr.enable = true;
+    # arr.enable = true;
     systemd-boot.enable = false;
-    grub.enable = true;
+    # grub.enable = true;
     vm.enable = true;
     storage = "/arr";
     tailscale.enable = true;
@@ -18,20 +18,41 @@
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDF+rCKg9anv0pU96BL0cUcbKU8w1q75kt+JGroJcE19 l@sn"
   ];
+  # microvm = {
+  #   interfaces = [{
+  #     type = "tap";
+  #     id = "vm-a1";
+  #     mac = "02:00:00:00:00:01";
+  #   }];
+  #   shares = [
+  #     {
+  #       proto = "virtiofs";
+  #       tag = "arr";
+  #       source = "/var/lib/arr";
+  #       mountPoint = "/arr";
+  #     }
+  #     {
+  #       tag = "ro-store";
+  #       source = "/nix/store";
+  #       mountPoint = "/nix/.ro-store";
+  #     }
+  #   ];
+  # };
+
   networking.hostName = "snvnarr";
   boot.loader.grub.device = "/dev/vda";
   services.mullvad-vpn.enable = true;
   services.mullvad-vpn.package = pkgs.mullvad-vpn; # gui version
-  fileSystems."arra" = {
-    device = "arra"; # Replace with the correct device or path
-    fsType = "9p"; # Replace with the filesystem type
-    mountPoint = "${config.link.storage}";
-    options = [ "trans=virtio" ];
-  };
-  services.tailscale = {
-    enable = true;
-    useRoutingFeatures = "server";
-    extraUpFlags = [ "--advertise-exit-node" ];
-  };
+  # fileSystems."arra" = {
+  #   device = "arra"; # Replace with the correct device or path
+  #   fsType = "9p"; # Replace with the filesystem type
+  #   mountPoint = "${config.link.storage}";
+  #   options = [ "trans=virtio" ];
+  # };
+  # services.tailscale = {
+  #   enable = true;
+  #   useRoutingFeatures = "server";
+  #   extraUpFlags = [ "--advertise-exit-node" ];
+  # };
   lollypops.deployment = { local-evaluation = true; };
 }
