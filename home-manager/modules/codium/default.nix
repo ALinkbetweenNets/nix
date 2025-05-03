@@ -125,6 +125,7 @@ in {
         "git.confirmSync" = false;
         "git.enableSmartCommit" = true;
         "gitlens.views.contributors.showStatistics" = true;
+        "latex-workshop.formatting.latex" = "tex-fmt";
         "latex-workshop.view.pdf.invert" = 1;
         "latex-workshop.view.pdf.invertMode.enabled" = "auto";
         "ltex.additionalRules.enablePickyRules" = true;
