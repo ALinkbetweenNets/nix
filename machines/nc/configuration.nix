@@ -124,7 +124,7 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${
+        proxyPass = "http://100.98.35.19:${
             toString config.link.services.keycloak.port
           }";
         proxyWebsockets = true;
@@ -145,7 +145,7 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${
+        proxyPass = "http://100.98.35.19:${
             toString config.link.services.grafana.port
           }/";
         proxyWebsockets = true;

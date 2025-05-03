@@ -17,7 +17,8 @@
     cpu-intel.enable = true;
     # docker.enable = true;
     fail2ban.enable = true;
-    domain = "alinkbn.de";
+    domain = "alinkbetweennets.de";
+    # domain = "alinkbn.de";
     storage = "/var/lib";
     syncthingDir = "/var/lib/syncthing";
     # secrets = "/pwd";
