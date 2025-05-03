@@ -75,8 +75,9 @@ in {
       gitlab = {
         enable = true;
         port = 443;
+        # port = cfg.port;
         statePath = "${config.link.storage}/gitlab/state";
-        # https = true;
+        https = true;
         host = "gitlab.alinkbetweennets.de";
         pages.settings.pages-domain = "pages.alinkbetweennets.de";
         databaseCreateLocally = true;
@@ -94,79 +95,83 @@ in {
     };
     boot.kernel.sysctl."net.ipv4.ip_forward" = true;
     virtualisation.docker.enable = true;
-    services.gitlab-runner = {
-      enable = true;
-      services = {
-        # runner for building in docker via host's nix-daemon
-        # nix store will be readable in runner, might be insecure
-        nix = {
-          # File should contain at least these two variables:
-          # - `CI_SERVER_URL`
-          # - `REGISTRATION_TOKEN`
-          #
-          # NOTE: Support for runner registration tokens will be removed in GitLab 18.0.
-          # Please migrate to runner authentication tokens soon. For reference, the example
-          # runners below this one are configured with authentication tokens instead.
-          authenticationTokenConfigFile =
-            config.sops.secrets."gitlab/runner-nix".path;
-          dockerImage = "alpine";
-          dockerVolumes = [
-            "/nix/store:/nix/store:ro"
-            "/nix/var/nix/db:/nix/var/nix/db:ro"
-            "/nix/var/nix/daemon-socket:/nix/var/nix/daemon-socket:ro"
-          ];
-          dockerDisableCache = true;
-          preBuildScript = pkgs.writeScript "setup-container" ''
-            mkdir -p -m 0755 /nix/var/log/nix/drvs
-            mkdir -p -m 0755 /nix/var/nix/gcroots
-            mkdir -p -m 0755 /nix/var/nix/profiles
-            mkdir -p -m 0755 /nix/var/nix/temproots
-            mkdir -p -m 0755 /nix/var/nix/userpool
-            mkdir -p -m 1777 /nix/var/nix/gcroots/per-user
-            mkdir -p -m 1777 /nix/var/nix/profiles/per-user
-            mkdir -p -m 0755 /nix/var/nix/profiles/per-user/root
-            mkdir -p -m 0700 "$HOME/.nix-defexpr"
+    # services.gitlab-runner = {
+    #   enable = true;
+    #   settings = { listen_address = "127.0.0.1:443"; };
+    #   services = {
+    #     # runner for building in docker via host's nix-daemon
+    #     # nix store will be readable in runner, might be insecure
+    #     nix = {
+    #       cloneUrl = "https://gitlab.${config.link.domain}";
+    #       # File should contain at least these two variables:
+    #       # - `CI_SERVER_URL`
+    #       # - `REGISTRATION_TOKEN`
+    #       #
+    #       # NOTE: Support for runner registration tokens will be removed in GitLab 18.0.
+    #       # Please migrate to runner authentication tokens soon. For reference, the example
+    #       # runners below this one are configured with authentication tokens instead.
+    #       authenticationTokenConfigFile =
+    #         config.sops.secrets."gitlab/runner-nix".path;
+    #       dockerImage = "alpine";
+    #       dockerVolumes = [
+    #         "/nix/store:/nix/store:ro"
+    #         "/nix/var/nix/db:/nix/var/nix/db:ro"
+    #         "/nix/var/nix/daemon-socket:/nix/var/nix/daemon-socket:ro"
+    #       ];
+    #       dockerDisableCache = true;
+    #       preBuildScript = pkgs.writeScript "setup-container" ''
+    #         mkdir -p -m 0755 /nix/var/log/nix/drvs
+    #         mkdir -p -m 0755 /nix/var/nix/gcroots
+    #         mkdir -p -m 0755 /nix/var/nix/profiles
+    #         mkdir -p -m 0755 /nix/var/nix/temproots
+    #         mkdir -p -m 0755 /nix/var/nix/userpool
+    #         mkdir -p -m 1777 /nix/var/nix/gcroots/per-user
+    #         mkdir -p -m 1777 /nix/var/nix/profiles/per-user
+    #         mkdir -p -m 0755 /nix/var/nix/profiles/per-user/root
+    #         mkdir -p -m 0700 "$HOME/.nix-defexpr"
 
-            . ${pkgs.nix}/etc/profile.d/nix.sh
+    #         . ${pkgs.nix}/etc/profile.d/nix.sh
 
-            ${pkgs.nix}/bin/nix-env -i ${
-              concatStringsSep " " (with pkgs; [ nix cacert git openssh ])
-            }
+    #         ${pkgs.nix}/bin/nix-env -i ${
+    #           concatStringsSep " " (with pkgs; [ nix cacert git openssh ])
+    #         }
 
-            ${pkgs.nix}/bin/nix-channel --add https://nixos.org/channels/nixpkgs-unstable
-            ${pkgs.nix}/bin/nix-channel --update nixpkgs
-          '';
-          environmentVariables = {
-            ENV = "/etc/profile";
-            USER = "root";
-            NIX_REMOTE = "daemon";
-            PATH =
-              "/nix/var/nix/profiles/default/bin:/nix/var/nix/profiles/default/sbin:/bin:/sbin:/usr/bin:/usr/sbin";
-            NIX_SSL_CERT_FILE =
-              "/nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt";
-          };
-        };
-        # runner for building docker images
-        docker-images = {
-          # File should contain at least these two variables:
-          # `CI_SERVER_URL`
-          # `CI_SERVER_TOKEN`
-          authenticationTokenConfigFile =
-            config.sops.secrets."gitlab/runner-default".path;
-          dockerImage = "docker:stable";
-          dockerVolumes = [ "/var/run/docker.sock:/var/run/docker.sock" ];
-        };
-        protected = {
-          # File should contain at least these two variables:
-          # `CI_SERVER_URL`
-          # `CI_SERVER_TOKEN`
-          authenticationTokenConfigFile =
-            config.sops.secrets."gitlab/runner-protected".path;
-          dockerImage = "docker:stable";
-          dockerVolumes = [ "/var/run/docker.sock:/var/run/docker.sock" ];
-        };
-      };
-    };
+    #         ${pkgs.nix}/bin/nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+    #         ${pkgs.nix}/bin/nix-channel --update nixpkgs
+    #       '';
+    #       environmentVariables = {
+    #         ENV = "/etc/profile";
+    #         USER = "root";
+    #         NIX_REMOTE = "daemon";
+    #         PATH =
+    #           "/nix/var/nix/profiles/default/bin:/nix/var/nix/profiles/default/sbin:/bin:/sbin:/usr/bin:/usr/sbin";
+    #         NIX_SSL_CERT_FILE =
+    #           "/nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt";
+    #       };
+    #     };
+    #     # runner for building docker images
+    #     docker-images = {
+    #       cloneUrl = "https://gitlab.${config.link.domain}";
+    #       # File should contain at least these two variables:
+    #       # `CI_SERVER_URL`
+    #       # `CI_SERVER_TOKEN`
+    #       authenticationTokenConfigFile =
+    #         config.sops.secrets."gitlab/runner-default".path;
+    #       dockerImage = "docker:stable";
+    #       dockerVolumes = [ "/var/run/docker.sock:/var/run/docker.sock" ];
+    #     };
+    #     protected = {
+    #       cloneUrl = "https://gitlab.${config.link.domain}";
+    #       # File should contain at least these two variables:
+    #       # `CI_SERVER_URL`
+    #       # `CI_SERVER_TOKEN`
+    #       authenticationTokenConfigFile =
+    #         config.sops.secrets."gitlab/runner-protected".path;
+    #       dockerImage = "docker:stable";
+    #       dockerVolumes = [ "/var/run/docker.sock:/var/run/docker.sock" ];
+    #     };
+    #   };
+    # };
     networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
       mkIf cfg.expose-port [ cfg.port ];
     systemd.services.gitlab-backup.environment.BACKUP = "dump";
