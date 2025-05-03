@@ -111,7 +111,7 @@
     #   enable = true;
     #   expose = false;
     # };
-    eth = "enp6s18";
+    eth = "ens18";
   };
   services.postgresql.dataDir =
     "${config.link.storage}/postgresql/${config.services.postgresql.package.psqlSchema}";
