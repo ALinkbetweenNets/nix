@@ -2,7 +2,10 @@
   programs = {
     git = {
       enable = true;
-      extraConfig = { pull.rebase = false; };
+      extraConfig = {
+        pull.rebase = false;
+        init.defaultBranch = "main";
+      };
       userEmail = "alinkbetweennets@protonmail.com";
       userName = "ALinkbetweenNets";
       aliases = {
