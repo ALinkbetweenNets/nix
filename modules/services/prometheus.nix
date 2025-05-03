@@ -33,9 +33,9 @@ in {
               "127.0.0.1:${
                 toString config.services.prometheus.exporters.domain.port
               }"
-              "127.0.0.1:${
-                toString config.services.prometheus.exporters.postgres.port
-              }"
+              # "127.0.0.1:${
+              #   toString config.services.prometheus.exporters.postgres.port
+              # }"
               "127.0.0.1:${
                 toString config.services.prometheus.exporters.redis.port
               }"
@@ -82,7 +82,8 @@ in {
             };
           };
           domain.enable = true;
-          postgres.enable = true;
+          # postgres.enable = true;
+          postgres.runAsLocalSuperUser = true;
           redis.enable = true;
           # restic.enable = true;
           statsd.enable = true;
