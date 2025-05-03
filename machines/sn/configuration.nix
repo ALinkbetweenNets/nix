@@ -51,7 +51,7 @@
       grafana.enable = true;
       # # seafile.enable = true;
       # # xandikos.enable = true; # WIP
-      # hedgedoc.enable = true;
+      hedgedoc.enable = true;
       jellyfin.enable = true;
       # mealie.enable = true; # broken
       # jellyseer.enable = true;
