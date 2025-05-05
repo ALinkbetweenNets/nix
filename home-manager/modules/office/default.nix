@@ -18,7 +18,7 @@ in {
     home.packages = with pkgs; [
       typst # better latex for papers
       libreoffice-qt
-      gimp
+      gimp3-with-plugins
       # inkscape # svg editor
       thunderbird
       # evolution # broken
