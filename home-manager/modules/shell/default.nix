@@ -210,6 +210,7 @@ in {
           "eza --icons --group-directories-first --git -F --color always --sort=size --all -l --group";
         llar =
           "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all -l --group";
+        z = "zoxide";
       };
     };
     zsh.oh-my-zsh = {
@@ -224,7 +225,7 @@ in {
     autojump.enable = true;
     zoxide = {
       enable = true;
-      options = [ "--cmd cd" ];
+      # options = [ "--cmd cd" ];
     };
     thefuck.enable = true;
     watson.enable = true;
