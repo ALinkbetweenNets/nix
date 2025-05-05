@@ -143,14 +143,14 @@ in {
               params.keep = "10";
             };
           };
-          "obsidian" = {
-            path = lib.mkDefault "${config.link.syncthingDir}/obsidian";
-            devices = [ "fn" "sn" "xn" "s22" "pppn" ];
-            versioning = {
-              type = "simple";
-              params.keep = "5";
-            };
-          };
+          # "obsidian" = {
+          #   path = lib.mkDefault "${config.link.syncthingDir}/obsidian";
+          #   devices = [ "fn" "sn" "xn" "s22" "pppn" ];
+          #   versioning = {
+          #     type = "simple";
+          #     params.keep = "5";
+          #   };
+          # };
           "keys" = {
             path = lib.mkDefault "${config.link.syncthingDir}/.keys";
             devices = [ "dn" "fn" "hn" "in" "sn" "xn" ];
