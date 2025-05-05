@@ -131,6 +131,7 @@ with lib; {
       #hugo # static site generator
       #ghosttohugo
       ## Desktop monitor settings change
+      croc # p2p file share
       #alacritty
       ## theming
       beauty-line-icon-theme
