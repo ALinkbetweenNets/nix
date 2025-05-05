@@ -21,6 +21,7 @@
     fs.ntfs.enable = true;
     fs.luks.enable = false; # DISABLE BEFORE INSTALL
     convertible.enable = true;
+    plymouth.enable=true;
     common.enable = true;
     main.enable = true;
     cpu-intel.enable = true;
