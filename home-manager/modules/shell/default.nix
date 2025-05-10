@@ -210,7 +210,6 @@ in {
           "eza --icons --group-directories-first --git -F --color always --sort=size --all -l --group";
         llar =
           "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all -l --group";
-        z = "zoxide";
       };
     };
     zsh.oh-my-zsh = {
@@ -218,6 +217,23 @@ in {
       # theme = "agnoster";
     };
     # fish.enable = true;
+    eza = {
+      enable = true;
+      enableZshIntegration = true;
+      enableIonIntegration = true;
+      colors = "auto";
+      icons = "auto";
+      git = true;
+      extraOptions = [
+        # "group-directories-first" = true;
+        # "sort" = "modified";
+        # "tree" = true;
+        # "all" = true;
+        # "icons" = true;
+        # "git" = true;
+        # "time-style %F %R<newline><RELATIVE> %R"
+      ];
+    };
     ripgrep = {
       enable = true;
       arguments = [ "-S" "--max-columns-preview" "--colors=line:style:bold" ];
@@ -226,6 +242,7 @@ in {
     zoxide = {
       enable = true;
       # options = [ "--cmd cd" ];
+      enableZshIntegration = true;
     };
     thefuck.enable = true;
     watson.enable = true;
@@ -236,11 +253,7 @@ in {
     nix-index.enable = true;
     lf.enable = true;
     lesspipe.enable = true;
-    bat = {
-      enable = true;
-      # This should pick up the correct colors for the generated theme. Otherwise
-      # it is possible to generate a custom bat theme to ~/.config/bat/config
-    };
+    bat = { enable = true; };
     fzf = {
       enable = true;
       enableZshIntegration = true;
