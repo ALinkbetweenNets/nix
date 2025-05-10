@@ -48,6 +48,7 @@
       keycloak.enable = true;
       grafana.enable = true;
       prometheus.enable = true;
+      frigate.enable = true;
       #   #gitea.enable = true;
       #   gitlab.enable = true;
       #   # grafana.enable = true;
