@@ -31,7 +31,7 @@ in {
       enable = true;
       hostname = config.networking.hostName;
       settings = {
-        camera = {
+        cameras = {
           "pizero1" = { ffmpeg.inputs = [{ path = "192.168.123.15"; }]; };
         };
       };
