@@ -32,7 +32,12 @@ in {
       hostname = config.networking.hostName;
       settings = {
         cameras = {
-          "pizero1" = { ffmpeg.inputs = [{ path = "192.168.123.15"; }]; };
+          "pizero1" = {
+            ffmpeg.inputs = [{
+              path = "192.168.123.15";
+              roles = [ "detect" "record" ];
+            }];
+          };
         };
       };
     };
