@@ -182,8 +182,6 @@ with lib; {
       ffmpeg
       gallery-dl
       ## Multimedia
-      obs-studio
-      obs-studio-plugins.obs-backgroundremoval
       # obs-studio-plugins.obs-ndi # broken
       easyeffects
       artyFX
