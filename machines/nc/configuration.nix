@@ -404,23 +404,6 @@
         proxyWebsockets = true;
       };
     };
-    "photoprism.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${
-            toString config.link.services.photoprism.port
-          }/";
-        proxyWebsockets = true;
-        # extraConfig = ''
-        #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        #   proxy_set_header Host $host;
-        #   proxy_buffering off;
-        #   proxy_http_version 1.1;
-        # '';
-      };
-    };
     "kinky3d.de" = {
       enableACME = true;
       forceSSL = true;
