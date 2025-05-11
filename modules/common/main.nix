@@ -52,6 +52,16 @@ in {
         enable = true;
         openFirewall = true;
       };
+      obs-studio = {
+        enable = true;
+        enableVirtualCamera = true;
+        plugins = with pkgs.obs-studio-plugins; [
+          obs-websocket
+          obs-v4l2sink
+          obs-ndi
+          obs-backgroundremoval
+        ];
+      };
     };
     # virtualisation.waydroid.enable = true;
     networking.firewall.allowedTCPPorts = [ 24800 ];
