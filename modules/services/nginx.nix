@@ -66,13 +66,17 @@ in {
         map $scheme $hsts_header {
           https   "max-age=31536000; includeSubdomains; preload";
         }
+        proxy_hide_header Strict-Transport-Security;
         add_header Strict-Transport-Security $hsts_header;
         # ssl_stapling_verify on;
-        add_header Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' resource: data: blob: https://*.${config.link.domain} ws://*.${config.link.domain} https://tiles.immich.cloud https://static.immich.cloud https://api-l.cofractal.com https://maputnik.github.io https://fonts.openmaptiles.org https://fonts.googleapis.com ; script-src default-src 'self' 'unsafe-inline' 'unsafe-eval' resource: data: blob: https://*.${config.link.domain} ws://*.${config.link.domain} ;script-src-elem default-src 'self' 'unsafe-inline' 'unsafe-eval' resource: data: blob: https://*.${config.link.domain} ws://*.${config.link.domain} ; font-src https://fonts.openmaptiles.org https://fonts.googleapis.com https://fonts.gstatic.com 'self' 'unsafe-inline' 'unsafe-eval' data: blob:  ; img-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://videos.owncast.online https://www.gravatar.com https://logo.clearbit.com https://*.${config.link.domain} ws://*.${config.link.domain} ; frame-src 'self' 'unsafe-inline' https://*.${config.link.domain} ws://*.${config.link.domain} https://www.youtube.com https://youtube.com https://www.youtu.be ; media-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://assets.owncast.tv https://videos.owncast.online https://www.gravatar.com https://logo.clearbit.com https://*.${config.link.domain} ws://*.${config.link.domain} ; base-uri 'self' *.${config.link.domain} ${config.link.domain};" always;
+        proxy_hide_header Content-Security-Policy;
+        add_header Content-Security-Policy "frame-src 'self'; frame-ancestors 'self'; object-src 'none'; default-src 'self' 'unsafe-inline' 'unsafe-eval' resource: data: blob: https://*.alinkbetweennets.de ws://*.alinkbetweennets.de https://tiles.immich.cloud https://static.immich.cloud https://api-l.cofractal.com https://maputnik.github.io https://fonts.openmaptiles.org https://fonts.googleapis.com ; script-src 'self' 'unsafe-eval' resource: blob: https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; script-src-elem 'self' 'unsafe-eval' resource: blob: https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; font-src https://fonts.openmaptiles.org https://fonts.googleapis.com https://fonts.gstatic.com 'self' 'unsafe-inline' 'unsafe-eval' data: blob: ; img-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://videos.owncast.online https://www.gravatar.com https://logo.clearbit.com https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; frame-src 'self' 'unsafe-inline' https://*.alinkbetweennets.de ws://*.alinkbetweennets.de https://www.youtube.com https://youtube.com https://www.youtu.be ; media-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://assets.owncast.tv https://videos.owncast.online https://www.gravatar.com https://logo.clearbit.com https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; base-uri 'self' *.alinkbetweennets.de alinkbetweennets.de;" always;
         # no-referrer
         add_header Referrer-Policy strict-origin;
+        proxy_hide_header X-Frame-Options;
         add_header X-Frame-Options sameorigin;
         # Prevent injection of code in other mime types (XSS Attacks)
+        proxy_hide_header X-Content-Type-Options;
         add_header X-Content-Type-Options nosniff;
         # This might create errors - doc
         # Yep it destroyed the immich login - me
