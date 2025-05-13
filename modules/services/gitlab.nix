@@ -77,7 +77,7 @@ in {
         port = 443;
         # port = cfg.port;
         statePath = "${config.link.storage}/gitlab/state";
-        https = true;
+        # https = true;
         host = "gitlab.alinkbetweennets.de";
         pages.settings.pages-domain = "pages.alinkbetweennets.de";
         databaseCreateLocally = true;
