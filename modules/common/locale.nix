@@ -1,6 +1,16 @@
 { lib, pkgs, config, ... }: {
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
+  networking.timeServers = [
+    "0.nixos.pool.ntp.org"
+    "1.nixos.pool.ntp.org"
+    "2.nixos.pool.ntp.org"
+    "3.nixos.pool.ntp.org"
+    "ntp0.ntp-servers.net"
+    "time-a-g.nist.gov"
+    "time.google.com"
+    "time.apple.com"
+  ];
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {

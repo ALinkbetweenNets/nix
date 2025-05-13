@@ -18,7 +18,7 @@ with lib; {
           enable = true;
           formatOnSave = false;
           lightbulb.enable = true;
-          lsplines.enable = true;
+          # lsplines.enable = true;
           lspsaga.enable = false;
           lspSignature.enable = true;
           nvim-docs-view.enable = true;
@@ -70,7 +70,7 @@ with lib; {
         theme = {
           enable = true;
           #name = "darker";
-          # style = "darker";
+          style = "darker";
           transparent = true;
         };
         # filetree = { nvimTree = { enable = true; }; };

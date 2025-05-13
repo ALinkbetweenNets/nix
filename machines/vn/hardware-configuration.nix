@@ -3,36 +3,38 @@
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }: {
   imports = [ (modulesPath + "/profiles/qemu-guest.nix") ./disk-config.nix ];
-  boot.loader = {
-    grub = {
-      enable = true;
-      devices = [ "/dev/vda" ];
-      efiSupport = true;
-      efiInstallAsRemovable = true;
-    };
-    timeout = 10;
-  };
   services.qemuGuest.enable = true;
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-  boot.initrd.availableKernelModules = [
-    "ahci"
-    "ata_piix"
-    "nvme"
-    "sd_mod"
-    "sr_mod"
-    "uhci_hcd"
-    "usb_storage"
-    "usbhid"
-    "virtio_blk"
-    "virtio_pci"
-    "xhci_pci"
-  ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot = {
+    loader = {
+      grub = {
+        enable = true;
+        devices = [ "/dev/vda" ];
+        efiSupport = true;
+        efiInstallAsRemovable = true;
+      };
+      timeout = 10;
+    };
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
+    initrd.availableKernelModules = [
+      "ahci"
+      "ata_piix"
+      "nvme"
+      "sd_mod"
+      "sr_mod"
+      "uhci_hcd"
+      "usb_storage"
+      "usbhid"
+      "virtio_blk"
+      "virtio_pci"
+      "xhci_pci"
+    ];
+    kernelModules = [ "kvm-intel" ];
+    # boot.kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
+  };
   hardware.cpu.intel.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
   hardware.enableRedistributableFirmware = config.nixpkgs.config.allowUnfree;
-  # boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
   # fileSystems."/" =
   #   {
   #     device = "/dev/disk/by-uuid/96961cea-6008-4232-854f-51b5895130fe";

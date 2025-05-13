@@ -66,9 +66,10 @@ in {
       autocd = true;
       dotDir = ".config/zsh";
       sessionVariables = { ZDOTDIR = "/home/l/.config/zsh"; };
-      initExtra = ''
+      initContent = ''
         bindkey "^[[1;5C" forward-word
         bindkey "^[[1;5D" backward-word
+        bindkey '^H' backward-kill-word
 
         # revert last n commits
         grv() {
@@ -83,14 +84,19 @@ in {
 
         eval "$(${pkgs.h}/bin/h --setup ~/code)"
       '';
-
-      history = {
-        expireDuplicatesFirst = true;
-        ignoreSpace = false;
-        save = 15000;
-        share = true;
-      };
+      # historySubstringSearch.enable = true;
+      # history = {
+      #   expireDuplicatesFirst = true;
+      #   ignoreSpace = false;
+      #   save = 15000;
+      #   share = true;
+      # };
       plugins = [
+        {
+          name = "zsh-fzf-history-search";
+          file = "zsh-fzf-history-search.plugin.zsh";
+          src = "${pkgs.zsh-fzf-history-search}/share/zsh-fzf-history-search";
+        }
         {
           name = "fast-syntax-highlighting";
           file = "fast-syntax-highlighting.plugin.zsh";
@@ -106,6 +112,11 @@ in {
         fhs-vscode = pkgs.vscode.fhsWithPackages
           (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
       in {
+        teams = ''
+          cd ~/w/image && tmux new -s teams-npx -d 'sudo npx http-server -p 80 --cors "*" -g' && sleep 10 && tmux new -s teams -d 'teams-for-linux --customBGServiceIgnoreMSDefaults=true --isCustomBackgroundEnabled=true --customBGServiceURL=http://localhost'
+        '';
+        webserver =
+          "tmux new -s npx -d 'sudo npx http-server -p 5000 --cors \"*\" -g'";
         cht = "cht.sh";
         wetter = "curl wttr.in/bonn";
         myvs = "${fhs-vscode}/bin/code";
@@ -206,13 +217,34 @@ in {
       enable = true;
       # theme = "agnoster";
     };
-    fish.enable = true;
+    # fish.enable = true;
+    eza = {
+      enable = true;
+      enableZshIntegration = true;
+      enableIonIntegration = true;
+      colors = "auto";
+      icons = "auto";
+      git = true;
+      extraOptions = [
+        # "group-directories-first" = true;
+        # "sort" = "modified";
+        # "tree" = true;
+        # "all" = true;
+        # "icons" = true;
+        # "git" = true;
+        # "time-style %F %R<newline><RELATIVE> %R"
+      ];
+    };
     ripgrep = {
       enable = true;
       arguments = [ "-S" "--max-columns-preview" "--colors=line:style:bold" ];
     };
     autojump.enable = true;
-    zoxide.enable = true;
+    zoxide = {
+      enable = true;
+      # options = [ "--cmd cd" ];
+      enableZshIntegration = true;
+    };
     thefuck.enable = true;
     watson.enable = true;
     # carapace.enable = true; # breaks autocompletion actually
@@ -222,35 +254,33 @@ in {
     nix-index.enable = true;
     lf.enable = true;
     lesspipe.enable = true;
-    bat = {
-      enable = true;
-      # This should pick up the correct colors for the generated theme. Otherwise
-      # it is possible to generate a custom bat theme to ~/.config/bat/config
-    };
+    bat = { enable = true; };
     fzf = {
       enable = true;
       enableZshIntegration = true;
+      tmux.enableShellIntegration = true;
+      historyWidgetOptions = [ "--sort" ];
       defaultOptions = [
         "--height 80%"
         "--layout=reverse"
-        "--border"
+        # "--border"
         "--inline-info"
-        "--color 'fg:#${vars.colors.base05}'" # Text
-        "--color 'bg:#${vars.colors.base00}'" # Background
-        "--color 'preview-fg:#${vars.colors.base05}'" # Preview window text
-        "--color 'preview-bg:#${vars.colors.base00}'" # Preview window background
-        "--color 'hl:#${vars.colors.base0A}'" # Highlighted substrings
-        "--color 'fg+:#${vars.colors.base0D}'" # Text (current line)
-        "--color 'bg+:#${vars.colors.base02}'" # Background (current line)
-        "--color 'gutter:#${vars.colors.base02}'" # Gutter on the left (defaults to bg+)
-        "--color 'hl+:#${vars.colors.base0E}'" # Highlighted substrings (current line)
-        "--color 'info:#${vars.colors.base0E}'" # Info line (match counters)
-        "--color 'border:#${vars.colors.base0D}'" # Border around the window (--border and --preview)
-        "--color 'prompt:#${vars.colors.base05}'" # Prompt
-        "--color 'pointer:#${vars.colors.base0E}'" # Pointer to the current line
-        "--color 'marker:#${vars.colors.base0E}'" # Multi-select marker
-        "--color 'spinner:#${vars.colors.base0E}'" # Streaming input indicator
-        "--color 'header:#${vars.colors.base05}'" # Header
+        # "--color 'fg:#${vars.colors.base05}'" # Text
+        # #"--color 'bg:#${vars.colors.base00}'" # Background
+        # "--color 'preview-fg:#${vars.colors.base05}'" # Preview window text
+        # "--color 'preview-bg:#${vars.colors.base00}'" # Preview window background
+        # "--color 'hl:#${vars.colors.base0A}'" # Highlighted substrings
+        # "--color 'fg+:#${vars.colors.base0D}'" # Text (current line)
+        # "--color 'bg+:#${vars.colors.base02}'" # Background (current line)
+        # "--color 'gutter:#${vars.colors.base02}'" # Gutter on the left (defaults to bg+)
+        # "--color 'hl+:#${vars.colors.base0E}'" # Highlighted substrings (current line)
+        # "--color 'info:#${vars.colors.base0E}'" # Info line (match counters)
+        # "--color 'border:#${vars.colors.base0D}'" # Border around the window (--border and --preview)
+        # "--color 'prompt:#${vars.colors.base05}'" # Prompt
+        # "--color 'pointer:#${vars.colors.base0E}'" # Pointer to the current line
+        # "--color 'marker:#${vars.colors.base0E}'" # Multi-select marker
+        # "--color 'spinner:#${vars.colors.base0E}'" # Streaming input indicator
+        # "--color 'header:#${vars.colors.base05}'" # Header
       ];
     };
     # zellij = {

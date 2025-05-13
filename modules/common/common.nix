@@ -48,7 +48,6 @@ in {
     # };
     environment.pathsToLink = [ "/share/zsh" "/share/fish" ];
     link = {
-      # fs.luks.enable = true;
       users = {
         l.enable = true;
         root.enable = true;
@@ -137,10 +136,10 @@ in {
       xz
       bzip2
       p7zip
-      # netcat-openbsd
+      netcat-openbsd
       # netcat
+      # netcat-gnu
       fzf
-      netcat-gnu
       gnugrep
       ripgrep-all
       unixtools.watch

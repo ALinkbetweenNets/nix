@@ -46,7 +46,6 @@
       }
     ];
   };
-
   # networking.nat = {
   #   enable = true;
   #   externalInterface = "ens3";
@@ -57,9 +56,8 @@
   #     { sourcePort = 443; proto = "tcp"; destination = "100.89.178.137:443"; loopbackIPs = [ "100.86.79.82" ]; }
   #   ];
   # };
-
   networking = {
-    firewall.allowedTCPPorts = [ 443 22 41623 ];
+    firewall.allowedTCPPorts = [ 22 41623 8920 8096 ];
     firewall.allowedUDPPorts = [ 51820 51822 ];
     hostName = "v2202312204123249185";
     domain = "ultrasrv.de";
@@ -126,9 +124,19 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${
+        proxyPass = "http://100.98.35.19:${
             toString config.link.services.keycloak.port
           }";
+        proxyWebsockets = true;
+      };
+    };
+    "keycloak.alinkbn.de" = {
+      # enableACME = true;
+      useACMEHost = "alinkbn.de";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass =
+          "http://100.98.35.19:${toString config.link.services.keycloak.port}";
         proxyWebsockets = true;
       };
     };
@@ -137,9 +145,19 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${
+        proxyPass = "http://100.98.35.19:${
             toString config.link.services.grafana.port
           }/";
+        proxyWebsockets = true;
+      };
+    };
+    "grafana.alinkbn.de" = {
+      # enableACME = true;
+      useACMEHost = "alinkbn.de";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass =
+          "http://100.98.35.19:${toString config.link.services.grafana.port}/";
         proxyWebsockets = true;
       };
     };
@@ -198,11 +216,28 @@
       forceSSL = true;
       root = "${pkgs.cyberchef}/share/cyberchef";
     };
-    "webhacking.${config.link.domain}" = {
+    "burp.${config.link.domain}" = {
+      quic = true;
+      http3_hq = true;
       # enableACME = true;
+      serverAliases = [
+        "burpsuite.${config.link.domain}"
+        "webhacking.${config.link.domain}"
+        "xn--w38h.${config.link.domain}"
+      ];
       useACMEHost = config.link.domain;
       forceSSL = true;
-      root = "/var/www/Burpsuite-Presentation";
+      root = "/var/www/Vortrag-Burpsuite";
+    };
+    "lockpicking.${config.link.domain}" = {
+      # enableACME = true;
+      serverAliases = [
+        "vortrag-lockpicking.${config.link.domain}"
+        "xn--e18h.${config.link.domain}"
+      ];
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      root = "/var/www/Vortrag-Lockpicking";
     };
     "hedgedoc.${config.link.domain}" = {
       # enableACME = true;
@@ -276,6 +311,13 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/".proxyPass = "http://100.98.48.88:5000/";
+      locations."/".proxyWebsockets = true;
+    };
+    "kasten.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/".proxyPass = "http://100.98.35.19:5000/";
       locations."/".proxyWebsockets = true;
     };
     "immich.${config.link.domain}" = {
@@ -362,27 +404,24 @@
         proxyWebsockets = true;
       };
     };
-    "photoprism.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${
-            toString config.link.services.photoprism.port
-          }/";
-        proxyWebsockets = true;
-        # extraConfig = ''
-        #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        #   proxy_set_header Host $host;
-        #   proxy_buffering off;
-        #   proxy_http_version 1.1;
-        # '';
-      };
-    };
     "kinky3d.de" = {
       enableACME = true;
       forceSSL = true;
       locations."/".proxyPass = "http://10.10.10.22:3214/";
+    };
+    "alinkbn.de" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://100.98.48.88:5000/";
+        proxyWebsockets = true;
+      };
+      extraConfig = ''
+        error_page 502 /error-page.html;
+      '';
+      locations."/error" = {
+        return = "307 https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+      };
     };
     "shonk.de" = {
       forceSSL = true;
@@ -415,7 +454,7 @@
       forceSSL = true;
       default = true;
       locations."/" = {
-        return = "301 https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        return = "307 https://www.youtube.com/watch?v=dQw4w9WgXcQ";
       };
     };
     # services.nginx.virtualHosts."paperless.${config.link.domain}" = {

@@ -8,6 +8,7 @@
   ];
   system.autoUpgrade.enable = lib.mkForce false;
   link = {
+    plymouth.enable = true;
     # hyprland.enable = true;
     sops = false;
     # tailscale-address = "100.108.198.22";
@@ -16,7 +17,8 @@
     # fs.zfs.enable = true;
     # printing.enable = true;
     fs.ntfs.enable = true;
-    fs.luks.enable = false; # DO NOT ACTIVATE, DEBUG IN VM
+    fs.btrfs.enable = true;
+    fs.luks.enable = true;
     laptop.enable = true;
     common.enable = true;
     main.enable = true;

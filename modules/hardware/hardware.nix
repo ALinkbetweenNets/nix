@@ -11,7 +11,7 @@ in {
         lm_sensors
         cpufrequtils
       ] ++ lib.optionals (config.link.desktop.enable) [ cpupower-gui ];
-    time.hardwareClockInLocalTime = true;
+    time.hardwareClockInLocalTime = false;
     services = {
       # for windows dualboot
       # hardware.enableRedistributableFirmware = true;
@@ -29,5 +29,6 @@ in {
         drives = [ "/dev/disk/by-id/*" ];
       };
     };
+    zramSwap.enable = true;
   };
 }

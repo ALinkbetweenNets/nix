@@ -5,6 +5,7 @@ with lib; {
     home.packages = with pkgs;
       [
         # zola
+        nodejs
         # hugo
       ];
   };

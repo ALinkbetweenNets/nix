@@ -13,8 +13,7 @@ in {
       qmk.enable = true;
     };
     boot = {
-      extraModulePackages = with config.boot.kernelPackages;
-      [ v4l2loopback ];
+      extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
       kernelModules = [ "v4l2loopback" ];
     };
     services.rpcbind.enable = true; # for NFS
@@ -52,6 +51,17 @@ in {
       ausweisapp = {
         enable = true;
         openFirewall = true;
+      };
+      obs-studio = {
+        enable = true;
+        enableVirtualCamera = true;
+        plugins = with pkgs.obs-studio-plugins; [
+          obs-websocket
+          obs-vaapi
+          obs-teleport
+          obs-composite-blur
+          obs-backgroundremoval
+        ];
       };
     };
     # virtualisation.waydroid.enable = true;

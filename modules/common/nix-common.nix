@@ -97,6 +97,7 @@
     gc = {
       persistent = true;
       automatic = true;
+      options = "--delete-older-than 14d";
     };
   };
 }

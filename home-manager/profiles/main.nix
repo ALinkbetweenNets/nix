@@ -91,6 +91,7 @@ with lib; {
       kdePackages.kcolorchooser
       curlie # httpie for curl
       gpodder # podcast client
+      sox
       #htmlq
       dogdns
       # zombietrackergps # gps track display
@@ -118,6 +119,8 @@ with lib; {
       gh # github cli
       wcalc
       apg # generate passwords
+      nodejs
+      planify
       xkcdpass
       ltex-ls # for vscode spell checking using languagetool
       #piper-tts # text to speech synthesizer with models (download https://huggingface.co/rhasspy/piper-voices/tree/v1.0.0/en/en_US/lessac/high onnx and json to Downloads folder)
@@ -128,6 +131,7 @@ with lib; {
       #hugo # static site generator
       #ghosttohugo
       ## Desktop monitor settings change
+      croc # p2p file share
       #alacritty
       ## theming
       beauty-line-icon-theme
@@ -178,8 +182,6 @@ with lib; {
       ffmpeg
       gallery-dl
       ## Multimedia
-      obs-studio
-      obs-studio-plugins.obs-backgroundremoval
       # obs-studio-plugins.obs-ndi # broken
       easyeffects
       artyFX

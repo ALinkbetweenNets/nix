@@ -4,6 +4,7 @@ let cfg = config.link.nginx;
 in {
   options.link.nginx.enable = mkEnableOption "activate nginx";
   config = mkIf cfg.enable {
+    networking.firewall.allowedUDPPorts = [ 80 443 ];
     networking.firewall.allowedTCPPorts = [
       # 25
       80
@@ -17,7 +18,7 @@ in {
       # 4002
     ];
     # networking.firewall.allowedUDPPorts = [ 111 2049 4000 4001 4002 20048 ]; # nfs
-    sops.secrets."cloudflare-api"={};
+    sops.secrets."cloudflare-api" = { };
     security.acme = {
       acceptTerms = true;
       defaults.email = "link2502+acme@proton.me";
@@ -25,6 +26,13 @@ in {
       certs."${config.link.domain}" = {
         domain = config.link.domain;
         extraDomainNames = [ "*.${config.link.domain}" ];
+        dnsProvider = "cloudflare";
+        environmentFile = config.sops.secrets."cloudflare-api".path;
+        webroot = null;
+      };
+      certs."alinkbn.de" = {
+        domain = config.link.domain;
+        extraDomainNames = [ "*.alinkbn.de" ];
         dnsProvider = "cloudflare";
         environmentFile = config.sops.secrets."cloudflare-api".path;
         webroot = null;
@@ -38,12 +46,14 @@ in {
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
       logError = "stderr debug";
-      package = pkgs.nginxMainline.override { openssl = pkgs.libressl; };
+      enableQuicBPF = true;
+      package = pkgs.nginxQuic.override { openssl = pkgs.libressl; };
       clientMaxBodySize = "2000m";
       commonHttpConfig = ''
         # sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
         # ssl_protocols TLSv1.3;
-        # ssl_prefer_server_ciphers   on;
+        # ssl_conf_command Options KTLS; # not supported on nc
+        # ssl_prefer_server_ciphers on; # disabled as only secure ciphers enabled. Clients may choose the most performant cipher for them from our whitelist
         log_format myformat '$remote_addr - $remote_user [$time_local] '
           '"$request" $status $body_bytes_sent '
           '"$http_referer" "$http_user_agent"';
@@ -58,7 +68,7 @@ in {
         }
         add_header Strict-Transport-Security $hsts_header;
         # ssl_stapling_verify on;
-        add_header Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://*.${config.link.domain} ws://*.${config.link.domain} https://tiles.immich.cloud https://static.immich.cloud https://api-l.cofractal.com https://maputnik.github.io https://fonts.openmaptiles.org ; img-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://videos.owncast.online https://www.gravatar.com https://logo.clearbit.com https://*.${config.link.domain} ws://*.${config.link.domain} ; media-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://assets.owncast.tv https://videos.owncast.online https://www.gravatar.com https://logo.clearbit.com https://*.${config.link.domain} ws://*.${config.link.domain} ; base-uri 'self' *.${config.link.domain} ${config.link.domain};" always;
+        add_header Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' resource: data: blob: https://*.${config.link.domain} ws://*.${config.link.domain} https://tiles.immich.cloud https://static.immich.cloud https://api-l.cofractal.com https://maputnik.github.io https://fonts.openmaptiles.org https://fonts.googleapis.com ; script-src default-src 'self' 'unsafe-inline' 'unsafe-eval' resource: data: blob: https://*.${config.link.domain} ws://*.${config.link.domain} ;script-src-elem default-src 'self' 'unsafe-inline' 'unsafe-eval' resource: data: blob: https://*.${config.link.domain} ws://*.${config.link.domain} ; font-src https://fonts.openmaptiles.org https://fonts.googleapis.com https://fonts.gstatic.com 'self' 'unsafe-inline' 'unsafe-eval' data: blob:  ; img-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://videos.owncast.online https://www.gravatar.com https://logo.clearbit.com https://*.${config.link.domain} ws://*.${config.link.domain} ; frame-src 'self' 'unsafe-inline' https://*.${config.link.domain} ws://*.${config.link.domain} https://www.youtube.com https://youtube.com https://www.youtu.be ; media-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://assets.owncast.tv https://videos.owncast.online https://www.gravatar.com https://logo.clearbit.com https://*.${config.link.domain} ws://*.${config.link.domain} ; base-uri 'self' *.${config.link.domain} ${config.link.domain};" always;
         # no-referrer
         add_header Referrer-Policy strict-origin;
         add_header X-Frame-Options sameorigin;

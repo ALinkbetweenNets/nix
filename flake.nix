@@ -16,7 +16,7 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
+    #nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,6 +29,7 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    microvm.url = "github:astro/microvm.nix";
     mobile-nixos = {
       url = "github:NixOS/mobile-nixos";
       # inputs.nixpkgs.follows = "nixpkgs";
@@ -70,10 +71,7 @@
       url = "github:pwndbg/pwndbg";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    ghostty = { url = "github:ghostty-org/ghostty"; };
     # Adblocking lists for Unbound DNS servers running on NixOS
     # https://github.com/MayNiklas/nixos-adblock-unbound
     adblock-unbound = {
@@ -98,6 +96,9 @@
         nixos-hardware.follows = "nixos-hardware";
         nixpkgs.follows = "nixpkgs";
       };
+    };
+    grub2-themes = {
+      url = "github:paulmiro/grub2-themes";
     };
   };
   outputs = { self, nixpkgs, nur, nixgl, ... }@inputs:
@@ -150,14 +151,15 @@
           # allows to only pass what is needed to each module.
           specialArgs = { flake-self = self; } // inputs;
           modules = builtins.attrValues self.nixosModules ++ [
-            inputs.nixos-facter-modules.nixosModules.facter
+            #inputs.nixos-facter-modules.nixosModules.facter
             (import "${./.}/machines/${x}/configuration.nix" {
               inherit self;
-              config.facter.reportPath = ./facter.json;
+              #config.facter.reportPath = ./facter.json;
             })
             lollypops.nixosModules.lollypops
             disko.nixosModules.disko
             sops-nix.nixosModules.sops
+            grub2-themes.nixosModules.default
             # ({ config, ... }: {
             #   # shut up state version warning
             #   system.stateVersion = config.system.nixos.version;
