@@ -57,8 +57,9 @@ in {
         enableVirtualCamera = true;
         plugins = with pkgs.obs-studio-plugins; [
           obs-websocket
-          obs-v4l2sink
-          obs-ndi
+          obs-vaapi
+          obs-teleport
+          obs-composite-blur
           obs-backgroundremoval
         ];
       };
