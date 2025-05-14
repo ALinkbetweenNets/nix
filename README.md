@@ -2,7 +2,7 @@
 
 [![Build and test](https://build.lounge.rocks/api/badges/23/status.svg)](https://build.lounge.rocks/repos/23)
 
-![NixOS](https://nixos.org)
+[NixOS](https://nixos.org)
 
 List of ressources: https://nixos.org/learn
 
