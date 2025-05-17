@@ -1,3 +1,4 @@
 results
 .aider*
 facter.json
+modules/crypt/crypt.nix

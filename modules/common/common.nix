@@ -4,6 +4,11 @@ let cfg = config.link.common;
 in {
   options.link.common.enable = mkEnableOption "activate common";
   config = mkIf cfg.enable {
+    sops.secrets.nix = mkIf config.link.sops {
+      owner = "l";
+      # group = "l";
+      path = "/home/l/nix/modules/crypt/crypt.nix";
+    };
     programs = {
       ssh = {
         startAgent = lib.mkDefault false;
