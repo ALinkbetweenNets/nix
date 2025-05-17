@@ -16,10 +16,10 @@ with lib; {
         vimAlias = true;
         lsp = {
           enable = true;
-          formatOnSave = false;
+          formatOnSave = true;
           lightbulb.enable = true;
           # lsplines.enable = true;
-          lspsaga.enable = false;
+          lspsaga.enable = true;
           lspSignature.enable = true;
           nvim-docs-view.enable = true;
           otter-nvim.enable = true;
@@ -32,7 +32,6 @@ with lib; {
           };
         };
         languages = {
-          enableLSP = true;
           enableFormat = true;
           enableTreesitter = true;
           enableExtraDiagnostics = true;
@@ -52,7 +51,7 @@ with lib; {
           nvim-web-devicons.enable = true;
           nvim-scrollbar.enable = true;
           cinnamon-nvim.enable = true;
-          cellular-automaton.enable = false;
+          cellular-automaton.enable = true;
           fidget-nvim.enable = true;
           highlight-undo.enable = true;
           indent-blankline.enable = true;
@@ -73,7 +72,12 @@ with lib; {
           style = "darker";
           transparent = true;
         };
-        # filetree = { nvimTree = { enable = true; }; };
+        filetree = {
+          nvimTree = {
+            enable = true;
+            openOnSetup = false;
+          };
+        };
         tabline = { nvimBufferline.enable = true; };
         treesitter.context.enable = true;
         binds = {
@@ -84,23 +88,22 @@ with lib; {
         git = {
           enable = true;
           gitsigns.enable = true;
-          gitsigns.codeActions.enable =
-            false; # throws an annoying debug message
+          gitsigns.codeActions.enable = true; # throws an annoying debug message
         };
         minimap = {
-          minimap-vim.enable = false;
+          minimap-vim.enable = true;
           codewindow.enable =
             true; # lighter, faster, and uses lua for configuration
         };
         dashboard = {
-          dashboard-nvim.enable = false;
+          dashboard-nvim.enable = true;
           alpha.enable = true;
         };
         notify = { nvim-notify.enable = true; };
         projects = { project-nvim.enable = true; };
         utility = {
-          ccc.enable = false;
-          vim-wakatime.enable = false;
+          ccc.enable = true;
+          vim-wakatime.enable = true;
           icon-picker.enable = true;
           surround.enable = true;
           diffview-nvim.enable = true;
@@ -108,11 +111,18 @@ with lib; {
             hop.enable = true;
             leap.enable = true;
           };
-          images = { image-nvim.enable = false; };
+          images = { image-nvim.enable = false; }; # Does not work in Konsole
         };
         notes = {
-          obsidian.enable =
-            false; # FIXME: neovim fails to build if obsidian is enabled
+          #obsidian.enable =
+          #  true; # FIXME: neovim fails to build if obsidian is enabled
+          #obsidian.setupOpts.workspaces = [
+          #  {
+          #    name = "obsidian";
+          #    path = "/home/l/obsidian";
+          #  }
+          #];
+
           orgmode.enable = false;
           mind-nvim.enable = true;
           todo-comments.enable = true;
@@ -126,7 +136,7 @@ with lib; {
         ui = {
           borders.enable = true;
           noice.enable = true;
-          colorizer.enable = true;
+          colorizer.enable = false;
           modes-nvim.enable = false; # the theme looks terrible with catppuccin
           illuminate.enable = true;
           breadcrumbs = {
@@ -152,8 +162,8 @@ with lib; {
             cmp.enable = true;
           };
         };
-        session = { nvim-session-manager.enable = false; };
-        gestures = { gesture-nvim.enable = false; };
+        session = { nvim-session-manager.enable = true; };
+        gestures = { gesture-nvim.enable = true; };
         comments = { comment-nvim.enable = true; };
         presence = { neocord.enable = false; };
       };
