@@ -10,7 +10,7 @@
   link = {
     plymouth.enable = true;
     # hyprland.enable = true;
-    sops = false;
+    sops = true;
     # tailscale-address = "100.108.198.22";
     gaming.enable = true;
     # sway.enable = true;
