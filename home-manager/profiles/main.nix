@@ -71,12 +71,25 @@ with lib; {
     };
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
+      kdePackages.plasma-browser-integration
       teams-for-linux
-      linphone
+      mprocs # tui for running multiple processes
+      presenterm # presentation from terminal similar to reveal.js
+      #linphone
+      # evolution
+      kitty
+      nushell
       jan # ai
       qrtool
+      fselect # find files with sql syntax
       dust # Disk usage
+      ## experimental
+      kondo # file organizer
+      # expanso # text expander
+      ##
+      dua
       choose # cut/ awk alternative
+      wiki-tui # Wikipedia tui
       duf # better df
       procs
       rm-improved
@@ -96,7 +109,7 @@ with lib; {
       dogdns
       # zombietrackergps # gps track display
       # inlyne
-      difftastic
+      # difftastic
       anime4k
       # quickemu # broken
       # quickgui
