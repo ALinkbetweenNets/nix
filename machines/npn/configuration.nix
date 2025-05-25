@@ -44,7 +44,7 @@
       #   microbin.enable = true;
       #   # mailserver.enable = true;
       #   cryptpad.enable = true;
-      #   # photoprism.enable = true; # WIP
+      ollama.enable = true;
       keycloak.enable = true;
       grafana.enable = true;
       prometheus.enable = true;
