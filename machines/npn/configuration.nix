@@ -39,7 +39,7 @@
     services = {
       #   # tt-rss.enable = true;
       #   stirling-pdf.enable = true;
-      #   searx.enable = true;
+      searx.enable = true;
       #   cockpit.enable = true;
       #   microbin.enable = true;
       #   # mailserver.enable = true;
@@ -58,13 +58,13 @@
       #   mealie.enable = true;
       #   # jellyseer.enable = true;
       #   minio.enable = true;
-      #   immich.enable = true;
+      immich.enable = true;
       #   audiobookshelf.enable = true;
       #   # openvscode-server.enable = true;
-      #   nextcloud = {
-      #     enable = true;
-      #     nginx-expose = true;
-      #   };
+      nextcloud = {
+        enable = true;
+        nginx-expose = true;
+      };
       #   vikunja.enable = true;
       #   # nfs.enable = true;
       #   # outline = {
@@ -73,7 +73,7 @@
       #   #   oidClientId =
       #   #     "7cec0458291c1d98c37bce1ad62ea7b02790d7330f1ce5b6a25d9da95c6b3108";
       #   # };
-      #   paperless.enable = true;
+      paperless.enable = true;
       #   # vaultwarden.enable = true;
       #   # # matrix.enable = true;
       #   restic-server.enable = true;
