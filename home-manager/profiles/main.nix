@@ -73,6 +73,7 @@ with lib; {
     home.packages = with pkgs; [
       kdePackages.plasma-browser-integration
       teams-for-linux
+      virt-viewer # spice client for remote-viewer
       mprocs # tui for running multiple processes
       presenterm # presentation from terminal similar to reveal.js
       #linphone
