@@ -16,7 +16,7 @@ with lib; {
         vimAlias = true;
         lsp = {
           enable = true;
-          formatOnSave = true;
+          formatOnSave = false;
           lightbulb.enable = true;
           # lsplines.enable = true;
           lspsaga.enable = true;
