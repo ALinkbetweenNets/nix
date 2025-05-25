@@ -38,7 +38,7 @@ in {
       };
       nvidia = {
         open =
-          true; # with the open driver the screen will keep black after waking the pc from suspend
+          false; # with the open driver the screen will keep black after waking the pc from suspend
         modesetting.enable = true;
         # powerManagement.enable = false;
         # package = config.boot.kernelPackages.nvidiaPackages.stable;
