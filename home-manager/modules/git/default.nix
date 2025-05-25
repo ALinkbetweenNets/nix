@@ -17,8 +17,8 @@
       };
       ignores = [ ".direnv/" ];
       attributes = [ "*.pdf diff=pdf" ];
-      #delta.enable = true;
-      diff-so-fancy.enable = true;
+      delta.enable = true;
+      # diff-so-fancy.enable = true;
       lfs.enable = true;
     };
     git-cliff.enable = true;
