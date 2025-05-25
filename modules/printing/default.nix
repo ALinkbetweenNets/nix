@@ -38,6 +38,6 @@ in {
       9102
     ]; # https://www.cups.org/doc/firewalls.html
     networking.firewall.allowedUDPPorts = [ 53 137 5353 ];
-    environment.systemPackages = with pkgs; [ skanpage ]; # Scanner Frontend
+    environment.systemPackages = with pkgs; [ kdePackages.skanpage ]; # Scanner Frontend
   };
 }
