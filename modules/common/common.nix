@@ -141,7 +141,7 @@ in {
       # netcat-gnu
       fzf
       gnugrep
-      ripgrep-all
+      ripgrep-all # also search pdfs, ebooks, office docs, zip, tar.gz
       unixtools.watch
       wireguard-tools
       dnsutils
