@@ -207,7 +207,7 @@ with lib; {
       easyeffects
       artyFX
       #imagemagick
-      # brave # backup browser for teams # multiple problems with privacy during end of 2023
+      brave # backup browser for teams, office online # multiple problems with privacy during end of 2023
       # chromium
       # ytfzf # does not work 231230
       ani-cli
