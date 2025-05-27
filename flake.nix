@@ -6,6 +6,8 @@
         "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -102,11 +104,9 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    grub2-themes = {
-      url = "github:paulmiro/grub2-themes";
-    };
+    grub2-themes = { url = "github:paulmiro/grub2-themes"; };
   };
-  outputs = { self, nixpkgs, nur, nixgl, ... }@inputs:
+  outputs = { self, lix-module, nixpkgs, nur, nixgl, ... }@inputs:
     with inputs;
     let
       supportedSystems = [ "aarch64-linux" "x86_64-linux" ];
@@ -165,6 +165,7 @@
             disko.nixosModules.disko
             sops-nix.nixosModules.sops
             grub2-themes.nixosModules.default
+            lix-module.nixosModules.default
             # ({ config, ... }: {
             #   # shut up state version warning
             #   system.stateVersion = config.system.nixos.version;
