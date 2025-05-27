@@ -25,6 +25,7 @@ in {
     hardware = {
       cpu.amd.updateMicrocode = true;
       # amdgpu.initrd.enable = lib.mkDefault true;
+      amdgpu.opencl.enable = true;
       graphics = {
         enable = true;
         enable32Bit = true;
