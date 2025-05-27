@@ -20,6 +20,13 @@ with lib; {
     #   enable = true;
     #   indicator = false;
     # };
+    home.pointerCursor = {
+      name = "Banana";
+      size = 32;
+      package = pkgs.banana-cursor;
+      # x11.enable = true;
+      gtk.enable = true;
+    };
     programs = {
       direnv = {
         enable = true;
