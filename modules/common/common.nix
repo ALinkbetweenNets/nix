@@ -1,7 +1,8 @@
-{ config, system-config, pkgs, lib, ... }:
+{ config, system-config, pkgs, lib, nix-index-database, ... }:
 with lib;
 let cfg = config.link.common;
 in {
+  imports = [ nix-index-database.nixosModules.nix-index ];
   options.link.common.enable = mkEnableOption "activate common";
   config = mkIf cfg.enable {
     programs = {
@@ -103,6 +104,8 @@ in {
         ];
       };
     };
+    # Use nix-index-database for comma
+    programs.nix-index-database.comma.enable = true;
     environment.systemPackages = with pkgs; [
       ## system
       limitcpu
