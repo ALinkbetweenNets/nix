@@ -130,7 +130,7 @@
         proxyWebsockets = true;
       };
     };
-    "\${ABCDEF}" = {
+    "keycloak.alinkbn.de" = {
       # enableACME = true;
       useACMEHost = "alinkbn.de";
       forceSSL = true;
