@@ -83,7 +83,7 @@ with lib; {
       virt-viewer # spice client for remote-viewer
       mprocs # tui for running multiple processes
       presenterm # presentation from terminal similar to reveal.js
-      #linphone
+      # linphone
       # evolution
       kitty
       nushell
