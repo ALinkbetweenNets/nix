@@ -28,6 +28,12 @@ with lib; {
       gtk.enable = true;
     };
     programs = {
+      element-desktop = {
+        enable = true;
+        # settings = {
+        #   default_theme= "dark";
+        # };
+      };
       direnv = {
         enable = true;
         enableBashIntegration = true;
@@ -185,7 +191,6 @@ with lib; {
       telegram-desktop
       discord
       # qtox
-      element-desktop
       openvpn
       ## keyboard
       # vial
