@@ -29,7 +29,6 @@ in {
     environment.systemPackages = with pkgs;
       [
         uutils-coreutils
-        wezterm
         adwaita-icon-theme
         wifi-qr
         barrier # KVM
