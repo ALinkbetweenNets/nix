@@ -85,7 +85,6 @@ with lib; {
       presenterm # presentation from terminal similar to reveal.js
       # linphone
       # evolution
-      kitty
       nushell
       jan # ai
       qrtool

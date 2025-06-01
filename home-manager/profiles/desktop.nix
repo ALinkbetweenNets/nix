@@ -14,6 +14,17 @@ with lib; {
       };
     };
     programs = {
+      kitty = {
+        enable = true;
+        enableGitIntegration = true;
+        settings = {
+          # themeFile = "LiquidCarbonTransparent";
+          background_opacity = 0.2;
+          dynamic_background_opacity = "yes";
+          transparent_background_colors = "#000000@1";
+        };
+
+      };
       firefox = { enable = true; };
       yt-dlp = {
         enable = true;
