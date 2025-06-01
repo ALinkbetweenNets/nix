@@ -12,7 +12,7 @@ in {
       rustc
       rustfmt
       hyperfine # benchmark
-      evil-helix # editor
+      #evil-helix # editor
       bacon # background compiler on file change
       rusty-man # manual
       just # command runner, make alternative
