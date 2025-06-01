@@ -8,6 +8,7 @@
   ];
   system.autoUpgrade.enable = lib.mkForce false;
   link = {
+    wg-link.enable = true;
     plymouth.enable = true;
     # hyprland.enable = true;
     sops = true;
@@ -25,7 +26,6 @@
     cpu-amd.enable = true;
     systemd-boot.enable = true;
     #secrets = "/home/l/.keys";
-    #wireguard.enable = true;
     # wg-link.enable = true;
     domain = "fn.local";
     service-ip = "127.0.0.1";

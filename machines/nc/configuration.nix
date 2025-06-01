@@ -6,6 +6,7 @@
   imports = [ ./netcup.nix home-manager.nixosModules.home-manager ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
+    wg-link-server.enable = true;
     sops = true;
     tailscale-address = "100.86.79.82";
     common.enable = true;
