@@ -210,7 +210,6 @@ with lib; {
       # obs-studio-plugins.obs-ndi # broken
       easyeffects
       artyFX
-      #imagemagick
       brave # backup browser for teams, office online # multiple problems with privacy during end of 2023
       # chromium
       # ytfzf # does not work 231230
@@ -248,6 +247,7 @@ with lib; {
       libsForQt5.krunner-symbols
       kdePackages.ksystemlog
       imagemagick
+      luajitPackages.magick
       immich-go
     ];
   };
