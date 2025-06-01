@@ -31,6 +31,11 @@ with lib; {
       # your settings need to go into the settings attribute set
       # most settings are documented in the appendix
       settings.vim = {
+        options = {
+          tabstop = 2;
+          shiftwidth = 2;
+        };
+        syntaxHighlighting = true;
         spellcheck.enable = true;
         viAlias = false;
         vimAlias = true;
@@ -56,6 +61,7 @@ with lib; {
           enableTreesitter = true;
           enableExtraDiagnostics = true;
           nix.enable = true;
+          nix.format.type = "nixfmt";
           python.enable = true;
           markdown.enable = true;
           html.enable = true;
@@ -68,17 +74,23 @@ with lib; {
           };
         };
         visuals = {
-          nvim-web-devicons.enable = true;
-          nvim-scrollbar.enable = true;
-          cinnamon-nvim.enable = true;
-          cellular-automaton.enable = true;
-          fidget-nvim.enable = true;
+          cellular-automaton.enable = true; # fml
+          cinnamon-nvim = {
+            enable = true; # smooth scroll
+            setupOpts.keymaps.basic = true;
+            setupOpts.keymaps.extra = true;
+          };
+          fidget-nvim.enable = true; # notifications/ ui bottom right
           highlight-undo.enable = true;
           indent-blankline.enable = true;
           nvim-cursorline = {
             enable = true;
             setupOpts.line_timeout = 0;
           };
+          nvim-scrollbar.enable = true;
+          nvim-web-devicons.enable = true;
+          rainbow-delimiters.enable = true;
+          tiny-devicons-auto-colors.enable = true;
         };
         statusline = {
           lualine = {
@@ -89,7 +101,8 @@ with lib; {
         theme = {
           enable = true;
           #name = "darker";
-          style = "darker";
+          style = "night";
+          name = "tokyonight";
           transparent = true;
         };
         filetree = {
@@ -131,7 +144,10 @@ with lib; {
             hop.enable = true;
             leap.enable = true;
           };
-          images = { image-nvim.enable = false; }; # Does not work in Konsole
+          images = {
+            image-nvim.enable = true;
+            image-nvim.setupOpts.backend = "kitty";
+          }; # Does not work in Konsole
         };
         notes = {
           #obsidian.enable =
@@ -154,8 +170,8 @@ with lib; {
           };
         };
         ui = {
-          borders.enable = true;
-          noice.enable = true;
+          # borders.enable = true;
+          noice.enable = false;
           colorizer.enable = false;
           modes-nvim.enable = false; # the theme looks terrible with catppuccin
           illuminate.enable = true;
@@ -179,12 +195,12 @@ with lib; {
           chatgpt.enable = false;
           copilot = {
             enable = false;
-            cmp.enable = true;
+            cmp.enable = false;
           };
         };
         session = { nvim-session-manager.enable = true; };
-        gestures = { gesture-nvim.enable = true; };
-        comments = { comment-nvim.enable = true; };
+        gestures = { gesture-nvim.enable = true; }; # left mouse button + drag
+        comments = { comment-nvim.enable = true; }; # gcc, gbc
         presence = { neocord.enable = false; };
       };
     };
