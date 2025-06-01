@@ -4,7 +4,13 @@ let cfg = config.link.code;
 in {
   options.link.code.enable = mkEnableOption "activate vscodium";
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ gdb nil nixd nixfmt-classic ];
+    home.packages = with pkgs; [
+      gdb
+      nil
+      nixd
+      nixfmt-classic
+      vscode-langservers-extracted
+    ];
     programs.vscode = {
       enable = true;
       package = pkgs.vscodium;

@@ -6,6 +6,26 @@ with lib; {
   #   plugins = with pkgs.vimPlugins; [ yankring vim-nix ];
   # };
   config = {
+    programs.helix = {
+      enable = true;
+      settings = {
+        theme = "base16_transparent";
+        editor.lsp.display-messages = true;
+        editor.cursor-shape = {
+          insert = "bar";
+          normal = "block";
+          select = "underline";
+        };
+      };
+      languages = {
+        language = [{
+          name = "nix";
+          auto-format = true;
+          formatter.command =
+            "${pkgs.nixfmt-classic}/bin/nixfmt";
+        }];
+      };
+    };
     programs.nvf = {
       enable = true;
       # your settings need to go into the settings attribute set
