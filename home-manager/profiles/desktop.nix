@@ -14,6 +14,16 @@ with lib; {
       };
     };
     programs = {
+      wezterm = {
+        enable = true;
+        enableZshIntegration = true;
+        extraConfig = ''
+          return {
+            font = wezterm.font("FiraCode Nerd Font"),
+            hide_tab_bar_if_only_one_tab = true,
+          }
+        '';
+      };
       kitty = {
         enable = true;
         enableGitIntegration = true;
