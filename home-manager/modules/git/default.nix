@@ -21,8 +21,9 @@
       # diff-so-fancy.enable = true;
       lfs.enable = true;
     };
-    git-cliff.enable = true;
-    gitui.enable = true;
+    git-cliff.enable = true; # changelog generator
+    # gitui.enable = true;
+    lazygit = { enable = true; };
     gh.gitCredentialHelper.enable = true;
   };
 }
