@@ -36,6 +36,7 @@
     # zola.enable = true;
     service-ports-expose = true;
     services = {
+      netbox.enable = true;
       # tt-rss.enable = true;
       stirling-pdf.enable = true;
       searx.enable = true;
