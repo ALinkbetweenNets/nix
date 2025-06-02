@@ -27,7 +27,10 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    sops.secrets."radicale" = { };
+    sops.secrets."radicale" = {
+      owner = "radicale";
+      group = "radicale";
+    };
     services = {
       radicale = {
         enable = true;
