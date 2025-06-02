@@ -167,6 +167,7 @@
     #     192.168.122.200 snvnarr
     #   '';
   };
+  services.nextcloud.hostName = lib.mkForce config.networking.fqdn;
   # fileSystems."/home/lmh01/jellyfin-data" = {
   #   device = "/var/lib/jellyfin-data";
   #   options = [ "bind" ];
