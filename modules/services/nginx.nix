@@ -39,6 +39,7 @@ in {
       };
     };
     services.nginx = {
+      # additionalModules = with pkgs.nginxModules; [ env ];
       enable = true;
       recommendedZstdSettings = true;
       recommendedGzipSettings = true;
