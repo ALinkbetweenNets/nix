@@ -31,7 +31,12 @@ in {
       owner = "netbox";
       group = "netbox";
     };
-    services = { netbox = { enable = true; }; };
+    services = {
+      netbox = {
+        enable = true;
+        package = pkgs.netbox;
+      };
+    };
     networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
       mkIf cfg.expose-port [ cfg.port ];
     systemd.services.netbox-backup.environment.BACKUP = "dump";
