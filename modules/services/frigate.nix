@@ -33,9 +33,14 @@ in {
       settings = {
         cameras = {
           "pizero1" = {
+            detect={
+              width = 640;
+              height = 480;
+              fps = 5;
+            };
             ffmpeg.inputs = [{
-              path = "192.168.123.15";
-              roles = [ "detect" "record" ];
+              path = "/dev/video0";
+              roles = [ "detect" ];
             }];
           };
         };
