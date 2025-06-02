@@ -35,6 +35,7 @@ in {
       netbox = {
         enable = true;
         package = pkgs.netbox;
+        secretKeyFile = config.sops.secrets."netbox".path;
       };
     };
     networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
