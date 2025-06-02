@@ -5,6 +5,10 @@
       extraConfig = {
         pull.rebase = false;
         init.defaultBranch = "main";
+        delta.navigate = true;
+        delta.dark = true;
+        merge.conflictstyle = "zdiff3";
+
       };
       userEmail = "alinkbetweennets@protonmail.com";
       userName = "ALinkbetweenNets";
