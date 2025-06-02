@@ -9,6 +9,7 @@
   system.autoUpgrade.enable = lib.mkForce false;
   link = {
     wg-link.enable = true;
+    wg-link.address = "10.5.5.2/24";
     plymouth.enable = true;
     # hyprland.enable = true;
     sops = true;

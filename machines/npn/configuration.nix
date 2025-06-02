@@ -7,6 +7,8 @@
   link = {
     common.enable = true;
     server.enable = true;
+    wg-link.enable = true;
+    wg-link.address = "10.5.5.6/24";
     # grub.enable = true;
     # systemd-boot.enable = false;
     # fs.zfs.enable = true;
