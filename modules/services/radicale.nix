@@ -43,8 +43,11 @@ in {
               "127.0.0.1:5232"
               "[::1]:5232"
             ];
+            max_connections = 5;
+            timeout=30;
           };
           auth = {
+            delay=604800; # 7 days
             type = "htpasswd";
             htpasswd_filename = config.sops.secrets."radicale".path;
             htpasswd_encryption = "bcrypt";
