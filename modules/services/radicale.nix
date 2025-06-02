@@ -22,11 +22,12 @@ in {
     };
     port = mkOption {
       type = types.int;
-      default = 8123;
+      default = 5232;
       description = "port to run the application on";
     };
   };
   config = mkIf cfg.enable {
+    sops.secrets."radicale" = { };
     services = {
       radicale = {
         enable = true;
@@ -42,29 +43,28 @@ in {
           };
           auth = {
             type = "htpasswd";
-            htpasswd_filename = "/etc/radicale/users";
+            htpasswd_filename = config.sops.secrets."radicale".path;
             htpasswd_encryption = "bcrypt";
           };
-          storage = { filesystem_folder = "/var/lib/radicale/collections"; };
-
+          # storage = { filesystem_folder = "/var/lib/radicale/collections"; };
         };
-        rights = {
-          root = {
-            user = ".+";
-            collection = "";
-            permissions = "R";
-          };
-          principal = {
-            user = ".+";
-            collection = "{user}";
-            permissions = "RW";
-          };
-          calendars = {
-            user = ".+";
-            collection = "{user}/[^/]+";
-            permissions = "rw";
-          };
-        };
+        # rights = {
+        #   root = {
+        #     user = ".+";
+        #     collection = "";
+        #     permissions = "R";
+        #   };
+        #   principal = {
+        #     user = ".+";
+        #     collection = "{user}";
+        #     permissions = "RW";
+        #   };
+        #   calendars = {
+        #     user = ".+";
+        #     collection = "{user}/[^/]+";
+        #     permissions = "rw";
+        #   };
+        # };
       };
     };
     networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =

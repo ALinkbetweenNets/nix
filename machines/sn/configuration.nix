@@ -38,6 +38,7 @@
     # zola.enable = true;
     service-ports-expose = true;
     services = {
+      radicale.enable = true;
       netbox.enable = true;
       # tt-rss.enable = true;
       stirling-pdf.enable = true;
