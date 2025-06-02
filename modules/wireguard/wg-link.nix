@@ -3,6 +3,7 @@ with lib;
 let cfg = config.link.wg-link;
 in {
   options.link.wg-link.enable = mkEnableOption "activate wg-link";
+  options.link.wg-link.address = mkOption { type = types.str; };
   config = mkIf cfg.enable {
     sops.secrets."wireguard-preshared" = { };
     # umask 077
@@ -30,7 +31,7 @@ in {
     networking.wg-quick.interfaces = {
       wg0 = {
         address = [
-          "10.5.5.2/24"
+          cfg.address
           # "fdc9:281f:04d7:9ee9::2/64"
         ];
         dns = [
