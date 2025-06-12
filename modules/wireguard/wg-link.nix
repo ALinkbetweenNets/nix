@@ -11,23 +11,12 @@ in {
     # wg genkey > ~/.wg-keys/private
     # wg pubkey < ~/.wg-keys/private > ~/.wg-keys/public
 
-    # networking.extraHosts =
-    #   ''
-    #     10.0.1.1 linkserver.org
-    #     10.0.1.1 jitsi.linkserver.org
-    #     10.0.1.1 jellyfin.linkserver.org
-    #     10.0.1.1 jellyseerr.linkserver.org
-    #     10.0.1.1 gitea.linkserver.org
-    #     10.0.1.1 paperless.linkserver.org
-    #     10.0.1.1 hedgedoc.linkserver.org
-    #     10.0.1.1 alinkbetweennets
-    #     10.0.1.1 nextcloud.linkserver.org
-    #     10.0.1.1 matrix.linkserver.org
-    #     10.0.1.1 onlyoffice.linkserver.org
-    #     10.0.1.1 vaultwarden.linkserver.org
-    #     10.0.1.1 element.linkserver.org
-    #     10.0.1.1 outline.linkserver.org
-    #   '';
+    networking.extraHosts = ''
+      10.5.5.1 c
+      10.5.5.2 f
+      10.5.5.5 s
+      10.5.5.6 n
+    '';
     networking.wg-quick.interfaces = {
       wg0 = {
         address = [
