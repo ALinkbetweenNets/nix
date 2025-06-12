@@ -28,6 +28,12 @@
     internalIPs = [ "10.10.10.63/32" "100.87.16.37/32" ];
     forwardPorts = [
       {
+        sourcePort = 25565;
+        proto = "tcp";
+        destination = "${config.link.serviceHost}:25565";
+        loopbackIPs = [ "100.87.16.37" ];
+      }
+      {
         sourcePort = 51820;
         proto = "udp";
         destination = "10.10.10.63:51820";
