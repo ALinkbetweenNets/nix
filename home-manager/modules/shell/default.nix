@@ -247,7 +247,7 @@ in {
       # options = [ "--cmd cd" ];
       enableZshIntegration = true;
     };
-    thefuck.enable = true;
+    pay-respects.enable = true;
     watson.enable = true;
     # carapace.enable = true; # breaks autocompletion actually
     dircolors.enable = true;
