@@ -19,6 +19,7 @@ in {
     services.rpcbind.enable = true; # for NFS
     # services.pcscd.enable = true; # smart card support
     services = {
+      #teamviewer.enable = true;
       mullvad-vpn = {
         enable = true;
         package = pkgs.mullvad-vpn; # gui version
