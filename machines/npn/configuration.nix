@@ -168,7 +168,22 @@
     #   '';
   };
   services.nextcloud.hostName = lib.mkForce config.networking.fqdn;
-
+  # services.postgresql =  {
+  #     enable = true;
+  #     # ensureDatabases = mkIf cfg.database.createDB [ cfg.database.name ];
+  #     # ensureUsers = mkIf cfg.database.createDB [
+  #     #   {
+  #     #     name = cfg.database.user;
+  #     #     ensureDBOwnership = true;
+  #     #     ensureClauses.login = true;
+  #     #   }
+  #     # ];
+  #     extensions = ps: with ps; [ pgvecto-rs ];
+  #     settings = {
+  #       shared_preload_libraries = [ "vectors.so" ];
+  #       search_path = "\"$user\", public, vectors";
+  #     };
+  #   };
   environment.systemPackages = with pkgs; [
     rclone
     (let
@@ -177,6 +192,7 @@
       newPostgres = pkgs.postgresql_16.withPackages (pp:
         [
           # pp.plv8
+          pp.pgvecto-rs
         ]);
       cfg = config.services.postgresql;
     in pkgs.writeScriptBin "upgrade-pg-cluster" ''
@@ -202,7 +218,6 @@
         "$@"
     '')
   ];
-
 
   # fileSystems."/home/lmh01/jellyfin-data" = {
   #   device = "/var/lib/jellyfin-data";
