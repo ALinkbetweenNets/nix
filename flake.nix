@@ -197,32 +197,16 @@
           };
 
         };
-      homeConfigurations = {
-        convertible = { pkgs, lib, ... }: {
-          imports = [ ./home-manager/profiles/convertible.nix ]
-            ++ (builtins.attrValues self.homeManagerModules);
+      homeConfigurations = builtins.listToAttrs (map (filename: {
+        name =
+          builtins.substring 0 ((builtins.stringLength filename) - 4) filename;
+        value = { pkgs, lib, username, ... }: {
+          imports = [
+            "${./.}/home-manager/profiles/common.nix"
+            "${./.}/home-manager/profiles/${filename}"
+          ] ++ (builtins.attrValues self.homeManagerModules);
         };
-        desktop = { pkgs, lib, ... }: {
-          imports = [ ./home-manager/profiles/desktop.nix ]
-            ++ (builtins.attrValues self.homeManagerModules);
-        };
-        laptop = { pkgs, lib, ... }: {
-          imports = [ ./home-manager/profiles/laptop.nix ]
-            ++ (builtins.attrValues self.homeManagerModules);
-        };
-        tower = { pkgs, lib, ... }: {
-          imports = [ ./home-manager/profiles/tower.nix ]
-            ++ (builtins.attrValues self.homeManagerModules);
-        };
-        gaming = { pkgs, lib, ... }: {
-          imports = [ ./home-manager/profiles/gaming.nix ]
-            ++ (builtins.attrValues self.homeManagerModules);
-        };
-        server = { pkgs, lib, ... }: {
-          imports = [ ./home-manager/profiles/server.nix ]
-            ++ (builtins.attrValues self.homeManagerModules);
-        };
-      };
+      }) (builtins.attrNames (builtins.readDir ./home-manager/profiles)));
       homeManagerModules = builtins.listToAttrs (map (name: {
         inherit name;
         value = import (./home-manager/modules + "/${name}");
