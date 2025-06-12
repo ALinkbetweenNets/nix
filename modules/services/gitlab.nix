@@ -60,6 +60,18 @@ in {
         owner = "gitlab";
         group = "gitlab";
       };
+      "gitlab/activeRecordPrimary" = {
+        owner = "gitlab";
+        group = "gitlab";
+      };
+      "gitlab/activeRecordDeterministic" = {
+        owner = "gitlab";
+        group = "gitlab";
+      };
+      "gitlab/activeRecordSalt" = {
+        owner = "gitlab";
+        group = "gitlab";
+      };
     };
     services = {
       nginx = {
@@ -85,6 +97,12 @@ in {
         initialRootPasswordFile =
           config.sops.secrets."gitlab/initial-root".path;
         secrets = {
+          activeRecordSaltFile =
+            config.sops.secrets."gitlab/activeRecordSalt".path;
+          activeRecordPrimaryKeyFile =
+            config.sops.secrets."gitlab/activeRecordPrimary".path;
+          activeRecordDeterministicKeyFile =
+            config.sops.secrets."gitlab/activeRecordDeterministic".path;
           secretFile = config.sops.secrets."gitlab/secret".path;
           otpFile = config.sops.secrets."gitlab/otp".path;
           dbFile = config.sops.secrets."gitlab/db".path;
