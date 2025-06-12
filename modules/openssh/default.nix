@@ -7,6 +7,8 @@ in {
     # networking.firewall.allowedTCPPorts = [ 2522 ];
     networking.firewall.interfaces."tailscale0".allowedTCPPorts =
       mkIf config.link.tailscale.enable [ 2522 ];
+    networking.firewall.interfaces."wg0".allowedTCPPorts =
+      mkIf config.link.wg-link.enable [ 2522 ];
     networking.firewall.allowedTCPPorts =
       mkIf (!config.link.sops || !config.link.tailscale.enable) [ 2522 ];
     # Enable the OpenSSH daemon.
