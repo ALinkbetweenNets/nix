@@ -17,7 +17,10 @@ in {
         "iceportal.de" = "172.18.1.110";
         "pass.telekom.de" = "109.237.176.33";
         "smokeping.lounge.rocks" = "192.168.5.21";
-        # "sn.link" = "10.0.1.1";
+        "c" = "10.5.5.1";
+        "f" = "10.5.5.2";
+        "n" = "10.5.5.6";
+        "s" = "10.5.5.5";
       };
       description = ''
         Custom DNS A records
