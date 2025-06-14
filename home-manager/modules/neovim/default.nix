@@ -11,6 +11,7 @@ with lib; {
       settings = {
         theme = "base16_transparent";
         editor.lsp.display-messages = true;
+        editor.soft-wrap.enable = true;
         editor.cursor-shape = {
           insert = "bar";
           normal = "block";
@@ -21,8 +22,7 @@ with lib; {
         language = [{
           name = "nix";
           auto-format = true;
-          formatter.command =
-            "${pkgs.nixfmt-classic}/bin/nixfmt";
+          formatter.command = "${pkgs.nixfmt-classic}/bin/nixfmt";
         }];
       };
     };
