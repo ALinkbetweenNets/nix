@@ -40,6 +40,7 @@ in {
           gruntfuggly.todo-tree
           jnoortheen.nix-ide
           mkhl.direnv
+          myriad-dreamin.tinymist
           ms-vscode-remote.remote-ssh
           redhat.vscode-xml
           redhat.vscode-yaml
