@@ -45,42 +45,64 @@ with lib; {
           lightbulb.enable = true;
           # lsplines.enable = true;
           lspsaga.enable = true;
-          lspSignature.enable = true;
+          lspSignature.enable = false; # For blink
+          lspkind.enable=true;
           nvim-docs-view.enable = true;
           otter-nvim.enable = true;
           trouble.enable = true;
         };
-        debugger = {
-          nvim-dap = {
+        autocomplete = {
+          blink-cmp = {
             enable = true;
-            ui.enable = true;
+            friendly-snippets.enable = true;
+            setupOpts.signature.enabled = true;
           };
         };
+        autopairs.nvim-autopairs.enable = false; # Creates closing brackets when you enter opening bracket
+        debugger.nvim-dap = {
+          enable = true;
+          ui.enable = true;
+        };
+        lazy.enable=true; # Lazy Plugin loading
+        diagnostics.nvim-lint.enable = true;
         languages = {
           enableFormat = true;
           enableTreesitter = true;
           enableExtraDiagnostics = true;
-          nix.enable = true;
-          nix.format.type = "nixfmt";
-          python.enable = true;
+          rust = {
+            crates.enable=true;
+          };
+          bash.enable=true;
+          go.enable=true;
+          html.enable=true;
+          php.enable=true;
+          python = {
+            lsp.server="pyright";
+            enable = true;
+          };
+          sql.enable=true;
+          ts.enable=true;
+          nix = {
+            enable = true;
+            format.type = "nixfmt";
+          };
           markdown.enable = true;
-          html.enable = true;
           css.enable = true;
-          sql.enable = true;
-          bash.enable = true;
+          typst.enable = true;
           clang = {
             enable = true;
             lsp.server = "clangd";
           };
         };
+        formatter.conform-nvim.enable=true;
         visuals = {
           cellular-automaton.enable = true; # fml
           cinnamon-nvim = {
-            enable = true; # smooth scroll
+            enable = false; # smooth scroll
             setupOpts.keymaps.basic = true;
             setupOpts.keymaps.extra = true;
           };
-          fidget-nvim.enable = true; # notifications/ ui bottom right
+          fidget-nvim.enable = false; # notifications/ ui bottom right
           highlight-undo.enable = true;
           indent-blankline.enable = true;
           nvim-cursorline = {
@@ -106,13 +128,26 @@ with lib; {
           transparent = true;
         };
         filetree = {
-          nvimTree = {
-            enable = true;
-            openOnSetup = false;
+          neo-tree = {
+            enable = false;
+              setupOpts = {
+              close_if_last_window = true;
+              enable_diagnostics = true;
+              enable_git_status = true;
+              enable_modified_markers = true;
+              open_files_in_last_window = true;
+              git_async_status.enable=true;
+              enable_cursor_hijack=true;
+              filesystem.hijack_netrw_behavior="disabled";
+            };
           };
         };
         tabline = { nvimBufferline.enable = true; };
-        treesitter.context.enable = true;
+        treesitter = {
+          enable=true;
+          highlight.enable=true;
+          context.enable = true;
+        };
         binds = {
           whichKey.enable = true;
           cheatsheet.enable = true;
@@ -120,29 +155,34 @@ with lib; {
         telescope.enable = true;
         git = {
           enable = true;
-          gitsigns.enable = true;
-          gitsigns.codeActions.enable = true; # throws an annoying debug message
+          gitsigns = {
+            enable = true;
+            codeActions.enable = true;
+          }; # throws an annoying debug message
         };
         minimap = {
-          minimap-vim.enable = true;
+          # minimap-vim.enable = true;
           codewindow.enable =
             true; # lighter, faster, and uses lua for configuration
         };
         dashboard = {
-          dashboard-nvim.enable = true;
+          # dashboard-nvim.enable = true;
           alpha.enable = true;
         };
+        searchCase = "ignore";
         notify = { nvim-notify.enable = true; };
         projects = { project-nvim.enable = true; };
         utility = {
+          yazi-nvim.enable=true;
           ccc.enable = true;
-          vim-wakatime.enable = true;
+          # vim-wakatime.enable = true;
           icon-picker.enable = true;
           surround.enable = true;
           diffview-nvim.enable = true;
           motion = {
             hop.enable = true;
             leap.enable = true;
+            precognition.enable=false;
           };
           images = {
             image-nvim.enable = true;
@@ -166,17 +206,34 @@ with lib; {
         terminal = {
           toggleterm = {
             enable = true;
+            mappings.open = "<c-t>";
+            setupOpts.winbar.enable = true;
             lazygit.enable = true;
           };
         };
+        clipboard = {
+          enable=true;
+          providers.wl-copy.enable=true;
+        };
+        utility.outline.aerial-nvim.enable=true;
         ui = {
-          # borders.enable = true;
+          borders = {
+            enable = true;
+            plugins = {
+              fastaction = {
+                enable = true;
+                style = "rounded";
+              };
+              lsp-signature.enable = false;
+              nvim-cmp.enable = true;
+            };
+          };
           noice.enable = false;
-          colorizer.enable = false;
+          colorizer.enable = true;
           modes-nvim.enable = false; # the theme looks terrible with catppuccin
           illuminate.enable = true;
           breadcrumbs = {
-            enable = true;
+            enable = false;
             navbuddy.enable = true;
           };
           smartcolumn = {
@@ -191,6 +248,12 @@ with lib; {
           };
           fastaction.enable = true;
         };
+        maps.normal={
+           "<leader>e" = {
+            desc = "Toogle Neotree";
+            action = "<cmd>Neotree toggle reveal<cr>";
+          };
+        };
         assistant = {
           chatgpt.enable = false;
           copilot = {
@@ -198,10 +261,10 @@ with lib; {
             cmp.enable = false;
           };
         };
-        session = { nvim-session-manager.enable = true; };
-        gestures = { gesture-nvim.enable = true; }; # left mouse button + drag
-        comments = { comment-nvim.enable = true; }; # gcc, gbc
-        presence = { neocord.enable = false; };
+        session.nvim-session-manager.enable = true; 
+        gestures.gesture-nvim.enable = true;  # left mouse button + drag
+        comments.comment-nvim.enable = true;  # gcc, gbc
+        presence.neocord.enable = false; 
       };
     };
   };
