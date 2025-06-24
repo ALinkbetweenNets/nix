@@ -18,7 +18,7 @@ in {
       10.5.5.6 n
     '';
     networking.wg-quick.interfaces = {
-      wg0 = {
+      wg-link = {
         address = [
           cfg.address
           # "fdc9:281f:04d7:9ee9::2/64"
