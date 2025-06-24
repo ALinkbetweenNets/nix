@@ -168,6 +168,10 @@ in {
       };
       profiles.default.keybindings = [
         {
+          key = "ctrl+alt+f";
+          command = "leap.search";
+        }
+        {
           key = "ctrl+c";
           command = "editor.action.clipboardCopyAction";
           when = "textInputFocus";
