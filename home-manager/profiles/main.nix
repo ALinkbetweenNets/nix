@@ -83,7 +83,9 @@ with lib; {
       };
     };
     fonts.fontconfig.enable = true;
+
     home.packages = with pkgs; [
+      ripgrep-all # also search pdfs, ebooks, office docs, zip, tar.gz
       kdePackages.plasma-browser-integration
       teams-for-linux
       virt-viewer # spice client for remote-viewer
@@ -149,7 +151,9 @@ with lib; {
       # planify
       xkcdpass
       ltex-ls # for vscode spell checking using languagetool
-      #piper-tts # text to speech synthesizer with models (download https://huggingface.co/rhasspy/piper-voices/tree/v1.0.0/en/en_US/lessac/high onnx and json to Downloads folder)
+      ollama
+      piper-tts # text to speech synthesizer with models (download https://huggingface.co/rhasspy/piper-voices/tree/v1.0.0/en/en_US/lessac/high onnx and json to Downloads folder)
+      alsa-utils
       gnome-disk-utility
       #gparted
       # vagrant # quick tmp vm creation # broken

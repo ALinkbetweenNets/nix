@@ -28,6 +28,11 @@ in {
     };
     environment.systemPackages = with pkgs;
       [
+        ripgrep-all
+        unzip
+        gnutar
+        xz
+        bzip2
         uutils-coreutils
         adwaita-icon-theme
         wifi-qr

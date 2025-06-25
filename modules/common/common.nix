@@ -134,17 +134,15 @@ in {
       curl
       tree
       ## FS Tools
-      unzip
-      gnutar
-      xz
-      bzip2
+      # unzip
+      # gnutar
+      # xz
+      # bzip2
       p7zip
-      netcat-openbsd
       # netcat
       # netcat-gnu
       fzf
       gnugrep
-      ripgrep-all # also search pdfs, ebooks, office docs, zip, tar.gz
       unixtools.watch
       wireguard-tools
       dnsutils
