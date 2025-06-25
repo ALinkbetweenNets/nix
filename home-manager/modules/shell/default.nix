@@ -134,7 +134,6 @@ in {
           "cd /home/l/nix;git pull;nixos-rebuild switch --sudo --flake /home/l/nix | nom";
         nrb = "nixos-rebuild switch --sudo --flake /home/l/nix";
         ngc = "sudo nix-collect-garbage -d";
-        lolly = "cd /home/l/nix;nix run .#lollypops -- ";
         # discord = "nohup discord --use-gl=desktop &";
         netdiscover = "sudo netdiscover";
         less = "less -r";

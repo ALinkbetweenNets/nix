@@ -118,9 +118,4 @@
   #   cpuSerialNumber =
   #     "00A7-0F41-0000-0000-0000-0000"; # Replace with your processor's serial number
   # };
-  lollypops.deployment = {
-    local-evaluation = true;
-    ssh = { user = "l"; };
-    sudo.enable = true;
-  };
 }

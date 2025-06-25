@@ -33,5 +33,4 @@
     useRoutingFeatures = "server";
     extraUpFlags = [ "--advertise-exit-node" ];
   };
-  lollypops.deployment = { local-evaluation = true; };
 }
