@@ -15,10 +15,6 @@
     # Pure Nix flake utility functions
     # https://github.com/numtide/flake-utils
     flake-utils.url = "github:numtide/flake-utils";
-    lollypops = {
-      url = "github:pinpox/lollypops";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -99,8 +95,6 @@
       inputs = {
         disko.follows = "disko";
         home-manager.follows = "home-manager";
-        lollypops.follows = "lollypops";
-        nixos-hardware.follows = "nixos-hardware";
         nixpkgs.follows = "nixpkgs";
       };
     };
@@ -135,7 +129,6 @@
           inherit (pkgs.link) candy-icon-theme;
         });
       apps = forAllSystems (system: {
-        lollypops = lollypops.apps.${system}.default { configFlake = self; };
       });
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
@@ -161,7 +154,6 @@
               inherit self;
               #config.facter.reportPath = ./facter.json;
             })
-            lollypops.nixosModules.lollypops
             disko.nixosModules.disko
             sops-nix.nixosModules.sops
             grub2-themes.nixosModules.default
@@ -190,7 +182,6 @@
               (import "${./.}/machines/pppn/configuration.nix" {
                 inherit self;
               })
-              lollypops.nixosModules.lollypops
               disko.nixosModules.disko
               sops-nix.nixosModules.sops
             ];

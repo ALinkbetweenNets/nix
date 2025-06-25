@@ -48,8 +48,4 @@
   #   useRoutingFeatures = "server";
   #   extraUpFlags = [ "--advertise-exit-node" ];
   # };
-  lollypops.deployment = {
-    local-evaluation = true;
-    ssh.host = "192.168.122.5";
-  };
 }
