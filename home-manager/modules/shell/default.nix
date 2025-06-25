@@ -113,6 +113,10 @@ in {
         fhs-vscode = pkgs.vscode.fhsWithPackages
           (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
       in {
+        rep = "/home/l/s/repeat.sh";
+        ai = "/home/l/s/ai.sh";
+        ais = "/home/l/s/ais.sh";
+        tts = "/home/l/s/speak.sh";
         countlinesofcode = "nix-shell -p tokei --run tokei";
         teams = ''
           cd ~/w/image && tmux new -s teams-npx -d 'sudo npx http-server -p 80 --cors "*" -g' && sleep 10 && tmux new -s teams -d 'teams-for-linux --customBGServiceIgnoreMSDefaults=true --isCustomBackgroundEnabled=true --customBGServiceURL=http://localhost'
