@@ -516,13 +516,5 @@
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBu+WcpENdr7FaCIwj6WsinGnykIPV/tnIyrfEHSeU+E root@sn"
   ];
-  lollypops.deployment = {
-    local-evaluation = true;
-    ssh.host = "nc.monitor-banfish.ts.net";
-    ssh.user = "l";
-    ssh.opts = [ "-p 2522" ];
-    sudo.enable = true;
-  };
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

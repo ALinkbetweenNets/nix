@@ -247,18 +247,6 @@
   #   # loader.grub.device = "/dev/sdd";
   #   zfs.extraPools = [ "wdp" ];
   # };
-  # nix run .\#lollypops -- sn:rebuild
-  lollypops.deployment = {
-    # local-evaluation = true;
-    ssh = {
-      host = "sn.monitor-banfish.ts.net";
-      user = "l";
-    };
-    # sudo.enable = true;
-    ssh.opts = [ "-p 2522" ];
-    sudo.enable = true;
-  };
-
   # Supress systemd units that don't work because of LXC.
   # https://blog.xirion.net/posts/nixos-proxmox-lxc/#configurationnix-tweak
   systemd.suppressedSystemUnits = [
