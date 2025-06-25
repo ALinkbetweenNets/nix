@@ -261,15 +261,4 @@
   #   # loader.grub.device = "/dev/sdd";
   #   zfs.extraPools = [ "wdp" ];
   # };
-  # nix run .\#lollypops -- sn:rebuild
-  lollypops.deployment = {
-    # local-evaluation = true;
-    ssh = {
-      host = "npn.monitor-banfish.ts.net";
-      user = "l";
-    };
-    # sudo.enable = true;
-    ssh.opts = [ "-p 2522" ];
-    sudo.enable = true;
-  };
 }

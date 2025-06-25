@@ -41,9 +41,4 @@
     extraGroups = [ "dialout" "feedbackd" "networkmanager" "video" "wheel" ];
   };
   hardware.enableAllFirmware = true;
-  lollypops.deployment = {
-    local-evaluation = true;
-    ssh = { user = "l"; };
-    sudo.enable = true;
-  };
 }

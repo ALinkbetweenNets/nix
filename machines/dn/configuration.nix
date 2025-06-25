@@ -61,12 +61,6 @@
     hostId = "007f0200";
     interfaces."${config.link.eth}".wakeOnLan.enable = true;
   };
-  # nix run .\#lollypops -- meet:rebuild
-  lollypops.deployment = {
-    local-evaluation = true;
-    ssh = { user = "l"; };
-    sudo.enable = true;
-  };
   # services.xserver.wacom.enable = true;
   # environment.systemPackages = with pkgs; [ wacomtablet xf86_input_wacom ];
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];

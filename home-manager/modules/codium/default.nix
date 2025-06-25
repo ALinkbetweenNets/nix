@@ -184,15 +184,15 @@ in {
           key = "ctrl+[Backquote]";
           command = "terminal.focus";
         }
-        {
-          key = "ctrl+shift+d";
-          command = "workbench.action.terminal.sendSequence";
-          args = {
-            text = ''
-              cd /home/l/nix;nix run .\#lollypops -- vn
-            '';
-          };
-        }
+        # {
+        #   key = "ctrl+shift+d";
+        #   command = "workbench.action.terminal.sendSequence";
+        #   args = {
+        #     text = ''
+        #       cd /home/l/nix;nix run .\#lollypops -- vn
+        #     '';
+        #   };
+        # }
       ];
     };
   };
