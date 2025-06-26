@@ -1,4 +1,3 @@
-{ self, ... }:
 { pkgs, lib, config, flake-self, home-manager, modulesPath, ... }: {
   imports =
     [ home-manager.nixosModules.home-manager ./hardware-configuration.nix ];
