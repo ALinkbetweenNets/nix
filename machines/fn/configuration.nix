@@ -1,4 +1,3 @@
-{ self, ... }:
 { pkgs, lib, config, flake-self, home-manager, ... }: {
   imports = [
     ./hardware-configuration.nix
@@ -81,7 +80,7 @@
       RestartSec = "2s";
     };
     script = config.system.activationScripts.setupSecrets.text;
-   };
+  };
   hardware.enableRedistributableFirmware = true;
   home-manager.users.l = flake-self.homeConfigurations.laptop;
   boot = {
@@ -112,6 +111,7 @@
     hostName = "fn";
     domain = "monitor-banfish.ts.net";
   };
+  clan.core.networking.targetHost = config.networking.hostName;
   services.languagetool.enable = true;
   # services.ucodenix = {
   #   enable = true;

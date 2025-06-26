@@ -1,4 +1,3 @@
-{ self, ... }:
 { pkgs, lib, config, modulesPath, flake-self, home-manager, nixos-hardware
 , nixpkgs, ... }: {
 
