@@ -85,6 +85,7 @@ with lib; {
     fonts.fontconfig.enable = true;
 
     home.packages = with pkgs; [
+      openai-whisper # transcription
       ripgrep-all # also search pdfs, ebooks, office docs, zip, tar.gz
       kdePackages.plasma-browser-integration
       teams-for-linux
