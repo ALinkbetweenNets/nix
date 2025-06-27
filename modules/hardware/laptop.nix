@@ -17,10 +17,10 @@ in {
     hardware.bluetooth.enable = true;
     services = {
       libinput.enable = true;
-      power-profiles-daemon.enable = lib.mkForce false;
+      # power-profiles-daemon.enable = lib.mkForce false;
       tlp.enable = false;
       auto-cpufreq = {
-        enable = true; # TLP replacement
+        enable = false; # TLP replacement
         settings = {
           charger = {
             governor = "performance";
