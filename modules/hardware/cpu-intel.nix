@@ -4,6 +4,7 @@ let cfg = config.link.cpu-intel;
 in {
   options.link.cpu-intel.enable = mkEnableOption "activate cpu-intel";
   config = mkIf cfg.enable {
+    services.thermald.enable = true;
     boot.initrd.kernelModules = [ "i915" ];
     boot.kernelModules = [ "kvm-intel" ];
     boot.extraModprobeConfig = "options kvm_intel nested=1";
