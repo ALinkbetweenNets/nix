@@ -47,6 +47,7 @@
       #   # mailserver.enable = true;
       #   cryptpad.enable = true;
       ollama.enable = true;
+      ollama.expose-port = true;
       keycloak.enable = true;
       grafana.enable = true;
       prometheus.enable = true;
