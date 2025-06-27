@@ -17,7 +17,6 @@ in {
       # hardware.enableRedistributableFirmware = true;
       fwupd.enable =
         config.link.systemd-boot.enable; # fwupd does not work in BIOS mode
-      thermald.enable = true;
       smartd.enable = lib.mkDefault true;
       ddccontrol.enable = true; # Control External Monitor Brightness
       udisks2.enable = true;
