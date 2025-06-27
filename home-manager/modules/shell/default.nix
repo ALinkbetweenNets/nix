@@ -22,7 +22,7 @@ in {
         #   success_symbol = "[»](bold green)";
         #   error_symbol = "[×](bold red) ";
         # };
-        cmd_duration.show_notifications = true;
+        # cmd_duration.show_notifications = true;
         directory = {
           # style = "fg:#e3e5e5 bg:#769ff0";
           # format = "[ $path ]($style)";
