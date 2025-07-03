@@ -87,6 +87,16 @@
     initrd.systemd.enable = true;
     kernelParams = [ "quiet" ];
     binfmt.emulatedSystems = [ "aarch64-linux" ];
+    kernel.sysctl."kernel.sysrq" = 1;
+    # Alt+FN+S+key (on other devices Alt+Print+key)
+    # h -> help (Output in journal)
+    # f -> kernel OOM Killer
+    # s -> sync data to disk before reset (REISUB (each key alt+fn+s+key in order) -> Safe reboot)
+    # e -> SIGTERM to all processes except PID 0
+    # i -> SIGKILL to all processes except PID 0
+    # b -> Reboot
+    # u -> Remount everything as read only
+    # r -> exit Keyboard Raw mode (in case of dead X/Wayland and frozen terminal/ non responsive keyboard)
   };
   #powerManagement.scsiLinkPolicy = "med_power_with_dipm";
   systemd.extraConfig = "DefaultLimitNOFILE=2048";
