@@ -35,7 +35,6 @@ in {
       nh = {
         enable = true;
         flake = "/home/l/nix/";
-        clean.enable=true;
       };
       gnupg.agent = {
         enable = true;
