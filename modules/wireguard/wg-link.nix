@@ -33,6 +33,7 @@ in {
           presharedKeyFile = config.sops.secrets."wireguard-preshared".path;
           allowedIPs = [
             "10.5.5.0/24"
+            # "0.0.0.0/0"
             # "::/0"
           ];
           endpoint = "alinkbetweennets.de:51825";
