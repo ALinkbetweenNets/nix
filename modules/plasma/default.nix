@@ -7,7 +7,7 @@ in {
     services = {
       displayManager.sddm = {
         enable = true;
-        # wayland.enable = true;
+        wayland.enable = true;
         # theme = "/home/l/aerial-sddm-theme/";
         # theme= "breeze";
       };
