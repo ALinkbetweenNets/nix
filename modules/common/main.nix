@@ -29,6 +29,17 @@ in {
         enable = true;
       };
     };
+    environment.wordlist.enable=true;
+    environment.wordlist.lists={
+      WORDLIST = [ "${pkgs.scowl}/share/dict/words.txt" "${pkgs.seclists}/share/wordlists/seclists" ];
+      AUGMENTED_WORDLIST = [
+        "${pkgs.scowl}/share/dict/words.txt"
+        "${pkgs.scowl}/share/dict/words.variants.txt"
+        (builtins.toFile "extra-words" ''
+      desynchonization
+      oobleck'')
+      ];
+    };
     environment.systemPackages = with pkgs; [
       flake-self.inputs.nsearch.packages.${pkgs.system}.default
       plasma5Packages.plasma-thunderbolt

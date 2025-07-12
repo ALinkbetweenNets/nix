@@ -16,6 +16,7 @@ in {
   config = mkIf cfg.enable {
     programs = { };
     home.packages = with pkgs; [
+      citations
       typst # better latex for papers
       libreoffice-qt
       gimp3-with-plugins
@@ -28,8 +29,8 @@ in {
       xournalpp
       anki
       darktable # photo color editor
-      rawtherapee
-      art
+      # rawtherapee
+      # art
       pdfmixtool
       onlyoffice-bin
       speedcrunch

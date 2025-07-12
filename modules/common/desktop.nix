@@ -36,7 +36,7 @@ in {
         uutils-coreutils
         adwaita-icon-theme
         wifi-qr
-        barrier # KVM
+        deskflow # KVM
         gsettings-qt
         kdePackages.kde-gtk-config
         glib

@@ -1,4 +1,3 @@
-{ self, ... }:
 { pkgs, lib, config, flake-self, home-manager, ... }: {
   imports = [
     ./hardware-configuration.nix
@@ -21,7 +20,7 @@
     fs.ntfs.enable = true;
     fs.luks.enable = false; # DISABLE BEFORE INSTALL
     convertible.enable = true;
-    plymouth.enable=true;
+    plymouth.enable = true;
     common.enable = true;
     main.enable = true;
     cpu-intel.enable = true;
@@ -76,10 +75,5 @@
   services.throttled.enable = lib.mkForce true;
   #powerManagement.scsiLinkPolicy = "med_power_with_dipm";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-  lollypops.deployment = {
-    local-evaluation = true;
-    ssh = { user = "l"; };
-    sudo.enable = true;
-  };
   #environment.systemPackages = with pkgs;    [ ];
 }

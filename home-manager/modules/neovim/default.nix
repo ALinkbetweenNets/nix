@@ -185,7 +185,7 @@ with lib; {
             precognition.enable=false;
           };
           images = {
-            image-nvim.enable = true;
+            image-nvim.enable = false;
             image-nvim.setupOpts.backend = "kitty";
           }; # Does not work in Konsole
         };
