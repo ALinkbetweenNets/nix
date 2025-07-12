@@ -29,8 +29,8 @@ in {
       xournalpp
       anki
       darktable # photo color editor
-      rawtherapee
-      art
+      # rawtherapee
+      # art
       pdfmixtool
       onlyoffice-bin
       speedcrunch
