@@ -58,6 +58,10 @@ in {
     services.udev.packages = with pkgs; [ ddcutil ];
     hardware.hackrf.enable = true;
     programs = {
+      appimage = {
+        enable = true;
+        binfmt = true;
+      };
       noisetorch.enable = true;
       adb.enable = true;
       ausweisapp = {
