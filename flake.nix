@@ -115,10 +115,22 @@
       nixpkgsFor = forAllSystems (system:
         import nixpkgs {
           inherit system;
-          overlays =
-            [ self.overlays.default nur.overlays.default nixgl.overlay ];
+          overlays = [
+            self.overlays.default
+            nur.overlays.default
+            nixgl.overlay
+            # (final: prev: {
+            #   displaylink = prev.displaylink.overrideAttrs (old: {
+            #     src = prev.fetchurl {
+            #       url = "https://www.synaptics.com/sites/default/files/exe_files/2024-10/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.1-EXE.zip";
+            #       # either pre‑run `nix-prefetch-url URL` to get this sha256,
+            #       # or let Nix error and copy the “got: sha256-…” it prints.
+            #       sha256 = "0RJgVrX+Y8Nvz106Xh+W9N9uRLC2VO00fBJeS8vs7fKw=";
+            #     };
+            #   });
+            # })
+          ];
         });
-      
       clan = clan-core.lib.buildClan {
         inherit self; # this needs to point at the repository root
 
@@ -126,9 +138,7 @@
         # Technically, adding the inputs is redundant as they can be also
         # accessed with flake-self.inputs.X, but adding them individually
         # allows to only pass what is needed to each module.
-        specialArgs = {
-          flake-self = self;
-        } // inputs;
+        specialArgs = { flake-self = self; } // inputs;
 
         inventory = {
 
@@ -141,7 +151,8 @@
               roles.default.extraModules = [
                 # Clan modules deployed on all machines
                 #clan-core.clanModules.state-version
-              ] ++ (map (m: "modules/${m}") (builtins.attrNames self.nixosModules));
+              ] ++ (map (m: "modules/${m}")
+                (builtins.attrNames self.nixosModules));
             };
           };
         };
@@ -153,6 +164,7 @@
       packages = forAllSystems (system:
         let pkgs = nixpkgsFor.${system};
         in {
+          # displaylink=pkgs.displaylink;
           # woodpecker-pipeline = pkgs.callPackage ./pkgs/woodpecker-pipeline {
           #   flake-self = self;
           #   inputs = inputs;
@@ -164,8 +176,7 @@
             };
           inherit (pkgs.link) candy-icon-theme;
         });
-      apps = forAllSystems (system: {
-      });
+      apps = forAllSystems (system: { });
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
       nixosModules = builtins.listToAttrs (map (x: {
@@ -225,15 +236,12 @@
           # };
         };
       };
-      devShells = forAllSystems (
-        system: with nixpkgsFor.${system}; {
+      devShells = forAllSystems (system:
+        with nixpkgsFor.${system}; {
           default = pkgs.mkShell {
-            packages = [
-              clan-core.packages.${system}.clan-cli
-            ];
+            packages = [ clan-core.packages.${system}.clan-cli ];
           };
-        }
-      );
+        });
       # colmena = {
       #   meta = {
       #     nixpkgs = import nixpkgs {
