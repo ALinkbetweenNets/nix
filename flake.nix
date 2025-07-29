@@ -131,7 +131,7 @@
             # })
           ];
         });
-      clan = clan-core.lib.buildClan {
+      clan = clan-core.lib.clan {
         inherit self; # this needs to point at the repository root
 
         # Make inputs and the flake itself accessible as module parameters.
@@ -188,7 +188,8 @@
       # nixosConfiguratons. Host configurations need a file called
       # configuration.nix that will be read first
       nixosConfigurations = clan.nixosConfigurations;
-      inherit (clan) clanInternals;
+      inherit (clan.config) clanInternals;
+      clan=clan.config;
       homeConfigurations = builtins.listToAttrs (map (filename: {
         name =
           builtins.substring 0 ((builtins.stringLength filename) - 4) filename;
