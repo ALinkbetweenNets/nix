@@ -34,7 +34,7 @@
   # Allow unfree licenced packages
   nixpkgs = {
     config.permittedInsecurePackages =
-      [ "dotnet-sdk-6.0.428" "aspnetcore-runtime-6.0.36" ];
+      [ "dotnet-sdk-6.0.428" "aspnetcore-runtime-6.0.36" "displaylink" ];
     config.allowUnfree = true;
     overlays = [
       flake-self.overlays.default
