@@ -253,5 +253,5 @@
     "sys-kernel-debug.mount"
     "sys-fs-fuse-connections.mount"
   ];
-
+  clan.core.networking.targetHost = config.networking.hostName + ":2522";
 }
