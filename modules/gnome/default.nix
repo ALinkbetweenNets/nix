@@ -12,14 +12,12 @@ in {
     };
     services = {
       udev.packages = with pkgs; [ gnome-settings-daemon ];
-      xserver = {
-        displayManager.gdm.enable = true;
-        desktopManager.gnome.enable = true;
-      };
+      displayManager.gdm.enable = true;
+      xserver.desktopManager.gnome.enable = true;
       gnome = {
         gnome-keyring.enable = true;
         gnome-user-share.enable = true;
-        core-utilities.enable = true;
+        core-apps.enable = true;
         gnome-settings-daemon.enable = true;
         core-shell.enable = true;
         core-os-services.enable = true;
