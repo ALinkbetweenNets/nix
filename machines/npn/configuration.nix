@@ -117,15 +117,12 @@
     # };
     eth = "ens18";
   };
-  
 
-  services.spice-vdagentd.enable = true;    
+  services.spice-vdagentd.enable = true;
   hardware.opengl.enable = true;
-  hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
   boot.initrd.kernelModules = [ "virtio_gpu" ];
   boot.kernelModules = [ "virtio_gpu" ];
-
 
   services.postgresql.dataDir =
     "${config.link.storage}/postgresql/${config.services.postgresql.package.psqlSchema}";
