@@ -1,4 +1,3 @@
-{ self, ... }:
 { pkgs, lib, config, flake-self, home-manager, ... }: {
   imports =
     [ ./hardware-configuration.nix home-manager.nixosModules.home-manager ];
@@ -48,8 +47,4 @@
   #   useRoutingFeatures = "server";
   #   extraUpFlags = [ "--advertise-exit-node" ];
   # };
-  lollypops.deployment = {
-    local-evaluation = true;
-    ssh.host = "192.168.122.5";
-  };
 }

@@ -12,9 +12,11 @@ in {
         # winetricks
         #wine
         #wineWowPackages.waylandFull
+        steam-run
       ];
     programs = {
       steam.enable = true;
+      # steam.package = pkgs.steam.override { withJava = true; };
       steam.gamescopeSession.enable = true;
       gamescope.capSysNice = true;
       gamescope.enable = true;

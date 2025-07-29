@@ -1,7 +1,6 @@
 # 202.61.251.70
 #	2a03:4000:54:8a::/64
 # nix run github:numtide/nixos-anywhere -- --flake .#nc root@202.61.251.70
-{ self, ... }:
 { pkgs, lib, config, flake-self, home-manager, ... }: {
   imports = [ ./netcup.nix home-manager.nixosModules.home-manager ];
   home-manager.users.l = flake-self.homeConfigurations.server;
@@ -142,9 +141,8 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://100.98.35.19:${
-            toString config.link.services.keycloak.port
-          }";
+        proxyPass =
+          "http://100.98.35.19:${toString config.link.services.keycloak.port}";
         proxyWebsockets = true;
       };
     };
@@ -163,9 +161,8 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://100.98.35.19:${
-            toString config.link.services.grafana.port
-          }/";
+        proxyPass =
+          "http://100.98.35.19:${toString config.link.services.grafana.port}/";
         proxyWebsockets = true;
       };
     };
@@ -516,13 +513,5 @@
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBu+WcpENdr7FaCIwj6WsinGnykIPV/tnIyrfEHSeU+E root@sn"
   ];
-  lollypops.deployment = {
-    local-evaluation = true;
-    ssh.host = "nc.monitor-banfish.ts.net";
-    ssh.user = "l";
-    ssh.opts = [ "-p 2522" ];
-    sudo.enable = true;
-  };
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

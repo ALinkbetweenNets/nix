@@ -11,6 +11,7 @@
         };
       };
     };
+    loader.grub.devices = [ "/dev/mmcblk0" ];
     kernelModules = [ ];
     extraModulePackages = [ ];
   };

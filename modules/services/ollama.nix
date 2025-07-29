@@ -22,7 +22,7 @@ in {
     };
     port = mkOption {
       type = types.int;
-      default = 11435;
+      default = 11434;
       description = "port to run the application on";
     };
   };
@@ -30,17 +30,17 @@ in {
     services = {
       ollama = {
         enable = true;
-        port = 11434;
+        port = cfg.port;
         host = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
         loadModels = [ "gemma3:27b" "nomic-embed-text" ];
       };
       nextjs-ollama-llm-ui = {
         enable = true;
-        port = cfg.port;
+        port = 11435;
         ollamaUrl = if cfg.expose-port then
-          "http://ollama.${config.link.domain}"
+          "http://0.0.0.0:11435"
         else
-          "127.0.0.1:${toString cfg.port}";
+          "127.0.0.1:11435";
       };
       # private-gpt = {
       #   enable = true;
