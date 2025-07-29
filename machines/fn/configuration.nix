@@ -1,4 +1,3 @@
-{ self, ... }:
 { pkgs, lib, config, flake-self, home-manager, ... }: {
   imports = [
     ./hardware-configuration.nix
@@ -81,13 +80,23 @@
       RestartSec = "2s";
     };
     script = config.system.activationScripts.setupSecrets.text;
-   };
+  };
   hardware.enableRedistributableFirmware = true;
   home-manager.users.l = flake-self.homeConfigurations.laptop;
   boot = {
     initrd.systemd.enable = true;
     kernelParams = [ "quiet" ];
     binfmt.emulatedSystems = [ "aarch64-linux" ];
+    kernel.sysctl."kernel.sysrq" = 1;
+    # Alt+FN+S+key (on other devices Alt+Print+key)
+    # h -> help (Output in journal)
+    # f -> kernel OOM Killer
+    # s -> sync data to disk before reset (REISUB (each key alt+fn+s+key in order) -> Safe reboot)
+    # e -> SIGTERM to all processes except PID 0
+    # i -> SIGKILL to all processes except PID 0
+    # b -> Reboot
+    # u -> Remount everything as read only
+    # r -> exit Keyboard Raw mode (in case of dead X/Wayland and frozen terminal/ non responsive keyboard)
   };
   #powerManagement.scsiLinkPolicy = "med_power_with_dipm";
   systemd.extraConfig = "DefaultLimitNOFILE=2048";
@@ -112,15 +121,11 @@
     hostName = "fn";
     domain = "monitor-banfish.ts.net";
   };
+  clan.core.networking.targetHost = config.networking.hostName;
   services.languagetool.enable = true;
   # services.ucodenix = {
   #   enable = true;
   #   cpuSerialNumber =
   #     "00A7-0F41-0000-0000-0000-0000"; # Replace with your processor's serial number
   # };
-  lollypops.deployment = {
-    local-evaluation = true;
-    ssh = { user = "l"; };
-    sudo.enable = true;
-  };
 }

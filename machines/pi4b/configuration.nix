@@ -1,4 +1,3 @@
-{ self, ... }:
 { pkgs, lib, config, modulesPath, flake-self, home-manager, nixos-hardware
 , nixpkgs, ... }: {
 
@@ -54,14 +53,6 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIER/dVmTaW5sjMi3Yf60y5pqDlXs7pI6w/CCBEfofKQL root@fn"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBu+WcpENdr7FaCIwj6WsinGnykIPV/tnIyrfEHSeU+E root@sn"
   ];
-  lollypops.deployment = {
-    local-evaluation = true;
-    sudo.enable = true;
-    ssh = {
-      user = "l";
-      opts = [ "-p 2522" ];
-    };
-  };
   services.frigate = {
     enable = true;
     hostname = "pi4b.monitor-banfish.ts.net";

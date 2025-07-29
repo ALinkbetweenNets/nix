@@ -1,4 +1,3 @@
-{ self, ... }:
 { pkgs, lib, config, flake-self, home-manager, ... }: {
   imports =
     [ ./hardware-configuration.nix home-manager.nixosModules.home-manager ];
@@ -14,9 +13,4 @@
   boot.loader.grub.devices = [ "/dev/vda" ];
   security.sudo.wheelNeedsPassword = true;
   networking.hostName = "dnvnd";
-  lollypops.deployment = {
-    local-evaluation = true;
-    # ssh = { user = "l"; };
-    # sudo.enable = true;
-  };
 }

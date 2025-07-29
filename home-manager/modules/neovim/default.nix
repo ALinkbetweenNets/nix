@@ -87,6 +87,8 @@ with lib; {
             format.type = "nixfmt";
           };
           markdown.enable = true;
+          # markdown.extensions.render-markdown-nvim.enable=true;
+          markdown.extensions.markview-nvim.enable=true;
           css.enable = true;
           typst.enable = true;
           clang = {
@@ -185,7 +187,7 @@ with lib; {
             precognition.enable=false;
           };
           images = {
-            image-nvim.enable = true;
+            image-nvim.enable = false;
             image-nvim.setupOpts.backend = "kitty";
           }; # Does not work in Konsole
         };

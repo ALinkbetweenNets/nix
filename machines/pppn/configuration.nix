@@ -1,4 +1,3 @@
-{ self, ... }:
 { config, lib, pkgs, flake-self, home-manager, ... }: {
   imports =
     [ ./hardware-configuration.nix home-manager.nixosModules.home-manager ];
@@ -33,6 +32,7 @@
   # Auto-login for phosh
   services.xserver.desktopManager.phosh.enable = true;
   services.xserver.desktopManager.phosh = { user = "l"; };
+  services.xserver.desktopManager.phosh.group = "users";
   users.users."l" = {
     isNormalUser = true;
     description = "l";
@@ -41,9 +41,4 @@
     extraGroups = [ "dialout" "feedbackd" "networkmanager" "video" "wheel" ];
   };
   hardware.enableAllFirmware = true;
-  lollypops.deployment = {
-    local-evaluation = true;
-    ssh = { user = "l"; };
-    sudo.enable = true;
-  };
 }

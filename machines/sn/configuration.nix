@@ -1,4 +1,3 @@
-{ self, ... }:
 { pkgs, lib, config, flake-self, home-manager, modulesPath, ... }: {
   imports =
     [ home-manager.nixosModules.home-manager ./hardware-configuration.nix ];
@@ -247,18 +246,6 @@
   #   # loader.grub.device = "/dev/sdd";
   #   zfs.extraPools = [ "wdp" ];
   # };
-  # nix run .\#lollypops -- sn:rebuild
-  lollypops.deployment = {
-    # local-evaluation = true;
-    ssh = {
-      host = "sn.monitor-banfish.ts.net";
-      user = "l";
-    };
-    # sudo.enable = true;
-    ssh.opts = [ "-p 2522" ];
-    sudo.enable = true;
-  };
-
   # Supress systemd units that don't work because of LXC.
   # https://blog.xirion.net/posts/nixos-proxmox-lxc/#configurationnix-tweak
   systemd.suppressedSystemUnits = [
@@ -266,5 +253,5 @@
     "sys-kernel-debug.mount"
     "sys-fs-fuse-connections.mount"
   ];
-
+  clan.core.networking.targetHost = config.networking.hostName + ":2522";
 }
