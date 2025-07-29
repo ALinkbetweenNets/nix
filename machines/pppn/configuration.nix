@@ -32,6 +32,7 @@
   # Auto-login for phosh
   services.xserver.desktopManager.phosh.enable = true;
   services.xserver.desktopManager.phosh = { user = "l"; };
+  services.xserver.desktopManager.phosh.group = "users";
   users.users."l" = {
     isNormalUser = true;
     description = "l";
