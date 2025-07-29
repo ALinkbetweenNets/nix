@@ -28,10 +28,10 @@ in {
       evince
       xournalpp
       anki
-      darktable # photo color editor
+      # darktable # photo color editor # broken
       # rawtherapee
       # art
-      pdfmixtool
+      # pdfmixtool # broken
       onlyoffice-bin
       speedcrunch
       picard # music tagger
