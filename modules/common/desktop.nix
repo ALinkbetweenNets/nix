@@ -85,7 +85,8 @@ in {
         # source-serif-pro
         noto-fonts-color-emoji
         noto-fonts-cjk-sans # japanese fonts
-        # corefonts
+        corefonts # MS fonts Andalé Mono, Arial, Arial Black, Comic Sans MS, Courier New, Georgia, Impact, Times New Roman, Trebuchet MS,Verdana, Webdings
+        vista-fonts # MS fonts Calibri, Cambria, Candara, Consolas, Constantia, Corbel
         # recursive
         # iosevka-bin
         # font-awesome
