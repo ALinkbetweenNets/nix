@@ -33,8 +33,12 @@
   # Home Manager configuration
   # Allow unfree licenced packages
   nixpkgs = {
-    config.permittedInsecurePackages =
-      [ "dotnet-sdk-6.0.428" "aspnetcore-runtime-6.0.36" "displaylink" ];
+    config.permittedInsecurePackages = [
+      "dotnet-sdk-6.0.428"
+      "aspnetcore-runtime-6.0.36"
+      "displaylink"
+      "libsoup-2.74.3"
+    ];
     config.allowUnfree = true;
     overlays = [
       flake-self.overlays.default
