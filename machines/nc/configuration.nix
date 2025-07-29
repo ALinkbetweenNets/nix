@@ -349,15 +349,15 @@
         proxyWebsockets = true;
       };
     };
-    # "minio.${config.link.domain}" = {
-    #   # enableACME = true;
-    #   useACMEHost = config.link.domain;
-    #   forceSSL = true;
-    #   locations."/" = {
-    #     proxyPass = "http://${config.link.serviceHost}:9002";
-    #     proxyWebsockets = true;
-    #   };
-    # };
+    "minio.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://${config.link.serviceHost}:9002";
+        proxyWebsockets = true;
+      };
+    };
     "s3.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
