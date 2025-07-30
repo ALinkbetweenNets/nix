@@ -20,7 +20,6 @@ in {
     ];
     programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
       rust-lang.rust-analyzer
-      serayuzgur.crates
       tamasfe.even-better-toml
       llvm-vs-code-extensions.vscode-clangd
       fill-labs.dependi
