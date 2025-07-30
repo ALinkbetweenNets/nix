@@ -18,21 +18,26 @@
     wireless.enable = false;
     networkmanager.enable = true;
   };
-  # Use PulseAudio
-  # hardware.pulseaudio.enable = lib.mkForce true;
-  # services.pipewire.enable =  lib.mkForce true;
-  # Enable Bluetooth
-  hardware.bluetooth.enable = true;
-  # Bluetooth audio
-  services.pulseaudio.package = pkgs.pulseaudioFull;
+  hardware = {
+    bluetooth.enable = true;
+    enableAllFirmware = true;
+  };
+  services = {
+    # hardware.pulseaudio.enable = lib.mkForce true;
+    # services.pipewire.enable =  lib.mkForce true;
+    # Bluetooth audio
+    pulseaudio.package = pkgs.pulseaudioFull;
+    xserver.desktopManager.phosh = {
+      # Auto-login for phosh
+      enable = true;
+      user = "l";
+      group = "users";
+    };
+  };
   # Enable power management options
   powerManagement.enable = true;
   # It's recommended to keep enabled on these constrained devices
   zramSwap.enable = true;
-  # Auto-login for phosh
-  services.xserver.desktopManager.phosh.enable = true;
-  services.xserver.desktopManager.phosh = { user = "l"; };
-  services.xserver.desktopManager.phosh.group = "users";
   users.users."l" = {
     isNormalUser = true;
     description = "l";
@@ -40,5 +45,4 @@
       "$6$.p.3CNgeNfys/lfs$C5ey0R0CMDlcebtek9bKoCfetajpwmvMG5LqRXzgFGOmLGqsvV.xTVcUtDKtj/c9WJRlv7WDyxIzU2BitOXIy1";
     extraGroups = [ "dialout" "feedbackd" "networkmanager" "video" "wheel" ];
   };
-  hardware.enableAllFirmware = true;
 }
