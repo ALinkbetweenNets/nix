@@ -4,7 +4,7 @@
     # Manage networks of machines
     # https://clan.lol
     clan-core = {
-      url = "git+https://git.clan.lol/clan/clan-core";
+      url = "https://git.clan.lol/clan/clan-core/archive/main.tar.gz";
       # Don't do this if your machines are on nixpkgs stable.
       inputs.nixpkgs.follows = "nixpkgs";
     };
