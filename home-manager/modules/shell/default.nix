@@ -65,7 +65,7 @@ in {
       autosuggestion.enable = true;
       enableCompletion = true;
       autocd = true;
-      dotDir = ".config/zsh";
+      dotDir = "/home/l/.config/zsh";
       sessionVariables = { ZDOTDIR = "/home/l/.config/zsh"; };
       initContent = ''
         bindkey "^[[1;5C" forward-word
