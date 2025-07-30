@@ -10,6 +10,7 @@ with lib; {
   imports = with flake-self.homeManagerModules; [ neovim shell git ];
   config = {
     home.sessionVariables = { EDITOR = "nvim"; };
+    home.homeDirectory = "/home/l";
     services.gpg-agent = {
       enable = true;
       enableExtraSocket = true;

@@ -8,8 +8,8 @@
     # main.enable = true;
     desktop.enable = true;
     cpu-intel.enable = true;
-    plasma.enable = false;
-    gnome.enable = true;
+    # plasma.enable = false;
+    # gnome.enable = true;
   };
   services.smartd.enable = false;
   networking.hostName = "in";

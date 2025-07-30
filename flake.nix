@@ -4,7 +4,7 @@
     # Manage networks of machines
     # https://clan.lol
     clan-core = {
-      url = "git+https://git.clan.lol/clan/clan-core";
+      url = "https://git.clan.lol/clan/clan-core/archive/main.tar.gz";
       # Don't do this if your machines are on nixpkgs stable.
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -107,7 +107,7 @@
     };
     grub2-themes = { url = "github:paulmiro/grub2-themes"; };
   };
-  outputs = { self, lix-module, nixpkgs, nur, nixgl, ... }@inputs:
+  outputs = { self, lix-module, nixpkgs, clan-core, nur, nixgl, ... }@inputs:
     with inputs;
     let
       supportedSystems = [ "aarch64-linux" "x86_64-linux" ];
@@ -133,17 +133,14 @@
         });
       clan = clan-core.lib.buildClan {
         inherit self; # this needs to point at the repository root
-
         # Make inputs and the flake itself accessible as module parameters.
         # Technically, adding the inputs is redundant as they can be also
         # accessed with flake-self.inputs.X, but adding them individually
         # allows to only pass what is needed to each module.
         specialArgs = { flake-self = self; } // inputs;
-
         inventory = {
-
           meta.name = "alinkbetweennets-clan";
-
+          # machines = { fn = { }; };
           services = {
             importer.default = {
               roles.default.tags = [ "all" ];
@@ -156,13 +153,18 @@
             };
           };
         };
+        # machines={
+        #   fn={config,pkgs,...}:{
 
+        #   };
+        # };
       };
     in {
       formatter = forAllSystems (system: nixpkgsFor.${system}.nixpkgs-fmt);
       overlays.default = final: prev: (import ./pkgs inputs) final prev;
       packages = forAllSystems (system:
-        let pkgs = nixpkgsFor.${system};
+        let
+          pkgs = nixpkgsFor.${system};
         in {
           # displaylink=pkgs.displaylink;
           # woodpecker-pipeline = pkgs.callPackage ./pkgs/woodpecker-pipeline {
@@ -189,6 +191,8 @@
       # configuration.nix that will be read first
       nixosConfigurations = clan.nixosConfigurations;
       inherit (clan) clanInternals;
+      # clan = { inherit (clan) templates; };
+      # clan = clan.config;
       homeConfigurations = builtins.listToAttrs (map (filename: {
         name =
           builtins.substring 0 ((builtins.stringLength filename) - 4) filename;
