@@ -131,7 +131,7 @@
   #   rtmp-port = 1935;
   #   port = 8888;
   # };
-  services.onedrive.enable = true;
+  # services.onedrive.enable = true;
   # services.clamav = {
   #   # Antivirus
   #   daemon.enable = true;
