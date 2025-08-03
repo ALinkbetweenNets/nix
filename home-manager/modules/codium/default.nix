@@ -92,6 +92,7 @@ in {
         "[jsonc]" = {
           "editor.defaultFormatter" = "vscode.json-language-features";
         };
+        "ltex.additionalRules.motherTongue" = "de_DE";
         "continue.telemetryEnabled" = false;
         "cSpell.userWords" = [ "Linkbetween" ];
         "diffEditor.codeLens" = true;
@@ -136,7 +137,7 @@ in {
         "latex-workshop.view.pdf.invert" = 1;
         "latex-workshop.view.pdf.invertMode.enabled" = "auto";
         "ltex.additionalRules.enablePickyRules" = true;
-        "ltex.language" = "de-DE";
+        # "ltex.language" = "de-DE";
         "markdown.extension.completion.enabled" = true;
         "prettier.printWidth" = 160;
         "problems.showCurrentInStatus" = true;
