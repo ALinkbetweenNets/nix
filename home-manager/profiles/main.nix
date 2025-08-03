@@ -93,7 +93,7 @@ with lib; {
       mprocs # tui for running multiple processes
       presenterm # presentation from terminal similar to reveal.js
       # linphone
-      evolution
+      # evolution
       nushell
       jan # ai
       qrtool
