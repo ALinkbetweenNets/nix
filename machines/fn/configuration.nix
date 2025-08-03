@@ -99,7 +99,7 @@
     # r -> exit Keyboard Raw mode (in case of dead X/Wayland and frozen terminal/ non responsive keyboard)
   };
   #powerManagement.scsiLinkPolicy = "med_power_with_dipm";
-  systemd.extraConfig = "DefaultLimitNOFILE=2048";
+  # systemd.extraConfig = "DefaultLimitNOFILE=2048";
   # security.protectKernelImage = false;
   nixpkgs.config.permittedInsecurePackages = [ "unifi-controller-7.5.187" ];
   environment.systemPackages = with pkgs; [
