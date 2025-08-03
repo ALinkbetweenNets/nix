@@ -28,7 +28,7 @@ in {
       evince
       xournalpp
       anki
-      # darktable # photo color editor # broken
+      darktable # photo color editor
       # rawtherapee
       # art
       # pdfmixtool # broken
