@@ -31,7 +31,7 @@ in {
       # darktable # photo color editor # broken
       # rawtherapee
       # art
-      # pdfmixtool # broken
+      pdfmixtool
       onlyoffice-bin
       speedcrunch
       picard # music tagger
