@@ -267,4 +267,5 @@
   #   # loader.grub.device = "/dev/sdd";
   #   zfs.extraPools = [ "wdp" ];
   # };
+  clan.core.networking.targetHost = config.networking.hostName + ":2522";
 }
