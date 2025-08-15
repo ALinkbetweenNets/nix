@@ -70,19 +70,20 @@ in {
           {
             name = ".";
             forward-addr = [
-              "192.168.1.1"
+              # "192.168.1.1"
+              # "192.168.178.1"
               "194.242.2.4" # mullvad base
               "2a07:e340::4" # mullvad base
-              "192.168.188.3" # npo
+              # "192.168.188.3" # npo
               "100.100.100.100" # tailscale
               "185.222.222.222" # dns.sb
               "45.11.45.11" # dns.sb
               "2a09::" # dns.sb
               "2a11::" # dns.sb
+              "9.9.9.9" # quad9
               "8.8.8.8" # google
               "1.0.0.1" # cloudflare
               "194.242.2.2" # mullvad
-              "9.9.9.9" # quad9
             ];
             forward-first = "yes";
             forward-tls-upstream = "no";
