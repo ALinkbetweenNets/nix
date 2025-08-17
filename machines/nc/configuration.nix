@@ -96,95 +96,95 @@
     #   #     deny all; # deny all remaining ips
     #   # '';
     # };
-    "matrix.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/".proxyPass = "http://${config.link.serviceHost}:${
-          toString config.link.services.matrix.port
-        }";
-      locations."/".proxyWebsockets = true;
-    };
-    "vikunja.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/".proxyPass = "http://${config.link.serviceHost}:${
-          toString config.link.services.vikunja.port
-        }";
-      locations."/".proxyWebsockets = true;
-    };
-    "gitea.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${
-            toString config.services.gitea.settings.server.HTTP_PORT
-          }";
-        proxyWebsockets = true;
-      };
-    };
-    "radicale.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${
-            toString config.link.services.radicale.port
-          }";
-        proxyWebsockets = true;
-      };
-    };
-    "keycloak.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass =
-          "http://100.98.35.19:${toString config.link.services.keycloak.port}";
-        proxyWebsockets = true;
-      };
-    };
-    "keycloak.alinkbn.de" = {
-      # enableACME = true;
-      useACMEHost = "alinkbn.de";
-      forceSSL = true;
-      locations."/" = {
-        proxyPass =
-          "http://100.98.35.19:${toString config.link.services.keycloak.port}";
-        proxyWebsockets = true;
-      };
-    };
-    "grafana.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass =
-          "http://100.98.35.19:${toString config.link.services.grafana.port}/";
-        proxyWebsockets = true;
-      };
-    };
-    "grafana.alinkbn.de" = {
-      # enableACME = true;
-      useACMEHost = "alinkbn.de";
-      forceSSL = true;
-      locations."/" = {
-        proxyPass =
-          "http://100.98.35.19:${toString config.link.services.grafana.port}/";
-        proxyWebsockets = true;
-      };
-    };
-    "gitlab.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:80/";
-        proxyWebsockets = true;
-      };
-    };
+    # "matrix.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   locations."/".proxyPass = "http://${config.link.serviceHost}:${
+    #       toString config.link.services.matrix.port
+    #     }";
+    #   locations."/".proxyWebsockets = true;
+    # };
+    # "vikunja.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   locations."/".proxyPass = "http://${config.link.serviceHost}:${
+    #       toString config.link.services.vikunja.port
+    #     }";
+    #   locations."/".proxyWebsockets = true;
+    # };
+    # "gitea.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   locations."/" = {
+    #     proxyPass = "http://${config.link.serviceHost}:${
+    #         toString config.services.gitea.settings.server.HTTP_PORT
+    #       }";
+    #     proxyWebsockets = true;
+    #   };
+    # };
+    # "radicale.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   locations."/" = {
+    #     proxyPass = "http://${config.link.serviceHost}:${
+    #         toString config.link.services.radicale.port
+    #       }";
+    #     proxyWebsockets = true;
+    #   };
+    # };
+    # "keycloak.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   locations."/" = {
+    #     proxyPass =
+    #       "http://100.98.35.19:${toString config.link.services.keycloak.port}";
+    #     proxyWebsockets = true;
+    #   };
+    # };
+    # "keycloak.alinkbn.de" = {
+    #   # enableACME = true;
+    #   useACMEHost = "alinkbn.de";
+    #   forceSSL = true;
+    #   locations."/" = {
+    #     proxyPass =
+    #       "http://100.98.35.19:${toString config.link.services.keycloak.port}";
+    #     proxyWebsockets = true;
+    #   };
+    # };
+    # "grafana.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   locations."/" = {
+    #     proxyPass =
+    #       "http://100.98.35.19:${toString config.link.services.grafana.port}/";
+    #     proxyWebsockets = true;
+    #   };
+    # };
+    # "grafana.alinkbn.de" = {
+    #   # enableACME = true;
+    #   useACMEHost = "alinkbn.de";
+    #   forceSSL = true;
+    #   locations."/" = {
+    #     proxyPass =
+    #       "http://100.98.35.19:${toString config.link.services.grafana.port}/";
+    #     proxyWebsockets = true;
+    #   };
+    # };
+    # "gitlab.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   locations."/" = {
+    #     proxyPass = "http://${config.link.serviceHost}:80/";
+    #     proxyWebsockets = true;
+    #   };
+    # };
     "audiobookshelf.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
@@ -216,15 +216,15 @@
         proxyWebsockets = true;
       };
     };
-    "cast.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:8888/";
-        proxyWebsockets = true;
-      };
-    };
+    # "cast.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   locations."/" = {
+    #     proxyPass = "http://${config.link.serviceHost}:8888/";
+    #     proxyWebsockets = true;
+    #   };
+    # };
     "cyyyyyber.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
@@ -254,41 +254,41 @@
       forceSSL = true;
       root = "/var/www/Vortrag-Lockpicking";
     };
-    "hedgedoc.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${
-            toString config.link.services.hedgedoc.port
-          }";
-        proxyWebsockets = true;
-      };
-    };
-    "jellyfin.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      listen = [
-        {
-          port = 443;
-          addr = "0.0.0.0";
-          ssl = true;
-        }
-        {
-          port = 8096;
-          addr = "0.0.0.0";
-          ssl = true;
-        }
-        {
-          port = 8920;
-          addr = "0.0.0.0";
-          ssl = true;
-        }
-      ];
-      locations."/".proxyPass = "http://${config.link.serviceHost}:8096/";
-      locations."/".proxyWebsockets = true;
-    };
+    # "hedgedoc.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   locations."/" = {
+    #     proxyPass = "http://${config.link.serviceHost}:${
+    #         toString config.link.services.hedgedoc.port
+    #       }";
+    #     proxyWebsockets = true;
+    #   };
+    # };
+    # "jellyfin.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   listen = [
+    #     {
+    #       port = 443;
+    #       addr = "0.0.0.0";
+    #       ssl = true;
+    #     }
+    #     {
+    #       port = 8096;
+    #       addr = "0.0.0.0";
+    #       ssl = true;
+    #     }
+    #     {
+    #       port = 8920;
+    #       addr = "0.0.0.0";
+    #       ssl = true;
+    #     }
+    #   ];
+    #   locations."/".proxyPass = "http://${config.link.serviceHost}:8096/";
+    #   locations."/".proxyWebsockets = true;
+    # };
     # "jellyfin1.${config.link.domain}" = {
     #   # enableACME = true;
     #   useACMEHost = config.link.domain;
@@ -301,13 +301,13 @@
     #   forceSSL = true;
     #   locations."/".proxyPass = "http://${config.link.serviceHost}:8920/";
     # };
-    "jellyseerr.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/".proxyPass = "http://${config.link.serviceHost}:5055/";
-      locations."/".proxyWebsockets = true;
-    };
+    # "jellyseerr.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   locations."/".proxyPass = "http://${config.link.serviceHost}:5055/";
+    #   locations."/".proxyWebsockets = true;
+    # };
     "restic.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
@@ -384,41 +384,41 @@
       #   proxy_buffering off;
       # '';
     };
-    "diagrams.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/".proxyPass = "http://${config.link.serviceHost}:8765";
-    };
-    "nextcloud.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/".proxyPass = "http://${config.link.serviceHost}:80";
-      extraConfig = "\n";
-    };
-    "outline.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${
-            toString config.link.services.outline.port
-          }";
-        proxyWebsockets = true;
-      };
-    };
-    "vaultwarden.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${
-            toString config.link.services.vaultwarden.port
-          }";
-        proxyWebsockets = true;
-      };
-    };
+    # "diagrams.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   locations."/".proxyPass = "http://${config.link.serviceHost}:8765";
+    # };
+    # "nextcloud.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   locations."/".proxyPass = "http://${config.link.serviceHost}:80";
+    #   extraConfig = "\n";
+    # };
+    # "outline.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   locations."/" = {
+    #     proxyPass = "http://${config.link.serviceHost}:${
+    #         toString config.link.services.outline.port
+    #       }";
+    #     proxyWebsockets = true;
+    #   };
+    # };
+    # "vaultwarden.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   locations."/" = {
+    #     proxyPass = "http://${config.link.serviceHost}:${
+    #         toString config.link.services.vaultwarden.port
+    #       }";
+    #     proxyWebsockets = true;
+    #   };
+    # };
     "kinky3d.de" = {
       enableACME = true;
       forceSSL = true;
