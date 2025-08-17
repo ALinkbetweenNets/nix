@@ -335,17 +335,17 @@
       locations."/".proxyPass = "http://100.98.35.19:5000/";
       locations."/".proxyWebsockets = true;
     };
-    "immich.${config.link.domain}" = {
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:${
-            toString config.link.services.immich.port
-          }";
-        proxyWebsockets = true;
-      };
-    };
+    # "immich.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   locations."/" = {
+    #     proxyPass = "http://${config.link.serviceHost}:${
+    #         toString config.link.services.immich.port
+    #       }";
+    #     proxyWebsockets = true;
+    #   };
+    # };
     "minio.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
