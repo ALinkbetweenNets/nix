@@ -50,7 +50,7 @@
     enable = true;
     openFirewall = true;
     unifiPackage = pkgs.unifi;
-    mongodbPackage = pkgs.mongodb-6_0;
+    mongodbPackage = pkgs.mongodb;
 
   };
   nixpkgs.config.permittedInsecurePackages = [ "unifi-controller-7.5.187" ];
@@ -58,7 +58,7 @@
     hostName = "dn";
     domain = "monitor-banfish.ts.net";
     hostId = "007f0200";
-    interfaces."${config.link.eth}".wakeOnLan.enable = true;
+    # interfaces."${config.link.eth}".wakeOnLan.enable = true;
   };
   # services.xserver.wacom.enable = true;
   # environment.systemPackages = with pkgs; [ wacomtablet xf86_input_wacom ];
