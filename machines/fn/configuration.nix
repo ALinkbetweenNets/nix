@@ -103,7 +103,7 @@
   # security.protectKernelImage = false;
   nixpkgs.config.permittedInsecurePackages = [ "unifi-controller-7.5.187" ];
   environment.systemPackages = with pkgs; [
-    plasma5Packages.plasma-thunderbolt
+    kdePackages.plasma-thunderbolt
     fw-ectool
     framework-tool
   ];
