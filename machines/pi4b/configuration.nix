@@ -86,7 +86,7 @@
   # add boot.binfmt.emulatedSystems = [ "aarch64-linux" ]; to your x86 system
   # to build ARM stuff through qemu
   sdImage.compressImage = false;
-  sdImage.imageBaseName = "raspi-image";
+  image.baseName = "raspi-image";
   nix.registry.nixpkgs.flake = nixpkgs;
   nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
   # this workaround is currently needed to build the sd-image
