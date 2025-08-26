@@ -13,7 +13,7 @@ in {
     services = {
       udev.packages = with pkgs; [ gnome-settings-daemon ];
       displayManager.gdm.enable = true;
-      xserver.desktopManager.gnome.enable = true;
+      desktopManager.gnome.enable = true;
       gnome = {
         gnome-keyring.enable = true;
         gnome-user-share.enable = true;
