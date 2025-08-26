@@ -131,7 +131,7 @@
             # })
           ];
         });
-      clan = clan-core.lib.buildClan {
+      clan = clan-core.lib.clan {
         inherit self; # this needs to point at the repository root
         # Make inputs and the flake itself accessible as module parameters.
         # Technically, adding the inputs is redundant as they can be also
@@ -163,8 +163,7 @@
       formatter = forAllSystems (system: nixpkgsFor.${system}.nixpkgs-fmt);
       overlays.default = final: prev: (import ./pkgs inputs) final prev;
       packages = forAllSystems (system:
-        let
-          pkgs = nixpkgsFor.${system};
+        let pkgs = nixpkgsFor.${system};
         in {
           # displaylink=pkgs.displaylink;
           # woodpecker-pipeline = pkgs.callPackage ./pkgs/woodpecker-pipeline {
@@ -189,8 +188,8 @@
       # Each subdirectory in ./machines is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
       # configuration.nix that will be read first
-      nixosConfigurations = clan.nixosConfigurations;
-      inherit (clan) clanInternals;
+      inherit (clan.config) nixosConfigurations clanInternals;
+      clan = clan.config;
       # clan = { inherit (clan) templates; };
       # clan = clan.config;
       homeConfigurations = builtins.listToAttrs (map (filename: {
