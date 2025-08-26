@@ -10,7 +10,7 @@ in {
     hardware.sensor.iio.enable = true;
     services.xserver.wacom.enable = mkIf config.link.xserver.enable true;
     environment.systemPackages = with pkgs; [
-      wacomtablet
+      kdePackages.wacomtablet
       xf86_input_wacom
       maliit-keyboard
     ];

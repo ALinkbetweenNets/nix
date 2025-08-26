@@ -248,7 +248,7 @@ with lib; {
       kdePackages.krohnkite
       kdePackages.kteatime
       ktimetracker
-      libsForQt5.krunner-symbols
+      # krunner-symbols
       kdePackages.ksystemlog
       imagemagick
       luajitPackages.magick

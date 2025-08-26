@@ -153,8 +153,8 @@ with lib; {
         ## KDE Utils
         kdePackages.krfb # kde connect virtual monitor
         kdePackages.plasma-browser-integration
-        libsForQt5.kpurpose # KDE share
-        libsForQt5.qt5.qtwebsockets
+        plasma5Packages.kpurpose # KDE share
+        kdePackages.qtwebsockets
         kdePackages.calendarsupport
         kdePackages.konsole
         # kdePackages.yakuake
