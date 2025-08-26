@@ -57,7 +57,7 @@
       # # xandikos.enable = true; # WIP
       hedgedoc.enable = true;
       jellyfin.enable = true;
-      mealie.enable = true;
+      # mealie.enable = true;
       # jellyseer.enable = true;
       minio.enable = true;
       immich.enable = true;
