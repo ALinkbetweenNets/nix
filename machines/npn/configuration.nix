@@ -119,8 +119,8 @@
   };
 
   services.spice-vdagentd.enable = true;
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport32Bit = true;
+  hardware.graphics.enable = true;
+  hardware.graphics.driSupport32Bit = true;
   boot.initrd.kernelModules = [ "virtio_gpu" ];
   boot.kernelModules = [ "virtio_gpu" ];
 
