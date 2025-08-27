@@ -13,8 +13,13 @@ in {
       qmk.enable = true;
     };
     boot = {
-      extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
-      kernelModules = [ "v4l2loopback" ];
+      extraModulePackages = with config.boot.kernelPackages;
+        [
+          # v4l2loopback # broken
+        ];
+      kernelModules = [
+        # "v4l2loopback" # broken
+      ];
     };
     services.rpcbind.enable = true; # for NFS
     # services.pcscd.enable = true; # smart card support
@@ -29,15 +34,18 @@ in {
         enable = true;
       };
     };
-    environment.wordlist.enable=true;
-    environment.wordlist.lists={
-      WORDLIST = [ "${pkgs.scowl}/share/dict/words.txt" "${pkgs.seclists}/share/wordlists/seclists" ];
+    environment.wordlist.enable = true;
+    environment.wordlist.lists = {
+      WORDLIST = [
+        "${pkgs.scowl}/share/dict/words.txt"
+        "${pkgs.seclists}/share/wordlists/seclists"
+      ];
       AUGMENTED_WORDLIST = [
         "${pkgs.scowl}/share/dict/words.txt"
         "${pkgs.scowl}/share/dict/words.variants.txt"
         (builtins.toFile "extra-words" ''
-      desynchonization
-      oobleck'')
+          desynchonization
+          oobleck'')
       ];
     };
     environment.systemPackages = with pkgs; [

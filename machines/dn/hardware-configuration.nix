@@ -9,7 +9,7 @@
     initrd.kernelModules = [ ];
     kernelParams = [ "intel_pstate=active" ];
     kernelModules = [ "kvm-intel" "usbnet" ];
-    extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+    # extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
   };
   fileSystems = {
     "/" = {
