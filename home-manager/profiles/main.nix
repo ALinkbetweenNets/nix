@@ -11,6 +11,7 @@ with lib; {
       latex.enable = true;
       gaming.enable = true;
       python.enable = true;
+      java.enable = true;
       golang.enable = true;
       # ansible.enable = true;
       rust.enable = true;
@@ -85,6 +86,7 @@ with lib; {
     fonts.fontconfig.enable = true;
 
     home.packages = with pkgs; [
+      pdfpc
       openai-whisper # transcription
       ripgrep-all # also search pdfs, ebooks, office docs, zip, tar.gz
       kdePackages.plasma-browser-integration
