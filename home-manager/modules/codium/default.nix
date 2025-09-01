@@ -159,6 +159,10 @@ in {
         # "vscode-pets.theme" = "castle";
         # "window.titleBarStyle" = "native";
         # "workbench.colorTheme" = "Dracula";
+        "yaml.schemas" = {
+          "/home/l/.vscode-oss/extensions/Continue.continue/config-yaml-schema.json" =
+            [ ".continue/**/*.yaml" ];
+        };
       };
       profiles.default.globalSnippets = {
         fixme = {
