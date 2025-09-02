@@ -1,5 +1,13 @@
-{ pkgs, lib, config, modulesPath, flake-self, home-manager, nixos-hardware
-, nixpkgs, ... }: {
+{ pkgs
+, lib
+, config
+, modulesPath
+, flake-self
+, home-manager
+, nixos-hardware
+, nixpkgs
+, ...
+}: {
 
   imports = [
     # being able to build the sd-image

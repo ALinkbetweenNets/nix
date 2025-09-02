@@ -66,12 +66,12 @@ in {
     services.networkd-dispatcher = {
       enable = true;
       rules."tailscale-forwarder-optimization" = {
-        onState = ["routable" "off"];
+        onState = [ "routable" "off" ];
         script = ''
           #!${pkgs.runtimeShell}
           ethtool -K "$(ip -o route get 8.8.8.8 | cut -f 5 -d \" \")" rx-udp-gro-forwarding on rx-gro-list off
           exit 0
-      '';
+        '';
       };
     };
     security = {

@@ -11,7 +11,8 @@ let
   #   system = "${pkgs.system}";
   #   config.allowUnfree = true;
   # }).pdfmixtool;
-in {
+in
+{
   options.link.office.enable = mkEnableOption "activate office";
   config = mkIf cfg.enable {
     programs = { };

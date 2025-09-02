@@ -315,9 +315,7 @@ in {
           disable_splash_rendering = true;
           force_default_wallpaper = 0;
         };
-        workspace = {
-
-        };
+        workspace = { };
         input = {
           kb_layout = "de";
           kb_variant = "nodeadkeys";
@@ -340,126 +338,131 @@ in {
           workspace_swipe = true;
           workspace_swipe_forever = true;
         };
-        windowrule = let f = regex: "float, ^(${regex})$";
-        in [
-          (f "org.gnome.Calculator")
-          (f "org.gnome.Nautilus")
-          (f "pavucontrol")
-          (f "nm-connection-editor")
-          (f "blueberry.py")
-          (f "copyq")
-          # "move cursor 0% 0%, ^(copyq)$"
-          (f "org.gnome.Settings")
-          (f "org.gnome.design.Palette")
-          (f "Color Picker")
-          (f "xdg-desktop-portal")
-          (f "xdg-desktop-portal-gnome")
-          (f "transmission-gtk")
-          (f "com.github.Aylur.ags")
-          "workspace 7, title:Spotify"
-        ];
-        bind = let
-          binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
-          mvfocus = binding "SUPER" "movefocus";
-          mvfocusmonitor = binding "SUPER" "focusmonitor";
-          swapwindow = binding "SUPER SHIFT" "swapwindow";
-          resizeactive = binding "SUPER ALT SHIFT" "resizeactive";
-          # mvactive = binding "SUPER SHIFT" "moveactive";
-          ws = binding "SUPER CTRL" "workspace";
-          mvtows = binding "SUPER CTRL SHIFT" "movetoworkspace";
-          e = "exec, ";
-          arr = [ 1 2 3 4 5 6 7 8 9 ];
-        in [
-          (mvfocus "up" "u")
-          (mvfocus "down" "d")
-          (mvfocus "right" "r")
-          (mvfocus "left" "l")
-          (mvfocusmonitor "0" "0")
-          (mvfocusmonitor "1" "1")
-          (mvfocusmonitor "2" "2")
-          (mvfocusmonitor "3" "3")
-          (mvfocusmonitor "4" "4")
-          (mvfocusmonitor "5" "5")
-          (mvfocusmonitor "6" "6")
-          (mvfocusmonitor "7" "7")
-          (mvfocusmonitor "8" "8")
-          (mvfocusmonitor "9" "9")
-          (ws "0" "0")
-          (ws "1" "1")
-          (ws "2" "2")
-          (ws "3" "3")
-          (ws "4" "4")
-          (ws "5" "5")
-          (ws "6" "6")
-          (ws "7" "7")
-          (ws "8" "8")
-          (ws "9" "9")
-          (ws "left" "-1")
-          (ws "right" "+1")
-          (mvtows "0" "0")
-          (mvtows "1" "1")
-          (mvtows "2" "2")
-          (mvtows "3" "3")
-          (mvtows "4" "4")
-          (mvtows "5" "5")
-          (mvtows "6" "6")
-          (mvtows "7" "7")
-          (mvtows "8" "8")
-          (mvtows "9" "9")
-          (mvtows "left" "e-1")
-          (mvtows "right" "e+1")
-          (resizeactive "up" "0 -40")
-          (resizeactive "down" "0 40")
-          (resizeactive "right" "40 0")
-          (resizeactive "left" "-40 0")
-          (swapwindow "up" "u")
-          (swapwindow "down" "d")
-          (swapwindow "right" "r")
-          (swapwindow "left" "l")
-          # (mvactive "up" "0 -20")
-          # (mvactive "down" "0 20")
-          # (mvactive "right" "20 0")
-          # (mvactive "left" "-20 0")
-          ", XF86PowerOff, ${e} -t powermenu"
-          "SUPER, Tab,     ${e} -t overview"
-          ",Print,    exec, /home/l/s/screenshot.sh"
-          "SUPER, T, exec, /home/l/s/translator.sh"
-          #-t png - | ${pkgs.swappy}/bin/swappy -f - -o - |${pkgs.oxipng}/bin/oxipng - |wl-copy'"
-          "SUPER, R,       exec, ${pkgs.wofi}/bin/wofi --show run"
-          "SUPER, Return, exec, wezterm" # xterm is a symlink, not actually xterm
-          "SUPER, N, exec, zen --enable-transparent-background"
-          "SUPER, E, exec, dolphin"
-          "SUPER SHIFT, L, exec, hyprlock --immediate"
-          "SUPER, V, exec, cliphist list | ${pkgs.wofi}/bin/wofi --dmenu | cliphist decode | wl-copy"
-          "SUPER, C, exec, copyq toggle"
-          "SUPER CTRL ALT SHIFT, V, exec, cliphist list | ${pkgs.wofi}/bin/wofi --dmenu | cliphist delete"
-          "ALT, Tab, focusurgentorlast"
-          "CTRL ALT, Delete, exit"
-          "SUPER SHIFT, Q, killactive"
-          "SUPER, F, togglefloating"
-          "SUPER, M, fullscreen"
-          "SUPER, P, togglesplit"
-        ] ++ (map (i: ws (toString i) (toString i)) arr)
-        ++ (map (i: mvtows (toString i) (toString i)) arr);
+        windowrule =
+          let f = regex: "float, ^(${regex})$";
+          in [
+            (f "org.gnome.Calculator")
+            (f "org.gnome.Nautilus")
+            (f "pavucontrol")
+            (f "nm-connection-editor")
+            (f "blueberry.py")
+            (f "copyq")
+            # "move cursor 0% 0%, ^(copyq)$"
+            (f "org.gnome.Settings")
+            (f "org.gnome.design.Palette")
+            (f "Color Picker")
+            (f "xdg-desktop-portal")
+            (f "xdg-desktop-portal-gnome")
+            (f "transmission-gtk")
+            (f "com.github.Aylur.ags")
+            "workspace 7, title:Spotify"
+          ];
+        bind =
+          let
+            binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
+            mvfocus = binding "SUPER" "movefocus";
+            mvfocusmonitor = binding "SUPER" "focusmonitor";
+            swapwindow = binding "SUPER SHIFT" "swapwindow";
+            resizeactive = binding "SUPER ALT SHIFT" "resizeactive";
+            # mvactive = binding "SUPER SHIFT" "moveactive";
+            ws = binding "SUPER CTRL" "workspace";
+            mvtows = binding "SUPER CTRL SHIFT" "movetoworkspace";
+            e = "exec, ";
+            arr = [ 1 2 3 4 5 6 7 8 9 ];
+          in
+          [
+            (mvfocus "up" "u")
+            (mvfocus "down" "d")
+            (mvfocus "right" "r")
+            (mvfocus "left" "l")
+            (mvfocusmonitor "0" "0")
+            (mvfocusmonitor "1" "1")
+            (mvfocusmonitor "2" "2")
+            (mvfocusmonitor "3" "3")
+            (mvfocusmonitor "4" "4")
+            (mvfocusmonitor "5" "5")
+            (mvfocusmonitor "6" "6")
+            (mvfocusmonitor "7" "7")
+            (mvfocusmonitor "8" "8")
+            (mvfocusmonitor "9" "9")
+            (ws "0" "0")
+            (ws "1" "1")
+            (ws "2" "2")
+            (ws "3" "3")
+            (ws "4" "4")
+            (ws "5" "5")
+            (ws "6" "6")
+            (ws "7" "7")
+            (ws "8" "8")
+            (ws "9" "9")
+            (ws "left" "-1")
+            (ws "right" "+1")
+            (mvtows "0" "0")
+            (mvtows "1" "1")
+            (mvtows "2" "2")
+            (mvtows "3" "3")
+            (mvtows "4" "4")
+            (mvtows "5" "5")
+            (mvtows "6" "6")
+            (mvtows "7" "7")
+            (mvtows "8" "8")
+            (mvtows "9" "9")
+            (mvtows "left" "e-1")
+            (mvtows "right" "e+1")
+            (resizeactive "up" "0 -40")
+            (resizeactive "down" "0 40")
+            (resizeactive "right" "40 0")
+            (resizeactive "left" "-40 0")
+            (swapwindow "up" "u")
+            (swapwindow "down" "d")
+            (swapwindow "right" "r")
+            (swapwindow "left" "l")
+            # (mvactive "up" "0 -20")
+            # (mvactive "down" "0 20")
+            # (mvactive "right" "20 0")
+            # (mvactive "left" "-20 0")
+            ", XF86PowerOff, ${e} -t powermenu"
+            "SUPER, Tab,     ${e} -t overview"
+            ",Print,    exec, /home/l/s/screenshot.sh"
+            "SUPER, T, exec, /home/l/s/translator.sh"
+            #-t png - | ${pkgs.swappy}/bin/swappy -f - -o - |${pkgs.oxipng}/bin/oxipng - |wl-copy'"
+            "SUPER, R,       exec, ${pkgs.wofi}/bin/wofi --show run"
+            "SUPER, Return, exec, wezterm" # xterm is a symlink, not actually xterm
+            "SUPER, N, exec, zen --enable-transparent-background"
+            "SUPER, E, exec, dolphin"
+            "SUPER SHIFT, L, exec, hyprlock --immediate"
+            "SUPER, V, exec, cliphist list | ${pkgs.wofi}/bin/wofi --dmenu | cliphist decode | wl-copy"
+            "SUPER, C, exec, copyq toggle"
+            "SUPER CTRL ALT SHIFT, V, exec, cliphist list | ${pkgs.wofi}/bin/wofi --dmenu | cliphist delete"
+            "ALT, Tab, focusurgentorlast"
+            "CTRL ALT, Delete, exit"
+            "SUPER SHIFT, Q, killactive"
+            "SUPER, F, togglefloating"
+            "SUPER, M, fullscreen"
+            "SUPER, P, togglesplit"
+          ] ++ (map (i: ws (toString i) (toString i)) arr)
+          ++ (map (i: mvtows (toString i) (toString i)) arr);
 
-        bindle = let e = "exec, ";
-        in [
-          ",XF86MonBrightnessUp,   exec, 'ddcutil --display 1 setvcp 10 + 5& ddcutil --display 2 setvcp 10 + 5& ddcutil --display 3 setvcp 10 + 5& ddcutil --display 4 setvcp 10 + 5& ddcutil --display 5 setvcp 10 + 5& brightnessctl s 10%+&'"
-          ",XF86MonBrightnessDown,   exec,'ddcutil --display 1 setvcp 10 - 5& ddcutil --display 2 setvcp 10 - 5& ddcutil --display 3 setvcp 10 - 5& ddcutil --display 4 setvcp 10 - 5& ddcutil --display 5 setvcp 10 - 5& brightnessctl s 10%-&'"
-          ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
-          ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-"
-        ];
-        bindl = let e = "exec, ";
-        in [
-          ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-          ",XF86AudioMicMute, exec,'wpctl set-mute  @DEFAULT_AUDIO_SOURCE@ toggle'"
-          ",F20, exec,'wpctl set-mute  @DEFAULT_AUDIO_SOURCE@ toggle'"
-          ",XF86AudioPlay,    exec,'${pkgs.playerctl}/bin/playerctl play-pause'"
-          ",XF86AudioStop,    exec,'${pkgs.playerctl}/bin/playerctl play-pause'"
-          ",XF86AudioPause,   exec,'${pkgs.playerctl}/bin/playerctl play-pause'"
-          ",XF86AudioPrev,    exec,'${pkgs.playerctl}/bin/playerctl previous'"
-          ",XF86AudioNext,    exec,'${pkgs.playerctl}/bin/playerctl next'"
-        ];
+        bindle =
+          let e = "exec, ";
+          in [
+            ",XF86MonBrightnessUp,   exec, 'ddcutil --display 1 setvcp 10 + 5& ddcutil --display 2 setvcp 10 + 5& ddcutil --display 3 setvcp 10 + 5& ddcutil --display 4 setvcp 10 + 5& ddcutil --display 5 setvcp 10 + 5& brightnessctl s 10%+&'"
+            ",XF86MonBrightnessDown,   exec,'ddcutil --display 1 setvcp 10 - 5& ddcutil --display 2 setvcp 10 - 5& ddcutil --display 3 setvcp 10 - 5& ddcutil --display 4 setvcp 10 - 5& ddcutil --display 5 setvcp 10 - 5& brightnessctl s 10%-&'"
+            ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
+            ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-"
+          ];
+        bindl =
+          let e = "exec, ";
+          in [
+            ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+            ",XF86AudioMicMute, exec,'wpctl set-mute  @DEFAULT_AUDIO_SOURCE@ toggle'"
+            ",F20, exec,'wpctl set-mute  @DEFAULT_AUDIO_SOURCE@ toggle'"
+            ",XF86AudioPlay,    exec,'${pkgs.playerctl}/bin/playerctl play-pause'"
+            ",XF86AudioStop,    exec,'${pkgs.playerctl}/bin/playerctl play-pause'"
+            ",XF86AudioPause,   exec,'${pkgs.playerctl}/bin/playerctl play-pause'"
+            ",XF86AudioPrev,    exec,'${pkgs.playerctl}/bin/playerctl previous'"
+            ",XF86AudioNext,    exec,'${pkgs.playerctl}/bin/playerctl next'"
+          ];
         bindm =
           [ "SUPER, mouse:273, resizewindow" "SUPER, mouse:272, movewindow" ];
         decoration = {

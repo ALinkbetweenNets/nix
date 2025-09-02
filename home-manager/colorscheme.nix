@@ -19,12 +19,15 @@ let
     "Red"
     "BrightRed"
   ];
-in {
+in
+{
 
-  options.pinpox.colors = builtins.listToAttrs (map (c: {
-    name = c;
-    value = mkOption { type = types.str; };
-  }) colornames);
+  options.pinpox.colors = builtins.listToAttrs (map
+    (c: {
+      name = c;
+      value = mkOption { type = types.str; };
+    })
+    colornames);
 
   config.pinpox.colors = {
 

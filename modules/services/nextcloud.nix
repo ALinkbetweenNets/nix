@@ -66,68 +66,69 @@ in {
         database.createLocally = true;
         home = "${config.link.storage}/nextcloud";
       };
-      nginx = if (!cfg.nginx) then {
-        enable = true;
-        recommendedGzipSettings = true;
-        recommendedOptimisation = true;
-        recommendedProxySettings = true;
-        recommendedTlsSettings = true;
-        logError = "stderr debug";
-        package = pkgs.nginxStable.override { openssl = pkgs.libressl; };
-        clientMaxBodySize = "1000m";
-        commonHttpConfig = ''
-          # Add HSTS header with preloading to HTTPS requests.
-          # Adding this header to HTTP requests is discouraged
-            server_names_hash_bucket_size 128;
-            proxy_headers_hash_max_size 1024;
-            proxy_headers_hash_bucket_size 256;
-          map $scheme $hsts_header {
-              https   "max-age=31536000; includeSubdomains; preload";
-          }
-          add_header Strict-Transport-Security $hsts_header;
-        '';
-        virtualHosts."nextcloud.${config.link.domain}" = {
-          # enableACME = true;
-          # forceSSL = true;
-          extraConfig = mkIf (!cfg.nginx-expose) ''
-            allow ${config.link.service-ip}/24;
-            allow 127.0.0.1;
-            deny all; # deny all remaining ips
+      nginx =
+        if (!cfg.nginx) then {
+          enable = true;
+          recommendedGzipSettings = true;
+          recommendedOptimisation = true;
+          recommendedProxySettings = true;
+          recommendedTlsSettings = true;
+          logError = "stderr debug";
+          package = pkgs.nginxStable.override { openssl = pkgs.libressl; };
+          clientMaxBodySize = "1000m";
+          commonHttpConfig = ''
+            # Add HSTS header with preloading to HTTPS requests.
+            # Adding this header to HTTP requests is discouraged
+              server_names_hash_bucket_size 128;
+              proxy_headers_hash_max_size 1024;
+              proxy_headers_hash_bucket_size 256;
+            map $scheme $hsts_header {
+                https   "max-age=31536000; includeSubdomains; preload";
+            }
+            add_header Strict-Transport-Security $hsts_header;
           '';
-          #locations."/" = {
-          #  proxyPass = "http://127.0.0.1:80/";
-          # extraConfig = ''
-          #   proxy_set_header Front-End-Https on;
-          #   proxy_set_header Strict-Transport-Security "max-age=2592000; includeSubdomains";
-          #   proxy_set_header X-Real-IP $remote_addr;
-          #   proxy_set_header Host $host;
-          #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          #   proxy_set_header X-Forwarded-Proto $scheme;
-          # '';
-          #};
+          virtualHosts."nextcloud.${config.link.domain}" = {
+            # enableACME = true;
+            # forceSSL = true;
+            extraConfig = mkIf (!cfg.nginx-expose) ''
+              allow ${config.link.service-ip}/24;
+              allow 127.0.0.1;
+              deny all; # deny all remaining ips
+            '';
+            #locations."/" = {
+            #  proxyPass = "http://127.0.0.1:80/";
+            # extraConfig = ''
+            #   proxy_set_header Front-End-Https on;
+            #   proxy_set_header Strict-Transport-Security "max-age=2592000; includeSubdomains";
+            #   proxy_set_header X-Real-IP $remote_addr;
+            #   proxy_set_header Host $host;
+            #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            #   proxy_set_header X-Forwarded-Proto $scheme;
+            # '';
+            #};
+          };
+        } else {
+          virtualHosts."nextcloud.${config.link.domain}" = {
+            enableACME = true;
+            forceSSL = true;
+            extraConfig = mkIf (!cfg.nginx-expose) ''
+              allow ${config.link.service-ip}/24;
+              allow 127.0.0.1;
+              deny all; # deny all remaining ips
+            '';
+            #locations."/" = {
+            #  proxyPass = "http://127.0.0.1:80/";
+            # extraConfig = ''
+            #   proxy_set_header Front-End-Https on;
+            #   proxy_set_header Strict-Transport-Security "max-age=2592000; includeSubdomains";
+            #   proxy_set_header X-Real-IP $remote_addr;
+            #   proxy_set_header Host $host;
+            #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            #   proxy_set_header X-Forwarded-Proto $scheme;
+            # '';
+            #};
+          };
         };
-      } else {
-        virtualHosts."nextcloud.${config.link.domain}" = {
-          enableACME = true;
-          forceSSL = true;
-          extraConfig = mkIf (!cfg.nginx-expose) ''
-            allow ${config.link.service-ip}/24;
-            allow 127.0.0.1;
-            deny all; # deny all remaining ips
-          '';
-          #locations."/" = {
-          #  proxyPass = "http://127.0.0.1:80/";
-          # extraConfig = ''
-          #   proxy_set_header Front-End-Https on;
-          #   proxy_set_header Strict-Transport-Security "max-age=2592000; includeSubdomains";
-          #   proxy_set_header X-Real-IP $remote_addr;
-          #   proxy_set_header Host $host;
-          #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          #   proxy_set_header X-Forwarded-Proto $scheme;
-          # '';
-          #};
-        };
-      };
     };
     security.acme = mkIf (!cfg.nginx) {
       acceptTerms = true;

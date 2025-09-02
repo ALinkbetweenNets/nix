@@ -36,9 +36,9 @@ in {
           # udhcpc.enable = true;
           postCommands = mkIf
             (config.nixpkgs.hostPlatform == "x86_64-linux") ''
-              # Automatically ask for the password on SSH login
-              echo 'cryptsetup-askpass || echo "Unlock was successful; exiting SSH session" && exit 1' >> /root/.profile
-            '';
+            # Automatically ask for the password on SSH login
+            echo 'cryptsetup-askpass || echo "Unlock was successful; exiting SSH session" && exit 1' >> /root/.profile
+          '';
           ssh = {
             enable = true;
             port = 25222;

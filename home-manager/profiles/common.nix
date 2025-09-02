@@ -69,7 +69,7 @@ with lib; {
         jdupes # duplicate Finder, better fdupes
         rmlint
       ] ++ lib.optionals
-      (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
+        (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
     # Home-manager nixpkgs config
     nixpkgs = {
       # Allow "unfree" licenced packages

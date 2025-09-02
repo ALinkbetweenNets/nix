@@ -30,10 +30,11 @@ in {
     services = {
       part-db = {
         enable = true;
-        virtualHost = if cfg.nginx then
-          "part-db.${config.link.domain}"
-        else
-          config.networking.hostName;
+        virtualHost =
+          if cfg.nginx then
+            "part-db.${config.link.domain}"
+          else
+            config.networking.hostName;
         enableNginx = true;
       };
     };

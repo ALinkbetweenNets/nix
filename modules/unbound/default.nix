@@ -8,7 +8,8 @@ let
   '' + concatStringsSep "\n"
     (mapAttrsToList (n: v: ''local-data: "${n} A ${toString v}"'')
       cfg.A-records));
-in {
+in
+{
   options.link.unbound = {
     enable = mkEnableOption "activate unbound";
     A-records = mkOption {

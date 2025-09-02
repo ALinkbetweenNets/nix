@@ -37,10 +37,11 @@ in {
       nextjs-ollama-llm-ui = {
         enable = true;
         port = 11435;
-        ollamaUrl = if cfg.expose-port then
-          "http://0.0.0.0:11435"
-        else
-          "127.0.0.1:11435";
+        ollamaUrl =
+          if cfg.expose-port then
+            "http://0.0.0.0:11435"
+          else
+            "127.0.0.1:11435";
       };
       # private-gpt = {
       #   enable = true;

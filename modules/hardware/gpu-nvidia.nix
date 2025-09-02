@@ -5,7 +5,8 @@ let
   cudaoverlay = (self: super: {
     inherit (pkgs.cudapkgs) ffmpeg hashcat jellyfin jellyfin-ffmpeg;
   });
-in {
+in
+{
   options.link.nvidia = { enable = mkEnableOption "activate nvidia support"; };
   config = mkIf cfg.enable {
     nixpkgs.overlays = [ cudaoverlay ];

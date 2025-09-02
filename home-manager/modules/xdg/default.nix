@@ -6,24 +6,24 @@ with lib; {
       xdgOpenUsePortal = true;
       configPackages = with pkgs;
         [ ] ++ lib.optionals (system-config.link.plasma.enable)
-        [ kdePackages.xdg-desktop-portal-kde ]
+          [ kdePackages.xdg-desktop-portal-kde ]
         ++ lib.optionals (system-config.link.gnome.enable)
-        [ xdg-desktop-portal-gnome ] ++ lib.optionals
-        (system-config.services.xserver.desktopManager.phosh.enable)
-        [ xdg-desktop-portal-gnome ]
+          [ xdg-desktop-portal-gnome ] ++ lib.optionals
+          (system-config.services.xserver.desktopManager.phosh.enable)
+          [ xdg-desktop-portal-gnome ]
         ++ lib.optionals (system-config.link.sway.enable)
-        [ xdg-desktop-portal-wlr ]
+          [ xdg-desktop-portal-wlr ]
         ++ lib.optionals (system-config.link.hyprland.enable)
-        [ xdg-desktop-portal-hyprland ];
+          [ xdg-desktop-portal-hyprland ];
       extraPortals = with pkgs;
         [ ] ++ lib.optionals (system-config.link.plasma.enable)
-        [ kdePackages.xdg-desktop-portal-kde ]
+          [ kdePackages.xdg-desktop-portal-kde ]
         ++ lib.optionals (system-config.link.gnome.enable)
-        [ xdg-desktop-portal-gnome ] ++ lib.optionals
-        (system-config.services.xserver.desktopManager.phosh.enable)
-        [ xdg-desktop-portal-gnome ]
+          [ xdg-desktop-portal-gnome ] ++ lib.optionals
+          (system-config.services.xserver.desktopManager.phosh.enable)
+          [ xdg-desktop-portal-gnome ]
         ++ lib.optionals (system-config.link.sway.enable)
-        [ xdg-desktop-portal-wlr ]
+          [ xdg-desktop-portal-wlr ]
         ++ lib.optionals (system-config.link.hyprland.enable) [
           xdg-desktop-portal-hyprland
           kdePackages.xdg-desktop-portal-kde

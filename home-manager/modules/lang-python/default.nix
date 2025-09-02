@@ -36,7 +36,7 @@ in {
       ];
     programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions;
       [ ms-toolsai.jupyter ms-pyright.pyright ] ++ lib.optionals
-      (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [
+        (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [
         #  ms-python.python # broken
       ];
   };

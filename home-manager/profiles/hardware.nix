@@ -4,6 +4,6 @@ with lib; {
   config = {
     home.packages = with pkgs;
       [ hddtemp lshw usbutils ] ++ lib.optionals
-      (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
+        (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
   };
 }

@@ -159,7 +159,8 @@
         #   };
         # };
       };
-    in {
+    in
+    {
       formatter = forAllSystems (system: nixpkgsFor.${system}.nixpkgs-fmt);
       overlays.default = final: prev: (import ./pkgs inputs) final prev;
       packages = forAllSystems (system:
@@ -171,7 +172,8 @@
           #   inputs = inputs;
           # };
           build_outputs = pkgs.callPackage
-            mayniklas.packages.${system}.build_outputs.override {
+            mayniklas.packages.${system}.build_outputs.override
+            {
               inherit self;
               output_path = "~/.keep-nix-outputs-ALinkbetweenNets";
             };
@@ -180,11 +182,13 @@
       apps = forAllSystems (system: { });
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
-      nixosModules = builtins.listToAttrs (map (x: {
-        name = x;
-        #specialArgs = { flake-self = self; } // inputs;
-        value = import (./modules + "/${x}");
-      }) (builtins.attrNames (builtins.readDir ./modules)));
+      nixosModules = builtins.listToAttrs (map
+        (x: {
+          name = x;
+          #specialArgs = { flake-self = self; } // inputs;
+          value = import (./modules + "/${x}");
+        })
+        (builtins.attrNames (builtins.readDir ./modules)));
       # Each subdirectory in ./machines is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
       # configuration.nix that will be read first
@@ -192,20 +196,25 @@
       clan = clan.config;
       # clan = { inherit (clan) templates; };
       # clan = clan.config;
-      homeConfigurations = builtins.listToAttrs (map (filename: {
-        name =
-          builtins.substring 0 ((builtins.stringLength filename) - 4) filename;
-        value = { pkgs, lib, username, ... }: {
-          imports = [
-            "${./.}/home-manager/profiles/common.nix"
-            "${./.}/home-manager/profiles/${filename}"
-          ] ++ (builtins.attrValues self.homeManagerModules);
-        };
-      }) (builtins.attrNames (builtins.readDir ./home-manager/profiles)));
-      homeManagerModules = builtins.listToAttrs (map (name: {
-        inherit name;
-        value = import (./home-manager/modules + "/${name}");
-      }) (builtins.attrNames (builtins.readDir ./home-manager/modules))) // {
+      homeConfigurations = builtins.listToAttrs (map
+        (filename: {
+          name =
+            builtins.substring 0 ((builtins.stringLength filename) - 4) filename;
+          value = { pkgs, lib, username, ... }: {
+            imports = [
+              "${./.}/home-manager/profiles/common.nix"
+              "${./.}/home-manager/profiles/${filename}"
+            ] ++ (builtins.attrValues self.homeManagerModules);
+          };
+        })
+        (builtins.attrNames (builtins.readDir ./home-manager/profiles)));
+      homeManagerModules = builtins.listToAttrs
+        (map
+          (name: {
+            inherit name;
+            value = import (./home-manager/modules + "/${name}");
+          })
+          (builtins.attrNames (builtins.readDir ./home-manager/modules))) // {
         # This module is appended to the list of home-manager modules.
         # It's always enabled for all profiles.
         # It's used to easily add overlays and imports to home-manager.
