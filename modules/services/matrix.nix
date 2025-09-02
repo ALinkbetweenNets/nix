@@ -38,10 +38,11 @@ in {
             "turn:${realm}:3478?transport=udp"
             "turn:${realm}:3478?transport=tcp"
           ];
-          public_baseurl = if cfg.nginx then
-            "https://matrix.${config.link.domain}"
-          else
-            "http://${config.link.service-ip}:8008";
+          public_baseurl =
+            if cfg.nginx then
+              "https://matrix.${config.link.domain}"
+            else
+              "http://${config.link.service-ip}:8008";
           server_name = "matrix.${config.link.domain}";
           listeners = [{
             port = cfg.port;

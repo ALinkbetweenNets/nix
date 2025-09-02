@@ -33,7 +33,7 @@ in {
       settings = {
         cameras = {
           "pizero1" = {
-            detect={
+            detect = {
               width = 640;
               height = 480;
               fps = 5;

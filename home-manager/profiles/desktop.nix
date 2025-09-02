@@ -165,7 +165,7 @@ with lib; {
         flake-self.inputs.zen-browser.packages.${system}.default
         # (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ] ++ lib.optionals
-      (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [
+        (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [
         bitwarden
         tor-browser-bundle-bin # compromisednix
         mullvad-browser

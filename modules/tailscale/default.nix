@@ -22,7 +22,7 @@ in {
       extraUpFlags = [ ] ++ lib.optionals (cfg.advertise-exit-node) [
         "--advertise-exit-node"
       ]
-      # ++ lib.optionals (config.link.unbound.enable) [ "--accept-dns=false" ]
+        # ++ lib.optionals (config.link.unbound.enable) [ "--accept-dns=false" ]
       ;
     };
   };

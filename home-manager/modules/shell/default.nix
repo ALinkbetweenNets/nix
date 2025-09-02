@@ -109,114 +109,116 @@ in {
           src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
         }
       ];
-      shellAliases = let
-        fhs-vscode = pkgs.vscode.fhsWithPackages
-          (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
-      in {
-        rep = "/home/l/s/repeat.sh";
-        ai = "/home/l/s/ai.sh";
-        ais = "/home/l/s/ais.sh";
-        tts = "/home/l/s/speak.sh";
-        countlinesofcode = "nix-shell -p tokei --run tokei";
-        teams = ''
-          cd ~/w/image && tmux new -s teams-npx -d 'sudo npx http-server -p 80 --cors "*" -g' && sleep 10 && tmux new -s teams -d 'teams-for-linux --customBGServiceIgnoreMSDefaults=true --isCustomBackgroundEnabled=true --customBGServiceURL=http://localhost'
-        '';
-        webserver =
-          "tmux new -s npx -d 'sudo npx http-server -p 5000 --cors \"*\" -g'";
-        cht = "cht.sh";
-        wetter = "curl wttr.in/bonn";
-        myvs = "${fhs-vscode}/bin/code";
-        # switching within a flake repository
-        nrg =
-          "nixos-rebuild switch --sudo --flake github:alinkbetweennets/nix";
-        ns = "nix-shell -p ";
-        nr =
-          "cd /home/l/nix;git pull;nixos-rebuild switch --sudo --flake /home/l/nix |& nom";
-        nrb = "nixos-rebuild switch --sudo --flake /home/l/nix";
-        ngc = "sudo nix-collect-garbage -d";
-        # discord = "nohup discord --use-gl=desktop &";
-        netdiscover = "sudo netdiscover";
-        less = "less -r";
-        services = "systemctl list-units --type service";
-        killme = "exit";
-        pls = "sudo";
-        cls = "clear";
-        datamatrix = "iec16022";
-        fancytext = "figlet -tkf slant ";
-        open = "xdg-open";
-        o = "xdg-open";
-        q = "exit";
-        r = "trash put";
-        rmt = "trash put";
-        n = "nvim";
-        c = "cd";
-        optimizeimage = "oxipng -o max -s -i 1 -p --fast -a -r ";
-        deduplicate-hardlink =
-          "jdupes --recurse -L "; # Replace duplicates with hardlinks
-        deduplicate = "rmlint -r -g -k ";
-        ci = ''
-          # echo link to woodpecker
-          url=$(${pkgs.git}/bin/git config --get remote.origin.url | sed -e 's/\(.*\)git@\(.*\):[0-9\/]*/https:\/\/\2\//g')
-          owner=$(echo $url | sed -e 's/.*github.com\/\(.*\)\/.*/\1/g')
-          repo=$(echo $url | sed -e 's/.*github.com\/.*\/\(.*\).git/\1/g')
-          echo "https://build.lounge.rocks/$owner/$repo"
-        '';
-        v = "codium";
-        copium = "codium";
-        cope = "codium";
-        t = "tailscale";
-        opn = "sudo openvpn";
-        ts = "tailscale status";
-        f = "fuck";
-        p = "python";
-        b = "bat";
-        s = "sudo";
-        search = "links https://duckduckgo.com/";
-        nip = "zen https://search.nixos.org/packages";
-        nio = "zen https://search.nixos.org/options";
-        yt = "~/s/y.sh";
-        spk = "~/s/speak.sh";
-        dupl = "fdupes -rdnAst .";
-        sm = "sm -i";
-        g = "git";
-        gp = "git pull";
-        gs = "git status";
-        gac = "git commit -am '$(date -I)'";
-        gpp = "git pull&&git push";
-        gitforkupdate = ''
-          ${pkgs.git}/bin/git fetch upstream
-          ${pkgs.git}/bin/git checkout main
-          ${pkgs.git}/bin/git merge upstream/main
-        '';
-        l =
-          "eza --icons --group-directories-first --git -F --color always --sort=modified"; # -F = --classify
-        lr =
-          "eza --icons --group-directories-first --git -F --color always --sort=modified --tree";
-        la =
-          "eza --icons --group-directories-first --git -F --color always --sort=modified --all";
-        lss =
-          "eza --icons --group-directories-first --git -F --color always --sort=size";
-        lsr =
-          "eza --icons --group-directories-first --git -F --color always --sort=size --tree";
-        lsa =
-          "eza --icons --group-directories-first --git -F --color always --sort=size --all";
-        lar =
-          "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all";
-        ll =
-          "eza --icons --group-directories-first --git -F --color always --sort=modified -l --group";
-        llr =
-          "eza --icons --group-directories-first --git -F --color always --sort=modified --tree -l --group";
-        lla =
-          "eza --icons --group-directories-first --git -F --color always --sort=modified --all -l --group";
-        lls =
-          "eza --icons --group-directories-first --git -F --color always --sort=size -l";
-        llsr =
-          "eza --icons --group-directories-first --git -F --color always --sort=size --tree -l --group";
-        llsa =
-          "eza --icons --group-directories-first --git -F --color always --sort=size --all -l --group";
-        llar =
-          "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all -l --group";
-      };
+      shellAliases =
+        let
+          fhs-vscode = pkgs.vscode.fhsWithPackages
+            (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
+        in
+        {
+          rep = "/home/l/s/repeat.sh";
+          ai = "/home/l/s/ai.sh";
+          ais = "/home/l/s/ais.sh";
+          tts = "/home/l/s/speak.sh";
+          countlinesofcode = "nix-shell -p tokei --run tokei";
+          teams = ''
+            cd ~/w/image && tmux new -s teams-npx -d 'sudo npx http-server -p 80 --cors "*" -g' && sleep 10 && tmux new -s teams -d 'teams-for-linux --customBGServiceIgnoreMSDefaults=true --isCustomBackgroundEnabled=true --customBGServiceURL=http://localhost'
+          '';
+          webserver =
+            "tmux new -s npx -d 'sudo npx http-server -p 5000 --cors \"*\" -g'";
+          cht = "cht.sh";
+          wetter = "curl wttr.in/bonn";
+          myvs = "${fhs-vscode}/bin/code";
+          # switching within a flake repository
+          nrg =
+            "nixos-rebuild switch --sudo --flake github:alinkbetweennets/nix";
+          ns = "nix-shell -p ";
+          nr =
+            "cd /home/l/nix;git pull;nixos-rebuild switch --sudo --flake /home/l/nix |& nom";
+          nrb = "nixos-rebuild switch --sudo --flake /home/l/nix";
+          ngc = "sudo nix-collect-garbage -d";
+          # discord = "nohup discord --use-gl=desktop &";
+          netdiscover = "sudo netdiscover";
+          less = "less -r";
+          services = "systemctl list-units --type service";
+          killme = "exit";
+          pls = "sudo";
+          cls = "clear";
+          datamatrix = "iec16022";
+          fancytext = "figlet -tkf slant ";
+          open = "xdg-open";
+          o = "xdg-open";
+          q = "exit";
+          r = "trash put";
+          rmt = "trash put";
+          n = "nvim";
+          c = "cd";
+          optimizeimage = "oxipng -o max -s -i 1 -p --fast -a -r ";
+          deduplicate-hardlink =
+            "jdupes --recurse -L "; # Replace duplicates with hardlinks
+          deduplicate = "rmlint -r -g -k ";
+          ci = ''
+            # echo link to woodpecker
+            url=$(${pkgs.git}/bin/git config --get remote.origin.url | sed -e 's/\(.*\)git@\(.*\):[0-9\/]*/https:\/\/\2\//g')
+            owner=$(echo $url | sed -e 's/.*github.com\/\(.*\)\/.*/\1/g')
+            repo=$(echo $url | sed -e 's/.*github.com\/.*\/\(.*\).git/\1/g')
+            echo "https://build.lounge.rocks/$owner/$repo"
+          '';
+          v = "codium";
+          copium = "codium";
+          cope = "codium";
+          t = "tailscale";
+          opn = "sudo openvpn";
+          ts = "tailscale status";
+          f = "fuck";
+          p = "python";
+          b = "bat";
+          s = "sudo";
+          search = "links https://duckduckgo.com/";
+          nip = "zen https://search.nixos.org/packages";
+          nio = "zen https://search.nixos.org/options";
+          yt = "~/s/y.sh";
+          spk = "~/s/speak.sh";
+          dupl = "fdupes -rdnAst .";
+          sm = "sm -i";
+          g = "git";
+          gp = "git pull";
+          gs = "git status";
+          gac = "git commit -am '$(date -I)'";
+          gpp = "git pull&&git push";
+          gitforkupdate = ''
+            ${pkgs.git}/bin/git fetch upstream
+            ${pkgs.git}/bin/git checkout main
+            ${pkgs.git}/bin/git merge upstream/main
+          '';
+          l =
+            "eza --icons --group-directories-first --git -F --color always --sort=modified"; # -F = --classify
+          lr =
+            "eza --icons --group-directories-first --git -F --color always --sort=modified --tree";
+          la =
+            "eza --icons --group-directories-first --git -F --color always --sort=modified --all";
+          lss =
+            "eza --icons --group-directories-first --git -F --color always --sort=size";
+          lsr =
+            "eza --icons --group-directories-first --git -F --color always --sort=size --tree";
+          lsa =
+            "eza --icons --group-directories-first --git -F --color always --sort=size --all";
+          lar =
+            "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all";
+          ll =
+            "eza --icons --group-directories-first --git -F --color always --sort=modified -l --group";
+          llr =
+            "eza --icons --group-directories-first --git -F --color always --sort=modified --tree -l --group";
+          lla =
+            "eza --icons --group-directories-first --git -F --color always --sort=modified --all -l --group";
+          lls =
+            "eza --icons --group-directories-first --git -F --color always --sort=size -l";
+          llsr =
+            "eza --icons --group-directories-first --git -F --color always --sort=size --tree -l --group";
+          llsa =
+            "eza --icons --group-directories-first --git -F --color always --sort=size --all -l --group";
+          llar =
+            "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all -l --group";
+        };
     };
     zsh.oh-my-zsh = {
       enable = true;

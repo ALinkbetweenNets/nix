@@ -21,10 +21,10 @@ in {
         "ydotool"
       ] ++ lib.optionals config.networking.networkmanager.enable
         [ "networkmanager" ]
-        ++ lib.optionals config.link.printing.enable [ "scanner" "lp" ]
-        ++ lib.optionals config.link.libvirt.enable [ "libvirtd" "kvm" ]
-        ++ lib.optionals config.link.docker.enable [ "docker" ]
-        ++ lib.optionals config.link.podman.enable [ "podman" ];
+      ++ lib.optionals config.link.printing.enable [ "scanner" "lp" ]
+      ++ lib.optionals config.link.libvirt.enable [ "libvirtd" "kvm" ]
+      ++ lib.optionals config.link.docker.enable [ "docker" ]
+      ++ lib.optionals config.link.podman.enable [ "podman" ];
       shell = "${pkgs.zsh}/bin/zsh";
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIOaLOyxsr6wgj0JoG/OrDywND2hG2nblOGUuZBPFG1U l@xn"

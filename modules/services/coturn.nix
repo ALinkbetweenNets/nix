@@ -61,17 +61,19 @@ in {
       };
     };
     networking.firewall = {
-      interfaces."${config.link.service-interface}" = let
-        range = with config.services.coturn; [{
-          from = min-port;
-          to = max-port;
-        }];
-      in {
-        allowedUDPPortRanges = range;
-        allowedUDPPorts = [ 3478 5349 ];
-        allowedTCPPortRanges = [ ];
-        allowedTCPPorts = [ 3478 5349 8008 ];
-      };
+      interfaces."${config.link.service-interface}" =
+        let
+          range = with config.services.coturn; [{
+            from = min-port;
+            to = max-port;
+          }];
+        in
+        {
+          allowedUDPPortRanges = range;
+          allowedUDPPorts = [ 3478 5349 ];
+          allowedTCPPortRanges = [ ];
+          allowedTCPPorts = [ 3478 5349 8008 ];
+        };
     };
   };
 }

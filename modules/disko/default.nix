@@ -50,71 +50,72 @@ in {
                   content = {
                     type = "btrfs";
                     extraArgs = [ "-f" ]; # Override existing partition
-                    subvolumes = if (builtins.length cfg.disks == 1) then {
-                      "@" = { };
-                      "@/root" = {
-                        mountpoint = "/";
-                        mountOptions = [ "compress=zstd" "noatime" ];
-                      };
-                      "@/home" = {
-                        mountpoint = "/home";
-                        mountOptions = [ "compress=zstd" ];
-                      };
-                      "@/nix" = {
-                        mountpoint = "/nix";
-                        mountOptions = [ "compress=zstd" "noatime" ];
-                      };
-                      "@/persist" = {
-                        mountpoint = "/persist";
-                        mountOptions = [ "compress=zstd" "noatime" ];
-                      };
-                      "@/var-lib" = {
-                        mountpoint = "/var/lib";
-                        mountOptions = [ "compress=zstd" "noatime" ];
-                      };
-                      "@/var-log" = {
-                        mountpoint = "/var/log";
-                        mountOptions = [ "compress=zstd" "noatime" ];
-                      };
-                      "@/var-tmp" = {
-                        mountpoint = "/var/tmp";
-                        mountOptions = [ "compress=zstd" "noatime" ];
-                      };
-                      "@/swap" = {
-                        mountpoint = "/.swapvol";
+                    subvolumes =
+                      if (builtins.length cfg.disks == 1) then {
+                        "@" = { };
+                        "@/root" = {
+                          mountpoint = "/";
+                          mountOptions = [ "compress=zstd" "noatime" ];
+                        };
+                        "@/home" = {
+                          mountpoint = "/home";
+                          mountOptions = [ "compress=zstd" ];
+                        };
+                        "@/nix" = {
+                          mountpoint = "/nix";
+                          mountOptions = [ "compress=zstd" "noatime" ];
+                        };
+                        "@/persist" = {
+                          mountpoint = "/persist";
+                          mountOptions = [ "compress=zstd" "noatime" ];
+                        };
+                        "@/var-lib" = {
+                          mountpoint = "/var/lib";
+                          mountOptions = [ "compress=zstd" "noatime" ];
+                        };
+                        "@/var-log" = {
+                          mountpoint = "/var/log";
+                          mountOptions = [ "compress=zstd" "noatime" ];
+                        };
+                        "@/var-tmp" = {
+                          mountpoint = "/var/tmp";
+                          mountOptions = [ "compress=zstd" "noatime" ];
+                        };
+                        "@/swap" = {
+                          mountpoint = "/.swapvol";
                           swap.swapfile.size = cfg.swapSize;
+                        };
+                      } else {
+                        "@" = { };
+                        "@/root" = {
+                          mountpoint = "/";
+                          mountOptions = [ "compress=zstd" "noatime" ];
+                        };
+                        "@/home" = {
+                          mountpoint = "/home";
+                          mountOptions = [ "compress=zstd" ];
+                        };
+                        "@/nix" = {
+                          mountpoint = "/nix";
+                          mountOptions = [ "compress=zstd" "noatime" ];
+                        };
+                        "@/persist" = {
+                          mountpoint = "/persist";
+                          mountOptions = [ "compress=zstd" "noatime" ];
+                        };
+                        "@/var-log" = {
+                          mountpoint = "/var/log";
+                          mountOptions = [ "compress=zstd" "noatime" ];
+                        };
+                        "@/var-tmp" = {
+                          mountpoint = "/var/tmp";
+                          mountOptions = [ "compress=zstd" "noatime" ];
+                        };
+                        "@/swap" = {
+                          mountpoint = "/.swapvol";
+                          swap.swapfile.size = cfg.swapSize;
+                        };
                       };
-                    } else {
-                      "@" = { };
-                      "@/root" = {
-                        mountpoint = "/";
-                        mountOptions = [ "compress=zstd" "noatime" ];
-                      };
-                      "@/home" = {
-                        mountpoint = "/home";
-                        mountOptions = [ "compress=zstd" ];
-                      };
-                      "@/nix" = {
-                        mountpoint = "/nix";
-                        mountOptions = [ "compress=zstd" "noatime" ];
-                      };
-                      "@/persist" = {
-                        mountpoint = "/persist";
-                        mountOptions = [ "compress=zstd" "noatime" ];
-                      };
-                      "@/var-log" = {
-                        mountpoint = "/var/log";
-                        mountOptions = [ "compress=zstd" "noatime" ];
-                      };
-                      "@/var-tmp" = {
-                        mountpoint = "/var/tmp";
-                        mountOptions = [ "compress=zstd" "noatime" ];
-                      };
-                      "@/swap" = {
-                        mountpoint = "/.swapvol";
-                        swap.swapfile.size = cfg.swapSize;
-                      };
-                    };
                   };
                 };
               };
@@ -132,10 +133,11 @@ in {
                 size = "100%";
                 content = {
                   type = "luks";
-                  name = if (builtins.length cfg.disks == 2) then
-                    "data"
-                  else
-                    "data-p1";
+                  name =
+                    if (builtins.length cfg.disks == 2) then
+                      "data"
+                    else
+                      "data-p1";
                   settings = {
                     allowDiscards = true;
                     #keyFile = "/tmp/secret.key";
@@ -152,15 +154,16 @@ in {
                       #   mountOptions = [ "compress=zstd" ];
                       # };
                     };
-                    extraArgs = if (builtins.length cfg.disks == 2) then
-                      [
-                        "-f" # Override existing partition
-                      ]
-                    else [
-                      "-f"
-                      "-d raid1"
-                      "/dev/mapper/data-p2" # Use decrypted mapped device, same name as defined in disk1
-                    ];
+                    extraArgs =
+                      if (builtins.length cfg.disks == 2) then
+                        [
+                          "-f" # Override existing partition
+                        ]
+                      else [
+                        "-f"
+                        "-d raid1"
+                        "/dev/mapper/data-p2" # Use decrypted mapped device, same name as defined in disk1
+                      ];
                   };
                 };
               };

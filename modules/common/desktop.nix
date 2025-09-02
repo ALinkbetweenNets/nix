@@ -48,10 +48,10 @@ in {
         spice
         spice-vdagent
       ] ++ lib.optionals (config.nixpkgs.hostPlatform.system == "x86_64-linux")
-      [
-        # cobang
-        ghostty.packages.x86_64-linux.default
-      ] ++ lib.optionals (config.link.podman.enable) [ pods podman-desktop ];
+        [
+          # cobang
+          ghostty.packages.x86_64-linux.default
+        ] ++ lib.optionals (config.link.podman.enable) [ pods podman-desktop ];
     networking = {
       networkmanager = {
         enable = true;
@@ -62,14 +62,14 @@ in {
           from = 1714;
           to = 1764;
         }
-        # KDE Connect
-          ];
+          # KDE Connect
+        ];
         allowedUDPPortRanges = [{
           from = 1714;
           to = 1764;
         }
-        # KDE Connect
-          ];
+          # KDE Connect
+        ];
       };
     };
     fonts = {

@@ -36,18 +36,19 @@ in {
         enable = true;
         settings = {
           server = {
-            hosts = if cfg.expose-port then [
-              "0.0.0.0:5232"
-              "[::]:5232"
-            ] else [
-              "127.0.0.1:5232"
-              "[::1]:5232"
-            ];
+            hosts =
+              if cfg.expose-port then [
+                "0.0.0.0:5232"
+                "[::]:5232"
+              ] else [
+                "127.0.0.1:5232"
+                "[::1]:5232"
+              ];
             max_connections = 5;
-            timeout=30;
+            timeout = 30;
           };
           auth = {
-            delay=604800; # 7 days
+            delay = 604800; # 7 days
             type = "htpasswd";
             htpasswd_filename = config.sops.secrets."radicale".path;
             htpasswd_encryption = "bcrypt";

@@ -48,17 +48,20 @@ in {
             ${pkgs.iptables}/bin/ip6tables -t nat -D POSTROUTING -s fdc9:281f:04d7:9ee9::1/64 -o eth0 -j MASQUERADE
           '';
           peers = [
-            { # fn
+            {
+              # fn
               publicKey = "VoWSuobtJ1FfmEQ6VSHygKGQDe1S9WcrGM2zs1Z6H20=";
               presharedKeyFile = config.sops.secrets."wireguard-preshared".path;
               allowedIPs = [ "10.5.5.2/32" "fdc9:281f:04d7:9ee9::2/128" ];
             }
-            { # sn
+            {
+              # sn
               publicKey = "CHTfO3TqbfUSwTT4rq3jGSSby4m6DAJX9qtX9HweURg=";
               presharedKeyFile = config.sops.secrets."wireguard-preshared".path;
               allowedIPs = [ "10.5.5.5/32" "fdc9:281f:04d7:9ee9::5/128" ];
             }
-            { # npn
+            {
+              # npn
               publicKey = "ajtRqtdZqffMrgANKQQ2VzWTDDKuAJyvS3naSFkXrD0=";
               presharedKeyFile = config.sops.secrets."wireguard-preshared".path;
               allowedIPs = [ "10.5.5.6/32" "fdc9:281f:04d7:9ee9::6/128" ];
