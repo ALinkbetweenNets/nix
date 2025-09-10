@@ -20,29 +20,29 @@ in {
     #   "194.242.2.2"
     #   "1.0.0.1"
     # ];
-    services.resolved = {
-      enable = true;
-      fallbackDns = [
-        "127.0.0.2" # local unbound
-        # "192.168.1.1"
-        # "194.242.2.4" # mullvad base
-        # "2a07:e340::4" # mullvad base
-        # "192.168.188.3" # npo
-        # "100.100.100.100" # tailscale
-        # "185.222.222.222" # dns.sb
-        # "45.11.45.11" # dns.sb
-        # "2a09::" # dns.sb
-        # "2a11::" # dns.sb
-        # "8.8.8.8" # google
-        # "1.0.0.1" # cloudflare
-        # "194.242.2.2" # mullvad
-        # "9.9.9.9" # quad9
-        # "127.0.0.1"
-      ];
-      domains = [ "monitor-banfish.ts.net" ];
-      dnssec = "false";
-      dnsovertls = "false";
-    };
+    # services.resolved = {
+    #   enable = true;
+    #   fallbackDns = [
+    #     "127.0.0.2" # local unbound
+    #     # "192.168.1.1"
+    #     # "194.242.2.4" # mullvad base
+    #     # "2a07:e340::4" # mullvad base
+    #     # "192.168.188.3" # npo
+    #     # "100.100.100.100" # tailscale
+    #     # "185.222.222.222" # dns.sb
+    #     # "45.11.45.11" # dns.sb
+    #     # "2a09::" # dns.sb
+    #     # "2a11::" # dns.sb
+    #     # "8.8.8.8" # google
+    #     # "1.0.0.1" # cloudflare
+    #     # "194.242.2.2" # mullvad
+    #     # "9.9.9.9" # quad9
+    #     # "127.0.0.1"
+    #   ];
+    #   domains = [ "monitor-banfish.ts.net" ];
+    #   dnssec = "false";
+    #   dnsovertls = "false";
+    # };
     # services.dnsmasq = {
     #   enable = true;
     #   settings.server = [
