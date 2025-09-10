@@ -25,13 +25,13 @@
         "image": "bash",
         "name": "upload pi4b image",
         "environment":
-          [
-            "S3_URL=https://s3.eu-central-003.backblazeb2.com",
-            "S3_BUCKET=crab-share",
-            "S3_REGION=eu-central-003",
-            "S3_ACCESS_KEY=003d560892a1b3a0000000002",
+          {
+            "S3_URL": "https://s3.eu-central-003.backblazeb2.com",
+            "S3_BUCKET": "crab-share",
+            "S3_REGION": "eu-central-003",
+            "S3_ACCESS_KEY": "003d560892a1b3a0000000002",
             "S3_SECRET_KEY": { "from_secret": "S3_SECRET_KEY" },
-          ],
+          },
       },
     ],
 }
