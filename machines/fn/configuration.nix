@@ -40,11 +40,20 @@
     services.restic-client = {
       enable = true;
       backup-paths-sn = [
+        "/home/l/.java/.userPrefs"
         "/home/l/.ssh"
-        "/home/l/Documents"
+        "/home/l/Monero"
+        "/home/l/Music"
         "/home/l/Pictures"
+        "/home/l/archive"
+        "/home/l/camera"
+        "/home/l/doc"
         "/home/l/obsidian"
+        "/home/l/projects"
         "/home/l/s"
+        "/home/l/sec"
+        "/home/l/uni"
+        "/home/l/w"
       ];
       #  backup-paths-sciebo = [
       #    "/home/l/.ssh"
@@ -56,15 +65,20 @@
       #    "/home/l/w"
       #  ];
       backup-paths-pi4b = [
+        "/home/l/.java/.userPrefs"
         "/home/l/.ssh"
-        "/home/l/archive"
-        "/home/l/doc"
+        "/home/l/Monero"
         "/home/l/Music"
-        "/home/l/obsidian"
-        "/home/l/sec"
-        "/home/l/w"
         "/home/l/Pictures"
+        "/home/l/archive"
+        "/home/l/camera"
+        "/home/l/doc"
+        "/home/l/obsidian"
+        "/home/l/projects"
+        "/home/l/s"
+        "/home/l/sec"
         "/home/l/uni"
+        "/home/l/w"
       ];
     };
   };
