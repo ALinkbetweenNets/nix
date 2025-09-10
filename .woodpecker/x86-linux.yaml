@@ -21,53 +21,11 @@
         }
       },
       "image": "bash",
-      "name": "Setup Attic",
-    },
-      {
-      "commands": [
-        "nix build '.#nixosConfigurations.sn.config.system.build.toplevel' -o 'result-sn'"
-      ],
-      "image": "bash",
-      "name": "Build sn"
+      "name": "Setup Attic"
     },
     {
       "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-sn')"
-      ],
-      "image": "bash",
-      "name": "Show sn info"
-    },
-    {
-      "commands": [
-        "attic push lounge-rocks:nix-cache 'result-sn'"
-      ],
-      "image": "bash",
-      "name": "Push sn to Attic"
-    },
-    {
-      "commands": [
-        "nix build '.#nixosConfigurations.vn.config.system.build.toplevel' -o 'result-vn'"
-      ],
-      "image": "bash",
-      "name": "Build vn"
-    },
-    {
-      "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-vn')"
-      ],
-      "image": "bash",
-      "name": "Show vn info"
-    },
-    {
-      "commands": [
-        "attic push lounge-rocks:nix-cache 'result-vn'"
-      ],
-      "image": "bash",
-      "name": "Push vn to Attic"
-    },
-    {
-      "commands": [
-        "nix build '.#nixosConfigurations.dn.config.system.build.toplevel' -o 'result-dn'"
+        "nix build --print-out-paths '.#nixosConfigurations.dn.config.system.build.toplevel' -o 'result-dn'"
       ],
       "image": "bash",
       "name": "Build dn"
@@ -88,7 +46,28 @@
     },
     {
       "commands": [
-        "nix build '.#nixosConfigurations.fn.config.system.build.toplevel' -o 'result-fn'"
+        "nix build --print-out-paths '.#nixosConfigurations.dnvd.config.system.build.toplevel' -o 'result-dnvd'"
+      ],
+      "image": "bash",
+      "name": "Build dnvd"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-dnvd')"
+      ],
+      "image": "bash",
+      "name": "Show dnvd info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-dnvd'"
+      ],
+      "image": "bash",
+      "name": "Push dnvd to Attic"
+    },
+    {
+      "commands": [
+        "nix build --print-out-paths '.#nixosConfigurations.fn.config.system.build.toplevel' -o 'result-fn'"
       ],
       "image": "bash",
       "name": "Build fn"
@@ -107,94 +86,72 @@
       "image": "bash",
       "name": "Push fn to Attic"
     },
-    # {
-    #   "commands": [
-    #     "nix build '.#nixosConfigurations.dnvd.config.system.build.toplevel' -o 'result-dnvd'"
-    #   ],
-    #   "image": "bash",
-    #   "name": "Build dnvd"
-    # },
-    # {
-    #   "commands": [
-    #     "nix path-info --closure-size -h $(readlink -f 'result-dnvd')"
-    #   ],
-    #   "image": "bash",
-    #   "name": "Show dnvd info"
-    # },
-    # {
-    #   "commands": [
-    #     "attic push lounge-rocks:nix-cache 'result-dnvd'"
-    #   ],
-    #   "image": "bash",
-    #   "name": "Push dnvd to Attic"
-    # },
-    # {
-    #   "commands": [
-    #     "nix build '.#nixosConfigurations.hn.config.system.build.toplevel' -o 'result-hn'"
-    #   ],
-    #   "image": "bash",
-    #   "name": "Build hn"
-    # },
-    # {
-    #   "commands": [
-    #     "nix path-info --closure-size -h $(readlink -f 'result-hn')"
-    #   ],
-    #   "image": "bash",
-    #   "name": "Show hn info"
-    # },
-    # {
-    #   "commands": [
-    #     "attic push lounge-rocks:nix-cache 'result-hn'"
-    #   ],
-    #   "image": "bash",
-    #   "name": "Push hn to Attic"
-    # },
-    # {
-    #   "commands": [
-    #     "nix build '.#nixosConfigurations.in.config.system.build.toplevel' -o 'result-in'"
-    #   ],
-    #   "image": "bash",
-    #   "name": "Build in"
-    # },
-    # {
-    #   "commands": [
-    #     "nix path-info --closure-size -h $(readlink -f 'result-in')"
-    #   ],
-    #   "image": "bash",
-    #   "name": "Show in info"
-    # },
-    # {
-    #   "commands": [
-    #     "attic push lounge-rocks:nix-cache 'result-in'"
-    #   ],
-    #   "image": "bash",
-    #   "name": "Push in to Attic"
-    # },
-
     {
       "commands": [
-        "nix build '.#nixosConfigurations.npn.config.system.build.toplevel' -o 'result-npn'"
+        "nix build --print-out-paths '.#nixosConfigurations.fnvn.config.system.build.toplevel' -o 'result-fnvn'"
       ],
       "image": "bash",
-      "name": "Build npn"
+      "name": "Build fnvn"
     },
     {
       "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-npn')"
+        "nix path-info --closure-size -h $(readlink -f 'result-fnvn')"
       ],
       "image": "bash",
-      "name": "Show npn info"
+      "name": "Show fnvn info"
     },
     {
       "commands": [
-        "attic push lounge-rocks:nix-cache 'result-npn'"
+        "attic push lounge-rocks:nix-cache 'result-fnvn'"
       ],
       "image": "bash",
-      "name": "Push npn to Attic"
+      "name": "Push fnvn to Attic"
     },
     {
       "commands": [
-        "nix build '.#nixosConfigurations.nc.config.system.build.toplevel' -o 'result-nc'"
+        "nix build --print-out-paths '.#nixosConfigurations.hn.config.system.build.toplevel' -o 'result-hn'"
+      ],
+      "image": "bash",
+      "name": "Build hn"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-hn')"
+      ],
+      "image": "bash",
+      "name": "Show hn info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-hn'"
+      ],
+      "image": "bash",
+      "name": "Push hn to Attic"
+    },
+    {
+      "commands": [
+        "nix build --print-out-paths '.#nixosConfigurations.in.config.system.build.toplevel' -o 'result-in'"
+      ],
+      "image": "bash",
+      "name": "Build in"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-in')"
+      ],
+      "image": "bash",
+      "name": "Show in info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-in'"
+      ],
+      "image": "bash",
+      "name": "Push in to Attic"
+    },
+    {
+      "commands": [
+        "nix build --print-out-paths '.#nixosConfigurations.nc.config.system.build.toplevel' -o 'result-nc'"
       ],
       "image": "bash",
       "name": "Build nc"
@@ -215,7 +172,49 @@
     },
     {
       "commands": [
-        "nix build '.#nixosConfigurations.snvnarr.config.system.build.toplevel' -o 'result-snvnarr'"
+        "nix build --print-out-paths '.#nixosConfigurations.npn.config.system.build.toplevel' -o 'result-npn'"
+      ],
+      "image": "bash",
+      "name": "Build npn"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-npn')"
+      ],
+      "image": "bash",
+      "name": "Show npn info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-npn'"
+      ],
+      "image": "bash",
+      "name": "Push npn to Attic"
+    },
+    {
+      "commands": [
+        "nix build --print-out-paths '.#nixosConfigurations.sn.config.system.build.toplevel' -o 'result-sn'"
+      ],
+      "image": "bash",
+      "name": "Build sn"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-sn')"
+      ],
+      "image": "bash",
+      "name": "Show sn info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-sn'"
+      ],
+      "image": "bash",
+      "name": "Push sn to Attic"
+    },
+    {
+      "commands": [
+        "nix build --print-out-paths '.#nixosConfigurations.snvnarr.config.system.build.toplevel' -o 'result-snvnarr'"
       ],
       "image": "bash",
       "name": "Build snvnarr"
@@ -236,7 +235,28 @@
     },
     {
       "commands": [
-        "nix build '.#nixosConfigurations.xn.config.system.build.toplevel' -o 'result-xn'"
+        "nix build --print-out-paths '.#nixosConfigurations.vn.config.system.build.toplevel' -o 'result-vn'"
+      ],
+      "image": "bash",
+      "name": "Build vn"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-vn')"
+      ],
+      "image": "bash",
+      "name": "Show vn info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-vn'"
+      ],
+      "image": "bash",
+      "name": "Push vn to Attic"
+    },
+    {
+      "commands": [
+        "nix build --print-out-paths '.#nixosConfigurations.xn.config.system.build.toplevel' -o 'result-xn'"
       ],
       "image": "bash",
       "name": "Build xn"
@@ -254,21 +274,16 @@
       ],
       "image": "bash",
       "name": "Push xn to Attic"
+    }
+  ],
+  "when": [
+    {
+      "branch": "main",
+      "event": "push"
     },
     {
-      "commands": [
-      ],
-      "image": "bash",
-    },
-    {
-      "commands": [
-      ],
-      "image": "bash",
-    },
-    {
-      "commands": [
-      ],
-      "image": "bash",
+      "branch": "update_flake_lock_action",
+      "event": "push"
     }
   ]
 }

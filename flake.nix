@@ -167,10 +167,10 @@
         let pkgs = nixpkgsFor.${system};
         in {
           # displaylink=pkgs.displaylink;
-          # woodpecker-pipeline = pkgs.callPackage ./pkgs/woodpecker-pipeline {
-          #   flake-self = self;
-          #   inputs = inputs;
-          # };
+          woodpecker-pipeline = pkgs.callPackage ./pkgs/woodpecker-pipeline {
+            flake-self = self;
+            inputs = inputs;
+          };
           build_outputs = pkgs.callPackage
             mayniklas.packages.${system}.build_outputs.override
             {

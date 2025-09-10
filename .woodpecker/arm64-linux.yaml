@@ -21,11 +21,11 @@
         }
       },
       "image": "bash",
-      "name": "Setup Attic",
+      "name": "Setup Attic"
     },
     {
       "commands": [
-        "nix build '.#nixosConfigurations.pi4b.config.system.build.toplevel' -o 'result-pi4b'"
+        "nix build --print-out-paths '.#nixosConfigurations.pi4b.config.system.build.toplevel' -o 'result-pi4b'"
       ],
       "image": "bash",
       "name": "Build pi4b"
@@ -46,7 +46,7 @@
     },
     {
       "commands": [
-        "nix build '.#nixosConfigurations.pppn.config.system.build.toplevel' -o 'result-pppn'"
+        "nix build --print-out-paths '.#nixosConfigurations.pppn.config.system.build.toplevel' -o 'result-pppn'"
       ],
       "image": "bash",
       "name": "Build pppn"
@@ -64,6 +64,16 @@
       ],
       "image": "bash",
       "name": "Push pppn to Attic"
+    }
+  ],
+  "when": [
+    {
+      "branch": "main",
+      "event": "push"
+    },
+    {
+      "branch": "update_flake_lock_action",
+      "event": "push"
     }
   ]
 }
