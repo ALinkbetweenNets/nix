@@ -205,7 +205,7 @@ with lib; {
       # qmk
       ## Utils
       bonn-mensa
-      pomodoro
+      gnome-pomodoro
       links2 # TUI Browser
       screen-message
       # vhs # generating terminal GIFs with code (what about asciinema)
