@@ -18,7 +18,6 @@ with lib; {
     };
     programs.ssh = {
       enable = true;
-      forwardAgent = true;
       matchBlocks = {
         "nc" = { port = 2522; };
         "sn" = { port = 2522; };
@@ -26,6 +25,7 @@ with lib; {
         "xn" = { port = 2522; };
         "pi4b" = { port = 2522; };
         "pppn" = { port = 2522; };
+        "np" = { port = 2522; };
         "npn" = { port = 2522; };
         "fn" = { port = 2522; };
         "10.5.5.1" = { port = 2522; };
@@ -35,8 +35,20 @@ with lib; {
         "f" = { port = 2522; };
         "n" = { port = 2522; };
         "s" = { port = 2522; };
+        "*" = {
+          compression = true;
+          forwardAgent = true;
+          addKeysToAgent = "no";
+          serverAliveInterval = 0;
+          serverAliveCountMax = 3;
+          hashKnownHosts = false;
+          userKnownHostsFile = "~/.ssh/known_hosts";
+          controlMaster = "auto";
+          controlPath = "~/.ssh/master-%r@%n:%p";
+          controlPersist = "no";
+        };
       };
-      compression = true;
+
     };
     home.packages = with pkgs;
       [
@@ -69,7 +81,7 @@ with lib; {
         jdupes # duplicate Finder, better fdupes
         rmlint
       ] ++ lib.optionals
-        (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
+      (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
     # Home-manager nixpkgs config
     nixpkgs = {
       # Allow "unfree" licenced packages
