@@ -9,7 +9,7 @@ in {
         #python311
         (python311.withPackages (ps:
           with ps; [
-            django
+            # django
             asgiref
             qrcode
             sqlparse
