@@ -68,6 +68,11 @@
   #  tod.enable = true;
   #  tod.driver = pkgs.libfprint-2-tod1-vfs0090;
   #};
+  services.fprintd = {
+    enable = true;
+    # tod.enable = true;
+    # tod.driver = pkgs.libfprint-2-tod1-vfs0090;
+  };
   networking.firewall.allowedTCPPorts = [ 60955 ];
   networking.firewall.allowedUDPPorts = [ 60955 ];
   networking.hostName = "xn";
