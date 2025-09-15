@@ -237,7 +237,14 @@
       add_header Content-Security-Policy "frame-ancestors 'self' resource: blob: https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; object-src 'none'; default-src 'self' 'unsafe-inline' 'unsafe-eval' resource: data: blob: https://*.alinkbetweennets.de ws://*.alinkbetweennets.de https://tiles.immich.cloud https://static.immich.cloud https://api-l.cofractal.com https://maputnik.github.io https://fonts.openmaptiles.org https://fonts.googleapis.com ; script-src 'self' resource: blob: https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; script-src-elem 'self' 'unsafe-inline' 'unsafe-eval' resource: blob: https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; font-src https://fonts.openmaptiles.org https://fonts.googleapis.com https://fonts.gstatic.com 'self' 'unsafe-inline' 'unsafe-eval' data: blob: ; img-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://videos.owncast.online https://www.gravatar.com https://logo.clearbit.com https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; frame-src 'self' 'unsafe-inline' https://*.alinkbetweennets.de ws://*.alinkbetweennets.de https://www.youtube.com https://youtube.com https://www.youtu.be ; media-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://assets.owncast.tv https://videos.owncast.online https://www.gravatar.com https://logo.clearbit.com https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; base-uri 'self' *.alinkbetweennets.de alinkbetweennets.de;" always;
       '';
     };
-    "burp.${config.link.domain}" = {
+    "bettuna.${config.link.domain}" = {
+      quic = true;
+      http3_hq = true;
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      root = "/var/www/bettuna";
+    };"burp.${config.link.domain}" = {
       quic = true;
       http3_hq = true;
       # enableACME = true;
