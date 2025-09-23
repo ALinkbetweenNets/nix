@@ -82,10 +82,7 @@ in {
               server_names_hash_bucket_size 128;
               proxy_headers_hash_max_size 1024;
               proxy_headers_hash_bucket_size 256;
-            map $scheme $hsts_header {
-                https   "max-age=31536000; includeSubdomains; preload";
-            }
-            add_header Strict-Transport-Security $hsts_header;
+            add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
           '';
           virtualHosts."nextcloud.${config.link.domain}" = {
             # enableACME = true;
