@@ -41,7 +41,7 @@
       part-db.enable = true;
       # tt-rss.enable = true;
       stirling-pdf.enable = true;
-      searx.enable = true;
+      # searx.enable = true;
       cockpit.enable = true;
       microbin.enable = true;
       # mailserver.enable = true;
