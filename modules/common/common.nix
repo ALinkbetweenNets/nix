@@ -123,6 +123,7 @@ in {
     programs.nix-index-database.comma.enable = true;
     environment.systemPackages = with pkgs; [
       ## system
+      openssl
       limitcpu
       exfatprogs
       libsecret
