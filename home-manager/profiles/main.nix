@@ -151,7 +151,7 @@ with lib; {
       wcalc
       apg # generate passwords
       nodejs
-      # planify
+      planify
       xkcdpass
       ltex-ls # for vscode spell checking using languagetool
       ollama
