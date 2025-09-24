@@ -160,7 +160,7 @@ in {
         # "window.titleBarStyle" = "native";
         # "workbench.colorTheme" = "Dracula";
         "yaml.schemas" = {
-          "/home/l/.vscode-oss/extensions/Continue.continue/config-yaml-schema.json" =
+          "file:///home/l/.vscode-oss/extensions/Continue.continue/config-yaml-schema.json" =
             [ ".continue/**/*.yaml" ];
         };
       };

@@ -23,7 +23,6 @@
     storage = "/var/lib";
     syncthingDir = "/var/lib/syncthing";
     # secrets = "/pwd";
-    # seafile.enable = true;
     # service-ip = "10.0.1.1";
     # users.lenny.enable = true;
     # users.lmh01.enable = true;
@@ -40,7 +39,7 @@
     services = {
       #   # tt-rss.enable = true;
       #   stirling-pdf.enable = true;
-      searx.enable = true;
+      # searx.enable = true;
       #   cockpit.enable = true;
       #   microbin.enable = true;
       #   # mailserver.enable = true;
@@ -53,7 +52,6 @@
       #   #gitea.enable = true;
       #   gitlab.enable = true;
       #   # grafana.enable = true;
-      #   # # seafile.enable = true;
       #   # # xandikos.enable = true; # WIP
       #   # hedgedoc.enable = true;
       #   jellyfin.enable = true;
