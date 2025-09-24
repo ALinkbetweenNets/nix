@@ -44,9 +44,9 @@
       flake-self.overlays.default
       flake-self.inputs.nur.overlays.default
       flake-self.inputs.crab_share.overlay
-      (final: prev: {
-        ondsel = flake-self.inputs.ondsel.packages.${pkgs.system}.ondsel;
-      })
+      # (final: prev: {
+      #   ondsel = flake-self.inputs.ondsel.packages.${pkgs.system}.ondsel;
+      # })
       (final: prev: {
         cudapkgs = import flake-self.inputs.nixpkgs {
           system = "${pkgs.system}";

@@ -74,6 +74,10 @@
     {
       "branch": "update_flake_lock_action",
       "event": "push"
+    },
+    {
+      "branch": "experimental",
+      "event": "push"
     }
   ]
 }
