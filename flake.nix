@@ -128,14 +128,15 @@
         inventory = {
           meta.name = "alinkbetweennets-clan";
           # machines = { fn = { }; };
-          services = {
-            importer.default = {
-              roles.default.tags = [ "all" ];
+          instances = {
+            importer-modules-dir = {
+              module = {
+                name = "importer";
+                input = "clan-core";
+              };
+              roles.default.tags."all" = { };
               # import all modules from ./modules/<module-name> everywhere
-              roles.default.extraModules = [
-                # Clan modules deployed on all machines
-                #clan-core.clanModules.state-version
-              ] ++ (map (m: "modules/${m}")
+              roles.default.extraModules = (map (m: "modules/${m}")
                 (builtins.attrNames self.nixosModules));
             };
           };
