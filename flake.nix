@@ -115,21 +115,8 @@
       nixpkgsFor = forAllSystems (system:
         import nixpkgs {
           inherit system;
-          overlays = [
-            self.overlays.default
-            nur.overlays.default
-            nixgl.overlay
-            (final: prev: {
-              displaylink = prev.displaylink.overrideAttrs (old: {
-                src = prev.fetchurl {
-                  url = "https://www.synaptics.com/sites/default/files/exe_files/2024-10/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.1-EXE.zip";
-                  # either pre‑run `nix-prefetch-url URL` to get this sha256,
-                  # or let Nix error and copy the “got: sha256-…” it prints.
-                  sha256 = "0RJgVrX+Y8Nvz106Xh+W9N9uRLC2VO00fBJeS8vs7fKw=";
-                };
-              });
-            })
-          ];
+          overlays =
+            [ self.overlays.default nur.overlays.default nixgl.overlay ];
         });
       clan = clan-core.lib.clan {
         inherit self; # this needs to point at the repository root
@@ -159,8 +146,7 @@
         #   };
         # };
       };
-    in
-    {
+    in {
       formatter = forAllSystems (system: nixpkgsFor.${system}.nixpkgs-fmt);
       overlays.default = final: prev: (import ./pkgs inputs) final prev;
       packages = forAllSystems (system:
@@ -172,8 +158,7 @@
             inputs = inputs;
           };
           build_outputs = pkgs.callPackage
-            mayniklas.packages.${system}.build_outputs.override
-            {
+            mayniklas.packages.${system}.build_outputs.override {
               inherit self;
               output_path = "~/.keep-nix-outputs-ALinkbetweenNets";
             };
@@ -182,13 +167,11 @@
       apps = forAllSystems (system: { });
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
-      nixosModules = builtins.listToAttrs (map
-        (x: {
-          name = x;
-          #specialArgs = { flake-self = self; } // inputs;
-          value = import (./modules + "/${x}");
-        })
-        (builtins.attrNames (builtins.readDir ./modules)));
+      nixosModules = builtins.listToAttrs (map (x: {
+        name = x;
+        #specialArgs = { flake-self = self; } // inputs;
+        value = import (./modules + "/${x}");
+      }) (builtins.attrNames (builtins.readDir ./modules)));
       # Each subdirectory in ./machines is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
       # configuration.nix that will be read first
@@ -196,25 +179,20 @@
       clan = clan.config;
       # clan = { inherit (clan) templates; };
       # clan = clan.config;
-      homeConfigurations = builtins.listToAttrs (map
-        (filename: {
-          name =
-            builtins.substring 0 ((builtins.stringLength filename) - 4) filename;
-          value = { pkgs, lib, username, ... }: {
-            imports = [
-              "${./.}/home-manager/profiles/common.nix"
-              "${./.}/home-manager/profiles/${filename}"
-            ] ++ (builtins.attrValues self.homeManagerModules);
-          };
-        })
-        (builtins.attrNames (builtins.readDir ./home-manager/profiles)));
-      homeManagerModules = builtins.listToAttrs
-        (map
-          (name: {
-            inherit name;
-            value = import (./home-manager/modules + "/${name}");
-          })
-          (builtins.attrNames (builtins.readDir ./home-manager/modules))) // {
+      homeConfigurations = builtins.listToAttrs (map (filename: {
+        name =
+          builtins.substring 0 ((builtins.stringLength filename) - 4) filename;
+        value = { pkgs, lib, username, ... }: {
+          imports = [
+            "${./.}/home-manager/profiles/common.nix"
+            "${./.}/home-manager/profiles/${filename}"
+          ] ++ (builtins.attrValues self.homeManagerModules);
+        };
+      }) (builtins.attrNames (builtins.readDir ./home-manager/profiles)));
+      homeManagerModules = builtins.listToAttrs (map (name: {
+        inherit name;
+        value = import (./home-manager/modules + "/${name}");
+      }) (builtins.attrNames (builtins.readDir ./home-manager/modules))) // {
         # This module is appended to the list of home-manager modules.
         # It's always enabled for all profiles.
         # It's used to easily add overlays and imports to home-manager.
@@ -231,6 +209,17 @@
             self.overlays.default
             inputs.crab_share.overlay
             inputs.nur.overlays.default
+            (final: prev: {
+              displaylink = prev.displaylink.overrideAttrs (old: {
+                src = prev.fetchurl {
+                  url =
+                    "https://www.synaptics.com/sites/default/files/exe_files/2024-10/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.1-EXE.zip";
+                  # either pre‑run `nix-prefetch-url URL` to get this sha256,
+                  # or let Nix error and copy the “got: sha256-…” it prints.
+                  sha256 = "0RJgVrX+Y8Nvz106Xh+W9N9uRLC2VO00fBJeS8vs7fKw=";
+                };
+              });
+            })
             (final: prev: {
               cudapkgs = import inputs.nixpkgs {
                 system = "${pkgs.system}";
