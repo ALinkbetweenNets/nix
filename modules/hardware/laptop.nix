@@ -4,7 +4,18 @@ let cfg = config.link.laptop;
 in {
   options.link.laptop = { enable = mkEnableOption "activate laptop"; };
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ wireless-regdb displaylink ];
+    environment.systemPackages = with pkgs; [
+      wireless-regdb
+      # (displaylink.override {
+      #   src = fetchurl {
+      #     sha256 =
+      #       "sha256-RJgVrX+Y8Nvz106Xh+W9N9uRLC2VO00fBJeS8vs7fKw=";
+      #     url =
+      #       "https://www.synaptics.com/sites/default/files/exe_files/2024-10/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.1-EXE.zip";
+      #   };
+      # }) # .overrideAttrs
+      displaylink
+    ];
     boot.extraModulePackages = [ config.boot.kernelPackages.evdi ];
     boot.initrd.kernelModules = [ "evdi" ];
     environment.variables = { KWIN_DRM_PREFER_COLOR_DEPTH = "24"; };
@@ -16,7 +27,8 @@ in {
       wantedBy = [ "multi-user.target" ]; # Start at boot
       # *** THIS IS THE CRITICAL 'serviceConfig' BLOCK ***
       serviceConfig = {
-        Type = "simple"; # Or "forking" if it forks (simple is common for daemons)
+        Type =
+          "simple"; # Or "forking" if it forks (simple is yecommon for daemons)
         # The ExecStart path points to the DisplayLinkManager binary provided by the package
         ExecStart = "${pkgs.displaylink}/bin/DisplayLinkManager";
         # User and Group to run the service as (root is common for this type of daemon)
