@@ -73,10 +73,10 @@
       inputs.home-manager.follows = "home-manager";
     };
     zen-browser.url = "github:youwen5/zen-browser-flake";
-    ondsel = {
-      url = "github:pinpox/ondsel-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # ondsel = {
+    #   url = "github:pinpox/ondsel-nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     pwndbg = {
       url = "github:pwndbg/pwndbg";
       inputs.nixpkgs.follows = "nixpkgs";
