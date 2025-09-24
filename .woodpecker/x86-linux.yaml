@@ -23,48 +23,48 @@
       "image": "bash",
       "name": "Setup Attic"
     },
-    {
-      "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.dn.config.system.build.toplevel' -o 'result-dn'"
-      ],
-      "image": "bash",
-      "name": "Build dn"
-    },
-    {
-      "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-dn')"
-      ],
-      "image": "bash",
-      "name": "Show dn info"
-    },
-    {
-      "commands": [
-        "attic push lounge-rocks:nix-cache 'result-dn'"
-      ],
-      "image": "bash",
-      "name": "Push dn to Attic"
-    },
-    {
-      "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.dnvd.config.system.build.toplevel' -o 'result-dnvd'"
-      ],
-      "image": "bash",
-      "name": "Build dnvd"
-    },
-    {
-      "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-dnvd')"
-      ],
-      "image": "bash",
-      "name": "Show dnvd info"
-    },
-    {
-      "commands": [
-        "attic push lounge-rocks:nix-cache 'result-dnvd'"
-      ],
-      "image": "bash",
-      "name": "Push dnvd to Attic"
-    },
+    # {
+    #   "commands": [
+    #     "nix build --print-out-paths '.#nixosConfigurations.dn.config.system.build.toplevel' -o 'result-dn'"
+    #   ],
+    #   "image": "bash",
+    #   "name": "Build dn"
+    # },
+    # {
+    #   "commands": [
+    #     "nix path-info --closure-size -h $(readlink -f 'result-dn')"
+    #   ],
+    #   "image": "bash",
+    #   "name": "Show dn info"
+    # },
+    # {
+    #   "commands": [
+    #     "attic push lounge-rocks:nix-cache 'result-dn'"
+    #   ],
+    #   "image": "bash",
+    #   "name": "Push dn to Attic"
+    # },
+    # {
+    #   "commands": [
+    #     "nix build --print-out-paths '.#nixosConfigurations.dnvd.config.system.build.toplevel' -o 'result-dnvd'"
+    #   ],
+    #   "image": "bash",
+    #   "name": "Build dnvd"
+    # },
+    # {
+    #   "commands": [
+    #     "nix path-info --closure-size -h $(readlink -f 'result-dnvd')"
+    #   ],
+    #   "image": "bash",
+    #   "name": "Show dnvd info"
+    # },
+    # {
+    #   "commands": [
+    #     "attic push lounge-rocks:nix-cache 'result-dnvd'"
+    #   ],
+    #   "image": "bash",
+    #   "name": "Push dnvd to Attic"
+    # },
     {
       "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.fn.config.system.build.toplevel' -o 'result-fn'"
