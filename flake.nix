@@ -119,16 +119,16 @@
             self.overlays.default
             nur.overlays.default
             nixgl.overlay
-            # (final: prev: {
-            #   displaylink = prev.displaylink.overrideAttrs (old: {
-            #     src = prev.fetchurl {
-            #       url = "https://www.synaptics.com/sites/default/files/exe_files/2024-10/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.1-EXE.zip";
-            #       # either pre‑run `nix-prefetch-url URL` to get this sha256,
-            #       # or let Nix error and copy the “got: sha256-…” it prints.
-            #       sha256 = "0RJgVrX+Y8Nvz106Xh+W9N9uRLC2VO00fBJeS8vs7fKw=";
-            #     };
-            #   });
-            # })
+            (final: prev: {
+              displaylink = prev.displaylink.overrideAttrs (old: {
+                src = prev.fetchurl {
+                  url = "https://www.synaptics.com/sites/default/files/exe_files/2024-10/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.1-EXE.zip";
+                  # either pre‑run `nix-prefetch-url URL` to get this sha256,
+                  # or let Nix error and copy the “got: sha256-…” it prints.
+                  sha256 = "0RJgVrX+Y8Nvz106Xh+W9N9uRLC2VO00fBJeS8vs7fKw=";
+                };
+              });
+            })
           ];
         });
       clan = clan-core.lib.clan {
