@@ -29,7 +29,7 @@ in
       evince
       xournalpp
       anki
-      # darktable # photo color editor # broken
+      darktable # photo color editor # broken
       # rawtherapee
       # art
       pdfmixtool
