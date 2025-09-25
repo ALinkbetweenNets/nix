@@ -206,6 +206,12 @@
         proxyPass = "http://${config.link.serviceHost}:5001/";
         proxyWebsockets = true;
       };
+      extraConfig = ''
+        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
+        add_header X-Frame-Options sameorigin;
+        add_header Content-Security-Policy "default-src 'none'; style-src 'unsafe-inline' 'self' https://crypt.alinkbetweennets.de;font-src 'self' data: https://crypt.alinkbetweennets.de; child-src https://crypt.alinkbetweennets.de; frame-src 'self' blob: https://cryptui.alinkbetweennets.de; script-src 'self' resource: https://crypt.alinkbetweennets.de; script-src-elem 'self' blob: 'unsafe-inline' ;img-src 'self' data: blob: https://crypt.alinkbetweennets.de; worker-src 'self';media-src blob: ; frame-ancestors 'self' https://crypt.alinkbetweennets.de;connect-src 'self' blob: https://crypt.alinkbetweennets.de https://cryptui.alinkbetweennets.de wss://crypt.alinkbetweennets.de;" always;
+
+      '';
     };
     "cryptui.${config.link.domain}" = {
       # enableACME = true;
@@ -215,6 +221,12 @@
         proxyPass = "http://${config.link.serviceHost}:5000/";
         proxyWebsockets = true;
       };
+      extraConfig = ''
+        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
+        add_header X-Frame-Options sameorigin;
+        add_header Content-Security-Policy "default-src 'none'; style-src 'unsafe-inline' 'self' https://crypt.alinkbetweennets.de;font-src 'self' data: https://crypt.alinkbetweennets.de; child-src https://crypt.alinkbetweennets.de; frame-src 'self' blob: https://cryptui.alinkbetweennets.de; script-src 'self' resource: https://crypt.alinkbetweennets.de 'unsafe-eval' 'unsafe-inline';script-src-elem 'self' 'unsafe-inline' ;img-src 'self' data: blob: https://crypt.alinkbetweennets.de; worker-src 'self';media-src blob: ; frame-ancestors 'self' https://crypt.alinkbetweennets.de;connect-src 'self' blob: https://crypt.alinkbetweennets.de https://cryptui.alinkbetweennets.de wss://crypt.alinkbetweennets.de;" always;
+
+      '';
     };
     # "cast.${config.link.domain}" = {
     #   # enableACME = true;
@@ -230,11 +242,11 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       root = "${pkgs.cyberchef}/share/cyberchef";
-      extraConfig =''
-      add_header X-Content-Type-Options nosniff;
-      add_header X-XSS-Protection "1; mode=block";
-      add_header X-Frame-Options sameorigin;
-      add_header Content-Security-Policy "frame-ancestors 'self' resource: blob: https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; object-src 'none'; default-src 'self' 'unsafe-inline' 'unsafe-eval' resource: data: blob: https://*.alinkbetweennets.de ws://*.alinkbetweennets.de https://tiles.immich.cloud https://static.immich.cloud https://api-l.cofractal.com https://maputnik.github.io https://fonts.openmaptiles.org https://fonts.googleapis.com ; script-src 'self' resource: blob: https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; script-src-elem 'self' 'unsafe-inline' 'unsafe-eval' resource: blob: https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; font-src https://fonts.openmaptiles.org https://fonts.googleapis.com https://fonts.gstatic.com 'self' 'unsafe-inline' 'unsafe-eval' data: blob: ; img-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://videos.owncast.online https://www.gravatar.com https://logo.clearbit.com https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; frame-src 'self' 'unsafe-inline' https://*.alinkbetweennets.de ws://*.alinkbetweennets.de https://www.youtube.com https://youtube.com https://www.youtu.be ; media-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://assets.owncast.tv https://videos.owncast.online https://www.gravatar.com https://logo.clearbit.com https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; base-uri 'self' *.alinkbetweennets.de alinkbetweennets.de;" always;
+      extraConfig = ''
+        add_header X-Content-Type-Options nosniff;
+        add_header X-XSS-Protection "1; mode=block";
+        add_header X-Frame-Options sameorigin;
+        add_header Content-Security-Policy "frame-ancestors 'self' resource: blob: https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; object-src 'none'; default-src 'self' 'unsafe-inline' 'unsafe-eval' resource: data: blob: https://*.alinkbetweennets.de ws://*.alinkbetweennets.de https://tiles.immich.cloud https://static.immich.cloud https://api-l.cofractal.com https://maputnik.github.io https://fonts.openmaptiles.org https://fonts.googleapis.com ; script-src 'self' resource: blob: https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; script-src-elem 'self' 'unsafe-inline' 'unsafe-eval' resource: blob: https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; font-src https://fonts.openmaptiles.org https://fonts.googleapis.com https://fonts.gstatic.com 'self' 'unsafe-inline' 'unsafe-eval' data: blob: ; img-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://videos.owncast.online https://www.gravatar.com https://logo.clearbit.com https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; frame-src 'self' 'unsafe-inline' https://*.alinkbetweennets.de ws://*.alinkbetweennets.de https://www.youtube.com https://youtube.com https://www.youtu.be ; media-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://assets.owncast.tv https://videos.owncast.online https://www.gravatar.com https://logo.clearbit.com https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; base-uri 'self' *.alinkbetweennets.de alinkbetweennets.de;" always;
       '';
     };
     "bettuna.${config.link.domain}" = {
@@ -244,7 +256,8 @@
       useACMEHost = config.link.domain;
       forceSSL = true;
       root = "/var/www/bettuna";
-    };"burp.${config.link.domain}" = {
+    };
+    "burp.${config.link.domain}" = {
       quic = true;
       http3_hq = true;
       # enableACME = true;
