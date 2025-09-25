@@ -48,7 +48,7 @@ in {
       logError = "stderr debug";
       enableQuicBPF = true;
       package = pkgs.nginxQuic.override { openssl = pkgs.libressl; };
-      clientMaxBodySize = "2000m";
+      clientMaxBodySize = "6000m";
       commonHttpConfig = ''
         # sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
         # ssl_protocols TLSv1.3;
