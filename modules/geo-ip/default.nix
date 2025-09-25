@@ -13,6 +13,10 @@ in {
   options.link.nginx = { geoIP = mkEnableOption "enable GeoIP"; };
   config = mkIf cfg.geoIP {
     # when Nginx is enabled, enable the GeoIP updater service
+    sops.secrets."maxmind-geoip-license" = {
+      owner = "nginx";
+      group = "nginx";
+    };
     services.geoipupdate = mkIf cfg.enable {
       enable = true;
       interval = "weekly";
