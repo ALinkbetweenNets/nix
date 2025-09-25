@@ -45,15 +45,12 @@ in {
         # we want to allow only requests from specific countries
         # if a request is not from such a country, we return no, which will result in a 403
         ''
-          map $geoip2_data_country_iso_code $allowed_country {
-            default no;
-            DE yes;
-            ES yes;
-            FR yes;
-            GB yes;
-            IT yes;
-            NL yes;
-          }
+            map $geoip2_data_country_iso_code $allowed_country {
+              default no;
+              DE yes;
+              NL yes;
+              LU yes;
+            }
         ''
       ]);
     };
