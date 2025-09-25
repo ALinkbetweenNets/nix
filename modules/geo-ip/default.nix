@@ -19,16 +19,17 @@ in {
       settings = {
         EditionIDs = [ "GeoLite2-Country" ];
         AccountID = 952739;
-        LicenseKey = config.sops.secrests."maxmind-geoip-license".path;
+        LicenseKey = {
+          _secret = config.sops.secrets."maxmind-geoip-license".path;
+        };
         DatabaseDirectory = "${config.link.storage}/GeoIP";
       };
     };
     # build nginx with geoip2 module
     services.nginx = {
-      package = pkgs.nginxStable.override (oldAttrs: {
-        modules = with pkgs.nginxModules; [ geoip2 ];
-        buildInputs = oldAttrs.buildInputs ++ [ pkgs.libmaxminddb ];
-      });
+      # package = pkgs.nginxStable.override (oldAttrs: {
+
+      # });
       appendHttpConfig = toString ([
         # we want to load the geoip2 module in our http config, pointing to the database we are using
         # country iso code is the only data we need

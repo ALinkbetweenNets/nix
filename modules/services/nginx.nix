@@ -47,7 +47,11 @@ in {
       recommendedTlsSettings = true;
       logError = "stderr debug";
       enableQuicBPF = true;
-      package = pkgs.nginxQuic.override { openssl = pkgs.libressl; };
+      package = pkgs.nginxQuic.override {
+        openssl = pkgs.libressl;
+        modules = with pkgs.nginxModules; [ geoip2 ];
+        buildInputs = oldAttrs.buildInputs ++ [ pkgs.libmaxminddb ];
+      };
       clientMaxBodySize = "6000m";
       commonHttpConfig = ''
         # sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";

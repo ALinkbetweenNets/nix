@@ -13,6 +13,7 @@
     domain = "alinkbetweennets.de";
     fail2ban.enable = true;
     nginx.enable = true;
+    nginx.geoIP = true;
     serviceHost = "100.108.233.76";
     server.enable = true;
     vm.enable = true;
@@ -416,13 +417,13 @@
     #   forceSSL = true;
     #   locations."/".proxyPass = "http://${config.link.serviceHost}:8765";
     # };
-    # "nextcloud.${config.link.domain}" = {
-    #   # enableACME = true;
-    #   useACMEHost = config.link.domain;
-    #   forceSSL = true;
-    #   locations."/".proxyPass = "http://${config.link.serviceHost}:80";
-    #   extraConfig = "\n";
-    # };
+    "nextcloud.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/".proxyPass = "http://${config.link.serviceHost}:80";
+      extraConfig = "\n";
+    };
     # "outline.${config.link.domain}" = {
     #   # enableACME = true;
     #   useACMEHost = config.link.domain;
