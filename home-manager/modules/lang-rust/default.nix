@@ -7,7 +7,7 @@ in {
     home.packages = with pkgs; [
       cargo
       clippy
-      # gcc # present in toybox
+      # gcc
       lldb
       rustc
       rustfmt
