@@ -173,6 +173,10 @@ in {
       };
       profiles.default.keybindings = [
         {
+          key = "ctrl+shift+9";
+          command = "testing.runAll";
+        }
+        {
           key = "ctrl+alt+f";
           command = "leap.search";
         }
