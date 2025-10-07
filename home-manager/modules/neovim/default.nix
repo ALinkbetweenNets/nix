@@ -227,7 +227,7 @@ with lib; {
                 style = "rounded";
               };
               lsp-signature.enable = false;
-              nvim-cmp.enable = true;
+              # nvim-cmp.enable = true;
             };
           };
           noice.enable = false;
