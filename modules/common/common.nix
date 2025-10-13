@@ -75,7 +75,7 @@ in {
       };
     };
     security = {
-      sudo.wheelNeedsPassword = lib.mkDefault true;
+      sudo.wheelNeedsPassword = lib.mkDefault false;
       # polkit = {
       #   enable = true;
       #   adminIdentities = [ "unix-user:l" "unix-user:root" ];
