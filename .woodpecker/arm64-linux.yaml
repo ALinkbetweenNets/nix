@@ -78,6 +78,10 @@
     {
       "branch": "experimental",
       "event": "push"
+    },
+    {
+      "branch": "csp",
+      "event": "push"
     }
   ]
 }
