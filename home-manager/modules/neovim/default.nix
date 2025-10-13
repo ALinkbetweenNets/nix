@@ -56,6 +56,7 @@ with lib; {
             enable = true;
             friendly-snippets.enable = true;
             setupOpts.signature.enabled = true;
+            mappings.confirm = "<C-Tab>";
           };
         };
         autopairs.nvim-autopairs.enable = false; # Creates closing brackets when you enter opening bracket
