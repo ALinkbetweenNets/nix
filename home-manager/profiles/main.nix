@@ -228,7 +228,7 @@ with lib; {
       # catimg
       timg # display images and videos in terminal with sixel support
       mediainfo # audio and video information
-      # jellyfin-mpv-shim # broken
+      jellyfin-mpv-shim
       kdePackages.elisa # music player and organizer
       digikam # photo library
       ## Silly BS
