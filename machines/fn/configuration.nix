@@ -95,6 +95,11 @@
     };
     script = config.system.activationScripts.setupSecrets.text;
   };
+  services.tor = {
+    enable = true;
+    client.enable = true;
+    client.dns.enable = true;
+  };
   hardware.enableRedistributableFirmware = true;
   home-manager.users.l = flake-self.homeConfigurations.laptop;
   boot = {
