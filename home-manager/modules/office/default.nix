@@ -17,7 +17,7 @@ in
   config = mkIf cfg.enable {
     programs = { };
     home.packages = with pkgs; [
-      citations
+      # citations
       typst # better latex for papers
       libreoffice-qt
       gimp3-with-plugins
@@ -26,16 +26,16 @@ in
       # evolution # broken
       # calcure # tui calendar & task manager # broken 240721
       #teams # insecure
-      evince
+      # evince
       xournalpp
       anki
-      darktable # photo color editor # broken
+      darktable # photo color editor
       # rawtherapee
       # art
       pdfmixtool
       onlyoffice-bin
       speedcrunch
-      picard # music tagger
+      # picard # music tagger
       # testdisk # data recovery
       ocrmypdf # ocr for pdf
       tesseract # ocr for images
