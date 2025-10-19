@@ -1,7 +1,7 @@
 { lib, pkgs, config, nixpkgs, flake-self, home-manager, ... }: {
   system = {
     autoUpgrade = {
-      enable = true;
+      enable = false;
       allowReboot = true;
       rebootWindow = {
         lower = "05:00";
