@@ -4,9 +4,11 @@ with lib; {
   config = {
     home.packages = with pkgs;
       [
+        system-config.xr-linux-flake.packages.x86_64-linux.xrlinuxdriver
+        system-config.xr-linux-flake.packages.x86_64-linux.breezy-desktop-kwin
         #parsec-bin
       ] ++ lib.optionals
-        (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
+      (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
     programs = { vscode.profiles.default.userSettings."window.zoomLevel" = 0; };
   };
 }
