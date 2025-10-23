@@ -8,6 +8,7 @@
       # Don't do this if your machines are on nixpkgs stable.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    xr-linux-flake.url = "github:tcarrio/xr-linux-flake";
     lix-module = {
       url =
         "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
@@ -184,6 +185,7 @@
         name =
           builtins.substring 0 ((builtins.stringLength filename) - 4) filename;
         value = { pkgs, lib, username, ... }: {
+          # extraSpecialArgs =  { inherit xr-linux-flake; };
           imports = [
             "${./.}/home-manager/profiles/common.nix"
             "${./.}/home-manager/profiles/${filename}"
