@@ -1864,15 +1864,15 @@
         "xrealInterfaceLibrary": "xrealInterfaceLibrary"
       },
       "locked": {
-        "lastModified": 1757916400,
-        "narHash": "sha256-F+XixwX+lP6+dQpX2drju+k/dEyxL0st1uP3ZQhKa9M=",
-        "owner": "tcarrio",
+        "lastModified": 1761253302,
+        "narHash": "sha256-yX2mjRqnJsrmdu6VBCunMMpYEjMDkEmdcploB2MuVf4=",
+        "owner": "alinkbetweennets",
         "repo": "xr-linux-flake",
-        "rev": "1bf818c34bc67a9cdcdb94d68a59c6dadc77081a",
+        "rev": "2eac6e8674d669fe6c3076ba5e1cc4a847f7a938",
         "type": "github"
       },
       "original": {
-        "owner": "tcarrio",
+        "owner": "alinkbetweennets",
         "repo": "xr-linux-flake",
         "type": "github"
       }
