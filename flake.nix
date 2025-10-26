@@ -8,7 +8,7 @@
       # Don't do this if your machines are on nixpkgs stable.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    xr-linux-flake.url = "github:tcarrio/xr-linux-flake";
+    xr-linux-flake.url = "github:alinkbetweennets/xr-linux-flake";
     lix-module = {
       url =
         "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
