@@ -1,8 +1,7 @@
-{ config, flake-self, system-config, xr-linux-flake, pkgs, lib, ... }:
+{ config, flake-self, system-config, pkgs, lib, ... }:
 with lib;
 let cfg = config.link.laptop;
 in {
-  imports = [ xr-linux-flake.nixosModules.default ];
   options.link.laptop = { enable = mkEnableOption "activate laptop"; };
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
@@ -10,7 +9,6 @@ in {
       kdePackages.kconfig
 
     ];
-    services.xrlinuxdriver = { enable = true; };
     boot.extraModulePackages = [ config.boot.kernelPackages.evdi ];
     boot.initrd.kernelModules = [ "evdi" ];
     environment.variables = { KWIN_DRM_PREFER_COLOR_DEPTH = "24"; };
@@ -46,6 +44,7 @@ in {
     link = {
       desktop.enable = true;
       hardware.enable = true;
+      xrlinux.enable = true;
       # unbound.enable = true;
       #wg-fritz.enable = true;
     };
