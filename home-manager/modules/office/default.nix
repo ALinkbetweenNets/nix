@@ -39,6 +39,7 @@ in
       # testdisk # data recovery
       ocrmypdf # ocr for pdf
       tesseract # ocr for images
+      fira-sans
     ];
   };
 }
