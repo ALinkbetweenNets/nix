@@ -113,16 +113,16 @@ with lib; {
       rm-improved
       gping # ping with graph of response times
       mtr # better ping
-      zed-editor
-      erdtree
-      sd
+      # zed-editor
+      erdtree # better du
+      sd # find/replace
       # tailspin # broken
       spacer
       #csvlens
       kdePackages.kcolorchooser
       curlie # httpie for curl
       gpodder # podcast client
-      sox
+      sox # play record convert audio files
       #htmlq
       dogdns
       # zombietrackergps # gps track display

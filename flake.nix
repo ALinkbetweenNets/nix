@@ -189,7 +189,7 @@
       # Each subdirectory in ./machines is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
       # configuration.nix that will be read first
-      inherit (clan.config) nixosConfigurations clanInternals;
+      inherit (clan.config) nixosConfigurations clanInternals; # nixosModules
       clan = clan.config;
       # clan = { inherit (clan) templates; };
       # clan = clan.config;
