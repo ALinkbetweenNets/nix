@@ -4,9 +4,6 @@ with lib; {
   config = {
     home.packages = with pkgs;
       [
-        libevdev
-        flake-self.inputs.xr-linux-flake.packages.x86_64-linux.xrlinuxdriver
-        flake-self.inputs.xr-linux-flake.packages.x86_64-linux.breezy-desktop-kwin
         #parsec-bin
       ] ++ lib.optionals
       (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [ ];
