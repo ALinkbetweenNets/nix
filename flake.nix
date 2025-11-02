@@ -8,6 +8,15 @@
       # Don't do this if your machines are on nixpkgs stable.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # xr-linux-flake.url = "github:alinkbetweennets/xr-linux-flake";
+    xrealInterfaceLibrary = {
+      url = "git+https://gitlab.com/TheJackiMonster/nrealAirLinuxDriver.git";
+      flake = false;
+    };
+    upstream = {
+      url = "github:wheaney/XRLinuxDriver";
+      flake = false;
+    };
     lix-module = {
       url =
         "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
@@ -158,6 +167,10 @@
             flake-self = self;
             inputs = inputs;
           };
+          xrlinuxdriver = pkgs.callPackage ./pkgs/xrlinux/default.nix {
+            flake-self = self;
+            system = system;
+          };
           build_outputs = pkgs.callPackage
             mayniklas.packages.${system}.build_outputs.override {
               inherit self;
@@ -184,6 +197,7 @@
         name =
           builtins.substring 0 ((builtins.stringLength filename) - 4) filename;
         value = { pkgs, lib, username, ... }: {
+          # extraSpecialArgs =  { inherit xr-linux-flake; };
           imports = [
             "${./.}/home-manager/profiles/common.nix"
             "${./.}/home-manager/profiles/${filename}"
