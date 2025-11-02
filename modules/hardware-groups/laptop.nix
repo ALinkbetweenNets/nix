@@ -4,11 +4,11 @@ let cfg = config.link.laptop;
 in {
   options.link.laptop = { enable = mkEnableOption "activate laptop"; };
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs;
-      [
-        wireless-regdb
+    environment.systemPackages = with pkgs; [
+      wireless-regdb
+      kdePackages.kconfig
 
-      ];
+    ];
     boot.extraModulePackages = [ config.boot.kernelPackages.evdi ];
     boot.initrd.kernelModules = [ "evdi" ];
     environment.variables = { KWIN_DRM_PREFER_COLOR_DEPTH = "24"; };
@@ -44,6 +44,7 @@ in {
     link = {
       desktop.enable = true;
       hardware.enable = true;
+      xrlinux.enable = true;
       # unbound.enable = true;
       #wg-fritz.enable = true;
     };
