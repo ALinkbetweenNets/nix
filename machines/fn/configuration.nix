@@ -95,6 +95,20 @@
     };
     script = config.system.activationScripts.setupSecrets.text;
   };
+
+containers.tor-container = {
+      # autoStart = true;
+      config = { ... }: {
+        system.stateVersion =
+          "23.05"; # If you don't add a state version, nix will complain at every rebuild
+        # Exposing the nessecary ports in order to interact with i2p from outside the container
+        networking.firewall.allowedTCPPorts = [
+        9050
+          # 7656 # default sam port
+          # 7070 # default web interface port
+          # 4444 # default http proxy port
+          # 4447 # default socks proxy port
+        ];
   services.tor = {
     enable = true;
     client.enable = true;
@@ -103,6 +117,8 @@
   # services.xrlinuxdriver={
   # enable=true;
   # };
+    };
+  };
   hardware.enableRedistributableFirmware = true;
   home-manager.users.l = flake-self.homeConfigurations.laptop;
   boot = {
