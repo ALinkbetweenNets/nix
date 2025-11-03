@@ -100,6 +100,9 @@
     client.enable = true;
     client.dns.enable = true;
   };
+  # services.xrlinuxdriver={
+  # enable=true;
+  # };
   hardware.enableRedistributableFirmware = true;
   home-manager.users.l = flake-self.homeConfigurations.laptop;
   boot = {
