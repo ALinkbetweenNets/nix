@@ -52,7 +52,16 @@ in {
     #networking.wireless.enable = !config.networking.networkmanager.enable;
     networking.networkmanager = { wifi.macAddress = "stable"; };
     hardware.bluetooth.enable = true;
+    location.latitude = 50.0;
+    location.longitude = 7.0;
+    location.provider = "geoclue2";
     services = {
+      geoclue2 = {
+        enable = true;
+        staticAccuracy = 10;
+        staticAltitude = 95;
+        enableStatic = lib.mkForce true;
+      };
       libinput.enable = true;
       # power-profiles-daemon.enable = lib.mkForce false;
       tlp.enable = false;
