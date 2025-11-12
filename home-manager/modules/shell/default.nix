@@ -144,6 +144,8 @@ in {
           pls = "sudo";
           cls = "clear";
           datamatrix = "iec16022";
+          copy = "rsync -ravH ";
+          copycompressed = "rsync -ravzH ";
           fancytext = "figlet -tkf slant ";
           open = "xdg-open";
           o = "xdg-open";
