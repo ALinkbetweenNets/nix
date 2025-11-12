@@ -33,7 +33,7 @@ in
       # rawtherapee
       # art
       pdfmixtool
-      onlyoffice-bin
+      onlyoffice-desktopeditors
       speedcrunch
       # picard # music tagger
       # testdisk # data recovery
