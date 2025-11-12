@@ -131,7 +131,7 @@ with lib; {
       anime4k
       # quickemu # broken
       # quickgui
-      code-cursor
+      # code-cursor
       aider-chat
       # protonmail-bridge-gui
       # protonmail-desktop
