@@ -165,7 +165,7 @@ with lib; {
       ] ++ lib.optionals
       (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [
         # bitwarden-desktop
-        tor-browser-bundle-bin # compromisednix
+        tor-browser
         mullvad-browser
       ];
   };
