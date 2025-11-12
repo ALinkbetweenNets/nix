@@ -1,7 +1,6 @@
 { lib, pkgs, flake-self, config, system-config, ... }:
 with lib; {
-  imports =
-    [ ../colorscheme.nix ./common.nix flake-self.homeManagerModules.xdg ];
+  imports = [ ../colorscheme.nix ./common.nix flake-self.homeModules.xdg ];
   config = {
     dconf = {
       enable = true;
@@ -164,7 +163,7 @@ with lib; {
         flake-self.inputs.zen-browser.packages.${system}.default
         # (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ] ++ lib.optionals
-        (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [
+      (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [
         bitwarden
         tor-browser-bundle-bin # compromisednix
         mullvad-browser

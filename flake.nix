@@ -211,7 +211,7 @@
         nix = { pkgs, ... }: {
           # import home manager modules from this flake
           imports = [
-            inputs.nvf.homeModules.default
+            inputs.nvf.homeManagerModules.default
             inputs.plasma-manager.homeModules.plasma-manager
             # inputs.vscode-server.nixosModules.home
           ];
@@ -248,6 +248,15 @@
           # };
         };
       };
+        devShells = forAllSystems (
+        system: with nixpkgsFor.${system}; {
+          default = pkgs.mkShell {
+            packages = [
+              
+            ];
+          };
+        }
+      );
       # colmena = {
       #   meta = {
       #     nixpkgs = import nixpkgs {

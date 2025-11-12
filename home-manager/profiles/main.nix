@@ -2,7 +2,7 @@
 with lib; {
   imports = [ ./desktop.nix ];
   config = {
-    # imports = with flake-self.homeManagerModules; [ git ];
+    # imports = with flake-self.homeModules; [ git ];
     link = {
       code.enable = true;
       # plasma.enable = true;
