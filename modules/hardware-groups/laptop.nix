@@ -44,7 +44,6 @@ in {
     link = {
       desktop.enable = true;
       hardware.enable = true;
-      xrlinux.enable = true;
       # unbound.enable = true;
       #wg-fritz.enable = true;
     };

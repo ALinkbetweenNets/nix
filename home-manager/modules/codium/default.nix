@@ -7,6 +7,8 @@ in {
     home.packages = with pkgs; [
       gdb
       nil
+      clang
+      gnumake
       nixd
       nixfmt-classic
       vscode-langservers-extracted

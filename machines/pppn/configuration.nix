@@ -1,4 +1,4 @@
-{ config, lib, pkgs, flake-self, home-manager, ... }: {
+{ self, ... }:{ config, lib, pkgs, flake-self, home-manager, ... }: {
   imports =
     [ ./hardware-configuration.nix home-manager.nixosModules.home-manager ];
   home-manager.users.l = flake-self.homeConfigurations.desktop;
