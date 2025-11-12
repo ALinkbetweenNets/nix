@@ -164,7 +164,7 @@ with lib; {
         # (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ] ++ lib.optionals
       (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [
-        bitwarden
+        # bitwarden-desktop
         tor-browser-bundle-bin # compromisednix
         mullvad-browser
       ];
