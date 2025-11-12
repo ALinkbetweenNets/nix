@@ -26,9 +26,6 @@ stdenv.mkDerivation {
     pkg-config
     (python3.withPackages (ps: with ps; [ pyyaml ]))
     git
-  ];
-
-  buildInputs = [
     libusb1
     libevdev
     openssl
