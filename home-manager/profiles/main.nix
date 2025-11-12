@@ -29,12 +29,12 @@ with lib; {
     #   gtk.enable = true;
     # };
     programs = {
-      element-desktop = {
-        enable = true;
-        # settings = {
-        #   default_theme= "dark";
-        # };
-      };
+      # element-desktop = {
+      #   enable = true;
+      #   # settings = {
+      #   #   default_theme= "dark";
+      #   # };
+      # };
       direnv = {
         enable = true;
         enableBashIntegration = true;
