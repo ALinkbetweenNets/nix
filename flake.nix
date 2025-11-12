@@ -2,11 +2,6 @@
   description = "My NixOS infrastructure";
   inputs = {
     # xr-linux-flake.url = "github:alinkbetweennets/xr-linux-flake";
-    lix-module = {
-      url =
-        "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -101,7 +96,7 @@
     };
     grub2-themes = { url = "github:paulmiro/grub2-themes"; };
   };
-  outputs = { self, lix-module, nixpkgs, nur, nixgl, ... }@inputs:
+  outputs = { self, nixpkgs, nur, nixgl, ... }@inputs:
     with inputs;
     let
       supportedSystems = [ "aarch64-linux" "x86_64-linux" ];
@@ -123,7 +118,7 @@
             flake-self = self;
             inputs = inputs;
           };
-        
+
         });
       apps = forAllSystems (system: { });
       # Output all modules in ./modules to flake. Modules should be in
@@ -153,7 +148,6 @@
             disko.nixosModules.disko
             sops-nix.nixosModules.sops
             grub2-themes.nixosModules.default
-            lix-module.nixosModules.default
             # ({ config, ... }: {
             #   # shut up state version warning
             #   system.stateVersion = config.system.nixos.version;
@@ -243,15 +237,14 @@
           # };
         };
       };
-        devShells = forAllSystems (
-        system: with nixpkgsFor.${system}; {
+      devShells = forAllSystems (system:
+        with nixpkgsFor.${system}; {
           default = pkgs.mkShell {
             packages = [
 
             ];
           };
-        }
-      );
+        });
       # colmena = {
       #   meta = {
       #     nixpkgs = import nixpkgs {
