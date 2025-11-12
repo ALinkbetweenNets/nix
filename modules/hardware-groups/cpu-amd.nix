@@ -34,7 +34,7 @@ in {
           # rocmPackages.clr.icd
           # rocmPackages.clr
           # mesa.opencl
-          vaapiVdpau
+          libva-vdpau-driver
           libvdpau-va-gl
         ];
       };

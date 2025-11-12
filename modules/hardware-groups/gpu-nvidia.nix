@@ -33,11 +33,11 @@ in
       graphics = {
         enable = true;
         extraPackages = with pkgs; [
-          vaapiVdpau
+          libva-vdpau-driver
           libvdpau-va-gl
           nvidia-vaapi-driver
         ];
-        extraPackages32 = with pkgs; [ vaapiVdpau ];
+        extraPackages32 = with pkgs; [ libva-vdpau-driver ];
       };
       nvidia = {
         open =
