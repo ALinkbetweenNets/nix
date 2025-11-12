@@ -18,6 +18,8 @@ in {
         ];
         services = {
           transmission = {
+
+            package=pkgs.transmission_4;
             enable = true;
             openFirewall = true;
             openPeerPorts = true;
