@@ -16,13 +16,13 @@
     nixos-hardware.nixosModules.raspberry-pi-4
     home-manager.nixosModules.home-manager
   ];
-  powerManagement.powerUpCommands = ''
-    ${pkgs.hdparm}/sbin/hdparm -S 9 -B 127 /dev/sda
-  '';
-  fileSystems."/mnt" = {
-    device = "/dev/disk/by-uuid/865aca39-8ddc-4949-8413-50382b0a84ae";
-    fsType = "btrfs";
-  };
+  # powerManagement.powerUpCommands = ''
+  #   ${pkgs.hdparm}/sbin/hdparm -S 9 -B 127 /dev/sda
+  # '';
+  # fileSystems."/mnt" = {
+  #   device = "/dev/disk/by-uuid/865aca39-8ddc-4949-8413-50382b0a84ae";
+  #   fsType = "btrfs";
+  # };
   hardware = {
     raspberry-pi."4" = {
       apply-overlays-dtmerge.enable = true;
@@ -51,46 +51,46 @@
     server.enable = true;
     # desktop.enable = true;
     # syncthing.enable = true;
-    syncthingDir = "/mnt/syncthing";
-    services = {
-      home-assistant.enable = true;
-      node-red.enable = true;
-    };
+    # syncthingDir = "/mnt/syncthing";
+    # services = {
+    #   home-assistant.enable = false;
+    #   node-red.enable = false;
+    # };
   };
   users.users.l.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIER/dVmTaW5sjMi3Yf60y5pqDlXs7pI6w/CCBEfofKQL root@fn"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBu+WcpENdr7FaCIwj6WsinGnykIPV/tnIyrfEHSeU+E root@sn"
   ];
-  services.frigate = {
-    enable = true;
-    hostname = "pi4b.monitor-banfish.ts.net";
-    settings.cameras = {
-      "pizero1" = {
-        ffmpeg.inputs = [{
-          path = "rtsp://192.168.123.108:8554/unicast";
-          roles = [ "detect" ];
-        }];
-      };
-    };
-  };
-  services.home-assistant = {
-    enable = true;
-    config = {
-      lovelace.mode = "storage";
-      homeassistant.name = "Pi";
-    };
-    openFirewall = true;
-    lovelaceConfigWritable = true;
-    configWritable = true;
-    extraPackages = python3Packages:
-      with python3Packages;
-      [
-        # postgresql support
-        psycopg2
-      ];
-  };
+  # services.frigate = {
+  #   enable = false;
+  #   hostname = "p4n.monitor-banfish.ts.net";
+  #   settings.cameras = {
+  #     "pizero1" = {
+  #       ffmpeg.inputs = [{
+  #         path = "rtsp://192.168.123.108:8554/unicast";
+  #         roles = [ "detect" ];
+  #       }];
+  #     };
+  #   };
+  # };
+  # services.home-assistant = {
+  #   enable = false;
+  #   config = {
+  #     lovelace.mode = "storage";
+  #     homeassistant.name = "Pi";
+  #   };
+  #   openFirewall = true;
+  #   lovelaceConfigWritable = true;
+  #   configWritable = true;
+  #   extraPackages = python3Packages:
+  #     with python3Packages;
+  #     [
+  #       # postgresql support
+  #       psycopg2
+  #     ];
+  # };
   ### build sd-image
-  # nix build .\#nixosConfigurations.pi4b.config.system.build.sdImage
+  # nix build .\#nixosConfigurations.p4n.config.system.build.sdImage
   # add boot.binfmt.emulatedSystems = [ "aarch64-linux" ]; to your x86 system
   # to build ARM stuff through qemu
   sdImage.compressImage = false;
@@ -106,7 +106,7 @@
         super.makeModulesClosure (x // { allowMissing = true; });
     })
   ];
-  networking.hostName = "pi4b";
+  networking.hostName = "p4n";
   networking.domain = "monitor-banfish.ts.net";
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }
