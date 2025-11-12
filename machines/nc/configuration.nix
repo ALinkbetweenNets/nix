@@ -25,7 +25,7 @@
     externalInterface = "ens3";
     externalIP = "202.61.251.70";
     internalInterfaces = [ "tailscale0" ];
-    internalIPs = [ "10.10.10.63/32" "100.87.16.37/32" ];
+    internalIPs = [ "192.168.2.15/32" "100.87.16.37/32" ];
     forwardPorts = [
       {
         sourcePort = 25565;
@@ -36,19 +36,19 @@
       {
         sourcePort = 51820;
         proto = "udp";
-        destination = "10.10.10.63:51820";
+        destination = "192.168.2.15:51820";
         loopbackIPs = [ "100.87.16.37" ];
       }
       {
         sourcePort = 51822;
         proto = "udp";
-        destination = "10.10.10.63:51820";
+        destination = "192.168.2.15:51820";
         loopbackIPs = [ "100.87.16.37" ];
       }
       {
         sourcePort = 41623;
         proto = "tcp";
-        destination = "10.10.10.63:41623";
+        destination = "192.168.2.15:41623";
         loopbackIPs = [ "100.87.16.37" ];
       }
     ];
@@ -515,14 +515,14 @@
       # useACMEHost = config.link.domain;
       forceSSL = true;
       # default = true;
-      locations."/" = { proxyPass = "http://10.10.10.45:31337/"; };
+      locations."/" = { proxyPass = "http://192.168.2.15:31337/"; };
     };
     "vpnconfig.netintro.${config.link.domain}" = {
       enableACME = true;
       # useACMEHost = config.link.domain;
       forceSSL = true;
       # default = true;
-      locations."/" = { proxyPass = "http://10.10.10.45:31338/"; };
+      locations."/" = { proxyPass = "http://192.168.2.15:31338/"; };
     };
     # /CTF
   };
