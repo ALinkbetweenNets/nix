@@ -7,7 +7,7 @@ with lib; {
       example = "server";
     };
   };
-  imports = with flake-self.homeManagerModules; [ neovim shell git ];
+  imports = with flake-self.homeModules; [ neovim shell git ];
   config = {
     home.sessionVariables = { EDITOR = "nvim"; };
     home.homeDirectory = "/home/l";
