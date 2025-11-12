@@ -52,7 +52,6 @@ in {
       flake-self.inputs.nsearch.packages.${pkgs.system}.default
       kdePackages.plasma-thunderbolt
       aha # for kde settings
-      glxinfo
       clinfo
       vulkan-tools
       # ondsel # Better FreeCAD

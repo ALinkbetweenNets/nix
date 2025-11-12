@@ -2,7 +2,7 @@
 with lib; {
   imports = [ ./desktop.nix ];
   config = {
-    # imports = with flake-self.homeManagerModules; [ git ];
+    # imports = with flake-self.homeModules; [ git ];
     link = {
       code.enable = true;
       # plasma.enable = true;
@@ -29,12 +29,12 @@ with lib; {
     #   gtk.enable = true;
     # };
     programs = {
-      element-desktop = {
-        enable = true;
-        # settings = {
-        #   default_theme= "dark";
-        # };
-      };
+      # element-desktop = {
+      #   enable = true;
+      #   # settings = {
+      #   #   default_theme= "dark";
+      #   # };
+      # };
       direnv = {
         enable = true;
         enableBashIntegration = true;
@@ -214,7 +214,7 @@ with lib; {
       ffmpeg
       gallery-dl
       ## Multimedia
-      obs-studio-plugins.obs-ndi
+      obs-studio-plugins.distroav
       easyeffects
       artyFX
       brave # backup browser for teams, office online # multiple problems with privacy during end of 2023

@@ -1,4 +1,4 @@
-{ pkgs, lib, config, flake-self, home-manager, ... }: {
+{ self, ... }:{ pkgs, lib, config, flake-self, home-manager, ... }: {
   imports = [
     ./hardware-configuration.nix
     home-manager.nixosModules.home-manager
@@ -113,6 +113,11 @@ containers.tor-container = {
     enable = true;
     client.enable = true;
     client.dns.enable = true;
+    settings={
+      UseBridges = true;
+      ClientTransportPlugin = "obfs4 exec ${pkgs.obfs4}/bin/lyrebird";
+      Bridge = "obfs4 IP:ORPort [fingerprint]";
+    };
   };
   # services.xrlinuxdriver={
   # enable=true;
@@ -159,7 +164,6 @@ containers.tor-container = {
     hostName = "fn";
     domain = "monitor-banfish.ts.net";
   };
-  clan.core.networking.targetHost = config.networking.hostName;
   services.languagetool.enable = true;
   # services.ucodenix = {
   #   enable = true;

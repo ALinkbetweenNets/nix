@@ -1,4 +1,4 @@
-{ lib, pkgs, inputs, nixvim, config, ... }:
+{ lib, pkgs, inputs, config, ... }:
 with lib; {
   # programs.neovim = {
   #   enable = true;

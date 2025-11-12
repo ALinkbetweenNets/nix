@@ -15,7 +15,6 @@ in {
         wl-mirror
         xdg-utils
         xwayland
-        kdePackages.xwaylandvideobridge
         wayland-utils
         wtype # xdotool
         wev # key codes
