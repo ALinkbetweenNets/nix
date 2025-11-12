@@ -123,12 +123,7 @@
             flake-self = self;
             inputs = inputs;
           };
-          build_outputs = pkgs.callPackage
-            mayniklas.packages.${system}.build_outputs.override {
-              inherit self;
-              output_path = "~/.keep-nix-outputs-ALinkbetweenNets";
-            };
-          inherit (pkgs.link) candy-icon-theme;
+        
         });
       apps = forAllSystems (system: { });
       # Output all modules in ./modules to flake. Modules should be in
@@ -252,7 +247,7 @@
         system: with nixpkgsFor.${system}; {
           default = pkgs.mkShell {
             packages = [
-              
+
             ];
           };
         }
