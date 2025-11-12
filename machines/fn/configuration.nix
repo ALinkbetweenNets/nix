@@ -113,6 +113,11 @@ containers.tor-container = {
     enable = true;
     client.enable = true;
     client.dns.enable = true;
+    settings={
+      UseBridges = true;
+      ClientTransportPlugin = "obfs4 exec ${pkgs.obfs4}/bin/lyrebird";
+      Bridge = "obfs4 IP:ORPort [fingerprint]";
+    };
   };
   # services.xrlinuxdriver={
   # enable=true;
