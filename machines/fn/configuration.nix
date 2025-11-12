@@ -1,4 +1,4 @@
-{ pkgs, lib, config, flake-self, home-manager, ... }: {
+{ self, ... }:{ pkgs, lib, config, flake-self, home-manager, ... }: {
   imports = [
     ./hardware-configuration.nix
     home-manager.nixosModules.home-manager
@@ -164,7 +164,6 @@ containers.tor-container = {
     hostName = "fn";
     domain = "monitor-banfish.ts.net";
   };
-  clan.core.networking.targetHost = config.networking.hostName;
   services.languagetool.enable = true;
   # services.ucodenix = {
   #   enable = true;

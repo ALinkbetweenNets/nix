@@ -1,13 +1,6 @@
 {
   description = "My NixOS infrastructure";
   inputs = {
-    # Manage networks of machines
-    # https://clan.lol
-    clan-core = {
-      url = "https://git.clan.lol/clan/clan-core/archive/main.tar.gz";
-      # Don't do this if your machines are on nixpkgs stable.
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # xr-linux-flake.url = "github:alinkbetweennets/xr-linux-flake";
     xrealInterfaceLibrary = {
       url = "git+https://gitlab.com/TheJackiMonster/nrealAirLinuxDriver.git";
@@ -116,7 +109,7 @@
     };
     grub2-themes = { url = "github:paulmiro/grub2-themes"; };
   };
-  outputs = { self, lix-module, nixpkgs, clan-core, nur, nixgl, ... }@inputs:
+  outputs = { self, lix-module, nixpkgs, nur, nixgl, ... }@inputs:
     with inputs;
     let
       supportedSystems = [ "aarch64-linux" "x86_64-linux" ];
@@ -127,35 +120,6 @@
           overlays =
             [ self.overlays.default nur.overlays.default nixgl.overlay ];
         });
-      clan = clan-core.lib.clan {
-        inherit self; # this needs to point at the repository root
-        # Make inputs and the flake itself accessible as module parameters.
-        # Technically, adding the inputs is redundant as they can be also
-        # accessed with flake-self.inputs.X, but adding them individually
-        # allows to only pass what is needed to each module.
-        specialArgs = { flake-self = self; } // inputs;
-        inventory = {
-          meta.name = "alinkbetweennets-clan";
-          # machines = { fn = { }; };
-          instances = {
-            importer-modules-dir = {
-              module = {
-                name = "importer";
-                input = "clan-core";
-              };
-              roles.default.tags."all" = { };
-              # import all modules from ./modules/<module-name> everywhere
-              roles.default.extraModules = (map (m: "modules/${m}")
-                (builtins.attrNames self.nixosModules));
-            };
-          };
-        };
-        # machines={
-        #   fn={config,pkgs,...}:{
-
-        #   };
-        # };
-      };
     in {
       formatter = forAllSystems (system: nixpkgsFor.${system}.nixfmt-rfc-style);
       overlays.default = final: prev: (import ./pkgs inputs) final prev;
@@ -189,10 +153,54 @@
       # Each subdirectory in ./machines is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
       # configuration.nix that will be read first
-      inherit (clan.config) nixosConfigurations clanInternals; # nixosModules
-      clan = clan.config;
-      # clan = { inherit (clan) templates; };
-      # clan = clan.config;
+      nixosConfigurations = builtins.listToAttrs (map (x: {
+        name = x;
+        value = nixpkgs.lib.nixosSystem {
+          # Make inputs and the flake itself accessible as module parameters.
+          # Technically, adding the inputs is redundant as they can be also
+          # accessed with flake-self.inputs.X, but adding them individually
+          # allows to only pass what is needed to each module.
+          specialArgs = { flake-self = self; } // inputs;
+          modules = builtins.attrValues self.nixosModules ++ [
+            #inputs.nixos-facter-modules.nixosModules.facter
+            (import "${./.}/machines/${x}/configuration.nix" {
+              inherit self;
+              #config.facter.reportPath = ./facter.json;
+            })
+            disko.nixosModules.disko
+            sops-nix.nixosModules.sops
+            grub2-themes.nixosModules.default
+            lix-module.nixosModules.default
+            # ({ config, ... }: {
+            #   # shut up state version warning
+            #   system.stateVersion = config.system.nixos.version;
+            #   # Adjust this to your liking.
+            #   # WARNING: if you set a too low value the image might be not big enough to contain the nixos installation
+            #   disko.devices.disk.vdb.imageSize = "10G";
+            # })
+          ];
+        };
+      }) (builtins.filter (dirName: dirName != "pppn")
+        (builtins.attrNames (builtins.readDir ./machines)))) // {
+
+          # specify pppn seperately since it relies on system being set
+          pppn = nixpkgs.lib.nixosSystem {
+            system = "aarch64-linux";
+            specialArgs = { flake-self = self; } // inputs;
+            modules = builtins.attrValues self.nixosModules ++ [
+              "${mobile-nixos}/examples/phosh/phosh.nix"
+              (import "${mobile-nixos}/lib/configuration.nix" {
+                device = "pine64-pinephonepro";
+              })
+              (import "${./.}/machines/pppn/configuration.nix" {
+                inherit self;
+              })
+              disko.nixosModules.disko
+              sops-nix.nixosModules.sops
+            ];
+          };
+
+        };
       homeConfigurations = builtins.listToAttrs (map (filename: {
         name =
           builtins.substring 0 ((builtins.stringLength filename) - 4) filename;
@@ -252,12 +260,6 @@
           # };
         };
       };
-      devShells = forAllSystems (system:
-        with nixpkgsFor.${system}; {
-          default = pkgs.mkShell {
-            packages = [ clan-core.packages.${system}.clan-cli ];
-          };
-        });
       # colmena = {
       #   meta = {
       #     nixpkgs = import nixpkgs {

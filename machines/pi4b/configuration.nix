@@ -1,4 +1,4 @@
-{ pkgs
+{ self, ... }:{ pkgs
 , lib
 , config
 , modulesPath
@@ -109,5 +109,4 @@
   networking.hostName = "pi4b";
   networking.domain = "monitor-banfish.ts.net";
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
-  clan.core.networking.targetHost = config.networking.hostName + ":2522";
 }

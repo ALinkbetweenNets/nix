@@ -1,4 +1,4 @@
-{ pkgs, lib, config, flake-self, home-manager, modulesPath, ... }: {
+{ self, ... }:{ pkgs, lib, config, flake-self, home-manager, modulesPath, ... }: {
   imports =
     [ home-manager.nixosModules.home-manager ./hardware-configuration.nix ];
   home-manager.users.l = flake-self.homeConfigurations.server;
@@ -268,5 +268,4 @@
   #   # loader.grub.device = "/dev/sdd";
   #   zfs.extraPools = [ "wdp" ];
   # };
-  clan.core.networking.targetHost = config.networking.hostName + ":2522";
 }
