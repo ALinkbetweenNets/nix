@@ -23,6 +23,6 @@
     };
   };
   networking.useDHCP = lib.mkDefault true;
-  nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
+  nixpkgs.hostPlatform =  "aarch64-linux";
   nix.settings.max-jobs = lib.mkDefault 3;
 }

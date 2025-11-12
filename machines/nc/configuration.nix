@@ -1,7 +1,7 @@
 # 202.61.251.70
 #	2a03:4000:54:8a::/64
 # nix run github:numtide/nixos-anywhere -- --flake .#nc root@202.61.251.70
-{ pkgs, lib, config, flake-self, home-manager, ... }: {
+{ self, ... }:{ pkgs, lib, config, flake-self, home-manager, ... }: {
   imports = [ ./netcup.nix home-manager.nixosModules.home-manager ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
@@ -541,5 +541,4 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBu+WcpENdr7FaCIwj6WsinGnykIPV/tnIyrfEHSeU+E root@sn"
   ];
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  clan.core.networking.targetHost = "nc:2522";
 }
