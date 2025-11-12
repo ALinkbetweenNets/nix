@@ -2,14 +2,6 @@
   description = "My NixOS infrastructure";
   inputs = {
     # xr-linux-flake.url = "github:alinkbetweennets/xr-linux-flake";
-    xrealInterfaceLibrary = {
-      url = "git+https://gitlab.com/TheJackiMonster/nrealAirLinuxDriver.git";
-      flake = false;
-    };
-    upstream = {
-      url = "github:wheaney/XRLinuxDriver";
-      flake = false;
-    };
     lix-module = {
       url =
         "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
@@ -131,10 +123,6 @@
             flake-self = self;
             inputs = inputs;
           };
-          xrlinuxdriver = pkgs.callPackage ./pkgs/xrlinux/default.nix {
-            flake-self = self;
-            system = system;
-          };
           build_outputs = pkgs.callPackage
             mayniklas.packages.${system}.build_outputs.override {
               inherit self;
@@ -209,10 +197,10 @@
           imports = [
             "${./.}/home-manager/profiles/common.nix"
             "${./.}/home-manager/profiles/${filename}"
-          ] ++ (builtins.attrValues self.homeManagerModules);
+          ] ++ (builtins.attrValues self.homeModules);
         };
       }) (builtins.attrNames (builtins.readDir ./home-manager/profiles)));
-      homeManagerModules = builtins.listToAttrs (map (name: {
+      homeModules = builtins.listToAttrs (map (name: {
         inherit name;
         value = import (./home-manager/modules + "/${name}");
       }) (builtins.attrNames (builtins.readDir ./home-manager/modules))) // {
@@ -223,8 +211,8 @@
         nix = { pkgs, ... }: {
           # import home manager modules from this flake
           imports = [
-            inputs.nvf.homeManagerModules.default
-            inputs.plasma-manager.homeManagerModules.plasma-manager
+            inputs.nvf.homeModules.default
+            inputs.plasma-manager.homeModules.plasma-manager
             # inputs.vscode-server.nixosModules.home
           ];
           # add overlays from this flake

@@ -1196,8 +1196,6 @@
         "pwndbg": "pwndbg",
         "sops-nix": "sops-nix",
         "ucodenix": "ucodenix",
-        "upstream": "upstream",
-        "xrealInterfaceLibrary": "xrealInterfaceLibrary",
         "zen-browser": "zen-browser"
       }
     },
@@ -1437,22 +1435,6 @@
         "type": "github"
       }
     },
-    "upstream": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1761713214,
-        "narHash": "sha256-bAEm0jz2cRRtzzc1KwOOjDi822EUHd4qy/DfPETW0Yo=",
-        "owner": "wheaney",
-        "repo": "XRLinuxDriver",
-        "rev": "a643978295eca99ca5b86e5b17aef29a1b713092",
-        "type": "github"
-      },
-      "original": {
-        "owner": "wheaney",
-        "repo": "XRLinuxDriver",
-        "type": "github"
-      }
-    },
     "uv2nix": {
       "inputs": {
         "nixpkgs": [
@@ -1541,22 +1523,6 @@
         "repo": "wallpaper-generator",
         "rev": "6461fa794745fb18f2b04f58015e9a2871ca7099",
         "type": "github"
-      }
-    },
-    "xrealInterfaceLibrary": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1755271349,
-        "narHash": "sha256-Fv+KXTUu+PvPHFBXi6Rg0dKwnDnom3SPDaHifmfM5Vg=",
-        "ref": "refs/heads/main",
-        "rev": "9a1f55c9838cf92627cde62f9bd69269d213d134",
-        "revCount": 111,
-        "type": "git",
-        "url": "https://gitlab.com/TheJackiMonster/nrealAirLinuxDriver.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://gitlab.com/TheJackiMonster/nrealAirLinuxDriver.git"
       }
     },
     "zen-browser": {
