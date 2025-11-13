@@ -92,7 +92,7 @@
     #       "/var/lib/syncthing-data/sec"
     #       "/var/lib/syncthing-data/Music"
     #     ];
-    #     backup-paths-pi4b = [
+    #     backup-paths-p4n = [
     #       "/home/l/.ssh"
     #       "/var/lib/cryptpad"
     #       "/var/lib/gitlab"

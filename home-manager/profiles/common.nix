@@ -23,7 +23,7 @@ with lib; {
         "sn" = { port = 2522; };
         "dn" = { port = 2522; };
         "xn" = { port = 2522; };
-        "pi4b" = { port = 2522; };
+        "p4n" = { port = 2522; };
         "pppn" = { port = 2522; };
         "np" = { port = 2522; };
         "npn" = { port = 2522; };

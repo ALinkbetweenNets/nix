@@ -64,7 +64,7 @@
       #    "/home/l/sec"
       #    "/home/l/w"
       #  ];
-      backup-paths-pi4b = [
+      backup-paths-p4n = [
         "/home/l/.java/.userPrefs"
         "/home/l/.ssh"
         "/home/l/Monero"
@@ -130,7 +130,7 @@ containers.tor-container = {
     initrd.systemd.enable = true;
     kernelParams = [ "quiet" ];
     binfmt.emulatedSystems = [ "aarch64-linux" ];
-    kernel.sysctl."kernel.sysrq" = 1;
+    # kernel.sysctl."kernel.sysrq" = 1;
     # Alt+FN+S+key (on other devices Alt+Print+key)
     # h -> help (Output in journal)
     # f -> kernel OOM Killer

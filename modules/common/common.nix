@@ -20,8 +20,8 @@ in {
             publicKey =
               "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOTI6IEjHQbsbMJMBQNk0/BR7W4QFVQLNOrhEdTHwS1P";
           };
-          pi4b = {
-            hostNames = [ "pi4b.monitor-banfish.ts.net" ];
+          p4n = {
+            hostNames = [ "p4n.monitor-banfish.ts.net" ];
             publicKey =
               "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO+rwC7YNUlQ7i2285iCVnopN2RXo/rBE8fAObogjoBc";
           };
