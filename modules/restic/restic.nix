@@ -16,11 +16,11 @@ in {
       example = [ "/var/lib/gitea" ];
       description = "Paths to backup to sn";
     };
-    backup-paths-pi4b = mkOption {
+    backup-paths-p4n = mkOption {
       type = types.listOf types.str;
       default = [ ];
       example = [ "/var/lib/gitea" ];
-      description = "Paths to backup to pi4b";
+      description = "Paths to backup to p4n";
     };
     backup-paths-sciebo = mkOption {
       type = types.listOf types.str;
@@ -62,8 +62,8 @@ in {
       "restic/sn/repository" = { };
       "restic/sn/password" = { };
       "restic/sn/environment" = { };
-      "restic/pi4b/password" = { };
-      "restic/pi4b/repository" = { };
+      "restic/p4n/password" = { };
+      "restic/p4n/repository" = { };
       # "restic/sciebo/repository" = { };
       "restic/sciebo/password" = { };
       # "restic/sciebo/environment" = { };
@@ -181,11 +181,11 @@ in {
           ];
           initialize = true;
         };
-        pi4b = mkIf (cfg.backup-paths-pi4b != [ ]) {
-          paths = cfg.backup-paths-pi4b;
-          repositoryFile = config.sops.secrets."restic/pi4b/repository".path;
-          passwordFile = config.sops.secrets."restic/pi4b/password".path;
-          # environmentFile = config.sops.secrets."restic/pi4b/environment".path;
+        p4n = mkIf (cfg.backup-paths-p4n != [ ]) {
+          paths = cfg.backup-paths-p4n;
+          repositoryFile = config.sops.secrets."restic/p4n/repository".path;
+          passwordFile = config.sops.secrets."restic/p4n/password".path;
+          # environmentFile = config.sops.secrets."restic/p4n/environment".path;
           pruneOpts = [
             "--keep-daily 7"
             "--keep-weekly 5"

@@ -32,7 +32,7 @@
           "/home/l/Pictures"
           # "/home/l/plasma-vault"
         ];
-        # backup-paths-pi4b = [
+        # backup-paths-p4n = [
         #   "/home/l/.config"
         #   "/home/l/.ssh"
         #   "/home/l/archive"

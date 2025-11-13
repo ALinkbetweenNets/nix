@@ -46,7 +46,7 @@ in {
             "YU4MCML-QWAYIDE-FSHCDWA-C2FGKTG-ERS6I36-SMCFI2J-RKLVOPN-PS3IFQD";
           "pppn".id =
             "JCOKRQ5-67ARNA3-VOO4EOZ-5GUPCU6-63FSAID-EI4MVHH-T5ORT3Y-OFAGAAY";
-          "pi4b".id =
+          "p4n".id =
             "D64D4HR-7GZLZDK-UZKAFD5-YBJAURJ-Q2HXQB2-LNFYZNU-HNOIYFY-JUMR5A5";
         };
         folders = {
@@ -84,7 +84,7 @@ in {
           };
           "mirror" = {
             path = lib.mkDefault "${config.link.syncthingDir}/.data-mirror";
-            devices = [ "fn" "xn" "sn" "pi4b" ];
+            devices = [ "fn" "xn" "sn" "p4n" ];
             versioning = {
               type = "simple";
               params.keep = "3";
@@ -92,7 +92,7 @@ in {
           };
           "backups" = {
             path = lib.mkDefault "${config.link.syncthingDir}/backups";
-            devices = [ "sn" "pi4b" ];
+            devices = [ "sn" "p4n" ];
             versioning = {
               type = "simple";
               params.keep = "3";

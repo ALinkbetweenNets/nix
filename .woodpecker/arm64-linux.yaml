@@ -25,24 +25,24 @@
     },
     {
       "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.pi4b.config.system.build.toplevel' -o 'result-pi4b'"
+        "nix build --print-out-paths '.#nixosConfigurations.p4n.config.system.build.toplevel' -o 'result-p4n'"
       ],
       "image": "bash",
-      "name": "Build pi4b"
+      "name": "Build p4n"
     },
     {
       "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-pi4b')"
+        "nix path-info --closure-size -h $(readlink -f 'result-p4n')"
       ],
       "image": "bash",
-      "name": "Show pi4b info"
+      "name": "Show p4n info"
     },
     {
       "commands": [
-        "attic push lounge-rocks:nix-cache 'result-pi4b'"
+        "attic push lounge-rocks:nix-cache 'result-p4n'"
       ],
       "image": "bash",
-      "name": "Push pi4b to Attic"
+      "name": "Push p4n to Attic"
     },
     {
       "commands": [

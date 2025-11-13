@@ -45,7 +45,7 @@
       #    "/home/l/sec"
       #    "/home/l/w"
       #  ];
-      #  backup-paths-pi4b = [
+      #  backup-paths-p4n = [
       #    "/home/l/.ssh"
       #    "/home/l/archive"
       #    "/home/l/doc"

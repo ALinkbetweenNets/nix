@@ -7,15 +7,15 @@
       {
         "commands":
           [
-            "nix build --print-out-paths '.#nixosConfigurations.pi4b.config.system.build.sdImage'",
+            "nix build --print-out-paths '.#nixosConfigurations.p4n.config.system.build.sdImage'",
           ],
         "image": "bash",
-        "name": "build pi4b image",
+        "name": "build p4n image",
       },
       {
         "commands": ["nix path-info --closure-size -h $(readlink -f 'result')"],
         "image": "bash",
-        "name": "show pi4b image info",
+        "name": "show p4n image info",
       },
       {
         "commands":
@@ -23,7 +23,7 @@
             "crab_share --expires 7d --purge --zip-single-file -c bzip2 result/sd-image/*-aarch64-linux.img",
           ],
         "image": "bash",
-        "name": "upload pi4b image",
+        "name": "upload p4n image",
         "environment":
           {
             "S3_URL": "https://s3.eu-central-003.backblazeb2.com",
