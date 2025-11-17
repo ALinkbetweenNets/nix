@@ -139,7 +139,7 @@ with lib; {
         ## Hex Editor
         hexdino # terminal vimlike hex editor
         okteta # hex editor
-        imhex
+        # imhex # broken
         ## File Sync
         #syncthing-tray
         ## Browser
