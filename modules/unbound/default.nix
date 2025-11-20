@@ -40,7 +40,7 @@ in
             ''"${dns-overwrites-config}"''
             ''"${adlist.unbound-adblockStevenBlack}"''
           ];
-          interface = [ "::1" "127.0.0.2" ];
+          interface = [ "::1" "127.0.0.1" ];
           access-control = [ "127.0.0.0/8 allow" ];
         };
         # forward local DNS requests via Wireguard
