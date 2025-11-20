@@ -20,12 +20,12 @@
     fail2ban.enable = true;
     domain = "alinkbetweennets.de";
     storage = "/var/lib";
-    syncthingDir = "/var/lib/syncthing-data";
+    syncthing.enable = true;
+    syncthingDir = "/var/lib/syncthing";
     # secrets = "/pwd";
     # service-ip = "10.0.1.1";
     # users.lenny.enable = true;
     # users.lmh01.enable = true;
-    # syncthing.enable = true;
     service-interface = "tailscale0";
     nginx.enable = false;
     nginx-expose = false;
