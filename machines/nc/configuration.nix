@@ -20,12 +20,21 @@
     # services.coturn.enable = true;
   };
   # ctf vpn forwarding
+  boot.kernel.sysctl = {
+  "net.ipv4.conf.tailscale0.forwarding" = true;
+  "net.ipv6.conf.tailscale0.forwarding" = true;
+  "net.ipv4.conf.ens3.forwarding" = true;
+  "net.ipv6.conf.ens3.forwarding" = true;
+
+};
+  networking.firewall.trustedInterfaces = [ "tailscale0"];
   networking.nat = {
     enable = true;
     externalInterface = "ens3";
-    externalIP = "202.61.251.70";
+    # externalIP = "202.61.251.70";
     internalInterfaces = [ "tailscale0" ];
-    internalIPs = [ "192.168.2.15/32" "100.87.16.37/32" ];
+    # internalIPs = [ "192.168.2.15/32" "100.87.16.37/32" ];
+    enableIPv6=true;
     forwardPorts = [
       {
         sourcePort = 25565;
