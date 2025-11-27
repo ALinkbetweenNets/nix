@@ -7,7 +7,6 @@ in {
     programs = {
       gnome-terminal.enable = true;
       gnome-disks.enable = true;
-      file-roller.enable = true;
       calls.enable = true;
     };
     services = {
