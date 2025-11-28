@@ -357,6 +357,13 @@
       forceSSL = true;
       locations."/".proxyPass = "http://${config.link.serviceHost}:9483/";
     };
+    "ctf.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/".proxyPass = "http://192.168.2.15:8000/";
+      locations."/".proxyWebsockets = true;
+    };
     "karsten.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
