@@ -143,7 +143,7 @@ with lib; {
         ## File Sync
         #syncthing-tray
         ## Browser
-        librewolf
+        # librewolf
         # vivaldi # nice but proprietary
         # floorp # firefox fork, seems promising, needs more research
         #mullvad-vpn # is defined as program
