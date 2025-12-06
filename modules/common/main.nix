@@ -12,6 +12,11 @@ in {
       tailscale.enable = true;
       qmk.enable = true;
     };
+    programs.wireshark={
+      enable=true;
+      package=pkgs.wireshark;
+      usbmon.enable=true;
+    };
     boot = {
       extraModulePackages = with config.boot.kernelPackages;
         [
