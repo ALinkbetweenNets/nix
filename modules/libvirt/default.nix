@@ -23,7 +23,7 @@ in {
         enable = true;
         qemu = {
           swtpm.enable = true;
-          runAsRoot = false;
+          runAsRoot = true;
         };
         extraConfig = ''
           user="l"
