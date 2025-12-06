@@ -1,13 +1,6 @@
-{ self, ... }:{ pkgs
-, lib
-, config
-, modulesPath
-, flake-self
-, home-manager
-, nixos-hardware
-, nixpkgs
-, ...
-}: {
+{ self, ... }:
+{ pkgs, lib, config, modulesPath, flake-self, home-manager, nixos-hardware
+, nixpkgs, ... }: {
 
   imports = [
     # being able to build the sd-image
@@ -40,7 +33,11 @@
     };
   };
   console.enable = true;
-  environment.systemPackages = with pkgs; [ libraspberrypi raspberrypi-eeprom ];
+  environment.systemPackages = with pkgs; [
+    libraspberrypi
+    raspberrypi-eeprom
+    restic
+  ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
     # make sure this module is compatible with ARM!
