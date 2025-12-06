@@ -32,7 +32,7 @@
     enable = true;
     externalInterface = "ens3";
     # externalIP = "202.61.251.70";
-    internalInterfaces = [ "tailscale0" ];
+    internalInterfaces = [ "tailscale0" "ens3"];
     # internalIPs = [ "192.168.2.15/32" "100.87.16.37/32" ];
     enableIPv6=true;
     forwardPorts = [
@@ -43,13 +43,13 @@
         loopbackIPs = [ "100.87.16.37" ];
       }
       {
-        sourcePort = 51820;
+        sourcePort = 51821;
         proto = "udp";
-        destination = "192.168.2.15:51820";
+        destination = "192.168.2.15:51821";
         loopbackIPs = [ "100.87.16.37" ];
       }
       {
-        sourcePort = 51822;
+        sourcePort = 51820;
         proto = "udp";
         destination = "192.168.2.15:51820";
         loopbackIPs = [ "100.87.16.37" ];
@@ -74,7 +74,7 @@
   # };
   networking = {
     firewall.allowedTCPPorts = [ 22 41623 8920 8096 ];
-    firewall.allowedUDPPorts = [ 51820 51822 ];
+    firewall.allowedUDPPorts = [ 51820 51821 51822 ];
     hostName = "v2202312204123249185";
     domain = "ultrasrv.de";
     interfaces."ens3" = {
