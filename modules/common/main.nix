@@ -65,6 +65,7 @@ in {
       ddcui
       ddcutil
     ];
+    services.netbird.enable = true;
     hardware.i2c.enable = true;
     users.groups.i2c = { };
     services.udev.packages = with pkgs; [ ddcutil ];
