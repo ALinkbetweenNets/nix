@@ -42,7 +42,7 @@ in {
     #   type = "ed25519";
     # }];
     nix.settings = {
-      allowed-users = [ "l" ];
+      # allowed-users = [ "l" ];
       trusted-users = [ "l" ];
     };
   };
