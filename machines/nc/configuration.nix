@@ -259,48 +259,48 @@
         add_header Content-Security-Policy "frame-ancestors 'self' resource: blob: https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; object-src 'none'; default-src 'self' 'unsafe-inline' 'unsafe-eval' resource: data: blob: https://*.alinkbetweennets.de ws://*.alinkbetweennets.de https://tiles.immich.cloud https://static.immich.cloud https://api-l.cofractal.com https://maputnik.github.io https://fonts.openmaptiles.org https://fonts.googleapis.com ; script-src 'self' resource: blob: https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; script-src-elem 'self' 'unsafe-inline' 'unsafe-eval' resource: blob: https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; font-src https://fonts.openmaptiles.org https://fonts.googleapis.com https://fonts.gstatic.com 'self' 'unsafe-inline' 'unsafe-eval' data: blob: ; img-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://videos.owncast.online https://www.gravatar.com https://logo.clearbit.com https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; frame-src 'self' 'unsafe-inline' https://*.alinkbetweennets.de ws://*.alinkbetweennets.de https://www.youtube.com https://youtube.com https://www.youtu.be ; media-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://assets.owncast.tv https://videos.owncast.online https://www.gravatar.com https://logo.clearbit.com https://*.alinkbetweennets.de ws://*.alinkbetweennets.de ; base-uri 'self' *.alinkbetweennets.de alinkbetweennets.de;" always;
       '';
     };
-    "bettuna.${config.link.domain}" = {
-      quic = true;
-      http3_hq = true;
-      # enableACME = true;
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      root = "/var/www/bettuna";
-    };
-    "burp.${config.link.domain}" = {
-      quic = true;
-      http3_hq = true;
-      # enableACME = true;
-      serverAliases = [
-        "burpsuite.${config.link.domain}"
-        "webhacking.${config.link.domain}"
-        "xn--w38h.${config.link.domain}"
-      ];
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      root = "/var/www/Vortrag-Burpsuite";
-    };
-    "lockpicking.${config.link.domain}" = {
-      # enableACME = true;
-      serverAliases = [
-        "vortrag-lockpicking.${config.link.domain}"
-        "xn--e18h.${config.link.domain}"
-      ];
-      useACMEHost = config.link.domain;
-      forceSSL = true;
-      root = "/var/www/Vortrag-Lockpicking";
-    };
-    # "hedgedoc.${config.link.domain}" = {
+    # "bettuna.${config.link.domain}" = {
+    #   quic = true;
+    #   http3_hq = true;
     #   # enableACME = true;
     #   useACMEHost = config.link.domain;
     #   forceSSL = true;
-    #   locations."/" = {
-    #     proxyPass = "http://${config.link.serviceHost}:${
-    #         toString config.link.services.hedgedoc.port
-    #       }";
-    #     proxyWebsockets = true;
-    #   };
+    #   root = "/var/www/bettuna";
     # };
+    # "burp.${config.link.domain}" = {
+    #   quic = true;
+    #   http3_hq = true;
+    #   # enableACME = true;
+    #   serverAliases = [
+    #     "burpsuite.${config.link.domain}"
+    #     "webhacking.${config.link.domain}"
+    #     "xn--w38h.${config.link.domain}"
+    #   ];
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   root = "/var/www/Vortrag-Burpsuite";
+    # };
+    # "lockpicking.${config.link.domain}" = {
+    #   # enableACME = true;
+    #   serverAliases = [
+    #     "vortrag-lockpicking.${config.link.domain}"
+    #     "xn--e18h.${config.link.domain}"
+    #   ];
+    #   useACMEHost = config.link.domain;
+    #   forceSSL = true;
+    #   root = "/var/www/Vortrag-Lockpicking";
+    # };
+    "hedgedoc.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://${config.link.serviceHost}:${
+            toString config.link.services.hedgedoc.port
+          }";
+        proxyWebsockets = true;
+      };
+    };
     # "jellyfin.${config.link.domain}" = {
     #   # enableACME = true;
     #   useACMEHost = config.link.domain;
@@ -462,11 +462,6 @@
     #     proxyWebsockets = true;
     #   };
     # };
-    "kinky3d.de" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/".proxyPass = "http://10.10.10.22:3214/";
-    };
     "alinkbn.de" = {
       forceSSL = true;
       enableACME = true;
@@ -484,28 +479,42 @@
     "shonk.de" = {
       forceSSL = true;
       enableACME = true;
-      listen = [
-        {
-          port = 443;
-          addr = "0.0.0.0";
-          ssl = true;
-        }
-        {
-          port = 8096;
-          addr = "0.0.0.0";
-          ssl = true;
-        }
-        {
-          port = 8920;
-          addr = "0.0.0.0";
-          ssl = true;
-        }
-      ];
       locations."/" = {
-        proxyPass = "http://${config.link.serviceHost}:8096/";
+        proxyPass = "http://100.98.48.88:5000/";
         proxyWebsockets = true;
       };
+      extraConfig = ''
+        error_page 502 /error-page.html;
+      '';
+      locations."/error" = {
+        return = "307 https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+      };
     };
+    # "shonk.de" = {
+    #   forceSSL = true;
+    #   enableACME = true;
+    #   listen = [
+    #     {
+    #       port = 443;
+    #       addr = "0.0.0.0";
+    #       ssl = true;
+    #     }
+    #     {
+    #       port = 8096;
+    #       addr = "0.0.0.0";
+    #       ssl = true;
+    #     }
+    #     {
+    #       port = 8920;
+    #       addr = "0.0.0.0";
+    #       ssl = true;
+    #     }
+    #   ];
+    #   locations."/" = {
+    #     proxyPass = "http://${config.link.serviceHost}:8096/";
+    #     proxyWebsockets = true;
+    #   };
+    # };
     "${config.link.domain}" = {
       enableACME = true;
       # useACMEHost = config.link.domain;
