@@ -86,7 +86,7 @@ in {
       };
       gitlab = {
         enable = true;
-        port = 443;
+        port = cfg.port;
         # port = cfg.port;
         statePath = "${config.link.storage}/gitlab/state";
         https = false;
