@@ -5,6 +5,29 @@
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix") ./disk-config.nix ];
   #swapDevices = [{ device = "/.swapvol/swapfile"; }];
+  hardware.framework.enableKmod = true;
+  services.udev.extraRules = ''
+    # Ethernet expansion card support
+    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0bda", ATTR{idProduct}=="8156", ATTR{power/autosuspend}="20"
+
+    # Allow access to the keyboard modules for programming, for example by
+    # visiting https://keyboard.frame.work with a WebHID-compatible browser.
+    #
+    # https://community.frame.work/t/responded-help-configuring-fw16-keyboard-with-via/47176/5
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0012", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+  '';
+  hardware.sensor.iio.enable = lib.mkDefault true;
+  hardware.keyboard.qmk.enable = lib.mkDefault true;
+
+  environment.etc."libinput/local-overrides.quirks".text = ''
+    [Framework Laptop 16 Keyboard Module]
+    MatchName=Framework Laptop 16 Keyboard Module*
+    MatchUdevType=keyboard
+    MatchDMIModalias=dmi:*svnFramework:pnLaptop16*
+    AttrKeyboardIntegration=internal
+  '';
+  services.fwupd.enable = true;
+
   boot = {
     extraModulePackages = [ ];
     kernelModules = [ "usbnet" ];
