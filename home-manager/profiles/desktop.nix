@@ -126,6 +126,7 @@ with lib; {
         vlc
         cobang # qr codes
         ## Encryption
+        deno # for yt-dlp
         #veracrypt
         kdePackages.kleopatra # gpg/ pgp
         ## Misc
