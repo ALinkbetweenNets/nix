@@ -67,6 +67,7 @@ with lib; {
       "video/mp4" = [ "vlc.desktop" ];
       "video/mpeg" = [ "vlc.desktop" ];
       "video/webm" = [ "vlc.desktop" ];
+      "x-scheme-handler/mailto" = [ "zen.desktop" ];
       "x-scheme-handler/sgnl" = [ "signal-desktop.desktop" ];
       "x-scheme-handler/signalcaptcha" = [ "signal-desktop.desktop" ];
       "x-scheme-handler/http" = [ "zen.desktop" ];
