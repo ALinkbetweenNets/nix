@@ -10,6 +10,7 @@ in {
       home = "/home/l";
       group = "users";
       extraGroups = [
+        "nobody"
         "adbusers"
         "audio"
         "i2c"
