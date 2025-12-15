@@ -191,7 +191,7 @@
     #   useACMEHost = config.link.domain;
     #   forceSSL = true;
     #   locations."/" = {
-    #     proxyPass = "http://${config.link.serviceHost}:80/";
+    #     proxyPass = "http://${config.link.serviceHost}:${config.link.services.gitlab.port}/";
     #     proxyWebsockets = true;
     #   };
     # };
