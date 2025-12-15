@@ -153,6 +153,7 @@ with lib; {
       nodejs
       planify
       xkcdpass
+      python313Packages.pylatexenc # for nvim markdown preview
       ltex-ls # for vscode spell checking using languagetool
       ollama
       piper-tts # text to speech synthesizer with models (download https://huggingface.co/rhasspy/piper-voices/tree/v1.0.0/en/en_US/lessac/high onnx and json to Downloads folder)
