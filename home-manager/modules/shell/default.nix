@@ -183,10 +183,11 @@ in {
           dupl = "fdupes -rdnAst .";
           sm = "sm -i";
           g = "git";
-          gp = "git pull";
+          gc = "git clone ";
+          gp = "git pull --rebase";
           gs = "git status";
           gac = "git commit -am '$(date -I)'";
-          gpp = "git pull&&git push";
+          gpp = "git pull --rebase&&git push";
           gitforkupdate = ''
             ${pkgs.git}/bin/git fetch upstream
             ${pkgs.git}/bin/git checkout main
