@@ -7,9 +7,11 @@ in {
     services.xserver.videoDrivers = [ "amdgpu" ];
     environment.systemPackages = with pkgs; [ nvtopPackages.amd clinfo ];
     boot = {
+      initrd.kernelModules = [ "amdgpu" ];
       kernelParams = [
         "amd_iommu=on"
         "amd_pstate=active"
+        "amdgpu.runpm=0" "amdgpu.dcdebugmask=0x10"
         # "amdgpu.dc=1" # display code experimental support
         # "amdgpu.dpm=0" # dynamic power management
         # "amdgpu.mcbp=0" # memory clock bypass
@@ -24,18 +26,21 @@ in {
     };
     hardware = {
       cpu.amd.updateMicrocode = true;
-      # amdgpu.initrd.enable = lib.mkDefault true;
+      amdgpu.initrd.enable = lib.mkDefault true;
       amdgpu.opencl.enable = true;
       graphics = {
         enable = true;
         enable32Bit = true;
         extraPackages = with pkgs; [
-          # amdvlk
+          mesa
+          libva
+          rocmPackages.clr.icd # OpenCL via ROCm ICD loader
           # rocmPackages.clr.icd
           # rocmPackages.clr
           # mesa.opencl
           libva-vdpau-driver
           libvdpau-va-gl
+          libvdpau
         ];
       };
     };
