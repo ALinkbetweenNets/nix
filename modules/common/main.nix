@@ -64,6 +64,7 @@ in {
       rclone
       ddcui
       ddcutil
+      networkmanager-openvpn
     ];
     services.netbird.enable = true;
     hardware.i2c.enable = true;
