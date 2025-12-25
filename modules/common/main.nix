@@ -66,7 +66,7 @@ in {
       ddcutil
       networkmanager-openvpn
     ];
-    services.netbird.enable = true;
+    # services.netbird.enable = true;
     hardware.i2c.enable = true;
     users.groups.i2c = { };
     services.udev.packages = with pkgs; [ ddcutil ];
