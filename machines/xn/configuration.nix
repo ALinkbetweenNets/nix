@@ -1,4 +1,5 @@
-{ self, ... }:{ pkgs, lib, config, flake-self, home-manager, ... }: {
+{ self, ... }:
+{ pkgs, lib, config, flake-self, home-manager, ... }: {
   imports = [
     ./hardware-configuration.nix
     home-manager.nixosModules.home-manager
@@ -61,8 +62,7 @@
   };
 
   networking.hostId = "007f0200";
-  environment.systemPackages = with pkgs;
-    [ kdePackages.plasma-thunderbolt ];
+  environment.systemPackages = with pkgs; [ kdePackages.plasma-thunderbolt ];
   #services.fprintd = {
   #  enable = true;
   #  tod.enable = true;
@@ -77,7 +77,13 @@
   networking.firewall.allowedUDPPorts = [ 60955 ];
   networking.hostName = "xn";
   networking.domain = "monitor-banfish.ts.net";
+  boot.initrd.kernelModules = [ "psmouse" ];
   services.throttled.enable = lib.mkForce true;
+  services.hardware.bolt.enable = lib.mkDefault true;
+  hardware.trackpoint.enable = lib.mkDefault true;
+  hardware.trackpoint.emulateWheel =
+    lib.mkDefault config.hardware.trackpoint.enable;
+  hardware.sensor.iio.enable = true;
   #powerManagement.scsiLinkPolicy = "med_power_with_dipm";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   #environment.systemPackages = with pkgs;    [ ];
