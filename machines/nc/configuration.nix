@@ -1,7 +1,8 @@
 # 202.61.251.70
 #	2a03:4000:54:8a::/64
 # nix run github:numtide/nixos-anywhere -- --flake .#nc root@202.61.251.70
-{ self, ... }:{ pkgs, lib, config, flake-self, home-manager, ... }: {
+{ self, ... }:
+{ pkgs, lib, config, flake-self, home-manager, ... }: {
   imports = [ ./netcup.nix home-manager.nixosModules.home-manager ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
@@ -21,20 +22,20 @@
   };
   # ctf vpn forwarding
   boot.kernel.sysctl = {
-  "net.ipv4.conf.tailscale0.forwarding" = true;
-  "net.ipv6.conf.tailscale0.forwarding" = true;
-  "net.ipv4.conf.ens3.forwarding" = true;
-  "net.ipv6.conf.ens3.forwarding" = true;
+    "net.ipv4.conf.tailscale0.forwarding" = true;
+    "net.ipv6.conf.tailscale0.forwarding" = true;
+    "net.ipv4.conf.ens3.forwarding" = true;
+    "net.ipv6.conf.ens3.forwarding" = true;
 
-};
-  networking.firewall.trustedInterfaces = [ "tailscale0"];
+  };
+  networking.firewall.trustedInterfaces = [ "tailscale0" ];
   networking.nat = {
     enable = true;
     externalInterface = "ens3";
     # externalIP = "202.61.251.70";
-    internalInterfaces = [ "tailscale0" "ens3"];
+    internalInterfaces = [ "tailscale0" "ens3" ];
     # internalIPs = [ "192.168.2.15/32" "100.87.16.37/32" ];
-    enableIPv6=true;
+    enableIPv6 = true;
     forwardPorts = [
       {
         sourcePort = 25565;
@@ -551,6 +552,19 @@
     };
     # /CTF
   };
+
+  services.teamspeak3 = {
+    # enable = true;
+    openFirewall = true;
+    # openFirewallServerQuery = true;
+    querySshPort = 10022;
+    queryPort = 10011;
+    queryHttpPort = 10080;
+    fileTransferPort = 30033;
+    defaultVoicePort = 9987;
+    dataDir = "/var/lib/teamspeak3";
+  };
+
   # services.oauth2-proxy={
   #   enable=true;
   # };
