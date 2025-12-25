@@ -135,17 +135,17 @@
     #     proxyWebsockets = true;
     #   };
     # };
-    # "radicale.${config.link.domain}" = {
-    #   # enableACME = true;
-    #   useACMEHost = config.link.domain;
-    #   forceSSL = true;
-    #   locations."/" = {
-    #     proxyPass = "http://${config.link.serviceHost}:${
-    #         toString config.link.services.radicale.port
-    #       }";
-    #     proxyWebsockets = true;
-    #   };
-    # };
+    "radicale.${config.link.domain}" = { # needed for family
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://${config.link.serviceHost}:${
+            toString config.link.services.radicale.port
+          }";
+        proxyWebsockets = true;
+      };
+    };
     # "keycloak.${config.link.domain}" = {
     #   # enableACME = true;
     #   useACMEHost = config.link.domain;
