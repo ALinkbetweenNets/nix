@@ -86,6 +86,7 @@ with lib; {
     fonts.fontconfig.enable = true;
 
     home.packages = with pkgs; [
+      bitwarden-cli
       pdfpc
       openai-whisper # transcription
       ripgrep-all # also search pdfs, ebooks, office docs, zip, tar.gz
