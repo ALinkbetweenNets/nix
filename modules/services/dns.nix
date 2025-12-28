@@ -8,7 +8,8 @@ in {
     networking = {
       resolvconf.useLocalResolver = true;
       networkmanager.enable = true;
-      networkmanager.dns = "systemd-resolved";
+      # networkmanager.dns = "systemd-resolved";
+      networkmanager.dns = "none";
       search = [ "local" "monitor-banfish.ts.net" ];
     };
     # networking.nameservers = [
