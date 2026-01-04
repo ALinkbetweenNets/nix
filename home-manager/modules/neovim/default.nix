@@ -59,7 +59,8 @@ with lib; {
             mappings.confirm = "<C-Tab>";
           };
         };
-        autopairs.nvim-autopairs.enable = false; # Creates closing brackets when you enter opening bracket
+        autopairs.nvim-autopairs.enable =
+          false; # Creates closing brackets when you enter opening bracket
         debugger.nvim-dap = {
           enable = true;
           ui.enable = true;
@@ -70,31 +71,29 @@ with lib; {
           enableFormat = true;
           enableTreesitter = true;
           enableExtraDiagnostics = true;
-          rust = {
-            crates.enable = true;
-          };
+          rust.extensions.crates-nvim.enable = true;
           bash.enable = true;
           go.enable = true;
           html.enable = true;
           php.enable = true;
           python = {
-            lsp.server = "pyright";
+            lsp.servers = [ "pyright" ];
             enable = true;
           };
           sql.enable = true;
           ts.enable = true;
           nix = {
             enable = true;
-            format.type = "nixfmt";
+            format.type = [ "nixfmt" ];
           };
           markdown.enable = true;
-          markdown.extensions.render-markdown-nvim.enable=true;
+          markdown.extensions.render-markdown-nvim.enable = true;
           markdown.extensions.markview-nvim.enable = true;
           css.enable = true;
           typst.enable = true;
           clang = {
             enable = true;
-            lsp.server = "clangd";
+            lsp.servers = [ "clangd" ];
           };
         };
         formatter.conform-nvim.enable = true;
