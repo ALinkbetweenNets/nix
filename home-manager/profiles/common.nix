@@ -18,6 +18,7 @@ with lib; {
     };
     programs.ssh = {
       enable = true;
+      enableDefaultConfig = false;
       matchBlocks = {
         "nc" = { port = 2522; };
         "sn" = { port = 2522; };
