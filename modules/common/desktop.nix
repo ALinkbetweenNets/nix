@@ -13,7 +13,6 @@ in {
       plasma.enable = lib.mkDefault true;
     };
     programs = {
-      firefox.nativeMessagingHosts.ff2mpv = true;
       dconf.enable = true; # GTK themes are not applied in Wayland applications
       # dconf.packages = with pkgs;[ maliit-keyboard ];
       light.enable =
@@ -28,6 +27,7 @@ in {
     };
     environment.systemPackages = with pkgs;
       [
+        ff2mpv
         ripgrep-all
         unzip
         gnutar
