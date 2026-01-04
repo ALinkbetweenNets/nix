@@ -125,7 +125,7 @@ with lib; {
       gpodder # podcast client
       sox # play record convert audio files
       #htmlq
-      dogdns
+      doggo
       # zombietrackergps # gps track display
       # inlyne
       # difftastic
