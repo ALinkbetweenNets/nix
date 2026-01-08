@@ -268,19 +268,27 @@
     #   forceSSL = true;
     #   root = "/var/www/bettuna";
     # };
-    # "burp.${config.link.domain}" = {
-    #   quic = true;
-    #   http3_hq = true;
-    #   # enableACME = true;
-    #   serverAliases = [
-    #     "burpsuite.${config.link.domain}"
-    #     "webhacking.${config.link.domain}"
-    #     "xn--w38h.${config.link.domain}"
-    #   ];
-    #   useACMEHost = config.link.domain;
-    #   forceSSL = true;
-    #   root = "/var/www/Vortrag-Burpsuite";
-    # };
+    "burp.${config.link.domain}" = {
+      quic = true;
+      http3_hq = true;
+      # enableACME = true;
+      serverAliases = [
+        "burpsuite.${config.link.domain}"
+        "webhacking.${config.link.domain}"
+        "xn--w38h.${config.link.domain}"
+      ];
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      root = "/var/www/Vortrag-Burpsuite";
+    };
+    "jurij.${config.link.domain}" = {
+      quic = true;
+      http3_hq = true;
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      root = "/var/www/jurij";
+    };
     # "lockpicking.${config.link.domain}" = {
     #   # enableACME = true;
     #   serverAliases = [
