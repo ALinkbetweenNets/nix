@@ -21,7 +21,7 @@ in {
       profiles.default.enableExtensionUpdateCheck = true;
       profiles.default.extensions = with pkgs.vscode-extensions;
         [
-          continue.continue # ollama
+          # continue.continue # ollama
           myriad-dreamin.tinymist # typst
           #b4dm4n.vscode-nixpkgs-fmt
           #vscodevim.vim
@@ -95,7 +95,7 @@ in {
           "editor.defaultFormatter" = "vscode.json-language-features";
         };
         "ltex.additionalRules.motherTongue" = "de_DE";
-        "continue.telemetryEnabled" = false;
+        # "continue.telemetryEnabled" = false;
         "cSpell.userWords" = [ "Linkbetween" ];
         "diffEditor.codeLens" = true;
         "diffEditor.diffAlgorithm" = "advanced";
@@ -161,10 +161,10 @@ in {
         # "vscode-pets.theme" = "castle";
         # "window.titleBarStyle" = "native";
         # "workbench.colorTheme" = "Dracula";
-        "yaml.schemas" = {
-          "file:///home/l/.vscode-oss/extensions/Continue.continue/config-yaml-schema.json" =
-            [ ".continue/**/*.yaml" ];
-        };
+        # "yaml.schemas" = {
+        #   "file:///home/l/.vscode-oss/extensions/Continue.continue/config-yaml-schema.json" =
+        #     [ ".continue/**/*.yaml" ];
+        # };
       };
       profiles.default.globalSnippets = {
         fixme = {
@@ -187,10 +187,10 @@ in {
           command = "editor.action.clipboardCopyAction";
           when = "textInputFocus";
         }
-        {
-          "key" = "ctrl+shift+i";
-          "command" = "-continue.focusEditWithoutClear";
-        }
+        # {
+        #   "key" = "ctrl+shift+i";
+        #   "command" = "-continue.focusEditWithoutClear";
+        # }
         {
           key = "ctrl+[Backquote]";
           command = "terminal.focus";
