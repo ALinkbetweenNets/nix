@@ -32,7 +32,7 @@
     service-ip = "127.0.0.1";
     # xrdp.enable = true;
     eth = "wlp0s20f3";
-    docker.enable = true;
+    podman.enable = true;
     services.restic-client = {
       enable = true;
       backup-paths-sn =
