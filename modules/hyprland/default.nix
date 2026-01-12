@@ -39,7 +39,7 @@ in {
       grim
       swappy
       slurp
-      rofi-wayland-unwrapped
+      rofi-unwrapped
       kdePackages.qt6ct
       kdePackages.xdg-desktop-portal-kde
       poweralertd
