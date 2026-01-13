@@ -14,6 +14,7 @@ in {
       # via
       vial
       qmk
+      dos2unix # qmk dependency
     ];
   };
 }
