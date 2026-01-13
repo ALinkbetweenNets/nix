@@ -18,7 +18,7 @@ in {
         withUWSM = true;
       };
       uwsm.enable = true;
-      wayfire.enable = true;
+      # wayfire.enable = true;
       waybar.enable = false;
       hyprlock.enable = true;
       iio-hyprland.enable = true;
