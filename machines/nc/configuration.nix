@@ -562,7 +562,7 @@
   };
 
   services.teamspeak3 = {
-    # enable = true;
+    enable = true;
     openFirewall = true;
     # openFirewallServerQuery = true;
     querySshPort = 10022;
