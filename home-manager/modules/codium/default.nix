@@ -96,6 +96,7 @@ in {
         };
         "ltex.additionalRules.motherTongue" = "de_DE";
         # "continue.telemetryEnabled" = false;
+        "chat.disableAIFeatures"= false;
         "cSpell.userWords" = [ "Linkbetween" ];
         "diffEditor.codeLens" = true;
         "diffEditor.diffAlgorithm" = "advanced";
@@ -139,7 +140,6 @@ in {
         "latex-workshop.view.pdf.invert" = 1;
         "latex-workshop.view.pdf.invertMode.enabled" = "auto";
         "ltex.additionalRules.enablePickyRules" = true;
-        # "ltex.language" = "de-DE";
         "markdown.extension.completion.enabled" = true;
         "prettier.printWidth" = 160;
         "problems.showCurrentInStatus" = true;
@@ -152,12 +152,13 @@ in {
         "terminal.integrated.enableVisualBell" = true;
         "terminal.integrated.mouseWheelZoom" = true;
         "vscode-pets.petColor" = "white";
-        # "vscode-pets.position" = "panel";
         "vscode-pets.throwBallWithMouse" = true;
         "workbench.editor.highlightModifiedTabs" = true;
         "workbench.editor.limit.enabled" = true;
         "workbench.list.smoothScrolling" = true;
         "zenMode.showTabs" = "none";
+        # "ltex.language" = "de-DE";
+        # "vscode-pets.position" = "panel";
         # "vscode-pets.theme" = "castle";
         # "window.titleBarStyle" = "native";
         # "workbench.colorTheme" = "Dracula";
