@@ -47,7 +47,7 @@ in {
       recommendedTlsSettings = true;
       logError = "stderr debug";
       enableQuicBPF = true;
-      package = pkgs.nginxQuic.override {
+      package = pkgs.nginx.override {
         openssl = pkgs.libressl;
         modules = with pkgs.nginxModules; [ geoip2 ];
         buildInputs = oldAttrs.buildInputs ++ [ pkgs.libmaxminddb ];
