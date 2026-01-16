@@ -65,6 +65,7 @@ in {
       ddcui
       ddcutil
       networkmanager-openvpn
+      android-tools
     ];
     services.netbird.enable = true;
     hardware.i2c.enable = true;
@@ -77,7 +78,6 @@ in {
         binfmt = true;
       };
       noisetorch.enable = true;
-      adb.enable = true;
       ausweisapp = {
         enable = true;
         openFirewall = true;

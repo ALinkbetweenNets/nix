@@ -15,7 +15,7 @@
     hostName = "pppn";
     domain = "monitor-banfish.ts.net";
     # Use Network Manager
-    wireless.enable = false;
+    # wireless.enable = false; # set via networkmanager
     networkmanager.enable = true;
   };
   hardware = {
