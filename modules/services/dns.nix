@@ -12,6 +12,12 @@ in {
       networkmanager.dns = "none";
       search = [ "local" "monitor-banfish.ts.net" ];
     };
+    services.resolved = {
+      settings.Resolve = {
+        DNS = [ "127.0.0.1" ];
+        Domains = [ "monitor-banfish.net" "local" ];
+      };
+    };
     # networking.nameservers = [
     #   # "127.0.0.1"
     #   "9.9.9.9"
