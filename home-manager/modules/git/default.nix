@@ -1,9 +1,17 @@
-{ ... }: {
+{ pkgs, lib, ... }: {
   programs = {
     delta.enableGitIntegration = true;
     git = {
       enable = true;
+      # package = lib.mkForce pkgs.gitFull;
       settings = {
+        maintenance.enable = true;
+        maintenance.timers = {
+          daily = "Tue..Sun *-*-* 0:53:00";
+          hourly = "*-*-* 1..23:53:00";
+          weekly = "Mon 0:53:00";
+        };
+        settings = { init.defaultBranch = "main"; };
         # pull.rebase = false;
         # init.defaultBranch = "main";
         # merge.conflictstyle = "zdiff3";
@@ -18,7 +26,7 @@
         };
         delta.enable = true;
       };
-      ignores = [ ".direnv/" ];
+      ignores = [ ".direnv" "*~" "*.swp" ".vscode" ];
       attributes = [ "*.pdf diff=pdf" ];
       # diff-so-fancy.enable = true;
       lfs.enable = true;
