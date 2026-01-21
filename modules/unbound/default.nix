@@ -8,8 +8,7 @@ let
   '' + concatStringsSep "\n"
     (mapAttrsToList (n: v: ''local-data: "${n} A ${toString v}"'')
       cfg.A-records));
-in
-{
+in {
   options.link.unbound = {
     enable = mkEnableOption "activate unbound";
     A-records = mkOption {
@@ -63,6 +62,11 @@ in
             forward-tls-upstream = "yes";
           }
           {
+            name = "lsec.ninja.";
+            forward-addr = [ "10.100.11.1" ];
+            forward-tls-upstream = "no";
+          }
+          {
             name = "google.*.";
             forward-addr =
               [ "8.8.8.8@853#dns.google" "8.8.8.4@853#dns.google" ];
@@ -73,6 +77,7 @@ in
             forward-addr = [
               # "192.168.1.1"
               # "192.168.178.1"
+              #"10.100.11.1"
               "194.242.2.4" # mullvad base
               "2a07:e340::4" # mullvad base
               # "192.168.188.3" # npo
