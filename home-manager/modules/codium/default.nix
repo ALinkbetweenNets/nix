@@ -10,7 +10,7 @@ in {
       clang
       gnumake
       nixd
-      nixfmt-classic
+      nixfmt
       vscode-langservers-extracted
     ];
     programs.vscode = {
