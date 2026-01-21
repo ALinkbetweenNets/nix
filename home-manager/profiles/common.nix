@@ -70,7 +70,6 @@ with lib; {
         ## piping
         # vgrep
         ## basics
-        # gitFull
         ## networking
         # iptables
         # nftables

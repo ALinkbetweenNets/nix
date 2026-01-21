@@ -134,7 +134,6 @@ in {
       nethogs
       kmod # modprobe
       ## basics
-      # gitFull
       file
       killall
       trashy
