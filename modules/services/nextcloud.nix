@@ -40,7 +40,7 @@ in {
       };
       nextcloud = {
         enable = true;
-        package = pkgs.nextcloud31;
+        package = pkgs.nextcloud32;
         hostName = "nextcloud.${config.link.domain}";
         settings.trusted_proxies = [ "100.86.79.82" ];
         config = {
