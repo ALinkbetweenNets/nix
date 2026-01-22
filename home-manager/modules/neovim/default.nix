@@ -165,7 +165,7 @@ with lib; {
         minimap = {
           # minimap-vim.enable = true;
           codewindow.enable =
-            true; # lighter, faster, and uses lua for configuration
+            false; # lighter, faster, and uses lua for configuration
         };
         dashboard = {
           # dashboard-nvim.enable = true;
