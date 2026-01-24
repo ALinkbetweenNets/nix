@@ -72,7 +72,7 @@ in {
           recommendedGzipSettings = true;
           recommendedOptimisation = true;
           recommendedProxySettings = true;
-          recommendedTlsSettings = true;
+          recommendedTlsSettings = false;
           logError = "stderr debug";
           package = pkgs.nginxStable.override { openssl = pkgs.libressl; };
           clientMaxBodySize = "1000m";

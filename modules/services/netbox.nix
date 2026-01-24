@@ -35,7 +35,7 @@ in {
       nginx = {
         enable = true;
         # user = "netbox";
-        recommendedTlsSettings = true;
+        recommendedTlsSettings = false;
         # clientMaxBodySize = "25m";
         virtualHosts."${config.networking.fqdn}" = {
           locations = {
