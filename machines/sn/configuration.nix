@@ -1,6 +1,18 @@
-{ self, ... }:{ pkgs, lib, config, flake-self, home-manager, modulesPath, ... }: {
-  imports =
-    [ home-manager.nixosModules.home-manager ./hardware-configuration.nix ];
+{ self, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  flake-self,
+  home-manager,
+  modulesPath,
+  ...
+}:
+{
+  imports = [
+    home-manager.nixosModules.home-manager
+    ./hardware-configuration.nix
+  ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   system.autoUpgrade.enable = lib.mkForce false;
   link = {
@@ -40,18 +52,19 @@
       netbox.enable = true;
       # part-db.enable = true;
       # tt-rss.enable = true;
-      stirling-pdf.enable = true;
+      # stirling-pdf.enable = true;
       # searx.enable = true;
       cockpit.enable = true;
       microbin.enable = true;
       # mailserver.enable = true;
       cryptpad.enable = true;
       # photoprism.enable = true; # WIP
-      keycloak.enable = true;
+      # keycloak.enable = true;
       #gitea.enable = true;
       gitlab.enable = true;
       onlyoffice.enable = true;
       grafana.enable = true;
+      prometheus.enable = true;
       # # xandikos.enable = true; # WIP
       hedgedoc.enable = true;
       jellyfin.enable = true;
@@ -121,13 +134,16 @@
     # };
     eth = "ens18";
   };
-  services.postgresql.dataDir =
-    "${config.link.storage}/postgresql/${config.services.postgresql.package.psqlSchema}";
+  services.postgresql.dataDir = "${config.link.storage}/postgresql/${config.services.postgresql.package.psqlSchema}";
   services.ollama = {
     enable = true;
     port = 11434;
     host = "0.0.0.0";
-    loadModels = [ "llama3.1:70b" "nomic-embed-text" "starcoder2:3b" ];
+    loadModels = [
+      "llama3.1:70b"
+      "nomic-embed-text"
+      "starcoder2:3b"
+    ];
   };
   # services.owncast = {
   #   enable = true;
@@ -197,10 +213,9 @@
       let
         # XXX specify the postgresql package you'd like to upgrade to.
         # Do not forget to list the extensions you need.
-        newPostgres = pkgs.postgresql_16.withPackages (pp:
-          [
-            # pp.plv8
-          ]);
+        newPostgres = pkgs.postgresql_16.withPackages (pp: [
+          # pp.plv8
+        ]);
         cfg = config.services.postgresql;
       in
       pkgs.writeScriptBin "upgrade-pg-cluster" ''
@@ -216,9 +231,7 @@
 
         install -d -m 0700 -o postgres -g postgres "$NEWDATA"
         cd "$NEWDATA"
-        sudo -u postgres "$NEWBIN/initdb" -D "$NEWDATA" ${
-          lib.escapeShellArgs cfg.initdbArgs
-        }
+        sudo -u postgres "$NEWBIN/initdb" -D "$NEWDATA" ${lib.escapeShellArgs cfg.initdbArgs}
 
         sudo -u postgres "$NEWBIN/pg_upgrade" \
           --old-datadir "$OLDDATA" --new-datadir "$NEWDATA" \
