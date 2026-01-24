@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.immich;
-in {
+let
+  cfg = config.link.services.immich;
+in
+{
   options.link.services.immich = {
     enable = mkEnableOption "activate immich";
     expose-port = mkOption {
@@ -12,8 +20,7 @@ in {
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description =
-        "expose the application to the internet with NGINX and ACME";
+      description = "expose the application to the internet with NGINX and ACME";
     };
     nginx-expose = mkOption {
       type = types.bool;
@@ -37,6 +44,7 @@ in {
         IMMICH_MACHINE_LEARNING_URL = "http://localhost:3003";
         IMMICH_LOG_LEVEL = "verbose";
       };
+      accelerationDevices = null;
       mediaLocation = "${config.link.storage}/immich";
       enable = true;
       port = cfg.port;
@@ -44,6 +52,8 @@ in {
       secretsFile = config.sops.secrets.immich.path;
     };
     networking.firewall.allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
-    sops.secrets.immich = { path = "/run/keys/immich.env"; };
+    sops.secrets.immich = {
+      path = "/run/keys/immich.env";
+    };
   };
 }
