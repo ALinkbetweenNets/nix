@@ -32,7 +32,7 @@ in {
         enable = true;
         hostname = "onlyoffice.${config.link.domain}";
         port = cfg.port;
-        securityNonceFile="/run/keys/onlyoffice-nginx-nonce.conf";
+        securityNonceFile="/var/lib/onlyoffice/onlyoffice-nginx-nonce.conf";
       };
       nginx.virtualHosts."onlyoffice.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
