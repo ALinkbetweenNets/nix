@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.gitlab;
-in {
+let
+  cfg = config.link.services.gitlab;
+in
+{
   options.link.services.gitlab = {
     enable = mkEnableOption "activate gitlab";
     expose-port = mkOption {
@@ -12,8 +20,7 @@ in {
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description =
-        "expose the application to the internet with NGINX and ACME";
+      description = "expose the application to the internet with NGINX and ACME";
     };
     nginx-expose = mkOption {
       type = types.bool;
@@ -22,7 +29,7 @@ in {
     };
     port = mkOption {
       type = types.int;
-      default = 5500;
+      default = 80;
       description = "port to run the application on";
     };
   };
@@ -79,54 +86,42 @@ in {
         recommendedProxySettings = true;
         virtualHosts = {
           "gitlab.alinkbetweennets.de" = {
-            locations."/".proxyPass =
-              "http://unix:/run/gitlab/gitlab-workhorse.socket";
+            locations."/".proxyPass = "http://unix:/run/gitlab/gitlab-workhorse.socket";
           };
         };
       };
       gitlab = {
         enable = true;
         port = cfg.port;
-        # port = cfg.port;
         statePath = "${config.link.storage}/gitlab/state";
         https = false;
-        host = "gitlab.alinkbetweennets.de";
+        host = "sn";
+        sidekiq.concurrency = 4;
+        puma.threadsMax = 1;
+        puma.workers = 1;
         pages.settings.pages-domain = "pages.alinkbetweennets.de";
         databaseCreateLocally = true;
         databasePasswordFile = config.sops.secrets."gitlab/dbPass".path;
-        initialRootPasswordFile =
-          config.sops.secrets."gitlab/initial-root".path;
+        initialRootPasswordFile = config.sops.secrets."gitlab/initial-root".path;
         secrets = {
-          activeRecordSaltFile =
-            config.sops.secrets."gitlab/activeRecordSalt".path;
-          activeRecordPrimaryKeyFile =
-            config.sops.secrets."gitlab/activeRecordPrimary".path;
-          activeRecordDeterministicKeyFile =
-            config.sops.secrets."gitlab/activeRecordDeterministic".path;
+          activeRecordSaltFile = config.sops.secrets."gitlab/activeRecordSalt".path;
+          activeRecordPrimaryKeyFile = config.sops.secrets."gitlab/activeRecordPrimary".path;
+          activeRecordDeterministicKeyFile = config.sops.secrets."gitlab/activeRecordDeterministic".path;
           secretFile = config.sops.secrets."gitlab/secret".path;
           otpFile = config.sops.secrets."gitlab/otp".path;
           dbFile = config.sops.secrets."gitlab/db".path;
-          jwsFile = pkgs.runCommand "oidcKeyBase" { }
-            "${pkgs.openssl}/bin/openssl genrsa 2048 > $out";
+          jwsFile = pkgs.runCommand "oidcKeyBase" { } "${pkgs.openssl}/bin/openssl genrsa 2048 > $out";
         };
       };
     };
     boot.kernel.sysctl."net.ipv4.ip_forward" = true;
     virtualisation.docker.enable = true;
     services.gitlab-runner = {
+      enable = true;
       services = {
         # runner for building in docker via host's nix-daemon
         # nix store will be readable in runner, might be insecure
         nix = {
-          # File should contain at least these two variables:
-          # - `CI_SERVER_URL`
-          # - `REGISTRATION_TOKEN`
-          #
-          # NOTE: Support for runner registration tokens will be removed in GitLab 18.0.
-          # Please migrate to runner authentication tokens soon. For reference, the example
-          # runners below this one are configured with authentication tokens instead.
-          registrationConfigFile = config.sops.secrets."gitlab/runner-nix".path;
-
           dockerImage = "alpine";
           dockerVolumes = [
             "/nix/store:/nix/store:ro"
@@ -148,7 +143,15 @@ in {
             . ${pkgs.nix}/etc/profile.d/nix.sh
 
             ${pkgs.nix}/bin/nix-env -i ${
-              concatStringsSep " " (with pkgs; [ nix cacert git openssh ])
+              concatStringsSep " " (
+                with pkgs;
+                [
+                  nix
+                  cacert
+                  git
+                  openssh
+                ]
+              )
             }
 
             ${pkgs.nix}/bin/nix-channel --add https://nixos.org/channels/nixpkgs-unstable
@@ -158,37 +161,33 @@ in {
             ENV = "/etc/profile";
             USER = "root";
             NIX_REMOTE = "daemon";
-            PATH =
-              "/nix/var/nix/profiles/default/bin:/nix/var/nix/profiles/default/sbin:/bin:/sbin:/usr/bin:/usr/sbin";
-            NIX_SSL_CERT_FILE =
-              "/nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt";
+            PATH = "/nix/var/nix/profiles/default/bin:/nix/var/nix/profiles/default/sbin:/bin:/sbin:/usr/bin:/usr/sbin";
+            NIX_SSL_CERT_FILE = "/nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt";
           };
-          tagList = [ "nix" ];
+          authenticationTokenConfigFile = config.sops.secrets."gitlab/runner-nix".path;
+          dockerExtraHosts = [ "sn:127.0.0.1" ];
         };
         # runner for building docker images
         docker-images = {
           # File should contain at least these two variables:
           # `CI_SERVER_URL`
           # `CI_SERVER_TOKEN`
-          authenticationTokenConfigFile =
-            config.sops.secrets."gitlab/runner-default".path;
+          dockerExtraHosts = [ "sn:127.0.0.1" ];
+          authenticationTokenConfigFile = config.sops.secrets."gitlab/runner-default".path;
 
-          dockerImage = "docker:stable";
-          dockerVolumes = [ "/var/run/docker.sock:/var/run/docker.sock" ];
-          # tagList = [ "docker-images" ];
-          tagList = [ ];
+          dockerImage = "debian:stable";
+          # dockerVolumes = [ "/var/run/docker.sock:/var/run/docker.sock" ];
         };
-        docker-protected = {
-          # File should contain at least these two variables:
-          # `CI_SERVER_URL`
-          # `CI_SERVER_TOKEN`
-          authenticationTokenConfigFile =
-            config.sops.secrets."gitlab/runner-protected".path;
+        # docker-protected = {
+        #   # File should contain at least these two variables:
+        #   # `CI_SERVER_URL`
+        #   # `CI_SERVER_TOKEN`
+        #   authenticationTokenConfigFile = config.sops.secrets."gitlab/runner-protected".path;
 
-          dockerImage = "docker:stable";
-          dockerVolumes = [ "/var/run/docker.sock:/var/run/docker.sock" ];
-          tagList = [ "protected" ];
-        };
+        #   dockerImage = "docker:stable";
+        #   dockerVolumes = [ "/var/run/docker.sock:/var/run/docker.sock" ];
+        #   tagList = [ "protected" ];
+        # };
         # runner for executing stuff on host system (very insecure!)
         # make sure to add required packages (including git!)
         # to `environment.systemPackages`
@@ -290,7 +289,9 @@ in {
     #   };
     # };
     networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
-      mkIf cfg.expose-port [ cfg.port ];
+      mkIf cfg.expose-port
+        [ cfg.port ];
+    networking.firewall.interfaces."docker0".allowedTCPPorts = [ cfg.port ];
     systemd.services.gitlab-backup.environment.BACKUP = "dump";
   };
 }
