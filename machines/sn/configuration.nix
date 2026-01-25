@@ -46,6 +46,7 @@
     #   diagrams.enable = true;
     # };
     # zola.enable = true;
+    # podman.enable = true;
     service-ports-expose = true;
     services = {
       radicale.enable = true;
@@ -54,7 +55,7 @@
       # tt-rss.enable = true;
       # stirling-pdf.enable = true;
       # searx.enable = true;
-      cockpit.enable = true;
+      # cockpit.enable = true;
       microbin.enable = true;
       # mailserver.enable = true;
       cryptpad.enable = true;
