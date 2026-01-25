@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.cockpit;
-in {
+let
+  cfg = config.link.services.cockpit;
+in
+{
   options.link.services.cockpit = {
     enable = mkEnableOption "activate cockpit";
     expose-port = mkOption {
@@ -12,8 +20,7 @@ in {
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description =
-        "expose the application to the internet with NGINX and ACME";
+      description = "expose the application to the internet with NGINX and ACME";
     };
     nginx-expose = mkOption {
       type = types.bool;
@@ -30,6 +37,14 @@ in {
     services.cockpit = {
       enable = true;
       port = cfg.port;
+      # settings.WebService.AllowUnencrypted = true;
+      settings.Origins = [ "https://cockpit.monitor-banfish.ts.net" ];
+      allowed-origins = [
+        "https://cockpit.monitor-banfish.ts.net"
+        # "cockpit.monitor-banfish.ts.net"
+        # "http://sn:9090"
+      ];
+      plugins = with pkgs; [ cockpit-zfs ];
     };
     networking.firewall.allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
   };
