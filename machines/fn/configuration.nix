@@ -146,6 +146,8 @@ containers.tor-container = {
   # security.protectKernelImage = false;
   nixpkgs.config.permittedInsecurePackages = [ "unifi-controller-7.5.187" ];
   environment.systemPackages = with pkgs; [
+    kdePackages.frameworkintegration
+    framework-tool-tui
     kdePackages.plasma-thunderbolt
     fw-ectool
     framework-tool
