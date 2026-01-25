@@ -11,6 +11,7 @@ in {
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIj1OASl4OePBngiPlI4hixiD1GBlPOSoVNeoEcD23d+ l@fn"
       ] ++ lib.optionals (config.link.server.enable) [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINcTua6uOwlOQEUf+Jom0yYPuz0WSFJpVHJzu9E+B6EC root@p4n"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIER/dVmTaW5sjMi3Yf60y5pqDlXs7pI6w/CCBEfofKQL root@fn"
       ];
       hashedPasswordFile =
         config.sops.secrets."users/root/hashedPassword".path; # Initial password
