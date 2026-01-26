@@ -56,7 +56,7 @@ in {
           };
           "camera" = {
             path = lib.mkDefault "${config.link.syncthingDir}/camera";
-            devices = [ "s22" "sn" ];
+            devices = [ "s22" "sn" "npn" ];
             versioning = {
               type = "trashcan";
               params.cleanoutDays = "1000";
@@ -64,7 +64,7 @@ in {
           };
           "uni" = {
             path = lib.mkDefault "${config.link.syncthingDir}/uni";
-            devices = [ "dn" "hn" "fn" "in" "s22" "sn" "xn" ];
+            devices = [ "dn" "hn" "fn" "in" "s22" "sn" "xn" "npn" ];
             versioning = {
               type = "simple";
               params.keep = "3";
@@ -80,11 +80,11 @@ in {
           };
           "github" = {
             path = lib.mkDefault "${config.link.syncthingDir}/github";
-            devices = [ "dn" "fn" "hn" "xn" ];
+            devices = [ "dn" "fn" "hn" "xn" "npn" ];
           };
           "mirror" = {
             path = lib.mkDefault "${config.link.syncthingDir}/.data-mirror";
-            devices = [ "fn" "xn" "sn" "p4n" ];
+            devices = [ "fn" "xn" "sn" "p4n" "npn" ];
             versioning = {
               type = "simple";
               params.keep = "3";
@@ -100,7 +100,7 @@ in {
           };
           "archive" = {
             path = lib.mkDefault "${config.link.syncthingDir}/archive";
-            devices = [ "dn" "fn" "xn" "sn" ];
+            devices = [ "dn" "fn" "xn" "sn" "npn" ];
             versioning = {
               type = "simple";
               params.keep = "3";
@@ -116,6 +116,7 @@ in {
               "s22"
               "sn"
               "xn"
+              "npn"
 
             ];
             versioning = {
@@ -125,7 +126,7 @@ in {
           };
           "music" = {
             path = lib.mkDefault "${config.link.syncthingDir}/Music";
-            devices = [ "dn" "fn" "hn" "in" "s22" "sn" "xn" ];
+            devices = [ "dn" "fn" "hn" "in" "s22" "sn" "xn" "npn" ];
             versioning = {
               type = "trashcan";
               params.cleanoutDays = "1000";
@@ -133,11 +134,11 @@ in {
           };
           "crypt" = {
             path = lib.mkDefault "${config.link.syncthingDir}/crypt";
-            devices = [ "dn" "fn" "hn" "in" "sn" "xn" ];
+            devices = [ "dn" "fn" "hn" "in" "sn" "xn" "npn" ];
           };
           "sec" = {
             path = lib.mkDefault "${config.link.syncthingDir}/sec";
-            devices = [ "dn" "fn" "hn" "in" "sn" "xn" "pppn" ];
+            devices = [ "dn" "fn" "hn" "in" "sn" "xn" "pppn" "npn" ];
             versioning = {
               type = "simple";
               params.keep = "10";
@@ -153,7 +154,7 @@ in {
           # };
           "keys" = {
             path = lib.mkDefault "${config.link.syncthingDir}/.keys";
-            devices = [ "dn" "fn" "hn" "in" "sn" "xn" ];
+            devices = [ "dn" "fn" "hn" "in" "sn" "xn" "npn"];
             versioning = {
               type = "simple";
               params.keep = "10";
