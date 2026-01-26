@@ -54,6 +54,7 @@ in {
       ];
     };
     environment.systemPackages = with pkgs; [
+      flake-self.inputs.compose2nix.packages.x86_64-linux.default
       flake-self.inputs.nsearch.packages.${pkgs.system}.default
       kdePackages.plasma-thunderbolt
       aha # for kde settings

@@ -28,6 +28,10 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    compose2nix = {
+      url = "github:aksiksi/compose2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     microvm.url = "github:astro/microvm.nix";
     mobile-nixos = {
       url = "github:NixOS/mobile-nixos";
