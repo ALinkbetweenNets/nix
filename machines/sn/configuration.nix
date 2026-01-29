@@ -64,8 +64,8 @@
       #gitea.enable = true;
       gitlab.enable = true;
       onlyoffice.enable = true;
-      grafana.enable = true;
-      prometheus.enable = true;
+      # grafana.enable = true;
+      # prometheus.enable = true;
       # # xandikos.enable = true; # WIP
       hedgedoc.enable = true;
       jellyfin.enable = true;
