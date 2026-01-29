@@ -38,18 +38,17 @@ in
       owner = "kanidm";
       group = "kanidm";
     };
-    services.kanidm = {
-      # database.createDB = false;
-      enable = true;
-      serverSettings ={bindaddress = "127.0.0.1:${cfg.port}";};
-      clientSettings ={uri="https};
-      # port = cfg.port;
-      # host = if cfg.expose-port then "0.0.0.0" else "localhost";
-      # secretsFile = config.sops.secrets.kanidm.path;
-    };
+    # services.kanidm = {
+    #   # database.createDB = false;
+    #   enable = true;
+    #   serverSettings ={bindaddress = "127.0.0.1:${cfg.port}";};
+    #   clientSettings ={uri="https";};
+    #   # port = cfg.port;
+    #   # host = if cfg.expose-port then "0.0.0.0" else "localhost";
+    #   # secretsFile = config.sops.secrets.kanidm.path;
+    # };
     # networking.firewall.allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
     # sops.secrets.kanidm = {
     #   path = "/run/keys/kanidm.env";
-    # };
-  };
+    };
 }
