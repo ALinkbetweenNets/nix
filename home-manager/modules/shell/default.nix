@@ -115,6 +115,8 @@ in {
             (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
         in
         {
+          htt = "httpx -nc -sc -fr -location -td -rt -cdn -title -v -rl 5000 -timeout 60 -tls-probe -csp-probe -tls-grab -pipeline -http2 -vhost -pa -rl 10 -t 8 -ss -system-chrome -sid 5s -probe -cname -ip -extract-fqdn -ws -method -lc -jarm -favicon md5 -ct -c -p 'http:80,8080,https:443,8443' -mc 400";
+          dns = "dnsx -re -all -nc -cdn -e soa";
           rep = "/home/l/s/repeat.sh";
           ai = "/home/l/s/ai.sh";
           ais = "/home/l/s/ais.sh";
