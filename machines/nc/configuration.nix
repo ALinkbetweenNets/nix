@@ -187,15 +187,18 @@
     #     proxyWebsockets = true;
     #   };
     # };
-    # "gitlab.${config.link.domain}" = {
-    #   # enableACME = true;
-    #   useACMEHost = config.link.domain;
-    #   forceSSL = true;
-    #   locations."/" = {
-    #     proxyPass = "http://${config.link.serviceHost}:${config.link.services.gitlab.port}/";
-    #     proxyWebsockets = true;
-    #   };
-    # };
+    "gitlab.${config.link.domain}" = {
+      # enableACME = true;
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.gitlab.port}/";
+        proxyWebsockets = true;
+      };
+#       extraConfig = ''
+# proxy_hide_header Content-Security-Policy "";
+#       '';
+    };
     "audiobookshelf.${config.link.domain}" = {
       # enableACME = true;
       useACMEHost = config.link.domain;
