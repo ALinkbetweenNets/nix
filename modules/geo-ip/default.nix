@@ -45,13 +45,24 @@ in {
         # we want to allow only requests from specific countries
         # if a request is not from such a country, we return no, which will result in a 403
         ''
-            map $geoip2_data_country_iso_code $allowed_country {
-              default no;
-              DE yes;
-              NL yes;
-              LU yes;
-            }
+          map $geoip2_data_country_iso_code $blocked_country {
+            default 1;
+            DE 0;
+            NL 0;
+            LU 0;
+          }
         ''
+        # ''
+        #   server {
+        #     listen 0.0.0.0:80;
+        #     listen [::0]:80;
+        #     listen 0.0.0.0:443 ssl;
+        #     listen [::0]:443 ssl;
+        #     if ($blocked_country) {
+        #         return 403;
+        #     }
+        #   }
+        # ''
       ]);
     };
   };
