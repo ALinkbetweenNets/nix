@@ -49,7 +49,7 @@ in {
       enableQuicBPF = true;
       package = pkgs.nginx.override {
         openssl = pkgs.libressl;
-        modules = with pkgs.nginxModules; [ geoip2 ];
+        modules = with pkgs.nginxModules; [ geoip2 ]; # echo
         buildInputs = oldAttrs.buildInputs ++ [ pkgs.libmaxminddb ];
       };
       clientMaxBodySize = "6000m";
@@ -66,9 +66,14 @@ in {
         # clients to pick the most performant, per https://github.com/mozilla/server-side-tls/issues/260
         ssl_prefer_server_ciphers off;
         # ssl_prefer_server_ciphers on; # disabled as only secure ciphers enabled. Clients may choose the most performant cipher for them from our whitelist
-        log_format myformat '$remote_addr - $remote_user [$time_local] '
-          '"$request" $status $body_bytes_sent '
-          '"$http_referer" "$http_user_agent"';
+        log_format myformat '[$time_local] $remote_addr $remote_user ($http_x_forwarded_for)'
+          '"$request" $http_referer $request_uri $status $body_bytes_sent '
+          ' "$http_user_agent"'
+          '-- "$request_body"';
+        # log_format body '[$time_local] $remote_addr $remote_user'
+        #   '"$request" $status $body_bytes_sent '
+        #   '"$http_referer" "$http_user_agent"'
+        #   ' -- "$request_body"';
         # Add HSTS header with preloading to HTTPS requests.
         # Adding this header to HTTP requests is discouraged
         index index.php index.html /index.php$request_uri;
