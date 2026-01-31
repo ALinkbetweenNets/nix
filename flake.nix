@@ -112,7 +112,7 @@
             [ self.overlays.default nur.overlays.default nixgl.overlay ];
         });
     in {
-      formatter = forAllSystems (system: nixpkgsFor.${system}.nixfmt-rfc-style);
+      formatter = forAllSystems (system: nixpkgsFor.${system}.nixfmt);
       overlays.default = final: prev: (import ./pkgs inputs) final prev;
       packages = forAllSystems (system:
         let pkgs = nixpkgsFor.${system};
