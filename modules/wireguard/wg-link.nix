@@ -36,7 +36,7 @@ in {
             # "0.0.0.0/0"
             # "::/0"
           ];
-          endpoint = "alinkbetweennets.de:51825";
+          endpoint = "202.61.251.70:51825";
           persistentKeepalive = 25;
         }];
       };
