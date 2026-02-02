@@ -485,6 +485,7 @@ in
       extraConfig = commonExtraConfig;
       locations."/" = {
         extraConfig = commonLocationExtraConfig;
+        # proxyPass = "http://unix:"+config.services.anubis.instances.ctf.settings.BIND;
         proxyPass = "http://192.168.2.15:8000/";
       };
       locations."/".proxyWebsockets = true;
@@ -717,7 +718,20 @@ in
     # proxyPass = "http://${config.link.serviceHost}:8766";
     #   };
   };
-
+  # services.anubis = {
+  #   instances = {
+  #     "ctf" = {
+  #       enable = true;
+  #       settings.TARGET = "http://192.168.2.15:8000";
+  #     };
+  #     "gitlab" = {
+  #       enable = true;
+  #       settings = {
+  #         TARGET = "http://${config.link.serviceHost}:9002";
+  #       };
+  #     };
+  #   };
+  # };
   # services.oauth2-proxy={
   #   enable=true;
   # };
