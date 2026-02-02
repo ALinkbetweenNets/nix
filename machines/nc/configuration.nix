@@ -624,8 +624,8 @@ in
         proxyPass = "http://100.98.48.88:5000/";
         proxyWebsockets = true;
       };
-      extraConfig = commonExtraConfig + "";
-      locations."/error" = {
+      extraConfig = commonExtraConfig + "error_page 404 403 504 505 = @error;";
+      locations."@error" = {
         return = "301 https://www.youtube.com/watch?v=yKobOh9D87Q"; # spinny sharkü
       };
     };
