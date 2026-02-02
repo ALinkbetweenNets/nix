@@ -56,14 +56,18 @@ in
     "net.ipv6.conf.ens3.forwarding" = true;
 
   };
+  networking.defaultGateway6 = {
+    address = "fe80::1";
+    interface = config.link.eth;
+  };
   networking.firewall.trustedInterfaces = [ "tailscale0" ];
   networking.nat = {
     enable = true;
-    externalInterface = "ens3";
+    externalInterface = config.link.eth;
     # externalIP = "202.61.251.70";
     internalInterfaces = [
       "tailscale0"
-      "ens3"
+      config.link.eth
     ];
     # internalIPs = [ "192.168.2.15/32" "100.87.16.37/32" ];
     enableIPv6 = true;
@@ -253,7 +257,7 @@ in
       forceSSL = true;
       extraConfig = commonExtraConfig;
       locations."/" = {
-          # proxy_set_header Host              $host;
+        # proxy_set_header Host              $host;
         extraConfig = commonLocationExtraConfig + ''
           proxy_set_header X-Real-IP         $remote_addr;
           proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
