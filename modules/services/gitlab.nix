@@ -93,23 +93,26 @@ in
       gitlab = {
         enable = true;
         port = 443;
-        statePath = "${config.link.storage}/gitlab/state";
         https = true;
         host = "gitlab.${config.link.domain}";
+        # host = "sn";
+        statePath = "${config.link.storage}/gitlab/state";
         sidekiq.concurrency = 4;
-        puma.threadsMax = 1;
-        puma.workers = 1;
+        puma = {
+          threadsMax = 1;
+          workers = 1;
+        };
         pages.settings.pages-domain = "pages.alinkbetweennets.de";
         databaseCreateLocally = true;
         databasePasswordFile = config.sops.secrets."gitlab/dbPass".path;
         initialRootPasswordFile = config.sops.secrets."gitlab/initial-root".path;
-        # extraGitlabRb=''
-        #   gitlab_rails['trusted_proxies'] = [ '100.87.16.37' ]
-        #
-        # '';
         extraConfig = {
-          gitlab_rails = {
-            trusted_proxies = [ "100.87.16.37" ];
+          gitlab = {
+            trusted_proxies = [
+              "127.0.0.1"
+              "::1"
+              "100.87.16.37"
+            ];
           };
         };
         secrets = {

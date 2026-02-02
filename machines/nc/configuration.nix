@@ -5,8 +5,8 @@
 let
   # common extra config for geoip blocking, redirects to get rotated idiot
   # default_type text/html;
-    # access_log /var/log/nginx/access.log;
-    # access_log /var/log/nginx/blocked.log body if=$blocked_country;
+  # access_log /var/log/nginx/access.log;
+  # access_log /var/log/nginx/blocked.log body if=$blocked_country;
   commonExtraConfig = ''
     if ($blocked_country) {
       return 307 https://www.youtube.com/watch?v=iA4LKxj81zc;
@@ -253,7 +253,23 @@ in
       forceSSL = true;
       extraConfig = commonExtraConfig;
       locations."/" = {
-        extraConfig = commonLocationExtraConfig;
+          # proxy_set_header Host              $host;
+        extraConfig = commonLocationExtraConfig + ''
+          proxy_set_header X-Real-IP         $remote_addr;
+          proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto https;
+          proxy_set_header X-Forwarded-Ssl   on;
+          proxy_set_header X-Forwarded-Port  443;
+        '';
+        # proxy_set_header X-Real-IP $remote_addr;
+        # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        # proxy_set_header X-Forwarded-Proto https;
+        # proxy_set_header X-Forwarded-Ssl on;
+        # proxy_set_header X-Forwarded-Port $server_port;
+        # proxy_set_header X-Forwarded-Host $host;
+        # proxy_set_header Host $host;
+        # proxy_set_header origin $http_origin;
+        # proxy_set_header X-XSRF-TOKEN $http_x_xsrf_token;
         proxyPass = "http://${config.link.serviceHost}:${toString config.link.services.gitlab.port}/";
         proxyWebsockets = true;
       };
