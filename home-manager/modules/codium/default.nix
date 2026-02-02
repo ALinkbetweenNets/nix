@@ -1,7 +1,14 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.code;
-in {
+let
+  cfg = config.link.code;
+in
+{
   options.link.code.enable = mkEnableOption "activate vscodium";
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
@@ -19,13 +26,16 @@ in {
       profiles.default = {
         userMcp = {
           "servers" = {
-            "Github" = { "url" = "https://api.githubcopilot.com/mcp/"; };
+            "Github" = {
+              "url" = "https://api.githubcopilot.com/mcp/";
+            };
           };
         };
         # package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config  ]);
         enableUpdateCheck = false;
         enableExtensionUpdateCheck = true;
-        extensions = with pkgs.vscode-extensions;
+        extensions =
+          with pkgs.vscode-extensions;
           [
             # continue.continue # ollama
             myriad-dreamin.tinymist # typst
@@ -47,6 +57,7 @@ in {
             github.vscode-pull-request-github
             gitlab.gitlab-workflow
             gruntfuggly.todo-tree
+            wakatime.vscode-wakatime
             jnoortheen.nix-ide
             mkhl.direnv
             myriad-dreamin.tinymist
@@ -59,27 +70,36 @@ in {
             yzhang.markdown-all-in-one
             # pokey.talon
             # pokey.cursorless
-          ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
-            name = "vscode-pets";
-            publisher = "tonybaloney";
-            version = "1.25.1";
-            sha256 =
-              "6acdded8bcca052b221acfd4188674e97a9b2e1dfb8ab0d4682cec96a2131094";
-          }];
+          ]
+          ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+            {
+              name = "vscode-pets";
+              publisher = "tonybaloney";
+              version = "1.25.1";
+              sha256 = "6acdded8bcca052b221acfd4188674e97a9b2e1dfb8ab0d4682cec96a2131094";
+            }
+          ];
         userSettings = {
           "[typescriptreact]" = {
             "editor.defaultFormatter" = "vscode.typescript-language-features";
           };
-          "[nix]" = { "editor.defaultFormatter" = "jnoortheen.nix-ide"; };
+          "[nix]" = {
+            "editor.defaultFormatter" = "jnoortheen.nix-ide";
+          };
           "nix.enableLanguageServer" = true;
           "nix.serverPath" = "nil";
           # "nix.serverPath" = "nixd";
           "nix.serverSettings" = {
             "nil" = {
               "diagnostics" = {
-                "ignored" = [ "unused_binding" "unused_with" ];
+                "ignored" = [
+                  "unused_binding"
+                  "unused_with"
+                ];
               };
-              "formatting" = { "command" = [ "nixfmt" ]; };
+              "formatting" = {
+                "command" = [ "nixfmt" ];
+              };
             };
             # "nixd" = {
             #   # "eval" = { };
@@ -162,6 +182,8 @@ in {
           "terminal.integrated.mouseWheelZoom" = true;
           "vscode-pets.petColor" = "white";
           "vscode-pets.throwBallWithMouse" = true;
+          "wakatime.apiUrl" = "https://wakapi.canine.tools/api";
+          "wakatime.apiKey" = "10f97724-4f74-4155-b38e-ea67757f9f14";
           "workbench.editor.highlightModifiedTabs" = true;
           "workbench.editor.limit.enabled" = true;
           "workbench.list.smoothScrolling" = true;
