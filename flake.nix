@@ -43,7 +43,9 @@
     #   url = "github:msteen/nixos-vscode-server";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    crab_share = { url = "github:lounge-rocks/crab_share"; };
+    crab_share = {
+      url = "github:lounge-rocks/crab_share";
+    };
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -54,12 +56,15 @@
     };
     bonn-mensa = {
       url = "github:alexanderwallau/bonn-mensa";
-      inputs = { nixpkgs.follows = "nixpkgs"; };
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
     };
     nixgl = {
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-22.11";
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -74,7 +79,9 @@
       url = "github:pwndbg/pwndbg";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ghostty = { url = "github:ghostty-org/ghostty"; };
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
     # Adblocking lists for Unbound DNS servers running on NixOS
     # https://github.com/MayNiklas/nixos-adblock-unbound
     adblock-unbound = {
@@ -98,76 +105,111 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    grub2-themes = { url = "github:paulmiro/grub2-themes"; };
+    grub2-themes = {
+      url = "github:paulmiro/grub2-themes";
+    };
   };
-  outputs = { self, nixpkgs, nur, nixgl, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nur,
+      nixgl,
+      # simple-nixos-mailserver,
+      ...
+    }@inputs:
     with inputs;
     let
-      supportedSystems = [ "aarch64-linux" "x86_64-linux" ];
+      supportedSystems = [
+        "aarch64-linux"
+        "x86_64-linux"
+      ];
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-      nixpkgsFor = forAllSystems (system:
+      nixpkgsFor = forAllSystems (
+        system:
         import nixpkgs {
           inherit system;
-          overlays =
-            [ self.overlays.default nur.overlays.default nixgl.overlay ];
-        });
-    in {
+          overlays = [
+            self.overlays.default
+            nur.overlays.default
+            nixgl.overlay
+          ];
+        }
+      );
+    in
+    {
       formatter = forAllSystems (system: nixpkgsFor.${system}.nixfmt);
       overlays.default = final: prev: (import ./pkgs inputs) final prev;
-      packages = forAllSystems (system:
-        let pkgs = nixpkgsFor.${system};
-        in {
+      packages = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgsFor.${system};
+        in
+        {
           # displaylink=pkgs.displaylink;
           woodpecker-pipeline = pkgs.callPackage ./pkgs/woodpecker-pipeline {
             flake-self = self;
             inputs = inputs;
           };
 
-        });
+        }
+      );
       apps = forAllSystems (system: { });
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
-      nixosModules = builtins.listToAttrs (map (x: {
-        name = x;
-        #specialArgs = { flake-self = self; } // inputs;
-        value = import (./modules + "/${x}");
-      }) (builtins.attrNames (builtins.readDir ./modules)));
+      nixosModules = builtins.listToAttrs (
+        map (x: {
+          name = x;
+          #specialArgs = { flake-self = self; } // inputs;
+          value = import (./modules + "/${x}");
+        }) (builtins.attrNames (builtins.readDir ./modules))
+      );
       # Each subdirectory in ./machines is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
       # configuration.nix that will be read first
-      nixosConfigurations = builtins.listToAttrs (map (x: {
-        name = x;
-        value = nixpkgs.lib.nixosSystem {
-          # Make inputs and the flake itself accessible as module parameters.
-          # Technically, adding the inputs is redundant as they can be also
-          # accessed with flake-self.inputs.X, but adding them individually
-          # allows to only pass what is needed to each module.
-          specialArgs = { flake-self = self; } // inputs;
-          modules = builtins.attrValues self.nixosModules ++ [
-            #inputs.nixos-facter-modules.nixosModules.facter
-            (import "${./.}/machines/${x}/configuration.nix" {
-              inherit self;
-              #config.facter.reportPath = ./facter.json;
-            })
-            disko.nixosModules.disko
-            sops-nix.nixosModules.sops
-            grub2-themes.nixosModules.default
-            # ({ config, ... }: {
-            #   # shut up state version warning
-            #   system.stateVersion = config.system.nixos.version;
-            #   # Adjust this to your liking.
-            #   # WARNING: if you set a too low value the image might be not big enough to contain the nixos installation
-            #   disko.devices.disk.vdb.imageSize = "10G";
-            # })
-          ];
-        };
-      }) (builtins.filter (dirName: dirName != "pppn")
-        (builtins.attrNames (builtins.readDir ./machines)))) // {
+      nixosConfigurations =
+        builtins.listToAttrs (
+          map (x: {
+            name = x;
+            value = nixpkgs.lib.nixosSystem {
+              # Make inputs and the flake itself accessible as module parameters.
+              # Technically, adding the inputs is redundant as they can be also
+              # accessed with flake-self.inputs.X, but adding them individually
+              # allows to only pass what is needed to each module.
+              specialArgs = {
+                flake-self = self;
+              }
+              // inputs;
+              modules = builtins.attrValues self.nixosModules ++ [
+                #inputs.nixos-facter-modules.nixosModules.facter
+                (import "${./.}/machines/${x}/configuration.nix" {
+                  inherit self;
+                  #config.facter.reportPath = ./facter.json;
+                })
+                disko.nixosModules.disko
+                sops-nix.nixosModules.sops
+                grub2-themes.nixosModules.default
+                # simple-nixos-mailserver.nixosModules
+                # ({ config, ... }: {
+                #   # shut up state version warning
+                #   system.stateVersion = config.system.nixos.version;
+                #   # Adjust this to your liking.
+                #   # WARNING: if you set a too low value the image might be not big enough to contain the nixos installation
+                #   disko.devices.disk.vdb.imageSize = "10G";
+                # })
+              ];
+            };
+          }) (builtins.filter (dirName: dirName != "pppn") (builtins.attrNames (builtins.readDir ./machines)))
+        )
+        // {
 
           # specify pppn seperately since it relies on system being set
           pppn = nixpkgs.lib.nixosSystem {
             system = "aarch64-linux";
-            specialArgs = { flake-self = self; } // inputs;
+            specialArgs = {
+              flake-self = self;
+            }
+            // inputs;
             modules = builtins.attrValues self.nixosModules ++ [
               "${mobile-nixos}/examples/phosh/phosh.nix"
               (import "${mobile-nixos}/lib/configuration.nix" {
@@ -182,73 +224,89 @@
           };
 
         };
-      homeConfigurations = builtins.listToAttrs (map (filename: {
-        name =
-          builtins.substring 0 ((builtins.stringLength filename) - 4) filename;
-        value = { pkgs, lib, username, ... }: {
-          # extraSpecialArgs =  { inherit xr-linux-flake; };
-          imports = [
-            "${./.}/home-manager/profiles/common.nix"
-            "${./.}/home-manager/profiles/${filename}"
-          ] ++ (builtins.attrValues self.homeModules);
+      homeConfigurations = builtins.listToAttrs (
+        map (filename: {
+          name = builtins.substring 0 ((builtins.stringLength filename) - 4) filename;
+          value =
+            {
+              pkgs,
+              lib,
+              username,
+              ...
+            }:
+            {
+              # extraSpecialArgs =  { inherit xr-linux-flake; };
+              imports = [
+                "${./.}/home-manager/profiles/common.nix"
+                "${./.}/home-manager/profiles/${filename}"
+              ]
+              ++ (builtins.attrValues self.homeModules);
+            };
+        }) (builtins.attrNames (builtins.readDir ./home-manager/profiles))
+      );
+      homeModules =
+        builtins.listToAttrs (
+          map (name: {
+            inherit name;
+            value = import (./home-manager/modules + "/${name}");
+          }) (builtins.attrNames (builtins.readDir ./home-manager/modules))
+        )
+        // {
+          # This module is appended to the list of home-manager modules.
+          # It's always enabled for all profiles.
+          # It's used to easily add overlays and imports to home-manager.
+          # Since this module is within this flake.nix, it will access our flake inputs.
+          nix =
+            { pkgs, ... }:
+            {
+              # import home manager modules from this flake
+              imports = [
+                inputs.nvf.homeManagerModules.default
+                inputs.plasma-manager.homeModules.plasma-manager
+                # inputs.vscode-server.nixosModules.home
+              ];
+              # add overlays from this flake
+              nixpkgs.overlays = [
+                self.overlays.default
+                inputs.crab_share.overlay
+                inputs.nur.overlays.default
+                # (final: prev: {
+                #   displaylink = prev.displaylink.overrideAttrs  {
+                #     src = prev.fetchurl {
+                #       url =
+                #         "https://www.synaptics.com/sites/default/files/exe_files/2024-10/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.1-EXE.zip";
+                #       # either pre‑run `nix-prefetch-url URL` to get this sha256,
+                #       # or let Nix error and copy the “got: sha256-…” it prints.
+                #       sha256 = "0RJgVrX+Y8Nvz106Xh+W9N9uRLC2VO00fBJeS8vs7fKw=";
+                #     };
+                #   };
+                # })
+                (final: prev: {
+                  cudapkgs = import inputs.nixpkgs {
+                    system = "${pkgs.system}";
+                    config = {
+                      allowUnfree = true;
+                      cudaSupport = true;
+                    };
+                  };
+                })
+              ];
+              # Visual Studio Code Server support
+              # services.vscode-server = {
+              #   enable = true;
+              #   installPath = "~/.vscode-server";
+              # };
+            };
         };
-      }) (builtins.attrNames (builtins.readDir ./home-manager/profiles)));
-      homeModules = builtins.listToAttrs (map (name: {
-        inherit name;
-        value = import (./home-manager/modules + "/${name}");
-      }) (builtins.attrNames (builtins.readDir ./home-manager/modules))) // {
-        # This module is appended to the list of home-manager modules.
-        # It's always enabled for all profiles.
-        # It's used to easily add overlays and imports to home-manager.
-        # Since this module is within this flake.nix, it will access our flake inputs.
-        nix = { pkgs, ... }: {
-          # import home manager modules from this flake
-          imports = [
-            inputs.nvf.homeManagerModules.default
-            inputs.plasma-manager.homeModules.plasma-manager
-            # inputs.vscode-server.nixosModules.home
-          ];
-          # add overlays from this flake
-          nixpkgs.overlays = [
-            self.overlays.default
-            inputs.crab_share.overlay
-            inputs.nur.overlays.default
-            # (final: prev: {
-            #   displaylink = prev.displaylink.overrideAttrs  {
-            #     src = prev.fetchurl {
-            #       url =
-            #         "https://www.synaptics.com/sites/default/files/exe_files/2024-10/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.1-EXE.zip";
-            #       # either pre‑run `nix-prefetch-url URL` to get this sha256,
-            #       # or let Nix error and copy the “got: sha256-…” it prints.
-            #       sha256 = "0RJgVrX+Y8Nvz106Xh+W9N9uRLC2VO00fBJeS8vs7fKw=";
-            #     };
-            #   };
-            # })
-            (final: prev: {
-              cudapkgs = import inputs.nixpkgs {
-                system = "${pkgs.system}";
-                config = {
-                  allowUnfree = true;
-                  cudaSupport = true;
-                };
-              };
-            })
-          ];
-          # Visual Studio Code Server support
-          # services.vscode-server = {
-          #   enable = true;
-          #   installPath = "~/.vscode-server";
-          # };
-        };
-      };
-      devShells = forAllSystems (system:
-        with nixpkgsFor.${system}; {
+      devShells = forAllSystems (
+        system: with nixpkgsFor.${system}; {
           default = pkgs.mkShell {
             packages = [
 
             ];
           };
-        });
+        }
+      );
       # colmena = {
       #   meta = {
       #     nixpkgs = import nixpkgs {
