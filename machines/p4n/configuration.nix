@@ -1,6 +1,16 @@
 { self, ... }:
-{ pkgs, lib, config, modulesPath, flake-self, home-manager, nixos-hardware
-, nixpkgs, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  modulesPath,
+  flake-self,
+  home-manager,
+  nixos-hardware,
+  nixpkgs,
+  ...
+}:
+{
 
   imports = [
     # being able to build the sd-image
@@ -46,6 +56,8 @@
     # use config.nixpkgs.hostPlatform.isAarch64 for conditional statements
     common.enable = true;
     server.enable = true;
+    storage = "/12tb";
+    services.restic-server.enable = true;
     # desktop.enable = true;
     # syncthing.enable = true;
     # syncthingDir = "/mnt/syncthing";
@@ -99,8 +111,7 @@
   # remove this once the issue is fixed!
   nixpkgs.overlays = [
     (final: super: {
-      makeModulesClosure = x:
-        super.makeModulesClosure (x // { allowMissing = true; });
+      makeModulesClosure = x: super.makeModulesClosure (x // { allowMissing = true; });
     })
   ];
   networking.hostName = "p4n";
