@@ -38,7 +38,7 @@ in {
             "0.0.0.0:${toString cfg.port}"
           else
             "127.0.0.1:${toString cfg.port}";
-        appendOnly = false;
+        appendOnly = true;
       };
       nginx.virtualHosts."restic.${config.link.domain}" = mkIf cfg.nginx {
         enableACME = true;
