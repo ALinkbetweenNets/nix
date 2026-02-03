@@ -1,7 +1,16 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  simple-nixos-mailserver,
+  ...
+}:
 with lib;
-let cfg = config.link.services.mailserver;
-in {
+let
+  cfg = config.link.services.mailserver;
+in
+{
   # imports = [
   #   (builtins.fetchTarball {
   #     # Pick a release version you are interested in and set its hash, e.g.
@@ -13,53 +22,55 @@ in {
   #   })
   # ];
   options.link.services.mailserver = {
-    #   enable = mkEnableOption "activate mailserver";
-    #   expose-port = mkOption {
-    #     type = types.bool;
-    #     default = config.link.service-ports-expose;
-    #     description = "directly expose the port of the application";
-    #   };
-    #   nginx = mkOption {
-    #     type = types.bool;
-    #     default = config.link.nginx.enable;
-    #     description =
-    #       "expose the application to the internet with NGINX and ACME";
-    #   };
-    #   nginx-expose = mkOption {
-    #     type = types.bool;
-    #     default = config.link.nginx-expose;
-    #     description = "expose the application to the internet";
-    #   };
-    #   port = mkOption {
-    #     type = types.int;
-    #     default = 4500;
-    #     description = "port to run the application on";
-    #   };
+    enable = mkEnableOption "activate mailserver";
+    expose-port = mkOption {
+      type = types.bool;
+      default = config.link.service-ports-expose;
+      description = "directly expose the port of the application";
+    };
+    nginx = mkOption {
+      type = types.bool;
+      default = config.link.nginx.enable;
+      description = "expose the application to the internet with NGINX and ACME";
+    };
+    nginx-expose = mkOption {
+      type = types.bool;
+      default = config.link.nginx-expose;
+      description = "expose the application to the internet";
+    };
+    # port = mkOption {
+    #   type = types.int;
+    #   default = 4500;
+    #   description = "port to run the application on";
     # };
-    # config = mkIf cfg.enable {
-    #   sops.secrets = { "mailserver/alinkbetweennets" = { }; };
+  };
+  config = mkIf cfg.enable {
+    # sops.secrets = {
+    #   "mailserver/alinkbetweennets" = { };
+    # };
+    # mailserver = {
+    #   enable = true;
+    #   fqdn = "mail.${config.link.domain}";
+    #   domains = [ config.link.domain ];
+    #   x509.useACMEHost = config.link.domain;
 
-    #   mailserver = {
-    #     enable = true;
-    #     fqdn = "mail.${config.link.domain}";
-    #     domains = [ config.link.domain ];
-
-    #     # A list of all login accounts. To create the password hashes, use
-    #     # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
-    #     loginAccounts = {
-    #       "ALinkBetweenNets@${config.link.domain}" = {
-    #         hashedPasswordFile =
-    #           config.sops.secrets."mailserver/alinkbetweennets".path;
-    #         aliases = [ "Link@${config.link.domain}" ];
-    #       };
+    #   # A list of all login accounts. To create the password hashes, use
+    #   # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
+    #   loginAccounts = {
+    #     "ALinkBetweenNets@${config.link.domain}" = {
+    #       hashedPasswordFile = config.sops.secrets."mailserver/alinkbetweennets".path;
+    #       #aliases = [ "Link@${config.link.domain}" ];
     #     };
-
-    #     # Use Let's Encrypt certificates. Note that this needs to set up a stripped
-    #     # down nginx and opens port 80.
-    #     # certificateScheme = "acme-nginx";
     #   };
-    #   networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
-    #     mkIf cfg.expose-port [ cfg.port ];
-    #   systemd.services.gitlab-backup.environment.BACKUP = "dump";
+
+    #   # Use Let's Encrypt certificates. Note that this needs to set up a stripped
+    #   # down nginx and opens port 80.
+    #   # certificateScheme = "acme-nginx";
+    # };
+    
+    # networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+    #   mkIf cfg.expose-port
+    #     [ cfg.port ];
+    # systemd.services.gitlab-backup.environment.BACKUP = "dump";
   };
 }
