@@ -67,6 +67,8 @@ in {
       ddcutil
       networkmanager-openvpn
       android-tools
+      cpio
+      net-tools
     ];
     services.netbird.enable = true;
     hardware.i2c.enable = true;
