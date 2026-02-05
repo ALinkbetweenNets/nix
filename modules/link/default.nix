@@ -1,5 +1,14 @@
-{ lib, pkgs, config, nixpkgs, flake-self, home-manager, ... }:
-with lib; {
+{
+  lib,
+  pkgs,
+  config,
+  nixpkgs,
+  flake-self,
+  home-manager,
+  ...
+}:
+with lib;
+{
   options.link = {
     domain = mkOption {
       type = types.str;
@@ -9,8 +18,7 @@ with lib; {
     nginx-expose = mkOption {
       type = types.bool;
       default = config.link.domain != "";
-      description =
-        "if domain is empty services will be made available locally with self-signed certificates";
+      description = "if domain is empty services will be made available locally with self-signed certificates";
     };
     serviceHost = mkOption {
       type = types.str;
@@ -45,8 +53,7 @@ with lib; {
     service-ports-expose = mkOption {
       type = types.bool;
       default = config.link.domain != "";
-      description =
-        "if domain is empty services will be made available locally with self-signed certificates";
+      description = "if domain is empty services will be made available locally with self-signed certificates";
     };
     allowed = mkOption {
       type = types.listOf types.str;
@@ -65,7 +72,7 @@ with lib; {
     };
     syncthingDir = mkOption {
       type = types.str;
-      default = "/home/l";
+      default = if config.link.server.enable then config.link.storage + "/syncthing/" else "/home/l";
       description = "storage path for syncthing";
     };
     containerDir = mkOption {
