@@ -35,6 +35,7 @@ in
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
     wg-link-server.enable = true;
+    wg-luks-server.enable = true;
     sops = true;
     tailscale-address = "100.86.79.82";
     common.enable = true;
