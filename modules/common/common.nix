@@ -1,7 +1,16 @@
-{ config, system-config, pkgs, lib, nix-index-database, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  nix-index-database,
+  ...
+}:
 with lib;
-let cfg = config.link.common;
-in {
+let
+  cfg = config.link.common;
+in
+{
   imports = [ nix-index-database.nixosModules.nix-index ];
   options.link.common.enable = mkEnableOption "activate common";
   config = mkIf cfg.enable {
@@ -12,23 +21,19 @@ in {
         knownHosts = {
           dn = {
             hostNames = [ "dn.monitor-banfish.ts.net" ];
-            publicKey =
-              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINI74luZ3xJcgaZYHzn5DtSpYufml+SbhZQV12gWGShS";
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINI74luZ3xJcgaZYHzn5DtSpYufml+SbhZQV12gWGShS";
           };
           xn = {
             hostNames = [ "xn.monitor-banfish.ts.net" ];
-            publicKey =
-              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOTI6IEjHQbsbMJMBQNk0/BR7W4QFVQLNOrhEdTHwS1P";
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOTI6IEjHQbsbMJMBQNk0/BR7W4QFVQLNOrhEdTHwS1P";
           };
           p4n = {
             hostNames = [ "p4n.monitor-banfish.ts.net" ];
-            publicKey =
-              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO+rwC7YNUlQ7i2285iCVnopN2RXo/rBE8fAObogjoBc";
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO+rwC7YNUlQ7i2285iCVnopN2RXo/rBE8fAObogjoBc";
           };
           sn = {
             hostNames = [ "sn.monitor-banfish.ts.net" ];
-            publicKey =
-              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMN0npgyMxdnljCmUdZD5sZURtYXUjtNqf1236CEwrB";
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMN0npgyMxdnljCmUdZD5sZURtYXUjtNqf1236CEwrB";
           };
         };
       };
@@ -51,7 +56,10 @@ in {
     # services.tlp.settings = {
     #   USB_AUTOSUSPEND = 0;
     # };
-    environment.pathsToLink = [ "/share/zsh" "/share/fish" ];
+    environment.pathsToLink = [
+      "/share/zsh"
+      "/share/fish"
+    ];
     link = {
       users = {
         l.enable = true;
@@ -66,7 +74,10 @@ in {
     services.networkd-dispatcher = {
       enable = true;
       rules."tailscale-forwarder-optimization" = {
-        onState = [ "routable" "off" ];
+        onState = [
+          "routable"
+          "off"
+        ];
         script = ''
           #!${pkgs.runtimeShell}
           ethtool -K "$(ip -o route get 8.8.8.8 | cut -f 5 -d \" \")" rx-udp-gro-forwarding on rx-gro-list off
@@ -98,6 +109,12 @@ in {
       #   };
       firewall = {
         enable = lib.mkDefault true;
+        pingLimit =
+          if config.networking.nftables.enable then
+            "1/minute burst 5 packets"
+          else
+            "--limit 1/minute --limit-burst 5";
+        extraPackages = with pkgs; [ ipset ];
         allowedUDPPorts = [
           51820 # wireguard
           53 # dnsmasq
