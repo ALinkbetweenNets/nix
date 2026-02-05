@@ -1,7 +1,14 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.plasma;
-in {
+let
+  cfg = config.link.plasma;
+in
+{
   options.link.plasma.enable = mkEnableOption "activate plasma";
   config = mkIf cfg.enable {
     services = {
@@ -22,8 +29,12 @@ in {
     i18n.inputMethod = {
       type = "fcitx5";
       enable = true;
-      fcitx5.waylandFrontend= true;
-      fcitx5.addons = with pkgs; [ fcitx5-mozc fcitx5-gtk ];
+      fcitx5.waylandFrontend = true;
+      fcitx5.addons = with pkgs; [
+        # fcitx5-mozc
+        fcitx5-gtk
+        kdePackages.fcitx5-qt
+      ];
     };
   };
 }
