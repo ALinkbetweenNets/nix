@@ -1,25 +1,44 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.openssh;
-in {
+let
+  cfg = config.link.openssh;
+in
+{
   options.link.openssh.enable = mkEnableOption "activate openssh";
+  options.link.openssh.hardened = mkOption {
+    type = types.bool;
+    default = false;
+    description = "Whether to harden the OpenSSH configuration (after install).";
+  };
   config = mkIf cfg.enable {
     # networking.firewall.allowedTCPPorts = [ 2522 ];
-    networking.firewall.interfaces."tailscale0".allowedTCPPorts =
-      mkIf config.link.tailscale.enable [ 2522 ];
-    networking.firewall.interfaces."wg0".allowedTCPPorts =
-      mkIf config.link.wg-link.enable [ 2522 ];
-    networking.firewall.allowedTCPPorts =
-      mkIf (!config.link.sops || !config.link.tailscale.enable) [ 2522 ];
+    networking.firewall.interfaces."tailscale0".allowedTCPPorts = mkIf config.link.tailscale.enable [
+      2522
+    ];
+    networking.firewall.interfaces."wg0".allowedTCPPorts = mkIf config.link.wg-link.enable [ 2522 ];
+    networking.firewall.allowedTCPPorts = mkIf (!config.link.sops || !config.link.tailscale.enable) [
+      2522
+    ];
     # Enable the OpenSSH daemon.
+    services.endlessh = {
+      enable = true;
+      openFirewall = true;
+    };
     services.openssh = {
       enable = true;
       openFirewall = false;
       startWhenNeeded = true;
-      listenAddresses = [{
-        addr = "0.0.0.0";
-        port = 2522;
-      }];
+      listenAddresses = [
+        {
+          addr = "0.0.0.0";
+          port = 2522;
+        }
+      ];
       settings = {
         LogLevel = "VERBOSE"; # for fail2ban to work properly
         PermitRootLogin = "prohibit-password";
@@ -58,11 +77,13 @@ in {
         ];
       };
       sftpServerExecutable = "internal-sftp";
-      hostKeys = [{
-        path = "/etc/ssh/ssh_host_ed25519_key";
-        type = "ed25519";
-        rounds = 200;
-      }];
+      hostKeys = [
+        {
+          path = "/etc/ssh/ssh_host_ed25519_key";
+          type = "ed25519";
+          rounds = 200;
+        }
+      ];
       # banner = ''
       #                :cc:        xkkkko      okkd
       #               .cccc;        lkkkkl    lkkkk:
