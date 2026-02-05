@@ -16,6 +16,7 @@
   home-manager.users.l = flake-self.homeConfigurations.server;
   system.autoUpgrade.enable = lib.mkForce false;
   link = {
+    podman.enable=true;
     common.enable = true;
     server.enable = true;
     wg-link.enable = true;
