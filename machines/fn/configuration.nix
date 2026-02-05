@@ -19,7 +19,7 @@
     printing.enable = true;
     fs.ntfs.enable = true;
     fs.btrfs.enable = true;
-    fs.luks.enable = true;
+    # fs.luks.enable = true;
     laptop.enable = true;
     common.enable = true;
     main.enable = true;
