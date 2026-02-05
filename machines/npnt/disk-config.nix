@@ -1,0 +1,139 @@
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+let
+  primaryDisk = "/dev/sda";
+  secondaryDisk = "/dev/sdb";
+in
+{
+  config = {
+    # Running fstrim weekly is a good idea for VMs.
+    # Empty blocks are returned to the host, which can then be used for other VMs.
+    # It also reduces the size of the qcow2 image, which is good for backups.
+    services.fstrim = {
+      enable = true;
+      interval = "weekly";
+    };
+    # We want to standardize our partitions and bootloaders across all providers.
+    # -> BIOS boot partition
+    # -> EFI System Partition
+    # -> NixOS root partition (ext4)
+    swapDevices = [
+      {
+        device = "/.swapfile";
+        size = 2 * 1024;
+      }
+    ];
+    disko.devices = {
+      disk = {
+        disk1 = {
+          type = "disk";
+          device = primaryDisk;
+          content = {
+            type = "gpt";
+            partitions = {
+              boot = {
+                size = "1M";
+                type = "EF02"; # for grub MBR
+              };
+              ESP = {
+                size = "512M";
+                type = "EF00";
+                content = {
+                  type = "filesystem";
+                  format = "vfat";
+                  mountpoint = "/boot";
+                  mountOptions = [ "umask=0077" ];
+                };
+              };
+              luks = {
+                size = "100%";
+                content = {
+                  type = "luks";
+                  name = "primary";
+                  settings = {
+                    allowDiscards = true;
+                    # keyFile = "/tmp/secret.key";
+                  };
+                  # passwordFile = "/tmp/secret.key";
+                  content = {
+                    # size = "100%";
+                    type = "filesystem";
+                    format = "ext4";
+                    mountpoint = "/";
+                  };
+                };
+              };
+            };
+          };
+        };
+        # disk2 = {
+        #   type = "disk";
+        #   device = secondaryDisk;
+        #   content = {
+        #     type = "gpt";
+        #     partitions = {
+        #       luks = {
+        #         size = "100%";
+        #         content = {
+        #           type = "luks";
+        #           name = "secondary";
+        #           settings = {
+        #             allowDiscards = true;
+        #             keyFile = "/tmp/secret.key";
+        #           };
+        #           # passwordFile = "/tmp/secret.key";
+        #           content = {
+        #             type = "filesystem";
+        #             format = "ext4";
+        #             mountpoint = "/hdd";
+        #           };
+        #         };
+        #       };
+        #     };
+        #   };
+        # };
+      };
+    };
+
+    boot = {
+      # During boot, resize the root partition to the size of the disk.
+      # This makes upgrading the size of the vDisk easier.
+      # fileSystems."/".fsType = "ext4";
+      # fileSystems."/".autoResize = true;
+      growPartition = true;
+
+      loader = {
+        timeout = 10;
+        grub = {
+          devices = [ primaryDisk ];
+          efiSupport = true;
+          efiInstallAsRemovable = true;
+        };
+      };
+      initrd = {
+        availableKernelModules = [
+          "virtio_net"
+          "virtio_pci"
+          "virtio_mmio"
+          "virtio_blk"
+          "virtio_scsi"
+          "9p"
+          "9pnet_virtio"
+        ];
+        kernelModules = [
+          "virtio_balloon"
+          "virtio_console"
+          "virtio_rng"
+        ];
+      };
+
+    };
+    # Currently all our providers use KVM / QEMU
+    services.qemuGuest.enable = true;
+    networking.useDHCP = lib.mkDefault true;
+  };
+}
