@@ -65,6 +65,7 @@ in
             redhat.vscode-xml
             redhat.vscode-yaml
             streetsidesoftware.code-spell-checker
+            streetsidesoftware.code-spell-checker-german
             usernamehw.errorlens
             vadimcn.vscode-lldb
             yzhang.markdown-all-in-one
@@ -123,9 +124,9 @@ in
           "[jsonc]" = {
             "editor.defaultFormatter" = "vscode.json-language-features";
           };
-          "ltex.additionalRules.motherTongue" = "de_DE";
-          # "continue.telemetryEnabled" = false;
           "chat.disableAIFeatures" = false;
+          "cSpell.language"="en,de";
+          "cSpell.dictionaries" = [ "typescript" ];
           "cSpell.userWords" = [ "Linkbetween" ];
           "diffEditor.codeLens" = true;
           "diffEditor.diffAlgorithm" = "advanced";
@@ -169,6 +170,7 @@ in
           "latex-workshop.view.pdf.invert" = 1;
           "latex-workshop.view.pdf.invertMode.enabled" = "auto";
           "ltex.additionalRules.enablePickyRules" = true;
+          "ltex.additionalRules.motherTongue" = "de_DE";
           "markdown.extension.completion.enabled" = true;
           "prettier.printWidth" = 160;
           "problems.showCurrentInStatus" = true;
@@ -180,14 +182,18 @@ in
           "terminal.integrated.enableImages" = true;
           "terminal.integrated.enableVisualBell" = true;
           "terminal.integrated.mouseWheelZoom" = true;
+          "tinymist.lint.enabled" = true;
+          "tinymist.preview.cursorIndicator" = true;
+          "tinymist.preview.invertColors" = "always";
           "vscode-pets.petColor" = "white";
           "vscode-pets.throwBallWithMouse" = true;
-          "wakatime.apiUrl" = "https://wakapi.canine.tools/api";
           "wakatime.apiKey" = "10f97724-4f74-4155-b38e-ea67757f9f14";
+          "wakatime.apiUrl" = "https://wakapi.canine.tools/api";
           "workbench.editor.highlightModifiedTabs" = true;
           "workbench.editor.limit.enabled" = true;
           "workbench.list.smoothScrolling" = true;
           "zenMode.showTabs" = "none";
+          # "continue.telemetryEnabled" = false;
           # "ltex.language" = "de-DE";
           # "vscode-pets.position" = "panel";
           # "vscode-pets.theme" = "castle";
