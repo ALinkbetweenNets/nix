@@ -122,7 +122,7 @@ with lib; {
       #csvlens
       kdePackages.kcolorchooser
       curlie # httpie for curl
-      gpodder # podcast client
+      # gpodder # podcast client
       sox # play record convert audio files
       #htmlq
       doggo
