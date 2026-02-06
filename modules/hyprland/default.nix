@@ -27,7 +27,7 @@ in {
     environment.systemPackages = with pkgs; [
       mako
       ags
-      kitty # required for the default Hyprland config
+      # kitty # required for the default Hyprland config
       cliphist
       hyprpolkitagent
       waybar
