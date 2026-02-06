@@ -44,13 +44,13 @@ in
             arrterian.nix-env-selector
             # dracula-theme.theme-dracula
             christian-kohler.path-intellisense
-            dbaeumer.vscode-eslint
-            christian-kohler.npm-intellisense
-            yoavbls.pretty-ts-errors
-            bradlc.vscode-tailwindcss
+            # dbaeumer.vscode-eslint
+            # christian-kohler.npm-intellisense
+            # yoavbls.pretty-ts-errors
+            # bradlc.vscode-tailwindcss
             eamodio.gitlens
             esbenp.prettier-vscode
-            firefox-devtools.vscode-firefox-debug
+            # firefox-devtools.vscode-firefox-debug
             github.copilot
             github.copilot-chat
             github.vscode-github-actions
@@ -66,7 +66,7 @@ in
             redhat.vscode-yaml
             streetsidesoftware.code-spell-checker
             streetsidesoftware.code-spell-checker-german
-            usernamehw.errorlens
+            # usernamehw.errorlens
             vadimcn.vscode-lldb
             yzhang.markdown-all-in-one
             # pokey.talon
