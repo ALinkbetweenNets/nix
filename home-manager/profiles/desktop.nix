@@ -20,10 +20,10 @@ with lib; {
           return {
             font = wezterm.font("FiraCode Nerd Font"),
             hide_tab_bar_if_only_one_tab = true,
-            window_background_opacity=0.7,
-            text_background_opacity=0.3,
           }
         '';
+            # window_background_opacity=0.7,
+            # text_background_opacity=0.3,
         # colorSchemes={
         #   them={
         #     background
