@@ -9,7 +9,7 @@
   link = {
     wg-link.enable = true;
     wg-link.address = "10.5.5.2/24";
-    plymouth.enable = true;
+    # plymouth.enable = true;
     # hyprland.enable = true;
     sops = true;
     # tailscale-address = "100.108.198.22";
