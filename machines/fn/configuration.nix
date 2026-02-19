@@ -128,7 +128,7 @@ containers.tor-container = {
   home-manager.users.l = flake-self.homeConfigurations.laptop;
   boot = {
     initrd.systemd.enable = true;
-    kernelParams = [ "quiet" ];
+    # kernelParams = [ "quiet" ];
     binfmt.emulatedSystems = [ "aarch64-linux" ];
     # kernel.sysctl."kernel.sysrq" = 1;
     # Alt+FN+S+key (on other devices Alt+Print+key)
