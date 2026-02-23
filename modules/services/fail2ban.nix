@@ -24,6 +24,7 @@ in
         "9.9.9.9"
         "100.64.0.0/10"
         "93.192.0.0/10" # telekom
+        "131.220.0.0/16" # Science net
       ];
       # bantime = "24h"; # Set bantime to one day
       bantime-increment = {
