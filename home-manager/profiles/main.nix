@@ -253,7 +253,6 @@ with lib; {
       kdePackages.kteatime
       ktimetracker
       # krunner-symbols
-      kdePackages.ksystemlog
       imagemagick
       luajitPackages.magick
       immich-go
