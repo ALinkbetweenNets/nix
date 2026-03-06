@@ -57,7 +57,6 @@ in
             github.vscode-pull-request-github
             gitlab.gitlab-workflow
             gruntfuggly.todo-tree
-            wakatime.vscode-wakatime
             jnoortheen.nix-ide
             mkhl.direnv
             myriad-dreamin.tinymist
@@ -188,8 +187,6 @@ in
           "tinymist.preview.invertColors" = "always";
           "vscode-pets.petColor" = "white";
           "vscode-pets.throwBallWithMouse" = true;
-          "wakatime.apiKey" = "10f97724-4f74-4155-b38e-ea67757f9f14";
-          "wakatime.apiUrl" = "https://wakapi.canine.tools/api";
           "workbench.editor.highlightModifiedTabs" = true;
           "workbench.editor.limit.enabled" = true;
           "workbench.list.smoothScrolling" = true;
