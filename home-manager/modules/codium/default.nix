@@ -126,6 +126,7 @@ in
           };
           "chat.disableAIFeatures" = false;
           "cSpell.language"="en,de";
+          "github.copilot.enable.*" = false;
           "cSpell.dictionaries" = [ "typescript" ];
           "cSpell.userWords" = [ "Linkbetween" ];
           "diffEditor.codeLens" = true;
