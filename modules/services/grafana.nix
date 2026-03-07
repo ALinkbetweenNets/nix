@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.services.grafana;
-in {
+let
+  cfg = config.link.services.grafana;
+in
+{
   options.link.services.grafana = {
     enable = mkEnableOption "activate grafana";
     expose-port = mkOption {
@@ -12,8 +20,7 @@ in {
     nginx = mkOption {
       type = types.bool;
       default = config.link.nginx.enable;
-      description =
-        "expose the application to the internet with NGINX and ACME";
+      description = "expose the application to the internet with NGINX and ACME";
     };
     port = mkOption {
       type = types.int;
@@ -27,6 +34,7 @@ in {
         enable = true;
         settings = {
           log.level = "debug";
+          security.secret_key = "a53e49c77a2e6359d76d5ab28118f6e29283a2c9b88731baf1912b4c976dc20d";
           server = {
             domain = "grafana.${config.link.domain}";
             http_addr = if cfg.expose-port then "0.0.0.0" else "127.0.0.1";
@@ -40,14 +48,13 @@ in {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "http://${
-              toString config.services.grafana.settings.server.http_addr
-            }:${toString config.services.grafana.settings.server.http_port}/";
+          proxyPass = "http://${toString config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}/";
           proxyWebsockets = true;
         };
       };
     };
     networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
-      mkIf cfg.expose-port [ cfg.port ];
+      mkIf cfg.expose-port
+        [ cfg.port ];
   };
 }
