@@ -1,8 +1,19 @@
-{ config, flake-self, system-config, pkgs, lib, ... }:
+{
+  config,
+  flake-self,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.laptop;
-in {
-  options.link.laptop = { enable = mkEnableOption "activate laptop"; };
+let
+  cfg = config.link.laptop;
+in
+{
+  options.link.laptop = {
+    enable = mkEnableOption "activate laptop";
+  };
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       wireless-regdb
@@ -11,7 +22,9 @@ in {
     ];
     boot.extraModulePackages = [ config.boot.kernelPackages.evdi ];
     boot.initrd.kernelModules = [ "evdi" ];
-    environment.variables = { KWIN_DRM_PREFER_COLOR_DEPTH = "24"; };
+    environment.variables = {
+      KWIN_DRM_PREFER_COLOR_DEPTH = "24";
+    };
     systemd.services.displaylink-server = {
       enable = true;
       # Ensure it starts after udev has done its work
@@ -20,18 +33,16 @@ in {
       wantedBy = [ "multi-user.target" ]; # Start at boot
       # *** THIS IS THE CRITICAL 'serviceConfig' BLOCK ***
       serviceConfig = {
-        Type =
-          "simple"; # Or "forking" if it forks (simple is yecommon for daemons)
+        Type = "simple"; # Or "forking" if it forks (simple is yecommon for daemons)
         # The ExecStart path points to the DisplayLinkManager binary provided by the package
         ExecStart = "${
-            (pkgs.displaylink.overrideAttrs {
-              src = pkgs.fetchurl {
-                sha256 = "sha256-JQO7eEz4pdoPkhcn9tIuy5R4KyfsCniuw6eXw/rLaYE=";
-                url =
-                  "https://www.synaptics.com/sites/default/files/exe_files/2025-09/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.2-EXE.zip";
-              };
-            })
-          }/bin/DisplayLinkManager";
+          (pkgs.displaylink.overrideAttrs {
+            src = pkgs.fetchurl {
+              sha256 = "sha256-JQO7eEz4pdoPkhcn9tIuy5R4KyfsCniuw6eXw/rLaYE=";
+              url = "https://www.synaptics.com/sites/default/files/exe_files/2025-09/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.2-EXE.zip";
+            };
+          })
+        }/bin/DisplayLinkManager";
         # User and Group to run the service as (root is common for this type of daemon)
         User = "root";
         Group = "root";
@@ -49,7 +60,9 @@ in {
     };
     #options.type = "laptop";
     #networking.wireless.enable = !config.networking.networkmanager.enable;
-    networking.networkmanager = { wifi.macAddress = "stable"; };
+    networking.networkmanager = {
+      wifi.macAddress = "stable";
+    };
     hardware.bluetooth.enable = true;
     location.latitude = 50.0;
     location.longitude = 7.0;
@@ -86,11 +99,11 @@ in {
       enable = true;
       #powertop.enable = true; # no option to disable usb powersaving yet
     };
-    systemd.sleep.settings.Sleep = ''
-      AllowSuspend=yes
-      AllowHibernation=yes
-      AllowHybridSleep=yes
-      AllowSuspendThenHibernate=yes
-    '';
+    systemd.sleep.settings.Sleep = {
+      AllowSuspend = "yes";
+      AllowHibernation = "yes";
+      AllowHybridSleep = "yes";
+      AllowSuspendThenHibernate = "yes";
+    };
   };
 }
