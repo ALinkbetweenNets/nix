@@ -29,7 +29,7 @@ in {
       #WAYLAND_DISPLAY = ""; # Breaks graphical environment
     };
     services.dbus.enable = true;
-    programs.light.enable = true;
+    hardware.acpilight.enable = true;
 
     security = {
       # Allow swaylock to unlock the computer for us
