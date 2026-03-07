@@ -102,7 +102,7 @@ with lib; {
           eisa01.smartskip
           manga-reader
           mpris
-          mpv-cheatsheet
+          mpv-cheatsheet-ng
           mpv-image-viewer.image-positioning
           mpv-image-viewer.ruler
           mpv-notify-send
