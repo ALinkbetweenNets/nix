@@ -126,7 +126,7 @@ with lib;
         yazi # TUI File Manager with preview
         nix-output-monitor
         gpg-tui
-        cht-sh
+        tealdeer
         # fastfetch
         # tldr
         #home-manager

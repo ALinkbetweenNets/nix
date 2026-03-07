@@ -128,7 +128,7 @@ in {
           '';
           webserver =
             "tmux new -s npx -d 'sudo npx http-server -p 5000 --cors \"*\" -g'";
-          cht = "cht.sh";
+          tl="tldr --list | fzf --preview 'tldr {} --color always' | xargs tldr";
           wetter = "curl wttr.in/bonn";
           myvs = "${fhs-vscode}/bin/code";
           # switching within a flake repository
