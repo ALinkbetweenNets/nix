@@ -86,7 +86,7 @@ in {
       enable = true;
       #powertop.enable = true; # no option to disable usb powersaving yet
     };
-    systemd.sleep.extraConfig = ''
+    systemd.sleep.settings.Sleep = ''
       AllowSuspend=yes
       AllowHibernation=yes
       AllowHybridSleep=yes
