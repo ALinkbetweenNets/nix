@@ -7,7 +7,7 @@ in {
     home.packages = with pkgs;
       [
         #python311
-        (python311.withPackages (ps:
+        (python312.withPackages (ps:
           with ps; [
             # django
             asgiref
