@@ -12,11 +12,10 @@ in {
       xserver.enable = lib.mkDefault false;
       plasma.enable = lib.mkDefault true;
     };
+    hardware.acpilight.enable=true;
     programs = {
       dconf.enable = true; # GTK themes are not applied in Wayland applications
       # dconf.packages = with pkgs;[ maliit-keyboard ];
-      light.enable =
-        true; # backlight control command and udev rules granting access to members of the “video” group.
       ssh.setXAuthLocation = true;
       kdeconnect.enable = true;
       ydotool.enable = true;
