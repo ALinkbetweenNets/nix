@@ -74,7 +74,7 @@ in {
           recommendedProxySettings = true;
           recommendedTlsSettings = false;
           logError = "stderr debug";
-          package = pkgs.nginxStable.override { openssl = pkgs.libressl; };
+          #package = pkgs.nginxStable.override { openssl = pkgs.libressl; };
           clientMaxBodySize = "1000m";
           commonHttpConfig = ''
             # Add HSTS header with preloading to HTTPS requests.
