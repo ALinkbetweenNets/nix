@@ -112,7 +112,6 @@ with lib;
           controlMaster = "no";
           controlPath = "~/.ssh/master-%r@%n:%p";
           controlPersist = "no";
-          identitiesOnly = true;
         };
       };
 
