@@ -71,14 +71,15 @@ in
             # pokey.talon
             # pokey.cursorless
           ]
-          ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-            {
-              name = "vscode-pets";
-              publisher = "tonybaloney";
-              version = "1.25.1";
-              sha256 = "6acdded8bcca052b221acfd4188674e97a9b2e1dfb8ab0d4682cec96a2131094";
-            }
-          ];
+          # ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          #   {
+          #     name = "vscode-pets";
+          #     publisher = "tonybaloney";
+          #     version = "1.25.1";
+          #     sha256 = "6acdded8bcca052b221acfd4188674e97a9b2e1dfb8ab0d4682cec96a2131094";
+          #   }
+          # ]
+          ;
         userSettings = {
           "[typescriptreact]" = {
             "editor.defaultFormatter" = "vscode.typescript-language-features";
