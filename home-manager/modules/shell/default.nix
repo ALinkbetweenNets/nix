@@ -1,7 +1,9 @@
 { lib, pkgs, ... }:
 with lib;
-let vars = import ../../vars.nix;
-in {
+let
+  vars = import ../../vars.nix;
+in
+{
   programs = {
     starship = {
       enable = true;
@@ -36,8 +38,12 @@ in {
           # };
         };
         direnv.disabled = false;
-        status = { disabled = false; };
-        nix_shell = { disabled = false; };
+        status = {
+          disabled = false;
+        };
+        nix_shell = {
+          disabled = false;
+        };
         #os.disabled = false;
         username.disabled = false;
         git_branch = {
@@ -66,7 +72,9 @@ in {
       enableCompletion = true;
       autocd = true;
       dotDir = "/home/l/.config/zsh";
-      sessionVariables = { ZDOTDIR = "/home/l/.config/zsh"; };
+      sessionVariables = {
+        ZDOTDIR = "/home/l/.config/zsh";
+      };
       initContent = ''
         bindkey "^[[1;5C" forward-word
         bindkey "^[[1;5D" backward-word
@@ -111,11 +119,17 @@ in {
       ];
       shellAliases =
         let
-          fhs-vscode = pkgs.vscode.fhsWithPackages
-            (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
+          fhs-vscode = pkgs.vscode.fhsWithPackages (
+            ps: with ps; [
+              rustup
+              zlib
+              openssl.dev
+              pkg-config
+            ]
+          );
         in
         {
-          crl="curl -A \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:145.0) Gecko/20100101 Firefox/145.0\" -vk";
+          crl = "curl -A \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:145.0) Gecko/20100101 Firefox/145.0\" -vk";
           htt = "httpx -nc -sc -fr -location -td -rt -cdn -title -v -rl 5000 -timeout 60 -tls-probe -csp-probe -tls-grab -pipeline -http2 -vhost -pa -rl 10 -t 8 -ss -system-chrome -sid 5s -probe -cname -ip -extract-fqdn -ws -method -lc -jarm -favicon md5 -ct -c -p 'http:80,8080,https:443,8443' -mc 400";
           dns = "dnsx -re -all -nc -cdn -e soa";
           rep = "/home/l/s/repeat.sh";
@@ -126,17 +140,14 @@ in {
           teams = ''
             cd ~/w/image && tmux new -s teams-npx -d 'sudo npx http-server -p 80 --cors "*" -g' && sleep 10 && tmux new -s teams -d 'teams-for-linux --customBGServiceIgnoreMSDefaults=true --isCustomBackgroundEnabled=true --customBGServiceURL=http://localhost'
           '';
-          webserver =
-            "tmux new -s npx -d 'sudo npx http-server -p 5000 --cors \"*\" -g'";
-          tl="tldr --list | fzf --preview 'tldr {} --color always' | xargs tldr";
+          webserver = "tmux new -s npx -d 'sudo npx http-server -p 5000 --cors \"*\" -g'";
+          tll = "tldr --list | fzf --preview 'tldr {} --color always' | xargs tldr";
           wetter = "curl wttr.in/bonn";
           myvs = "${fhs-vscode}/bin/code";
           # switching within a flake repository
-          nrg =
-            "nixos-rebuild switch --sudo --flake github:alinkbetweennets/nix";
+          nrg = "nixos-rebuild switch --sudo --flake github:alinkbetweennets/nix";
           ns = "nix-shell -p ";
-          nr =
-            "cd /home/l/nix;git pull;sudo nixos-rebuild switch --sudo --flake /home/l/nix |& nom";
+          nr = "cd /home/l/nix;git pull;sudo nixos-rebuild switch --sudo --flake /home/l/nix |& nom";
           nrb = "nixos-rebuild switch --sudo --flake /home/l/nix";
           ngc = "sudo nix-collect-garbage -d";
           # discord = "nohup discord --use-gl=desktop &";
@@ -157,9 +168,9 @@ in {
           rmt = "trash put";
           n = "nvim";
           c = "cd";
+          ssl = "testssl.sh -9 -6 --phone-out --hints --color 3 --wide -E -g --parallel --sneaky";
           optimizeimage = "oxipng -o max -s -i 1 -p --fast -a -r ";
-          deduplicate-hardlink =
-            "jdupes --recurse -L "; # Replace duplicates with hardlinks
+          deduplicate-hardlink = "jdupes --recurse -L "; # Replace duplicates with hardlinks
           deduplicate = "rmlint -r -g -k ";
           ci = ''
             # echo link to woodpecker
@@ -196,34 +207,20 @@ in {
             ${pkgs.git}/bin/git checkout main
             ${pkgs.git}/bin/git merge upstream/main
           '';
-          l =
-            "eza --icons --group-directories-first --git -F --color always --sort=modified"; # -F = --classify
-          lr =
-            "eza --icons --group-directories-first --git -F --color always --sort=modified --tree";
-          la =
-            "eza --icons --group-directories-first --git -F --color always --sort=modified --all";
-          lss =
-            "eza --icons --group-directories-first --git -F --color always --sort=size";
-          lsr =
-            "eza --icons --group-directories-first --git -F --color always --sort=size --tree";
-          lsa =
-            "eza --icons --group-directories-first --git -F --color always --sort=size --all";
-          lar =
-            "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all";
-          ll =
-            "eza --icons --group-directories-first --git -F --color always --sort=modified -l --group";
-          llr =
-            "eza --icons --group-directories-first --git -F --color always --sort=modified --tree -l --group";
-          lla =
-            "eza --icons --group-directories-first --git -F --color always --sort=modified --all -l --group";
-          lls =
-            "eza --icons --group-directories-first --git -F --color always --sort=size -l";
-          llsr =
-            "eza --icons --group-directories-first --git -F --color always --sort=size --tree -l --group";
-          llsa =
-            "eza --icons --group-directories-first --git -F --color always --sort=size --all -l --group";
-          llar =
-            "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all -l --group";
+          l = "eza --icons --group-directories-first --git -F --color always --sort=modified"; # -F = --classify
+          lr = "eza --icons --group-directories-first --git -F --color always --sort=modified --tree";
+          la = "eza --icons --group-directories-first --git -F --color always --sort=modified --all";
+          lss = "eza --icons --group-directories-first --git -F --color always --sort=size";
+          lsr = "eza --icons --group-directories-first --git -F --color always --sort=size --tree";
+          lsa = "eza --icons --group-directories-first --git -F --color always --sort=size --all";
+          lar = "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all";
+          ll = "eza --icons --group-directories-first --git -F --color always --sort=modified -l --group";
+          llr = "eza --icons --group-directories-first --git -F --color always --sort=modified --tree -l --group";
+          lla = "eza --icons --group-directories-first --git -F --color always --sort=modified --all -l --group";
+          lls = "eza --icons --group-directories-first --git -F --color always --sort=size -l";
+          llsr = "eza --icons --group-directories-first --git -F --color always --sort=size --tree -l --group";
+          llsa = "eza --icons --group-directories-first --git -F --color always --sort=size --all -l --group";
+          llar = "eza --icons --group-directories-first --git -F --color always --sort=modified --tree --all -l --group";
         };
     };
     zsh.oh-my-zsh = {
@@ -250,7 +247,11 @@ in {
     };
     ripgrep = {
       enable = true;
-      arguments = [ "-S" "--max-columns-preview" "--colors=line:style:bold" ];
+      arguments = [
+        "-S"
+        "--max-columns-preview"
+        "--colors=line:style:bold"
+      ];
     };
     autojump.enable = true;
     zoxide = {
@@ -267,7 +268,9 @@ in {
     nix-index.enable = true;
     lf.enable = true;
     lesspipe.enable = true;
-    bat = { enable = true; };
+    bat = {
+      enable = true;
+    };
     fzf = {
       enable = true;
       enableZshIntegration = true;
