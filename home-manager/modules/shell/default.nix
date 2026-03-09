@@ -199,6 +199,7 @@ in
           g = "git";
           gc = "git clone ";
           gp = "git pull --rebase";
+          gf = "git fetch";
           gs = "git status";
           gac = "git commit -am '$(date -I)'";
           gpp = "git pull --rebase&&git push";
