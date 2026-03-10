@@ -365,6 +365,7 @@ in
     "burp.${config.link.domain}" = {
       quic = true;
       http3_hq = true;
+      http3 = true;
       # enableACME = true;
       serverAliases = [
         "burpsuite.${config.link.domain}"
