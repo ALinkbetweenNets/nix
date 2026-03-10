@@ -52,9 +52,10 @@ in
     services.nginx = {
       # additionalModules = with pkgs.nginxModules; [ env ];
       enable = true;
-      recommendedGzipSettings = true;
+      # recommendedGzipSettings = true;
       recommendedOptimisation = true;
       recommendedProxySettings = true;
+      experimentalZstdSettings = true;
       # recommendedTlsSettings = true;
       logError = "stderr debug";
       enableQuicBPF = true;
@@ -67,11 +68,13 @@ in
       clientMaxBodySize = "6000m";
       sslProtocols = "TLSv1.2 TLSv1.3";
       # sslCiphers = "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-CHACHA20-POLY1305:@SECLEVEL=2"; # Mozilla recommendation
-      sslCiphers = "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305";
+      sslCiphers = ''
+        ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384
+      '';
       commonHttpConfig = ''
         ssl_conf_command Ciphersuites TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256;
         # ssl_ciphers = "AES256+EECDH:AES256+EDH:!aNULL@SECLEVEL=2";
-        ssl_ecdh_curve X25519MLKEM768:X25519:secp384r1;
+        ssl_ecdh_curve X25519MLKEM768:X25519:secp384r1:secp256r1;
         # ssl_protocols TLSv1.2 TLSv1.3;
         # ssl_ciphers HIGH:!aNULL:!MD5:@SECLEVEL=2;
         # ssl_conf_command Options KTLS; # not supported on nc
@@ -104,8 +107,8 @@ in
         # Add HSTS header with preloading to HTTPS requests.
         add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
         # proxy_hide_header Strict-Transport-Security;
-        ssl_stapling on;
-        ssl_stapling_verify on;
+        # ssl_stapling on; # discontinued by lets encrypt in favor of certificate revocation list
+        # ssl_stapling_verify on;
         resolver 1.1.1.1 9.9.9.9 8.8.8.8 valid=300s;
         resolver_timeout 15s;
         # proxy_hide_header Content-Security-Policy; # maybe remove this
