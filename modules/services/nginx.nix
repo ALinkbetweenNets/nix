@@ -58,8 +58,9 @@ in
       # recommendedTlsSettings = true;
       logError = "stderr debug";
       enableQuicBPF = true;
-      package = pkgs.nginx.override {
+      package = pkgs.nginxMainline.override {
         #openssl = pkgs.libressl;
+        openssl = pkgs.openssl_oqs;
         modules = with pkgs.nginxModules; [ geoip2 ]; # echo
         buildInputs = oldAttrs.buildInputs ++ [ pkgs.libmaxminddb ];
       };
