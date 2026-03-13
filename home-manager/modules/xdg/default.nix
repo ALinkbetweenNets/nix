@@ -52,6 +52,7 @@ with lib; {
       "audio/ogg" = [ "vlc.desktop" ];
       "audio/opus" = [ "vlc.desktop" ];
       "audio/webm" = [ "vlc.desktop" ];
+      "audio/mp3" = [ "vlc.desktop" ];
       "image/bmp" = [ "org.kde.gwenview.desktop" ];
       "image/gif" = [ "org.kde.gwenview.desktop" ];
       "image/jpeg" = [ "org.kde.gwenview.desktop" ];
