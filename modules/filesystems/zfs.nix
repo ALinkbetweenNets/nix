@@ -1,12 +1,22 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.link.fs.zfs;
-in {
+let
+  cfg = config.link.fs.zfs;
+in
+{
   options.link.fs.zfs.enable = mkEnableOption "activate zfs";
   config = mkIf cfg.enable {
     services.zfs = {
       autoScrub.enable = true;
       trim.enable = true;
+      expandOnBoot = "all";
+      # autoReplication.enable = true;
+      # zed.enableMail = true;
       # zed.settings = {
       #   ZED_DEBUG_LOG = "/tmp/zed.debug.log";
 
@@ -19,14 +29,15 @@ in {
       #   ZED_SCRUB_AFTER_RESILVER = false;
       # };
     };
+    security.pam.zfs.enable = true;
     boot = {
       loader.grub.zfsSupport = true;
-      kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-      supportedFilesystems = [ "zfs" ];
+      # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+      supportedFilesystems.zfs = true;
       zfs = {
         #virtualisation.docker.storageDriver = "zfs";
-        forceImportRoot = true;
-        forceImportAll = true;
+        forceImportRoot = false;
+        # forceImportAll = true;
         # package.enableMail = true;
       };
     };
