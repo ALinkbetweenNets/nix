@@ -132,7 +132,7 @@ with lib;
         ## security
         sops
         ssh-to-age
-        # bitwarden-cli
+        bitwarden-cli
         ## piping
         # vgrep
         ## basics
