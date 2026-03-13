@@ -49,7 +49,7 @@ in
           "hn".id = "YU4MCML-QWAYIDE-FSHCDWA-C2FGKTG-ERS6I36-SMCFI2J-RKLVOPN-PS3IFQD";
           "pppn".id = "JCOKRQ5-67ARNA3-VOO4EOZ-5GUPCU6-63FSAID-EI4MVHH-T5ORT3Y-OFAGAAY";
           "p4n".id = "D64D4HR-7GZLZDK-UZKAFD5-YBJAURJ-Q2HXQB2-LNFYZNU-HNOIYFY-JUMR5A5";
-          "pg".id = "MUPJLQG-NCKFPYN-NVU52FK-EXTDG33-ZTRJUZR-NOPH5XG-ORUZDAK-KZI4IQC";
+          "pg".id = "PT4XFJ6-PLNWZ2E-PDPAPV7-5ECSKA2-3EEHMPJ-L6JWB46-TDO5HZJ-LVMSTA7";
         };
         folders = {
           "v" = {
@@ -63,7 +63,7 @@ in
               "sn"
               "npn"
               "xn"
-              "pg"
+              # "pg"
             ];
           };
           "camera" = {
@@ -72,7 +72,7 @@ in
               "s22"
               "sn"
               "npn"
-              "pg"
+              # "pg"
             ];
             versioning = {
               type = "trashcan";
@@ -90,7 +90,7 @@ in
               "sn"
               "xn"
               "npn"
-              "pg"
+              # "pg"
             ];
             versioning = {
               type = "simple";
@@ -106,7 +106,7 @@ in
               "sn"
               "xn"
               "npn"
-              "pg"
+              # "pg"
             ];
             versioning = {
               type = "simple";
@@ -131,7 +131,7 @@ in
               "sn"
               "p4n"
               "npn"
-              "pg"
+              # "pg"
             ];
             versioning = {
               type = "simple";
@@ -157,7 +157,7 @@ in
               "xn"
               "sn"
               "npn"
-              "pg"
+              # "pg"
             ];
             versioning = {
               type = "simple";
@@ -175,7 +175,7 @@ in
               "sn"
               "xn"
               "npn"
-              "pg"
+              # "pg"
             ];
             versioning = {
               type = "simple";
@@ -248,7 +248,7 @@ in
               "sn"
               "xn"
               "npn"
-              "pg"
+              # "pg"
             ];
             versioning = {
               type = "simple";
