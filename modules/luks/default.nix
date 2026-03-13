@@ -75,7 +75,7 @@ in
           ssh = {
             enable = true;
             port = 25222;
-            # shell = lib.mkForce "/bin/systemd-tty-ask-password-agent";
+            # shell = lib.mkForce "/bin/cryptsetup-askpass";
             hostKeys = [ /etc/initrd_id_ed25519 ];
             # authorizedKeys = [
             #   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIOaLOyxsr6wgj0JoG/OrDywND2hG2nblOGUuZBPFG1U l@xn"
