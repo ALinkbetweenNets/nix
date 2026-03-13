@@ -41,6 +41,10 @@ with lib;
           port = 2522;
           identityFile = "~/.ssh/id_ed25519";
         };
+        "nn" = {
+          port = 2522;
+          identityFile = "~/.ssh/id_ed25519";
+        };
         "sn" = {
           port = 2522;
           identityFile = "~/.ssh/id_ed25519";
