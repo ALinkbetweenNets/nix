@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.wg-link-server;
-in {
+let
+  cfg = config.link.wg-link-server;
+in
+{
   options.link.wg-link-server.enable = mkEnableOption "activate wg-link";
   config = mkIf cfg.enable {
     sops.secrets."wireguard-preshared" = { };
@@ -19,7 +27,10 @@ in {
       };
       firewall = {
         allowedTCPPorts = [ 53 ];
-        allowedUDPPorts = [ 53 51825 ];
+        allowedUDPPorts = [
+          53
+          51825
+        ];
         checkReversePath = mkForce false;
         logReversePathDrops = true;
       };
@@ -27,7 +38,10 @@ in {
         # "wg-link" is the network interface name. You can name the interface arbitrarily.
         wg-link = {
           # Determines the IP/IPv6 address and subnet of the client's end of the tunnel interface
-          address = [ "10.5.5.1/24" "fdc9:281f:04d7:9ee9::1/64" ];
+          address = [
+            "10.5.5.1/24"
+            "fdc9:281f:04d7:9ee9::1/64"
+          ];
           # The port that WireGuard listens to - recommended that this be changed from default
           listenPort = 51825;
           # Path to the server's private key
@@ -52,19 +66,28 @@ in {
               # fn
               publicKey = "VoWSuobtJ1FfmEQ6VSHygKGQDe1S9WcrGM2zs1Z6H20=";
               presharedKeyFile = config.sops.secrets."wireguard-preshared".path;
-              allowedIPs = [ "10.5.5.2/32" "fdc9:281f:04d7:9ee9::2/128" ];
+              allowedIPs = [
+                "10.5.5.2/32"
+                "fdc9:281f:04d7:9ee9::2/128"
+              ];
             }
             {
               # sn
               publicKey = "CHTfO3TqbfUSwTT4rq3jGSSby4m6DAJX9qtX9HweURg=";
               presharedKeyFile = config.sops.secrets."wireguard-preshared".path;
-              allowedIPs = [ "10.5.5.5/32" "fdc9:281f:04d7:9ee9::5/128" ];
+              allowedIPs = [
+                "10.5.5.5/32"
+                "fdc9:281f:04d7:9ee9::5/128"
+              ];
             }
             {
-              # npn
-              publicKey = "ajtRqtdZqffMrgANKQQ2VzWTDDKuAJyvS3naSFkXrD0=";
+              # nn
+              publicKey = "y9ceM8NJcF1Xge/lfYMYe6nkrBKAeOJ6+vh8Ra5KBmA=";
               presharedKeyFile = config.sops.secrets."wireguard-preshared".path;
-              allowedIPs = [ "10.5.5.6/32" "fdc9:281f:04d7:9ee9::6/128" ];
+              allowedIPs = [
+                "10.5.5.6/32"
+                "fdc9:281f:04d7:9ee9::6/128"
+              ];
             }
           ];
         };
