@@ -27,6 +27,8 @@ in
       ebtables
     ];
     virtualisation = {
+      lxc.enable = true;
+      lxc.unprivilegedContainers = true;
       # virtualbox.host = {
       #   enable = true;
       #   enableKvm = true;
