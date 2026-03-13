@@ -15,6 +15,10 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    NixVirt = {
+      url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     #nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -115,6 +119,7 @@
       nixpkgs,
       nur,
       nixgl,
+      NixVirt,
       # simple-nixos-mailserver,
       ...
     }@inputs:
