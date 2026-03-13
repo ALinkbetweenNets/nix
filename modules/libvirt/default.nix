@@ -26,6 +26,10 @@ in
       qemu-utils
       ebtables
     ];
+    programs.virt-manager.enable = lib.mkIf config.link.desktop.enable true;
+    services.prometheus.exporters.libvirt = lib.mkIf config.link.services.prometheus.enable {
+      enable = true;
+    };
     virtualisation = {
       lxc.enable = true;
       lxc.unprivilegedContainers = true;
@@ -39,15 +43,22 @@ in
         qemu = {
           swtpm.enable = true;
           runAsRoot = true;
+          package = if config.link.main.enable then pkgs.qemu else pkgs.qemu_kvm;
+          vhostUserPackages = with pkgs; [ virtiofsd ];
         };
+        dbus.enable = true;
+        nss.enableGuest = true;
+        nss.enable = true;
         extraConfig = ''
           user="l"
         '';
+        allowedBridges = [ "virbr0" ];
         onBoot = "ignore";
         onShutdown = "shutdown";
       };
       spiceUSBRedirection.enable = true;
     };
+    # services.spice-webdavd.enable = true;
     # systemd.tmpfiles.rules = [
     #   "f /dev/shm/looking-glass 0660 alex qemu-libvirtd -"
     # ];
