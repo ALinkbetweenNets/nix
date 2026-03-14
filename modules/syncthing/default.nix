@@ -53,6 +53,13 @@ in
           "pg".id = "PT4XFJ6-PLNWZ2E-PDPAPV7-5ECSKA2-3EEHMPJ-L6JWB46-TDO5HZJ-LVMSTA7";
         };
         folders = {
+          "transfer" = {
+            path = lib.mkDefault "${config.link.syncthingDir}/transfer";
+            devices = [
+              "nn"
+              "sn"
+            ];
+          };
           "v" = {
             path = lib.mkDefault "${config.link.syncthingDir}/v";
             devices = [
