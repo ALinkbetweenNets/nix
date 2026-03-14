@@ -193,6 +193,27 @@
     },
     {
       "commands": [
+        "nix build --print-out-paths '.#nixosConfigurations.nn.config.system.build.toplevel' -o 'result-nn'"
+      ],
+      "image": "bash",
+      "name": "Build nn"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-nn')"
+      ],
+      "image": "bash",
+      "name": "Show nn info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-nn'"
+      ],
+      "image": "bash",
+      "name": "Push nn to Attic"
+    },
+    {
+      "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.sn.config.system.build.toplevel' -o 'result-sn'"
       ],
       "image": "bash",
