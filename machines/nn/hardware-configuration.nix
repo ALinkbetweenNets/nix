@@ -29,6 +29,13 @@
 
   boot.loader.grub.enableCryptodisk = true;
 
+  boot.initrd.luks.devices."Z1WD12TB-A".device =
+    "/dev/disk/by-uuid/f9b96bae-85c5-43bd-90f5-e0e4e5c9ede1";
+  boot.initrd.luks.devices."Z1WD12TB-B".device =
+    "/dev/disk/by-uuid/e033f8f4-c559-473d-9cd7-1ef676c4aadf";
+  boot.initrd.luks.devices."Z1WD12TB-C".device =
+    "/dev/disk/by-uuid/bbaf0b15-e4f3-4c0d-8ea6-23975b4abd3e";
+
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
