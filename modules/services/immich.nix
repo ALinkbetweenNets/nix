@@ -49,7 +49,7 @@ in
       mediaLocation = "${config.link.storage}/immich";
       enable = true;
       port = cfg.port;
-      host = if cfg.expose-port then "0.0.0.0" else "localhost";
+      host = "0.0.0.0";
       secretsFile = config.sops.secrets.immich.path;
     };
     networking.firewall.allowedTCPPorts = mkIf cfg.expose-port [ cfg.port ];
