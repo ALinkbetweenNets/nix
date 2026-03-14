@@ -12,11 +12,11 @@ in
 {
   options.link.syncthing.enable = mkEnableOption "activate syncthing";
   config = mkIf cfg.enable {
-    systemd.tmpfiles.rules = [ "d /var/lib/syncthing 1700 l wheel -" ];
+    # systemd.tmpfiles.rules = [ "d /var/lib/syncthing 1700 l wheel -" ];
     networking.firewall = {
       allowedTCPPorts = [
-        8384
-        22000
+        # 8384
+        22000 # Syncthing
       ];
       allowedUDPPorts = [
         22000 # syncthing
@@ -27,7 +27,6 @@ in
     services.syncthing = {
       enable = true;
       user = "l";
-      systemService = true;
       openDefaultPorts = true;
       settings = {
         extraOptions.gui = {
