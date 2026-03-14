@@ -28,6 +28,7 @@ in
       enable = true;
       user = "l";
       openDefaultPorts = true;
+      dataDir = config.link.syncthingDir;
       settings = {
         extraOptions.gui = {
           theme = "black";
@@ -44,6 +45,7 @@ in
           "s22".id = "V446NPI-YZNXTZL-5LFFQFV-GW7DXHV-IMAX7VX-B27RYFO-FZFSEYG-TMSTTAR";
           "in".id = "IYOMGJ7-NZADKG2-L2PMGIH-VSTMTJ4-KLA7VF4-3CUONC2-BQMMWTW-I6KHDAY";
           "sn".id = "SSSFCB5-W4CIMVK-L33WJ4F-VBH4FZW-SZIRMMN-IGHQ7MA-BBTFKYM-V2NSDQS";
+          "nn".id = "SJCV4A4-SCRP5NW-FBNEQIR-HVZBPYG-ASSG6A7-KR4KUXY-5OWXYOS-CXMBKQE";
           "npn".id = "PNVPZKG-I4RHS42-CEO4OMC-7ILR3TP-DK463Q4-32FAZ3P-WVZUA5T-KDRHPQA";
           "hn".id = "YU4MCML-QWAYIDE-FSHCDWA-C2FGKTG-ERS6I36-SMCFI2J-RKLVOPN-PS3IFQD";
           "pppn".id = "JCOKRQ5-67ARNA3-VOO4EOZ-5GUPCU6-63FSAID-EI4MVHH-T5ORT3Y-OFAGAAY";
@@ -59,6 +61,7 @@ in
               "hn"
               "in"
               "s22"
+              "nn"
               "sn"
               "npn"
               "xn"
@@ -70,6 +73,7 @@ in
             devices = [
               "s22"
               "sn"
+              "nn"
               "npn"
               # "pg"
             ];
@@ -87,6 +91,7 @@ in
               "in"
               "s22"
               "sn"
+              "nn"
               "xn"
               "npn"
               # "pg"
@@ -103,6 +108,7 @@ in
               "fn"
               "hn"
               "sn"
+              "nn"
               "xn"
               "npn"
               # "pg"
@@ -118,6 +124,7 @@ in
               "dn"
               "fn"
               "hn"
+              "nn"
               "xn"
               "npn"
             ];
@@ -127,6 +134,7 @@ in
             devices = [
               "fn"
               "xn"
+              "nn"
               "sn"
               "p4n"
               "npn"
@@ -142,6 +150,7 @@ in
             devices = [
               "sn"
               "p4n"
+              "nn"
             ];
             versioning = {
               type = "simple";
@@ -154,6 +163,7 @@ in
               "dn"
               "fn"
               "xn"
+              "nn"
               "sn"
               "npn"
               # "pg"
@@ -170,6 +180,7 @@ in
               "fn"
               "hn"
               "in"
+              "nn"
               "s22"
               "sn"
               "xn"
@@ -189,6 +200,7 @@ in
               "hn"
               "in"
               "s22"
+              "nn"
               "sn"
               "xn"
               "npn"
@@ -205,6 +217,7 @@ in
               "dn"
               "fn"
               "hn"
+              "nn"
               "in"
               "sn"
               "xn"
@@ -217,6 +230,7 @@ in
               "dn"
               "fn"
               "hn"
+              "nn"
               "in"
               "sn"
               "xn"
@@ -247,6 +261,7 @@ in
               "sn"
               "xn"
               "npn"
+              "nn"
               # "pg"
             ];
             versioning = {
