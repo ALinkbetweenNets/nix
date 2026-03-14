@@ -161,8 +161,8 @@ in
           pls = "sudo";
           cls = "clear";
           datamatrix = "iec16022";
-          copy = "rsync -ravHh --progress ";
-          copycompressed = "rsync -ravzHh --progress";
+          copy = "rsync -ravHh --progress --info=progress2";
+          copycompressed = "rsync -ravzHh --progress --info=progress2";
           fancytext = "figlet -tkf slant ";
           open = "xdg-open";
           o = "xdg-open";
