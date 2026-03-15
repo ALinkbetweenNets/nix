@@ -36,7 +36,7 @@ in {
             # "0.0.0.0/0"
             # "::/0"
           ];
-          endpoint = "202.61.251.70:51825";
+          endpoint = "2a03:4000:54:8a:585a:48ff:fee3:9d06:51825";
           persistentKeepalive = 25;
         }];
       };
