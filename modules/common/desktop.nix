@@ -74,6 +74,8 @@ in {
     fonts = {
       enableDefaultPackages = true;
       packages = with pkgs; [
+        fira
+        fira-sans
         font-awesome
         jetbrains-mono
         # fira
