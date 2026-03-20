@@ -67,7 +67,18 @@ in {
             forward-tls-upstream = "no";
           }
           {
+            name = "lsec.vpn.";
+            forward-addr = [ "10.100.11.1" ];
+            forward-tls-upstream = "no";
+          }
+          {
             name = "google.*.";
+            forward-addr =
+              [ "8.8.8.8@853#dns.google" "8.8.8.4@853#dns.google" ];
+            forward-tls-upstream = "yes";
+          }
+          {
+            name = "youtube.*.";
             forward-addr =
               [ "8.8.8.8@853#dns.google" "8.8.8.4@853#dns.google" ];
             forward-tls-upstream = "yes";
@@ -78,21 +89,28 @@ in {
               # "192.168.1.1"
               # "192.168.178.1"
               #"10.100.11.1"
-              "194.242.2.4" # mullvad base
-              "2a07:e340::4" # mullvad base
-              # "192.168.188.3" # npo
               "100.100.100.100" # tailscale
-              "185.222.222.222" # dns.sb
-              "45.11.45.11" # dns.sb
-              "2a09::" # dns.sb
-              "2a11::" # dns.sb
-              "9.9.9.9" # quad9
-              "8.8.8.8" # google
-              "1.0.0.1" # cloudflare
-              "194.242.2.2" # mullvad
+              "2620:fe::fe@853#dns.quad9.net"
+              "2620:fe::9@853#dns.quad9.net"
+              "9.9.9.9#dns.quad9.net" # quad9
+              "149.112.112.112#dns.quad9.net"
+              "2a07:e340::4#base.dns.mullvad.net"
+              "194.242.2.4#base.dns.mullvad.net"
+              # "192.168.188.3" # npo
+              "2a09::@853" # dns.sb
+              "2a11::@853" # dns.sb
+              "185.222.222.222@853" # dns.sb
+              "45.11.45.11@853" # dns.sb
+              # "8.8.8.8" # google
+              # "2606:4700:4700::1111@853#cloudflare-dns.com"
+              # "1.1.1.1@853#cloudflare-dns.com"
+              # "2606:4700:4700::1001@853#cloudflare-dns.com"
+              # "1.0.0.1@853#cloudflare-dns.com"
+              # "1.0.0.1" # cloudflare
+              # "194.242.2.2" # mullvad
             ];
-            forward-first = "yes";
-            forward-tls-upstream = "no";
+            # forward-first = "yes";
+            forward-tls-upstream = "yes";
           }
         ];
       };
