@@ -169,6 +169,7 @@ with lib; {
         hunspell
         hunspellDicts.de_DE
         hunspellDicts.en_US
+        quodlibet-full
         ## Audio
         #helvum # Patchbay
         pavucontrol
