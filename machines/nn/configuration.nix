@@ -26,7 +26,7 @@
     wg-link.enable = true;
     wg-link.address = "10.5.5.6/24";
     grub.enable = true;
-    storage = "/z/srv/";
+    storage = "/z/srv";
     # systemd-boot.enable = false;
     # fs.ntfs.enable = true;
     # vm.enable = true;
@@ -389,6 +389,7 @@
   #   # loader.grub.device = "/dev/sdd";
   #   zfs.extraPools = [ "wdp" ];
   # };
+  boot.zfs.devNodes = "/dev/mapper/";
   # Supress systemd units that don't work because of LXC.
   # https://blog.xirion.net/posts/nixos-proxmox-lxc/#configurationnix-tweak
   # systemd.suppressedSystemUnits = [
