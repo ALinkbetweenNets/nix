@@ -117,7 +117,7 @@ in
         extraPackages = with pkgs; [ ipset ];
         allowedUDPPorts = [
           51820 # wireguard
-          53 # dnsmasq
+          # 53 # dnsmasq
           # 1194 # vpn
           # 1195 # vpn
           # 1196 # vpn
@@ -129,7 +129,7 @@ in
           # 1400 # vpn
         ];
         allowedTCPPorts = [
-          53 # dnsmasq
+          # 53 # dnsmasq
           # 80 # vpn
           # 443 # vpn
           # 1401 # vpn
