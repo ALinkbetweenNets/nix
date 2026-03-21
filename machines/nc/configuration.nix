@@ -49,8 +49,8 @@ in
     vm.enable = true;
     # services.coturn.enable = true;
   };
-  # ctf vpn forwarding
   boot.kernel.sysctl = {
+    # ctf vpn forwarding
     "net.ipv4.conf.tailscale0.forwarding" = true;
     "net.ipv6.conf.tailscale0.forwarding" = true;
     "net.ipv4.conf.ens3.forwarding" = true;
