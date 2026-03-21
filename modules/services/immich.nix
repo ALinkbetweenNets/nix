@@ -39,7 +39,6 @@ in
       group = "immich";
     };
     services.immich = {
-      # database.createDB = false;
       environment = {
         IMMICH_MACHINE_LEARNING_URL = "http://localhost:3003";
         IMMICH_LOG_LEVEL = "verbose";
