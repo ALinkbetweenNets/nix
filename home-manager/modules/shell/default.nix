@@ -129,9 +129,9 @@ in
           );
         in
         {
-          unn = "nixos-rebuild --flake .#nn --target-host 192.168.188.2 --use-substitutes switch --sudo";
-          unc = "nixos-rebuild --flake .#nc --target-host nc --use-substitutes switch --sudo";
-          usn = "nixos-rebuild --flake .#sn --target-host sn --use-substitutes switch --sudo";
+          unn = "nixos-rebuild --flake .#nn --target-host nn --use-substitutes switch --sudo |&nom";
+          unc = "nixos-rebuild --flake .#nc --target-host nc --use-substitutes switch --sudo |&nom";
+          usn = "nixos-rebuild --flake .#sn --target-host sn --use-substitutes switch --sudo |&nom";
           crl = "curl -A \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:145.0) Gecko/20100101 Firefox/145.0\" -vk";
           htt = "httpx -nc -sc -fr -location -td -rt -cdn -title -v -rl 5000 -timeout 60 -tls-probe -csp-probe -tls-grab -pipeline -http2 -vhost -pa -rl 10 -t 8 -ss -system-chrome -sid 5s -probe -cname -ip -extract-fqdn -ws -method -lc -jarm -favicon md5 -ct -c -p 'http:80,8080,https:443,8443' -mc 400";
           dns = "dnsx -re -all -nc -cdn -e soa";
