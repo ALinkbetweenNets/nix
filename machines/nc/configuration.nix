@@ -55,7 +55,8 @@ in
     "net.ipv6.conf.tailscale0.forwarding" = true;
     "net.ipv4.conf.ens3.forwarding" = true;
     "net.ipv6.conf.ens3.forwarding" = true;
-
+    "net.ipv4.ip_forward" = 1;
+    "net.ipv6.ip_forward" = 1;
   };
   networking.defaultGateway6 = {
     address = "fe80::1";
@@ -74,11 +75,35 @@ in
     enableIPv6 = true;
     forwardPorts = [
       {
-        sourcePort = 25565;
+        sourcePort = 3478;
         proto = "tcp";
-        destination = "${config.link.serviceHost}:25565";
+        destination = "${config.link.serviceHost}:3478";
         loopbackIPs = [ "100.87.16.37" ];
       }
+      # {
+      #   sourcePort = 80;
+      #   proto = "tcp";
+      #   destination = "${config.link.serviceHost}:80";
+      #   loopbackIPs = [ "100.87.16.37" ];
+      # }
+      # {
+      #   sourcePort = 443;
+      #   proto = "tcp";
+      #   destination = "${config.link.serviceHost}:443";
+      #   loopbackIPs = [ "100.87.16.37" ];
+      # }
+      # {
+      #   sourcePort = 80;
+      #   proto = "udp";
+      #   destination = "${config.link.serviceHost}:80";
+      #   loopbackIPs = [ "100.87.16.37" ];
+      # }
+      # {
+      #   sourcePort = 443;
+      #   proto = "udp";
+      #   destination = "${config.link.serviceHost}:443";
+      #   loopbackIPs = [ "100.87.16.37" ];
+      # }
       {
         sourcePort = 51821;
         proto = "udp";
