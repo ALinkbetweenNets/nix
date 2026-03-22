@@ -170,27 +170,27 @@
       "image": "bash",
       "name": "Push nc to Attic"
     },
-    {
-      "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.npn.config.system.build.toplevel' -o 'result-npn'"
-      ],
-      "image": "bash",
-      "name": "Build npn"
-    },
-    {
-      "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-npn')"
-      ],
-      "image": "bash",
-      "name": "Show npn info"
-    },
-    {
-      "commands": [
-        "attic push lounge-rocks:nix-cache 'result-npn'"
-      ],
-      "image": "bash",
-      "name": "Push npn to Attic"
-    },
+    # {
+    #   "commands": [
+    #     "nix build --print-out-paths '.#nixosConfigurations.npn.config.system.build.toplevel' -o 'result-npn'"
+    #   ],
+    #   "image": "bash",
+    #   "name": "Build npn"
+    # },
+    # {
+    #   "commands": [
+    #     "nix path-info --closure-size -h $(readlink -f 'result-npn')"
+    #   ],
+    #   "image": "bash",
+    #   "name": "Show npn info"
+    # },
+    # {
+    #   "commands": [
+    #     "attic push lounge-rocks:nix-cache 'result-npn'"
+    #   ],
+    #   "image": "bash",
+    #   "name": "Push npn to Attic"
+    # },
     {
       "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.nn.config.system.build.toplevel' -o 'result-nn'"
@@ -233,27 +233,27 @@
       "image": "bash",
       "name": "Push sn to Attic"
     },
-    {
-      "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.snvnarr.config.system.build.toplevel' -o 'result-snvnarr'"
-      ],
-      "image": "bash",
-      "name": "Build snvnarr"
-    },
-    {
-      "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-snvnarr')"
-      ],
-      "image": "bash",
-      "name": "Show snvnarr info"
-    },
-    {
-      "commands": [
-        "attic push lounge-rocks:nix-cache 'result-snvnarr'"
-      ],
-      "image": "bash",
-      "name": "Push snvnarr to Attic"
-    },
+    # {
+    #   "commands": [
+    #     "nix build --print-out-paths '.#nixosConfigurations.snvnarr.config.system.build.toplevel' -o 'result-snvnarr'"
+    #   ],
+    #   "image": "bash",
+    #   "name": "Build snvnarr"
+    # },
+    # {
+    #   "commands": [
+    #     "nix path-info --closure-size -h $(readlink -f 'result-snvnarr')"
+    #   ],
+    #   "image": "bash",
+    #   "name": "Show snvnarr info"
+    # },
+    # {
+    #   "commands": [
+    #     "attic push lounge-rocks:nix-cache 'result-snvnarr'"
+    #   ],
+    #   "image": "bash",
+    #   "name": "Push snvnarr to Attic"
+    # },
     {
       "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.vn.config.system.build.toplevel' -o 'result-vn'"
