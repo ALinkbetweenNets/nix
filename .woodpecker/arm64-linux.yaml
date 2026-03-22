@@ -12,24 +12,24 @@
       "name": "Build all outputs for this architecture",
       "failure": "ignore",
     },
+    {
+      "commands": [
+        "attic login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default"
+      ],
+      "environment": {
+        "ATTIC_KEY": {
+          "from_secret": "attic_key"
+        }
+      },
+      "image": "bash",
+      "name": "Setup Attic"
+    },
     # {
     #   "commands": [
     #     "nix flake show"
     #   ],
     #   "image": "bash",
     #   "name": "Nix flake show"
-    # },
-    # {
-    #   "commands": [
-    #     "attic login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default"
-    #   ],
-    #   "environment": {
-    #     "ATTIC_KEY": {
-    #       "from_secret": "attic_key"
-    #     }
-    #   },
-    #   "image": "bash",
-    #   "name": "Setup Attic"
     # },
     # {
     #   "commands": [
