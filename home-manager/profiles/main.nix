@@ -232,7 +232,7 @@ with lib; {
       mediainfo # audio and video information
       jellyfin-mpv-shim
       kdePackages.elisa # music player and organizer
-      digikam # photo library
+      # digikam # photo library
       ## Silly BS
       figlet # Fancytext
       uwuify
