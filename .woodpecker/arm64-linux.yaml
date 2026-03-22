@@ -4,67 +4,74 @@
     "platform": "linux/arm64"
   },
   "steps": [
-    {
+      {
       "commands": [
-        "nix flake show"
+        "nix-fast-build --no-nom --skip-cached --attic-cache lounge-rocks:nix-cache --flake \".#checks.$(nix eval --raw --impure --file builtins.currentSystem)\""
       ],
       "image": "bash",
-      "name": "Nix flake show"
-    },
-    {
-      "commands": [
-        "attic login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default"
-      ],
-      "environment": {
-        "ATTIC_KEY": {
-          "from_secret": "attic_key"
-        }
-      },
-      "image": "bash",
-      "name": "Setup Attic"
-    },
-    {
-      "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.p4n.config.system.build.toplevel' -o 'result-p4n'"
-      ],
-      "image": "bash",
-      "name": "Build p4n"
-    },
-    {
-      "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-p4n')"
-      ],
-      "image": "bash",
-      "name": "Show p4n info"
-    },
-    {
-      "commands": [
-        "attic push lounge-rocks:nix-cache 'result-p4n'"
-      ],
-      "image": "bash",
-      "name": "Push p4n to Attic"
+      "name": "Build all outputs for this architecture"
     },
     # {
     #   "commands": [
-    #     "nix build --print-out-paths '.#nixosConfigurations.pppn.config.system.build.toplevel' -o 'result-pppn'"
+    #     "nix flake show"
     #   ],
     #   "image": "bash",
-    #   "name": "Build pppn"
+    #   "name": "Nix flake show"
     # },
     # {
     #   "commands": [
-    #     "nix path-info --closure-size -h $(readlink -f 'result-pppn')"
+    #     "attic login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default"
     #   ],
+    #   "environment": {
+    #     "ATTIC_KEY": {
+    #       "from_secret": "attic_key"
+    #     }
+    #   },
     #   "image": "bash",
-    #   "name": "Show pppn info"
+    #   "name": "Setup Attic"
     # },
     # {
     #   "commands": [
-    #     "attic push lounge-rocks:nix-cache 'result-pppn'"
+    #     "nix build --print-out-paths '.#nixosConfigurations.p4n.config.system.build.toplevel' -o 'result-p4n'"
     #   ],
     #   "image": "bash",
-    #   "name": "Push pppn to Attic"
-    # }
+    #   "name": "Build p4n"
+    # },
+    # {
+    #   "commands": [
+    #     "nix path-info --closure-size -h $(readlink -f 'result-p4n')"
+    #   ],
+    #   "image": "bash",
+    #   "name": "Show p4n info"
+    # },
+    # {
+    #   "commands": [
+    #     "attic push lounge-rocks:nix-cache 'result-p4n'"
+    #   ],
+    #   "image": "bash",
+    #   "name": "Push p4n to Attic"
+    # },
+    # # {
+    # #   "commands": [
+    # #     "nix build --print-out-paths '.#nixosConfigurations.pppn.config.system.build.toplevel' -o 'result-pppn'"
+    # #   ],
+    # #   "image": "bash",
+    # #   "name": "Build pppn"
+    # # },
+    # # {
+    # #   "commands": [
+    # #     "nix path-info --closure-size -h $(readlink -f 'result-pppn')"
+    # #   ],
+    # #   "image": "bash",
+    # #   "name": "Show pppn info"
+    # # },
+    # # {
+    # #   "commands": [
+    # #     "attic push lounge-rocks:nix-cache 'result-pppn'"
+    # #   ],
+    # #   "image": "bash",
+    # #   "name": "Push pppn to Attic"
+    # # }
   ],
   "when": [
     {

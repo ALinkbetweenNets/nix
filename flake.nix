@@ -312,6 +312,26 @@
           };
         }
       );
+      checks =
+        let
+          hostsForSystem =
+            system: names:
+            nixpkgs.lib.genAttrs names (name: self.nixosConfigurations.${name}.config.system.build.toplevel);
+        in
+        {
+          aarch64-linux = hostsForSystem "aarch64-linux" [
+            "p4n"
+          ];
+          x86_64-linux = hostsForSystem "x86_64-linux" [
+            "fn"
+            "fnvn"
+            "xn"
+            "nn"
+            "sn"
+            "nc"
+            "vn"
+          ];
+        };
       # colmena = {
       #   meta = {
       #     nixpkgs = import nixpkgs {
