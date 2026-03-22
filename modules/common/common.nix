@@ -142,6 +142,7 @@ in
       ## system
       openssl
       limitcpu
+      unixtools.net-tools
       exfatprogs
       libsecret
       gnupg
