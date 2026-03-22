@@ -82,9 +82,9 @@ in
         53 # DNS
         67 # DHCP
       ];
-      firewall.allowedTCPPorts = [
-        5900 # spice
-      ];
+      # firewall.allowedTCPPorts = [
+      #   5900 # spice
+      # ];
     };
   };
 }
