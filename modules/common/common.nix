@@ -142,6 +142,7 @@ in
       ## system
       openssl
       limitcpu
+      nix-fast-build
       unixtools.net-tools
       exfatprogs
       libsecret
