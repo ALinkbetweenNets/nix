@@ -175,6 +175,8 @@
   # boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
   networking.firewall.interfaces."${config.link.eth}".allowedTCPPorts = [
     2522
+  ];
+  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [
     config.link.services.immich.port
   ];
   networking = {
