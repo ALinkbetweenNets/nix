@@ -6,6 +6,18 @@
   "steps": [
     {
       "commands": [
+        "attic login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default"
+      ],
+      "environment": {
+        "ATTIC_KEY": {
+          "from_secret": "attic_key"
+        }
+      },
+      "image": "bash",
+      "name": "Setup Attic"
+    },
+    {
+      "commands": [
         "nix-fast-build --no-nom --skip-cached --attic-cache lounge-rocks:nix-cache --flake \".#checks.$(nix eval --raw --impure --file builtins.currentSystem)\""
       ],
       "image": "bash",
@@ -17,18 +29,6 @@
     #   ],
     #   "image": "bash",
     #   "name": "Nix flake show"
-    # },
-    # {
-    #   "commands": [
-    #     "attic login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default"
-    #   ],
-    #   "environment": {
-    #     "ATTIC_KEY": {
-    #       "from_secret": "attic_key"
-    #     }
-    #   },
-    #   "image": "bash",
-    #   "name": "Setup Attic"
     # },
     # # {
     # #   "commands": [
