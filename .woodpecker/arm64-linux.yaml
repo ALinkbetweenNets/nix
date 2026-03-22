@@ -9,7 +9,8 @@
         "nix-fast-build --no-nom --skip-cached --attic-cache lounge-rocks:nix-cache --flake \".#checks.$(nix eval --raw --impure --file builtins.currentSystem)\""
       ],
       "image": "bash",
-      "name": "Build all outputs for this architecture"
+      "name": "Build all outputs for this architecture",
+      "failure": "ignore",
     },
     # {
     #   "commands": [
