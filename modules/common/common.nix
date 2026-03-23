@@ -151,6 +151,7 @@ in
       s-tui
       glances
       nethogs
+      busybox
       kmod # modprobe
       ## basics
       file
