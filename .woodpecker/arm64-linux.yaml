@@ -4,14 +4,6 @@
     "platform": "linux/arm64"
   },
   "steps": [
-      {
-      "commands": [
-        "nix-fast-build --no-nom --skip-cached --attic-cache lounge-rocks:nix-cache --flake \".#checks.$(nix eval --raw --impure --file builtins.currentSystem)\""
-      ],
-      "image": "bash",
-      "name": "Build all outputs for this architecture",
-      "failure": "ignore",
-    },
     {
       "commands": [
         "attic login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default"
@@ -24,7 +16,15 @@
       "image": "bash",
       "name": "Setup Attic"
     },
-    # {
+    {
+      "commands": [
+        "nix-fast-build --no-nom --skip-cached --attic-cache lounge-rocks:nix-cache --flake \".#checks.$(nix eval --raw --impure --file builtins.currentSystem)\""
+      ],
+      "image": "bash",
+      "name": "Build all outputs for this architecture",
+      "failure": "ignore",
+    },
+        # {
     #   "commands": [
     #     "nix flake show"
     #   ],
