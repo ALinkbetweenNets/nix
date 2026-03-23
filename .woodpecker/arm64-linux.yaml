@@ -18,7 +18,7 @@
     },
     {
       "commands": [
-        "nix-fast-build --no-nom --skip-cached --attic-cache lounge-rocks:nix-cache --flake \".#checks.$(nix eval --raw --impure --file builtins.currentSystem)\""
+        "nix-fast-build --no-nom --skip-cached --attic-cache lounge-rocks:nix-cache --flake \".#checks.aarch64-linux\""
       ],
       "image": "bash",
       "name": "Build all outputs for this architecture",
