@@ -18,11 +18,47 @@
     },
     {
       "commands": [
-        "nix-fast-build --no-nom --skip-cached --attic-cache lounge-rocks:nix-cache --flake \".#checks.$(nix eval --raw --impure --file builtins.currentSystem)\""
+        "nix-fast-build --no-nom --skip-cached --attic-cache lounge-rocks:nix-cache --flake \".#checks.x86_64-linux\""
       ],
       "image": "bash",
-      "name": "Build all outputs for this architecture"
-    }
+      "name": "Build all outputs for x86_64-linux",
+      "failure":"ignore"
+    },
+    {
+      "commands":[test -L result-fn],
+      "name": "check-output-fn",
+      "image": "bash",
+    },
+    {
+      "commands":[test -L result-fnvn],
+      "name": "check-output-fnvn",
+      "image": "bash",
+    },
+    {
+      "commands":[test -L result-nc],
+      "name": "check-output-nc",
+      "image": "bash",
+    },
+    {
+      "commands":[test -L result-nn],
+      "name": "check-output-nn",
+      "image": "bash",
+    },
+    {
+      "commands":[test -L result-sn],
+      "name": "check-output-sn",
+      "image": "bash",
+    },
+    {
+      "commands":[test -L result-vn],
+      "name": "check-output-vn",
+      "image": "bash",
+    },
+    {
+      "commands":[test -L result-xn],
+      "name": "check-output-xn",
+      "image": "bash",
+    },
     # {
     #   "commands": [
     #     "nix flake show"

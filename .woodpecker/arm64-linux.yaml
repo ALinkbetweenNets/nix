@@ -24,6 +24,11 @@
       "name": "Build all outputs for this architecture",
       "failure": "ignore",
     },
+    {
+      "commands":[test -L result-p4n],
+      "name": "check-output-p4n",
+      "image": "bash",
+    },
         # {
     #   "commands": [
     #     "nix flake show"
