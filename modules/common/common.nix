@@ -138,57 +138,59 @@ in
     };
     # Use nix-index-database for comma
     programs.nix-index-database.comma.enable = true;
-    environment.systemPackages = with pkgs; [
-      ## system
-      openssl
-      limitcpu
-      nix-fast-build
-      unixtools.net-tools
-      exfatprogs
-      libsecret
-      gnupg
-      ## top
-      s-tui
-      glances
-      nethogs
-      busybox
-      kmod # modprobe
-      ## basics
-      file
-      killall
-      trashy
-      tmux
-      zellij
-      ## encryption& filesystem
-      cryptsetup
-      gocryptfs
-      # cryfs
-      age
-      ## Network tools
-      wget
-      curl
-      tree
-      ## FS Tools
-      # unzip
-      # gnutar
-      # xz
-      # bzip2
-      p7zip
-      # netcat
-      # netcat-gnu
-      fzf
-      gnugrep
-      unixtools.watch
-      wireguard-tools
-      dnsutils
-      fd
-      ncdu # disk usage
-      sysz
-      systemctl-tui
-      eza
-      bat
-      btop
-    ];
+    environment.systemPackages =
+      with pkgs;
+      [
+        ## system
+        openssl
+        limitcpu
+        nix-fast-build
+        unixtools.net-tools
+        exfatprogs
+        libsecret
+        gnupg
+        ## top
+        s-tui
+        nethogs
+        busybox
+        kmod # modprobe
+        ## basics
+        file
+        killall
+        trashy
+        tmux
+        zellij
+        ## encryption& filesystem
+        cryptsetup
+        gocryptfs
+        # cryfs
+        age
+        ## Network tools
+        wget
+        curl
+        tree
+        ## FS Tools
+        # unzip
+        # gnutar
+        # xz
+        # bzip2
+        p7zip
+        # netcat
+        # netcat-gnu
+        fzf
+        gnugrep
+        unixtools.watch
+        wireguard-tools
+        dnsutils
+        fd
+        ncdu # disk usage
+        sysz
+        systemctl-tui
+        eza
+        bat
+        btop
+      ]
+      ++ lib.optionals (config.nixpkgs.hostPlatform.system == "x86_64-linux") [ glances ];
     # console.font = "FiraCode Nerd Font";
     #   system.replaceRuntimeDependencies =
     #   let
