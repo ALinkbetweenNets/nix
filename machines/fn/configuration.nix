@@ -1,4 +1,13 @@
-{ self, ... }:{ pkgs, lib, config, flake-self, home-manager, ... }: {
+{ self, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  flake-self,
+  home-manager,
+  ...
+}:
+{
   imports = [
     ./hardware-configuration.nix
     home-manager.nixosModules.home-manager
@@ -96,33 +105,34 @@
     script = config.system.activationScripts.setupSecrets.text;
   };
 
-containers.tor-container = {
-      # autoStart = true;
-      config = { ... }: {
-        system.stateVersion =
-          "23.05"; # If you don't add a state version, nix will complain at every rebuild
+  containers.tor-container = {
+    # autoStart = true;
+    config =
+      { ... }:
+      {
+        system.stateVersion = "23.05"; # If you don't add a state version, nix will complain at every rebuild
         # Exposing the nessecary ports in order to interact with i2p from outside the container
         networking.firewall.allowedTCPPorts = [
-        9050
+          9050
           # 7656 # default sam port
           # 7070 # default web interface port
           # 4444 # default http proxy port
           # 4447 # default socks proxy port
         ];
-  services.tor = {
-    enable = true;
-    client.enable = true;
-    client.dns.enable = true;
-    settings={
-      UseBridges = true;
-      ClientTransportPlugin = "obfs4 exec ${pkgs.obfs4}/bin/lyrebird";
-      Bridge = "obfs4 IP:ORPort [fingerprint]";
-    };
-  };
-  # services.xrlinuxdriver={
-  # enable=true;
-  # };
-    };
+        services.tor = {
+          enable = true;
+          client.enable = true;
+          client.dns.enable = true;
+          settings = {
+            UseBridges = true;
+            ClientTransportPlugin = "obfs4 exec ${pkgs.obfs4}/bin/lyrebird";
+            Bridge = "obfs4 IP:ORPort [fingerprint]";
+          };
+        };
+        # services.xrlinuxdriver={
+        # enable=true;
+        # };
+      };
   };
   hardware.enableRedistributableFirmware = true;
   home-manager.users.l = flake-self.homeConfigurations.laptop;
@@ -172,4 +182,5 @@ containers.tor-container = {
   #   cpuSerialNumber =
   #     "00A7-0F41-0000-0000-0000-0000"; # Replace with your processor's serial number
   # };
+  system.stateVersion = "23.11";
 }
