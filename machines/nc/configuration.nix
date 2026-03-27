@@ -49,6 +49,26 @@ in
     vm.enable = true;
     # services.coturn.enable = true;
   };
+  sops.secrets."cloudflare-api" = { };
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "link2502+acme" + "@" + "proton.me";
+    defaults.webroot = "/var/lib/acme/acme-challenge";
+    certs."${config.link.domain}" = {
+      domain = config.link.domain;
+      extraDomainNames = [ "*.${config.link.domain}" ];
+      dnsProvider = "cloudflare";
+      environmentFile = config.sops.secrets."cloudflare-api".path;
+      webroot = null;
+    };
+    certs."alinkbn.de" = {
+      domain = config.link.domain;
+      extraDomainNames = [ "*.alinkbn.de" ];
+      dnsProvider = "cloudflare";
+      environmentFile = config.sops.secrets."cloudflare-api".path;
+      webroot = null;
+    };
+  };
   boot.kernel.sysctl = {
     # ctf vpn forwarding
     "net.ipv4.conf.tailscale0.forwarding" = true;
