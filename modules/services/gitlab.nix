@@ -47,7 +47,7 @@ in
         owner = "gitlab";
         group = "gitlab";
       };
-      "gitlab/initial-root" = {
+      "gitlab/initialRoot" = {
         owner = "gitlab";
         group = "gitlab";
       };
@@ -105,7 +105,7 @@ in
         pages.settings.pages-domain = "pages.alinkbetweennets.de";
         databaseCreateLocally = true;
         databasePasswordFile = config.sops.secrets."gitlab/dbPass".path;
-        initialRootPasswordFile = config.sops.secrets."gitlab/initial-root".path;
+        initialRootPasswordFile = config.sops.secrets."gitlab/initialRoot".path;
         extraConfig = {
           gitlab = {
             trusted_proxies = [
