@@ -276,4 +276,5 @@
     "sys-kernel-debug.mount"
     "sys-fs-fuse-connections.mount"
   ];
+  system.stateVersion = "23.11";
 }
