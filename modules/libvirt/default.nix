@@ -13,7 +13,7 @@ in
   options.link.libvirt.enable = mkEnableOption "activate libvirt";
   config = mkIf cfg.enable {
     boot.kernelModules = [
-      "vfio_virqfd"
+      # "vfio_virqfd"
       "vfio_pci"
       "vfio_iommu_type1"
       "vfio"
