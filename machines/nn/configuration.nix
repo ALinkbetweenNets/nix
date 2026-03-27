@@ -221,110 +221,164 @@
     #     192.168.122.200 snvnarr
     #   '';
   };
-  virtualisation.containers.enable = true;
-  containers.hedgedoc = {
-    autoStart = true;
-    privateNetwork = true;
-    hostAddress = "192.168.100.1";
-    localAddress = "192.168.100.11";
-    hostAddress6 = "fc00::1";
-    localAddress6 = "fc00::11";
-    config =
-      {
-        config,
-        pkgs,
-        lib,
-        ...
-      }:
-      {
-        services.hedgedoc = {
-          enable = true;
-          # workDir = "${config.link.storage}/hedgedoc";
-          settings = {
-            #domain = "hedgedoc.${config.link.domain}";
-            host = "0.0.0.0";
-            port = 8080;
-            # protocolUseSSL = true;
-            # useSSL = false;
-            # db = {
-            #   dialect = "sqlite";
-            #   storage = "/var/lib/hedgedoc/db.sqlite";
-            # };
-          };
-        };
-        # services.nextcloud = {
-        #   enable = true;
-        #   package = pkgs.nextcloud28;
-        #   hostName = "localhost";
-        #   config.adminpassFile = "${pkgs.writeText "adminpass" "test123"}"; # DON'T DO THIS IN PRODUCTION - the password file will be world-readable in the Nix Store!
-        # };
+  # virtualisation.containers.enable = true;
+  # containers.hedgedoc = {
+  #   autoStart = true;
+  #   privateNetwork = true;
+  #   hostAddress = "192.168.100.1";
+  #   localAddress = "192.168.100.11";
+  #   hostAddress6 = "fc00::1";
+  #   localAddress6 = "fc00::11";
+  #   config =
+  #     {
+  #       config,
+  #       pkgs,
+  #       lib,
+  #       ...
+  #     }:
+  #     {
+  #       services.hedgedoc = {
+  #         enable = true;
+  #         # workDir = "${config.link.storage}/hedgedoc";
+  #         settings = {
+  #           #domain = "hedgedoc.${config.link.domain}";
+  #           host = "0.0.0.0";
+  #           port = 8080;
+  #           # protocolUseSSL = true;
+  #           # useSSL = false;
+  #           # db = {
+  #           #   dialect = "sqlite";
+  #           #   storage = "/var/lib/hedgedoc/db.sqlite";
+  #           # };
+  #         };
+  #       };
+  #       # services.nextcloud = {
+  #       #   enable = true;
+  #       #   package = pkgs.nextcloud28;
+  #       #   hostName = "localhost";
+  #       #   config.adminpassFile = "${pkgs.writeText "adminpass" "test123"}"; # DON'T DO THIS IN PRODUCTION - the password file will be world-readable in the Nix Store!
+  #       # };
 
-        system.stateVersion = "25.11";
+  #       system.stateVersion = "25.11";
 
-        networking = {
-          firewall = {
-            enable = true;
-            allowedTCPPorts = [ 8080 ];
-          };
-          # Use systemd-resolved inside the container
-          # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
-          useHostResolvConf = lib.mkForce false;
-        };
+  #       networking = {
+  #         firewall = {
+  #           enable = true;
+  #           allowedTCPPorts = [ 8080 ];
+  #         };
+  #         # Use systemd-resolved inside the container
+  #         # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
+  #         useHostResolvConf = lib.mkForce false;
+  #       };
 
-        services.resolved.enable = true;
+  #       services.resolved.enable = true;
 
-      };
+  #     };
 
-  };
-  containers.postgres = {
-    autoStart = true;
-    privateNetwork = true;
-    hostAddress = "192.168.100.1";
-    localAddress = "192.168.100.10";
-    hostAddress6 = "fc00::1";
-    localAddress6 = "fc00::10";
-    config =
-      {
-        config,
-        pkgs,
-        lib,
-        ...
-      }:
-      {
-        services.postgresql = {
-          enable = true;
-          settings.port = 5432;
-          settings = {
-            log_connections = true;
-            log_statement = "all";
-            logging_collector = true;
-            log_disconnections = true;
-            log_destination = lib.mkForce "syslog";
+  # };
+  # containers.gitlab = {
+  #   autoStart = true;
+  #   privateNetwork = true;
+  #   hostAddress = "192.168.100.1";
+  #   localAddress = "192.168.100.11";
+  #   hostAddress6 = "fc00::1";
+  #   localAddress6 = "fc00::11";
+  #   config =
+  #     {
+  #       config,
+  #       pkgs,
+  #       lib,
+  #       ...
+  #     }:
+  #     {
+  #       services.hedgedoc = {
+  #         enable = true;
+  #         # workDir = "${config.link.storage}/hedgedoc";
+  #         settings = {
+  #           #domain = "hedgedoc.${config.link.domain}";
+  #           host = "0.0.0.0";
+  #           port = 8080;
+  #           # protocolUseSSL = true;
+  #           # useSSL = false;
+  #           # db = {
+  #           #   dialect = "sqlite";
+  #           #   storage = "/var/lib/hedgedoc/db.sqlite";
+  #           # };
+  #         };
+  #       };
+  #       # services.nextcloud = {
+  #       #   enable = true;
+  #       #   package = pkgs.nextcloud28;
+  #       #   hostName = "localhost";
+  #       #   config.adminpassFile = "${pkgs.writeText "adminpass" "test123"}"; # DON'T DO THIS IN PRODUCTION - the password file will be world-readable in the Nix Store!
+  #       # };
 
-          };
-          initdbArgs = [
-            "--data-checksums"
-            # "--allow-group-access"
-          ];
-        };
+  #       system.stateVersion = "25.11";
 
-        system.stateVersion = "25.11";
+  #       networking = {
+  #         firewall = {
+  #           enable = true;
+  #           allowedTCPPorts = [ 8080 ];
+  #         };
+  #         # Use systemd-resolved inside the container
+  #         # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
+  #         useHostResolvConf = lib.mkForce false;
+  #       };
 
-        networking = {
-          firewall = {
-            enable = true;
-            allowedTCPPorts = [ 5432 ];
-          };
-          # Use systemd-resolved inside the container
-          # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
-          useHostResolvConf = lib.mkForce false;
-        };
+  #       services.resolved.enable = true;
 
-        services.resolved.enable = true;
+  #     };
 
-      };
+  # };
+  # containers.postgres = {
+  #   autoStart = true;
+  #   privateNetwork = true;
+  #   hostAddress = "192.168.100.1";
+  #   localAddress = "192.168.100.10";
+  #   hostAddress6 = "fc00::1";
+  #   localAddress6 = "fc00::10";
+  #   config =
+  #     {
+  #       config,
+  #       pkgs,
+  #       lib,
+  #       ...
+  #     }:
+  #     {
+  #       services.postgresql = {
+  #         enable = true;
+  #         settings.port = 5432;
+  #         settings = {
+  #           log_connections = true;
+  #           log_statement = "all";
+  #           logging_collector = true;
+  #           log_disconnections = true;
+  #           log_destination = lib.mkForce "syslog";
 
-  };
+  #         };
+  #         initdbArgs = [
+  #           "--data-checksums"
+  #           # "--allow-group-access"
+  #         ];
+  #       };
+
+  #       system.stateVersion = "25.11";
+
+  #       networking = {
+  #         firewall = {
+  #           enable = true;
+  #           allowedTCPPorts = [ 5432 ];
+  #         };
+  #         # Use systemd-resolved inside the container
+  #         # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
+  #         useHostResolvConf = lib.mkForce false;
+  #       };
+
+  #       services.resolved.enable = true;
+
+  #     };
+
+  # };
   # fileSystems."/home/lmh01/jellyfin-data" = {
   #   device = "/var/lib/jellyfin-data";
   #   options = [ "bind" ];
