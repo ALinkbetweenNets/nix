@@ -17,7 +17,11 @@
   system.autoUpgrade.enable = lib.mkForce false;
   link = {
     common.enable = true;
+    hardware.enable = true;
     server.enable = true;
+    cpu-intel.enable = true;
+    nvidia.enable = true;
+    tailscale.enable = true;
     fs.zfs.enable = true;
     fs.btrfs.enable = true;
     fs.luks.enable = true;
