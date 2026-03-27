@@ -143,6 +143,7 @@
     # # };
     eth = "enp6s0";
   };
+  sops.defaultSopsFile = lib.mkForce ../../secrets/nn.yaml;
   # services.postgresql.dataDir = "${config.link.storage}/postgresql/${config.services.postgresql.package.psqlSchema}";
   services.ollama = {
     enable = true;
