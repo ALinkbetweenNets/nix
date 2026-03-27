@@ -39,7 +39,7 @@ in
     # };
     environment.pathsToLink = [
       "/share/zsh"
-      "/share/fish"
+      # "/share/fish"
     ];
     link = {
       users = {
