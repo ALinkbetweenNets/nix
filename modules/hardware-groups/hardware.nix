@@ -18,7 +18,6 @@ in {
       fwupd.enable =
         config.link.systemd-boot.enable; # fwupd does not work in BIOS mode
       smartd.enable = lib.mkDefault true;
-      ddccontrol.enable = true; # Control External Monitor Brightness
       udisks2.enable = true;
     };
     hardware = {
