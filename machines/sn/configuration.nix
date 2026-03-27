@@ -15,6 +15,7 @@
   ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   system.autoUpgrade.enable = lib.mkForce false;
+  services.postgresql.package = pkgs.postgresql_16; # prevent major upgrades
   link = {
     common.enable = true;
     server.enable = true;
