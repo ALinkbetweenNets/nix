@@ -26,7 +26,7 @@ in
         internalInterfaces = [ "wg-link" ];
       };
       firewall = {
-        allowedTCPPorts = [ 53 ];
+        allowedTCPPorts = [ 53 ]; # TODO only expose 53 to wg interface
         allowedUDPPorts = [
           53
           51825
@@ -63,8 +63,8 @@ in
           '';
           peers = [
             {
-              # fn
-              publicKey = "VoWSuobtJ1FfmEQ6VSHygKGQDe1S9WcrGM2zs1Z6H20=";
+              # nn
+              publicKey = "y9ceM8NJcF1Xge/lfYMYe6nkrBKAeOJ6+vh8Ra5KBmA=";
               presharedKeyFile = config.sops.secrets."wireguard-preshared".path;
               allowedIPs = [
                 "10.5.5.2/32"
@@ -76,17 +76,17 @@ in
               publicKey = "CHTfO3TqbfUSwTT4rq3jGSSby4m6DAJX9qtX9HweURg=";
               presharedKeyFile = config.sops.secrets."wireguard-preshared".path;
               allowedIPs = [
-                "10.5.5.5/32"
-                "fdc9:281f:04d7:9ee9::5/128"
+                "10.5.5.3/32"
+                "fdc9:281f:04d7:9ee9::3/128"
               ];
             }
             {
-              # nn
-              publicKey = "y9ceM8NJcF1Xge/lfYMYe6nkrBKAeOJ6+vh8Ra5KBmA=";
+              # fn
+              publicKey = "VoWSuobtJ1FfmEQ6VSHygKGQDe1S9WcrGM2zs1Z6H20=";
               presharedKeyFile = config.sops.secrets."wireguard-preshared".path;
               allowedIPs = [
-                "10.5.5.6/32"
-                "fdc9:281f:04d7:9ee9::6/128"
+                "10.5.5.5/32"
+                "fdc9:281f:04d7:9ee9::5/128"
               ];
             }
           ];
