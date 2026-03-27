@@ -74,6 +74,7 @@ in
         staticAltitude = 95;
         enableStatic = lib.mkForce true;
       };
+      ddccontrol.enable = true; # Control External Monitor Brightness
       libinput.enable = true;
       # power-profiles-daemon.enable = lib.mkForce false;
       tlp.enable = false;

@@ -1,7 +1,17 @@
-{ config, system-config, flake-self, pkgs, lib, ghostty, ... }:
+{
+  config,
+  system-config,
+  flake-self,
+  pkgs,
+  lib,
+  ghostty,
+  ...
+}:
 with lib;
-let cfg = config.link.desktop;
-in {
+let
+  cfg = config.link.desktop;
+in
+{
   options.link.desktop.enable = mkEnableOption "activate desktop";
   config = mkIf cfg.enable {
     link = {
@@ -12,7 +22,7 @@ in {
       xserver.enable = lib.mkDefault false;
       plasma.enable = lib.mkDefault true;
     };
-    hardware.acpilight.enable=true;
+    hardware.acpilight.enable = true;
     programs = {
       dconf.enable = true; # GTK themes are not applied in Wayland applications
       # dconf.packages = with pkgs;[ maliit-keyboard ];
@@ -24,7 +34,8 @@ in {
         enable = true;
       };
     };
-    environment.systemPackages = with pkgs;
+    environment.systemPackages =
+      with pkgs;
       [
         ff2mpv
         ripgrep-all
@@ -46,27 +57,33 @@ in {
         virt-manager
         spice
         spice-vdagent
-      ] ++ lib.optionals (config.nixpkgs.hostPlatform.system == "x86_64-linux")
-        [
-          # cobang
-          ghostty.packages.x86_64-linux.default
-        ] ++ lib.optionals (config.link.podman.enable) [ pods podman-desktop ];
+      ]
+      ++ lib.optionals (config.nixpkgs.hostPlatform.system == "x86_64-linux") [
+        # cobang
+        ghostty.packages.x86_64-linux.default
+      ]
+      ++ lib.optionals (config.link.podman.enable) [
+        pods
+        podman-desktop
+      ];
     networking = {
       networkmanager = {
         enable = true;
         # dns = lib.mkDefault "systemd-resolved";
       };
       firewall = {
-        allowedTCPPortRanges = [{
-          from = 1714;
-          to = 1764;
-        }
+        allowedTCPPortRanges = [
+          {
+            from = 1714;
+            to = 1764;
+          }
           # KDE Connect
         ];
-        allowedUDPPortRanges = [{
-          from = 1714;
-          to = 1764;
-        }
+        allowedUDPPortRanges = [
+          {
+            from = 1714;
+            to = 1764;
+          }
           # KDE Connect
         ];
       };
@@ -105,6 +122,7 @@ in {
       };
     };
     services = {
+      ddccontrol.enable = true; # Control External Monitor Brightness
       # nixpkgs.config.permittedInsecurePackages = [
       #   "electron-25.9.0" # Temporary fix for Obsidian
       # ];
