@@ -22,7 +22,7 @@
       flake = "github:alinkbetweennets/nix";
       flags = [ "-L" ];
     };
-    stateVersion = "23.11";
+    # stateVersion = "23.11";
   };
   home-manager = {
     useUserPackages = true;

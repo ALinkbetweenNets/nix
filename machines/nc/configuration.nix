@@ -799,4 +799,5 @@ in
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBu+WcpENdr7FaCIwj6WsinGnykIPV/tnIyrfEHSeU+E root@sn"
   ];
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  system.stateVersion = "23.11";
 }
