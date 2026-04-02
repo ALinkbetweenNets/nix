@@ -54,7 +54,7 @@
     #   diagrams.enable = true;
     # };
     # zola.enable = true;
-    # podman.enable = true;
+    podman.enable = true;
     # service-ports-expose = true;
     services = {
       #   radicale.enable = true;
