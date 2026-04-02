@@ -15,6 +15,9 @@ in {
       type = types.attrs;
       default = {
         "iceportal.de" = "172.18.1.110";
+        "wifionice.de"="172.18.0.1";
+        "www.wifionice.de"="172.18.0.1";
+        "www.omboard.info"="172.16.0.1";
         "pass.telekom.de" = "109.237.176.33";
         "smokeping.lounge.rocks" = "192.168.5.21";
         "c" = "10.5.5.1";
