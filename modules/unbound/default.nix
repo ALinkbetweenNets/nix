@@ -63,7 +63,7 @@ in {
           }
           {
             name = "lsec.ninja.";
-            forward-addr = [ "10.100.11.1" ];
+            forward-addr = [ "100.121.15.22" ];
             forward-tls-upstream = "no";
           }
           {
