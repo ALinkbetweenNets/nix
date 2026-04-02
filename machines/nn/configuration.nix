@@ -28,7 +28,7 @@
     nftables.enable = true;
     libvirt.enable = true;
     wg-link.enable = true;
-    wg-link.address = "10.5.5.6/24";
+    wg-link.address = "10.5.5.2/24";
     grub.enable = true;
     storage = "/z/srv";
     # systemd-boot.enable = false;
