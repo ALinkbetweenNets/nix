@@ -129,6 +129,7 @@ in
           );
         in
         {
+          zj = "zellij";
           uwu = "sudo $(history -p !!)";
           unn = "nixos-rebuild --flake .#nn --target-host nn --use-substitutes switch --sudo |&nom";
           unc = "nixos-rebuild --flake .#nc --target-host nc --use-substitutes switch --sudo |&nom";
