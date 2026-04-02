@@ -15,6 +15,10 @@ in
     enable = mkEnableOption "activate laptop";
   };
   config = mkIf cfg.enable {
+    programs.captive-browser={
+      enable=true;
+      interface = "wlp1s0";
+    };
     environment.systemPackages = with pkgs; [
       wireless-regdb
       kdePackages.kconfig
