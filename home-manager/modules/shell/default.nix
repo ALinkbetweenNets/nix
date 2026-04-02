@@ -94,12 +94,12 @@ in
         eval "$(${pkgs.h}/bin/h --setup ~/code)"
       '';
       # historySubstringSearch.enable = true;
-      # history = {
-      #   expireDuplicatesFirst = true;
-      #   ignoreSpace = false;
-      #   save = 15000;
-      #   share = true;
-      # };
+      history = {
+        expireDuplicatesFirst = true;
+        ignoreSpace = true;
+        save = 20000;
+        share = true;
+      };
       plugins = [
         {
           name = "zsh-fzf-history-search";
