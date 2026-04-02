@@ -78,6 +78,7 @@ in
       #     }
       #   ];
       # };
+      firewall.trustedInterfaces = [ "virbr0"];
       firewall.interfaces.virbr0.allowedUDPPorts = [
         53 # DNS
         67 # DHCP
