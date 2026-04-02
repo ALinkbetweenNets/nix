@@ -107,7 +107,7 @@ with lib;
         };
         "*" = {
           compression = true;
-          forwardAgent = true;
+          forwardAgent = false;
           addKeysToAgent = "no";
           serverAliveInterval = 0;
           serverAliveCountMax = 3;
