@@ -31,13 +31,13 @@
     wg-link.address = "10.5.5.2/24";
     grub.enable = true;
     storage = "/z/srv";
+    domain = "n.shonk.de";
     # systemd-boot.enable = false;
     # fs.ntfs.enable = true;
     # vm.enable = true;
-    cpu-intel.enable = true;
     # docker.enable = true;
     #   fail2ban.enable = true;
-    domain = "alinkbetweennets.de";
+    # domain = "alinkbn.de";
     # storage = "/var/lib";
     syncthing.enable = true;
     syncthingDir = "/z/sync/";
