@@ -58,6 +58,8 @@
     server.enable = true;
     storage = "/12tb";
     services.restic-server.enable = true;
+    services.restic-server.expose-port = true;
+    services.restic-server.nginx = false;
     # desktop.enable = true;
     # syncthing.enable = true;
     # syncthingDir = "/mnt/syncthing";

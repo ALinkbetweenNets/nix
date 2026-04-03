@@ -31,7 +31,7 @@ in {
       restic.server = {
         enable = true;
         dataDir = "${config.link.storage}/restic";
-        prometheus = true;
+        prometheus = false;
         privateRepos = true;
         listenAddress =
           if cfg.expose-port then
