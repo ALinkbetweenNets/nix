@@ -134,7 +134,7 @@ with lib; {
       # quickemu # broken
       # quickgui
       # code-cursor
-      aider-chat
+      # aider-chat
       # protonmail-bridge-gui
       # protonmail-desktop
       #jetbrains.idea-community
