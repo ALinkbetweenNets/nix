@@ -277,5 +277,5 @@
     "sys-fs-fuse-connections.mount"
   ];
   system.stateVersion = "23.11";
-  binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 }
