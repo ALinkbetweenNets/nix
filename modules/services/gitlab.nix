@@ -51,26 +51,26 @@ in
         owner = "gitlab";
         group = "gitlab";
       };
-      "gitlab/secret" = {
-        owner = "gitlab";
-        group = "gitlab";
-      };
       "gitlab/jws" = {
         owner = "gitlab";
         group = "gitlab";
       };
-      # "gitlab/runner-default" = {
-      #   owner = "gitlab";
-      #   group = "gitlab";
-      # };
-      # "gitlab/runner-nix" = {
-      #   owner = "gitlab";
-      #   group = "gitlab";
-      # };
-      # "gitlab/runner-protected" = {
-      #   owner = "gitlab";
-      #   group = "gitlab";
-      # };
+      "gitlab/secret" = {
+        owner = "gitlab";
+        group = "gitlab";
+      };
+      "gitlab/runner-default" = {
+        owner = "gitlab";
+        group = "gitlab";
+      };
+      "gitlab/runner-nix" = {
+        owner = "gitlab";
+        group = "gitlab";
+      };
+      "gitlab/runner-protected" = {
+        owner = "gitlab";
+        group = "gitlab";
+      };
       "gitlab/activeRecordPrimary" = {
         owner = "gitlab";
         group = "gitlab";
@@ -127,6 +127,7 @@ in
           otpFile = config.sops.secrets."gitlab/otp".path;
           dbFile = config.sops.secrets."gitlab/db".path;
           jwsFile = config.sops.secrets."gitlab/jws".path;
+          # jwsFile = pkgs.runCommand "oidcKeyBase" { } "${pkgs.openssl}/bin/openssl genrsa 2048 > $out";
         };
       };
     };
