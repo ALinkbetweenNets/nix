@@ -99,6 +99,7 @@
       #   # vaultwarden.enable = true;
       #   # # matrix.enable = true;
         restic-server.enable = true;
+        restic-server.expose-port = true;
       #   # containers.grist.enable = true;
       #   # # coturn.enable = true;
       #   # # dns.enable = true;
