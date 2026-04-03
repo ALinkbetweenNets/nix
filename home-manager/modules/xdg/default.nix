@@ -32,6 +32,7 @@ with lib; {
     userDirs = {
       enable = true;
       createDirectories = true;
+      setSessionVariables=true;
     };
     enable = true;
     configFile."mimeapps.list".force = true;
