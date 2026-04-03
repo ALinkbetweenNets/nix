@@ -23,6 +23,7 @@ in {
           # v4l2loopback # broken
         ];
       kernelModules = [
+        "ntsync"
         # "v4l2loopback" # broken
       ];
     };
