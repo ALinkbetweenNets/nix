@@ -64,6 +64,7 @@
         "/home/l/uni"
         "/home/l/w"
       ];
+      backup-paths-nn = config.link.services.restic-client.backup-paths-sn;
       #  backup-paths-sciebo = [
       #    "/home/l/.ssh"
       #    # "/home/l/archive"
