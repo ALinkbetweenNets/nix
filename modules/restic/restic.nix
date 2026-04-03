@@ -50,7 +50,7 @@ in {
       type = types.listOf types.str;
       default = [ ];
       example = [ "/var/lib/gitea" ];
-      description = "Paths to backup to rsn";
+      description = "Paths to backup to nn";
     };
     backup-paths-exclude = mkOption {
       type = types.listOf types.str;
