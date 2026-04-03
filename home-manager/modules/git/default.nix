@@ -4,6 +4,7 @@
     git = {
       enable = true;
       # package = lib.mkForce pkgs.gitFull;
+      signing.format = null;
       settings = {
         maintenance.enable = true;
         maintenance.timers = {
