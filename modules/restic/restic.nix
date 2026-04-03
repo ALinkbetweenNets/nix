@@ -63,9 +63,6 @@ in {
       "restic/sn/repository" = { };
       "restic/sn/password" = { };
       "restic/sn/environment" = { };
-      "restic/nn/repository" = { };
-      "restic/nn/password" = { };
-      "restic/nn/environment" = { };
       "restic/p4n/password" = { };
       "restic/p4n/repository" = { };
       "restic/p4n/environment" = { };
