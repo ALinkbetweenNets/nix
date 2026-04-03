@@ -46,12 +46,6 @@ in {
       example = [ "/var/lib/gitea" ];
       description = "Paths to backup to onedrive";
     };
-    backup-paths-nn = mkOption {
-      type = types.listOf types.str;
-      default = [ ];
-      example = [ "/var/lib/gitea" ];
-      description = "Paths to backup to nn";
-    };
     backup-paths-exclude = mkOption {
       type = types.listOf types.str;
       default =
@@ -198,31 +192,6 @@ in {
         repositoryFile = config.sops.secrets."restic/p4n/repository".path;
         passwordFile = config.sops.secrets."restic/p4n/password".path;
         environmentFile = config.sops.secrets."restic/p4n/environment".path;
-        pruneOpts = [
-          "--keep-daily 7"
-          "--keep-weekly 5"
-          "--keep-monthly 12"
-          "--keep-yearly 75"
-        ];
-        timerConfig = {
-          OnCalendar = "03:00";
-          Persistent = true;
-          RandomizedDelaySec = "5h";
-        };
-        extraBackupArgs = [
-          "--exclude-file=${restic-ignore-file}"
-          "--one-file-system"
-          "--compression=max"
-          # "--dry-run"
-          "-v"
-        ];
-        initialize = true;
-      }; 
-      nn = mkIf (cfg.backup-paths-nn != [ ]) {
-        paths = cfg.backup-paths-nn;
-        repositoryFile = config.sops.secrets."restic/nn/repository".path;
-        passwordFile = config.sops.secrets."restic/nn/password".path;
-        environmentFile = config.sops.secrets."restic/nn/environment".path;
         pruneOpts = [
           "--keep-daily 7"
           "--keep-weekly 5"
