@@ -46,12 +46,6 @@ in {
       example = [ "/var/lib/gitea" ];
       description = "Paths to backup to onedrive";
     };
-    backup-paths-rsn = mkOption {
-      type = types.listOf types.str;
-      default = [ ];
-      example = [ "/var/lib/gitea" ];
-      description = "Paths to backup to rsn";
-    };
     backup-paths-exclude = mkOption {
       type = types.listOf types.str;
       default =
@@ -214,7 +208,7 @@ in {
           "-v"
         ];
         initialize = true;
-      }; 
+      };
       nn = mkIf (cfg.backup-paths-nn != [ ]) {
         paths = cfg.backup-paths-nn;
         repositoryFile = config.sops.secrets."restic/nn/repository".path;

@@ -12,20 +12,20 @@ in
 {
   options.link.services.gitlab = {
     enable = mkEnableOption "activate gitlab";
-    expose-port = mkOption {
+    expose-lan = mkOption {
       type = types.bool;
-      default = config.link.service-ports-expose;
+      default = config.link.expose-lan;
       description = "directly expose the port of the application";
     };
-    nginx = mkOption {
+    expose-ts = mkOption {
       type = types.bool;
-      default = config.link.nginx.enable;
-      description = "expose the application to the internet with NGINX and ACME";
+      default = config.link.expose-ts;
+      description = "directly expose the port of the application";
     };
-    nginx-expose = mkOption {
+    expose-nginx = mkOption {
       type = types.bool;
-      default = config.link.nginx-expose;
-      description = "expose the application to the internet";
+      default = config.link.expose-nginx-public;
+      description = "directly expose the port of the application";
     };
     port = mkOption {
       type = types.int;
@@ -48,6 +48,10 @@ in
         group = "gitlab";
       };
       "gitlab/initialRoot" = {
+        owner = "gitlab";
+        group = "gitlab";
+      };
+      "gitlab/jws" = {
         owner = "gitlab";
         group = "gitlab";
       };
@@ -84,25 +88,25 @@ in
       nginx = {
         enable = true;
         recommendedProxySettings = true;
-        virtualHosts = {
-          "gitlab.alinkbetweennets.de" = {
-            locations."/".proxyPass = "http://unix:/run/gitlab/gitlab-workhorse.socket";
-          };
+        virtualHosts."gitlab.${config.link.domain}" = lib.mkIf (config.link.domain != "") {
+          locations."/".proxyPass = "http://unix:/run/gitlab/gitlab-workhorse.socket";
         };
       };
       gitlab = {
         enable = true;
-        port = 443;
-        https = true;
-        host = "gitlab.${config.link.domain}";
+        port = if cfg.expose-nginx then 443 else cfg.port;
+        https = cfg.expose-nginx;
+        host =
+          if config.link.domain == "" then config.networking.hostName else "gitlab.${config.link.domain}";
         # host = "sn";
-        statePath = "${config.link.storage}/gitlab/state";
+        # statePath = "${config.link.storage}/gitlab/state";
         sidekiq.concurrency = 4;
         puma = {
           threadsMax = 1;
           workers = 1;
         };
-        pages.settings.pages-domain = "pages.alinkbetweennets.de";
+        pages.settings.pages-domain =
+          if config.link.domain == "" then "pages.${config.link.domain}" else config.networking.hostName;
         databaseCreateLocally = true;
         databasePasswordFile = config.sops.secrets."gitlab/dbPass".path;
         initialRootPasswordFile = config.sops.secrets."gitlab/initialRoot".path;
@@ -122,14 +126,15 @@ in
           secretFile = config.sops.secrets."gitlab/secret".path;
           otpFile = config.sops.secrets."gitlab/otp".path;
           dbFile = config.sops.secrets."gitlab/db".path;
-          jwsFile = pkgs.runCommand "oidcKeyBase" { } "${pkgs.openssl}/bin/openssl genrsa 2048 > $out";
+          jwsFile = config.sops.secrets."gitlab/jws".path;
+          # jwsFile = pkgs.runCommand "oidcKeyBase" { } "${pkgs.openssl}/bin/openssl genrsa 2048 > $out";
         };
       };
     };
     boot.kernel.sysctl."net.ipv4.ip_forward" = true;
-    virtualisation.docker.enable = true;
+    virtualisation.podman.enable = true;
     services.gitlab-runner = {
-      enable = true;
+      enable = false;
       services = {
         # runner for building in docker via host's nix-daemon
         # nix store will be readable in runner, might be insecure
@@ -151,9 +156,7 @@ in
             mkdir -p -m 1777 /nix/var/nix/profiles/per-user
             mkdir -p -m 0755 /nix/var/nix/profiles/per-user/root
             mkdir -p -m 0700 "$HOME/.nix-defexpr"
-
             . ${pkgs.nix}/etc/profile.d/nix.sh
-
             ${pkgs.nix}/bin/nix-env -i ${
               concatStringsSep " " (
                 with pkgs;
@@ -165,7 +168,6 @@ in
                 ]
               )
             }
-
             ${pkgs.nix}/bin/nix-channel --add https://nixos.org/channels/nixpkgs-unstable
             ${pkgs.nix}/bin/nix-channel --update nixpkgs
           '';
@@ -177,14 +179,14 @@ in
             NIX_SSL_CERT_FILE = "/nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt";
           };
           authenticationTokenConfigFile = config.sops.secrets."gitlab/runner-nix".path;
-          dockerExtraHosts = [ "sn:127.0.0.1" ];
+          dockerExtraHosts = [ "${config.networking.hostName}:127.0.0.1" ];
         };
         # runner for building docker images
         docker-images = {
           # File should contain at least these two variables:
           # `CI_SERVER_URL`
           # `CI_SERVER_TOKEN`
-          dockerExtraHosts = [ "sn:127.0.0.1" ];
+          dockerExtraHosts = [ "${config.networking.hostName}:127.0.0.1" ];
           authenticationTokenConfigFile = config.sops.secrets."gitlab/runner-default".path;
 
           dockerImage = "debian:stable";
@@ -300,9 +302,9 @@ in
     #     };
     #   };
     # };
-    networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
-      mkIf cfg.expose-port
-        [ cfg.port ];
+    # networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
+    #   mkIf cfg.expose-port
+    #     [ cfg.port ];
     networking.firewall.interfaces."docker0".allowedTCPPorts = [ cfg.port ];
     systemd.services.gitlab-backup.environment.BACKUP = "dump";
   };

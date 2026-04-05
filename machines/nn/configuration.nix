@@ -32,6 +32,11 @@
     grub.enable = true;
     storage = "/z/srv";
     domain = "n.shonk.de";
+    service-interface = "tailscale0";
+    expose-ts = true;
+    service-ports-expose = false;
+    # nginx.enable = true;
+    nginx-expose = false;
     # systemd-boot.enable = false;
     # fs.ntfs.enable = true;
     # vm.enable = true;
@@ -45,10 +50,6 @@
     # service-ip = "10.0.1.1";
     # users.lenny.enable = true;
     # users.lmh01.enable = true;
-    # service-interface = "tailscale0";
-    nginx.enable = false;
-    nginx-expose = false;
-    service-ports-expose = false;
     # containers = {
     #   grist.enable = true;
     #   diagrams.enable = true;
@@ -70,7 +71,7 @@
       #   # photoprism.enable = true; # WIP
       #   # keycloak.enable = true;
       #   #gitea.enable = true;
-      #   gitlab.enable = true;
+      gitlab.enable = true;
       #   onlyoffice.enable = true;
       #   # grafana.enable = true;
       #   # prometheus.enable = true;
