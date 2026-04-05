@@ -232,6 +232,7 @@ with lib; {
       mediainfo # audio and video information
       jellyfin-mpv-shim
       kdePackages.elisa # music player and organizer
+      kdePackages.qrca # wifi qr code scanner
       # digikam # photo library
       ## Silly BS
       figlet # Fancytext
