@@ -15,25 +15,42 @@ with lib;
       default = "";
       description = "Main Domain name for all services";
     };
-    nginx-expose = mkOption {
+    expose-lan = mkOption {
       type = types.bool;
-      default = config.link.domain != "";
-      description = "if domain is empty services will be made available locally with self-signed certificates";
-    };
-    serviceHost = mkOption {
-      type = types.str;
-      default = "127.0.0.1";
-      description = "IP address on which services are exposed";
+      default = false;
+      description = "expose the port of applications to the local network (link.eth) by default";
     };
     eth = mkOption {
       type = types.str;
       default = "eth0";
       description = "Main ethernet interface";
     };
+
+    expose-ts = mkOption {
+      type = types.bool;
+      default = false;
+      description = "expose the port of applications to the ts network by default";
+    };
+    expose-nginx-public = mkOption {
+      type = types.bool;
+      default = false;
+      description = "expose the port of applications to the internet with NGINX+ACME by default";
+    };
+    serviceHost = mkOption {
+      type = types.str;
+      default = "127.0.0.1";
+      description = "IP address on which services are exposed";
+    };
     tailscale-address = mkOption {
       type = types.str;
       default = "";
       description = "Tailscale address of host";
+    };
+
+    nginx-expose = mkOption {
+      type = types.bool;
+      default = config.link.domain != "";
+      description = "if domain is empty services will be made available locally with self-signed certificates";
     };
     sops = mkOption {
       type = types.bool;
