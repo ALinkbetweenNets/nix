@@ -72,6 +72,7 @@ in {
       net-tools
     ];
     services.netbird.enable = true;
+    systemd.services.netbird.wantedBy = lib.mkForce [ ];
     hardware.i2c.enable = true;
     users.groups.i2c = { };
     services.udev.packages = with pkgs; [ ddcutil ];
