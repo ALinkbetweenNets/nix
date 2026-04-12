@@ -109,7 +109,7 @@
     };
     optimise.automatic = true;
     gc = {
-      persistent = true;
+      persistent = false;
       automatic = true;
       options = "--delete-older-than 14d";
     };
