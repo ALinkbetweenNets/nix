@@ -131,7 +131,7 @@ in
         };
       };
     };
-    boot.kernel.sysctl."net.ipv4.ip_forward" = true;
+    boot.kernel.sysctl."net.ipv4.ip_forward" = lib.mkForce 1;
     virtualisation.podman.enable = true;
     services.gitlab-runner = {
       enable = false;
