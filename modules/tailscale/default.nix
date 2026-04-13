@@ -35,13 +35,24 @@ in
       # ++ lib.optionals (config.link.unbound.enable) [ "--accept-dns=false" ]
       ;
     };
+    # networking.firewall.trustedInterfaces = ["tailscale0"];
+    networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
+    systemd.services.tailscaled.serviceConfig.Environment = lib.mkIf config.link.nftables [
+      "TS_DEBUG_FIREWALL_MODE=nftables"
+    ];
+    systemd.network.wait-online.enable = false;
+    boot.initrd.systemd.network.wait-online.enable = false;
+
+    boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+    boot.kernel.sysctl."net.ipv6.conf.all.forwarding" = 1;
+
     services.networkd-dispatcher = lib.mkIf (cfg.routing != "client") {
       enable = true;
       rules."50-tailscale" = {
         onState = [ "routable" ];
         script = ''
           NETDEV="$(ip -o route get 8.8.8.8 | cut -f 5 -d " ")"
-            "${pkgs.ethtool}" -K "$NETDEV" rx-udp-gro-forwarding on rx-gro-list off
+          "${pkgs.ethtool}" -K "$NETDEV" rx-udp-gro-forwarding on rx-gro-list off
         '';
       };
     };
