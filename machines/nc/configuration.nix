@@ -75,8 +75,8 @@ in
     "net.ipv6.conf.tailscale0.forwarding" = true;
     "net.ipv4.conf.ens3.forwarding" = true;
     "net.ipv6.conf.ens3.forwarding" = true;
-    "net.ipv4.ip_forward" = 1;
-    "net.ipv6.ip_forward" = 1;
+    "net.ipv4.ip_forward" = lib.mkForce 1;
+    "net.ipv6.ip_forward" = lib.mkForce 1;
   };
   networking.defaultGateway6 = {
     address = "fe80::1";
