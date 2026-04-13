@@ -37,7 +37,7 @@ in
     };
     # networking.firewall.trustedInterfaces = ["tailscale0"];
     networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
-    systemd.services.tailscaled.serviceConfig.Environment = lib.mkIf config.link.nftables [
+    systemd.services.tailscaled.serviceConfig.Environment = lib.mkIf config.link.nftables.enable [
       "TS_DEBUG_FIREWALL_MODE=nftables"
     ];
     systemd.network.wait-online.enable = false;
