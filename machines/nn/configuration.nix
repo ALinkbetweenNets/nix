@@ -22,6 +22,7 @@
     cpu-intel.enable = true;
     nvidia.enable = true;
     tailscale.enable = true;
+    tailscale.routing = "server";
     fs.zfs.enable = true;
     fs.btrfs.enable = true;
     fs.luks.enable = true;
