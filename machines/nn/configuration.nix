@@ -73,6 +73,7 @@
       #   # keycloak.enable = true;
       #   #gitea.enable = true;
       gitlab.enable = true;
+      gitlab.storage = "/var/gitlab/state";
       #   onlyoffice.enable = true;
       #   # grafana.enable = true;
       #   # prometheus.enable = true;
@@ -100,8 +101,8 @@
       #   paperless.enable = true;
       #   # vaultwarden.enable = true;
       #   # # matrix.enable = true;
-        restic-server.enable = true;
-        restic-server.expose-port = true;
+      restic-server.enable = true;
+      restic-server.expose-port = true;
       #   # containers.grist.enable = true;
       #   # # coturn.enable = true;
       #   # # dns.enable = true;
