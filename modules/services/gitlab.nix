@@ -32,6 +32,11 @@ in
       default = 80;
       description = "port to run the application on";
     };
+    storage = mkOption {
+      type = types.string;
+      description = "Storage for Gitlab State";
+      default = "${config.link.storage}/gitlab/state";
+    };
   };
   config = mkIf cfg.enable {
     sops.secrets = {
@@ -99,7 +104,7 @@ in
         host =
           if config.link.domain == "" then config.networking.hostName else "gitlab.${config.link.domain}";
         # host = "sn";
-        # statePath = "${config.link.storage}/gitlab/state";
+        statePath = cfg.storage;
         sidekiq.concurrency = 4;
         puma = {
           threadsMax = 1;
