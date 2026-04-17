@@ -15,7 +15,6 @@
   ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   system.autoUpgrade.enable = lib.mkForce false;
-  services.postgresql.package = pkgs.postgresql_16; # prevent major upgrades
   link = {
     common.enable = true;
     server.enable = true;
@@ -47,7 +46,7 @@
     #   diagrams.enable = true;
     # };
     # zola.enable = true;
-    # podman.enable = true;
+    podman.enable = true;
     service-ports-expose = true;
     services = {
       radicale.enable = true;
@@ -208,7 +207,7 @@
       "ro"
     ]; # read only, wouldnt want a onedrive mess up to be able to affect the main repo
   };
-
+  services.postgresql.package = pkgs.postgresql_16; # prevent major upgrades
   environment.systemPackages = with pkgs; [
     rclone
     (
