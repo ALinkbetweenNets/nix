@@ -88,6 +88,7 @@ with lib; {
     home.packages = with pkgs; [
       # bitwarden-cli
       pympress
+      zotero
       openai-whisper # transcription
       ripgrep-all # also search pdfs, ebooks, office docs, zip, tar.gz
       kdePackages.plasma-browser-integration
