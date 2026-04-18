@@ -33,7 +33,7 @@ in
       description = "port to run the application on";
     };
     storage = mkOption {
-      type = types.string;
+      type = types.str;
       description = "Storage for Gitlab State";
       default = "${config.link.storage}/gitlab/state";
     };
