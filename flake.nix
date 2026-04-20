@@ -36,7 +36,10 @@
       url = "github:aksiksi/compose2nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    microvm.url = "github:astro/microvm.nix";
+    microvm = {
+      url = "github:astro/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     mobile-nixos = {
       url = "github:NixOS/mobile-nixos";
       # inputs.nixpkgs.follows = "nixpkgs";
@@ -194,6 +197,8 @@
                 disko.nixosModules.disko
                 sops-nix.nixosModules.sops
                 grub2-themes.nixosModules.default
+                microvm.nixosModules.microvm
+                microvm.nixosModules.host
                 # simple-nixos-mailserver.nixosModules
                 # ({ config, ... }: {
                 #   # shut up state version warning
