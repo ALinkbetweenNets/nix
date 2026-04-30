@@ -38,21 +38,27 @@ in {
           notify-send "battery critical!"
         '';
       };
+      hyprpaper={
+      enable=true;
+      settings.splash=true;
+      settings.wallpaper=[
+          {monitor="eDP-1"; path = "/home/l/Downloads/a3210070618_10.jpg/home/l/Downloads/a3210070618_10.jpg";}
+        ];};
       mako = {
         enable = true;
-        anchor = "bottom-center";
-        backgroundColor = "#0f1115";
-        width = 300;
-        height = 110;
-        borderSize = 1;
-        borderColor = "#88c0d0";
-        borderRadius = 10;
-        maxIconSize = 64;
-        defaultTimeout = 5000;
-        ignoreTimeout = false;
+        settings.anchor = "bottom-center";
+        settings.backgroundColor = "#0f1115";
+        settings.width = 300;
+        settings.height = 110;
+        settings.borderSize = 1;
+        settings.borderColor = "#88c0d0";
+        settings.borderRadius = 3;
+        settings.maxIconSize = 64;
+        settings.defaultTimeout = 5000;
+        settings.ignoreTimeout = false;
         # font = monospace 14;
         #         backgroundColor = "#00000000";
-        extraConfig = ''
+        settings.extraConfig = ''
           [urgency=low]
           border-color=#cccccc
           [urgency=normal]
@@ -97,7 +103,7 @@ in {
             layer = "overlay";
             width = 60;
           };
-          colors.background = "01010101";
+          colors.background = "10101010";
           border.radius = 0;
         };
       };
@@ -192,11 +198,11 @@ in {
             "modules" =
               [ "custom/power" "custom/quit" "custom/lock" "custom/reboot" ];
           };
-          "custom/quit" = {
-            "format" = "󰗼";
-            "tooltip" = false;
-            "on-click" = "hyprctl dispatch exit";
-          };
+          # "custom/quit" = {
+          #   "format" = "󰗼";
+          #   "tooltip" = false;
+          #   "on-click" = "hyprctl dispatch exit";
+          # };
           "custom/lock" = {
             "format" = "󰍁";
             "tooltip" = false;
@@ -327,36 +333,36 @@ in {
             drag_lock = true;
           };
           sensitivity = 0;
-          float_switch_override_focus = 2;
+          # float_switch_override_focus = 2;
         };
         binds = { allow_workspace_cycles = true; };
         dwindle = {
           pseudotile = "yes";
           preserve_split = "yes";
         };
-        gestures = {
-          workspace_swipe = true;
-          workspace_swipe_forever = true;
-        };
-        windowrule =
-          let f = regex: "float, ^(${regex})$";
-          in [
-            (f "org.gnome.Calculator")
-            (f "org.gnome.Nautilus")
-            (f "pavucontrol")
-            (f "nm-connection-editor")
-            (f "blueberry.py")
-            (f "copyq")
-            # "move cursor 0% 0%, ^(copyq)$"
-            (f "org.gnome.Settings")
-            (f "org.gnome.design.Palette")
-            (f "Color Picker")
-            (f "xdg-desktop-portal")
-            (f "xdg-desktop-portal-gnome")
-            (f "transmission-gtk")
-            (f "com.github.Aylur.ags")
-            "workspace 7, title:Spotify"
-          ];
+        # gestures = {
+        #   workspace_swipe = true;
+        #   workspace_swipe_forever = true;
+        # };
+        # windowrule =
+        #   let f = regex: "float, ^(${regex})$";
+        #   in [
+        #     (f "org.gnome.Calculator")
+        #     (f "org.gnome.Nautilus")
+        #     (f "pavucontrol")
+        #     (f "nm-connection-editor")
+        #     (f "blueberry.py")
+        #     (f "copyq")
+        #     # "move cursor 0% 0%, ^(copyq)$"
+        #     (f "org.gnome.Settings")
+        #     (f "org.gnome.design.Palette")
+        #     (f "Color Picker")
+        #     (f "xdg-desktop-portal")
+        #     (f "xdg-desktop-portal-gnome")
+        #     (f "transmission-gtk")
+        #     (f "com.github.Aylur.ags")
+        #     "workspace 7, title:Spotify"
+        #   ];
         bind =
           let
             binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
