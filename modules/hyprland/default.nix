@@ -1,13 +1,13 @@
 { pkgs, lib, config, ... }:
-with lib;
-let cfg = config.link.hyprland;
-in {
+  with lib;
+  let cfg = config.link.hyprland;
+  in {
 
-  options.link.hyprland = { enable = mkEnableOption "activate hyprland"; };
-  config = mkIf cfg.enable {
-    link = {
-      wayland.enable = true;
-      # plasma.enable = mkForce false;
+    options.link.hyprland = { enable = mkEnableOption "activate hyprland"; };
+    config = mkIf cfg.enable {
+      link = {
+        wayland.enable = true;
+        # plasma.enable = mkForce false;
       xserver.enable = mkForce false;
     };
     services.hypridle.enable = true;
@@ -27,7 +27,8 @@ in {
     environment.systemPackages = with pkgs; [
       mako
       ags
-      # kitty # required for the default Hyprland config
+      hyprlauncher
+      kitty # required for the default Hyprland config
       cliphist
       hyprpolkitagent
       waybar
