@@ -55,7 +55,7 @@ in
             github.copilot-chat
             github.vscode-github-actions
             github.vscode-pull-request-github
-            gitlab.gitlab-workflow
+            # gitlab.gitlab-workflow
             gruntfuggly.todo-tree
             jnoortheen.nix-ide
             mkhl.direnv
