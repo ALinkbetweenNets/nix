@@ -200,13 +200,13 @@
   #   device = "/rz/arr/";
   #   options = [ "bind" ];
   # };
-  fileSystems."/var/lib/onedrive/restic" = {
-    device = "/var/lib/restic";
-    options = [
-      "bind"
-      "ro"
-    ]; # read only, wouldnt want a onedrive mess up to be able to affect the main repo
-  };
+  # fileSystems."/var/lib/onedrive/restic" = {
+  #   device = "/var/lib/restic";
+  #   options = [
+  #     "bind"
+  #     "ro"
+  #   ]; # read only, wouldnt want a onedrive mess up to be able to affect the main repo
+  # };
   services.postgresql.package = pkgs.postgresql_16; # prevent major upgrades
   environment.systemPackages = with pkgs; [
     rclone
