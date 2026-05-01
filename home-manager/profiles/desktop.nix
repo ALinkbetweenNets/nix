@@ -1,12 +1,28 @@
-{ lib, pkgs, flake-self, config, system-config, ... }:
-with lib; {
-  imports = [ ../colorscheme.nix ./common.nix flake-self.homeModules.xdg ];
+{
+  lib,
+  pkgs,
+  flake-self,
+  config,
+  system-config,
+  ...
+}:
+with lib;
+{
+  imports = [
+    ../colorscheme.nix
+    ./common.nix
+    flake-self.homeModules.xdg
+  ];
   config = {
     dconf = {
       enable = true;
       settings = {
         "org/maliit/keyboard/maliit" = {
-          enabled-languages = [ "en" "de" "emoji" ];
+          enabled-languages = [
+            "en"
+            "de"
+            "emoji"
+          ];
           theme = "BreezeDark";
         };
         "org/gnome/desktop/interface".color-scheme = "prefer-dark";
@@ -22,8 +38,8 @@ with lib; {
             hide_tab_bar_if_only_one_tab = true,
           }
         '';
-            # window_background_opacity=0.7,
-            # text_background_opacity=0.3,
+        #     window_background_opacity=0.7,
+        #     text_background_opacity=0.3,
         # colorSchemes={
         #   them={
         #     background
@@ -84,11 +100,16 @@ with lib; {
       #   };
       #
       # };
-      firefox = { enable = true; };
+      firefox = {
+        enable = true;
+        configPath = ".mozilla/firefox";
+      };
       yt-dlp = {
         enable = true;
         extraConfig = "--no-update";
-        settings = { embed-thumbnail = true; };
+        settings = {
+          embed-thumbnail = true;
+        };
       };
       mpv = {
         # package = pkgs.mpv-unwrapped.wrapper {
@@ -122,20 +143,19 @@ with lib; {
           WHEEL_UP = "seek 10";
           WHEEL_DOWN = "seek -10";
           "Alt+0" = "set window-scale 0.5";
-          "CTRL+1" = ''
-            no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode A (HQ)"'';
-          "CTRL+2" = ''
-            no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_Soft_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode B (HQ)"'';
-          "CTRL+3" = ''
-            no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Upscale_Denoise_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode C (HQ)"'';
-          "CTRL+4" = ''
-            no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_Restore_CNN_M.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode A+A (HQ)"'';
-          "CTRL+5" = ''
-            no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_Soft_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Restore_CNN_Soft_M.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode B+B (HQ)"'';
-          "CTRL+6" = ''
-            no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Upscale_Denoise_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Restore_CNN_M.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode C+A (HQ)"'';
-          "CTRL+0" = ''
-            no-osd change-list glsl-shaders clr ""; show-text "GLSL shaders cleared"'';
+          "CTRL+1" =
+            ''no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode A (HQ)"'';
+          "CTRL+2" =
+            ''no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_Soft_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode B (HQ)"'';
+          "CTRL+3" =
+            ''no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Upscale_Denoise_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode C (HQ)"'';
+          "CTRL+4" =
+            ''no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_Restore_CNN_M.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode A+A (HQ)"'';
+          "CTRL+5" =
+            ''no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_Soft_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Restore_CNN_Soft_M.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode B+B (HQ)"'';
+          "CTRL+6" =
+            ''no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Upscale_Denoise_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Restore_CNN_M.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode C+A (HQ)"'';
+          "CTRL+0" = ''no-osd change-list glsl-shaders clr ""; show-text "GLSL shaders cleared"'';
         };
         config = {
           profile = "gpu-hq";
@@ -145,8 +165,7 @@ with lib; {
           cache-default = 4000000;
           scriptOpts = "ytdl_hook-ytdl_path=${pkgs.yt-dlp}/bin/yt-dlp";
           # Optimized shaders for higher-end GPU: Mode A (HQ)
-          glsl-shaders =
-            "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl";
+          glsl-shaders = "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl";
         };
         defaultProfiles = [ "gpu-hq" ];
         extraInput = ''
@@ -159,7 +178,8 @@ with lib; {
     };
     manual.html.enable = true;
     # Packages to install on all desktop systems
-    home.packages = with pkgs;
+    home.packages =
+      with pkgs;
       [
         neovide # neovim frontend
         ## Basics
@@ -214,8 +234,8 @@ with lib; {
         kdePackages.colord-kde
         flake-self.inputs.zen-browser.packages.${system}.default
         # (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
-      ] ++ lib.optionals
-      (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [
+      ]
+      ++ lib.optionals (system-config.nixpkgs.hostPlatform.system == "x86_64-linux") [
         bitwarden-desktop
         tor-browser
         mullvad-browser
