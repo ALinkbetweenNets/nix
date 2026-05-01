@@ -27,7 +27,11 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    sops.secrets."netbox" = {
+    sops.secrets."netbox/secretKey" = {
+      owner = "netbox";
+      group = "netbox";
+    };
+    sops.secrets."netbox/apiTokenPeppers" = {
       owner = "netbox";
       group = "netbox";
     };
@@ -53,7 +57,8 @@ in {
       netbox = {
         enable = true;
         package = pkgs.netbox;
-        secretKeyFile = config.sops.secrets."netbox".path;
+        secretKeyFile = config.sops.secrets."netbox/secretKey".path;
+        apiTokenPeppersFile=config.sops.secrets."netbox/apiTokenPeppers".path;
       };
     };
     networking.firewall.interfaces."${config.link.service-interface}".allowedTCPPorts =
