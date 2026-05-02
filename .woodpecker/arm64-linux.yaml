@@ -89,11 +89,11 @@
       "event": "push"
     },
     {
-      "branch": "experimental",
+      "branch": "experimental*",
       "event": "push"
     },
     {
-      "branch": "csp",
+      "branch": "reenable*",
       "event": "push"
     }
   ]
