@@ -55,11 +55,11 @@
       flake-self.inputs.nur.overlays.default
       flake-self.inputs.crab_share.overlay
       # (final: prev: {
-      #   ondsel = flake-self.inputs.ondsel.packages.${pkgs.system}.ondsel;
+      #   ondsel = flake-self.inputs.ondsel.packages.${pkgs.stdenv.hostPlatform.system}.ondsel;
       # })
       (final: prev: {
         cudapkgs = import flake-self.inputs.nixpkgs {
-          system = "${pkgs.system}";
+          system = "${pkgs.stdenv.hostPlatform.system}";
           config = {
             allowUnfree = true;
             cudaSupport = true;

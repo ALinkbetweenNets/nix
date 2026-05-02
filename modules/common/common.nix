@@ -168,7 +168,7 @@ in
     #         ref = "refs/heads/nixpkgs-unstable";
     #         rev = "9957cd48326fe8dbd52fdc50dd2502307f188b0d";
     #       })
-    #       { system = "${pkgs.system}"; }).xz;
+    #       { system = "${pkgs.stdenv.hostPlatform.system}"; }).xz;
     #   in
     #   [
     #     ({
