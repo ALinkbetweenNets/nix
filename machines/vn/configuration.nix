@@ -1,6 +1,17 @@
-{ self, ... }:{ pkgs, lib, config, flake-self, home-manager, ... }: {
-  imports =
-    [ ./hardware-configuration.nix home-manager.nixosModules.home-manager ];
+{ self, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  flake-self,
+  home-manager,
+  ...
+}:
+{
+  imports = [
+    ./hardware-configuration.nix
+    home-manager.nixosModules.home-manager
+  ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   link = {
     # systemd-boot.enable = false;
@@ -47,4 +58,5 @@
   #   useRoutingFeatures = "server";
   #   extraUpFlags = [ "--advertise-exit-node" ];
   # };
+  system.stateVersion = "26.05";
 }
