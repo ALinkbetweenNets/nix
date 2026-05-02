@@ -81,7 +81,7 @@ with lib; {
             enable = true;
           };
           sql.enable = true;
-          ts.enable = true;
+          typescript.enable = true;
           nix = {
             enable = true;
             format.type = [ "nixfmt" ];
