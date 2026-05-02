@@ -8,7 +8,7 @@ let
   #     "https://github.com/NixOS/nixpkgs/archive/ea4c80b39be4c09702b0cb3b42eab59e2ba4f24b.tar.gz";
   #   sha256 = "sha256:1xi53rlslcprybsvrmipm69ypd3g3hr7wkxvzc73ag8296yclyll";
   # }) {
-  #   system = "${pkgs.system}";
+  #   system = "${pkgs.stdenv.hostPlatform.system}";
   #   config.allowUnfree = true;
   # }).pdfmixtool;
 in
