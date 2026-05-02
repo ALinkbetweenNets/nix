@@ -350,7 +350,11 @@
       "event": "push"
     },
     {
-      "branch": "experimental",
+      "branch": "experimental*",
+      "event": "push"
+    },
+    {
+      "branch": "reenable*",
       "event": "push"
     }
   ]
