@@ -1,6 +1,18 @@
-{ self, ... }:{ pkgs, lib, config, flake-self, home-manager, modulesPath, ... }: {
-  imports =
-    [ home-manager.nixosModules.home-manager ./hardware-configuration.nix ];
+{ self, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  flake-self,
+  home-manager,
+  modulesPath,
+  ...
+}:
+{
+  imports = [
+    home-manager.nixosModules.home-manager
+    ./hardware-configuration.nix
+  ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   system.autoUpgrade.enable = lib.mkForce false;
   link = {
@@ -112,8 +124,7 @@
     # };
     eth = "ens18";
   };
-  services.postgresql.dataDir =
-    "${config.link.storage}/postgresql/${config.services.postgresql.package.psqlSchema}";
+  services.postgresql.dataDir = "${config.link.storage}/postgresql/${config.services.postgresql.package.psqlSchema}";
   # services.ollama = {
   #   enable = true;
   #   port = 11434;
@@ -203,4 +214,5 @@
   #   # loader.grub.device = "/dev/sdd";
   #   zfs.extraPools = [ "wdp" ];
   # };
+  system.stateVersion = "26.05";
 }

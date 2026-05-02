@@ -119,4 +119,5 @@
   networking.hostName = "p4n";
   networking.domain = "monitor-banfish.ts.net";
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
+  system.stateVersion = "23.11";
 }

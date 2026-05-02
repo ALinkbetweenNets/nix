@@ -1,5 +1,13 @@
 { self, ... }:
-{ pkgs, lib, config, flake-self, home-manager, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  flake-self,
+  home-manager,
+  ...
+}:
+{
   imports = [
     ./hardware-configuration.nix
     home-manager.nixosModules.home-manager
@@ -35,8 +43,11 @@
     podman.enable = true;
     services.restic-client = {
       enable = true;
-      backup-paths-sn =
-        [ "/home/l/.ssh" "/home/l/Documents" "/home/l/Pictures" ];
+      backup-paths-sn = [
+        "/home/l/.ssh"
+        "/home/l/Documents"
+        "/home/l/Pictures"
+      ];
       #  backup-paths-sciebo = [
       #    "/home/l/.ssh"
       #    # "/home/l/archive"
@@ -81,10 +92,10 @@
   services.throttled.enable = lib.mkForce true;
   services.hardware.bolt.enable = lib.mkDefault true;
   hardware.trackpoint.enable = lib.mkDefault true;
-  hardware.trackpoint.emulateWheel =
-    lib.mkDefault config.hardware.trackpoint.enable;
+  hardware.trackpoint.emulateWheel = lib.mkDefault config.hardware.trackpoint.enable;
   hardware.sensor.iio.enable = true;
   #powerManagement.scsiLinkPolicy = "med_power_with_dipm";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   #environment.systemPackages = with pkgs;    [ ];
+  system.stateVersion = "23.11";
 }
