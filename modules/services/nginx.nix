@@ -32,10 +32,10 @@ in
     services.nginx = {
       # additionalModules = with pkgs.nginxModules; [ env ];
       enable = true;
-      recommendedGzipSettings = true;
+      # recommendedGzipSettings = true;
       recommendedOptimisation = true;
       recommendedProxySettings = true;
-      experimentalZstdSettings = true;
+      # experimentalZstdSettings = true;
       # recommendedTlsSettings = true;
       logError = "stderr debug";
       enableQuicBPF = true;
