@@ -31,8 +31,8 @@ in
       enable = true;
     };
     virtualisation = {
-      lxc.enable = true;
-      lxc.unprivilegedContainers = true;
+      # lxc.enable = true;
+      # lxc.unprivilegedContainers = true;
       # virtualbox.host = {
       #   enable = true;
       #   enableKvm = true;
