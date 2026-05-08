@@ -87,6 +87,7 @@ with lib; {
 
     home.packages = with pkgs; [
       # bitwarden-cli
+      nextcloud-client
       pympress
       zotero
       openai-whisper # transcription
