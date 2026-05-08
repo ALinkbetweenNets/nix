@@ -40,6 +40,11 @@ in {
           ];
           interface = [ "::1" "127.0.0.1" ];
           access-control = [ "127.0.0.0/8 allow" ];
+          verbosity=3;
+          # log-queries="yes";
+          # log-replies="yes";
+          # module-config="iterator";
+          val-permissive-mode="yes";
         };
         # forward local DNS requests via Wireguard
         # domain-insecure = [ "haus" ];
@@ -97,18 +102,20 @@ in {
               # "192.168.1.1"
               # "192.168.178.1"
               #"10.100.11.1"
-              "100.100.100.100" # tailscale
-              "2620:fe::fe@853#dns.quad9.net"
+              # "100.100.100.100" # tailscale
+              "76.76.2.11#p2.freedns.controld.com"
+              "2606:1a40::11#p2.freedns.controld.com"
+              # "2620:fe::fe@853#dns.quad9.net"
               "2620:fe::9@853#dns.quad9.net"
-              "9.9.9.9#dns.quad9.net" # quad9
-              "149.112.112.112#dns.quad9.net"
-              "2a07:e340::4#base.dns.mullvad.net"
-              "194.242.2.4#base.dns.mullvad.net"
+              # "9.9.9.9#dns.quad9.net" # quad9
+              # "149.112.112.112#dns.quad9.net"
+              # "2a07:e340::4#base.dns.mullvad.net"
+              # "194.242.2.4#base.dns.mullvad.net"
               # "192.168.188.3" # npo
-              "2a09::@853" # dns.sb
+              # "2a09::@853" # dns.sb
               "2a11::@853" # dns.sb
-              "185.222.222.222@853" # dns.sb
-              "45.11.45.11@853" # dns.sb
+              # "185.222.222.222@853" # dns.sb
+              # "45.11.45.11@853" # dns.sb
               # "8.8.8.8" # google
               # "2606:4700:4700::1111@853#cloudflare-dns.com"
               # "1.1.1.1@853#cloudflare-dns.com"
