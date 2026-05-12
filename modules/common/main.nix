@@ -1,8 +1,18 @@
-{ config, pkgs, lib, flake-self, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  flake-self,
+  ...
+}:
 with lib;
-let cfg = config.link.main;
-in {
-  options.link.main = { enable = mkEnableOption "activate main"; };
+let
+  cfg = config.link.main;
+in
+{
+  options.link.main = {
+    enable = mkEnableOption "activate main";
+  };
   config = mkIf cfg.enable {
     link = {
       desktop.enable = true;
@@ -12,16 +22,15 @@ in {
       tailscale.enable = true;
       qmk.enable = true;
     };
-    programs.wireshark={
-      enable=true;
-      package=pkgs.wireshark;
-      usbmon.enable=true;
+    programs.wireshark = {
+      enable = true;
+      package = pkgs.wireshark;
+      usbmon.enable = true;
     };
     boot = {
-      extraModulePackages = with config.boot.kernelPackages;
-        [
-          # v4l2loopback # broken
-        ];
+      extraModulePackages = with config.boot.kernelPackages; [
+        # v4l2loopback # broken
+      ];
       kernelModules = [
         "ntsync"
         # "v4l2loopback" # broken
@@ -96,6 +105,7 @@ in {
           obs-teleport
           obs-composite-blur
           obs-backgroundremoval
+          obs-studio-plugins.distroav
         ];
       };
     };

@@ -218,7 +218,6 @@ with lib; {
       ffmpeg
       gallery-dl
       ## Multimedia
-      # obs-studio-plugins.distroav
       easyeffects
       artyFX
       brave # backup browser for teams, office online # multiple problems with privacy during end of 2023
