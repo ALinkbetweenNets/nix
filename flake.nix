@@ -2,15 +2,18 @@
   description = "My NixOS infrastructure";
   inputs = {
     # xr-linux-flake.url = "github:alinkbetweennets/xr-linux-flake";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
     # Pure Nix flake utility functions
     # https://github.com/numtide/flake-utils
     flake-utils.url = "github:numtide/flake-utils";
+    flake-utils.inputs.nixpkgs.follows = "nixpkgs";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,19 +39,24 @@
       url = "github:aksiksi/compose2nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    microvm.url = "github:astro/microvm.nix";
+    microvm = {
+      url = "github:astro/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     mobile-nixos = {
       url = "github:NixOS/mobile-nixos";
       # inputs.nixpkgs.follows = "nixpkgs";
       flake = false;
     };
     ucodenix.url = "github:e-tho/ucodenix";
+    ucodenix.inputs.nixpkgs.follows = "nixpkgs";
     # vscode-server = {
     #   url = "github:msteen/nixos-vscode-server";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
     crab_share = {
       url = "github:lounge-rocks/crab_share";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nvf = {
       url = "github:notashelf/nvf";
@@ -75,6 +83,7 @@
       inputs.home-manager.follows = "home-manager";
     };
     zen-browser.url = "github:youwen5/zen-browser-flake";
+    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
     # ondsel = {
     #   url = "github:pinpox/ondsel-nix";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -85,6 +94,7 @@
     };
     ghostty = {
       url = "github:ghostty-org/ghostty";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # Adblocking lists for Unbound DNS servers running on NixOS
     # https://github.com/MayNiklas/nixos-adblock-unbound
