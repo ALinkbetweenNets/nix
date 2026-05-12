@@ -20,9 +20,9 @@ in
       nixfmt
       vscode-langservers-extracted
     ];
-    programs.vscode = {
+    programs.vscodium = {
       enable = true;
-      package = pkgs.vscodium;
+      # package = pkgs.vscodium;
       profiles.default = {
         userMcp = {
           "servers" = {
