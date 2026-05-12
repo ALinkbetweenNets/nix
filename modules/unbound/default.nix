@@ -40,7 +40,7 @@ in {
           ];
           interface = [ "::1" "127.0.0.1" ];
           access-control = [ "127.0.0.0/8 allow" ];
-          verbosity=3;
+          # verbosity=3;
           # log-queries="yes";
           # log-replies="yes";
           # module-config="iterator";
