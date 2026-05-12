@@ -1,7 +1,15 @@
-{ config, system-config, pkgs, lib, ... }:
+{
+  config,
+  system-config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.link.dns;
-in {
+let
+  cfg = config.link.dns;
+in
+{
   options.link.dns.enable = mkEnableOption "activate dns";
   config = mkIf cfg.enable {
     link.unbound.enable = true;
@@ -9,13 +17,19 @@ in {
       resolvconf.useLocalResolver = true;
       networkmanager.enable = true;
       # networkmanager.dns = "systemd-resolved";
-      networkmanager.dns = "none";
-      search = [ "local" "monitor-banfish.ts.net" ];
+      networkmanager.dns = lib.mkDefault "none";
+      search = [
+        "local"
+        "monitor-banfish.ts.net"
+      ];
     };
     services.resolved = {
       settings.Resolve = {
         DNS = [ "127.0.0.1" ];
-        Domains = [ "monitor-banfish.net" "local" ];
+        Domains = [
+          "monitor-banfish.net"
+          "local"
+        ];
       };
     };
     # networking.nameservers = [
