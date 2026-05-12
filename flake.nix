@@ -7,7 +7,6 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     # nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
     # Pure Nix flake utility functions
@@ -49,7 +48,6 @@
       flake = false;
     };
     ucodenix.url = "github:e-tho/ucodenix";
-    ucodenix.inputs.nixpkgs.follows = "nixpkgs";
     # vscode-server = {
     #   url = "github:msteen/nixos-vscode-server";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -75,6 +73,7 @@
     nixgl = {
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
     # simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-22.11";
     plasma-manager = {
@@ -95,6 +94,7 @@
     ghostty = {
       url = "github:ghostty-org/ghostty";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
     # Adblocking lists for Unbound DNS servers running on NixOS
     # https://github.com/MayNiklas/nixos-adblock-unbound
@@ -111,16 +111,24 @@
       url = "github:StevenBlack/hosts";
       flake = false;
     };
-    mayniklas = {
-      url = "github:MayNiklas/nixos";
-      inputs = {
-        disko.follows = "disko";
-        home-manager.follows = "home-manager";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
+    # mayniklas = {
+    #   url = "github:MayNiklas/nixos";
+    #   inputs = {
+    #     disko.follows = "disko";
+    #     home-manager.follows = "home-manager";
+    #     nixpkgs.follows = "nixpkgs";
+    #     adblock-unbound.follows = "adblock-unbound";
+    #     ablockStevenBlack.follows = "adblockStevenBlack";
+    #     flake-utils.follows="flake-utils";
+    #   };
+    # };
     grub2-themes = {
       url = "github:paulmiro/grub2-themes";
+    };
+    vscode-server = {
+      url = "github:msteen/nixos-vscode-server";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
   };
   outputs =
