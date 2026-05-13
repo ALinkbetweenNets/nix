@@ -451,6 +451,18 @@ in
       '';
       root = "/var/www/timer/";
     };
+    "ileakage.${config.link.domain}" = {
+      quic = true;
+      http3_hq = true;
+      http3 = true;
+      # enableACME = true;
+      serverAliases = [
+      ];
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      extraConfig = commonExtraConfig;
+      root = "/var/www/ileakage/";
+    };
     "burp.${config.link.domain}" = {
       quic = true;
       http3_hq = true;
