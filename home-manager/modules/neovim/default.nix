@@ -202,7 +202,7 @@ with lib; {
           #];
 
           orgmode.enable = false;
-          mind-nvim.enable = true;
+          # mind-nvim.enable = true;
           todo-comments.enable = true;
         };
         terminal = {
