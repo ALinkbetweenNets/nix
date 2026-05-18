@@ -451,6 +451,18 @@ in
       '';
       root = "/var/www/timer/";
     };
+    "sca-lab.${config.link.domain}" = {
+      quic = true;
+      http3_hq = true;
+      http3 = true;
+      # enableACME = true;
+      serverAliases = [
+      ];
+      useACMEHost = config.link.domain;
+      forceSSL = true;
+      extraConfig = commonExtraConfig;
+      root = "/var/www/sca-lab-browser/ileakage";
+    };
     "ileakage.${config.link.domain}" = {
       quic = true;
       http3_hq = true;
