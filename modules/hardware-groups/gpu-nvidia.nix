@@ -39,6 +39,7 @@ in
         extraPackages32 = with pkgs; [ libva-vdpau-driver ];
       };
       nvidia = {
+        enable=true;
         open =
           false; # with the open driver the screen will keep black after waking the pc from suspend
         modesetting.enable = true;
