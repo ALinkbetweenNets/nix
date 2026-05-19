@@ -15,6 +15,7 @@
   ];
   home-manager.users.l = flake-self.homeConfigurations.server;
   system.autoUpgrade.enable = lib.mkForce false;
+  hardware.nvidia.package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.legacy_580; # Older versions
   link = {
     common.enable = true;
     hardware.enable = true;
