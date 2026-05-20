@@ -98,7 +98,6 @@ in
 '"body_bytes_sent":"$body_bytes_sent",'
 '"bytes_sent":"$bytes_sent",'
 '"request_length":"$request_length",'
-'"request_time":"$request_time",'
 
 '"request_body":"$request_body",'
 
@@ -123,11 +122,36 @@ in
 '"request_completion":"$request_completion",'
 '"pipe":"$pipe"'
 '}';
-        access_log /var/log/nginx/forensic.log forensic;
-        log_format detailed '[$time_local] $remote_addr $remote_user ($http_x_forwarded_for)'
-          '"$request" $http_referer $request_uri $status $body_bytes_sent '
-          ' "$http_user_agent"'
-          '-- "$request_body"';
+log_format detailed
+'$time_iso8601 '
+'$remote_addr '
+
+'host="$host" '
+'vhost="$server_name" '
+'dst="$server_addr:$server_port" '
+
+'req="$request" '
+'method="$request_method" '
+'uri="$request_uri" '
+'args="$args" '
+
+'proto="$server_protocol" '
+'status=$status '
+'time=$request_time '
+
+'ssl="$ssl_protocol" '
+'cipher="$ssl_cipher" '
+'up_status="$upstream_status" '
+'up_time="$upstream_response_time" '
+
+'ua="$http_user_agent" '
+'xff="$http_x_forwarded_for" '
+'body:"$request_body" ';
+        access_log /var/log/nginx/detailed.log detailed;
+       # log_format detailed '[$time_local] $remote_addr $remote_user ($http_x_forwarded_for)'
+       #   '"$request" $http_referer $request_uri $status $body_bytes_sent '
+       #   ' "$http_user_agent"'
+       #   '-- "$request_body"';
         # log_format body '[$time_local] $remote_addr $remote_user'
         #   '"$request" $status $body_bytes_sent '
         #   '"$http_referer" "$http_user_agent"'
