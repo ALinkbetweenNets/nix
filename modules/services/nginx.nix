@@ -69,7 +69,62 @@ in
         # clients to pick the most performant, per https://github.com/mozilla/server-side-tls/issues/260
         ssl_prefer_server_ciphers off;
         # ssl_prefer_server_ciphers on; # disabled as only secure ciphers enabled. Clients may choose the most performant cipher for them from our whitelist
-        log_format myformat '[$time_local] $remote_addr $remote_user ($http_x_forwarded_for)'
+        log_format forensic escape=json
+'{'
+'"time":"$time_iso8601",'
+'"msec":"$msec",'
+'"connection":"$connection",'
+'"connection_requests":"$connection_requests",'
+'"pid":"$pid",'
+
+'"remote_addr":"$remote_addr",'
+'"realip_remote_addr":"$realip_remote_addr",'
+'"proxy_protocol_addr":"$proxy_protocol_addr",'
+'"xff":"$http_x_forwarded_for",'
+
+'"request":"$request",'
+'"request_method":"$request_method",'
+'"scheme":"$scheme",'
+'"host":"$host",'
+'"server_name":"$server_name",'
+'"server_addr":"$server_addr",'
+'"server_port":"$server_port",'
+'"uri":"$uri",'
+'"request_uri":"$request_uri",'
+'"args":"$args",'
+'"query_string":"$query_string",'
+
+'"status":"$status",'
+'"body_bytes_sent":"$body_bytes_sent",'
+'"bytes_sent":"$bytes_sent",'
+'"request_length":"$request_length",'
+'"request_time":"$request_time",'
+
+'"request_body":"$request_body",'
+
+'"http_user_agent":"$http_user_agent",'
+'"http_referer":"$http_referer",'
+'"http_cookie":"$http_cookie",'
+'"content_type":"$content_type",'
+'"http_content_type":"$http_content_type",'
+'"http_content_length":"$http_content_length",'
+'"http_authorization":"$http_authorization",'
+
+'"ssl_protocol":"$ssl_protocol",'
+'"ssl_cipher":"$ssl_cipher",'
+'"https":"$https",'
+
+'"upstream_addr":"$upstream_addr",'
+'"upstream_status":"$upstream_status",'
+'"upstream_response_time":"$upstream_response_time",'
+'"upstream_connect_time":"$upstream_connect_time",'
+'"upstream_header_time":"$upstream_header_time",'
+
+'"request_completion":"$request_completion",'
+'"pipe":"$pipe"'
+'}';
+        access_log /var/log/nginx/forensic.log forensic;
+        log_format detailed '[$time_local] $remote_addr $remote_user ($http_x_forwarded_for)'
           '"$request" $http_referer $request_uri $status $body_bytes_sent '
           ' "$http_user_agent"'
           '-- "$request_body"';
