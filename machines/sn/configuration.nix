@@ -277,4 +277,5 @@
   ];
   system.stateVersion = "23.11";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  hardware.facter.reportPath = ./facter.json;
 }
