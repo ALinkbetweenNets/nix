@@ -211,7 +211,7 @@ with lib;
         ## Hex Editor
         hexdino # terminal vimlike hex editor
         okteta # hex editor
-        # imhex # broken
+        imhex # broken
         ## File Sync
         #syncthing-tray
         ## Browser
