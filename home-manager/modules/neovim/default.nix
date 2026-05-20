@@ -87,7 +87,7 @@ with lib; {
             format.type = [ "nixfmt" ];
           };
           markdown.enable = true;
-          markdown.extensions.render-markdown-nvim.enable = true;
+          # markdown.extensions.render-markdown-nvim.enable = true; # does not display partial todo boxes
           markdown.extensions.markview-nvim.enable = true;
           css.enable = true;
           typst.enable = true;
