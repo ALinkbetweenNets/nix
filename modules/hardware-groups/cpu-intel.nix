@@ -22,7 +22,7 @@ in {
       extraPackages = with pkgs; [
         intel-media-driver
         libvdpau-va-gl
-        # vaapiIntel
+        intel-vaapi-driver
         libva-vdpau-driver
         intel-compute-runtime
         intel-ocl
