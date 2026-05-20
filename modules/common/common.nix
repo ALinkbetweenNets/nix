@@ -156,6 +156,7 @@ in
         eza
         bat
         btop
+        ccze
       ]
       ++ lib.optionals (config.nixpkgs.hostPlatform.system == "x86_64-linux") [ glances ];
     # console.font = "FiraCode Nerd Font";
