@@ -129,6 +129,11 @@ in
           );
         in
         {
+          colr = "${pkgs.ccze}/bin/ccze";
+          nginxlogl = "sudo tail -f /var/log/nginx/forensic.log | ${pkgs.ccze}/bin/ccze -A -o nolookups";
+          nginxlog = "sudo tac /var/log/nginx/forensic.log | ${pkgs.ccze}/bin/ccze -A -o nolookups | less -R";
+          j="SYSTEMD_COLORS=true journalctl -ar| ${pkgs.ccze}/bin/ccze -Ao nolookups | less -R";
+          jf="SYSTEMD_COLORS=true journalctl -af| ${pkgs.ccze}/bin/ccze -Ao nolookups";
           zj = "zellij";
           uwu = "sudo $(history -p !!)";
           unn = "nixos-rebuild --flake .#nn --target-host nn --use-substitutes switch --sudo |&nom";
