@@ -163,6 +163,7 @@
     fw-ectool
     framework-tool
   ];
+  services.hardware.bolt.enable=true;
   #services.fprintd = {
   #  enable = true;
   #  tod.enable = true;
