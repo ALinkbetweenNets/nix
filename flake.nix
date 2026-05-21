@@ -152,6 +152,7 @@
         in
         {
           # displaylink=pkgs.displaylink;
+          precomp = pkgs.link.precomp;
           woodpecker-pipeline = pkgs.callPackage ./pkgs/woodpecker-pipeline {
             flake-self = self;
             inputs = inputs;
